@@ -71,6 +71,7 @@ public class CheckGoldDifferences {
 			}
 
 			int count = 0;
+			calleecopy = new ArrayList<RequirementGold>();
 			for (List<RequirementGold> callee : CalleesList) {
 
 				if (count == 0) {
@@ -97,6 +98,7 @@ public class CheckGoldDifferences {
 
 			}
 			count = 0;
+			calleecopy = new ArrayList<RequirementGold>();
 			System.out.println(methodID+" NEW ");
 			for (List<RequirementGold> callee : CallersList) {
 				System.out.println(callee.toString());
@@ -123,6 +125,7 @@ public class CheckGoldDifferences {
 			}
 
 			count = 0;
+			calleecopy = new ArrayList<RequirementGold>();
 			for (List<RequirementGold> callee : CalleesListExecuted) {
 
 				if (count == 0) {
@@ -148,6 +151,7 @@ public class CheckGoldDifferences {
 			}
 
 			count = 0;
+			calleecopy = new ArrayList<RequirementGold>();
 			for (List<RequirementGold> callee : CallersListExecuted) {
 
 				if (count == 0) {
@@ -172,6 +176,27 @@ public class CheckGoldDifferences {
 
 			}
 
+			
+			int CalleesListSize= CalleesList.size(); 
+			int CalleesListExecutedSize= CalleesListExecuted.size(); 
+			int CallersListSize= CallersList.size(); 
+			int CallersListExecutedSize= CallersListExecuted.size(); 
+			if(CalleesListSize!=0 && CalleesListExecutedSize!=0) {
+				if(reqgoldcopy.EqualsListRequirementsGold(CalleesList.get(0), CalleesListExecuted.get(0))){
+					System.out.println("LIST COMP********************EQUAL****************");
+				}
+				else {
+					System.out.println("LIST COMP********************NOT EQUAL****************");
+				}
+			}
+			if(CallersListSize!=0 && CallersListExecutedSize!=0) {
+				if(reqgoldcopy.EqualsListRequirementsGold(CallersList.get(0), CallersListExecuted.get(0))){
+					System.out.println("LIST COMP********************EQUAL****************");
+				}
+				else {
+					System.out.println("LIST COMP********************NOT EQUAL****************");
+				}
+			}
 		}
 	}
 
