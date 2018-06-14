@@ -29,8 +29,18 @@ import spoon.reflect.factory.ClassFactory;
 public class DatabaseReading2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace2> methodtraces2 = null;
+	public static List<ClassTrace2> classestraces2 = null;
+	public static List<Method2Details> methodlist = null;
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
+
+	public static List<Method2Details> getMethodlist() {
+		return methodlist;
+	}
+
+	public static void setMethodlist(List<Method2Details> methodlist) {
+		DatabaseReading2.methodlist = methodlist;
+	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
 	private final String password = "root";
@@ -41,6 +51,14 @@ public class DatabaseReading2 {
 	/** The port of the MySQL server (default is 3306) */
 
 	private final int portNumber = 3306;
+
+	public static List<ClassTrace2> getClassestraces2() {
+		return classestraces2;
+	}
+
+	public static void setClassestraces2(List<ClassTrace2> classestraces2) {
+		DatabaseReading2.classestraces2 = classestraces2;
+	}
 
 	/**
 	 * The name of the database we are testing with (this default is installed with
@@ -110,6 +128,7 @@ public class DatabaseReading2 {
 		Method2Details methoddet2 = new Method2Details();
 		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
+		setMethodlist(methodlist);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
@@ -130,6 +149,7 @@ public class DatabaseReading2 {
 		ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
+		setClassestraces2(classestraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		System.out.println("MOUNA");
