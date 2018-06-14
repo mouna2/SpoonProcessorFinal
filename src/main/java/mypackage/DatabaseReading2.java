@@ -127,6 +127,11 @@ public class DatabaseReading2 {
 		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 		
+		ClassTrace2 classtrace2= new ClassTrace2(); 
+		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
+		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
+		///////////////////////////////////////////////////////////////////////////////////////
+		
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {

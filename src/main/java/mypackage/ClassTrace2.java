@@ -11,7 +11,7 @@ public class ClassTrace2 {
 	String ID; 
 		Requirement2 requirement; 
 		ClassRepresentation2 myclass; 
-		String gold; 
+		String trace; 
 		String subject;
 		
 		
@@ -19,12 +19,12 @@ public class ClassTrace2 {
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
 		
 		
-		public ClassTrace2(String iD, Requirement2 requirement, ClassRepresentation2 myclass, String gold, String subject) {
+		public ClassTrace2(String iD, Requirement2 requirement, ClassRepresentation2 myclass, String trace, String subject) {
 			super();
 			ID = iD;
 			this.requirement = requirement;
 			this.myclass = myclass;
-			this.gold = gold;
+			this.trace = trace;
 			this.subject = subject;
 		}
 		
@@ -49,11 +49,11 @@ public class ClassTrace2 {
 		public void setMyclass(ClassRepresentation2 myclass) {
 			this.myclass = myclass;
 		}
-		public String getGold() {
-			return gold;
+		public String gettrace() {
+			return trace;
 		}
-		public void setGold(String gold) {
-			this.gold = gold;
+		public void settrace(String trace) {
+			this.trace = trace;
 		}
 		public String getSubject() {
 			return subject;
@@ -90,7 +90,7 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.setGold(myresults.getString("gold"));
+				 myclasstrace.settrace(myresults.getString("gold"));
 				 
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 

@@ -8,7 +8,9 @@ import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import javax.swing.table.*;
 
+import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
+import mypackage.GroupableTableHeader;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
  
@@ -44,8 +46,8 @@ public class TracesTable extends JFrame
     		data[j][5]= methodtrace.ClassRepresentation.classname; 
     		data[j][6]= methodtrace.gold; 
     		data[j][7]= methodtrace.subject; 
-    		data[j][8]= methodtrace.goldpredictionCaller; 
-    		data[j][9]= methodtrace.goldpredictionCallee; 
+    		data[j][27]= methodtrace.goldpredictionCaller; 
+    		data[j][28]= methodtrace.goldpredictionCallee; 
     		
     		int i=0; 
     		items1 = new String[methodtrace.getCallersList().size()]; 
@@ -141,9 +143,9 @@ public class TracesTable extends JFrame
             {"Plain", "Text"}
         };*/
         
+    
         
-        
-        String[] columnNames = {"MethodID","MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName", "Gold", "Subject", "CalleePrediction", "CallerPrediction", 
+        String[] columnNames = {"MethodID","MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName", "Gold", "Subject","OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods", "# caller methods T", "#caller methods N", "#caller methods E", "# caller classes", "# caller classes T", "#caller classes N", "#caller classes E","# callee methods", "# callee methods T", "#callee methods N", "#callee methods E", "# callee classes", "# callee classes T", "#callee classes N", "#callee classes E",  "CalleePrediction", "CallerPrediction", 
         		"Callers", "CallersExecuted", "Callees", "CalleesExecuted"};
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         JTable table = new JTable(model)
@@ -153,19 +155,24 @@ public class TracesTable extends JFrame
             {
                 int modelColumn = convertColumnIndexToModel( column );
  
-                if (modelColumn == 10 && row < methodtraces2.size())
+                if (modelColumn == 29 && row < methodtraces2.size())
                     return editors1.get(row);
-                if (modelColumn == 11 && row < methodtraces2.size())
+                if (modelColumn == 30 && row < methodtraces2.size())
                     return editors2.get(row);
-                if (modelColumn == 12 && row < methodtraces2.size())
+                if (modelColumn == 31 && row < methodtraces2.size())
                     return editors3.get(row);
-                if (modelColumn == 13 && row < methodtraces2.size())
+                if (modelColumn == 32 && row < methodtraces2.size())
                     return editors4.get(row);
                
                 else
                     return super.getCellEditor(row, column);
             }
+       
         };
+        
+       
+        
+        
         table.getColumnModel().getColumn(6).setPreferredWidth(20); 
         table.getColumnModel().getColumn(7).setPreferredWidth(20); 
         table.getColumnModel().getColumn(8).setPreferredWidth(30); 
@@ -174,11 +181,12 @@ public class TracesTable extends JFrame
         table.getColumnModel().getColumn(11).setPreferredWidth(200); 
         table.getColumnModel().getColumn(12).setPreferredWidth(200); 
         table.getColumnModel().getColumn(13).setPreferredWidth(200); 
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-       
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+   	
         JScrollPane scrollPane = new JScrollPane( table );
         getContentPane().add( scrollPane );
-       JScrollPane horizontalscroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+       JScrollPane horizontalscroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
        getContentPane().add( horizontalscroll );
 //      table.getColumnModel().getColumn(1).setCellRenderer(new ComboBoxRenderer() );
       table.setRowHeight(50);
@@ -192,7 +200,7 @@ public class TracesTable extends JFrame
         public MyEditor(){
             super();
             scroller.setViewportView(editor); 
-            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         }
 
         /** Return a JScrollPane containing the JTextField instead of the JTextField **/
@@ -240,3 +248,8 @@ public class TracesTable extends JFrame
         frame.setVisible(true);
     }
 }
+
+
+
+
+
