@@ -1,5 +1,6 @@
 package mypackage;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,6 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import GUI.TracesTable;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
@@ -82,13 +84,14 @@ public class DatabaseReading2 {
 		return conn;
 	}
 
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		MakePredictions();
 
 	}
 	/**
-	 * @throws SQLException ***********************************************************************************************************************/
-	public static void MakePredictions() throws SQLException {
+	 * @throws SQLException 
+	 * @throws IOException ***********************************************************************************************************************/
+	public static void MakePredictions() throws SQLException, IOException {
 		Connection conn = null;
 		DatabaseReading2 DatabaseReading = new DatabaseReading2();
 		conn = DatabaseReading.getConnection();
@@ -192,6 +195,21 @@ public class DatabaseReading2 {
 			}
 		}
 */
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		String goldprediction=""; 

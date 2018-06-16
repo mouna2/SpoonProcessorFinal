@@ -1,3 +1,5 @@
+package GUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.BufferedWriter;
@@ -52,7 +54,29 @@ public class TracesTable extends JFrame
   	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	private final String userName = "root";
 	private final String password = "123456";
-    public TracesTable() throws SQLException, IOException
+	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>(); 
+	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>(); 
+    public List<Method2Representation> getCallerMethodListFinal() {
+		return CallerMethodListFinal;
+	}
+
+	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+		CallerMethodListFinal = callerMethodListFinal;
+	}
+
+	public List<Method2Representation> getCalleeMethodListFinal() {
+		return CalleeMethodListFinal;
+	}
+
+	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+		CalleeMethodListFinal = calleeMethodListFinal;
+	}
+
+	
+
+	
+
+	public TracesTable() throws SQLException, IOException
     {
     
 
@@ -485,8 +509,8 @@ public class TracesTable extends JFrame
      		data[j][19]= CountCalleesExecuted+CountCallees; 
      	
      		
-     		List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>(); 
-     		List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>(); 
+     		 CallerMethodListFinal = new ArrayList<Method2Representation>(); 
+     		 CalleeMethodListFinal = new ArrayList<Method2Representation>(); 
 
 for(Method2Representation methcaller: CallerMethodsList) {
 	if(methcaller!=null) {
@@ -824,6 +848,11 @@ for(Method2Representation methcaller: CalleeMethodsList) {
       
     }
  
+	
+	
+	
+	
+	
     private void ComputeCounterTNECallers(MethodTrace2 methodtrace, Object[][] data, int j ) throws IOException {
 		// TODO Auto-generated method stub
     	
