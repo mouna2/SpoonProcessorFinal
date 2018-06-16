@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ClassTrace2 {
 	String ID; 
@@ -101,4 +102,14 @@ public class ClassTrace2 {
 			return classtraceHashMap;
 		}
 		
+		
+		public ClassTrace2 FindTrace(List<ClassTrace2> classtraces2, String ClassID, String RequirementID) {
+			for(ClassTrace2 ct: classtraces2) {
+				if(ct.myclass.getClassid().equals(ClassID) && ct.requirement.ID.equals(RequirementID)) {
+					return ct; 
+				}
+			}
+			return null;
+			
+		}
 }

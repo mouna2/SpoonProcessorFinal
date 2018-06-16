@@ -1,11 +1,17 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -14,6 +20,7 @@ import javax.swing.table.*;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -25,13 +32,19 @@ import mypackage.RequirementGold;
  
 public class TracesTable extends JFrame
 {
-  
+  ClassTrace2 myclasstrace= new ClassTrace2(); 
    static List<MethodTrace2> methodtraces2= new ArrayList<MethodTrace2>(); 
    static List<ClassTrace2> classtraces2= new ArrayList<ClassTrace2>(); 
    
    static List<Method2Details> methodlist= new ArrayList<Method2Details>(); 
+	
+	private final String userName = "root";
+	private final String password = "123456";
     public TracesTable() throws SQLException
     {
+    
+
+    	
     	DatabaseReading2 db = new DatabaseReading2(); 
     	DatabaseReading2.MakePredictions();
     	methodtraces2= db.getMethodtraces2(); 
@@ -46,6 +59,10 @@ public class TracesTable extends JFrame
     	String[] items2 = new String [methodtraces2.size()]; 
     	String[] items3 = new String [methodtraces2.size()]; 
     	String[] items4 = new String [methodtraces2.size()]; 
+    	Method2Representation[] callersarr = new Method2Representation [methodtraces2.size()]; 
+    	Method2Representation[] callersex = new Method2Representation [methodtraces2.size()]; 
+    	Method2Representation[] calleesarr = new Method2Representation [methodtraces2.size()]; 
+    	Method2Representation[] calleesex = new Method2Representation [methodtraces2.size()]; 
    	 Object[][] data = new Object[methodtraces2.size()][10000]; 
         // Create the editors to be used for each row
     	for(MethodTrace2 methodtrace: methodtraces2) {
@@ -265,8 +282,10 @@ public class TracesTable extends JFrame
     		
     		int CountCallers=0; 
     		items1 = new String[methodtrace.getCallersList().size()]; 
+    		callersarr= new Method2Representation[methodtrace.getCallersList().size()]; 
     		 for(Method2Representation caller: methodtrace.getCallersList()) {
 	    		  items1[CountCallers]=caller.toString(); 
+	    		  callersarr[CountCallers]=caller; 
 	    		  System.out.println(caller.toString());
 	    		  CountCallers++; 
 	    		  for(RequirementGold reqgold: caller.getRequirementsGold()) {
@@ -286,13 +305,14 @@ public class TracesTable extends JFrame
     		 
     		 int CountCallersExecuted=0; 
     		 items2 = new String[methodtrace.getCallersListExecuted().size()]; 
+    		 callersex= new Method2Representation[methodtrace.getCallersListExecuted().size()]; 
     		 for(Method2Representation caller: methodtrace.getCallersListExecuted()) {
     			 
 
     			 boolean equalbool=false; 
     			 if(items1.length==0) {
     				 items2[CountCallersExecuted]=caller.toString(); 
-    				 
+    				 callersex[CountCallersExecuted]=caller;
     				  for(RequirementGold reqgold: caller.getRequirementsGold()) {
     	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
     	    				  if(reqgold.getGold().equals("T")) {
@@ -329,6 +349,7 @@ public class TracesTable extends JFrame
     		    			  }
     		    		  }
     					 items2[CountCallersExecuted]=caller.toString(); 
+    					 callersex[CountCallersExecuted]=caller;
     					 CountCallersExecuted++; 
     				 }
     			 }
@@ -351,12 +372,20 @@ public class TracesTable extends JFrame
         		
     		 String[] items1And2 = new String[items1.length+items2.length]; 
     		 items1And2 = (String[])ArrayUtils.addAll(items1, items2);
+    		 Method2Representation [] CallerMethods= new Method2Representation[items1.length+items2.length]; 
+    		 CallerMethods = (Method2Representation[])ArrayUtils.addAll(callersarr, callersex);
+    		 
+    		 List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods); 
+    		
+
     		 
     		// data[j][10]=items1; 
     		 int CountCallees=0; 
     		 items3 = new String[ methodtrace.getCalleesList().size()]; 
+    		 calleesarr= new Method2Representation[ methodtrace.getCalleesList().size()]; 
     		 for(Method2Representation caller: methodtrace.getCalleesList()) {
     			 items3[CountCallees]=caller.toString(); 
+    			 calleesarr[CountCallees]=caller; 
 	    		  System.out.println(caller.toString());
 	    		  CountCallees++; 
 	    		  for(RequirementGold reqgold: caller.getRequirementsGold()) {
@@ -375,10 +404,12 @@ public class TracesTable extends JFrame
     		
     		 int CountCalleesExecuted=0; 
     		 items4 = new String[methodtrace.getCalleesListExecuted().size()]; 
+    		 calleesex= new Method2Representation[ methodtrace.getCalleesListExecuted().size()]; 
     		 for(Method2Representation caller: methodtrace.getCalleesListExecuted()) {
     			 boolean equalbool=false; 
     			 if(items3.length==0) {
     				 items4[CountCalleesExecuted]=caller.toString(); 
+    				 calleesex[CountCalleesExecuted]=caller; 
     				 CountCalleesExecuted++; 
     				  for(RequirementGold reqgold: caller.getRequirementsGold()) {
     	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
@@ -402,6 +433,8 @@ public class TracesTable extends JFrame
     				 }
     				 if(equalbool==false) {
     					 items4[CountCalleesExecuted]=caller.toString(); 
+        				 calleesex[CountCalleesExecuted]=caller; 
+
     					 CountCalleesExecuted++; 
     					  for(RequirementGold reqgold: caller.getRequirementsGold()) {
     		    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
@@ -431,11 +464,123 @@ public class TracesTable extends JFrame
  	        
     		 String[] items3And4 = new String[items3.length+items4.length]; 
     		 items3And4 = (String[])ArrayUtils.addAll(items3, items4);
+    		 Method2Representation [] CalleeMethods= new Method2Representation[items3.length+items4.length]; 
+    		 CalleeMethods = (Method2Representation[])ArrayUtils.addAll(calleesarr, calleesex);
+    		 List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods); 
+    		 
+    		 
     		 data[j][11]= CountCallersExecuted+CountCallers; 
      		data[j][19]= CountCalleesExecuted+CountCallees; 
-    	
+     	
+     		
+     		List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>(); 
+     		List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>(); 
+
+for(Method2Representation methcaller: CallerMethodsList) {
+	if(methcaller!=null) {
+		CallerMethodListFinal.add(methcaller); 
+	}
+}
     		 
+for(Method2Representation methcaller: CalleeMethodsList) {
+	if(methcaller!=null) {
+		CalleeMethodListFinal.add(methcaller); 
+	}
+}		
+
+		int CounterTraceClassCallerT=0; 
+		int CounterTraceClassCallerN=0; 
+		int CounterTraceClassCallerE=0; 
+		List<ClassTrace2> mycallerclasses= new ArrayList<ClassTrace2>(); 
+		
+     		for(Method2Representation callermeth: CallerMethodListFinal) {
+     			ClassRepresentation2 classrep=callermeth.getClassrep(); 
+     			ClassTrace2 mycallerclass=myclasstrace.FindTrace(classtraces2, classrep.classid, methodtrace.Requirement.getID()); 
+     			mycallerclasses.add(mycallerclass); 
+     		}
+     		
+     		
+     		
+     		
+     		
+     	    ArrayList<ClassTrace2> myclasstracesCallers = new ArrayList<ClassTrace2>();// unique
+     	    for (ClassTrace2 classtrace : mycallerclasses) {
+     	        if (!myclasstracesCallers.contains(classtrace)) {
+     	           
+     	           myclasstracesCallers.add(classtrace);
+     	        }
+     	    }
+     		
+     	    
+     	   int mysize=myclasstracesCallers.size(); 
     		
+    		data[j][15]=myclasstracesCallers.size(); 
+    		
+    		
+    		for(ClassTrace2 mycallerclass: myclasstracesCallers) {
+    			if(mycallerclass.gettrace().equals("T")) {
+    				CounterTraceClassCallerT++; 
+    			}
+    			else if(mycallerclass.gettrace().equals("N")) {
+    				CounterTraceClassCallerN++; 
+    			}
+    			else if(mycallerclass.gettrace().equals("E")) {
+    				CounterTraceClassCallerE++; 
+    			}
+    		}
+     	    
+    		data[j][16]=CounterTraceClassCallerT; 
+     		data[j][17]=CounterTraceClassCallerN; 
+     		data[j][18]=CounterTraceClassCallerE; 
+     		
+     	
+     		
+     		
+     		
+     		int CounterTraceClassCalleeT=0; 
+    		int CounterTraceClassCalleeN=0; 
+    		int CounterTraceClassCalleeE=0; 
+    		List<ClassTrace2> mycalleeclasses= new ArrayList<ClassTrace2>(); 
+    		
+         		for(Method2Representation calleemeth: CalleeMethodListFinal) {
+         			ClassRepresentation2 classrep=calleemeth.getClassrep(); 
+         			ClassTrace2 mycalleeclass=myclasstrace.FindTrace(classtraces2, classrep.classid, methodtrace.Requirement.getID()); 
+         			mycalleeclasses.add(mycalleeclass); 
+         		}
+         		
+         		
+         		
+         		
+         		
+         	    ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
+         	    for (ClassTrace2 classtrace : mycalleeclasses) {
+         	        if (!myclasstracesCallees.contains(classtrace)) {
+         	           
+         	           myclasstracesCallees.add(classtrace);
+         	        }
+         	    }
+         		
+         	    
+         	   
+        		
+        		data[j][23]=myclasstracesCallees.size(); 
+        		
+        		
+        		for(ClassTrace2 mycalleeclass: myclasstracesCallees) {
+        			if(mycalleeclass.gettrace().equals("T")) {
+        				CounterTraceClassCalleeT++; 
+        			}
+        			else if(mycalleeclass.gettrace().equals("N")) {
+        				CounterTraceClassCalleeN++; 
+        			}
+        			else if(mycalleeclass.gettrace().equals("E")) {
+        				CounterTraceClassCalleeE++; 
+        			}
+        		}
+         	    
+        		data[j][24]=CounterTraceClassCalleeT; 
+         		data[j][25]=CounterTraceClassCalleeN; 
+         		data[j][26]=CounterTraceClassCalleeE; 
      		
      		
      		

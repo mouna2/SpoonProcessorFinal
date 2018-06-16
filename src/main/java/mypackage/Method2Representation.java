@@ -8,6 +8,7 @@ public class Method2Representation {
 	String methodname;
 	List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	List<Requirement2> requirements= new ArrayList<Requirement2>(); 
+	ClassRepresentation2 classrep= new ClassRepresentation2(); 
 	public Method2Representation(String methodid, String methodname) {
 		super();
 		this.methodid = methodid;
@@ -31,7 +32,7 @@ public class Method2Representation {
 	@Override
 	public String toString() {
 		return  methodid + ", methodname=" + methodname + ", requirementsGold="
-				+ requirementsGold.toString() + "]";
+				+ requirementsGold.toString() + classrep.toString()+"]";
 	}
 	
 	
@@ -55,6 +56,12 @@ public class Method2Representation {
 	}
 	public void setRequirements(List<Requirement2> requirements) {
 		this.requirements = requirements;
+	}
+	public ClassRepresentation2 getClassrep() {
+		return classrep;
+	}
+	public void setClassrep(ClassRepresentation2 classrep) {
+		this.classrep = classrep;
 	}
 	
 	

@@ -208,6 +208,15 @@ public class MethodTrace2 {
 				 Method2Representation meth= new Method2Representation(); 	
 				 meth.setMethodid(callers.getString("callermethodid"));
 				 meth.setMethodname(callers.getString("callername"));
+				
+				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+				 while(myclass.next()) {
+					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+					 myclassrep.setClassid(myclass.getString("classid"));
+					 myclassrep.setClassname(myclass.getString("classname"));
+					 meth.setClassrep(myclassrep);
+				 }
+				
 				 meth.setRequirementsGold(requirementsGold);
 				 this.callersList.add(meth); 					 
 				 mytrace.setCallersList(this.callersList);
@@ -231,6 +240,17 @@ public class MethodTrace2 {
 				 Method2Representation meth= new Method2Representation(); 	
 				 meth.setMethodid(callees.getString("calleemethodid"));
 				 meth.setMethodname(callees.getString("calleename"));
+				 
+				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+				 while(myclass.next()) {
+					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+					 myclassrep.setClassid(myclass.getString("classid"));
+					 myclassrep.setClassname(myclass.getString("classname"));
+					 meth.setClassrep(myclassrep); 
+				 }
+				
+				 
+				 
 				 meth.setRequirementsGold(requirementsGold);
 				 this.calleesList.add(meth); 					 
 				 mytrace.setCalleesList(this.calleesList);
@@ -255,6 +275,16 @@ public class MethodTrace2 {
 				 Method2Representation meth= new Method2Representation(); 	
 				 meth.setMethodid(callersExecuted.getString("callermethodid"));
 				 meth.setMethodname(callersExecuted.getString("callername"));
+				 
+				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+				 while(myclass.next()) {
+					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+					 myclassrep.setClassid(myclass.getString("classid"));
+					 myclassrep.setClassname(myclass.getString("classname"));
+					 meth.setClassrep(myclassrep); 
+				 }
+				
+				 
 				 meth.setRequirementsGold(requirementsGold);
 				 this.calleesListExecuted.add(meth); 					 
 				 mytrace.setCallersListExecuted(this.calleesListExecuted);
@@ -278,6 +308,16 @@ public class MethodTrace2 {
 				 Method2Representation meth= new Method2Representation(); 	
 				 meth.setMethodid(calleesExecuted.getString("calleemethodid"));
 				 meth.setMethodname(calleesExecuted.getString("calleename"));
+				 
+				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+				 while(myclass.next()) {
+					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+					 myclassrep.setClassid(myclass.getString("classid"));
+					 myclassrep.setClassname(myclass.getString("classname"));
+					 meth.setClassrep(myclassrep); 
+				 }
+			
+				 
 				 meth.setRequirementsGold(requirementsGold);
 				 this.callersListExecuted.add(meth); 					 
 				 mytrace.setCalleesListExecuted(this.callersListExecuted);
