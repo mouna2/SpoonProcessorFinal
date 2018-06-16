@@ -2,11 +2,17 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.plaf.basic.BasicComboBoxEditor;
 import javax.swing.table.*;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
@@ -76,7 +82,7 @@ public class TracesTable extends JFrame
     			
     	
     		}
-    		ComputeCounterTNECallers(methodtrace, data, j); 
+   
     		int count=0; 
     		String classID=""; 
     		int ClassCountCaller=0; 
@@ -130,7 +136,7 @@ public class TracesTable extends JFrame
     			count++; 
     			
     		}
-    		count=0; 
+    		/*count=0; 
     		int ClassCallerCounterT=0; 
     		int ClassCallerCounterN=0; 
     		int ClassCallerCounterE=0; 
@@ -251,79 +257,315 @@ public class TracesTable extends JFrame
     		data[j][15]= ClassCountCallerNew; 
     		data[j][23]= ClassCountCallee; 
     	
+			*/
 			
-			
-    		data[j][11]= methodtrace.getCallersList().size()+methodtrace.getCallersListExecuted().size(); 
-    		data[j][19]= methodtrace.getCalleesList().size()+methodtrace.getCalleesListExecuted().size(); 
-    		int i=0; 
+    		int CallerCountT=0; 
+    		int CallerCountN=0; 
+    		int CallerCountE=0; 
+    		
+    		int CountCallers=0; 
     		items1 = new String[methodtrace.getCallersList().size()]; 
     		 for(Method2Representation caller: methodtrace.getCallersList()) {
-	    		  items1[i]=caller.toString(); 
+	    		  items1[CountCallers]=caller.toString(); 
 	    		  System.out.println(caller.toString());
-	    		  i++; 
+	    		  CountCallers++; 
+	    		  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+	    				  if(reqgold.getGold().equals("T")) {
+	    					  CallerCountT++; 
+	    				  }else if (reqgold.getGold().equals("N")) {
+	    					  CallerCountN++; 
+	    				  }
+	    				  else if(reqgold.getGold().equals("E")) {
+	    					  CallerCountE++; 
+	    				  }
+	    			  }
+	    		  }
 	    		  
 	    	  }
     		 
-    		 int r=0; 
+    		 int CountCallersExecuted=0; 
     		 items2 = new String[methodtrace.getCallersListExecuted().size()]; 
     		 for(Method2Representation caller: methodtrace.getCallersListExecuted()) {
-    			 items2[r]=caller.toString(); 
-	    		  System.out.println(caller.toString());
-	    		  r++; 
+    			 
+
+    			 boolean equalbool=false; 
+    			 if(items1.length==0) {
+    				 items2[CountCallersExecuted]=caller.toString(); 
+    				 
+    				  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+    	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+    	    				  if(reqgold.getGold().equals("T")) {
+    	    					  CallerCountT++; 
+    	    				  }else if (reqgold.getGold().equals("N")) {
+    	    					  CallerCountN++; 
+    	    				  }
+    	    				  else if(reqgold.getGold().equals("E")) {
+    	    					  CallerCountE++; 
+    	    				  }
+    	    			  }
+    	    		  }
+    				 CountCallersExecuted++; 
+    			 }
+    			 else {
+    				 for(String item: items1) {
+    					 item = item.replaceAll("\\(.*\\)", "");
+
+    					 if(item.equals(caller.toString())==true){
+    						 equalbool=true; 
+    					 }
+    				 }
+    				 if(equalbool==false) {
+    					  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+    		    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+    		    				  if(reqgold.getGold().equals("T")) {
+    		    					  CallerCountT++; 
+    		    				  }else if (reqgold.getGold().equals("N")) {
+    		    					  CallerCountN++; 
+    		    				  }
+    		    				  else if(reqgold.getGold().equals("E")) {
+    		    					  CallerCountE++; 
+    		    				  }
+    		    			  }
+    		    		  }
+    					 items2[CountCallersExecuted]=caller.toString(); 
+    					 CountCallersExecuted++; 
+    				 }
+    			 }
+    			 
+	    		
 	    		  
-	    	  }
+	    		  
+	    	  
+    			 
+    			 
+    			 
+    		 }
+    		 data[j][12]= CallerCountT; 
+    	        data[j][13]= CallerCountN; 
+    	        data[j][14]= CallerCountE; 
+    	    	int CalleeCountT=0; 
+        		int CalleeCountN=0; 
+        		int CalleeCountE=0; 
+        		
+        		
+    		 String[] items1And2 = new String[items1.length+items2.length]; 
+    		 items1And2 = (String[])ArrayUtils.addAll(items1, items2);
+    		 
     		// data[j][10]=items1; 
-    		 int k=0; 
+    		 int CountCallees=0; 
     		 items3 = new String[ methodtrace.getCalleesList().size()]; 
     		 for(Method2Representation caller: methodtrace.getCalleesList()) {
-    			 items3[k]=caller.toString(); 
+    			 items3[CountCallees]=caller.toString(); 
 	    		  System.out.println(caller.toString());
-	    		  k++; 
-	    		  
+	    		  CountCallees++; 
+	    		  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+	    				  if(reqgold.getGold().equals("T")) {
+	    					  CalleeCountT++; 
+	    				  }else if (reqgold.getGold().equals("N")) {
+	    					  CalleeCountN++; 
+	    				  }
+	    				  else if(reqgold.getGold().equals("E")) {
+	    					  CalleeCountE++; 
+	    				  }
+	    			  }
+	    		  }
 	    	  }
     		
-    		 int z=0; 
-    		 items4 = new String[10000]; 
+    		 int CountCalleesExecuted=0; 
+    		 items4 = new String[methodtrace.getCalleesListExecuted().size()]; 
     		 for(Method2Representation caller: methodtrace.getCalleesListExecuted()) {
-	    		  items4[z]=caller.toString(); 
-	    		  System.out.println(caller.toString());
-	    		  z++; 
+    			 boolean equalbool=false; 
+    			 if(items3.length==0) {
+    				 items4[CountCalleesExecuted]=caller.toString(); 
+    				 CountCalleesExecuted++; 
+    				  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+    	    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+    	    				  if(reqgold.getGold().equals("T")) {
+    	    					  CalleeCountT++; 
+    	    				  }else if (reqgold.getGold().equals("N")) {
+    	    					  CalleeCountN++; 
+    	    				  }
+    	    				  else if(reqgold.getGold().equals("E")) {
+    	    					  CalleeCountE++; 
+    	    				  }
+    	    			  }
+    	    		  }
+    			 }
+    			 else {
+    				 for(String item: items3) {
+    					 item = item.replaceAll("\\(.*\\)", "");
+    					 if(item.equals(caller.toString())==true){
+    						 equalbool=true; 
+    					 }
+    				 }
+    				 if(equalbool==false) {
+    					 items4[CountCalleesExecuted]=caller.toString(); 
+    					 CountCalleesExecuted++; 
+    					  for(RequirementGold reqgold: caller.getRequirementsGold()) {
+    		    			  if(reqgold.getRequirement().getID().equals(methodtrace.getRequirement().getID())) {
+    		    				  if(reqgold.getGold().equals("T")) {
+    		    					  CalleeCountT++; 
+    		    				  }else if (reqgold.getGold().equals("N")) {
+    		    					  CalleeCountN++; 
+    		    				  }
+    		    				  else if(reqgold.getGold().equals("E")) {
+    		    					  CalleeCountE++; 
+    		    				  }
+    		    			  }
+    		    		  }
+    				 }
+    			 }
+    			 
+	    		
+	    		
 	    		  
 	    	  }
     		 
+    		 data[j][20]= CalleeCountT; 
+ 	        data[j][21]= CalleeCountN; 
+ 	        data[j][22]= CalleeCountE; 
+ 	        
+ 	        
+ 	        
+    		 String[] items3And4 = new String[items3.length+items4.length]; 
+    		 items3And4 = (String[])ArrayUtils.addAll(items3, items4);
+    		 data[j][11]= CountCallersExecuted+CountCallers; 
+     		data[j][19]= CountCalleesExecuted+CountCallees; 
     	
     		 
     		
-    	        JComboBox comboBox1 = new JComboBox( items1 );
+     		
+     		
+     		
+     		
+    	        JComboBox comboBox1 = new JComboBox( items1And2 );
     	        DefaultCellEditor dce1 = new DefaultCellEditor( comboBox1 );
     	        editors1.add( dce1 );
     	        
-    	        JComboBox comboBox2 = new JComboBox( items2 );
+    	     /*   JComboBox comboBox2 = new JComboBox( items2 );
     	        DefaultCellEditor dce2 = new DefaultCellEditor( comboBox2 );
-    	        editors2.add( dce2 );
+    	        editors2.add( dce2 );*/
     	 
     	        
-    	        JComboBox comboBox3 = new JComboBox( items3 );
-    	        DefaultCellEditor dce3 = new DefaultCellEditor( comboBox3 );
+    	        JComboBox comboBox4 = new JComboBox( items3And4 );
+    	        DefaultCellEditor dce3 = new DefaultCellEditor( comboBox4 );
     	        editors3.add( dce3 );
     	 
     	        
-    	        JComboBox comboBox4 = new JComboBox( items4);
+    	     /*   JComboBox comboBox4 = new JComboBox( items4);
     	        DefaultCellEditor dce4 = new DefaultCellEditor( comboBox4 );
-    	        editors4.add( dce4 );
+    	        editors4.add( dce4 );*/
     	        
     	        comboBox1.setEditor(new MyEditor());
     	        comboBox1.setEditable(true);
     	        
-    	        comboBox2.setEditor(new MyEditor());
-    	        comboBox2.setEditable(true);
-    	        
-    	        comboBox3.setEditor(new MyEditor());
-    	        comboBox3.setEditable(true);
+    	     /*   comboBox2.setEditor(new MyEditor());
+    	        comboBox2.setEditable(true);*/
     	        
     	        comboBox4.setEditor(new MyEditor());
     	        comboBox4.setEditable(true);
+    	        
+    	     /*   comboBox4.setEditor(new MyEditor());
+    	        comboBox4.setEditable(true);*/
     	     
+    	      
+    	        List<Method2Representation> callers = methodtrace.getCallersList();
+    	        List<Method2Representation> callersmerged = new ArrayList<Method2Representation>(); 
+    	        List<Method2Representation> callersExecuted = methodtrace.getCallersListExecuted();
+    	    
+    	        
+    	        for(Method2Representation methrep: callers) {
+    	        	String methodname=methrep.getMethodname(); 
+    	        	if(methodname.contains("(")) {
+    	        		methodname = methodname.replaceAll("\\(.*\\)", "");
+    	        		methrep.setMethodname(methodname);
+    	        	}
+    	        	
+    	        }
+    	        for(Method2Representation caller: callers) {
+    	        	callersmerged.add(caller); 
+    	        }
+    	        for(Method2Representation caller: callersExecuted) {
+    	        	callersmerged.add(caller); 
+    	        }
+    	       
+    	        Set<Method2Representation> listWithoutDuplicates = new HashSet<Method2Representation>(callersmerged);
+    	        callersmerged.clear();
+
+    	        callersmerged.addAll(listWithoutDuplicates);
+    	        
+    	 		int counterT=0; 
+        		int counterN=0; 
+        		int counterE=0; 
+        		
+        		for(Method2Representation caller: callersmerged) {
+        			
+        			for(RequirementGold reqgold: caller.getRequirementsGold()) {
+        				if(reqgold.getRequirement().getID().equals(methodtrace.Requirement.getID())) {
+        					if(reqgold.getGold().equals("T")) {
+        						counterT++; 
+        					}else if(reqgold.getGold().equals("N")) {
+        						counterN++; 
+            				}else if(reqgold.getGold().equals("E")){
+            					counterE++; 
+            				}
+        				}
+        			}
+        			
+        			
+        			
+        		}
+        		
+    
+       
+    	        
+    	   
+        
+        
+        List<Method2Representation> callees = methodtrace.getCalleesList();
+        List<Method2Representation> calleesExecuted = methodtrace.getCalleesListExecuted();
+        for(Method2Representation methrep: callees) {
+        	String methodname=methrep.getMethodname(); 
+        	if(methodname.contains("(")) {
+        		methodname = methodname.replaceAll("\\(.*\\)", "");
+        		methrep.setMethodname(methodname);
+        	}
+        }
+        
+        
+      
+        
+ 		int counterTCallee=0; 
+		int counterNCallee=0; 
+		int counterECallee=0; 
+		
+		for(Method2Representation callee: calleesExecuted) {
+			
+			for(RequirementGold reqgold: callee.getRequirementsGold()) {
+				if(reqgold.getRequirement().getID().equals(methodtrace.Requirement.getID())) {
+					if(reqgold.getGold().equals("T")) {
+						counterTCallee++; 
+					}else if(reqgold.getGold().equals("N")) {
+						counterNCallee++; 
+    				}else if(reqgold.getGold().equals("E")){
+    					counterECallee++; 
+    				}
+				}
+			}
+			
+			
+			
+		}
+		
+
+        
+        
+        
+        
+    	        
+    	        
     	   	 j++; 
     	}
        
@@ -352,7 +594,7 @@ public class TracesTable extends JFrame
     
         
         String[] columnNames = {"MethodID","MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName", "Gold", "Subject","OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods", "# caller methods T", "#caller methods N", "#caller methods E", "# caller classes", "# caller classes T", "#caller classes N", "#caller classes E","# callee methods", "# callee methods T", "#callee methods N", "#callee methods E", "# callee classes", "# callee classes T", "#callee classes N", "#callee classes E",  "CalleePrediction", "CallerPrediction", 
-        		"Callers", "CallersExecuted", "Callees", "CalleesExecuted"};
+        		"Callers", "Callees"};
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         JTable table = new JTable(model)
         {
@@ -364,11 +606,11 @@ public class TracesTable extends JFrame
                 if (modelColumn == 29 && row < methodtraces2.size())
                     return editors1.get(row);
                 if (modelColumn == 30 && row < methodtraces2.size())
-                    return editors2.get(row);
-                if (modelColumn == 31 && row < methodtraces2.size())
+                    return editors3.get(row);
+               /* if (modelColumn == 31 && row < methodtraces2.size())
                     return editors3.get(row);
                 if (modelColumn == 32 && row < methodtraces2.size())
-                    return editors4.get(row);
+                    return editors4.get(row);*/
                
                 else
                     return super.getCellEditor(row, column);
