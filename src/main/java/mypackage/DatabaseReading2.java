@@ -196,7 +196,7 @@ public class DatabaseReading2 {
 		
 		String goldprediction=""; 
 		String GoldVal=""; 
-		for (MethodTrace2 tracemeth : methodtraces) {
+		for (MethodTrace2 tracemeth : methodtraces) { 
 			
 			for (Method2Details method : methodlist) {
 				List<Method2Representation> Callees = method.calleesList;
