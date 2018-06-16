@@ -1,5 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -37,10 +46,13 @@ public class TracesTable extends JFrame
    static List<ClassTrace2> classtraces2= new ArrayList<ClassTrace2>(); 
    
    static List<Method2Details> methodlist= new ArrayList<Method2Details>(); 
-	
+   File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\out.txt");
+  	FileOutputStream fos = new FileOutputStream(fout);
+   
+  	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	private final String userName = "root";
 	private final String password = "123456";
-    public TracesTable() throws SQLException
+    public TracesTable() throws SQLException, IOException
     {
     
 
@@ -708,14 +720,21 @@ for(Method2Representation methcaller: CalleeMethodsList) {
         
         
         
-        
+		bw.write(data[j][0]+ ","+data[j][1]+ ","+data[j][2]+ ","+data[j][3]+ ","+data[j][4]+ ","+data[j][5]+ ","+data[j][6]+ ","+data[j][7]+ ","+data[j][8]+ ","+data[j][9]
+	  				+ ","+data[j][10]+ ","+data[j][11]+ ","+data[j][12]+ ","+data[j][13]+ ","+data[j][14]+ ","+data[j][15]+ ","+data[j][16]
+	  						+ ","+data[j][17]+ ","+data[j][18]+ ","+data[j][19]+ ","+data[j][20]+ ","+data[j][21]+ ","+data[j][22]+ ","+data[j][23]
+	  								+ ","+data[j][24]+ ","+data[j][25]+ ","+data[j][26]+ ","+data[j][27]+ ","+data[j][28]);
+	  		bw.newLine();
+	  
+	   
+	  	
     	        
     	        
     	   	 j++; 
     	}
        
  
- 
+    	bw.close();
        /* String[] items2 = { "Circle", "Square", "Triangle" };
         JComboBox comboBox2 = new JComboBox( items2 );
         DefaultCellEditor dce2 = new DefaultCellEditor( comboBox2 );
@@ -793,10 +812,19 @@ for(Method2Representation methcaller: CalleeMethodsList) {
        getContentPane().add( horizontalscroll );
 //      table.getColumnModel().getColumn(1).setCellRenderer(new ComboBoxRenderer() );
       table.setRowHeight(50);
+   
+   
+  		
+  			
+  	
+  		
+      
      
+      
+      
     }
  
-    private void ComputeCounterTNECallers(MethodTrace2 methodtrace, Object[][] data, int j ) {
+    private void ComputeCounterTNECallers(MethodTrace2 methodtrace, Object[][] data, int j ) throws IOException {
 		// TODO Auto-generated method stub
     	
 		int counterT=0; 
@@ -841,6 +869,9 @@ for(Method2Representation caller: methodtrace.getCallersListExecuted()) {
 data[j][12]= counterT; 
 data[j][13]= counterN; 
 data[j][14]= counterE; 
+
+
+
 	}
 
 	static class MyEditor extends BasicComboBoxEditor{
@@ -889,7 +920,7 @@ data[j][14]= counterE;
     }
  
  
-    public static void main(String[] args) throws SQLException
+    public static void main(String[] args) throws SQLException, IOException
     {
     	
         TracesTable frame = new TracesTable();
