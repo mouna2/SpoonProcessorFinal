@@ -80,7 +80,11 @@ public class TracesTable extends JFrame
     {
     
 
-    	
+		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
+				+ "OwnerClassE, #callermethods, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+				+ "#callerclassesE, #calleemethods, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
+				+ "#calleeclassesE, CalleePrediction, CallerPrediction");
+		bw.newLine();
     	DatabaseReading2 db = new DatabaseReading2(); 
     	DatabaseReading2.MakePredictions();
     	methodtraces2= db.getMethodtraces2(); 
@@ -110,8 +114,8 @@ public class TracesTable extends JFrame
     		data[j][5]= methodtrace.ClassRepresentation.classname; 
     		data[j][6]= methodtrace.gold; 
     		data[j][7]= methodtrace.subject; 
-    		data[j][27]= methodtrace.goldpredictionCaller; 
-    		data[j][28]= methodtrace.goldpredictionCallee; 
+    		//data[j][27]= methodtrace.goldpredictionCaller; 
+    		//data[j][28]= methodtrace.goldpredictionCallee; 
     	
     		for(ClassTrace2 classtrace: classtraces2) {
     			 
@@ -570,7 +574,21 @@ for(Method2Representation methcaller: CalleeMethodsList) {
      		data[j][18]=CounterTraceClassCallerE; 
      		
      	
-     		
+     		if(((CounterTraceClassCallerT>=CounterTraceClassCallerN && CounterTraceClassCallerN>=CounterTraceClassCallerE) ||
+     			(CounterTraceClassCallerT>=CounterTraceClassCallerE && CounterTraceClassCallerE>=CounterTraceClassCallerN))	
+     			&& CounterTraceClassCallerT!=0) {
+     			data[j][27]="T"; 
+     		}
+     		else if(((CounterTraceClassCallerE>=CounterTraceClassCallerN && CounterTraceClassCallerN>=CounterTraceClassCallerT) ||
+     				(CounterTraceClassCallerE>=CounterTraceClassCallerT && CounterTraceClassCallerT>=CounterTraceClassCallerN)	)
+     				&& CounterTraceClassCallerE!=0) {
+     			data[j][27]="E"; 
+     		}
+     		else if(((CounterTraceClassCallerN>=CounterTraceClassCallerE && CounterTraceClassCallerE>=CounterTraceClassCallerT) ||
+     				(CounterTraceClassCallerN>=CounterTraceClassCallerT && CounterTraceClassCallerT>=CounterTraceClassCallerE))	
+     				&& CounterTraceClassCallerN!=0) {
+     			data[j][27]="N"; 
+     		}
      		
      		
      		int CounterTraceClassCalleeT=0; 
@@ -618,7 +636,22 @@ for(Method2Representation methcaller: CalleeMethodsList) {
          		data[j][25]=CounterTraceClassCalleeN; 
          		data[j][26]=CounterTraceClassCalleeE; 
      		
-     		
+         		if(((CounterTraceClassCalleeT>=CounterTraceClassCalleeN && CounterTraceClassCalleeN>=CounterTraceClassCalleeE) ||
+                        (CounterTraceClassCalleeT>=CounterTraceClassCalleeE && CounterTraceClassCalleeE>=CounterTraceClassCalleeN) )
+                        && CounterTraceClassCalleeT!=0) {
+                        data[j][28]="T"; 
+                      }
+                      else if(((CounterTraceClassCalleeE>=CounterTraceClassCalleeN && CounterTraceClassCalleeN>=CounterTraceClassCalleeT) ||
+                          (CounterTraceClassCalleeE>=CounterTraceClassCalleeT && CounterTraceClassCalleeT>=CounterTraceClassCalleeN) )
+                          && CounterTraceClassCalleeE!=0) {
+                        data[j][28]="E"; 
+                      }
+                      else if(((CounterTraceClassCalleeN>=CounterTraceClassCalleeE && CounterTraceClassCalleeE>=CounterTraceClassCalleeT) ||
+                          (CounterTraceClassCalleeN>=CounterTraceClassCalleeT && CounterTraceClassCalleeT>=CounterTraceClassCalleeE) )
+                          && CounterTraceClassCalleeN!=0) {
+                        data[j][28]="N"; 
+                      }
+              
      		
      		
     	        JComboBox comboBox1 = new JComboBox( items1And2 );
