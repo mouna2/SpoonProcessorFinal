@@ -655,6 +655,7 @@ public class TracesTable extends JFrame {
 				              // Object methodid = model.getValueAt(row, 0); 
 				               Object requirementID = model.getValueAt(row, 2); 
 				               
+				               
 				              Method2Details meth = methodlist.get((Integer.parseInt(methid.toString()))-1); 
 				              
 				            ClassTrace2 classtrace = myclasstrace.FindTrace(classtraces2, meth.getOwnerClass().classid,
