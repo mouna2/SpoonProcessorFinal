@@ -47,6 +47,38 @@ import mypackage.MethodTrace2;
 import mypackage.RequirementGold;
 
 public class TracesTable extends JFrame {
+	int MethodID=0; 
+	int MethodName=1; 
+	int RequirementID=2; 
+	int RequirementName=3; 
+	int ClassID=4; 
+	int ClassName=5; 
+	int Gold=6; 
+	int Subject=7; 
+	int OwnerClassT=8; 
+	int OwnerClassN=9; 
+	int OwnerClassE=10; 
+	int CallerMethodsNumber=11; 
+	int CallerMethodsT=12; 
+	int CallerMethodsN=13; 
+	int CallerMethodsE=14; 
+	int CallerClassesNumber=15; 
+	int CallerClassesT=16; 
+	int CallerClassesN=17; 
+	int CallerClassesE=18; 
+	int CalleeMethodsNumber=19; 
+	int CalleeMethodsT=20; 
+	int CalleeMethodsN=21; 
+	int CalleeMethodsE=22; 
+	int CalleeClassesNumber=23; 
+	int CalleeClassesT=24; 
+	int CalleeClassesN=25; 
+	int CalleeClassesE=26; 
+	int CalleePrediction=27; 
+	int CallerPrediction=28; 
+	int Callers=29; 
+	int Callees=30; 
+
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
@@ -107,16 +139,16 @@ public class TracesTable extends JFrame {
 		Object[][] data = new Object[methodtraces2.size()][10000];
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
-			data[j][0] = methodtrace.MethodRepresentation.getMethodid();
-			data[j][1] = methodtrace.MethodRepresentation.getMethodname();
-			data[j][2] = methodtrace.Requirement.getID();
-			data[j][3] = methodtrace.Requirement.getRequirementName();
-			data[j][4] = methodtrace.ClassRepresentation.classid;
-			data[j][5] = methodtrace.ClassRepresentation.classname;
-			data[j][6] = methodtrace.gold;
-			data[j][7] = methodtrace.subject;
-			// data[j][27]= methodtrace.goldpredictionCaller;
-			// data[j][28]= methodtrace.goldpredictionCallee;
+			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
+			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
+			data[j][RequirementID] = methodtrace.Requirement.getID();
+			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
+			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
+			data[j][Gold] = methodtrace.gold;
+			data[j][Subject] = methodtrace.subject;
+			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
+			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 
 			for (ClassTrace2 classtrace : classtraces2) {
 
@@ -124,17 +156,17 @@ public class TracesTable extends JFrame {
 						&& methodtrace.Requirement.getID().equals(classtrace.getRequirement().getID())) {
 					String trace = classtrace.gettrace();
 					if (trace.equals("T")) {
-						data[j][8] = "1";
-						data[j][9] = "0";
-						data[j][10] = "0";
+						data[j][OwnerClassT] = "1";
+						data[j][OwnerClassN] = "0";
+						data[j][OwnerClassE] = "0";
 					} else if (trace.equals("N")) {
-						data[j][8] = "0";
-						data[j][9] = "1";
-						data[j][10] = "0";
+						data[j][OwnerClassT] = "0";
+						data[j][OwnerClassN] = "1";
+						data[j][OwnerClassE] = "0";
 					} else if (trace.equals("E")) {
-						data[j][8] = "0";
-						data[j][9] = "0";
-						data[j][10] = "1";
+						data[j][OwnerClassT] = "0";
+						data[j][OwnerClassN] = "0";
+						data[j][OwnerClassE] = "1";
 					}
 				}
 
@@ -254,7 +286,7 @@ public class TracesTable extends JFrame {
 			//=======> LIST OF CALLERS AFTER MERGING CALLERS + CALLERSEXECUTED 
 			List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods);
 
-			// data[j][10]=items1;
+			// data[j][OwnerClassE]=items1;
 			int CountCallees = 0;
 			items3 = new String[methodtrace.getCalleesList().size()];
 			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
@@ -303,8 +335,8 @@ public class TracesTable extends JFrame {
 			//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
 			List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods);
 
-			data[j][11] = CountCallersExecuted + CountCallers;
-			data[j][19] = CountCalleesExecuted + CountCallees;
+			data[j][CallerMethodsNumber] = CountCallersExecuted + CountCallers;
+			data[j][CalleeMethodsNumber] = CountCalleesExecuted + CountCallees;
 
 			CallerMethodListFinal = new ArrayList<Method2Representation>();
 			CalleeMethodListFinal = new ArrayList<Method2Representation>();
@@ -346,7 +378,7 @@ public class TracesTable extends JFrame {
 
 			int mysize = myclasstracesCallers.size();
 
-			data[j][15] = myclasstracesCallers.size();
+			data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.gettrace().equals("T")) {
@@ -358,9 +390,9 @@ public class TracesTable extends JFrame {
 				}
 			}
 
-			data[j][16] = CounterTraceClassCallerT;
-			data[j][17] = CounterTraceClassCallerN;
-			data[j][18] = CounterTraceClassCallerE;
+			data[j][CallerClassesT] = CounterTraceClassCallerT;
+			data[j][CallerClassesN] = CounterTraceClassCallerN;
+			data[j][CallerClassesE] = CounterTraceClassCallerE;
 //DUPLICATE CLASSES
 			int CountMethodT = 0; 
 			int CountMethodN = 0; 
@@ -375,9 +407,9 @@ public class TracesTable extends JFrame {
 				}
 			}
 
-			data[j][12] = CountMethodT;
-			data[j][13] = CountMethodN;
-			data[j][14] = CountMethodE;
+			data[j][CallerMethodsT] = CountMethodT;
+			data[j][CallerMethodsN] = CountMethodN;
+			data[j][CallerMethodsE] = CountMethodE;
 			
 			
 			
@@ -388,19 +420,19 @@ public class TracesTable extends JFrame {
 					|| (CounterTraceClassCallerT >= CounterTraceClassCallerE
 							&& CounterTraceClassCallerE >= CounterTraceClassCallerN))
 					&& CounterTraceClassCallerT != 0) {
-				data[j][27] = "T";
+				data[j][CalleePrediction] = "T";
 			} else if (((CounterTraceClassCallerE >= CounterTraceClassCallerN
 					&& CounterTraceClassCallerN >= CounterTraceClassCallerT)
 					|| (CounterTraceClassCallerE >= CounterTraceClassCallerT
 							&& CounterTraceClassCallerT >= CounterTraceClassCallerN))
 					&& CounterTraceClassCallerE != 0) {
-				data[j][27] = "E";
+				data[j][CalleePrediction] = "E";
 			} else if (((CounterTraceClassCallerN >= CounterTraceClassCallerE
 					&& CounterTraceClassCallerE >= CounterTraceClassCallerT)
 					|| (CounterTraceClassCallerN >= CounterTraceClassCallerT
 							&& CounterTraceClassCallerT >= CounterTraceClassCallerE))
 					&& CounterTraceClassCallerN != 0) {
-				data[j][27] = "N";
+				data[j][CalleePrediction] = "N";
 			}*/
 			
 
@@ -425,7 +457,7 @@ public class TracesTable extends JFrame {
 			}
 			//NO DUPLICATE CLASSES 
 
-			data[j][23] = myclasstracesCallees.size();
+			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 				if (mycalleeclass.gettrace().equals("T")) {
@@ -437,9 +469,9 @@ public class TracesTable extends JFrame {
 				}
 			}
 
-			data[j][24] = CounterTraceClassCalleeT;
-			data[j][25] = CounterTraceClassCalleeN;
-			data[j][26] = CounterTraceClassCalleeE;
+			data[j][CalleeClassesT] = CounterTraceClassCalleeT;
+			data[j][CalleeClassesN] = CounterTraceClassCalleeN;
+			data[j][CalleeClassesE] = CounterTraceClassCalleeE;
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
@@ -454,27 +486,27 @@ public class TracesTable extends JFrame {
 				}
 			}
 
-			data[j][20] = CountMethodTCallee;
-			data[j][21] = CountMethodNCallee;
-			data[j][22] = CountMethodECallee;
+			data[j][CalleeMethodsT] = CountMethodTCallee;
+			data[j][CalleeMethodsN] = CountMethodNCallee;
+			data[j][CalleeMethodsE] = CountMethodECallee;
 			/*if (((CounterTraceClassCalleeT >= CounterTraceClassCalleeN
 					&& CounterTraceClassCalleeN >= CounterTraceClassCalleeE)
 					|| (CounterTraceClassCalleeT >= CounterTraceClassCalleeE
 							&& CounterTraceClassCalleeE >= CounterTraceClassCalleeN))
 					&& CounterTraceClassCalleeT != 0) {
-				data[j][28] = "T";
+				data[j][CallerPrediction] = "T";
 			} else if (((CounterTraceClassCalleeE >= CounterTraceClassCalleeN
 					&& CounterTraceClassCalleeN >= CounterTraceClassCalleeT)
 					|| (CounterTraceClassCalleeE >= CounterTraceClassCalleeT
 							&& CounterTraceClassCalleeT >= CounterTraceClassCalleeN))
 					&& CounterTraceClassCalleeE != 0) {
-				data[j][28] = "E";
+				data[j][CallerPrediction] = "E";
 			} else if (((CounterTraceClassCalleeN >= CounterTraceClassCalleeE
 					&& CounterTraceClassCalleeE >= CounterTraceClassCalleeT)
 					|| (CounterTraceClassCalleeN >= CounterTraceClassCalleeT
 							&& CounterTraceClassCalleeT >= CounterTraceClassCalleeE))
 					&& CounterTraceClassCalleeN != 0) {
-				data[j][28] = "N";
+				data[j][CallerPrediction] = "N";
 			}*/
 
 			JComboBox comboBox1 = new JComboBox(items1And2);
@@ -531,7 +563,7 @@ public class TracesTable extends JFrame {
 				            System.out.println("goldval: "+goldval);
 				            System.out.println("CELL method id : "+methid.toString());
 				            System.out.println("CELL  Requirement ID: "+requirementID.toString());
-				            //data[j][27]=goldval; 
+				            //data[j][CalleePrediction]=goldval; 
 				           model.setValueAt(goldval, row, 27);
 		                 }
 		                
@@ -570,7 +602,7 @@ public class TracesTable extends JFrame {
 				            System.out.println("goldval: "+goldval);
 				            System.out.println("CELL method id : "+methid.toString());
 				            System.out.println("CELL  Requirement ID: "+requirementID.toString());
-				            //data[j][27]=goldval; 
+				            //data[j][CalleePrediction]=goldval; 
 				           model.setValueAt(goldval, row, 28);
 		                 }
 		                
@@ -617,12 +649,12 @@ public class TracesTable extends JFrame {
 
 	
 
-			bw.write(data[j][0] + "," + data[j][1] + "," + data[j][2] + "," + data[j][3] + "," + data[j][4] + ","
-					+ data[j][5] + "," + data[j][6] + "," + data[j][7] + "," + data[j][8] + "," + data[j][9] + ","
-					+ data[j][10] + "," + data[j][11] + "," + data[j][12] + "," + data[j][13] + "," + data[j][14] + ","
-					+ data[j][15] + "," + data[j][16] + "," + data[j][17] + "," + data[j][18] + "," + data[j][19] + ","
-					+ data[j][20] + "," + data[j][21] + "," + data[j][22] + "," + data[j][23] + "," + data[j][24] + ","
-					+ data[j][25] + "," + data[j][26] + "," + data[j][27] + "," + data[j][28]);
+			bw.write(data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
+					+ data[j][ClassName] + "," + data[j][Gold] + "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
+					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber] + "," + data[j][CallerMethodsT] + "," + data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
+					+ data[j][CallerClassesNumber] + "," + data[j][CallerClassesT] + "," + data[j][CallerClassesN] + "," + data[j][CallerClassesE] + "," + data[j][CalleeMethodsNumber] + ","
+					+ data[j][CalleeMethodsT] + "," + data[j][CalleeMethodsN] + "," + data[j][CalleeMethodsE] + "," + data[j][CalleeClassesNumber] + "," + data[j][CalleeClassesT] + ","
+					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][CalleePrediction] + "," + data[j][CallerPrediction]);
 			bw.newLine();
 
 			j++;
