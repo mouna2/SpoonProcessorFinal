@@ -1236,6 +1236,41 @@ public class TracesTable extends JFrame {
 			    	   label.setBackground(Color.pink);
 				      } 
 			  
+			 
+			      else if(column==OwnerClassPrediction){
+			    	  label.setBackground(Color.lightGray);
+			      }
+			      else if(column==MajorityClassLevelCallers || column==MajorityClassLevelCallees){
+			    	  label.setBackground(Color.pink);
+			      }
+			      else if(column==MajorityMethodLevelCallers || column==MajorityMethodLevelCallees){
+			    	  label.setBackground(Color.lightGray);
+			      }
+			      else if(column==AtLeast1NPredictionClassLevelCallees || column==AtLeast1NPredictionClassLevelCallers){
+			    	  label.setBackground(Color.pink);
+			      }
+			      else if(column==AtLeast1NPredictionMethodLevelCallers || column==AtLeast1NPredictionMethodLevelCallees){
+			    	  label.setBackground(Color.lightGray);
+			      }
+			     
+			      else if(column==AtLeast1TPredictionClassLevelCallers || column==AtLeast1TPredictionClassLevelCallees){
+			    	  label.setBackground(Color.pink);
+			      }
+			      else if(column==AtLeast1TPredictionMethodLevelCallers || column==AtLeast1TPredictionMethodLevelCallees){
+			    	  label.setBackground(Color.lightGray);
+			      }
+			      else if(column==AllNClassLevelCallers || column==AllNClassLevelCallees){
+			    	  label.setBackground(Color.pink);
+			      }
+			      else if(column==AllNMethodLevelCallers || column==AllNMethodLevelCallees){
+			    	  label.setBackground(Color.lightGray);
+			      }
+			      else if(column==AllTClassLevelCallers || column==AllTClassLevelCallees){
+			    	  label.setBackground(Color.pink);
+			      }
+			      else if(column==AllTMethodLevelCallers || column==AllTMethodLevelCallees){
+			    	  label.setBackground(Color.lightGray);
+			      }
 			      else if (column==Callers || column==Callees ) {
 			    	   label.setBackground(Color.pink);
 				      }
