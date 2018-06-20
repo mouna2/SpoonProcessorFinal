@@ -74,10 +74,29 @@ public class TracesTable extends JFrame {
 	int CalleeClassesT=24; 
 	int CalleeClassesN=25; 
 	int CalleeClassesE=26; 
-	int CalleePrediction=27; 
-	int CallerPrediction=28; 
-	int Callers=29; 
-	int Callees=30; 
+	int OwnerClassPrediction=27; 
+	int MajorityClassLevelCallers=28; 
+	int MajorityClassLevelCallees=29; 
+	int MajorityMethodLevelCallers=30; 
+	int MajorityMethodLevelCallees=31; 
+	int AtLeast1NPredictionClassLevelCallers=32; 
+	int AtLeast1NPredictionClassLevelCallees=33; 
+	int AtLeast1NPredictionMethodLevelCallers=34; 
+	int AtLeast1NPredictionMethodLevelCallees=35; 
+	int AtLeast1TPredictionClassLevelCallers=36; 
+	int AtLeast1TPredictionClassLevelCallees=37; 
+	int AtLeast1TPredictionMethodLevelCallers=38; 
+	int AtLeast1TPredictionMethodLevelCallees=39; 
+	int AllNClassLevelCallers=40; 
+	int AllNClassLevelCallees=41; 
+	int AllNMethodLevelCallers=42; 
+	int AllNMethodLevelCallees=43; 
+	int AllTClassLevelCallers=44; 
+	int AllTClassLevelCallees=45; 
+	int AllTMethodLevelCallers=46; 
+	int AllTMethodLevelCallees=47; 
+	int Callers=48; 
+	int Callees=49; 
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
@@ -507,34 +526,7 @@ public class TracesTable extends JFrame {
 				}
 			}
 
-			data[j][CallerMethodsT] = CountMethodT;
-			data[j][CallerMethodsN] = CountMethodN;
-			data[j][CallerMethodsE] = CountMethodE;
-			
-			
-			
-			
-			
-			if (((CounterTraceClassCallerT >= CounterTraceClassCallerN
-					&& CounterTraceClassCallerN >= CounterTraceClassCallerE)
-					|| (CounterTraceClassCallerT >= CounterTraceClassCallerE
-							&& CounterTraceClassCallerE >= CounterTraceClassCallerN))
-					&& CounterTraceClassCallerT != 0) {
-				data[j][CalleePrediction] = "T";
-			} else if (((CounterTraceClassCallerE >= CounterTraceClassCallerN
-					&& CounterTraceClassCallerN >= CounterTraceClassCallerT)
-					|| (CounterTraceClassCallerE >= CounterTraceClassCallerT
-							&& CounterTraceClassCallerT >= CounterTraceClassCallerN))
-					&& CounterTraceClassCallerE != 0) {
-				data[j][CalleePrediction] = "E";
-			} else if (((CounterTraceClassCallerN >= CounterTraceClassCallerE
-					&& CounterTraceClassCallerE >= CounterTraceClassCallerT)
-					|| (CounterTraceClassCallerN >= CounterTraceClassCallerT
-							&& CounterTraceClassCallerT >= CounterTraceClassCallerE))
-					&& CounterTraceClassCallerN != 0) {
-				data[j][CalleePrediction] = "N";
-			}
-			
+		
 
 			int CounterTraceClassCalleeT = 0;
 			int CounterTraceClassCalleeN = 0;
@@ -585,30 +577,431 @@ public class TracesTable extends JFrame {
 					CountMethodECallee++;
 				}
 			}
-
+			
 			data[j][CalleeMethodsT] = CountMethodTCallee;
 			data[j][CalleeMethodsN] = CountMethodNCallee;
 			data[j][CalleeMethodsE] = CountMethodECallee;
-			if (((CounterTraceClassCalleeT >= CounterTraceClassCalleeN
-					&& CounterTraceClassCalleeN >= CounterTraceClassCalleeE)
-					|| (CounterTraceClassCalleeT >= CounterTraceClassCalleeE
-							&& CounterTraceClassCalleeE >= CounterTraceClassCalleeN))
-					&& CounterTraceClassCalleeT != 0) {
-				data[j][CallerPrediction] = "T";
-			} else if (((CounterTraceClassCalleeE >= CounterTraceClassCalleeN
-					&& CounterTraceClassCalleeN >= CounterTraceClassCalleeT)
-					|| (CounterTraceClassCalleeE >= CounterTraceClassCalleeT
-							&& CounterTraceClassCalleeT >= CounterTraceClassCalleeN))
-					&& CounterTraceClassCalleeE != 0) {
-				data[j][CallerPrediction] = "E";
-			} else if (((CounterTraceClassCalleeN >= CounterTraceClassCalleeE
-					&& CounterTraceClassCalleeE >= CounterTraceClassCalleeT)
-					|| (CounterTraceClassCalleeN >= CounterTraceClassCalleeT
-							&& CounterTraceClassCalleeT >= CounterTraceClassCalleeE))
-					&& CounterTraceClassCalleeN != 0) {
-				data[j][CallerPrediction] = "N";
+			
+			
+			data[j][CallerMethodsT] = CountMethodT;
+			data[j][CallerMethodsN] = CountMethodN;
+			data[j][CallerMethodsE] = CountMethodE;
+			
+			
+			
+		 Object OwnerClassNVar = data[j][OwnerClassN]; 
+			
+			if(OwnerClassNVar.toString().equals("1")) {
+				data[j][OwnerClassPrediction]="N"; 
 			}
+			else {
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
 
+				//MAJORITY CLASS LEVEL CALLERS PREDICTION 
+
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+					
+					
+					
+					if (((CounterTraceClassCallerT >= CounterTraceClassCallerN
+							&& CounterTraceClassCallerN >= CounterTraceClassCallerE)
+							|| (CounterTraceClassCallerT >= CounterTraceClassCallerE
+									&& CounterTraceClassCallerE >= CounterTraceClassCallerN))
+							) {
+						data[j][MajorityClassLevelCallees] = "T";
+					} else if (((CounterTraceClassCallerE >= CounterTraceClassCallerN
+							&& CounterTraceClassCallerN >= CounterTraceClassCallerT)
+							|| (CounterTraceClassCallerE >= CounterTraceClassCallerT
+									&& CounterTraceClassCallerT >= CounterTraceClassCallerN))
+						) {
+						data[j][MajorityClassLevelCallees] = "E";
+					} else if (((CounterTraceClassCallerN >= CounterTraceClassCallerE
+							&& CounterTraceClassCallerE >= CounterTraceClassCallerT)
+							|| (CounterTraceClassCallerN >= CounterTraceClassCallerT
+									&& CounterTraceClassCallerT >= CounterTraceClassCallerE))
+							) {
+						data[j][MajorityClassLevelCallees] = "N";
+					}
+				}
+			
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//MAJORITY CLASS LEVEL CALLERS PREDICTION 
+
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+					
+					
+					
+					if (((CounterTraceClassCalleeT >= CounterTraceClassCalleeN
+							&& CounterTraceClassCalleeN >= CounterTraceClassCalleeE)
+							|| (CounterTraceClassCalleeT >= CounterTraceClassCalleeE
+									&& CounterTraceClassCalleeE >= CounterTraceClassCalleeN))
+							) {
+						data[j][MajorityClassLevelCallers] = "T";
+					} else if (((CounterTraceClassCalleeE >= CounterTraceClassCalleeN
+							&& CounterTraceClassCalleeN >= CounterTraceClassCalleeT)
+							|| (CounterTraceClassCalleeE >= CounterTraceClassCalleeT
+									&& CounterTraceClassCalleeT >= CounterTraceClassCalleeN))
+						) {
+						data[j][MajorityClassLevelCallers] = "E";
+					} else if (((CounterTraceClassCalleeN >= CounterTraceClassCalleeE
+							&& CounterTraceClassCalleeE >= CounterTraceClassCalleeT)
+							|| (CounterTraceClassCalleeN >= CounterTraceClassCalleeT
+									&& CounterTraceClassCalleeT >= CounterTraceClassCalleeE))
+							) {
+						data[j][MajorityClassLevelCallers] = "N";
+					}
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//MAJORITY METHOD LEVEL CALLEES PREDICTION 
+
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodT!=0 && CountMethodN!=0)||
+						(CountMethodN!=0 && CountMethodE!=0)
+						||(CountMethodT!=0 && CountMethodE!=0)) {
+					
+					
+					
+					if (((CountMethodT >= CountMethodN
+							&& CountMethodN >= CountMethodE)
+							|| (CountMethodT >= CountMethodE
+									&& CountMethodE >= CountMethodN))
+							) {
+						data[j][MajorityMethodLevelCallees] = "T";
+					} else if (((CountMethodE >= CountMethodN
+							&& CountMethodN >= CountMethodT)
+							|| (CountMethodE >= CountMethodT
+									&& CountMethodT >= CountMethodN))
+						) {
+						data[j][MajorityMethodLevelCallees] = "E";
+					} else if (((CountMethodN >= CountMethodE
+							&& CountMethodE >= CountMethodT)
+							|| (CountMethodN >= CountMethodT
+									&& CountMethodT >= CountMethodE))
+							) {
+						data[j][MajorityMethodLevelCallees] = "N";
+					}
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//MAJORITY METHOD LEVEL CALLERS PREDICTION 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+						(CountMethodNCallee!=0 && CountMethodECallee!=0)
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+					
+					
+					
+					if (((CountMethodTCallee >= CountMethodNCallee
+							&& CountMethodNCallee >= CountMethodECallee)
+							|| (CountMethodTCallee >= CountMethodECallee
+									&& CountMethodECallee >= CountMethodNCallee))
+							) {
+						data[j][MajorityMethodLevelCallers] = "T";
+					} else if (((CountMethodECallee >= CountMethodNCallee
+							&& CountMethodNCallee >= CountMethodTCallee)
+							|| (CountMethodECallee >= CountMethodTCallee
+									&& CountMethodTCallee >= CountMethodNCallee))
+						) {
+						data[j][MajorityMethodLevelCallers] = "E";
+					} else if (((CountMethodNCallee >= CountMethodECallee
+							&& CountMethodECallee >= CountMethodTCallee)
+							|| (CountMethodNCallee >= CountMethodTCallee
+									&& CountMethodTCallee >= CountMethodECallee))
+							) {
+						data[j][MajorityMethodLevelCallers] = "N";
+					}
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1N PREDICTION CLASS LEVEL CALLERS 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+					
+					
+					
+					if (CounterTraceClassCalleeN >=1 )
+							 {
+						data[j][AtLeast1NPredictionClassLevelCallers] = "N";
+					} 
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1T PREDICTION CLASS LEVEL CALLERS 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+					
+					
+					
+					if (CounterTraceClassCalleeT >=1 )
+							 {
+						data[j][AtLeast1TPredictionClassLevelCallers] = "T";
+					} 
+				}
+		
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+					
+					
+					
+					if (CounterTraceClassCallerN >=1 )
+							 {
+						data[j][AtLeast1NPredictionClassLevelCallees] = "N";
+					} 
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+					
+					
+					
+					if (CounterTraceClassCallerT >=1 )
+							 {
+						data[j][AtLeast1TPredictionClassLevelCallees] = "N";
+					} 
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//AT LEAST 1N PREDICTION METHOD LEVEL CALLERS 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodT!=0 && CountMethodN!=0)||
+						(CountMethodN!=0 && CountMethodE!=0)
+						||(CountMethodT!=0 && CountMethodE!=0)) {
+					
+					
+					
+					if (CountMethodN >=1 )
+							 {
+						data[j][AtLeast1NPredictionMethodLevelCallees] = "N";
+					} 
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//AT LEAST 1T PREDICTION METHOD LEVEL CALLERS 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodT!=0 && CountMethodN!=0)||
+						(CountMethodN!=0 && CountMethodE!=0)
+						||(CountMethodT!=0 && CountMethodE!=0)) {
+					
+					
+					
+					if (CountMethodT >=1 )
+							 {
+						data[j][AtLeast1TPredictionMethodLevelCallees] = "N";
+					} 
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+						(CountMethodNCallee!=0 && CountMethodECallee!=0)
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+					
+					
+					
+					if (CountMethodNCallee >=1 )
+							 {
+						data[j][AtLeast1NPredictionMethodLevelCallers] = "N";
+					} 
+				}
+		
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
+				
+				//FIRST IF makes sure there is a mixture 
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+						(CountMethodNCallee!=0 && CountMethodECallee!=0)
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+					
+					
+					
+					if (CountMethodTCallee >=1 )
+							 {
+						data[j][AtLeast1TPredictionMethodLevelCallers] = "N";
+					} 
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL T METHOD LEVEL CALLEES 
+				
+				//FIRST IF makes sure there is a mixture 
+				if(CountMethodN==0 && CountMethodE==0) {
+					
+					
+					
+				
+						data[j][AllTMethodLevelCallees] = "T";
+					
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL T METHOD LEVEL CALLERS 
+				
+				//FIRST IF makes sure there is a mixture 
+				if(CountMethodNCallee==0 && CountMethodECallee==0) {
+					
+					
+					
+				
+						data[j][AllTMethodLevelCallers] = "T";
+					
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL T CLASS LEVEL CALLERS 
+				
+				
+				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0) {
+					
+					
+					
+				
+						data[j][AllTClassLevelCallers] = "T";
+					
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL T CLASS LEVEL CALLEES 
+				
+				
+				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0) {
+					
+					
+					
+				
+						data[j][AllTClassLevelCallees] = "T";
+					
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N CLASS LEVEL CALLERS 
+				
+				
+				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0) {
+					
+					
+					
+				
+						data[j][AllNClassLevelCallers] = "N";
+					
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N CLASS LEVEL CALLEES 
+				
+				
+				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0) {
+					
+					
+					
+				
+						data[j][AllNClassLevelCallees] = "N";
+					
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N METHOD LEVEL CALLERS 
+				
+				
+				if(CountMethodTCallee==0 && CountMethodECallee==0) {
+					
+					
+					
+				
+						data[j][AllNMethodLevelCallers] = "N";
+					
+				}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N METHOD LEVEL CALLEES 
+				
+				
+				if(CountMethodT==0 && CountMethodE==0) {
+					
+					
+					
+				
+						data[j][AllNMethodLevelCallees] = "N";
+					
+				}
+			}
+			
+			
 			JComboBox comboBox1 = new JComboBox(items1And2);
 			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
 			editors1.add(dce1);
@@ -752,7 +1145,7 @@ public class TracesTable extends JFrame {
 					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber] + "," + data[j][CallerMethodsT] + "," + data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
 					+ data[j][CallerClassesNumber] + "," + data[j][CallerClassesT] + "," + data[j][CallerClassesN] + "," + data[j][CallerClassesE] + "," + data[j][CalleeMethodsNumber] + ","
 					+ data[j][CalleeMethodsT] + "," + data[j][CalleeMethodsN] + "," + data[j][CalleeMethodsE] + "," + data[j][CalleeClassesNumber] + "," + data[j][CalleeClassesT] + ","
-					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][CalleePrediction] + "," + data[j][CallerPrediction]+","+ OnlyinParsedCallers
+					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][MajorityClassLevelCallees] + "," + data[j][MajorityClassLevelCallers]+","+ OnlyinParsedCallers
 					+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
 					+","+BothInParsedAndExecutedCallees);
 			bw.newLine();
@@ -784,17 +1177,24 @@ public class TracesTable extends JFrame {
 				"# caller methods T", "#caller methods N", "#caller methods E", "# caller classes",
 				"# caller classes T", "#caller classes N", "#caller classes E", "# callee methods",
 				"# callee methods T", "#callee methods N", "#callee methods E", "# callee classes",
-				"# callee classes T", "#callee classes N", "#callee classes E", "CalleePrediction", "CallerPrediction",
-				"Callers", "Callees"};
+				"# callee classes T", "#callee classes N", "#callee classes E",  "OwnerClassPrediction",
+				"MajorityClassLevelCallers","MajorityClassLevelCallees", "MajorityMethodLevelCallers","MajorityMethodLevelCallees",
+				">1NPredictionClassLevelCallers", ">1NPredictionClassLevelCallees", ">1NPredictionMethodLevelCallers", 
+				">1NPredictionMethodLevelCallees", ">1TPredictionClassLevelCallers", ">1TPredictionClassLevelCallees", 
+				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
+				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
+				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
+				,"Callers", "Callees"
+				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model) {
 			// Determine editor to be used by row
 			public TableCellEditor getCellEditor(int row, int column) {
 				int modelColumn = convertColumnIndexToModel(column);
 
-				if (modelColumn == 29 && row < methodtraces2.size())
+				if (modelColumn == 48 && row < methodtraces2.size())
 					return editors1.get(row);
-				if (modelColumn == 30 && row < methodtraces2.size())
+				if (modelColumn == 49 && row < methodtraces2.size())
 					return editors3.get(row);
 				/*
 				 * if (modelColumn == 31 && row < methodtraces2.size()) return
@@ -807,15 +1207,20 @@ public class TracesTable extends JFrame {
 			}
 
 			
-			/*
+			
 			@Override
 			   public Component prepareRenderer(TableCellRenderer renderer,
 			         int row, int column) {
 			      Component label = (Component) super.prepareRenderer(renderer, row, column);
 			   
-			
-			      if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
-			    	  label.setBackground(Color.pink);
+			int rownum=table.getSelectedRow(); 
+			if(rownum==row) {
+			    	  label.setBackground(Color.ORANGE);
+			    	  
+			}
+			else { 
+				if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
+					 label.setBackground(Color.pink);
 			    	  
 			      } 
 			      else if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
@@ -830,19 +1235,20 @@ public class TracesTable extends JFrame {
 			      else if (column==CalleeClassesNumber || column==CalleeClassesT || column==CalleeClassesN ||column==CalleeClassesE) {
 			    	   label.setBackground(Color.pink);
 				      } 
-			      else   if (column==CalleePrediction || column==CallerPrediction ) {
-			    	   label.setBackground(Color.lightGray);
-				      } 
+			  
 			      else if (column==Callers || column==Callees ) {
 			    	   label.setBackground(Color.pink);
 				      }
 			      else {
 			    	  label.setBackground(Color.lightGray);
 			      }
+				}
+			
+			    	 
 			     
 			      table.setRowSelectionAllowed(true);
 			      return label;
-			   }*/
+			   }
 		};
 
 		table.getColumnModel().getColumn(6).setPreferredWidth(150);
@@ -865,7 +1271,30 @@ public class TracesTable extends JFrame {
 		table.getColumnModel().getColumn(23).setPreferredWidth(150);
 		table.getColumnModel().getColumn(24).setPreferredWidth(150);
 		table.getColumnModel().getColumn(25).setPreferredWidth(150);
-
+		table.getColumnModel().getColumn(26).setPreferredWidth(150);
+		table.getColumnModel().getColumn(27).setPreferredWidth(150);
+		table.getColumnModel().getColumn(28).setPreferredWidth(150);
+		table.getColumnModel().getColumn(29).setPreferredWidth(150);
+		table.getColumnModel().getColumn(30).setPreferredWidth(200);
+		table.getColumnModel().getColumn(31).setPreferredWidth(200);
+		table.getColumnModel().getColumn(32).setPreferredWidth(200);
+		table.getColumnModel().getColumn(33).setPreferredWidth(200);
+		table.getColumnModel().getColumn(34).setPreferredWidth(200);
+		table.getColumnModel().getColumn(35).setPreferredWidth(200);
+		table.getColumnModel().getColumn(36).setPreferredWidth(200);
+		table.getColumnModel().getColumn(37).setPreferredWidth(200);
+		table.getColumnModel().getColumn(38).setPreferredWidth(200);
+		table.getColumnModel().getColumn(39).setPreferredWidth(200);
+		table.getColumnModel().getColumn(40).setPreferredWidth(150);
+		table.getColumnModel().getColumn(41).setPreferredWidth(150);
+		table.getColumnModel().getColumn(42).setPreferredWidth(150);
+		table.getColumnModel().getColumn(43).setPreferredWidth(150);
+		table.getColumnModel().getColumn(44).setPreferredWidth(150);
+		table.getColumnModel().getColumn(45).setPreferredWidth(150);
+		table.getColumnModel().getColumn(46).setPreferredWidth(150);
+		table.getColumnModel().getColumn(47).setPreferredWidth(150);
+		table.getColumnModel().getColumn(48).setPreferredWidth(150);
+		table.getColumnModel().getColumn(49).setPreferredWidth(150);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		table.setRowSelectionAllowed(true);
