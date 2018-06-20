@@ -123,7 +123,7 @@ public class TracesTable extends JFrame {
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
-	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\out.txt");
+	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluation.txt");
@@ -631,7 +631,7 @@ public class TracesTable extends JFrame {
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 
-				//MAJORITY CLASS LEVEL CALLERS PREDICTION 
+				//MAJORITY CLASS LEVEL CALLEES PREDICTION 
 
 				//FIRST IF makes sure there is a mixture 
 				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
