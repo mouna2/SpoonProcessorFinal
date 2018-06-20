@@ -811,33 +811,35 @@ public class TracesTable extends JFrame {
 			@Override
 			   public Component prepareRenderer(TableCellRenderer renderer,
 			         int row, int column) {
-			      JLabel label = (JLabel) super.prepareRenderer(renderer, row, column);
+			      Component label = (Component) super.prepareRenderer(renderer, row, column);
 			   
 			
 			      if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
-			         label.setBackground(Color.pink);
-			      } else  if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
-				         label.setBackground(Color.lightGray);
+			    	  label.setBackground(Color.pink);
+			    	  
+			      } 
+			      else if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
+			    	  label.setBackground(Color.lightGray);
 				      } 
 			      else if(column==CallerClassesNumber || column==CallerClassesT || column==CallerClassesN || column==CallerClassesE) {
-				         label.setBackground(Color.pink);
+			    	   label.setBackground(Color.pink);
 				      } 
 			      else if (column==CalleeMethodsNumber || column==CalleeMethodsT || column==CalleeMethodsN ||column==CalleeMethodsE) {
-				         label.setBackground(Color.lightGray);
+			    	   label.setBackground(Color.lightGray);
 				      } 
 			      else if (column==CalleeClassesNumber || column==CalleeClassesT || column==CalleeClassesN ||column==CalleeClassesE) {
-				         label.setBackground(Color.pink);
+			    	   label.setBackground(Color.pink);
 				      } 
-			      else if (column==CalleePrediction || column==CallerPrediction ) {
-				         label.setBackground(Color.lightGray);
+			      else   if (column==CalleePrediction || column==CallerPrediction ) {
+			    	   label.setBackground(Color.lightGray);
 				      } 
 			      else if (column==Callers || column==Callees ) {
-				         label.setBackground(Color.pink);
-				      } 
+			    	   label.setBackground(Color.pink);
+				      }
 			      else {
-			    	  
 			    	  label.setBackground(Color.lightGray);
 			      }
+			     
 			      table.setRowSelectionAllowed(true);
 			      return label;
 			   }*/
