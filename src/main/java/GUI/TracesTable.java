@@ -111,11 +111,11 @@ public class TracesTable extends JFrame {
 
 	public TracesTable() throws SQLException, IOException {
 
-		bw.write(
-				"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
+		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 						+ "OwnerClassE, #callermethods, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 						+ "#callerclassesE, #calleemethods, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-						+ "#calleeclassesE, CalleePrediction, CallerPrediction");
+						+ "#calleeclassesE, CalleePrediction, CallerPrediction, OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
+						+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees" );
 		bw.newLine();
 		DatabaseReading2 db = new DatabaseReading2();
 		DatabaseReading2.MakePredictions();
@@ -132,6 +132,9 @@ public class TracesTable extends JFrame {
 		String[] items2 = new String[methodtraces2.size()];
 		String[] items3 = new String[methodtraces2.size()];
 		String[] items4 = new String[methodtraces2.size()];
+		String[] items5 = new String[methodtraces2.size()];
+		String[] items6 = new String[methodtraces2.size()];
+
 		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
@@ -227,7 +230,9 @@ public class TracesTable extends JFrame {
 			
 
 		
-
+			int BothParsedAndExecutedCallers=0; 
+			int OnlyinParsedCallers=0;
+			int OnlyinExecutedCallers=0; 
 			int CountCallers = 0;
 			items1 = new String[methodtrace.getCallersList().size()];
 			callersarr = new Method2Representation[methodtrace.getCallersList().size()];
@@ -257,11 +262,14 @@ public class TracesTable extends JFrame {
 						
 					
 					CountCallersExecuted++;
+					OnlyinExecutedCallers++; 
+
 				} else {
 					for (String item : items1) {
 						item = item.replaceAll("\\(.*\\)", "");
 
 						if (item.equals(caller.toString()) == true) {
+							BothParsedAndExecutedCallers++; 
 							equalbool = true;
 						}
 					}
@@ -272,12 +280,58 @@ public class TracesTable extends JFrame {
 						items2[CountCallersExecuted] = caller.toString();
 						callersex[CountCallersExecuted] = caller;
 						CountCallersExecuted++;
+						OnlyinExecutedCallers++; 
 					}
 				}
 
 			}
 		
-		
+			
+			
+			
+			
+			
+			
+			int CountCallerExecuted=0; 
+			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
+			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+				
+				itemsExecuted[CountCallerExecuted] = caller.toString();	
+				System.out.println(caller.toString());
+				CountCallerExecuted++;
+			}
+			
+			int Count=0; 
+			for (Method2Representation caller : methodtrace.getCallersList()) {
+
+				boolean equalbool = false;
+				if (itemsExecuted.length == 0) {
+					items5[Count] = caller.toString();
+				
+						
+					
+					Count++; 
+					OnlyinParsedCallers++; 
+
+				} else {
+					for (String item : itemsExecuted) {
+					String	callerString = caller.toString().replaceAll("\\(.*\\)", "");
+
+						if (item.equals(callerString) == true) {
+						
+							equalbool = true;
+						}
+					}
+					if (equalbool == false) {
+						
+							
+						
+						Count++; 
+						OnlyinParsedCallers++; 
+					}
+				}
+
+			}
 
 			String[] items1And2 = new String[items1.length + items2.length];
 			items1And2 = (String[]) ArrayUtils.addAll(items1, items2);
@@ -286,6 +340,10 @@ public class TracesTable extends JFrame {
 			//=======> LIST OF CALLERS AFTER MERGING CALLERS + CALLERSEXECUTED 
 			List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods);
 
+			
+			int BothInParsedAndExecutedCallees=0; 
+			int OnlyInParsedCallees=0; 
+			int OnlyInExecutedCallees=0; 
 			// data[j][OwnerClassE]=items1;
 			int CountCallees = 0;
 			items3 = new String[methodtrace.getCalleesList().size()];
@@ -307,17 +365,20 @@ public class TracesTable extends JFrame {
 					items4[CountCalleesExecuted] = caller.toString();
 					calleesex[CountCalleesExecuted] = caller;
 					CountCalleesExecuted++;
+					OnlyInExecutedCallees++; 
 					
 				} else {
 					for (String item : items3) {
 						item = item.replaceAll("\\(.*\\)", "");
 						if (item.equals(caller.toString()) == true) {
 							equalbool = true;
+							BothInParsedAndExecutedCallees++; 
 						}
 					}
 					if (equalbool == false) {
 						items4[CountCalleesExecuted] = caller.toString();
 						calleesex[CountCalleesExecuted] = caller;
+						OnlyInExecutedCallees++; 
 
 						CountCalleesExecuted++;
 				
@@ -326,7 +387,46 @@ public class TracesTable extends JFrame {
 
 			}
 
+			int CountCalleeExecuted=0; 
+			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
+			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
+				
+				itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
+				System.out.println(callee.toString());
+				CountCalleeExecuted++;
+			}
 			
+			 Count=0; 
+			for (Method2Representation callee : methodtrace.getCalleesList()) {
+
+				boolean equalbool = false;
+				if (itemsExecutedCallees.length == 0) {
+					items6[Count] = callee.toString();
+				
+						
+					
+					Count++; 
+					OnlyInParsedCallees++; 
+
+				} else {
+					for (String item : itemsExecutedCallees) {
+					String	calleeString = callee.toString().replaceAll("\\(.*\\)", "");
+
+						if (item.equals(calleeString) == true) {
+						
+							equalbool = true;
+						}
+					}
+					if (equalbool == false) {
+						
+							
+						
+						Count++; 
+						OnlyInParsedCallees++; 
+					}
+				}
+
+			}
 
 			String[] items3And4 = new String[items3.length + items4.length];
 			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);
@@ -415,7 +515,7 @@ public class TracesTable extends JFrame {
 			
 			
 			
-			/*if (((CounterTraceClassCallerT >= CounterTraceClassCallerN
+			if (((CounterTraceClassCallerT >= CounterTraceClassCallerN
 					&& CounterTraceClassCallerN >= CounterTraceClassCallerE)
 					|| (CounterTraceClassCallerT >= CounterTraceClassCallerE
 							&& CounterTraceClassCallerE >= CounterTraceClassCallerN))
@@ -433,7 +533,7 @@ public class TracesTable extends JFrame {
 							&& CounterTraceClassCallerT >= CounterTraceClassCallerE))
 					&& CounterTraceClassCallerN != 0) {
 				data[j][CalleePrediction] = "N";
-			}*/
+			}
 			
 
 			int CounterTraceClassCalleeT = 0;
@@ -489,7 +589,7 @@ public class TracesTable extends JFrame {
 			data[j][CalleeMethodsT] = CountMethodTCallee;
 			data[j][CalleeMethodsN] = CountMethodNCallee;
 			data[j][CalleeMethodsE] = CountMethodECallee;
-			/*if (((CounterTraceClassCalleeT >= CounterTraceClassCalleeN
+			if (((CounterTraceClassCalleeT >= CounterTraceClassCalleeN
 					&& CounterTraceClassCalleeN >= CounterTraceClassCalleeE)
 					|| (CounterTraceClassCalleeT >= CounterTraceClassCalleeE
 							&& CounterTraceClassCalleeE >= CounterTraceClassCalleeN))
@@ -507,7 +607,7 @@ public class TracesTable extends JFrame {
 							&& CounterTraceClassCalleeT >= CounterTraceClassCalleeE))
 					&& CounterTraceClassCalleeN != 0) {
 				data[j][CallerPrediction] = "N";
-			}*/
+			}
 
 			JComboBox comboBox1 = new JComboBox(items1And2);
 			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
@@ -538,7 +638,7 @@ public class TracesTable extends JFrame {
 			comboBox4.setEditable(true);
 
 			 
-			
+			/*
 			 ActionListener cbActionListener = new ActionListener() {//add actionlistner to listen for change
 		            @Override
 		            public void actionPerformed(ActionEvent e) {
@@ -613,9 +713,7 @@ public class TracesTable extends JFrame {
 		        };
 		       
 		        comboBox4.addActionListener(cbActionListener2);
-			/*
-			 * comboBox4.setEditor(new MyEditor()); comboBox4.setEditable(true);
-			 */
+		*/
 
 			List<Method2Representation> callers = methodtrace.getCallersList();
 			List<Method2Representation> callersmerged = new ArrayList<Method2Representation>();
@@ -654,7 +752,9 @@ public class TracesTable extends JFrame {
 					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber] + "," + data[j][CallerMethodsT] + "," + data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
 					+ data[j][CallerClassesNumber] + "," + data[j][CallerClassesT] + "," + data[j][CallerClassesN] + "," + data[j][CallerClassesE] + "," + data[j][CalleeMethodsNumber] + ","
 					+ data[j][CalleeMethodsT] + "," + data[j][CalleeMethodsN] + "," + data[j][CalleeMethodsE] + "," + data[j][CalleeClassesNumber] + "," + data[j][CalleeClassesT] + ","
-					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][CalleePrediction] + "," + data[j][CallerPrediction]);
+					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][CalleePrediction] + "," + data[j][CallerPrediction]+","+ OnlyinParsedCallers
+					+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
+					+","+BothInParsedAndExecutedCallees);
 			bw.newLine();
 
 			j++;
@@ -685,7 +785,7 @@ public class TracesTable extends JFrame {
 				"# caller classes T", "#caller classes N", "#caller classes E", "# callee methods",
 				"# callee methods T", "#callee methods N", "#callee methods E", "# callee classes",
 				"# callee classes T", "#callee classes N", "#callee classes E", "CalleePrediction", "CallerPrediction",
-				"Callers", "Callees" };
+				"Callers", "Callees"};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model) {
 			// Determine editor to be used by row
@@ -706,6 +806,41 @@ public class TracesTable extends JFrame {
 					return super.getCellEditor(row, column);
 			}
 
+			
+			/*
+			@Override
+			   public Component prepareRenderer(TableCellRenderer renderer,
+			         int row, int column) {
+			      JLabel label = (JLabel) super.prepareRenderer(renderer, row, column);
+			   
+			
+			      if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
+			         label.setBackground(Color.pink);
+			      } else  if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
+				         label.setBackground(Color.lightGray);
+				      } 
+			      else if(column==CallerClassesNumber || column==CallerClassesT || column==CallerClassesN || column==CallerClassesE) {
+				         label.setBackground(Color.pink);
+				      } 
+			      else if (column==CalleeMethodsNumber || column==CalleeMethodsT || column==CalleeMethodsN ||column==CalleeMethodsE) {
+				         label.setBackground(Color.lightGray);
+				      } 
+			      else if (column==CalleeClassesNumber || column==CalleeClassesT || column==CalleeClassesN ||column==CalleeClassesE) {
+				         label.setBackground(Color.pink);
+				      } 
+			      else if (column==CalleePrediction || column==CallerPrediction ) {
+				         label.setBackground(Color.lightGray);
+				      } 
+			      else if (column==Callers || column==Callees ) {
+				         label.setBackground(Color.pink);
+				      } 
+			      else {
+			    	  
+			    	  label.setBackground(Color.lightGray);
+			      }
+			      table.setRowSelectionAllowed(true);
+			      return label;
+			   }*/
 		};
 
 		table.getColumnModel().getColumn(6).setPreferredWidth(150);
@@ -731,7 +866,7 @@ public class TracesTable extends JFrame {
 
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-		
+		table.setRowSelectionAllowed(true);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane);
@@ -800,3 +935,6 @@ public class TracesTable extends JFrame {
 		frame.setVisible(true);
 	}
 }
+
+
+
