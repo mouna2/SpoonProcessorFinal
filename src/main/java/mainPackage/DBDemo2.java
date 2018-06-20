@@ -1428,7 +1428,10 @@ catch (IOException e) {
 /*********************************************************************************************************************************************************************************/	
 /*********************************************************************************************************************************************************************************/	
 /*********************************************************************************************************************************************************************************/   
-String statement4 = "DELETE FROM `methodcalls` WHERE callername ='"+"CALLER"+"'";		
+//DUMMY DATA TO BE INSERTED AT THE END OF traces.txt file is found in DummyData.txt file 
+
+
+/*String statement4 = "DELETE FROM `methodcalls` WHERE callername ='"+"CALLER"+"'";		
 st.executeUpdate(statement4);
 
 statement4 = "DELETE FROM `methodcalls` WHERE callername ='"+"CALLER2"+"'";		
@@ -1467,7 +1470,7 @@ statement10 = "INSERT INTO `methodcalls`(`callermethodid`, `callername`, `caller
 st.executeUpdate(statement10);
 statement10 = "INSERT INTO `methodcalls`(`callermethodid`, `callername`, `callerclass`, `calleemethodid`, `calleename`,`calleeclass`) VALUES ('"+744+"','" +"CALLER2"+"','" +"CALLER CLASS"+"','" +742+"','" +"CALLEE METH"+"','"+"CALLEE CLASS" +"')";		
 st.executeUpdate(statement10);
-
+*/
 
 
 //CREATE TRACES TABLE 
@@ -1584,8 +1587,12 @@ try {
 				
 			}
 			
+			
 		}
-	
+		else {
+			System.out.println(shortmethod);
+			System.out.println("I am here");
+		}
 		
 		
 		
@@ -1799,6 +1806,7 @@ try {
 		boolean containsNumber = pattern.matcher(shortmethod).matches();
 		String[] firstpart;
 		String FinalMethod = null;
+		shortmethod=shortmethod.replaceAll("clinit", "init"); 
 		if(shortmethod.contains("$") && shortmethod.matches(".*\\d+.*")) {
 			 firstpart = shortmethod.split("\\$");
 			String myfirstpart= firstpart[0]; 
