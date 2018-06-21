@@ -618,7 +618,7 @@ public class TracesTable extends JFrame {
 			data[j][CallerMethodsE] = CountMethodE;
 			
 			
-		
+		//OWNER CLASS PREDICTION 
 		 Object OwnerClassNVar = data[j][OwnerClassN]; 
 			
 			if(OwnerClassNVar.toString().equals("1")) {
@@ -634,9 +634,11 @@ public class TracesTable extends JFrame {
 				//MAJORITY CLASS LEVEL CALLEES PREDICTION 
 
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)
+					/*	||
 						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
-						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+						) {
 					
 					
 					
@@ -670,9 +672,10 @@ public class TracesTable extends JFrame {
 				//MAJORITY CLASS LEVEL CALLERS PREDICTION 
 
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)
+						/*||
 						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
-						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)*/) {
 					
 					
 					
@@ -705,9 +708,9 @@ public class TracesTable extends JFrame {
 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodT!=0 && CountMethodN!=0)||
+				if((CountMethodT!=0 && CountMethodN!=0)/*||
 						(CountMethodN!=0 && CountMethodE!=0)
-						||(CountMethodT!=0 && CountMethodE!=0)) {
+						||(CountMethodT!=0 && CountMethodE!=0)*/) {
 					
 					
 					
@@ -740,9 +743,9 @@ public class TracesTable extends JFrame {
 				//MAJORITY METHOD LEVEL CALLERS PREDICTION 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)/*||
 						(CountMethodNCallee!=0 && CountMethodECallee!=0)
-						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)*/) {
 					
 					
 					
@@ -776,9 +779,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLERS 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)/*||
 						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
-						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)*/) {
 					
 					
 					
@@ -800,9 +803,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLERS 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)||
+				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)/*||
 						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
-						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)) {
+						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)*/) {
 					
 					
 					
@@ -825,9 +828,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
 			
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)/*||
 						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
-						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/) {
 					
 					
 					
@@ -848,9 +851,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)||
+				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)/*||
 						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
-						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)) {
+						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/) {
 					
 					
 					
@@ -870,9 +873,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1N PREDICTION METHOD LEVEL CALLERS 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodT!=0 && CountMethodN!=0)||
+				if((CountMethodT!=0 && CountMethodN!=0)/*||
 						(CountMethodN!=0 && CountMethodE!=0)
-						||(CountMethodT!=0 && CountMethodE!=0)) {
+						||(CountMethodT!=0 && CountMethodE!=0)*/) {
 					
 					
 					
@@ -891,9 +894,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1T PREDICTION METHOD LEVEL CALLERS 
 			
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodT!=0 && CountMethodN!=0)||
+				if((CountMethodT!=0 && CountMethodN!=0)/*||
 						(CountMethodN!=0 && CountMethodE!=0)
-						||(CountMethodT!=0 && CountMethodE!=0)) {
+						||(CountMethodT!=0 && CountMethodE!=0)*/) {
 					
 					
 					
@@ -912,9 +915,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)/*||
 						(CountMethodNCallee!=0 && CountMethodECallee!=0)
-						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)*/) {
 					
 					
 					
@@ -935,9 +938,9 @@ public class TracesTable extends JFrame {
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
 				
 				//FIRST IF makes sure there is a mixture 
-				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)||
+				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)/*||
 						(CountMethodNCallee!=0 && CountMethodECallee!=0)
-						||(CountMethodTCallee!=0 && CountMethodECallee!=0)) {
+						||(CountMethodTCallee!=0 && CountMethodECallee!=0)*/) {
 					
 					
 					
