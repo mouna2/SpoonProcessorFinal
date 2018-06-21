@@ -847,7 +847,7 @@ public class TracesTable extends JFrame {
 					
 					if (CounterTraceClassCallerT >=1 )
 							 {
-						data[j][AtLeast1TPredictionClassLevelCallees] = "N";
+						data[j][AtLeast1TPredictionClassLevelCallees] = "T";
 						String Result=AtLeastTPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
 						AtLeastTPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClass);
 					} 
@@ -883,7 +883,7 @@ public class TracesTable extends JFrame {
 					
 					if (CountMethodT >=1 )
 							 {
-						data[j][AtLeast1TPredictionMethodLevelCallees] = "N";
+						data[j][AtLeast1TPredictionMethodLevelCallees] = "T";
 						String Result=AtLeastTPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
 						AtLeastTPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClass);
 					} 
@@ -921,7 +921,7 @@ public class TracesTable extends JFrame {
 					
 					if (CountMethodTCallee >=1 )
 							 {
-						data[j][AtLeast1TPredictionMethodLevelCallers] = "N";
+						data[j][AtLeast1TPredictionMethodLevelCallers] = "T";
 						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClass);
 						}
@@ -935,7 +935,7 @@ public class TracesTable extends JFrame {
 				//ALL T METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodN==0 && CountMethodE==0) {
+				if(CountMethodN==0 && CountMethodE==0 && CountMethodT>=1) {
 					
 					
 					
@@ -951,7 +951,7 @@ public class TracesTable extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLERS 
 				
-				if(CountMethodNCallee==0 && CountMethodECallee==0) {
+				if(CountMethodNCallee==0 && CountMethodECallee==0  && CountMethodTCallee>=1) {
 					
 					
 					
@@ -969,7 +969,7 @@ public class TracesTable extends JFrame {
 				//ALL T CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0) {
+				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0 && CounterTraceClassCalleeT>=1) {
 					
 					
 					
@@ -985,7 +985,7 @@ public class TracesTable extends JFrame {
 				//ALL T CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0) {
+				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=1) {
 					
 					
 					
@@ -1001,7 +1001,7 @@ public class TracesTable extends JFrame {
 				//ALL N CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0) {
+				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=1) {
 					
 					
 					
@@ -1017,7 +1017,7 @@ public class TracesTable extends JFrame {
 				//ALL N CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0) {
+				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=1) {
 					
 					
 					
@@ -1034,7 +1034,7 @@ public class TracesTable extends JFrame {
 				//ALL N METHOD LEVEL CALLERS 
 				
 				
-				if(CountMethodTCallee==0 && CountMethodECallee==0) {
+				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=1) {
 					
 					
 					
@@ -1051,7 +1051,7 @@ public class TracesTable extends JFrame {
 				//ALL N METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodT==0 && CountMethodE==0) {
+				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=1) {
 					
 					
 					
