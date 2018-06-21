@@ -778,10 +778,7 @@ public class TracesTable extends JFrame {
 				
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLERS 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)/*||
-						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
-						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)*/) {
+				
 					
 					
 					
@@ -795,17 +792,14 @@ public class TracesTable extends JFrame {
 					} 
 				
 					
-				}
+				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLERS 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeN!=0)/*||
-						(CounterTraceClassCalleeN!=0 && CounterTraceClassCalleeE!=0)
-						||(CounterTraceClassCalleeT!=0 && CounterTraceClassCalleeE!=0)*/) {
+				
 					
 					
 					
@@ -819,7 +813,7 @@ public class TracesTable extends JFrame {
 						
 					
 				
-				}
+				
 		
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
@@ -827,10 +821,7 @@ public class TracesTable extends JFrame {
 				
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
 			
-				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)/*||
-						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
-						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/) {
+				
 					
 					
 					
@@ -842,7 +833,7 @@ public class TracesTable extends JFrame {
 					} 
 					
 				
-				}
+				
 				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
@@ -850,10 +841,7 @@ public class TracesTable extends JFrame {
 			
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CounterTraceClassCallerT!=0 && CounterTraceClassCallerN!=0)/*||
-						(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
-						||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/) {
+				
 					
 					
 					
@@ -865,18 +853,14 @@ public class TracesTable extends JFrame {
 					} 
 					
 					
-				}
+				
 				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				//AT LEAST 1N PREDICTION METHOD LEVEL CALLERS 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CountMethodT!=0 && CountMethodN!=0)/*||
-						(CountMethodN!=0 && CountMethodE!=0)
-						||(CountMethodT!=0 && CountMethodE!=0)*/) {
-					
+				
 					
 					
 					if (CountMethodN >=1 )
@@ -887,16 +871,13 @@ public class TracesTable extends JFrame {
 					} 
 					
 					
-				}
+				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				//AT LEAST 1T PREDICTION METHOD LEVEL CALLERS 
 			
-				//FIRST IF makes sure there is a mixture 
-				if((CountMethodT!=0 && CountMethodN!=0)/*||
-						(CountMethodN!=0 && CountMethodE!=0)
-						||(CountMethodT!=0 && CountMethodE!=0)*/) {
+				
 					
 					
 					
@@ -907,17 +888,14 @@ public class TracesTable extends JFrame {
 						AtLeastTPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClass);
 					} 
 					
-				}
+				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				
 				//AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)/*||
-						(CountMethodNCallee!=0 && CountMethodECallee!=0)
-						||(CountMethodTCallee!=0 && CountMethodECallee!=0)*/) {
+				
 					
 					
 					
@@ -928,7 +906,7 @@ public class TracesTable extends JFrame {
 						AtLeastNPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClass);
 					} 
 					
-				}
+				
 		
 				
 				/**************************************************************************************************************/
@@ -937,10 +915,7 @@ public class TracesTable extends JFrame {
 				
 				//AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
 				
-				//FIRST IF makes sure there is a mixture 
-				if((CountMethodTCallee!=0 && CountMethodNCallee!=0)/*||
-						(CountMethodNCallee!=0 && CountMethodECallee!=0)
-						||(CountMethodTCallee!=0 && CountMethodECallee!=0)*/) {
+				
 					
 					
 					
@@ -950,7 +925,7 @@ public class TracesTable extends JFrame {
 						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClass);
 						}
-					} 
+					 
 					
 				
 				/**************************************************************************************************************/
@@ -959,7 +934,7 @@ public class TracesTable extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLEES 
 				
-				//FIRST IF makes sure there is a mixture 
+				
 				if(CountMethodN==0 && CountMethodE==0) {
 					
 					
@@ -976,7 +951,6 @@ public class TracesTable extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLERS 
 				
-				//FIRST IF makes sure there is a mixture 
 				if(CountMethodNCallee==0 && CountMethodECallee==0) {
 					
 					
