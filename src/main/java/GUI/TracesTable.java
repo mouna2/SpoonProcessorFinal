@@ -1439,7 +1439,28 @@ public class TracesTable extends JFrame {
 			      return label;
 			   }
 		};
-
+		TableColumnModel columnModel = table.getColumnModel();
+        for (int col = 0; col < table.getColumnCount(); col++) {
+            int maxWidth = 0;
+           
+            TableColumn column = columnModel.getColumn(col);
+            TableCellRenderer headerRenderer = column.getHeaderRenderer();
+            if (headerRenderer == null) {
+                headerRenderer = table.getTableHeader().getDefaultRenderer();
+            }
+            Object headerValue = column.getHeaderValue();
+            Component headerComp = headerRenderer.getTableCellRendererComponent(table, headerValue, false, false, 0, col);
+            maxWidth =  headerComp.getPreferredSize().width;
+            // note some extra padding
+            column.setPreferredWidth(maxWidth + 6);//IntercellSpacing * 2 + 2 * 2 pixel instead of taking this value from Borders
+        }
+        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) table.getDefaultRenderer(String.class);
+        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+    //    table.setPreferredScrollableViewportSize(table.getPreferredSize());
+    
+		 
+		   
+		/*
 		table.getColumnModel().getColumn(6).setPreferredWidth(150);
 		table.getColumnModel().getColumn(7).setPreferredWidth(150);
 		table.getColumnModel().getColumn(8).setPreferredWidth(150);
@@ -1481,7 +1502,7 @@ public class TracesTable extends JFrame {
 		table.getColumnModel().getColumn(44).setPreferredWidth(150);
 		table.getColumnModel().getColumn(45).setPreferredWidth(150);
 		table.getColumnModel().getColumn(46).setPreferredWidth(150);
-		table.getColumnModel().getColumn(47).setPreferredWidth(150);
+		table.getColumnModel().getColumn(47).setPreferredWidth(150);*/
 		table.getColumnModel().getColumn(48).setPreferredWidth(150);
 		table.getColumnModel().getColumn(49).setPreferredWidth(150);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
