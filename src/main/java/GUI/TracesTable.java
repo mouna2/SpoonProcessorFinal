@@ -1439,6 +1439,8 @@ public class TracesTable extends JFrame {
 			      return label;
 			   }
 		};
+		
+		//Sets the width of each column to the size of the column header 
 		TableColumnModel columnModel = table.getColumnModel();
         for (int col = 0; col < table.getColumnCount(); col++) {
             int maxWidth = 0;
