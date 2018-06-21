@@ -1401,7 +1401,7 @@ public class TracesTable extends JFrame {
 			    	   label.setBackground(Color.pink);
 				      } 
 			  
-			 
+				
 			      else if(column==OwnerClassPrediction){
 			    	  label.setBackground(Color.lightGray);
 			      }
