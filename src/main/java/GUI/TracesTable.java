@@ -1372,7 +1372,21 @@ public class TracesTable extends JFrame {
 			}
 
 			
-			
+			  public  final Color VERY_LIGHT_RED = new Color(255,153,153);
+			  public  final Color EXTRA_LIGHT_RED = new Color(220,156,156);
+			  public  final Color YELLOW = new Color(236,236,153);
+			  public  final Color GREEN = new Color(204,255,204);
+			  public  final Color BLUE = new Color(189,216,232);	
+			  public  final Color LIGHTBLUE = new Color(204,255,229);	
+			  public  final Color PURPLE = new Color(204,204,255);	
+			  public  final Color VERY_LIGHT_PINK = new Color(255,204,204);	
+			  public  final Color VERY_LIGHT_YELLOW = new Color(225,229,170);
+			  public  final Color LIGHT_GREEN = new Color(217,246,201);
+			  public  final Color BEIGE = new Color(223,201,140);
+			  public  final Color YELLOW_GREEN = new Color(215,222,157);
+			  public  final Color LIGHT_GRAY = new Color(192,192,192);
+			  public  final Color LIGHT_PURPLE = new Color(226,207,252);
+			  public  final Color EXTRA_LIGHT_PINK = new Color(250,214,252);
 			@Override
 			   public Component prepareRenderer(TableCellRenderer renderer,
 			         int row, int column) {
@@ -1384,63 +1398,64 @@ public class TracesTable extends JFrame {
 			    	  
 			}
 			else { 
-				if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
-					 label.setBackground(Color.pink);
+				if(column==RequirementID || column==RequirementName) {
+					label.setBackground(GREEN);
+				}
+				else if (column==Gold || column==Subject) {
+					 label.setBackground(EXTRA_LIGHT_RED);
+			    	  
+			      } 
+				else if (column==ClassID || column==ClassName) {
+					 label.setBackground(EXTRA_LIGHT_PINK);
+			    	  
+			      } 
+				else if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
+					 label.setBackground(YELLOW_GREEN);
 			    	  
 			      } 
 			      else if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
-			    	  label.setBackground(Color.lightGray);
+			    	  label.setBackground(BEIGE);
 				      } 
 			      else if(column==CallerClassesNumber || column==CallerClassesT || column==CallerClassesN || column==CallerClassesE) {
-			    	   label.setBackground(Color.pink);
+			    	   label.setBackground(LIGHT_PURPLE);
 				      } 
 			      else if (column==CalleeMethodsNumber || column==CalleeMethodsT || column==CalleeMethodsN ||column==CalleeMethodsE) {
-			    	   label.setBackground(Color.lightGray);
+			    	   label.setBackground(BLUE);
 				      } 
 			      else if (column==CalleeClassesNumber || column==CalleeClassesT || column==CalleeClassesN ||column==CalleeClassesE) {
-			    	   label.setBackground(Color.pink);
+			    	   label.setBackground(LIGHT_GREEN);
 				      } 
 			  
 				
 			      else if(column==OwnerClassPrediction){
-			    	  label.setBackground(Color.lightGray);
+			    	  label.setBackground(VERY_LIGHT_RED);
 			      }
-			      else if(column==MajorityClassLevelCallers || column==MajorityClassLevelCallees){
-			    	  label.setBackground(Color.pink);
+			      else if(column==MajorityClassLevelCallers || column==MajorityClassLevelCallees|| column==MajorityMethodLevelCallers || column==MajorityMethodLevelCallees){
+			    	  label.setBackground(YELLOW);
 			      }
-			      else if(column==MajorityMethodLevelCallers || column==MajorityMethodLevelCallees){
-			    	  label.setBackground(Color.lightGray);
+			      
+			      else if(column==AtLeast1NPredictionClassLevelCallees || column==AtLeast1NPredictionClassLevelCallers || column==AtLeast1NPredictionMethodLevelCallers || column==AtLeast1NPredictionMethodLevelCallees){
+			    	  label.setBackground(LIGHTBLUE);
 			      }
-			      else if(column==AtLeast1NPredictionClassLevelCallees || column==AtLeast1NPredictionClassLevelCallers){
-			    	  label.setBackground(Color.pink);
+			      
+			      else if(column==AtLeast1TPredictionClassLevelCallers || column==AtLeast1TPredictionClassLevelCallees || column==AtLeast1TPredictionMethodLevelCallers || column==AtLeast1TPredictionMethodLevelCallees){
+			    	  label.setBackground(PURPLE);
 			      }
-			      else if(column==AtLeast1NPredictionMethodLevelCallers || column==AtLeast1NPredictionMethodLevelCallees){
-			    	  label.setBackground(Color.lightGray);
+			      
+			      else if(column==AllNClassLevelCallers || column==AllNClassLevelCallees || column==AllNMethodLevelCallers || column==AllNMethodLevelCallees){
+			    	  label.setBackground(VERY_LIGHT_YELLOW);
 			      }
-			     
-			      else if(column==AtLeast1TPredictionClassLevelCallers || column==AtLeast1TPredictionClassLevelCallees){
-			    	  label.setBackground(Color.pink);
+			      
+			      else if(column==AllTClassLevelCallers || column==AllTClassLevelCallees || column==AllTMethodLevelCallers || column==AllTMethodLevelCallees){
+			    	  label.setBackground(VERY_LIGHT_PINK);
 			      }
-			      else if(column==AtLeast1TPredictionMethodLevelCallers || column==AtLeast1TPredictionMethodLevelCallees){
-			    	  label.setBackground(Color.lightGray);
-			      }
-			      else if(column==AllNClassLevelCallers || column==AllNClassLevelCallees){
-			    	  label.setBackground(Color.pink);
-			      }
-			      else if(column==AllNMethodLevelCallers || column==AllNMethodLevelCallees){
-			    	  label.setBackground(Color.lightGray);
-			      }
-			      else if(column==AllTClassLevelCallers || column==AllTClassLevelCallees){
-			    	  label.setBackground(Color.pink);
-			      }
-			      else if(column==AllTMethodLevelCallers || column==AllTMethodLevelCallees){
-			    	  label.setBackground(Color.lightGray);
-			      }
+			    
 			      else if (column==Callers || column==Callees ) {
 			    	   label.setBackground(Color.pink);
 				      }
 			      else {
-			    	  label.setBackground(Color.lightGray);
+			    	  //This corresponds to the first 2 columns MethodID and MethodName 
+			    	  label.setBackground(LIGHT_GRAY);
 			      }
 				}
 			
