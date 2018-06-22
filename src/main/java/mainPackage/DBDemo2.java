@@ -1063,7 +1063,7 @@ for(CtType<?> clazz : classFactory.getAll()) {
 /*********************************************************************************************************************************************************************************/	
 /*********************************************************************************************************************************************************************************/   	
 //BUILD METHODSCALLED EXECUTED TABLE
-File file = new File("C:\\Users\\mouna\\git\\spoonprocessor2\\SpoonProcessor\\data.txt");
+File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\data.txt");
 FileReader fileReader = new FileReader(file);
 BufferedReader bufferedReader = new BufferedReader(fileReader);
 StringBuffer stringBuffer = new StringBuffer();
@@ -1392,7 +1392,7 @@ try {
 /*********************************************************************************************************************************************************************************/   
 //CREATE REQUIREMENTS TABLE 
 
- file = new File("C:\\Users\\mouna\\git\\spoonprocessor2\\SpoonProcessor\\Requirements.txt");
+ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Requirements.txt");
  fileReader = new FileReader(file);
  bufferedReader = new BufferedReader(fileReader);
  stringBuffer = new StringBuffer();
@@ -1475,7 +1475,7 @@ st.executeUpdate(statement10);
 
 //CREATE TRACES TABLE 
 
- file = new File("C:\\Users\\mouna\\git\\spoonprocessor2\\SpoonProcessor\\Traces.txt");
+ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
  fileReader = new FileReader(file);
  bufferedReader = new BufferedReader(fileReader);
  stringBuffer = new StringBuffer();
@@ -1675,7 +1675,7 @@ for(tracesmethodscallees tc: TracesCallersList) {
 List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
 	
 try {
-		file = new File("C:\\Users\\mouna\\git\\spoonprocessor2\\SpoonProcessor\\Traces.txt");
+		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
 		fileReader = new FileReader(file);
 		bufferedReader = new BufferedReader(fileReader);	
 		line = bufferedReader.readLine(); 

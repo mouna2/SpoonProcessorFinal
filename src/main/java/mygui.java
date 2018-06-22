@@ -9,16 +9,16 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-
-import mypackage.DatabaseReading2;
-import mypackage.Method2Representation;
-import mypackage.MethodTrace2;
-
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
+
+import mypackage.DatabaseReading2;
+import mypackage.Method2Representation;
+import mypackage.MethodTrace2;
+
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.TableCursor;
 import org.eclipse.swt.custom.TableEditor;
