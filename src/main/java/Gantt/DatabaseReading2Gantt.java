@@ -73,7 +73,7 @@ public class DatabaseReading2Gantt {
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasechess";
+	private final String dbName = "databasegantt";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -140,14 +140,14 @@ public class DatabaseReading2Gantt {
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
 		setMethodlist(methodlist);
 		///////////////////////////////////////////////////////////////////////////////////////
-		ClassDetails2 classdet2 = new ClassDetails2();
+	/*	ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
 		List<ClassDetails2> classlist = new ArrayList<ClassDetails2>(classhashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
-		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());
+		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
 
 		///////////////////////////////////////////////////////////////////////////////////////
 
