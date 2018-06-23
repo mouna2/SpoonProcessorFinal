@@ -3,8 +3,8 @@ package mypackage;
 import java.util.List;
 
 public class RequirementGold {
-	Requirement2 Requirement=new Requirement2(); 
-	String gold="";
+	public Requirement2 Requirement=new Requirement2(); 
+	public String gold="";
 	public Requirement2 getRequirement() {
 		return Requirement;
 	}

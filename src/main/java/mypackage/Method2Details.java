@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Method2Details {
-	Method2Representation methodrep; 
-	ClassRepresentation2 OwnerClass; 
-	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
-	List<Parameter2> parametersList= new ArrayList<Parameter2>(); 
-	List<MethodField2> methodfieldsList= new ArrayList<MethodField2>();  
-	HashMap<Requirement2, MethodTrace2> methodtraces= new HashMap <Requirement2, MethodTrace2>();
+	public Method2Representation methodrep; 
+	public ClassRepresentation2 OwnerClass; 
+	public List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
+	public List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
+	public List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
+	public List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
+	public List<Parameter2> parametersList= new ArrayList<Parameter2>(); 
+	public List<MethodField2> methodfieldsList= new ArrayList<MethodField2>();  
+	public HashMap<Requirement2, MethodTrace2> methodtraces= new HashMap <Requirement2, MethodTrace2>();
 	
 	
 	

@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Requirement2 {
-	String ID; 
+	public String ID; 
 	public String RequirementName;
 	public HashMap<String, Requirement2> RequirementsHashMap= new HashMap<String, Requirement2>(); 
 	

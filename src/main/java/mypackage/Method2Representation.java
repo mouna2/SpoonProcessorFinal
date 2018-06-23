@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Method2Representation {
-	String methodid; 
-	String methodname;
-	List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
-	List<Requirement2> requirements= new ArrayList<Requirement2>(); 
-	ClassRepresentation2 classrep= new ClassRepresentation2(); 
+	public String methodid; 
+	public String methodname;
+	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
+	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
+	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
 	public Method2Representation(String methodid, String methodname) {
 		super();
 		this.methodid = methodid;
