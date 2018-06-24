@@ -844,6 +844,7 @@ for(CtType<?> clazz : classFactory.getAll()) {
 	
 	
 	
+	
 	String myclass = null;
 	String myclassname=null; 
 	String fieldid=null; 
