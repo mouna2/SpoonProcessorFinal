@@ -192,6 +192,7 @@ public class TracesTable extends JFrame {
 		Object[][] data = new Object[methodtraces2.size()][10000];
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
+			System.out.println("LOOP INDEX===========> "+j); 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
@@ -204,23 +205,31 @@ public class TracesTable extends JFrame {
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 
 			for (ClassTrace2 classtrace : classtraces2) {
-
+				System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
+				System.out.println("CLASS TRACE REPRESENTATION CLASS ID "+classtrace.getMyclass().classid);
+				System.out.println("METHOD TRACE REQUIREMENT  ID "+methodtrace.Requirement.getID());
+				System.out.println("CLASS TRACE REQUIREMENT  ID "+classtrace.getRequirement().getID());
 				if (methodtrace.ClassRepresentation.classid.equals(classtrace.getMyclass().classid)
 						&& methodtrace.Requirement.getID().equals(classtrace.getRequirement().getID())) {
 					String trace = classtrace.gettrace();
+					trace=trace.trim(); 
 					if (trace.equals("T")) {
 						data[j][OwnerClassT] = "1";
 						data[j][OwnerClassN] = "0";
 						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS T  "+j +" set to 1");
 					} else if (trace.equals("N")) {
 						data[j][OwnerClassT] = "0";
 						data[j][OwnerClassN] = "1";
 						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS N  "+j +" set to 1");
 					} else if (trace.equals("E")) {
 						data[j][OwnerClassT] = "0";
 						data[j][OwnerClassN] = "0";
 						data[j][OwnerClassE] = "1";
+						System.out.println("OWNERCLASS E  "+j +" set to 1");
 					}
+				break; 
 				}
 
 			}
@@ -530,29 +539,37 @@ public class TracesTable extends JFrame {
 
 			data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
-			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-				if (mycallerclass.gettrace().equals("T")) {
-					CounterTraceClassCallerT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
-					CounterTraceClassCallerN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
-					CounterTraceClassCallerE++;
+			if(myclasstracesCallers!=null) {
+				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
+					String trace= mycallerclass.gettrace(); 
+					trace=trace.trim(); 
+					if (trace.equals("T")) {
+						CounterTraceClassCallerT++;
+					} else if (trace.equals("N")) {
+						CounterTraceClassCallerN++;
+					} else if (trace.equals("E")) {
+						CounterTraceClassCallerE++;
+					}
 				}
-			}
 
-			data[j][CallerClassesT] = CounterTraceClassCallerT;
-			data[j][CallerClassesN] = CounterTraceClassCallerN;
-			data[j][CallerClassesE] = CounterTraceClassCallerE;
+				data[j][CallerClassesT] = CounterTraceClassCallerT;
+				data[j][CallerClassesN] = CounterTraceClassCallerN;
+				data[j][CallerClassesE] = CounterTraceClassCallerE;
+			}
+			
 //DUPLICATE CLASSES
 			int CountMethodT = 0; 
 			int CountMethodN = 0; 
 			int CountMethodE = 0; 
+			
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
-				if (mycallerclass.gettrace().equals("T")) {
+				String trace= mycallerclass.gettrace(); 
+				trace=trace.trim(); 
+				if (trace.equals("T")) {
 					CountMethodT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
+				} else if (trace.equals("N")) {
 					CountMethodN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
+				} else if (trace.equals("E")) {
 					CountMethodE++;
 				}
 			}
@@ -573,7 +590,7 @@ public class TracesTable extends JFrame {
 
 			ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycalleeclasses) {
-				if (!myclasstracesCallees.contains(classtrace)) {
+				if (!myclasstracesCallees.contains(classtrace) && classtrace!=null) {
 
 					myclasstracesCallees.add(classtrace);
 				}
@@ -581,37 +598,49 @@ public class TracesTable extends JFrame {
 			//NO DUPLICATE CLASSES 
 
 			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
-
-			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-				if (mycalleeclass.gettrace().equals("T")) {
-					CounterTraceClassCalleeT++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
-					CounterTraceClassCalleeN++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
-					CounterTraceClassCalleeE++;
+			if(myclasstracesCallees!=null && myclasstracesCallees.isEmpty()==false) {
+				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
+					String mytrace=mycalleeclass.gettrace(); 
+					mytrace=mytrace.trim(); 
+					if (mytrace.equals("T")) {
+						CounterTraceClassCalleeT++;
+					} else if (mytrace.equals("N")) {
+						CounterTraceClassCalleeN++;
+					} else if (mytrace.equals("E")) {
+						CounterTraceClassCalleeE++;
+					}
 				}
-			}
 
-			data[j][CalleeClassesT] = CounterTraceClassCalleeT;
-			data[j][CalleeClassesN] = CounterTraceClassCalleeN;
-			data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+				data[j][CalleeClassesT] = CounterTraceClassCalleeT;
+				data[j][CalleeClassesN] = CounterTraceClassCalleeN;
+				data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+			}
+			
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
 			int CountMethodECallee = 0; 
-			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-				if (mycalleeclass.gettrace().equals("T")) {
-					CountMethodTCallee++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
-					CountMethodNCallee++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
-					CountMethodECallee++;
+			if(mycalleeclasses!=null && mycalleeclasses.isEmpty()==false) {
+				for (ClassTrace2 mycalleeclass : mycalleeclasses) {
+					if(mycalleeclass!=null) {
+						String mytrace=mycalleeclass.gettrace(); 
+						mytrace=mytrace.trim(); 
+						if (mytrace.equals("T")) {
+							CountMethodTCallee++;
+						} else if (mytrace.equals("N")) {
+							CountMethodNCallee++;
+						} else if (mytrace.equals("E")) {
+							CountMethodECallee++;
+						}
+					}
+					
 				}
+				
+				data[j][CalleeMethodsT] = CountMethodTCallee;
+				data[j][CalleeMethodsN] = CountMethodNCallee;
+				data[j][CalleeMethodsE] = CountMethodECallee;
 			}
 			
-			data[j][CalleeMethodsT] = CountMethodTCallee;
-			data[j][CalleeMethodsN] = CountMethodNCallee;
-			data[j][CalleeMethodsE] = CountMethodECallee;
 			
 			
 			data[j][CallerMethodsT] = CountMethodT;

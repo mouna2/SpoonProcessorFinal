@@ -309,8 +309,9 @@ public class Method2Details {
 						methodtraces.put(requirement, MethodTrace);
 						methoddet2.setMethodtraces(methodtraces);
 					}
-				 
+				
 				 MethodDetailsHashMap.put(index, methoddet2); 
+				 System.out.println("METHOD DETAILS 2 tostring: "+methoddet2.toString());
 				 index=index+1; 
 				 myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
 				 

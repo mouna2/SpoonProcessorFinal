@@ -165,169 +165,179 @@ public class MethodTrace2 {
 		
 	
 		int index=1; 
-		 ResultSet myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
-		 while(myresults.next()) {
-			 MethodTrace2 mytrace= new MethodTrace2(); 
-			 RequirementGold RequirementGold = new RequirementGold(); 
-			 Requirement2 requirement = new Requirement2(); 
-			 requirement.setID(myresults.getString("requirementid"));
-			 requirement.setRequirementName(myresults.getString("requirement"));
-			 mytrace.setRequirement(requirement);
-			 
-			 ClassRepresentation2 classrep = new ClassRepresentation2(); 
-			 classrep.setClassid(myresults.getString("classid"));
-			 classrep.setClassname(myresults.getString("classname"));
-			 
-			 Method2Representation methodrep= new Method2Representation(); 
-			 methodrep.setMethodid(myresults.getString("methodid"));
-			 methodrep.setMethodname(myresults.getString("method"));
-			 mytrace.setMethodRepresentation(methodrep);
-			 
-			 mytrace.setClassRepresentation(classrep);
-			 
-			 mytrace.setGold(myresults.getString("gold"));
-			 
-			 mytrace.setSubject(myresults.getString("subject"));
-			 
-			 String id= mytrace.getMethodRepresentation().methodid; 
-			 ResultSet callers=st.executeQuery("select methodcalls.* from methodcalls where calleemethodid='" + id+"'"); 
-			 this.callersList= new  ArrayList<Method2Representation>(); 
-			 while(callers.next()) {
-				 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
-				 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
-				 while(methodtraces.next()) {
+		//STATRT OF TEST 
+		/*int startcounter=2900; 
+		int endcounter=3200; 
+		index=startcounter; 
+		if(index<startcounter) {*/
+		//END OF TEST 
+			 ResultSet myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
+			 while(myresults.next()) {
+				 MethodTrace2 mytrace= new MethodTrace2(); 
+				 RequirementGold RequirementGold = new RequirementGold(); 
+				 Requirement2 requirement = new Requirement2(); 
+				 requirement.setID(myresults.getString("requirementid"));
+				 requirement.setRequirementName(myresults.getString("requirement"));
+				 mytrace.setRequirement(requirement);
+				 
+				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 classrep.setClassid(myresults.getString("classid"));
+				 classrep.setClassname(myresults.getString("classname"));
+				 
+				 Method2Representation methodrep= new Method2Representation(); 
+				 methodrep.setMethodid(myresults.getString("methodid"));
+				 methodrep.setMethodname(myresults.getString("method"));
+				 mytrace.setMethodRepresentation(methodrep);
+				 
+				 mytrace.setClassRepresentation(classrep);
+				 
+				 mytrace.setGold(myresults.getString("gold"));
+				 
+				 mytrace.setSubject(myresults.getString("subject"));
+				 
+				 String id= mytrace.getMethodRepresentation().methodid; 
+				 ResultSet callers=st.executeQuery("select methodcalls.* from methodcalls where calleemethodid='" + id+"'"); 
+				 this.callersList= new  ArrayList<Method2Representation>(); 
+				 while(callers.next()) {
+					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
+					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
+					 while(methodtraces.next()) {
+						 
+						  requirement= new Requirement2(); 
+						  RequirementGold= new RequirementGold(); 
+						 requirement.setID(methodtraces.getString("requirementid"));
+						 requirement.setRequirementName(methodtraces.getString("requirement"));
+						 RequirementGold.setRequirement(requirement);
+						 RequirementGold.setGold(methodtraces.getString("gold"));
+						 requirementsGold.add(RequirementGold); 
+					 }
+					 Method2Representation meth= new Method2Representation(); 	
+					 meth.setMethodid(callers.getString("callermethodid"));
+					 meth.setMethodname(callers.getString("callername"));
+					
+					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+					 while(myclass.next()) {
+						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 myclassrep.setClassid(myclass.getString("classid"));
+						 myclassrep.setClassname(myclass.getString("classname"));
+						 meth.setClassrep(myclassrep);
+					 }
+					
+					 meth.setRequirementsGold(requirementsGold);
+					 this.callersList.add(meth); 					 
+					 mytrace.setCallersList(this.callersList);
+				 }
+				 
+				 ResultSet callees=st.executeQuery("select methodcalls.* from methodcalls where callermethodid='" + id+"'"); 
+				 this.calleesList= new  ArrayList<Method2Representation>(); 
+				 while(callees.next()) {
+					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
+					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
+					 while(methodtraces.next()) {
+						 
+						 requirement= new Requirement2(); 
+						  RequirementGold= new RequirementGold(); 
+						 requirement.setID(methodtraces.getString("requirementid"));
+						 requirement.setRequirementName(methodtraces.getString("requirement"));
+						 RequirementGold.setRequirement(requirement);
+						 RequirementGold.setGold(methodtraces.getString("gold"));
+						 requirementsGold.add(RequirementGold); 
+					 }
+					 Method2Representation meth= new Method2Representation(); 	
+					 meth.setMethodid(callees.getString("calleemethodid"));
+					 meth.setMethodname(callees.getString("calleename"));
 					 
-					  requirement= new Requirement2(); 
-					  RequirementGold= new RequirementGold(); 
-					 requirement.setID(methodtraces.getString("requirementid"));
-					 requirement.setRequirementName(methodtraces.getString("requirement"));
-					 RequirementGold.setRequirement(requirement);
-					 RequirementGold.setGold(methodtraces.getString("gold"));
-					 requirementsGold.add(RequirementGold); 
-				 }
-				 Method2Representation meth= new Method2Representation(); 	
-				 meth.setMethodid(callers.getString("callermethodid"));
-				 meth.setMethodname(callers.getString("callername"));
-				
-				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
-				 while(myclass.next()) {
-					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
-					 myclassrep.setClassid(myclass.getString("classid"));
-					 myclassrep.setClassname(myclass.getString("classname"));
-					 meth.setClassrep(myclassrep);
-				 }
-				
-				 meth.setRequirementsGold(requirementsGold);
-				 this.callersList.add(meth); 					 
-				 mytrace.setCallersList(this.callersList);
-			 }
-			 
-			 ResultSet callees=st.executeQuery("select methodcalls.* from methodcalls where callermethodid='" + id+"'"); 
-			 this.calleesList= new  ArrayList<Method2Representation>(); 
-			 while(callees.next()) {
-				 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
-				 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
-				 while(methodtraces.next()) {
+					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+					 while(myclass.next()) {
+						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 myclassrep.setClassid(myclass.getString("classid"));
+						 myclassrep.setClassname(myclass.getString("classname"));
+						 meth.setClassrep(myclassrep); 
+					 }
+					
 					 
-					 requirement= new Requirement2(); 
-					  RequirementGold= new RequirementGold(); 
-					 requirement.setID(methodtraces.getString("requirementid"));
-					 requirement.setRequirementName(methodtraces.getString("requirement"));
-					 RequirementGold.setRequirement(requirement);
-					 RequirementGold.setGold(methodtraces.getString("gold"));
-					 requirementsGold.add(RequirementGold); 
-				 }
-				 Method2Representation meth= new Method2Representation(); 	
-				 meth.setMethodid(callees.getString("calleemethodid"));
-				 meth.setMethodname(callees.getString("calleename"));
-				 
-				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
-				 while(myclass.next()) {
-					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
-					 myclassrep.setClassid(myclass.getString("classid"));
-					 myclassrep.setClassname(myclass.getString("classname"));
-					 meth.setClassrep(myclassrep); 
-				 }
-				
-				 
-				 
-				 meth.setRequirementsGold(requirementsGold);
-				 this.calleesList.add(meth); 					 
-				 mytrace.setCalleesList(this.calleesList);
-			 }
-			 
-			 
-			 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
-			 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
-			 while(callersExecuted.next()) {
-				 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
-				 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
-				 while(methodtraces.next()) {
 					 
-					 requirement= new Requirement2(); 
-					  RequirementGold= new RequirementGold(); 
-					 requirement.setID(methodtraces.getString("requirementid"));
-					 requirement.setRequirementName(methodtraces.getString("requirement"));
-					 RequirementGold.setRequirement(requirement);
-					 RequirementGold.setGold(methodtraces.getString("gold"));
-					 requirementsGold.add(RequirementGold); 
+					 meth.setRequirementsGold(requirementsGold);
+					 this.calleesList.add(meth); 					 
+					 mytrace.setCalleesList(this.calleesList);
 				 }
-				 Method2Representation meth= new Method2Representation(); 	
-				 meth.setMethodid(callersExecuted.getString("callermethodid"));
-				 meth.setMethodname(callersExecuted.getString("callername"));
 				 
-				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
-				 while(myclass.next()) {
-					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
-					 myclassrep.setClassid(myclass.getString("classid"));
-					 myclassrep.setClassname(myclass.getString("classname"));
-					 meth.setClassrep(myclassrep); 
-				 }
-				
 				 
-				 meth.setRequirementsGold(requirementsGold);
-				 this.calleesListExecuted.add(meth); 					 
-				 mytrace.setCallersListExecuted(this.calleesListExecuted);
-			 }
-			 
-			 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where callermethodid='" + id+"'"); 
-			 this.callersListExecuted= new  ArrayList<Method2Representation>(); 
-			 while(calleesExecuted.next()) {
-				 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
-				 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
-				 while(methodtraces.next()) {
+				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
+				 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
+				 while(callersExecuted.next()) {
+					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
+					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
+					 while(methodtraces.next()) {
+						 
+						 requirement= new Requirement2(); 
+						  RequirementGold= new RequirementGold(); 
+						 requirement.setID(methodtraces.getString("requirementid"));
+						 requirement.setRequirementName(methodtraces.getString("requirement"));
+						 RequirementGold.setRequirement(requirement);
+						 RequirementGold.setGold(methodtraces.getString("gold"));
+						 requirementsGold.add(RequirementGold); 
+					 }
+					 Method2Representation meth= new Method2Representation(); 	
+					 meth.setMethodid(callersExecuted.getString("callermethodid"));
+					 meth.setMethodname(callersExecuted.getString("callername"));
 					 
-					 requirement= new Requirement2(); 
-					  RequirementGold= new RequirementGold(); 
-					 requirement.setID(methodtraces.getString("requirementid"));
-					 requirement.setRequirementName(methodtraces.getString("requirement"));
-					 RequirementGold.setRequirement(requirement);
-					 RequirementGold.setGold(methodtraces.getString("gold"));
-					 requirementsGold.add(RequirementGold); 
+					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+					 while(myclass.next()) {
+						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 myclassrep.setClassid(myclass.getString("classid"));
+						 myclassrep.setClassname(myclass.getString("classname"));
+						 meth.setClassrep(myclassrep); 
+					 }
+					
+					 
+					 meth.setRequirementsGold(requirementsGold);
+					 this.calleesListExecuted.add(meth); 					 
+					 mytrace.setCallersListExecuted(this.calleesListExecuted);
 				 }
-				 Method2Representation meth= new Method2Representation(); 	
-				 meth.setMethodid(calleesExecuted.getString("calleemethodid"));
-				 meth.setMethodname(calleesExecuted.getString("calleename"));
 				 
-				 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
-				 while(myclass.next()) {
-					 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
-					 myclassrep.setClassid(myclass.getString("classid"));
-					 myclassrep.setClassname(myclass.getString("classname"));
-					 meth.setClassrep(myclassrep); 
+				 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where callermethodid='" + id+"'"); 
+				 this.callersListExecuted= new  ArrayList<Method2Representation>(); 
+				 while(calleesExecuted.next()) {
+					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
+					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
+					 while(methodtraces.next()) {
+						 
+						 requirement= new Requirement2(); 
+						  RequirementGold= new RequirementGold(); 
+						 requirement.setID(methodtraces.getString("requirementid"));
+						 requirement.setRequirementName(methodtraces.getString("requirement"));
+						 RequirementGold.setRequirement(requirement);
+						 RequirementGold.setGold(methodtraces.getString("gold"));
+						 requirementsGold.add(RequirementGold); 
+					 }
+					 Method2Representation meth= new Method2Representation(); 	
+					 meth.setMethodid(calleesExecuted.getString("calleemethodid"));
+					 meth.setMethodname(calleesExecuted.getString("calleename"));
+					 
+					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
+					 while(myclass.next()) {
+						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 myclassrep.setClassid(myclass.getString("classid"));
+						 myclassrep.setClassname(myclass.getString("classname"));
+						 meth.setClassrep(myclassrep); 
+					 }
+				
+					 
+					 meth.setRequirementsGold(requirementsGold);
+					 this.callersListExecuted.add(meth); 					 
+					 mytrace.setCalleesListExecuted(this.callersListExecuted);
 				 }
-			
 				 
-				 meth.setRequirementsGold(requirementsGold);
-				 this.callersListExecuted.add(meth); 					 
-				 mytrace.setCalleesListExecuted(this.callersListExecuted);
+				 
+				 methodtraceHashMap.put(index, mytrace); 
+				 index++; 
+			//	 MethodTrace2 methtrace= new MethodTrace2(); 
+			//	 System.out.println("my trace tostring: "+methtrace.toString(mytrace));
+				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
 			 }
-			 
-			 
-			 methodtraceHashMap.put(index, mytrace); 
-			 index++; 
-			 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
-		 }
+		//}
+
 		 
 		return methodtraceHashMap;
 	}

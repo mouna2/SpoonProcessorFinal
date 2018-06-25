@@ -95,6 +95,7 @@ public class ClassTrace2 {
 				 
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 
+				 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
 				 index++; 
 				 myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
 			 }

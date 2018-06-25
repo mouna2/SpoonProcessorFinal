@@ -154,6 +154,7 @@ public class DatabaseReading2Gantt {
 		MethodTrace2 methodtrace2 = new MethodTrace2();
 		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
 		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
+		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		ClassTrace2 classtrace2= new ClassTrace2(); 
@@ -218,7 +219,7 @@ public class DatabaseReading2Gantt {
 		
 		
 		
-		
+	/*	
 		String goldprediction=""; 
 		String GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) { 
@@ -273,11 +274,11 @@ public class DatabaseReading2Gantt {
 
 			}
 
-		}
+		}*/
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
-		 GoldVal=""; 
+		/* GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
@@ -372,7 +373,7 @@ public class DatabaseReading2Gantt {
 		System.out.println("GOLDMATCHINGCALLER/TOTAL NOT NULL: =====> " + GoldMatchingCaller + " / " + MethodTracesSizeNotNullCaller);
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
 
-	
+	*/
 	}
 
 	public static List<MethodTrace2> getMethodtraces2() {
