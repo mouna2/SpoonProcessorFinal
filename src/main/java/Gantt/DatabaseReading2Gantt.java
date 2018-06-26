@@ -29,6 +29,7 @@ import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
+import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -40,12 +41,15 @@ public class DatabaseReading2Gantt {
 	public static List<MethodTrace2> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
+	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
 	}
+
+
 
 	public static void setMethodlist(List<Method2Details> methodlist) {
 		DatabaseReading2Gantt.methodlist = methodlist;
@@ -157,13 +161,18 @@ public class DatabaseReading2Gantt {
 		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		ClassTrace2 classtrace2= new ClassTrace2(); 
+		/*ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
-		setClassestraces2(classestraces);
+		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
-		
+		ClassTrace2 classtrace2= new ClassTrace2(); 
+		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
+		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
+		setClassestraces2(classestracesRequirementClass);
 		System.out.println("MOUNA");
+		
+		
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			Requirement2 requirement = tracemeth.getRequirement();
@@ -374,6 +383,15 @@ public class DatabaseReading2Gantt {
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
 
 	*/
+	}
+
+	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
+		return classesRequirementtraceshashmap;
+	}
+
+	public static void setClassesRequirementtraceshashmap(
+			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
+		DatabaseReading2Gantt.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
 	public static List<MethodTrace2> getMethodtraces2() {

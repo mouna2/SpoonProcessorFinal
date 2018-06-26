@@ -165,14 +165,10 @@ public class MethodTrace2 {
 		
 	
 		int index=1; 
-		//STATRT OF TEST 
-		/*int startcounter=2900; 
-		int endcounter=3200; 
-		index=startcounter; 
-		if(index<startcounter) {*/
+	
 		//END OF TEST 
 			 ResultSet myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
-			 while(myresults.next()) {
+			 while(myresults.next() ) {
 				 MethodTrace2 mytrace= new MethodTrace2(); 
 				 RequirementGold RequirementGold = new RequirementGold(); 
 				 Requirement2 requirement = new Requirement2(); 
@@ -265,7 +261,7 @@ public class MethodTrace2 {
 				 
 				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
 				 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
-				 while(callersExecuted.next()) {
+				 while(callersExecuted.next() && index<100) {
 					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
 					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
 					 while(methodtraces.next()) {
@@ -333,10 +329,12 @@ public class MethodTrace2 {
 				 methodtraceHashMap.put(index, mytrace); 
 				 index++; 
 			//	 MethodTrace2 methtrace= new MethodTrace2(); 
-			//	 System.out.println("my trace tostring: "+methtrace.toString(mytrace));
+				// System.out.println("my trace tostring: "+mytrace.toString());
+				
 				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
+			
 			 }
-		//}
+		
 
 		 
 		return methodtraceHashMap;

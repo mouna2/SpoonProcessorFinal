@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ClassTrace2 {
@@ -18,7 +19,7 @@ public class ClassTrace2 {
 		
 		
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
-		
+		LinkedHashMap<String, ClassTrace2> classtraceHashMapRequirementClass= new LinkedHashMap<String, ClassTrace2> (); 
 		
 		public ClassTrace2(String iD, Requirement2 requirement, ClassRepresentation2 myclass, String trace, String subject) {
 			super();
@@ -104,6 +105,48 @@ public class ClassTrace2 {
 		}
 		
 		
+		public  LinkedHashMap<String, ClassTrace2> ReadClassesRepresentationsRequirementClass(Connection conn) throws SQLException {
+			DatabaseReading2 db = new DatabaseReading2(); 
+			ClassDetails2 classdet= new ClassDetails2(); 
+			//CLASSESHASHMAP
+			String rowcount = null; 
+			Statement st = conn.createStatement();
+			ResultSet var = st.executeQuery("select count(*) from classes"); 
+			while(var.next()){
+				rowcount = var.getString("count(*)");
+			}
+			System.out.println("ROW COUNT::::::"+rowcount); 
+			int rowcountint= Integer.parseInt(rowcount); 
+		
+			int index=1; 
+			 ResultSet myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
+			 while(myresults.next()) {
+				 ClassTrace2 myclasstrace= new ClassTrace2(); 
+				 Requirement2 requirement = new Requirement2(); 
+				 requirement.setID(myresults.getString("requirementid"));
+				 requirement.setRequirementName(myresults.getString("requirement"));
+				 myclasstrace.setRequirement(requirement);
+				 
+				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 classrep.setClassid(myresults.getString("classid"));
+				 classrep.setClassname(myresults.getString("classname"));
+				 myclasstrace.setMyclass(classrep);
+				 
+				 myclasstrace.settrace(myresults.getString("gold"));
+				 
+				 myclasstrace.setSubject(myresults.getString("subject"));
+				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 
+				String ReqClass= myclasstrace.getRequirement().ID+"-"+myclasstrace.getMyclass().classid; 
+				 classtraceHashMapRequirementClass.put(ReqClass, myclasstrace); 
+			//	 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
+				 index++; 
+				 myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
+			 }
+			 
+			return classtraceHashMapRequirementClass;
+		}
+		
+		
 		public ClassTrace2 FindTrace(List<ClassTrace2> classtraces2, String ClassID, String RequirementID) {
 			for(ClassTrace2 ct: classtraces2) {
 				if(ct.myclass.getClassid().equals(ClassID) && ct.requirement.ID.equals(RequirementID)) {
@@ -113,4 +156,21 @@ public class ClassTrace2 {
 			return null;
 			
 		}
+		
+		public ClassTrace2 FindTrace2(LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap, String ClassID, String RequirementID) {
+			ClassTrace2 myclasstrace = classesRequirementtraceshashmap.get(RequirementID+"-"+ClassID); 
+			return myclasstrace;
+			
+		}
+
+		@Override
+		public String toString() {
+			return "ClassTrace2 [ID=" + ID + ", requirement=" + requirement + ", myclass=" + myclass + ", trace="
+					+ trace + ", subject=" + subject + ", classtraceHashMap=" + classtraceHashMap
+					+ ", classtraceHashMapRequirementClass=" + classtraceHashMapRequirementClass + "]";
+		}
+		
+		
+		
+		
 }

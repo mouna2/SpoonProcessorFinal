@@ -130,7 +130,7 @@ public class Method2Details {
 		int index=1; 
 		
 		 ResultSet myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
-		 while(myresults.next()) {
+		 while(myresults.next() ) {
 			 	methoddet2= new Method2Details(); 
 			     String id = myresults.getString("id"); 			
 				 String methodname = myresults.getString("methodname"); 
@@ -311,7 +311,7 @@ public class Method2Details {
 					}
 				
 				 MethodDetailsHashMap.put(index, methoddet2); 
-				 System.out.println("METHOD DETAILS 2 tostring: "+methoddet2.toString());
+				// System.out.println("METHOD DETAILS 2 tostring: "+methoddet2.toString());
 				 index=index+1; 
 				 myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
 				 
