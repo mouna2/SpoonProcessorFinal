@@ -48,6 +48,7 @@ import spoon.reflect.factory.ClassFactory;
 import spoon.reflect.factory.Factory;
 import spoon.reflect.factory.MethodFactory;
 import spoon.reflect.reference.CtTypeReference;
+import spoon.reflect.visitor.Query;
 import spoon.reflect.visitor.filter.FieldAccessFilter;
 import spoon.reflect.visitor.filter.TypeFilter;
 
@@ -330,28 +331,28 @@ public class DBDemo2 {
 //		   		"    ON UPDATE NO ACTION);"); 
 //		   
 //
-//		   st.executeUpdate("CREATE TABLE `databasechess`.`methodcalls` (\r\n" + 
-//		   		"  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,\r\n" + 
-//		   		"  `callermethodid` INT NULL,\r\n" + 
-//		   		"  `callername` LONGTEXT NULL,\r\n" + 
-//		   		"  `callerclass` LONGTEXT NULL,\r\n" + 
-//		   		"  `calleemethodid` INT NULL,\r\n" + 
-//		   		"  `calleename` LONGTEXT NULL,\r\n" + 
-//		   		"  `calleeclass` LONGTEXT NULL,\r\n" + 
-//		   		"  PRIMARY KEY (`id`),\r\n" + 
-//		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
-//		   		"  INDEX `caller_idx` (`callermethodid` ASC),\r\n" + 
-//		   		"  INDEX `callee_idx` (`calleemethodid` ASC),\r\n" + 
-//		   		"  CONSTRAINT `methodcalledid`\r\n" + 
-//		   		"    FOREIGN KEY (`callermethodid`)\r\n" + 
-//		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-//		   		"    ON DELETE NO ACTION\r\n" + 
-//		   		"    ON UPDATE NO ACTION,\r\n" + 
-//		   		"  CONSTRAINT `callingmethodid`\r\n" + 
-//		   		"    FOREIGN KEY (`calleemethodid`)\r\n" + 
-//		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-//		   		"    ON DELETE NO ACTION\r\n" + 
-//		   		"    ON UPDATE NO ACTION);"); 
+		   st.executeUpdate("CREATE TABLE `databasechess`.`methodcalls` (\r\n" + 
+		   		"  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,\r\n" + 
+		   		"  `callermethodid` INT NULL,\r\n" + 
+		   		"  `callername` LONGTEXT NULL,\r\n" + 
+		   		"  `callerclass` LONGTEXT NULL,\r\n" + 
+		   		"  `calleemethodid` INT NULL,\r\n" + 
+		   		"  `calleename` LONGTEXT NULL,\r\n" + 
+		   		"  `calleeclass` LONGTEXT NULL,\r\n" + 
+		   		"  PRIMARY KEY (`id`),\r\n" + 
+		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
+		   		"  INDEX `caller_idx` (`callermethodid` ASC),\r\n" + 
+		   		"  INDEX `callee_idx` (`calleemethodid` ASC),\r\n" + 
+		   		"  CONSTRAINT `methodcalledid`\r\n" + 
+		   		"    FOREIGN KEY (`callermethodid`)\r\n" + 
+		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
+		   		"    ON DELETE NO ACTION\r\n" + 
+		   		"    ON UPDATE NO ACTION,\r\n" + 
+		   		"  CONSTRAINT `callingmethodid`\r\n" + 
+		   		"    FOREIGN KEY (`calleemethodid`)\r\n" + 
+		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
+		   		"    ON DELETE NO ACTION\r\n" + 
+		   		"    ON UPDATE NO ACTION);"); 
 //		   st.executeUpdate("CREATE TABLE `databasechess`.`methodcallsexecuted` (\r\n" + 
 //			   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
 //			   		"  `callermethodid` LONGTEXT NULL,\r\n" + 
@@ -976,8 +977,8 @@ List<methodcalls> methodcallsList = new ArrayList<methodcalls>();
 for(CtType<?> clazz : classFactory.getAll()) {
 	
 	for(CtMethod<?> method :clazz.getMethods()) {
+		// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
 		 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
-
 		for( CtInvocation calledmethod: methodcalls) {
 			String callingmethodid=null; 
 			String callingmethodsrefinedid=null; 
@@ -1672,121 +1673,121 @@ for(tracesmethodscallees tc: TracesCallersList) {
 	/*********************************************************************************************************************************************************************************/   
 //BUILD TABLE FOR TRACES CLASSES 
 
-List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
-	
-try {
-		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
-		fileReader = new FileReader(file);
-		bufferedReader = new BufferedReader(fileReader);	
-		line = bufferedReader.readLine(); 
-		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
-		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
-		while ((line = bufferedReader.readLine()) != null) {
-			System.out.println(line);
-			String[] linesplitted = line.split(","); 
-			method=linesplitted[1]; 
-			requirement=linesplitted[2]; 
-			gold=linesplitted[4]; 
-			subject=linesplitted[5]; 
-			String shortmethod=method.substring(0, method.indexOf("(")); 
-			  String[] parts = shortmethod.split("[$]", 2);
-			shortmethod=parts[0]; 
-			shortmethod=shortmethod.replaceAll("clinit", "init"); 
-			
-			 shortmethod=ParseLine(line); 
-			 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
-	 String goldvalue=null; 
-	 String subjectvalue=null; 
-		
-	
-	
-	classname=null; 
-	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-	while(classnames.next()){
-		classname = classnames.getString("classname"); 
-		   }
-	classid=null; 
-	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-	while(classids.next()){
-		classid = classids.getString("classid"); 
-		   }
-	
-	requirementid=null; 
-	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
-	while(requirements.next()){
-		requirementid = requirements.getString("id"); 
-		   }	
-	 
-	goldvalue=null; 
-	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-	 while(goldvalues.next()){
-			goldvalue = goldvalues.getString("gold"); 
-			   }
-	subjectvalue=null; 
-		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-		while(subjectvalues.next()){
-			subjectvalue = subjectvalues.getString("subject"); 
-			   }
-		
-		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
-		if(requirementid!=null && classid!=null ) {
-			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
-			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
-				GoldHashTable.put(RequirementClassKey, goldvalue); 
-			}
-			else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
-				GoldHashTable.put(RequirementClassKey, goldvalue); 
-			}
-		
-			else {
-				//if there is at least 1T then it is a trace
-				GoldHashTable.put(RequirementClassKey, goldvalue); 
-				RequirementClassKey.setGoldflag(goldvalue); 
-			}
-			
-			if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
-				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-			}
-			
-			else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
-				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-			}
-			else {
-				
-				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-				RequirementClassKey.setSubjectflag(subjectvalue); 
-			}
-			if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
-				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
-				st.executeUpdate(statement8); 
-				RequirementClassKeys.add(RequirementClassKey); 
-			}
-		
-			
-		}
-	
-		
-	 
-	
-		
-	
-
-		
-	
-
-
-
-		}
-	
-	
-	
-	
-	}
-	catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
+//	
+//try {
+//		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
+//		fileReader = new FileReader(file);
+//		bufferedReader = new BufferedReader(fileReader);	
+//		line = bufferedReader.readLine(); 
+//		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
+//		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
+//		while ((line = bufferedReader.readLine()) != null) {
+//			System.out.println(line);
+//			String[] linesplitted = line.split(","); 
+//			method=linesplitted[1]; 
+//			requirement=linesplitted[2]; 
+//			gold=linesplitted[4]; 
+//			subject=linesplitted[5]; 
+//			String shortmethod=method.substring(0, method.indexOf("(")); 
+//			  String[] parts = shortmethod.split("[$]", 2);
+//			shortmethod=parts[0]; 
+//			shortmethod=shortmethod.replaceAll("clinit", "init"); 
+//			
+//			 shortmethod=ParseLine(line); 
+//			 
+//			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+//	 String goldvalue=null; 
+//	 String subjectvalue=null; 
+//		
+//	
+//	
+//	classname=null; 
+//	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//	while(classnames.next()){
+//		classname = classnames.getString("classname"); 
+//		   }
+//	classid=null; 
+//	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//	while(classids.next()){
+//		classid = classids.getString("classid"); 
+//		   }
+//	
+//	requirementid=null; 
+//	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
+//	while(requirements.next()){
+//		requirementid = requirements.getString("id"); 
+//		   }	
+//	 
+//	goldvalue=null; 
+//	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//	 while(goldvalues.next()){
+//			goldvalue = goldvalues.getString("gold"); 
+//			   }
+//	subjectvalue=null; 
+//		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//		while(subjectvalues.next()){
+//			subjectvalue = subjectvalues.getString("subject"); 
+//			   }
+//		
+//		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
+//		if(requirementid!=null && classid!=null ) {
+//			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
+//			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
+//				GoldHashTable.put(RequirementClassKey, goldvalue); 
+//			}
+//			else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+//				GoldHashTable.put(RequirementClassKey, goldvalue); 
+//			}
+//		
+//			else {
+//				//if there is at least 1T then it is a trace
+//				GoldHashTable.put(RequirementClassKey, goldvalue); 
+//				RequirementClassKey.setGoldflag(goldvalue); 
+//			}
+//			
+//			if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
+//				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+//			}
+//			
+//			else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
+//				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+//			}
+//			else {
+//				
+//				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+//				RequirementClassKey.setSubjectflag(subjectvalue); 
+//			}
+//			if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
+//				st.executeUpdate(statement8); 
+//				RequirementClassKeys.add(RequirementClassKey); 
+//			}
+//		
+//			
+//		}
+//	
+//		
+//	 
+//	
+//		
+//	
+//
+//		
+//	
+//
+//
+//
+//		}
+//	
+//	
+//	
+//	
+//	}
+//	catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 	}
 	
 	
