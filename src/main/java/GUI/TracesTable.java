@@ -45,6 +45,7 @@ import mypackage.GroupableTableHeader;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
+import mypackage.Parameter2;
 import mypackage.RequirementGold;
 
 public class TracesTable extends JFrame {
@@ -98,6 +99,16 @@ public class TracesTable extends JFrame {
 	int AllTMethodLevelCallees=47; 
 	int Callers=48; 
 	int Callees=49; 
+	int paramatersNumber=50; 
+	int CountParamaterT=52; 
+	int CountParamaterN=53; 
+	int CountParamaterE=54; 
+	int MajorityParameters=55; 
+	int AtLeast1NParameter=56; 
+	int AtLeast1TParameter=57; 
+	int AllNParameters=58; 
+	int AllTParameters=59; 
+
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
@@ -123,7 +134,7 @@ public class TracesTable extends JFrame {
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
-
+	 LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
@@ -175,10 +186,13 @@ public class TracesTable extends JFrame {
 		classtraces2 = db.getClassestraces2();
 		methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+		  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors3 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors4 = new ArrayList<TableCellEditor>(methodtraces2.size());
+		List<TableCellEditor> myparametersEditor = new ArrayList<TableCellEditor>(methodtraces2.size());
+
 		int j = 0;
 		final int jfinal=0; 
 		String[] items1 = new String[methodtraces2.size()];
@@ -187,7 +201,7 @@ public class TracesTable extends JFrame {
 		String[] items4 = new String[methodtraces2.size()];
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
-
+		String[] myparameters = new String[methodtraces2.size()];
 		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
@@ -309,6 +323,40 @@ public class TracesTable extends JFrame {
 			int CountCallers = 0;
 			items1 = new String[methodtrace.getCallersList().size()];
 			callersarr = new Method2Representation[methodtrace.getCallersList().size()];
+			int myparametercount=0; 
+		/////////////////////////////////	
+			
+			int counterParameterT=0; 
+			int counterParameterN=0; 
+			int counterParameterE=0; 
+			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
+			for ( Parameter2 myparam : mymethodobje.getParameters()) {
+				myparameters[myparametercount] = myparam.toString(); 
+				
+				myparametercount++;
+				
+				
+				String ParameterClassid = myparam.getParameterType().classid; 
+				
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
+				String mytrace=mycallerclass.gettrace(); 
+				if(mytrace.equals("T")) {
+					counterParameterT++; 
+				}else if (mytrace.equals("N")) {
+					counterParameterN++; 
+				}else {
+					counterParameterE++; 
+				}
+
+			}
+			data [j][CountParamaterT]= counterParameterT; 
+			data [j][CountParamaterN]= counterParameterN; 
+			data [j][CountParamaterE]= counterParameterE; 
+			
+			
+			data [j][paramatersNumber]= myparametercount; 
+			
+			
 			for (Method2Representation caller : methodtrace.getCallersList()) {
 				items1[CountCallers] = caller.toString();
 				callersarr[CountCallers] = caller;
@@ -500,7 +548,7 @@ public class TracesTable extends JFrame {
 				}
 
 			}
-
+			
 			String[] items3And4 = new String[items3.length + items4.length];
 			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);
 			Method2Representation[] CalleeMethods = new Method2Representation[items3.length + items4.length];
@@ -1105,6 +1153,12 @@ public class TracesTable extends JFrame {
 			 * DefaultCellEditor( comboBox4 ); editors4.add( dce4 );
 			 */
 
+			
+			
+			JComboBox comboBox5 = new JComboBox(myparameters);
+			DefaultCellEditor dce5 = new DefaultCellEditor(comboBox5);
+			myparametersEditor.add(dce5);
+			
 			comboBox1.setEditor(new MyEditor());
 			comboBox1.setEditable(true);
 
@@ -1347,7 +1401,8 @@ public class TracesTable extends JFrame {
 				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
 				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
 				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-				,"Callers", "Callees"
+				,"Callers", "Callees", "#parameters", "Parameters",  "MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
+				"AtLeast1TParameterPrediction", "AllNParameterPrediction", "AllTParameterPrediction"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model) {
@@ -1359,6 +1414,8 @@ public class TracesTable extends JFrame {
 					return editors1.get(row);
 				if (modelColumn == 49 && row < methodtraces2.size())
 					return editors3.get(row);
+				if (modelColumn == 51 && row < methodtraces2.size())
+					return myparametersEditor.get(row);
 				/*
 				 * if (modelColumn == 31 && row < methodtraces2.size()) return
 				 * editors3.get(row); if (modelColumn == 32 && row < methodtraces2.size())

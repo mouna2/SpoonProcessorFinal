@@ -34,11 +34,20 @@ public class DatabaseReading2 {
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
+	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
+	}
+
+	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
+		return linkedmethodhashmap;
+	}
+
+	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
+		DatabaseReading2.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
 	public static void setMethodlist(List<Method2Details> methodlist) {
@@ -133,6 +142,11 @@ public class DatabaseReading2 {
 		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
 		setMethodlist(methodlist);
+		
+///////////////////////////////////////////////////////////////////////////////////////
+ LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);

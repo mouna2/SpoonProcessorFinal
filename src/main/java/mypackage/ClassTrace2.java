@@ -169,6 +169,11 @@ public class ClassTrace2 {
 					+ trace + ", subject=" + subject + ", classtraceHashMap=" + classtraceHashMap
 					+ ", classtraceHashMapRequirementClass=" + classtraceHashMapRequirementClass + "]";
 		}
+
+		public Method2Details FindTraceLinkedMethodHashMap(LinkedHashMap<String, Method2Details> linkedmethodhashmap, String ClassID, String RequirementID) {
+				Method2Details mymethod = linkedmethodhashmap.get(RequirementID+"-"+ClassID); 
+				return mymethod;
+		}
 		
 		
 		
