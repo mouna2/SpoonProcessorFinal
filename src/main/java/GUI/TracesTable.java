@@ -251,7 +251,7 @@ public class TracesTable extends JFrame {
 			int count = 0;
 			String classID = "";
 			int ClassCountCaller = 0;
-			for (Method2Representation caller : methodtrace.getCallersList()) {
+			/*for (Method2Representation caller : methodtrace.getCallersList()) {
 
 				for (Method2Details meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(caller.getMethodid()) && count == 0) {
@@ -300,7 +300,7 @@ public class TracesTable extends JFrame {
 				count++;
 
 			}
-			
+			*/
 
 		
 			int BothParsedAndExecutedCallers=0; 
