@@ -329,6 +329,7 @@ public class TracesTable extends JFrame {
 			int counterParameterT=0; 
 			int counterParameterN=0; 
 			int counterParameterE=0; 
+			 myparameters = new String[methodtraces2.size()];
 			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
 			for ( Parameter2 myparam : mymethodobje.getParameters()) {
 				myparameters[myparametercount] = myparam.toString(); 
@@ -339,14 +340,17 @@ public class TracesTable extends JFrame {
 				String ParameterClassid = myparam.getParameterType().classid; 
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
-				String mytrace=mycallerclass.gettrace(); 
-				if(mytrace.equals("T")) {
-					counterParameterT++; 
-				}else if (mytrace.equals("N")) {
-					counterParameterN++; 
-				}else {
-					counterParameterE++; 
+				if(mycallerclass!=null) {
+					String mytrace=mycallerclass.gettrace(); 
+					if(mytrace.equals("T")) {
+						counterParameterT++; 
+					}else if (mytrace.equals("N")) {
+						counterParameterN++; 
+					}else {
+						counterParameterE++; 
+					}
 				}
+				
 
 			}
 			data [j][CountParamaterT]= counterParameterT; 
