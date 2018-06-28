@@ -1,0 +1,4 @@
+3241,method(),R7,leaf,T,T,T,LeafPureSurroundedN,CN,0,1,0,0,0,0
+3242,method2(),R7,leaf,N,N,N,LeafPureSurroundedN,CN,0,1,0,0,0,0
+3243,method3(),R7,leaf,T,T,T,LeafPureSurroundedN,CN,0,1,0,0,0,0
+3244,method4(),R7,leaf,T,T,T,LeafPureSurroundedN,CN,0,1,0,0,0,0

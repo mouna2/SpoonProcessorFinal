@@ -127,15 +127,14 @@ public class AddGold2Column {
 			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\itrust_vote_dev.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			StringBuffer stringBuffer = new StringBuffer();
+			
 			String line;
 			line = bufferedReader.readLine(); 
 			List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
 
 			while ((line = bufferedReader.readLine()) != null) {
 				String[] splittedline = line.split(",", -1); 
-				stringBuffer.append(line);
-				stringBuffer.append("\n");
+				
 				int counter =1; 
 				for(int i=1; i<splittedline.length; i++) {
 					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
@@ -169,7 +168,7 @@ public class AddGold2Column {
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
-			System.out.println(stringBuffer.toString());
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

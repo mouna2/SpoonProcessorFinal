@@ -36,7 +36,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
-import GUI.PredictionEvaluation;
+import Chess.PredictionEvaluation;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
