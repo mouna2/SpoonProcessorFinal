@@ -174,7 +174,7 @@ public class TracesTable extends JFrame {
 		DatabaseReading2Gantt.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		classtraces2 = db.getClassestraces2();
+		//classtraces2 = db.getClassestraces2();
 		methodlist = db.getMethodlist();
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());

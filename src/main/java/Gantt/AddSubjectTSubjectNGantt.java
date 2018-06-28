@@ -161,8 +161,9 @@ public class AddSubjectTSubjectNGantt {
 			int count=1;
 			for (SubjectTSubjectNObject entry: mylist) {
 				System.out.println(entry.toString()+ " "+count);
-				String name= "net.sourceforge.ganttproject."+entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
+				//String name= "net.sourceforge.ganttproject."+entry.MethodName; 
+				String name= entry.MethodName; 
+				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}

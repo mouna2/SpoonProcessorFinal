@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -121,6 +122,8 @@ public class TracesTable extends JFrame {
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
+	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
+
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
@@ -171,6 +174,7 @@ public class TracesTable extends JFrame {
 		methodtraces2 = db.getMethodtraces2();
 		classtraces2 = db.getClassestraces2();
 		methodlist = db.getMethodlist();
+		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors3 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -202,7 +206,7 @@ public class TracesTable extends JFrame {
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 
-			for (ClassTrace2 classtrace : classtraces2) {
+			/*for (ClassTrace2 classtrace : classtraces2) {
 
 				if (methodtrace.ClassRepresentation.classid.equals(classtrace.getMyclass().classid)
 						&& methodtrace.Requirement.getID().equals(classtrace.getRequirement().getID())) {
@@ -222,8 +226,28 @@ public class TracesTable extends JFrame {
 					}
 				}
 
+			}*/
+			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
+			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+			String trace = myclasstraceHashMap.gettrace();
+			trace=trace.trim(); 
+			if (trace.equals("T")) {
+				data[j][OwnerClassT] = "1";
+				data[j][OwnerClassN] = "0";
+				data[j][OwnerClassE] = "0";
+				System.out.println("OWNERCLASS T  "+j +" set to 1");
+			} else if (trace.equals("N")) {
+				data[j][OwnerClassT] = "0";
+				data[j][OwnerClassN] = "1";
+				data[j][OwnerClassE] = "0";
+				System.out.println("OWNERCLASS N  "+j +" set to 1");
+			} else if (trace.equals("E")) {
+				data[j][OwnerClassT] = "0";
+				data[j][OwnerClassN] = "0";
+				data[j][OwnerClassE] = "1";
+				System.out.println("OWNERCLASS E  "+j +" set to 1");
 			}
-
+			
 			int count = 0;
 			String classID = "";
 			int ClassCountCaller = 0;
@@ -509,8 +533,8 @@ public class TracesTable extends JFrame {
 
 			for (Method2Representation callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
-						methodtrace.Requirement.getID());
+			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
 				mycallerclasses.add(mycallerclass);
 			}
 

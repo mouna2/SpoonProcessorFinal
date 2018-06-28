@@ -159,8 +159,9 @@ public class AddSubjectTSubjectNJHotDraw {
 			int counter=1; 
 			for (SubjectTSubjectNObject entry: mylist) {
 				System.out.println(entry.toString()+ " "+counter );
-				String name= "org.jhotdraw."+entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
+				//String name= "org.jhotdraw."+entry.MethodName; 
+				String name= entry.MethodName; 
+				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
 				counter++; 
 			}
 			System.out.println(stringBuffer.toString());

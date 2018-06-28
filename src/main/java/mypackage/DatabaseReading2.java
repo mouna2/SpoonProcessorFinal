@@ -33,6 +33,7 @@ public class DatabaseReading2 {
 	public static List<MethodTrace2> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
+	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -147,14 +148,20 @@ public class DatabaseReading2 {
 		MethodTrace2 methodtrace2 = new MethodTrace2();
 		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
 		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
+		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		ClassTrace2 classtrace2= new ClassTrace2(); 
+		/*ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
-		setClassestraces2(classestraces);
+		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
-		
+		ClassTrace2 classtrace2= new ClassTrace2(); 
+		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
+		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
+		setClassestraces2(classestracesRequirementClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
@@ -210,7 +217,7 @@ public class DatabaseReading2 {
 		
 		
 		
-		
+		/*
 		
 		String goldprediction=""; 
 		String GoldVal=""; 
@@ -266,11 +273,11 @@ public class DatabaseReading2 {
 
 			}
 
-		}
+		}*/
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
-		 GoldVal=""; 
+		/* GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
@@ -324,8 +331,8 @@ public class DatabaseReading2 {
 			}
 
 		}
-
-		for (MethodTrace2 methtr : methodtraces2) {
+*/
+		/*for (MethodTrace2 methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));
 		}
 
@@ -364,8 +371,13 @@ public class DatabaseReading2 {
 		}
 		System.out.println("GOLDMATCHINGCALLER/TOTAL NOT NULL: =====> " + GoldMatchingCaller + " / " + MethodTracesSizeNotNullCaller);
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
-
+*/
 	
+	}
+
+	public static void setClassesRequirementtraceshashmap(
+			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
+		DatabaseReading2.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
 	public static List<MethodTrace2> getMethodtraces2() {
@@ -375,6 +387,12 @@ public class DatabaseReading2 {
 	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
 		DatabaseReading2.methodtraces2 = methodtraces2;
 	}
+
+	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
+		return classesRequirementtraceshashmap;
+	}
+
+	
 	
 	
 	
