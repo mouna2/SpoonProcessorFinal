@@ -1534,6 +1534,7 @@ String callerid=null;
 String callerexecutedid=null; 
  List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
 tracesmethodscallees tmc = null; 
+int COUNTER3=1; 
 try {
 	
 	line = bufferedReader.readLine(); 
@@ -1549,7 +1550,7 @@ try {
 		shortmethod=parts[0]; 
 		shortmethod=shortmethod.replaceAll("clinit", "init"); 
 		shortmethod=ParseLine(line); 
-		System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+		System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod+ "COUNTER"+ COUNTER3); 
 		methodid=null; 
 			ResultSet methodids = st.executeQuery("SELECT methods.id from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
 			while(methodids.next()){
@@ -1562,6 +1563,21 @@ try {
 		while(classnames.next()){
 			classname = classnames.getString("classname"); 
 			   }
+		
+		String interfacename=null; 
+			ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
+			while(interfaces.next()){
+				interfacename = interfaces.getString("interfacename"); 
+				   }
+			String interfaceid=null; 
+			ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
+			while(interfacesids.next()){
+				interfaceid = interfacesids.getString("interfaceclassid"); 
+				   }
+			
+			
+			
+			
 		classid=null; 
 		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
 		while(classids.next()){
@@ -1629,6 +1645,19 @@ try {
 			
 			
 		}
+		 if(methodid!=null && requirementid!=null && interfacename!=null) {
+			 System.out.println("SHORT METHOD: " +shortmethod);
+			 System.out.println(" METHOD ID: " +methodid);
+			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, shortmethod, methodid, interfacename, interfaceid, gold, subject); 
+			if(tr.contains(TraceListMethods, tracesmethods)==false) {
+				  
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				st.executeUpdate(statement);
+				TraceListMethods.add(tracesmethods); 
+				
+				
+			}
+		}
 		else {
 			System.out.println(shortmethod);
 			System.out.println("I am here");
@@ -1638,7 +1667,7 @@ try {
 		
 		
 	
-		
+		COUNTER3++; 
 		
 	}
 	
@@ -1715,6 +1744,7 @@ for(tracesmethodscallees tc: TracesCallersList) {
 List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
 	
 try {
+	int counter2=1; 
 		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
 		fileReader = new FileReader(file);
 		bufferedReader = new BufferedReader(fileReader);	
@@ -1735,7 +1765,7 @@ try {
 			
 			 shortmethod=ParseLine(line); 
 			 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod+ "COUNTER222: "+counter2); 
 	 String goldvalue=null; 
 	 String subjectvalue=null; 
 		
@@ -1757,7 +1787,16 @@ try {
 	while(requirements.next()){
 		requirementid = requirements.getString("id"); 
 		   }	
-	 
+	String interfacename=null; 
+	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
+	while(interfaces.next()){
+		interfacename = interfaces.getString("interfacename"); 
+		   }
+	String interfaceid=null; 
+	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
+	while(interfacesids.next()){
+		interfaceid = interfacesids.getString("interfaceclassid"); 
+		   } 
 	goldvalue=null; 
 	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
 	 while(goldvalues.next()){
@@ -1773,6 +1812,7 @@ try {
 		if(requirementid!=null && classid!=null ) {
 			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
 			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
+				System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
 				GoldHashTable.put(RequirementClassKey, goldvalue); 
 			}
 			else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
@@ -1805,8 +1845,43 @@ try {
 		
 			
 		}
-	
+	//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
+		if(interfaceid!=null && interfacename!=null ) {
+			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, interfaceid, interfacename, goldvalue, subjectvalue); 
+			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
+				System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
+				GoldHashTable.put(RequirementClassKey, goldvalue); 
+			}
+			else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+				GoldHashTable.put(RequirementClassKey, goldvalue); 
+			}
 		
+			else {
+				//if there is at least 1T then it is a trace
+				GoldHashTable.put(RequirementClassKey, goldvalue); 
+				RequirementClassKey.setGoldflag(goldvalue); 
+			}
+			
+			if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
+				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+			}
+			
+			else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
+				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+			}
+			else {
+				
+				SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+				RequirementClassKey.setSubjectflag(subjectvalue); 
+			}
+			if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
+				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
+				st.executeUpdate(statement8); 
+				RequirementClassKeys.add(RequirementClassKey); 
+			}
+		
+			
+		}
 	 
 	
 		
@@ -1814,7 +1889,7 @@ try {
 
 		
 	
-
+counter2++; 
 
 
 		}
