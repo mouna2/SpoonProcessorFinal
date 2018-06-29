@@ -1563,7 +1563,7 @@ try {
 		while(classnames.next()){
 			classname = classnames.getString("classname"); 
 			   }
-		
+		//COMPUTING INTERFACE CLASS IDS AND INTERFACE NAMES 
 		String interfacename=null; 
 			ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
 			while(interfaces.next()){
@@ -1575,7 +1575,7 @@ try {
 				interfaceid = interfacesids.getString("interfaceclassid"); 
 				   }
 			
-			
+			//////////////////////////////////////////////////////////////////
 			
 			
 		classid=null; 
@@ -1645,6 +1645,7 @@ try {
 			
 			
 		}
+		//ADDING INTERFACES TO THE TRACES TABLE 
 		 if(methodid!=null && requirementid!=null && interfacename!=null) {
 			 System.out.println("SHORT METHOD: " +shortmethod);
 			 System.out.println(" METHOD ID: " +methodid);
