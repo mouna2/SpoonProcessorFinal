@@ -207,6 +207,7 @@ public class TracesTable extends JFrame {
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][10000];
+		int myfinalcounter=1; 
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
@@ -586,8 +587,12 @@ public class TracesTable extends JFrame {
 			for (Method2Representation callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
+				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
-				mycallerclasses.add(mycallerclass);
+				if(mycallerclass!=null) {
+					mycallerclasses.add(mycallerclass);
+				}
+				
 			}
 
 			ArrayList<ClassTrace2> myclasstracesCallers = new ArrayList<ClassTrace2>();// unique
@@ -641,9 +646,13 @@ public class TracesTable extends JFrame {
 
 			for (Method2Representation calleemeth : CalleeMethodListFinal) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
-						methodtrace.Requirement.getID());
-				mycalleeclasses.add(mycalleeclass);
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+
+				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
+				if(mycalleeclass!=null) {
+					mycalleeclasses.add(mycalleeclass);
+				}
+				
 			}
 
 			ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
@@ -656,7 +665,7 @@ public class TracesTable extends JFrame {
 			//NO DUPLICATE CLASSES 
 
 			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
-
+			System.out.println("FUINAL COIUNTER ===============>"+ myfinalcounter);
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 				if (mycalleeclass.gettrace().equals("T")) {
 					CounterTraceClassCalleeT++;
@@ -693,7 +702,7 @@ public class TracesTable extends JFrame {
 			data[j][CallerMethodsN] = CountMethodN;
 			data[j][CallerMethodsE] = CountMethodE;
 			
-			
+			myfinalcounter++; 
 		//OWNER CLASS PREDICTION 
 		 Object OwnerClassNVar = data[j][OwnerClassN]; 
 			
