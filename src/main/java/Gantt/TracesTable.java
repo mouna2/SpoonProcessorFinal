@@ -240,7 +240,9 @@ public class TracesTable extends JFrame {
 
 			}*/
 
-			
+			data[j][OwnerClassT] = "";
+			data[j][OwnerClassN] = "";
+			data[j][OwnerClassE] = "";
 			
 			System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
 		//	System.out.println("CLASS TRACE REPRESENTATION CLASS ID "+myclasstraceHashMap.getMyclass().classid);
@@ -248,6 +250,7 @@ public class TracesTable extends JFrame {
 		//	System.out.println("CLASS TRACE REQUIREMENT  ID "+myclasstraceHashMap.getRequirement().getID());
 			//if (methodtrace.ClassRepresentation.classid.equals(myclasstraceHashMap.getMyclass().classid)
 			//		&& methodtrace.Requirement.getID().equals(myclasstraceHashMap.getRequirement().getID())) {
+			if(myclasstraceHashMap!=null) {
 				String trace = myclasstraceHashMap.gettrace();
 				trace=trace.trim(); 
 				if (trace.equals("T")) {
@@ -266,6 +269,8 @@ public class TracesTable extends JFrame {
 					data[j][OwnerClassE] = "1";
 					System.out.println("OWNERCLASS E  "+j +" set to 1");
 				}
+			}
+			
 			
 			//}
 			
@@ -1148,34 +1153,37 @@ public class TracesTable extends JFrame {
 				}
 			}
 			
+		//NEEDS TO BE UNCOMMENTED 
+		//WAS COMMENTED TO SPEED THE PROGRAM'S EXECUTION 
 			
-			JComboBox comboBox1 = new JComboBox(items1And2);
-			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
-			editors1.add(dce1);
-
-			/*
-			 * JComboBox comboBox2 = new JComboBox( items2 ); DefaultCellEditor dce2 = new
-			 * DefaultCellEditor( comboBox2 ); editors2.add( dce2 );
-			 */
-
-			JComboBox comboBox4 = new JComboBox(items3And4);
-			DefaultCellEditor dce3 = new DefaultCellEditor(comboBox4);
-			editors3.add(dce3);
-
-			/*
-			 * JComboBox comboBox4 = new JComboBox( items4); DefaultCellEditor dce4 = new
-			 * DefaultCellEditor( comboBox4 ); editors4.add( dce4 );
-			 */
-
-			comboBox1.setEditor(new MyEditor());
-			comboBox1.setEditable(true);
-
-			/*
-			 * comboBox2.setEditor(new MyEditor()); comboBox2.setEditable(true);
-			 */
-
-			comboBox4.setEditor(new MyEditor());
-			comboBox4.setEditable(true);
+			
+//			JComboBox comboBox1 = new JComboBox(items1And2);
+//			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
+//			editors1.add(dce1);
+//
+//			/*
+//			 * JComboBox comboBox2 = new JComboBox( items2 ); DefaultCellEditor dce2 = new
+//			 * DefaultCellEditor( comboBox2 ); editors2.add( dce2 );
+//			 */
+//
+//			JComboBox comboBox4 = new JComboBox(items3And4);
+//			DefaultCellEditor dce3 = new DefaultCellEditor(comboBox4);
+//			editors3.add(dce3);
+//
+//			/*
+//			 * JComboBox comboBox4 = new JComboBox( items4); DefaultCellEditor dce4 = new
+//			 * DefaultCellEditor( comboBox4 ); editors4.add( dce4 );
+//			 */
+//
+//			comboBox1.setEditor(new MyEditor());
+//			comboBox1.setEditable(true);
+//
+//			/*
+//			 * comboBox2.setEditor(new MyEditor()); comboBox2.setEditable(true);
+//			 */
+//
+//			comboBox4.setEditor(new MyEditor());
+//			comboBox4.setEditable(true);
 
 			 
 			/*
@@ -1409,18 +1417,21 @@ public class TracesTable extends JFrame {
 				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
 				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
 				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-				,"Callers", "Callees"
+			//	,"Callers", "Callees"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model) {
 			// Determine editor to be used by row
 			public TableCellEditor getCellEditor(int row, int column) {
 				int modelColumn = convertColumnIndexToModel(column);
-
+				//
 				if (modelColumn == 48 && row < methodtraces2.size())
 					return editors1.get(row);
 				if (modelColumn == 49 && row < methodtraces2.size())
 					return editors3.get(row);
+				
+				
+				
 				/*
 				 * if (modelColumn == 31 && row < methodtraces2.size()) return
 				 * editors3.get(row); if (modelColumn == 32 && row < methodtraces2.size())
@@ -1591,8 +1602,8 @@ public class TracesTable extends JFrame {
 		table.getColumnModel().getColumn(45).setPreferredWidth(150);
 		table.getColumnModel().getColumn(46).setPreferredWidth(150);
 		table.getColumnModel().getColumn(47).setPreferredWidth(150);*/
-		table.getColumnModel().getColumn(48).setPreferredWidth(150);
-		table.getColumnModel().getColumn(49).setPreferredWidth(150);
+		//table.getColumnModel().getColumn(48).setPreferredWidth(150);
+		//table.getColumnModel().getColumn(49).setPreferredWidth(150);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		table.setRowSelectionAllowed(true);
