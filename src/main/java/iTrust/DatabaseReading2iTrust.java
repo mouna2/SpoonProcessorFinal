@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTable;
+import Chess.TracesTableChess;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
