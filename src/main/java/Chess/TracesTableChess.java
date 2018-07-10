@@ -16,10 +16,12 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.sql.Connection;
@@ -126,10 +128,15 @@ public class TracesTableChess extends JFrame {
 	PredictionEvaluation AllNClassLevelCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllNMethodLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllNMethodLevelCalleesClass= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTClassLevelCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTMethodLevelCallersClass= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCalleesClass= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClass= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClass= new PredictionEvaluation(); 
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
@@ -178,13 +185,16 @@ public class TracesTableChess extends JFrame {
 						+"AllNClassLevelCallers, AllNClassLevelCallees, AllNMethodLevelCallers, AllNMethodLevelCallees,"
 						+"AllTClassLevelCallers, AllTClassLevelCallees, AllTMethodLevelCallers, AllTMethodLevelCallees,"
 						+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-						+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees" );
+						+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
+						+ " #parameters,# Parameter T, # Parameter N, # Parameter E" 
+						+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+						"AtLeast1TParameterPrediction, AllNParameterPrediction, AllTParameterPrediction" );
 		bw.newLine();
 		DatabaseReading2 db = new DatabaseReading2();
 		DatabaseReading2.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		classtraces2 = db.getClassestraces2();
-		methodlist = db.getMethodlist();
+	//	methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -359,7 +369,35 @@ public class TracesTableChess extends JFrame {
 			data [j][CountParamaterE]= counterParameterE; 
 			
 			
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
 			data [j][paramatersNumber]= myparametercount; 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			for (Method2Representation caller : methodtrace.getCallersList()) {
@@ -561,9 +599,15 @@ public class TracesTableChess extends JFrame {
 			//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
 			List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods);
 
-			data[j][CallerMethodsNumber] = CountCallersExecuted + CountCallers;
-			data[j][CalleeMethodsNumber] = CountCalleesExecuted + CountCallees;
-
+//			data[j][CallerMethodsNumber] = CountCallersExecuted + CountCallers;
+//			data[j][CalleeMethodsNumber] = CountCalleesExecuted + CountCallees;
+			//NEEDS TO BE ADDED IN OTHER PROJECTS 
+			CallerMethodsList = CallerMethodsList.stream().filter(t -> t != null).collect(Collectors.toList()); 
+			CalleeMethodsList = CalleeMethodsList.stream().filter(t -> t != null).collect(Collectors.toList()); 
+			System.out.println("Caller Methods List Size: "+CallerMethodsList.size());
+			
+			
+			
 			CallerMethodListFinal = new ArrayList<Method2Representation>();
 			CalleeMethodListFinal = new ArrayList<Method2Representation>();
 
@@ -587,7 +631,7 @@ public class TracesTableChess extends JFrame {
 			for (Method2Representation callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
-				
+				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
 					mycallerclasses.add(mycallerclass);
@@ -595,6 +639,8 @@ public class TracesTableChess extends JFrame {
 				
 			}
 
+			data[j][CallerMethodsNumber] = mycallerclasses.size();
+			
 			ArrayList<ClassTrace2> myclasstracesCallers = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycallerclasses) {
 				if (!myclasstracesCallers.contains(classtrace)) {
@@ -654,7 +700,9 @@ public class TracesTableChess extends JFrame {
 				}
 				
 			}
-
+			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
+			
+			
 			ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycalleeclasses) {
 				if (!myclasstracesCallees.contains(classtrace)) {
@@ -712,10 +760,117 @@ public class TracesTableChess extends JFrame {
 				OwnerClassPredictionClass.UpdateCounters(Result, OwnerClassPredictionClass);
 			}
 			else {
+				
+				
+				
+				
+				
+				
+				if((counterParameterT!=0 || counterParameterN!=0)
+						/*	||
+							(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+							||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+							) {
+						
+						
+						
+						if (((counterParameterT >= counterParameterN
+								&& counterParameterN >= counterParameterE)
+								|| (counterParameterT >= counterParameterE
+										&& counterParameterE >= counterParameterN))
+								) {
+							data[j][MajorityParameters] = "T";
+						} else if (((counterParameterE >= counterParameterN
+								&& counterParameterN >= counterParameterT)
+								|| (counterParameterE >= counterParameterT
+										&& counterParameterT >= counterParameterN))
+							) {
+							data[j][MajorityParameters] = "E";
+						} else if (((counterParameterN >= counterParameterE
+								&& counterParameterE >= counterParameterT)
+								|| (counterParameterN >= counterParameterT
+										&& counterParameterT >= counterParameterE))
+								) {
+							data[j][MajorityParameters] = "N";
+						}
+						
+						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityParameters].toString()); 
+						MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
+					
+					}
+				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
-
+				//AT LEAST 1N PREDICTION PARAMETER
+				
+				
+				
+				
+				
+				if (counterParameterN >=1 )
+						 {
+					data[j][AtLeast1NParameter] = "N";
+					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NParameter].toString()); 
+					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
+				} 
+			
+				
+			
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			
+			//AT LEAST 1T PREDICTION PARAMETER
+			
+			
+				
+				
+				
+				if (counterParameterT >=1 )
+						 {
+					data[j][AtLeast1TParameter] = "T";
+					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TParameter].toString()); 
+					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
+				} 
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+			    /**************************************************************************************************************/	
+				
+				
+				
+				//ALL T PARAMETER PREDICTION
+				
+				
+				if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=1) {
+					
+					
+					
+				
+						data[j][AllTParameters] = "T";
+						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTParameters].toString()); 
+						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N PARAMETER PREDICTION
+				
+				
+				if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=1) {
+					
+					
+					
+				
+						data[j][AllNParameters] = "N";
+						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNParameters].toString()); 
+						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
 				//MAJORITY CLASS LEVEL CALLEES PREDICTION 
 
 				//FIRST IF makes sure there is a mixture 
@@ -1311,7 +1466,8 @@ public class TracesTableChess extends JFrame {
 					data[j][AllTClassLevelCallers]+ ","+		data[j][AllTClassLevelCallees]+ ","+		data[j][AllTMethodLevelCallers]+ 
 					","+		data[j][AllTMethodLevelCallees]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees);
+					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+							+","+data[j][AtLeast1TParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]);
 				
 			bw.newLine();
 
@@ -1357,7 +1513,11 @@ public class TracesTableChess extends JFrame {
 		System.out.println("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClass.toString()); 
 		System.out.println("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
 		System.out.println("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
-		
+		System.out.println("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		System.out.println("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		System.out.println("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		System.out.println("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		System.out.println("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		
 		bw2.write("OWNER CLASS PREDICTION: "+OwnerClassPredictionClass.toString()); 
 		bw2.newLine();
@@ -1399,7 +1559,15 @@ public class TracesTableChess extends JFrame {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
 		bw2.newLine();
-		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
+		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		bw2.newLine();
 		bw2.close();
 		String[] columnNames = { "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
@@ -1414,7 +1582,8 @@ public class TracesTableChess extends JFrame {
 				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
 				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
 				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-				,"Callers", "Callees", "#parameters", "Parameters",  "MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
+				,"Callers", "Callees", "#parameters", "Parameters","# Parameter T" ,"# Parameter N" ,"# Parameter E" ,
+				"MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
 				"AtLeast1TParameterPrediction", "AllNParameterPrediction", "AllTParameterPrediction"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);

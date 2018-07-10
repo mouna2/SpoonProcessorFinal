@@ -42,11 +42,25 @@ public class DatabaseReading2Gantt {
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
+	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
+
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
+	}
+
+
+
+	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
+		return linkedmethodhashmap;
+	}
+
+
+
+	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
+		DatabaseReading2Gantt.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
 
@@ -139,10 +153,10 @@ public class DatabaseReading2Gantt {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		Method2Details methoddet2 = new Method2Details();
+		/*Method2Details methoddet2 = new Method2Details();
 		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
-		setMethodlist(methodlist);
+		setMethodlist(methodlist);*/
 		///////////////////////////////////////////////////////////////////////////////////////
 	/*	ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
@@ -152,7 +166,7 @@ public class DatabaseReading2Gantt {
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
-
+		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		MethodTrace2 methodtrace2 = new MethodTrace2();
@@ -165,6 +179,10 @@ public class DatabaseReading2Gantt {
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
 		setClassestraces2(classestraces);*/
+		///////////////////////////////////////////////////////////////////////////////////////
+		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+		setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassTrace2 classtrace2= new ClassTrace2(); 
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
