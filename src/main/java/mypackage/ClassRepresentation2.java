@@ -89,8 +89,7 @@ public class ClassRepresentation2 {
 
 	@Override
 	public String toString() {
-		return "ClassRepresentation2 [classid=" + classid + ", classname=" + classname + ", ClassRepresentationHashMap="
-				+ ClassRepresentationHashMap + "]";
+		return "[classid=" + classid + ", classname=" + classname +"]";
 	}
 	
 }

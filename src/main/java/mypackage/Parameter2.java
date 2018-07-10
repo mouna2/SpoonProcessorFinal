@@ -42,7 +42,7 @@ public class Parameter2 {
 	}
 	@Override
 	public String toString() {
-		return "Parameter2 [parameterName=" + parameterName + ", ParameterType=" + ParameterType.toString() + ", OwnerClass="
+		return "Parameter [parameterName=" + parameterName + ", ParameterType=" + ParameterType.toString() + ", OwnerClass="
 				+ OwnerClass.toString() + ", isReturn=" + isReturn + "]";
 	} 
 	

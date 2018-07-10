@@ -34,7 +34,9 @@ public class Method2Representation {
 		return  methodid + ", methodname=" + methodname + ", requirementsGold="
 				+ requirementsGold.toString() + classrep.toString()+"]";
 	}
-	
+	public String toString2() {
+		return  methodid + ": methodname=" + methodname +"]";
+	}
 	
 	public String PrintList(List<Method2Representation> methods) {
 		String s =""; 

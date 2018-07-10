@@ -1,7 +1,7 @@
 OWNER CLASS PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=2182, FalsePositive=0, FalseNegative=34]
 MAJORITY CLASS LEVEL CALLERS PREDICTION: PredictionEvaluation [TruePositive=126, TrueNegative=0, FalsePositive=0, FalseNegative=49]
 MAJORITY CLASS LEVEL CALLEES PREDICTION: PredictionEvaluation [TruePositive=58, TrueNegative=0, FalsePositive=0, FalseNegative=5]
-MAJORITY METHOD LEVEL CALLERS PREDICTION: PredictionEvaluation [TruePositive=151, TrueNegative=0, FalsePositive=0, FalseNegative=23]
+MAJORITY METHOD LEVEL CALLERS PREDICTION: PredictionEvaluation [TruePositive=153, TrueNegative=0, FalsePositive=0, FalseNegative=21]
 MAJORITY METHOD LEVEL CALLEES PREDICTION: PredictionEvaluation [TruePositive=55, TrueNegative=0, FalsePositive=0, FalseNegative=8]
 AT LEAST 1 N PREDICTION CLASS LEVEL CALLERS: PredictionEvaluation [TruePositive=0, TrueNegative=0, FalsePositive=0, FalseNegative=228]
 AT LEAST 1 N PREDICTION CLASS LEVEL CALLEES: PredictionEvaluation [TruePositive=0, TrueNegative=0, FalsePositive=0, FalseNegative=135]
