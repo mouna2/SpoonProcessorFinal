@@ -207,6 +207,12 @@ public class TracesTableGantt extends JFrame {
 		String[] items4 = new String[methodtraces2.size()];
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
+//		String[] items1 = new String[100];
+//		String[] items2 = new String[100];
+//		String[] items3 = new String[100];
+//		String[] items4 = new String[100];
+//		String[] items5 = new String[100];
+//		String[] items6 = new String[100];
 		String[] myparameters = new String[methodtraces2.size()];
 		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
@@ -830,7 +836,7 @@ public class TracesTableGantt extends JFrame {
 							data[j][MajorityParameters] = "N";
 						}
 						
-						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityParameters].toString()); 
+						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityParameters].toString()); 
 						MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
 					
 					}
@@ -847,7 +853,7 @@ public class TracesTableGantt extends JFrame {
 				if (counterParameterN >=1 )
 						 {
 					data[j][AtLeast1NParameter] = "N";
-					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NParameter].toString()); 
+					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NParameter].toString()); 
 					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
 				} 
 			
@@ -866,7 +872,7 @@ public class TracesTableGantt extends JFrame {
 				if (counterParameterT >=1 )
 						 {
 					data[j][AtLeast1TParameter] = "T";
-					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TParameter].toString()); 
+					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TParameter].toString()); 
 					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
 				} 
 				
@@ -885,7 +891,7 @@ public class TracesTableGantt extends JFrame {
 					
 				
 						data[j][AllTParameters] = "T";
-						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTParameters].toString()); 
+						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTParameters].toString()); 
 						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
 				}
 				/**************************************************************************************************************/
@@ -901,7 +907,7 @@ public class TracesTableGantt extends JFrame {
 					
 				
 						data[j][AllNParameters] = "N";
-						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNParameters].toString()); 
+						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNParameters].toString()); 
 						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
 				}
 				
