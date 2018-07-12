@@ -142,7 +142,8 @@ public class TracesTableGantt extends JFrame {
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
-	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
+	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogGantt.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
@@ -218,7 +219,7 @@ public class TracesTableGantt extends JFrame {
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
-		Object[][] data = new Object[methodtraces2.size()][10000];
+		Object[][] data = new Object[methodtraces2.size()][methodtraces2.size()];
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
 			System.out.println("LOOP INDEX===========> "+j); 
@@ -412,9 +413,9 @@ public class TracesTableGantt extends JFrame {
 				
 				
 			for (Method2Representation caller : methodtrace.getCallersList()) {
-				items1[CountCallers] = caller.toString();
+				items1[CountCallers] = caller.toString2();
 				callersarr[CountCallers] = caller;
-				System.out.println(caller.toString());
+				System.out.println(caller.toString2());
 				CountCallers++;
 				
 				
@@ -431,7 +432,7 @@ public class TracesTableGantt extends JFrame {
 
 				boolean equalbool = false;
 				if (items1.length == 0) {
-					items2[CountCallersExecuted] = caller.toString();
+					items2[CountCallersExecuted] = caller.toString2();
 					callersex[CountCallersExecuted] = caller;
 				
 						
@@ -443,7 +444,7 @@ public class TracesTableGantt extends JFrame {
 					for (String item : items1) {
 						item = item.replaceAll("\\(.*\\)", "");
 
-						if (item.equals(caller.toString()) == true) {
+						if (item.equals(caller.toString2()) == true) {
 							BothParsedAndExecutedCallers++; 
 							equalbool = true;
 						}
@@ -452,7 +453,7 @@ public class TracesTableGantt extends JFrame {
 						
 							
 						
-						items2[CountCallersExecuted] = caller.toString();
+						items2[CountCallersExecuted] = caller.toString2();
 						callersex[CountCallersExecuted] = caller;
 						CountCallersExecuted++;
 						OnlyinExecutedCallers++; 
@@ -471,8 +472,8 @@ public class TracesTableGantt extends JFrame {
 			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
 			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
 				
-				itemsExecuted[CountCallerExecuted] = caller.toString();	
-				System.out.println(caller.toString());
+				itemsExecuted[CountCallerExecuted] = caller.toString2();	
+				System.out.println(caller.toString2());
 				CountCallerExecuted++;
 			}
 			
@@ -481,7 +482,7 @@ public class TracesTableGantt extends JFrame {
 
 				boolean equalbool = false;
 				if (itemsExecuted.length == 0) {
-					items5[Count] = caller.toString();
+					items5[Count] = caller.toString2();
 				
 						
 					
@@ -490,7 +491,7 @@ public class TracesTableGantt extends JFrame {
 
 				} else {
 					for (String item : itemsExecuted) {
-					String	callerString = caller.toString().replaceAll("\\(.*\\)", "");
+					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
 
 						if (item.equals(callerString) == true) {
 						
@@ -524,9 +525,9 @@ public class TracesTableGantt extends JFrame {
 			items3 = new String[methodtrace.getCalleesList().size()];
 			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
 			for (Method2Representation caller : methodtrace.getCalleesList()) {
-				items3[CountCallees] = caller.toString();
+				items3[CountCallees] = caller.toString2();
 				calleesarr[CountCallees] = caller;
-				System.out.println(caller.toString());
+				System.out.println(caller.toString2());
 				CountCallees++;
 			
 			}
@@ -537,7 +538,7 @@ public class TracesTableGantt extends JFrame {
 			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
 				boolean equalbool = false;
 				if (items3.length == 0) {
-					items4[CountCalleesExecuted] = caller.toString();
+					items4[CountCalleesExecuted] = caller.toString2();
 					calleesex[CountCalleesExecuted] = caller;
 					CountCalleesExecuted++;
 					OnlyInExecutedCallees++; 
@@ -545,7 +546,7 @@ public class TracesTableGantt extends JFrame {
 				} else {
 					for (String item : items3) {
 						item = item.replaceAll("\\(.*\\)", "");
-						if (item.equals(caller.toString()) == true) {
+						if (item.equals(caller.toString2()) == true) {
 							equalbool = true;
 							BothInParsedAndExecutedCallees++; 
 						}
@@ -566,8 +567,8 @@ public class TracesTableGantt extends JFrame {
 			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
 			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
 				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
-				System.out.println(callee.toString());
+				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
+				System.out.println(callee.toString2());
 				CountCalleeExecuted++;
 			}
 			
@@ -576,7 +577,7 @@ public class TracesTableGantt extends JFrame {
 
 				boolean equalbool = false;
 				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString();
+					items6[Count] = callee.toString2();
 				
 						
 					
@@ -585,7 +586,7 @@ public class TracesTableGantt extends JFrame {
 
 				} else {
 					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString().replaceAll("\\(.*\\)", "");
+					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
 
 						if (item.equals(calleeString) == true) {
 						

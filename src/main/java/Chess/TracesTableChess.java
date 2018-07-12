@@ -556,8 +556,8 @@ public class TracesTableChess extends JFrame {
 			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
 			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
 				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
-				System.out.println(callee.toString());
+				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
+				System.out.println(callee.toString2());
 				CountCalleeExecuted++;
 			}
 			
@@ -566,7 +566,7 @@ public class TracesTableChess extends JFrame {
 
 				boolean equalbool = false;
 				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString();
+					items6[Count] = callee.toString2();
 				
 						
 					
@@ -575,7 +575,7 @@ public class TracesTableChess extends JFrame {
 
 				} else {
 					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString().replaceAll("\\(.*\\)", "");
+					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
 
 						if (item.equals(calleeString) == true) {
 						

@@ -31,9 +31,12 @@ public class Method2Representation {
 	}
 	@Override
 	public String toString() {
-		return  methodid + ", methodname=" + methodname + ", requirementsGold="
-				+ requirementsGold.toString() + classrep.toString()+"]";
+		return  methodid + ", methodname=" + methodname + 
+//				", requirementsGold="
+//				+ requirementsGold.toString() + 
+				classrep.toString()+"]";
 	}
+	
 	public String toString2() {
 		return  methodid + ": methodname=" + methodname +"]";
 	}
