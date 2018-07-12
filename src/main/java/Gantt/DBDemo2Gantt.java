@@ -163,8 +163,9 @@ public class DBDemo2Gantt {
 	/**
 	 * Connect to MySQL and do some stuff.
 	 * @throws SQLException 
+	 * @throws IOException 
 	 */
-	public void run() throws SQLException {
+	public void run() throws SQLException, IOException {
 		ResultSet rs = null; 
 		// Connect to MySQL
 		Connection conn = null;
@@ -426,12 +427,12 @@ public class DBDemo2Gantt {
 //	/**
 //	 * Connect to the DB and do some stuff
 //	 */
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		DBDemo2Gantt app = new DBDemo2Gantt();
 		app.run();
 	}
 	
-	public void Spoon() throws SQLException, FileNotFoundException {
+	public void Spoon() throws SQLException, IOException {
 		DBDemo2Gantt dao = new DBDemo2Gantt();
 	Connection conn=getConnection();
 	Statement st= conn.createStatement();
@@ -1758,72 +1759,72 @@ ResultSet Counts=st.executeQuery("SELECT COUNT(*) FROM traces" );
 Counts.next();
 int rowCount = Counts.getInt(1);
 System.out.println("ROW COUNT "+ rowCount);
-//try {
-//		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal.txt");
-//		fileReader = new FileReader(file);
-//		bufferedReader = new BufferedReader(fileReader);	
-//		line = bufferedReader.readLine(); 
+try {
+		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal.txt");
+		fileReader = new FileReader(file);
+		bufferedReader = new BufferedReader(fileReader);	
+		line = bufferedReader.readLine(); 
 		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
 		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
-//		while ((line = bufferedReader.readLine()) != null) {
-//			System.out.println(line);
-//			String[] linesplitted = line.split(","); 
-//			method=linesplitted[1]; 
-//			requirement=linesplitted[2]; 
-//			gold=linesplitted[4]; 
-//			subject=linesplitted[5]; 
-//			String shortmethod=method.substring(0, method.indexOf("(")); 
-//			  String[] parts = shortmethod.split("[$]", 2);
-//			shortmethod=parts[0]; 
-//			
-//			
-//			 shortmethod=ParseLine(line); 
-//			 shortmethod=shortmethod.replaceAll("clinit", "init"); 
-//			 shortmethod=shortmethod.replaceAll("null", ""); 
-//			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+		while ((line = bufferedReader.readLine()) != null) {
+			System.out.println(line);
+			String[] linesplitted = line.split(","); 
+			method=linesplitted[1]; 
+			requirement=linesplitted[2]; 
+			gold=linesplitted[4]; 
+			subject=linesplitted[5]; 
+			String shortmethod=method.substring(0, method.indexOf("(")); 
+			  String[] parts = shortmethod.split("[$]", 2);
+			shortmethod=parts[0]; 
+			
+			
+			 shortmethod=ParseLine(line); 
+			 shortmethod=shortmethod.replaceAll("clinit", "init"); 
+			 shortmethod=shortmethod.replaceAll("null", ""); 
+			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
 	 String goldvalue=null; 
 	 String subjectvalue=null; 
-//		
-//	
-//	 
-//	classname=null; 
-//	shortmethod=shortmethod.trim(); 
-//	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
-//	while(classnames.next()){
-//		classname = classnames.getString("classname"); 
-//		   }
-//	classid=null; 
-//	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
-//	while(classids.next()){
-//		classid = classids.getString("classid"); 
-//		   }
-//	String interfacename=null; 
-//	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-//	while(interfaces.next()){
-//		interfacename = interfaces.getString("interfacename"); 
-//		   }
-//	String interfaceid=null; 
-//	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
-//	while(interfacesids.next()){
-//		interfaceid = interfacesids.getString("interfaceclassid"); 
-//		   } 
-//	requirement=requirement.trim(); 
-//	requirementid=null; 
-//	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
-//	while(requirements.next()){
-//		requirementid = requirements.getString("id"); 
-//		   }	
-//	 
-//	goldvalue=null; 
-//	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-//	 while(goldvalues.next()){
-//			goldvalue = goldvalues.getString("gold"); 
-//			   }
-//	subjectvalue=null; 
-//		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-//		while(subjectvalues.next()){
-//			subjectvalue = subjectvalues.getString("subject"); 
-//			   }
+		
+	
+	 
+	classname=null; 
+	shortmethod=shortmethod.trim(); 
+	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
+	while(classnames.next()){
+		classname = classnames.getString("classname"); 
+		   }
+	classid=null; 
+	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
+	while(classids.next()){
+		classid = classids.getString("classid"); 
+		   }
+	String interfacename=null; 
+	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+	while(interfaces.next()){
+		interfacename = interfaces.getString("interfacename"); 
+		   }
+	String interfaceid=null; 
+	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
+	while(interfacesids.next()){
+		interfaceid = interfacesids.getString("interfaceclassid"); 
+		   } 
+	requirement=requirement.trim(); 
+	requirementid=null; 
+	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+	while(requirements.next()){
+		requirementid = requirements.getString("id"); 
+		   }	
+	 
+	goldvalue=null; 
+	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+	 while(goldvalues.next()){
+			goldvalue = goldvalues.getString("gold"); 
+			   }
+	subjectvalue=null; 
+		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+		while(subjectvalues.next()){
+			subjectvalue = subjectvalues.getString("subject"); 
+			   }
 		System.out.println("HERE IS THE COUNTER   "+counter);
 		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
 		String fullmethod=null; 
@@ -1887,7 +1888,7 @@ System.out.println("ROW COUNT "+ rowCount);
 	
 		
 		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
-		/*if(interfaceid!=null && interfacename!=null ) {
+		if(interfaceid!=null && interfacename!=null ) {
 			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, interfaceid, interfacename, goldvalue, subjectvalue); 
 			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
 				System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
@@ -1924,7 +1925,7 @@ System.out.println("ROW COUNT "+ rowCount);
 		
 			
 		}
-	*/
+	
 		
 	//counter++; 
 
@@ -1933,16 +1934,16 @@ System.out.println("ROW COUNT "+ rowCount);
 
 
 
-	//	}
+		}
 	
 	
 	
 	
-	//}
-//	catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
+	}
+	catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 	
 	

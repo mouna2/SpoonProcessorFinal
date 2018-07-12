@@ -175,8 +175,8 @@ public class TracesTableGantt extends JFrame {
 	public TracesTableGantt() throws SQLException, IOException {
 	
 		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
-				+ "OwnerClassE, #callermethods, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-				+ "#callerclassesE, #calleemethods, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
+				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
 				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallers, MajorityClassLevelCallees, MajorityMethodLevelCallers, MajorityMethodLevelCallees,"
 				+ "AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionMethodLevelCallers, AtLeast1NPredictionMethodLevelCallees, "
 				+"AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionMethodLevelCallers, AtLeast1TPredictionMethodLevelCallees,"
@@ -184,7 +184,7 @@ public class TracesTableGantt extends JFrame {
 				+"AllTClassLevelCallers, AllTClassLevelCallees, AllTMethodLevelCallers, AllTMethodLevelCallees,"
 				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
 				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters,# Parameter T, # Parameter N, # Parameter E" 
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
 				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
 				"AtLeast1TParameterPrediction, AllNParameterPrediction, AllTParameterPrediction" );
 		bw.newLine();
@@ -372,13 +372,14 @@ public class TracesTableGantt extends JFrame {
 				int counterParameterN=0; 
 				int counterParameterE=0; 
 				 myparameters = new String[methodtraces2.size()];
+				 String ParametersAppended=""; 
 				Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
 				for ( Parameter2 myparam : mymethodobje.getParameters()) {
 					myparameters[myparametercount] = myparam.toString(); 
 					
 					myparametercount++;
 					
-					
+					ParametersAppended=ParametersAppended+myparam.toString()+"-"; 
 					String ParameterClassid = myparam.getParameterType().classid; 
 					
 					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
@@ -631,7 +632,37 @@ public class TracesTableGantt extends JFrame {
 					CalleeMethodListFinal.add(methcaller);
 				}
 			}
+			int lengthitems1And2 = items1And2.length;
+			Set<String> setitems1And2 = new HashSet<String>();
 
+			for(int i = 0; i < lengthitems1And2; i++){
+				setitems1And2.add(items1And2[i]);
+			}
+			
+			int lengthitems3And4 = items3And4.length;
+			Set<String> setitems3And4 = new HashSet<String>();
+
+			for(int i = 0; i < lengthitems3And4; i++){
+				
+					setitems3And4.add(items3And4[i]);
+				
+				
+			}
+			String AppendedCallers=""; 
+			for(String CallerMethod: setitems1And2) {
+				if(CallerMethod!=null) {
+					AppendedCallers=AppendedCallers+CallerMethod+"-"; 
+				}
+				
+			}
+			
+			String AppendedCallees=""; 
+			for(String CalleeMethod: setitems3And4) {
+				if(CalleeMethod!=null) {
+					AppendedCallees=AppendedCallees+CalleeMethod+"-"; 
+				}
+				
+			}
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
@@ -800,7 +831,111 @@ public class TracesTableGantt extends JFrame {
 			}
 			else {
 				
+				if((counterParameterT!=0 || counterParameterN!=0)
+						/*	||
+							(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+							||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+							) {
+						
+						
+						
+						if (((counterParameterT >= counterParameterN
+								&& counterParameterN >= counterParameterE)
+								|| (counterParameterT >= counterParameterE
+										&& counterParameterE >= counterParameterN))
+								) {
+							data[j][MajorityParameters] = "T";
+						} else if (((counterParameterE >= counterParameterN
+								&& counterParameterN >= counterParameterT)
+								|| (counterParameterE >= counterParameterT
+										&& counterParameterT >= counterParameterN))
+							) {
+							data[j][MajorityParameters] = "E";
+						} else if (((counterParameterN >= counterParameterE
+								&& counterParameterE >= counterParameterT)
+								|| (counterParameterN >= counterParameterT
+										&& counterParameterT >= counterParameterE))
+								) {
+							data[j][MajorityParameters] = "N";
+						}
+						
+						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityParameters].toString()); 
+						MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
+					
+					}
 				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//AT LEAST 1N PREDICTION PARAMETER
+				
+				
+				
+				
+				
+				if (counterParameterN >=1 )
+						 {
+					data[j][AtLeast1NParameter] = "N";
+					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NParameter].toString()); 
+					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
+				} 
+			
+				
+			
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			
+			//AT LEAST 1T PREDICTION PARAMETER
+			
+			
+				
+				
+				
+				if (counterParameterT >=1 )
+						 {
+					data[j][AtLeast1TParameter] = "T";
+					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TParameter].toString()); 
+					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
+				} 
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+			    /**************************************************************************************************************/	
+				
+				
+				
+				//ALL T PARAMETER PREDICTION
+				
+				
+				if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=1) {
+					
+					
+					
+				
+						data[j][AllTParameters] = "T";
+						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTParameters].toString()); 
+						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N PARAMETER PREDICTION
+				
+				
+				if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=1) {
+					
+					
+					
+				
+						data[j][AllNParameters] = "N";
+						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNParameters].toString()); 
+						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
@@ -1491,10 +1626,10 @@ public class TracesTableGantt extends JFrame {
 
 			bw.write(data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold] + "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
-					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber] + "," + data[j][CallerMethodsT] + "," +
+					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber]+ "," + AppendedCallers + "," + data[j][CallerMethodsT] + "," +
 					data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
 					+ data[j][CallerClassesNumber] + "," + data[j][CallerClassesT] + "," + data[j][CallerClassesN] + "," + data[j][CallerClassesE] + 
-					"," + data[j][CalleeMethodsNumber] + ","
+					"," + data[j][CalleeMethodsNumber]+ "," + AppendedCallees +  ","
 					+ data[j][CalleeMethodsT] + "," + data[j][CalleeMethodsN] + "," + data[j][CalleeMethodsE] + "," + data[j][CalleeClassesNumber] + 
 					"," + data[j][CalleeClassesT] + ","
 					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][OwnerClassPrediction] + "," + data[j][MajorityClassLevelCallers]+ "," +
@@ -1508,7 +1643,7 @@ public class TracesTableGantt extends JFrame {
 					data[j][AllTClassLevelCallers]+ ","+		data[j][AllTClassLevelCallees]+ ","+		data[j][AllTMethodLevelCallers]+ 
 					","+		data[j][AllTMethodLevelCallees]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
 							+","+data[j][AtLeast1TParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]);
 				
 			bw.newLine();
@@ -1613,6 +1748,16 @@ public class TracesTableGantt extends JFrame {
 		bw2.newLine();
 		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		bw2.newLine();
+		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
+		bw2.newLine();
 		bw2.close();
 		String[] columnNames = { "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
 				"Gold", "Subject", "OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods",
@@ -1626,10 +1771,7 @@ public class TracesTableGantt extends JFrame {
 				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
 				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
 				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-				//,"Callers", "Callees",
-				,"#parameters", 
-				//"Parameters",
-				"# Parameter T" ,"# Parameter N" ,"# Parameter E" ,
+				,"Callers", "Callees", "#parameters", "Parameters","# Parameter T" ,"# Parameter N" ,"# Parameter E" ,
 				"MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
 				"AtLeast1TParameterPrediction", "AllNParameterPrediction", "AllTParameterPrediction"
 				};
@@ -1639,9 +1781,9 @@ public class TracesTableGantt extends JFrame {
 			public TableCellEditor getCellEditor(int row, int column) {
 				int modelColumn = convertColumnIndexToModel(column);
 				//
-				if (modelColumn == 48 && row < methodtraces2.size())
+				if (modelColumn == 48 )
 					return editors1.get(row);
-				if (modelColumn == 49 && row < methodtraces2.size())
+				if (modelColumn == 49 )
 					return editors3.get(row);
 				
 				
