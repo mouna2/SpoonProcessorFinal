@@ -29,21 +29,17 @@ import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
-import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
 import spoon.reflect.factory.ClassFactory;
 
-public class DatabaseReading2JHotDraw {
+public class DatabaseReading2JHotDraw2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace2> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
-	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
-	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -51,22 +47,8 @@ public class DatabaseReading2JHotDraw {
 		return methodlist;
 	}
 
-
-
-	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
-		return linkedmethodhashmap;
-	}
-
-
-
-	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
-		DatabaseReading2JHotDraw.linkedmethodhashmap = linkedmethodhashmap;
-	}
-
-
-
 	public static void setMethodlist(List<Method2Details> methodlist) {
-		DatabaseReading2JHotDraw.methodlist = methodlist;
+		DatabaseReading2JHotDraw2.methodlist = methodlist;
 	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
@@ -84,14 +66,14 @@ public class DatabaseReading2JHotDraw {
 	}
 
 	public static void setClassestraces2(List<ClassTrace2> classestraces2) {
-		DatabaseReading2JHotDraw.classestraces2 = classestraces2;
+		DatabaseReading2JHotDraw2.classestraces2 = classestraces2;
 	}
 
 	/**
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasechess";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -118,7 +100,7 @@ public class DatabaseReading2JHotDraw {
 	 * @throws IOException ***********************************************************************************************************************/
 	public static void MakePredictions() throws SQLException, IOException {
 		Connection conn = null;
-		DatabaseReading2JHotDraw DatabaseReading = new DatabaseReading2JHotDraw();
+		DatabaseReading2JHotDraw2 DatabaseReading = new DatabaseReading2JHotDraw2();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
@@ -153,44 +135,34 @@ public class DatabaseReading2JHotDraw {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		/*Method2Details methoddet2 = new Method2Details();
+		Method2Details methoddet2 = new Method2Details();
 		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
-		setMethodlist(methodlist);*/
+		setMethodlist(methodlist);
 		///////////////////////////////////////////////////////////////////////////////////////
-	/*	ClassDetails2 classdet2 = new ClassDetails2();
+		ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
 		List<ClassDetails2> classlist = new ArrayList<ClassDetails2>(classhashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
-		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
-		Method2Details methoddet2 = new Method2Details();
+		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());
+
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		MethodTrace2 methodtrace2 = new MethodTrace2();
 		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
 		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
-		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		/*ClassTrace2 classtrace2= new ClassTrace2(); 
+		ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
-		setClassestraces2(classestraces);*/
+		setClassestraces2(classestraces);
 		///////////////////////////////////////////////////////////////////////////////////////
-		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
-		setLinkedmethodhashmap(linkedmethodhashmap);
-		///////////////////////////////////////////////////////////////////////////////////////
-		ClassTrace2 classtrace2= new ClassTrace2(); 
-		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
-		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
-		setClassestraces2(classestracesRequirementClass);
+		
 		System.out.println("MOUNA");
-		
-		
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			Requirement2 requirement = tracemeth.getRequirement();
@@ -246,7 +218,7 @@ public class DatabaseReading2JHotDraw {
 		
 		
 		
-	/*	
+		
 		String goldprediction=""; 
 		String GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) { 
@@ -301,11 +273,11 @@ public class DatabaseReading2JHotDraw {
 
 			}
 
-		}*/
+		}
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
-		/* GoldVal=""; 
+		 GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
@@ -400,16 +372,7 @@ public class DatabaseReading2JHotDraw {
 		System.out.println("GOLDMATCHINGCALLER/TOTAL NOT NULL: =====> " + GoldMatchingCaller + " / " + MethodTracesSizeNotNullCaller);
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
 
-	*/
-	}
-
-	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
-		return classesRequirementtraceshashmap;
-	}
-
-	public static void setClassesRequirementtraceshashmap(
-			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
-		DatabaseReading2JHotDraw.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
+	
 	}
 
 	public static List<MethodTrace2> getMethodtraces2() {
@@ -417,7 +380,7 @@ public class DatabaseReading2JHotDraw {
 	}
 
 	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
-		DatabaseReading2JHotDraw.methodtraces2 = methodtraces2;
+		DatabaseReading2JHotDraw2.methodtraces2 = methodtraces2;
 	}
 	
 	

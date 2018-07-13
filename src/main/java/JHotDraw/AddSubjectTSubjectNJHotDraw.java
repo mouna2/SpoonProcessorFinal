@@ -115,7 +115,7 @@ public class AddSubjectTSubjectNJHotDraw {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2JHotDraw DatabaseReading = new DatabaseReading2JHotDraw();
+		DatabaseReading2JHotDraw2 DatabaseReading = new DatabaseReading2JHotDraw2();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();

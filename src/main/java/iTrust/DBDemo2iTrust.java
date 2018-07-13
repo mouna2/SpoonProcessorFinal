@@ -1938,7 +1938,7 @@ String callerexecutedid=null;
 List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
 	int counter=1; 
 try { 
-		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\iTrustTracesFinal.txt");
+		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\iTrustTracesFinal2.txt");
 		fileReader = new FileReader(file);
 		bufferedReader = new BufferedReader(fileReader);	
 		line = bufferedReader.readLine(); 
@@ -1991,7 +1991,8 @@ try {
 	while(requirements.next()){
 		requirementid = requirements.getString("id"); 
 		   }	
-	 
+	
+
 	goldvalue=null; 
 	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
 	 while(goldvalues.next()){
@@ -2004,7 +2005,7 @@ try {
 			   }
 		
 		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
-		if(requirementid!=null && classid!=null ) {
+		if(requirementid!=null && classid!=null && goldvalue!=null) {
 			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
 			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
 				GoldHashTable.put(RequirementClassKey, goldvalue); 

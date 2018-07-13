@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -50,7 +50,7 @@ import mypackage.Parameter2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
-public class TracesTableGantt extends JFrame {
+public class TracesTableJHotDraw extends JFrame {
 	int MethodID=0; 
 	int MethodName=1; 
 	int RequirementID=2; 
@@ -143,10 +143,10 @@ public class TracesTableGantt extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogGantt.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHotDraw.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
-	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
+	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDraw\\PredictionEvaluation.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -173,7 +173,7 @@ public class TracesTableGantt extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableGantt() throws SQLException, IOException {
+	public TracesTableJHotDraw() throws SQLException, IOException {
 	
 		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
@@ -189,8 +189,8 @@ public class TracesTableGantt extends JFrame {
 				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
 				"AtLeast1TParameterPrediction, AllNParameterPrediction, AllTParameterPrediction" );
 		bw.newLine();
-		DatabaseReading2Gantt db = new DatabaseReading2Gantt();
-		DatabaseReading2Gantt.MakePredictions();
+		DatabaseReading2JHotDraw db = new DatabaseReading2JHotDraw();
+		DatabaseReading2JHotDraw.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		//classtraces2 = db.getClassestraces2();
@@ -2026,7 +2026,7 @@ public class TracesTableGantt extends JFrame {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableGantt frame = new TracesTableGantt();
+		TracesTableJHotDraw frame = new TracesTableJHotDraw();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

@@ -166,8 +166,8 @@ public class TracesTable extends JFrame {
 						+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
 						+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees" );
 		bw.newLine();
-		DatabaseReading2JHotDraw db = new DatabaseReading2JHotDraw();
-		DatabaseReading2JHotDraw.MakePredictions();
+		DatabaseReading2JHotDraw2 db = new DatabaseReading2JHotDraw2();
+		DatabaseReading2JHotDraw2.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		classtraces2 = db.getClassestraces2();
 		methodlist = db.getMethodlist();
