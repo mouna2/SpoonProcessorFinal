@@ -219,7 +219,7 @@ public class TracesTableiTrust extends JFrame {
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
-		Object[][] data = new Object[methodtraces2.size()][10000];
+		Object[][] data = new Object[methodtraces2.size()][100];
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
 			System.out.println("LOOP INDEX===========> "+j); 
