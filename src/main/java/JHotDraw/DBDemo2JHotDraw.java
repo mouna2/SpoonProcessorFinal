@@ -1783,16 +1783,30 @@ try {
 	while(classids.next()){
 		classid = classids.getString("classid"); 
 		   }
+	
+	
 	String interfacename=null; 
-	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
 	while(interfaces.next()){
 		interfacename = interfaces.getString("interfacename"); 
 		   }
 	String interfaceid=null; 
-	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
+	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
 	while(interfacesids.next()){
 		interfaceid = interfacesids.getString("interfaceclassid"); 
-		   } 
+		   }
+	
+	
+//	String interfacename=null; 
+//	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+//	while(interfaces.next()){
+//		interfacename = interfaces.getString("interfacename"); 
+//		   }
+//	String interfaceid=null; 
+//	ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
+//	while(interfacesids.next()){
+//		interfaceid = interfacesids.getString("interfaceclassid"); 
+//		   } 
 	requirement=requirement.trim(); 
 	requirementid=null; 
 	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
@@ -1812,7 +1826,7 @@ try {
 			   }
 		
 		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
-		if(requirementid!=null && classid!=null ) {
+		/*if(requirementid!=null && classid!=null ) {
 			RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
 			if(GoldHashTable.containsKey(RequirementClassKey)==false) {
 				GoldHashTable.put(RequirementClassKey, goldvalue); 
@@ -1844,7 +1858,7 @@ try {
 			}
 		
 			counter++; 
-		}
+		}*/
 	
 		
 		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 

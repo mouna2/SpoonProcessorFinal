@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -231,6 +232,18 @@ public class TracesTableiTrust extends JFrame {
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
+			data[j][CallerClassesT] = 0;
+			data[j][CallerClassesN] = 0;
+			data[j][CallerClassesE] = 0;
+			data[j][CallerMethodsT] = 0;
+			data[j][CallerMethodsN] = 0;
+			data[j][CallerMethodsE] = 0;
+			data[j][CalleeClassesT] = 0;
+			data[j][CalleeClassesN] = 0;
+			data[j][CalleeClassesE] = 0;
+			data[j][CalleeMethodsT] = 0;
+			data[j][CalleeMethodsN] = 0;
+			data[j][CalleeMethodsE] = 0;
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
@@ -793,13 +806,15 @@ public class TracesTableiTrust extends JFrame {
 					}
 					
 				}
-				
+
 				data[j][CalleeMethodsT] = CountMethodTCallee;
 				data[j][CalleeMethodsN] = CountMethodNCallee;
 				data[j][CalleeMethodsE] = CountMethodECallee;
 			}
 			
-			
+			mycallerclasses = mycallerclasses.stream().filter(t -> t != null).collect(Collectors.toList()); 
+			mycalleeclasses = mycalleeclasses.stream().filter(t -> t != null).collect(Collectors.toList()); 
+
 			data[j][CallerMethodsNumber] = mycallerclasses.size();
 			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
 			

@@ -146,7 +146,7 @@ public class TracesTableJHotDraw extends JFrame {
 	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHotDraw.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
-	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDraw\\JHotDrawFiles\\PredictionEvaluation.txt");
+	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluation.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
