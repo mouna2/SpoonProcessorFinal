@@ -115,7 +115,7 @@ public class AddGold2Column {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2iTrust DatabaseReading = new DatabaseReading2iTrust();
+		DatabaseReading2iTrust2 DatabaseReading = new DatabaseReading2iTrust2();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();

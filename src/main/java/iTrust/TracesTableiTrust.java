@@ -19,7 +19,9 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,9 +46,11 @@ import mypackage.GroupableTableHeader;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
+import mypackage.Parameter2;
+import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
-public class TracesTable extends JFrame {
+public class TracesTableiTrust extends JFrame {
 	int MethodID=0; 
 	int MethodName=1; 
 	int RequirementID=2; 
@@ -97,6 +101,15 @@ public class TracesTable extends JFrame {
 	int AllTMethodLevelCallees=47; 
 	int Callers=48; 
 	int Callees=49; 
+	int paramatersNumber=50; 
+	int CountParamaterT=52; 
+	int CountParamaterN=53; 
+	int CountParamaterE=54; 
+	int MajorityParameters=55; 
+	int AtLeast1NParameter=56; 
+	int AtLeast1TParameter=57; 
+	int AllNParameters=58; 
+	int AllTParameters=59; 
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
@@ -118,12 +131,19 @@ public class TracesTable extends JFrame {
 	PredictionEvaluation AllTClassLevelCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTMethodLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTMethodLevelCalleesClass= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClass= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClass= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClass= new PredictionEvaluation(); 
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
+	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
-	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\TableLog.txt");
+	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogiTrust.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluation.txt");
@@ -153,29 +173,34 @@ public class TracesTable extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTable() throws SQLException, IOException {
+	public TracesTableiTrust() throws SQLException, IOException {
 	
 		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
-						+ "OwnerClassE, #callermethods, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-						+ "#callerclassesE, #calleemethods, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-						+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallers, MajorityClassLevelCallees, MajorityMethodLevelCallers, MajorityMethodLevelCallees,"
-						+ "AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionMethodLevelCallers, AtLeast1NPredictionMethodLevelCallees, "
-						+"AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionMethodLevelCallers, AtLeast1TPredictionMethodLevelCallees,"
-						+"AllNClassLevelCallers, AllNClassLevelCallees, AllNMethodLevelCallers, AllNMethodLevelCallees,"
-						+"AllTClassLevelCallers, AllTClassLevelCallees, AllTMethodLevelCallers, AllTMethodLevelCallees,"
-						+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-						+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees" );
+				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
+				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallers, MajorityClassLevelCallees, MajorityMethodLevelCallers, MajorityMethodLevelCallees,"
+				+ "AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionMethodLevelCallers, AtLeast1NPredictionMethodLevelCallees, "
+				+"AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionMethodLevelCallers, AtLeast1TPredictionMethodLevelCallees,"
+				+"AllNClassLevelCallers, AllNClassLevelCallees, AllNMethodLevelCallers, AllNMethodLevelCallees,"
+				+"AllTClassLevelCallers, AllTClassLevelCallees, AllTMethodLevelCallers, AllTMethodLevelCallees,"
+				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
+				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+				"AtLeast1TParameterPrediction, AllNParameterPrediction, AllTParameterPrediction" );
 		bw.newLine();
-		DatabaseReading2iTrust2 db = new DatabaseReading2iTrust2();
-		DatabaseReading2iTrust2.MakePredictions();
+		DatabaseReading2itrust db = new DatabaseReading2itrust();
+		DatabaseReading2itrust.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
-		classtraces2 = db.getClassestraces2();
-		methodlist = db.getMethodlist();
+		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+		//classtraces2 = db.getClassestraces2();
+		//methodlist = db.getMethodlist();
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors3 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors4 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		int j = 0;
+		//int j=24090; 
 		final int jfinal=0; 
 		String[] items1 = new String[methodtraces2.size()];
 		String[] items2 = new String[methodtraces2.size()];
@@ -183,7 +208,13 @@ public class TracesTable extends JFrame {
 		String[] items4 = new String[methodtraces2.size()];
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
-
+//		String[] items1 = new String[100];
+//		String[] items2 = new String[100];
+//		String[] items3 = new String[100];
+//		String[] items4 = new String[100];
+//		String[] items5 = new String[100];
+//		String[] items6 = new String[100];
+		String[] myparameters = new String[methodtraces2.size()];
 		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
 		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
@@ -191,6 +222,7 @@ public class TracesTable extends JFrame {
 		Object[][] data = new Object[methodtraces2.size()][10000];
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
+			System.out.println("LOOP INDEX===========> "+j); 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
@@ -201,30 +233,76 @@ public class TracesTable extends JFrame {
 			data[j][Subject] = methodtrace.subject;
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
-
-			for (ClassTrace2 classtrace : classtraces2) {
-
+			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
+			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+			LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
+			 linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+			/*for (ClassTrace2 classtrace : classtraces2) {
+				System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
+				System.out.println("CLASS TRACE REPRESENTATION CLASS ID "+classtrace.getMyclass().classid);
+				System.out.println("METHOD TRACE REQUIREMENT  ID "+methodtrace.Requirement.getID());
+				System.out.println("CLASS TRACE REQUIREMENT  ID "+classtrace.getRequirement().getID());
 				if (methodtrace.ClassRepresentation.classid.equals(classtrace.getMyclass().classid)
 						&& methodtrace.Requirement.getID().equals(classtrace.getRequirement().getID())) {
 					String trace = classtrace.gettrace();
+					trace=trace.trim(); 
 					if (trace.equals("T")) {
 						data[j][OwnerClassT] = "1";
 						data[j][OwnerClassN] = "0";
 						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS T  "+j +" set to 1");
 					} else if (trace.equals("N")) {
 						data[j][OwnerClassT] = "0";
 						data[j][OwnerClassN] = "1";
 						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS N  "+j +" set to 1");
 					} else if (trace.equals("E")) {
 						data[j][OwnerClassT] = "0";
 						data[j][OwnerClassN] = "0";
 						data[j][OwnerClassE] = "1";
+						System.out.println("OWNERCLASS E  "+j +" set to 1");
 					}
+				break; 
 				}
 
-			}
+			}*/
 
-			int count = 0;
+			data[j][OwnerClassT] = "";
+			data[j][OwnerClassN] = "";
+			data[j][OwnerClassE] = "";
+			
+			System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
+		//	System.out.println("CLASS TRACE REPRESENTATION CLASS ID "+myclasstraceHashMap.getMyclass().classid);
+			System.out.println("METHOD TRACE REQUIREMENT  ID "+methodtrace.Requirement.getID());
+		//	System.out.println("CLASS TRACE REQUIREMENT  ID "+myclasstraceHashMap.getRequirement().getID());
+			//if (methodtrace.ClassRepresentation.classid.equals(myclasstraceHashMap.getMyclass().classid)
+			//		&& methodtrace.Requirement.getID().equals(myclasstraceHashMap.getRequirement().getID())) {
+			if(myclasstraceHashMap!=null) {
+				String trace = myclasstraceHashMap.gettrace();
+				trace=trace.trim(); 
+				if (trace.equals("T")) {
+					data[j][OwnerClassT] = "1";
+					data[j][OwnerClassN] = "0";
+					data[j][OwnerClassE] = "0";
+					System.out.println("OWNERCLASS T  "+j +" set to 1");
+				} else if (trace.equals("N")) {
+					data[j][OwnerClassT] = "0";
+					data[j][OwnerClassN] = "1";
+					data[j][OwnerClassE] = "0";
+					System.out.println("OWNERCLASS N  "+j +" set to 1");
+				} else if (trace.equals("E")) {
+					data[j][OwnerClassT] = "0";
+					data[j][OwnerClassN] = "0";
+					data[j][OwnerClassE] = "1";
+					System.out.println("OWNERCLASS E  "+j +" set to 1");
+				}
+			}
+			
+			
+			//}
+			
+			
+			/*int count = 0;
 			String classID = "";
 			int ClassCountCaller = 0;
 			for (Method2Representation caller : methodtrace.getCallersList()) {
@@ -276,7 +354,7 @@ public class TracesTable extends JFrame {
 				count++;
 
 			}
-			
+			*/
 
 		
 			int BothParsedAndExecutedCallers=0; 
@@ -285,10 +363,59 @@ public class TracesTable extends JFrame {
 			int CountCallers = 0;
 			items1 = new String[methodtrace.getCallersList().size()];
 			callersarr = new Method2Representation[methodtrace.getCallersList().size()];
+			
+			
+			
+			int myparametercount=0; 
+			/////////////////////////////////	
+				
+				int counterParameterT=0; 
+				int counterParameterN=0; 
+				int counterParameterE=0; 
+				 myparameters = new String[methodtraces2.size()];
+				 String ParametersAppended=""; 
+				Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
+				for ( Parameter2 myparam : mymethodobje.getParameters()) {
+					myparameters[myparametercount] = myparam.toString(); 
+					
+					myparametercount++;
+					
+					ParametersAppended=ParametersAppended+myparam.toString()+"-"; 
+					String ParameterClassid = myparam.getParameterType().classid; 
+					
+					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
+					if(mycallerclass!=null) {
+						String mytrace=mycallerclass.gettrace(); 
+						if(mytrace.equals("T")) {
+							counterParameterT++; 
+						}else if (mytrace.equals("N")) {
+							counterParameterN++; 
+						}else {
+							counterParameterE++; 
+						}
+					}
+					
+
+				}
+				data [j][CountParamaterT]= counterParameterT; 
+				data [j][CountParamaterN]= counterParameterN; 
+				data [j][CountParamaterE]= counterParameterE; 
+				
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				data [j][paramatersNumber]= myparametercount; 
+				
+				
+				
+				
+				
+				
 			for (Method2Representation caller : methodtrace.getCallersList()) {
-				items1[CountCallers] = caller.toString();
+				items1[CountCallers] = caller.toString2();
 				callersarr[CountCallers] = caller;
-				System.out.println(caller.toString());
+				System.out.println(caller.toString2());
 				CountCallers++;
 				
 				
@@ -305,7 +432,7 @@ public class TracesTable extends JFrame {
 
 				boolean equalbool = false;
 				if (items1.length == 0) {
-					items2[CountCallersExecuted] = caller.toString();
+					items2[CountCallersExecuted] = caller.toString2();
 					callersex[CountCallersExecuted] = caller;
 				
 						
@@ -317,7 +444,7 @@ public class TracesTable extends JFrame {
 					for (String item : items1) {
 						item = item.replaceAll("\\(.*\\)", "");
 
-						if (item.equals(caller.toString()) == true) {
+						if (item.equals(caller.toString2()) == true) {
 							BothParsedAndExecutedCallers++; 
 							equalbool = true;
 						}
@@ -326,7 +453,7 @@ public class TracesTable extends JFrame {
 						
 							
 						
-						items2[CountCallersExecuted] = caller.toString();
+						items2[CountCallersExecuted] = caller.toString2();
 						callersex[CountCallersExecuted] = caller;
 						CountCallersExecuted++;
 						OnlyinExecutedCallers++; 
@@ -345,8 +472,8 @@ public class TracesTable extends JFrame {
 			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
 			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
 				
-				itemsExecuted[CountCallerExecuted] = caller.toString();	
-				System.out.println(caller.toString());
+				itemsExecuted[CountCallerExecuted] = caller.toString2();	
+				System.out.println(caller.toString2());
 				CountCallerExecuted++;
 			}
 			
@@ -355,7 +482,7 @@ public class TracesTable extends JFrame {
 
 				boolean equalbool = false;
 				if (itemsExecuted.length == 0) {
-					items5[Count] = caller.toString();
+					items5[Count] = caller.toString2();
 				
 						
 					
@@ -364,7 +491,7 @@ public class TracesTable extends JFrame {
 
 				} else {
 					for (String item : itemsExecuted) {
-					String	callerString = caller.toString().replaceAll("\\(.*\\)", "");
+					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
 
 						if (item.equals(callerString) == true) {
 						
@@ -398,9 +525,9 @@ public class TracesTable extends JFrame {
 			items3 = new String[methodtrace.getCalleesList().size()];
 			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
 			for (Method2Representation caller : methodtrace.getCalleesList()) {
-				items3[CountCallees] = caller.toString();
+				items3[CountCallees] = caller.toString2();
 				calleesarr[CountCallees] = caller;
-				System.out.println(caller.toString());
+				System.out.println(caller.toString2());
 				CountCallees++;
 			
 			}
@@ -411,7 +538,7 @@ public class TracesTable extends JFrame {
 			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
 				boolean equalbool = false;
 				if (items3.length == 0) {
-					items4[CountCalleesExecuted] = caller.toString();
+					items4[CountCalleesExecuted] = caller.toString2();
 					calleesex[CountCalleesExecuted] = caller;
 					CountCalleesExecuted++;
 					OnlyInExecutedCallees++; 
@@ -419,7 +546,7 @@ public class TracesTable extends JFrame {
 				} else {
 					for (String item : items3) {
 						item = item.replaceAll("\\(.*\\)", "");
-						if (item.equals(caller.toString()) == true) {
+						if (item.equals(caller.toString2()) == true) {
 							equalbool = true;
 							BothInParsedAndExecutedCallees++; 
 						}
@@ -440,8 +567,8 @@ public class TracesTable extends JFrame {
 			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
 			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
 				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
-				System.out.println(callee.toString());
+				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
+				System.out.println(callee.toString2());
 				CountCalleeExecuted++;
 			}
 			
@@ -450,7 +577,7 @@ public class TracesTable extends JFrame {
 
 				boolean equalbool = false;
 				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString();
+					items6[Count] = callee.toString2();
 				
 						
 					
@@ -459,7 +586,7 @@ public class TracesTable extends JFrame {
 
 				} else {
 					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString().replaceAll("\\(.*\\)", "");
+					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
 
 						if (item.equals(calleeString) == true) {
 						
@@ -484,9 +611,14 @@ public class TracesTable extends JFrame {
 			//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
 			List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods);
 
-			data[j][CallerMethodsNumber] = CountCallersExecuted + CountCallers;
-			data[j][CalleeMethodsNumber] = CountCalleesExecuted + CountCallees;
+//			data[j][CallerMethodsNumber] = CountCallersExecuted + CountCallers;
+//			data[j][CalleeMethodsNumber] = CountCalleesExecuted + CountCallees;
 
+			
+//			data[j][CallerMethodsNumber] = CallerMethodsList.size();
+//			data[j][CalleeMethodsNumber] = CalleeMethodsList.size();
+			
+			
 			CallerMethodListFinal = new ArrayList<Method2Representation>();
 			CalleeMethodListFinal = new ArrayList<Method2Representation>();
 
@@ -501,22 +633,54 @@ public class TracesTable extends JFrame {
 					CalleeMethodListFinal.add(methcaller);
 				}
 			}
+			int lengthitems1And2 = items1And2.length;
+			Set<String> setitems1And2 = new HashSet<String>();
 
+			for(int i = 0; i < lengthitems1And2; i++){
+				setitems1And2.add(items1And2[i]);
+			}
+			
+			int lengthitems3And4 = items3And4.length;
+			Set<String> setitems3And4 = new HashSet<String>();
+
+			for(int i = 0; i < lengthitems3And4; i++){
+				
+					setitems3And4.add(items3And4[i]);
+				
+				
+			}
+			String AppendedCallers=""; 
+			for(String CallerMethod: setitems1And2) {
+				if(CallerMethod!=null) {
+					AppendedCallers=AppendedCallers+CallerMethod+"-"; 
+				}
+				
+			}
+			
+			String AppendedCallees=""; 
+			for(String CalleeMethod: setitems3And4) {
+				if(CalleeMethod!=null) {
+					AppendedCallees=AppendedCallees+CalleeMethod+"-"; 
+				}
+				
+			}
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
-
-			for (Method2Representation callermeth : CallerMethodListFinal) {
-				ClassRepresentation2 classrep = callermeth.getClassrep();
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
-						methodtrace.Requirement.getID());
-				mycallerclasses.add(mycallerclass);
+			if(CallerMethodListFinal.isEmpty()==false && CallerMethodListFinal!=null ) {
+				for (Method2Representation callermeth : CallerMethodListFinal) {
+					ClassRepresentation2 classrep = callermeth.getClassrep();
+				//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid, methodtrace.Requirement.getID());
+					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+					mycallerclasses.add(mycallerclass);
+				}
 			}
+	
 
 			ArrayList<ClassTrace2> myclasstracesCallers = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycallerclasses) {
-				if (!myclasstracesCallers.contains(classtrace)) {
+				if (!myclasstracesCallers.contains(classtrace) && classtrace!=null) {
 
 					myclasstracesCallers.add(classtrace);
 				}
@@ -529,33 +693,44 @@ public class TracesTable extends JFrame {
 
 			data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
-			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-				if (mycallerclass.gettrace().equals("T")) {
-					CounterTraceClassCallerT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
-					CounterTraceClassCallerN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
-					CounterTraceClassCallerE++;
+			if(myclasstracesCallers!=null && myclasstracesCallers.isEmpty()==false) {
+				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
+					String trace2= mycallerclass.gettrace(); 
+					trace2=trace2.trim(); 
+					if (trace2.equals("T")) {
+						CounterTraceClassCallerT++;
+					} else if (trace2.equals("N")) {
+						CounterTraceClassCallerN++;
+					} else if (trace2.equals("E")) {
+						CounterTraceClassCallerE++;
+					}
 				}
-			}
 
-			data[j][CallerClassesT] = CounterTraceClassCallerT;
-			data[j][CallerClassesN] = CounterTraceClassCallerN;
-			data[j][CallerClassesE] = CounterTraceClassCallerE;
+				data[j][CallerClassesT] = CounterTraceClassCallerT;
+				data[j][CallerClassesN] = CounterTraceClassCallerN;
+				data[j][CallerClassesE] = CounterTraceClassCallerE;
+			}
+			
 //DUPLICATE CLASSES
 			int CountMethodT = 0; 
 			int CountMethodN = 0; 
 			int CountMethodE = 0; 
+			if(mycallerclasses!=null && mycallerclasses.isEmpty()==false) {
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
-				if (mycallerclass.gettrace().equals("T")) {
-					CountMethodT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
-					CountMethodN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
-					CountMethodE++;
+				if(mycallerclass!=null) {
+					String trace2= mycallerclass.gettrace(); 
+					trace2=trace2.trim(); 
+					if (trace2.equals("T")) {
+						CountMethodT++;
+					} else if (trace2.equals("N")) {
+						CountMethodN++;
+					} else if (trace2.equals("E")) {
+						CountMethodE++;
+					}
 				}
+			
 			}
-
+			}
 		
 
 			int CounterTraceClassCalleeT = 0;
@@ -565,14 +740,15 @@ public class TracesTable extends JFrame {
 
 			for (Method2Representation calleemeth : CalleeMethodListFinal) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
-						methodtrace.Requirement.getID());
+				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
+				//		methodtrace.Requirement.getID());
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,methodtrace.Requirement.getID());
 				mycalleeclasses.add(mycalleeclass);
 			}
 
 			ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycalleeclasses) {
-				if (!myclasstracesCallees.contains(classtrace)) {
+				if (!myclasstracesCallees.contains(classtrace) && classtrace!=null) {
 
 					myclasstracesCallees.add(classtrace);
 				}
@@ -580,53 +756,297 @@ public class TracesTable extends JFrame {
 			//NO DUPLICATE CLASSES 
 
 			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
-
-			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-				if (mycalleeclass.gettrace().equals("T")) {
-					CounterTraceClassCalleeT++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
-					CounterTraceClassCalleeN++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
-					CounterTraceClassCalleeE++;
+			if(myclasstracesCallees!=null && myclasstracesCallees.isEmpty()==false) {
+				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
+					String mytrace=mycalleeclass.gettrace(); 
+					mytrace=mytrace.trim(); 
+					if (mytrace.equals("T")) {
+						CounterTraceClassCalleeT++;
+					} else if (mytrace.equals("N")) {
+						CounterTraceClassCalleeN++;
+					} else if (mytrace.equals("E")) {
+						CounterTraceClassCalleeE++;
+					}
 				}
-			}
 
-			data[j][CalleeClassesT] = CounterTraceClassCalleeT;
-			data[j][CalleeClassesN] = CounterTraceClassCalleeN;
-			data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+				data[j][CalleeClassesT] = CounterTraceClassCalleeT;
+				data[j][CalleeClassesN] = CounterTraceClassCalleeN;
+				data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+			}
+			
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
 			int CountMethodECallee = 0; 
-			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-				if (mycalleeclass.gettrace().equals("T")) {
-					CountMethodTCallee++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
-					CountMethodNCallee++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
-					CountMethodECallee++;
+			if(mycalleeclasses!=null && mycalleeclasses.isEmpty()==false) {
+				for (ClassTrace2 mycalleeclass : mycalleeclasses) {
+					if(mycalleeclass!=null) {
+						String mytrace=mycalleeclass.gettrace(); 
+						mytrace=mytrace.trim(); 
+						if (mytrace.equals("T")) {
+							CountMethodTCallee++;
+						} else if (mytrace.equals("N")) {
+							CountMethodNCallee++;
+						} else if (mytrace.equals("E")) {
+							CountMethodECallee++;
+						}
+					}
+					
 				}
+				
+				data[j][CalleeMethodsT] = CountMethodTCallee;
+				data[j][CalleeMethodsN] = CountMethodNCallee;
+				data[j][CalleeMethodsE] = CountMethodECallee;
 			}
 			
-			data[j][CalleeMethodsT] = CountMethodTCallee;
-			data[j][CalleeMethodsN] = CountMethodNCallee;
-			data[j][CalleeMethodsE] = CountMethodECallee;
+			
+			data[j][CallerMethodsNumber] = mycallerclasses.size();
+			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
 			
 			
 			data[j][CallerMethodsT] = CountMethodT;
 			data[j][CallerMethodsN] = CountMethodN;
 			data[j][CallerMethodsE] = CountMethodE;
 			
-			
+			 System.out.println("OwnerClassNVarString: "+data[j][OwnerClassN].toString());
+			 System.out.println("OwnerClassTVarString: "+data[j][OwnerClassT].toString());		 
+			 System.out.println("OwnerClassEVarString: "+data[j][OwnerClassE].toString());
+			 System.out.println("MethodID: "+data[j][MethodID] );
+			 System.out.println("MethodName: "+data[j][MethodName] );	
+			 System.out.println("RequirementID: "+data[j][RequirementID] );	
+			 System.out.println("RequirementName: "+data[j][RequirementName] );	
+			 System.out.println("ClassID: "+data[j][ClassID] );	
+			 System.out.println("ClassName: "+data[j][ClassName] );	
 		//OWNER CLASS PREDICTION 
 		 Object OwnerClassNVar = data[j][OwnerClassN]; 
-			
+		 String OwnerClassNVarString = data[j][OwnerClassN].toString(); 
+		 String OwnerClassTVarString = data[j][OwnerClassT].toString(); 
+		 String OwnerClassEVarString = data[j][OwnerClassE].toString(); 
+		
+		
+	
 			if(OwnerClassNVar.toString().equals("1")) {
 				data[j][OwnerClassPrediction]="N"; 
-				String Result=OwnerClassPredictionClass.ComparePredictionToGold(methodtrace.getGold(), data[j][OwnerClassPrediction].toString()); 
+				String Result=OwnerClassPredictionClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][OwnerClassPrediction].toString()); 
 				OwnerClassPredictionClass.UpdateCounters(Result, OwnerClassPredictionClass);
 			}
 			else {
+				
+				if((counterParameterT!=0 || counterParameterN!=0)
+						/*	||
+							(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+							||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+							) {
+						
+						
+						
+						if (((counterParameterT >= counterParameterN
+								&& counterParameterN >= counterParameterE)
+								|| (counterParameterT >= counterParameterE
+										&& counterParameterE >= counterParameterN))
+								) {
+							data[j][MajorityParameters] = "T";
+						} else if (((counterParameterE >= counterParameterN
+								&& counterParameterN >= counterParameterT)
+								|| (counterParameterE >= counterParameterT
+										&& counterParameterT >= counterParameterN))
+							) {
+							data[j][MajorityParameters] = "E";
+						} else if (((counterParameterN >= counterParameterE
+								&& counterParameterE >= counterParameterT)
+								|| (counterParameterN >= counterParameterT
+										&& counterParameterT >= counterParameterE))
+								) {
+							data[j][MajorityParameters] = "N";
+						}
+						
+						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityParameters].toString()); 
+						MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
+					
+					}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//AT LEAST 1N PREDICTION PARAMETER
+				
+				
+				
+				
+				
+				if (counterParameterN >=1 )
+						 {
+					data[j][AtLeast1NParameter] = "N";
+					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NParameter].toString()); 
+					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
+				} 
+			
+				
+			
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			
+			//AT LEAST 1T PREDICTION PARAMETER
+			
+			
+				
+				
+				
+				if (counterParameterT >=1 )
+						 {
+					data[j][AtLeast1TParameter] = "T";
+					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TParameter].toString()); 
+					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
+				} 
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+			    /**************************************************************************************************************/	
+				
+				
+				
+				//ALL T PARAMETER PREDICTION
+				
+				
+				if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=1) {
+					
+					
+					
+				
+						data[j][AllTParameters] = "T";
+						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTParameters].toString()); 
+						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N PARAMETER PREDICTION
+				
+				
+				if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=1) {
+					
+					
+					
+				
+						data[j][AllNParameters] = "N";
+						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNParameters].toString()); 
+						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+	
+				
+				
+				
+				if((counterParameterT!=0 || counterParameterN!=0)
+						/*	||
+							(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+							||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+							) {
+						
+						
+						
+						if (((counterParameterT >= counterParameterN
+								&& counterParameterN >= counterParameterE)
+								|| (counterParameterT >= counterParameterE
+										&& counterParameterE >= counterParameterN))
+								) {
+							data[j][MajorityParameters] = "T";
+						} else if (((counterParameterE >= counterParameterN
+								&& counterParameterN >= counterParameterT)
+								|| (counterParameterE >= counterParameterT
+										&& counterParameterT >= counterParameterN))
+							) {
+							data[j][MajorityParameters] = "E";
+						} else if (((counterParameterN >= counterParameterE
+								&& counterParameterE >= counterParameterT)
+								|| (counterParameterN >= counterParameterT
+										&& counterParameterT >= counterParameterE))
+								) {
+							data[j][MajorityParameters] = "N";
+						}
+						
+						String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityParameters].toString()); 
+						MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
+					
+					}
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				//AT LEAST 1N PREDICTION PARAMETER
+				
+				
+				
+				
+				
+				if (counterParameterN >=1 )
+						 {
+					data[j][AtLeast1NParameter] = "N";
+					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NParameter].toString()); 
+					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
+				} 
+			
+				
+			
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			/**************************************************************************************************************/
+			
+			//AT LEAST 1T PREDICTION PARAMETER
+			
+			
+				
+				
+				
+				if (counterParameterT >=1 )
+						 {
+					data[j][AtLeast1TParameter] = "T";
+					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TParameter].toString()); 
+					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
+				} 
+				
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+			    /**************************************************************************************************************/	
+				
+				
+				
+				//ALL T PARAMETER PREDICTION
+				
+				
+				if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=1) {
+					
+					
+					
+				
+						data[j][AllTParameters] = "T";
+						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTParameters].toString()); 
+						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
+				}
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//ALL N PARAMETER PREDICTION
+				
+				
+				if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=1) {
+					
+					
+					
+				
+						data[j][AllNParameters] = "N";
+						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNParameters].toString()); 
+						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
+				}
+				
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
@@ -661,7 +1081,8 @@ public class TracesTable extends JFrame {
 							) {
 						data[j][MajorityClassLevelCallees] = "N";
 					}
-					String Result=MajorityClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityClassLevelCallees].toString()); 
+					
+					String Result=MajorityClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallees].toString()); 
 					MajorityClassLevelCalleesClass.UpdateCounters(Result, MajorityClassLevelCalleesClass);
 				}
 			
@@ -698,7 +1119,7 @@ public class TracesTable extends JFrame {
 							) {
 						data[j][MajorityClassLevelCallers] = "N";
 					}
-					String Result=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityClassLevelCallers].toString()); 
+					String Result=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallers].toString()); 
 					MajorityClassLevelCallersClass.UpdateCounters(Result, MajorityClassLevelCallersClass);
 				}
 				/**************************************************************************************************************/
@@ -733,7 +1154,7 @@ public class TracesTable extends JFrame {
 							) {
 						data[j][MajorityMethodLevelCallees] = "N";
 					}
-					String Result=MajorityMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityMethodLevelCallees].toString()); 
+					String Result=MajorityMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallees].toString()); 
 					MajorityMethodLevelCalleesClass.UpdateCounters(Result, MajorityMethodLevelCalleesClass);
 				}
 				/**************************************************************************************************************/
@@ -768,7 +1189,7 @@ public class TracesTable extends JFrame {
 							) {
 						data[j][MajorityMethodLevelCallers] = "N";
 					}
-					String Result=MajorityMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][MajorityMethodLevelCallers].toString()); 
+					String Result=MajorityMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallers].toString()); 
 					MajorityMethodLevelCallersClass.UpdateCounters(Result, MajorityMethodLevelCallersClass);
 				}
 				
@@ -787,7 +1208,7 @@ public class TracesTable extends JFrame {
 						data[j][AtLeast1NPredictionClassLevelCallers] = "N";
 						Object var= 	data[j][AtLeast1NPredictionClassLevelCallers]; 
 						String NEWVAR=var.toString(); 
-						String Result=AtLeastNPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
+						String Result=AtLeastNPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
 						AtLeastNPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClass);
 					} 
 				
@@ -806,7 +1227,7 @@ public class TracesTable extends JFrame {
 					if (CounterTraceClassCalleeT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallers] = "T";
-						String Result=AtLeastTPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
+						String Result=AtLeastTPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
 						AtLeastTPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClass);
 					} 
 					
@@ -828,7 +1249,7 @@ public class TracesTable extends JFrame {
 					if (CounterTraceClassCallerN >=1 )
 							 {
 						data[j][AtLeast1NPredictionClassLevelCallees] = "N";
-						String Result=AtLeastNPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
+						String Result=AtLeastNPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
 						AtLeastNPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClass);
 					} 
 					
@@ -848,7 +1269,7 @@ public class TracesTable extends JFrame {
 					if (CounterTraceClassCallerT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallees] = "T";
-						String Result=AtLeastTPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
+						String Result=AtLeastTPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
 						AtLeastTPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClass);
 					} 
 					
@@ -866,7 +1287,7 @@ public class TracesTable extends JFrame {
 					if (CountMethodN >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallees] = "N";
-						String Result=AtLeastNPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
+						String Result=AtLeastNPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
 						AtLeastNPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClass);
 					} 
 					
@@ -884,7 +1305,7 @@ public class TracesTable extends JFrame {
 					if (CountMethodT >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallees] = "T";
-						String Result=AtLeastTPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
+						String Result=AtLeastTPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
 						AtLeastTPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClass);
 					} 
 					
@@ -902,7 +1323,7 @@ public class TracesTable extends JFrame {
 					if (CountMethodNCallee >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallers] = "N";
-						String Result=AtLeastNPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
+						String Result=AtLeastNPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
 						AtLeastNPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClass);
 					} 
 					
@@ -922,7 +1343,7 @@ public class TracesTable extends JFrame {
 					if (CountMethodTCallee >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallers] = "T";
-						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
+						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClass);
 						}
 					 
@@ -941,7 +1362,7 @@ public class TracesTable extends JFrame {
 					
 						
 						data[j][AllTMethodLevelCallees] = "T";
-						String Result=AllTMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTMethodLevelCallees].toString()); 
+						String Result=AllTMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallees].toString()); 
 						AllTMethodLevelCalleesClass.UpdateCounters(Result, AllTMethodLevelCalleesClass);
 				}
 				
@@ -958,7 +1379,7 @@ public class TracesTable extends JFrame {
 				
 						data[j][AllTMethodLevelCallers] = "T";
 						
-						String Result=AllTMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTMethodLevelCallers].toString()); 
+						String Result=AllTMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallers].toString()); 
 						AllTMethodLevelCallersClass.UpdateCounters(Result, AllTMethodLevelCallersClass);
 					
 				}
@@ -975,7 +1396,7 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallers] = "T";
-						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTClassLevelCallers].toString()); 
+						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallers].toString()); 
 						AllTClassLevelCallersClass.UpdateCounters(Result, AllTClassLevelCallersClass);
 				}
 				/**************************************************************************************************************/
@@ -991,7 +1412,7 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallees] = "T";
-						String Result=AllTClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllTClassLevelCallees].toString()); 
+						String Result=AllTClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallees].toString()); 
 						AllTClassLevelCalleesClass.UpdateCounters(Result, AllTClassLevelCalleesClass);
 				}
 				/**************************************************************************************************************/
@@ -1007,7 +1428,7 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallers] = "N";
-						String Result=AllNClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNClassLevelCallers].toString()); 
+						String Result=AllNClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallers].toString()); 
 						AllNClassLevelCallersClass.UpdateCounters(Result, AllNClassLevelCallersClass);
 				}
 				/**************************************************************************************************************/
@@ -1023,7 +1444,7 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallees] = "N";
-						String Result=AllNClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNClassLevelCallees].toString()); 
+						String Result=AllNClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallees].toString()); 
 						AllNClassLevelCalleesClass.UpdateCounters(Result, AllNClassLevelCalleesClass);
 					
 				}
@@ -1040,7 +1461,7 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallers] = "N";
-						String Result=AllNMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNMethodLevelCallers].toString()); 
+						String Result=AllNMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallers].toString()); 
 						AllNMethodLevelCallersClass.UpdateCounters(Result, AllNMethodLevelCallersClass);
 				}
 				
@@ -1057,39 +1478,42 @@ public class TracesTable extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallees] = "N";
-						String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNMethodLevelCallees].toString()); 
+						String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallees].toString()); 
 						AllNMethodLevelCalleesClass.UpdateCounters(Result, AllNMethodLevelCalleesClass);
 				}
 			}
 			
+		//NEEDS TO BE UNCOMMENTED 
+		//WAS COMMENTED TO SPEED THE PROGRAM'S EXECUTION 
 			
-			JComboBox comboBox1 = new JComboBox(items1And2);
-			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
-			editors1.add(dce1);
-
-			/*
-			 * JComboBox comboBox2 = new JComboBox( items2 ); DefaultCellEditor dce2 = new
-			 * DefaultCellEditor( comboBox2 ); editors2.add( dce2 );
-			 */
-
-			JComboBox comboBox4 = new JComboBox(items3And4);
-			DefaultCellEditor dce3 = new DefaultCellEditor(comboBox4);
-			editors3.add(dce3);
-
-			/*
-			 * JComboBox comboBox4 = new JComboBox( items4); DefaultCellEditor dce4 = new
-			 * DefaultCellEditor( comboBox4 ); editors4.add( dce4 );
-			 */
-
-			comboBox1.setEditor(new MyEditor());
-			comboBox1.setEditable(true);
-
-			/*
-			 * comboBox2.setEditor(new MyEditor()); comboBox2.setEditable(true);
-			 */
-
-			comboBox4.setEditor(new MyEditor());
-			comboBox4.setEditable(true);
+			
+//			JComboBox comboBox1 = new JComboBox(items1And2);
+//			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
+//			editors1.add(dce1);
+//
+//			/*
+//			 * JComboBox comboBox2 = new JComboBox( items2 ); DefaultCellEditor dce2 = new
+//			 * DefaultCellEditor( comboBox2 ); editors2.add( dce2 );
+//			 */
+//
+//			JComboBox comboBox4 = new JComboBox(items3And4);
+//			DefaultCellEditor dce3 = new DefaultCellEditor(comboBox4);
+//			editors3.add(dce3);
+//
+//			/*
+//			 * JComboBox comboBox4 = new JComboBox( items4); DefaultCellEditor dce4 = new
+//			 * DefaultCellEditor( comboBox4 ); editors4.add( dce4 );
+//			 */
+//
+//			comboBox1.setEditor(new MyEditor());
+//			comboBox1.setEditable(true);
+//
+//			/*
+//			 * comboBox2.setEditor(new MyEditor()); comboBox2.setEditable(true);
+//			 */
+//
+//			comboBox4.setEditor(new MyEditor());
+//			comboBox4.setEditable(true);
 
 			 
 			/*
@@ -1203,10 +1627,10 @@ public class TracesTable extends JFrame {
 
 			bw.write(data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold] + "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
-					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber] + "," + data[j][CallerMethodsT] + "," +
+					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber]+ "," + AppendedCallers + "," + data[j][CallerMethodsT] + "," +
 					data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
 					+ data[j][CallerClassesNumber] + "," + data[j][CallerClassesT] + "," + data[j][CallerClassesN] + "," + data[j][CallerClassesE] + 
-					"," + data[j][CalleeMethodsNumber] + ","
+					"," + data[j][CalleeMethodsNumber]+ "," + AppendedCallees +  ","
 					+ data[j][CalleeMethodsT] + "," + data[j][CalleeMethodsN] + "," + data[j][CalleeMethodsE] + "," + data[j][CalleeClassesNumber] + 
 					"," + data[j][CalleeClassesT] + ","
 					+ data[j][CalleeClassesN] + "," + data[j][CalleeClassesE] + "," + data[j][OwnerClassPrediction] + "," + data[j][MajorityClassLevelCallers]+ "," +
@@ -1220,7 +1644,8 @@ public class TracesTable extends JFrame {
 					data[j][AllTClassLevelCallers]+ ","+		data[j][AllTClassLevelCallees]+ ","+		data[j][AllTMethodLevelCallers]+ 
 					","+		data[j][AllTMethodLevelCallees]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees);
+					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+							+","+data[j][AtLeast1TParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]);
 				
 			bw.newLine();
 
@@ -1266,7 +1691,11 @@ public class TracesTable extends JFrame {
 		System.out.println("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClass.toString()); 
 		System.out.println("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
 		System.out.println("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
-		
+		System.out.println("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		System.out.println("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		System.out.println("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		System.out.println("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		System.out.println("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		
 		bw2.write("OWNER CLASS PREDICTION: "+OwnerClassPredictionClass.toString()); 
 		bw2.newLine();
@@ -1310,6 +1739,26 @@ public class TracesTable extends JFrame {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
 		bw2.newLine();
+		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
+		bw2.newLine();
+		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
+		bw2.newLine();
 		bw2.close();
 		String[] columnNames = { "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
 				"Gold", "Subject", "OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods",
@@ -1323,18 +1772,23 @@ public class TracesTable extends JFrame {
 				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
 				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
 				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-				,"Callers", "Callees"
+				,"Callers", "Callees", "#parameters", "Parameters","# Parameter T" ,"# Parameter N" ,"# Parameter E" ,
+				"MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
+				"AtLeast1TParameterPrediction", "AllNParameterPrediction", "AllTParameterPrediction"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		table = new JTable(model) {
 			// Determine editor to be used by row
 			public TableCellEditor getCellEditor(int row, int column) {
 				int modelColumn = convertColumnIndexToModel(column);
-
-				if (modelColumn == 48 && row < methodtraces2.size())
+				//
+				if (modelColumn == 48 )
 					return editors1.get(row);
-				if (modelColumn == 49 && row < methodtraces2.size())
+				if (modelColumn == 49 )
 					return editors3.get(row);
+				
+				
+				
 				/*
 				 * if (modelColumn == 31 && row < methodtraces2.size()) return
 				 * editors3.get(row); if (modelColumn == 32 && row < methodtraces2.size())
@@ -1505,8 +1959,8 @@ public class TracesTable extends JFrame {
 		table.getColumnModel().getColumn(45).setPreferredWidth(150);
 		table.getColumnModel().getColumn(46).setPreferredWidth(150);
 		table.getColumnModel().getColumn(47).setPreferredWidth(150);*/
-		table.getColumnModel().getColumn(48).setPreferredWidth(150);
-		table.getColumnModel().getColumn(49).setPreferredWidth(150);
+		//table.getColumnModel().getColumn(48).setPreferredWidth(150);
+		//table.getColumnModel().getColumn(49).setPreferredWidth(150);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		table.setRowSelectionAllowed(true);
@@ -1572,7 +2026,7 @@ public class TracesTable extends JFrame {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTable frame = new TracesTable();
+		TracesTableiTrust frame = new TracesTableiTrust();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
