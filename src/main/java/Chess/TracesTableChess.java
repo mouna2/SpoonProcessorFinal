@@ -794,7 +794,7 @@ public class TracesTableChess extends JFrame {
 				String Result=OwnerClassPredictionClass.ComparePredictionToGold(methodtrace.getGold(), data[j][OwnerClassPrediction].toString()); 
 				OwnerClassPredictionClass.UpdateCounters(Result, OwnerClassPredictionClass);
 			}
-			else {
+			//else {
 				
 				
 				
@@ -1335,7 +1335,7 @@ public class TracesTableChess extends JFrame {
 						String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AllNMethodLevelCallees].toString()); 
 						AllNMethodLevelCalleesClass.UpdateCounters(Result, AllNMethodLevelCalleesClass);
 				}
-			}
+			//}
 			
 			
 			JComboBox comboBox1 = new JComboBox(items1And2);

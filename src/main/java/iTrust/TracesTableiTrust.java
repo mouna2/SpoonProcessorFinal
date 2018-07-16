@@ -845,7 +845,7 @@ public class TracesTableiTrust extends JFrame {
 				String Result=OwnerClassPredictionClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][OwnerClassPrediction].toString()); 
 				OwnerClassPredictionClass.UpdateCounters(Result, OwnerClassPredictionClass);
 			}
-			else {
+			//else {
 				
 				if((counterParameterT!=0 || counterParameterN!=0)
 						/*	||
@@ -1496,7 +1496,7 @@ public class TracesTableiTrust extends JFrame {
 						String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallees].toString()); 
 						AllNMethodLevelCalleesClass.UpdateCounters(Result, AllNMethodLevelCalleesClass);
 				}
-			}
+			//}
 			
 		//NEEDS TO BE UNCOMMENTED 
 		//WAS COMMENTED TO SPEED THE PROGRAM'S EXECUTION 
