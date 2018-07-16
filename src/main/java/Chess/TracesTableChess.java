@@ -841,7 +841,7 @@ public class TracesTableChess extends JFrame {
 							data[j][MajorityParameters] = "E";
 						}
 						else if(counterParameterT==0 && counterParameterN>0 && counterParameterE>0) {
-							data[j][MajorityParameters] = "E";
+							data[j][MajorityParameters] = "N";
 						}
 						else if (((counterParameterT >= counterParameterN
 							//	&& counterParameterN >= counterParameterE
@@ -984,7 +984,7 @@ public class TracesTableChess extends JFrame {
 						data[j][MajorityClassLevelCallees] = "E";
 					}
 					else if(CounterTraceClassCallerT==0 && CounterTraceClassCallerN>0 && CounterTraceClassCallerE>0) {
-						data[j][MajorityClassLevelCallees] = "E";
+						data[j][MajorityClassLevelCallees] = "N";
 					}
 					else if ((CounterTraceClassCallerT >= CounterTraceClassCallerN
 							)
@@ -1022,7 +1022,7 @@ public class TracesTableChess extends JFrame {
 						data[j][MajorityClassLevelCallers] = "E";
 					}
 					else if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeN>0 && CounterTraceClassCalleeE>0) {
-						data[j][MajorityClassLevelCallers] = "E";
+						data[j][MajorityClassLevelCallers] = "N";
 					}
 					else if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeN>0 && CounterTraceClassCalleeE>0) {
 						data[j][MajorityClassLevelCallers] = "E";
@@ -1054,7 +1054,7 @@ public class TracesTableChess extends JFrame {
 						data[j][MajorityMethodLevelCallees] = "E";
 					}
 					else if(CountMethodT==0 && CountMethodN>0 && CountMethodE>0) {
-						data[j][MajorityMethodLevelCallees] = "E";
+						data[j][MajorityMethodLevelCallees] = "N";
 					}
 					
 					else if (CountMethodT >= CountMethodN){
@@ -1084,7 +1084,7 @@ public class TracesTableChess extends JFrame {
 						data[j][MajorityMethodLevelCallers] = "E";
 					}
 					else if(CountMethodTCallee==0 && CountMethodNCallee>0 && CountMethodECallee>0) {
-						data[j][MajorityMethodLevelCallers] = "E";
+						data[j][MajorityMethodLevelCallers] = "N";
 					} 
 					
 					else if(CountMethodTCallee>=CountMethodNCallee)

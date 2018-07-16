@@ -200,7 +200,7 @@ public class TracesTableJHotDraw extends JFrame {
 
 	public TracesTableJHotDraw() throws SQLException, IOException {
 	
-		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
+		bw.write("Row, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
 				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallers, MajorityClassLevelCallees, MajorityMethodLevelCallers, MajorityMethodLevelCallees,"
@@ -877,7 +877,7 @@ public class TracesTableJHotDraw extends JFrame {
 						data[j][MajorityParameters] = "E";
 					}
 					else if(counterParameterT==0 && counterParameterN>0 && counterParameterE>0) {
-						data[j][MajorityParameters] = "E";
+						data[j][MajorityParameters] = "N";
 					}
 					else if (((counterParameterT >= counterParameterN
 						//	&& counterParameterN >= counterParameterE
@@ -1021,7 +1021,7 @@ public class TracesTableJHotDraw extends JFrame {
 					data[j][MajorityClassLevelCallees] = "E";
 				}
 				else if(CounterTraceClassCallerT==0 && CounterTraceClassCallerN>0 && CounterTraceClassCallerE>0) {
-					data[j][MajorityClassLevelCallees] = "E";
+					data[j][MajorityClassLevelCallees] = "N";
 				}
 				else if ((CounterTraceClassCallerT >= CounterTraceClassCallerN
 						)
@@ -1059,7 +1059,7 @@ public class TracesTableJHotDraw extends JFrame {
 					data[j][MajorityClassLevelCallers] = "E";
 				}
 				else if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeN>0 && CounterTraceClassCalleeE>0) {
-					data[j][MajorityClassLevelCallers] = "E";
+					data[j][MajorityClassLevelCallers] = "N";
 				}
 				else if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeN>0 && CounterTraceClassCalleeE>0) {
 					data[j][MajorityClassLevelCallers] = "E";
@@ -1091,7 +1091,7 @@ public class TracesTableJHotDraw extends JFrame {
 					data[j][MajorityMethodLevelCallees] = "E";
 				}
 				else if(CountMethodT==0 && CountMethodN>0 && CountMethodE>0) {
-					data[j][MajorityMethodLevelCallees] = "E";
+					data[j][MajorityMethodLevelCallees] = "N";
 				}
 				
 				else if (CountMethodT >= CountMethodN){
@@ -1121,7 +1121,7 @@ public class TracesTableJHotDraw extends JFrame {
 					data[j][MajorityMethodLevelCallers] = "E";
 				}
 				else if(CountMethodTCallee==0 && CountMethodNCallee>0 && CountMethodECallee>0) {
-					data[j][MajorityMethodLevelCallers] = "E";
+					data[j][MajorityMethodLevelCallers] = "N";
 				} 
 				
 				else if(CountMethodTCallee>=CountMethodNCallee)
@@ -1884,7 +1884,7 @@ public class TracesTableJHotDraw extends JFrame {
 		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		bw2.newLine();
 		bw2.close();
-		String[] columnNames = { "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
+		String[] columnNames = { "Row","MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
 				"Gold", "Subject", "OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods",
 				"# caller methods T", "#caller methods N", "#caller methods E", "# caller classes",
 				"# caller classes T", "#caller classes N", "#caller classes E", "# callee methods",
