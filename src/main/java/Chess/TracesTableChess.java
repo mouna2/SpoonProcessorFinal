@@ -365,6 +365,7 @@ public class TracesTableChess extends JFrame {
 				
 
 			}
+			ParametersAppended=ParametersAppended.replaceAll(",", "/"); 
 			data [j][CountParamaterT]= counterParameterT; 
 			data [j][CountParamaterN]= counterParameterN; 
 			data [j][CountParamaterE]= counterParameterE; 
@@ -648,7 +649,7 @@ public class TracesTableChess extends JFrame {
 				}
 				
 			}
-			
+			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
 			for(String CalleeMethod: setitems3And4) {
 				if(CalleeMethod!=null) {
@@ -656,7 +657,7 @@ public class TracesTableChess extends JFrame {
 				}
 				
 			}
-			
+			AppendedCallees=AppendedCallees.replaceAll(",", "/"); 
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
