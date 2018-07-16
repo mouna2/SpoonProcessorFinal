@@ -111,17 +111,17 @@ public class TracesTableGantt extends JFrame {
 	int Callers=56; 
 	int Callees=57; 
 	int paramatersNumber=58; 
-	int CountParamaterT=59; 
-	int CountParamaterN=60; 
-	int CountParamaterE=61; 
-	int MajorityParameters=62; 
-	int AtLeast1NParameter=63; 
-	int AtLeast1TParameter=64; 
+	int CountParamaterT=60; 
+	int CountParamaterN=61; 
+	int CountParamaterE=62; 
+	int MajorityParameters=63; 
+	int AtLeast1NParameter=64; 
+	int AtLeast1TParameter=65; 
 	
-	int AtLeast2TParameter=65; 
-	int AtLeast2NParameter=66; 
-	int AllNParameters=67; 
-	int AllTParameters=68; 
+	int AtLeast2TParameter=66; 
+	int AtLeast2NParameter=67; 
+	int AllNParameters=68; 
+	int AllTParameters=69; 
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
