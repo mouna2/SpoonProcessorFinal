@@ -51,76 +51,77 @@ import mypackage.Parameter2;
 import mypackage.RequirementGold;
 
 public class TracesTableChess extends JFrame {
-	int MethodID=0; 
-	int MethodName=1; 
-	int RequirementID=2; 
-	int RequirementName=3; 
-	int ClassID=4; 
-	int ClassName=5; 
-	int Gold=6; 
-	int Subject=7; 
-	int OwnerClassT=8; 
-	int OwnerClassN=9; 
-	int OwnerClassE=10; 
-	int CallerMethodsNumber=11; 
-	int CallerMethodsT=12; 
-	int CallerMethodsN=13; 
-	int CallerMethodsE=14; 
-	int CallerClassesNumber=15; 
-	int CallerClassesT=16; 
-	int CallerClassesN=17; 
-	int CallerClassesE=18; 
-	int CalleeMethodsNumber=19; 
-	int CalleeMethodsT=20; 
-	int CalleeMethodsN=21; 
-	int CalleeMethodsE=22; 
-	int CalleeClassesNumber=23; 
-	int CalleeClassesT=24; 
-	int CalleeClassesN=25; 
-	int CalleeClassesE=26; 
-	int OwnerClassPrediction=27; 
-	int MajorityClassLevelCallers=28; 
-	int MajorityClassLevelCallees=29; 
-	int MajorityMethodLevelCallers=30; 
-	int MajorityMethodLevelCallees=31; 
-	int AtLeast1NPredictionClassLevelCallers=32; 
-	int AtLeast1NPredictionClassLevelCallees=33; 
-	int AtLeast1NPredictionMethodLevelCallers=34; 
-	int AtLeast1NPredictionMethodLevelCallees=35; 
-	int AtLeast1TPredictionClassLevelCallers=36; 
-	int AtLeast1TPredictionClassLevelCallees=37; 
-	int AtLeast1TPredictionMethodLevelCallers=38; 
-	int AtLeast1TPredictionMethodLevelCallees=39; 
-	int AtLeast2NPredictionClassLevelCallers=40; 
-	int AtLeast2NPredictionClassLevelCallees=41; 
-	int AtLeast2NPredictionMethodLevelCallers=42; 
-	int AtLeast2NPredictionMethodLevelCallees=43; 
-	int AtLeast2TPredictionClassLevelCallers=44; 
-	int AtLeast2TPredictionClassLevelCallees=45; 
-	int AtLeast2TPredictionMethodLevelCallers=46; 
-	int AtLeast2TPredictionMethodLevelCallees=47; 
-	int AllNClassLevelCallers=48; 
-	int AllNClassLevelCallees=49; 
-	int AllNMethodLevelCallers=50; 
-	int AllNMethodLevelCallees=51; 
-	int AllTClassLevelCallers=52; 
-	int AllTClassLevelCallees=53; 
-	int AllTMethodLevelCallers=54; 
-	int AllTMethodLevelCallees=55; 
-	int Callers=56; 
-	int Callees=57; 
-	int paramatersNumber=58; 
-	int CountParamaterT=60; 
-	int CountParamaterN=61; 
-	int CountParamaterE=62; 
-	int MajorityParameters=63; 
-	int AtLeast1NParameter=64; 
-	int AtLeast1TParameter=65; 
+	int Row=0; 
+	int MethodID=1; 
+	int MethodName=2; 
+	int RequirementID=3; 
+	int RequirementName=4; 
+	int ClassID=5; 
+	int ClassName=6; 
+	int Gold=7; 
+	int Subject=8; 
+	int OwnerClassT=9; 
+	int OwnerClassN=10; 
+	int OwnerClassE=11; 
+	int CallerMethodsNumber=12; 
+	int CallerMethodsT=13; 
+	int CallerMethodsN=14; 
+	int CallerMethodsE=15; 
+	int CallerClassesNumber=16; 
+	int CallerClassesT=17; 
+	int CallerClassesN=18; 
+	int CallerClassesE=19; 
+	int CalleeMethodsNumber=20; 
+	int CalleeMethodsT=21; 
+	int CalleeMethodsN=22; 
+	int CalleeMethodsE=23; 
+	int CalleeClassesNumber=24; 
+	int CalleeClassesT=25; 
+	int CalleeClassesN=26; 
+	int CalleeClassesE=27; 
+	int OwnerClassPrediction=28; 
+	int MajorityClassLevelCallers=29; 
+	int MajorityClassLevelCallees=30; 
+	int MajorityMethodLevelCallers=31; 
+	int MajorityMethodLevelCallees=32; 
+	int AtLeast1NPredictionClassLevelCallers=33; 
+	int AtLeast1NPredictionClassLevelCallees=34; 
+	int AtLeast1NPredictionMethodLevelCallers=35; 
+	int AtLeast1NPredictionMethodLevelCallees=36; 
+	int AtLeast1TPredictionClassLevelCallers=37; 
+	int AtLeast1TPredictionClassLevelCallees=38; 
+	int AtLeast1TPredictionMethodLevelCallers=39; 
+	int AtLeast1TPredictionMethodLevelCallees=40; 
+	int AtLeast2NPredictionClassLevelCallers=41; 
+	int AtLeast2NPredictionClassLevelCallees=42; 
+	int AtLeast2NPredictionMethodLevelCallers=43; 
+	int AtLeast2NPredictionMethodLevelCallees=44; 
+	int AtLeast2TPredictionClassLevelCallers=45; 
+	int AtLeast2TPredictionClassLevelCallees=46; 
+	int AtLeast2TPredictionMethodLevelCallers=47; 
+	int AtLeast2TPredictionMethodLevelCallees=48; 
+	int AllNClassLevelCallers=49; 
+	int AllNClassLevelCallees=50; 
+	int AllNMethodLevelCallers=51; 
+	int AllNMethodLevelCallees=52; 
+	int AllTClassLevelCallers=53; 
+	int AllTClassLevelCallees=54; 
+	int AllTMethodLevelCallers=55; 
+	int AllTMethodLevelCallees=56; 
+	int Callers=57; 
+	int Callees=58; 
+	int paramatersNumber=59; 
+	int CountParamaterT=61; 
+	int CountParamaterN=62; 
+	int CountParamaterE=63; 
+	int MajorityParameters=64; 
+	int AtLeast1NParameter=65; 
+	int AtLeast1TParameter=66; 
 	
-	int AtLeast2TParameter=66; 
-	int AtLeast2NParameter=67; 
-	int AllNParameters=68; 
-	int AllTParameters=69; 
+	int AtLeast2TParameter=67; 
+	int AtLeast2NParameter=68; 
+	int AllNParameters=69; 
+	int AllTParameters=70; 
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
@@ -198,7 +199,7 @@ public class TracesTableChess extends JFrame {
 
 	public TracesTableChess() throws SQLException, IOException {
 	
-		bw.write("MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
+		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 						+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 						+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
 						+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallers, MajorityClassLevelCallees, MajorityMethodLevelCallers, MajorityMethodLevelCallees,"
@@ -244,6 +245,7 @@ public class TracesTableChess extends JFrame {
 		int myfinalcounter=1; 
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
+			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
@@ -1688,7 +1690,7 @@ public class TracesTableChess extends JFrame {
 
 	
 
-			bw.write(data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
+			bw.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold] + "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
 					+ data[j][OwnerClassE] + "," + data[j][CallerMethodsNumber]+ "," + AppendedCallers + "," + data[j][CallerMethodsT] + "," +
 					data[j][CallerMethodsN] + "," + data[j][CallerMethodsE] + ","
@@ -1849,7 +1851,7 @@ public class TracesTableChess extends JFrame {
 		bw2.write("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
 		bw2.newLine();
 		bw2.close();
-		String[] columnNames = { "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
+		String[] columnNames = {"Row",  "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
 				"Gold", "Subject", "OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods",
 				"# caller methods T", "#caller methods N", "#caller methods E", "# caller classes",
 				"# caller classes T", "#caller classes N", "#caller classes E", "# callee methods",
