@@ -28,6 +28,7 @@ import mypackage.ClassTrace2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
+import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
@@ -38,7 +39,7 @@ import spoon.reflect.factory.ClassFactory;
 
 public class DatabaseReading2Gantt {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
-	public static List<MethodTrace2> methodtraces2 = null;
+	public static List<MethodTraceSubjectTSubjectN> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
@@ -169,9 +170,9 @@ public class DatabaseReading2Gantt {
 		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
-		MethodTrace2 methodtrace2 = new MethodTrace2();
-		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
-		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
+		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
+		HashMap<Integer, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
+		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
 		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
@@ -412,12 +413,12 @@ public class DatabaseReading2Gantt {
 		DatabaseReading2Gantt.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
-	public static List<MethodTrace2> getMethodtraces2() {
+	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2() {
 		return methodtraces2;
 	}
 
-	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
-		DatabaseReading2Gantt.methodtraces2 = methodtraces2;
+	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectN> methodtraces) {
+		DatabaseReading2Gantt.methodtraces2 = methodtraces;
 	}
 	
 	

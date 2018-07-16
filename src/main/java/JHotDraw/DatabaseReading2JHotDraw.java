@@ -27,7 +27,7 @@ import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
-import mypackage.MethodTrace2;
+import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
@@ -38,7 +38,7 @@ import spoon.reflect.factory.ClassFactory;
 
 public class DatabaseReading2JHotDraw {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
-	public static List<MethodTrace2> methodtraces2 = null;
+	public static List<MethodTraceSubjectTSubjectN> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
@@ -169,9 +169,9 @@ public class DatabaseReading2JHotDraw {
 		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
-		MethodTrace2 methodtrace2 = new MethodTrace2();
-		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
-		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
+		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
+		HashMap<Integer, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
+		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
 		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
@@ -192,7 +192,7 @@ public class DatabaseReading2JHotDraw {
 		
 		
 		/*String goldprediction=""; 
-		for (MethodTrace2 tracemeth : methodtraces) {
+		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) {
 			Requirement2 requirement = tracemeth.getRequirement();
 			Method2Representation MethodRepresentation = tracemeth.getMethodRepresentation();
 			String gold = tracemeth.getGold();
@@ -201,9 +201,9 @@ public class DatabaseReading2JHotDraw {
 				List<Method2Representation> Callees = method.calleesList;
 				for (Method2Representation Callee : Callees) {
 					if (Callee.methodid.equals(tracemeth.getMethodRepresentation().methodid)) {
-						HashMap<Requirement2, MethodTrace2> methodtracesHash = method.getMethodtraces();
-						List<MethodTrace2> methodtracesList = new ArrayList<MethodTrace2>(methodtracesHash.values());
-						for (MethodTrace2 methtrace : methodtracesList) {
+						HashMap<Requirement2, MethodTraceSubjectTSubjectN> methodtracesHash = method.getMethodtraces();
+						List<MethodTraceSubjectTSubjectN> methodtracesList = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracesHash.values());
+						for (MethodTraceSubjectTSubjectN methtrace : methodtracesList) {
 							if (methtrace.getRequirement().ID.equals(tracemeth.getRequirement().ID)) {
 								System.out.println("HEYYYYYYYYYYYYYYYY CALLEE");
 								goldprediction="goldpredictionCallee"; 
@@ -215,10 +215,10 @@ public class DatabaseReading2JHotDraw {
 				List<Method2Representation> Callers = method.callersList;
 				for (Method2Representation Caller : Callers) {
 					if (Caller.methodid.equals(tracemeth.getMethodRepresentation().methodid)) {
-						HashMap<Requirement2, MethodTrace2> methodtracesHashCallers = method.getMethodtraces();
-						List<MethodTrace2> methodtracesCallersList = new ArrayList<MethodTrace2>(
+						HashMap<Requirement2, MethodTraceSubjectTSubjectN> methodtracesHashCallers = method.getMethodtraces();
+						List<MethodTraceSubjectTSubjectN> methodtracesCallersList = new ArrayList<MethodTraceSubjectTSubjectN>(
 								methodtracesHashCallers.values());
-						for (MethodTrace2 methtrace : methodtracesCallersList) {
+						for (MethodTraceSubjectTSubjectN methtrace : methodtracesCallersList) {
 							if (methtrace.getRequirement().ID.equals(tracemeth.getRequirement().ID)) {
 								System.out.println("HEYYYYYYYYYYYYYYYY CALLER ");
 								goldprediction="goldpredictionCaller"; 
@@ -249,7 +249,7 @@ public class DatabaseReading2JHotDraw {
 	/*	
 		String goldprediction=""; 
 		String GoldVal=""; 
-		for (MethodTrace2 tracemeth : methodtraces) { 
+		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) { 
 			
 			for (Method2Details method : methodlist) {
 				List<Method2Representation> Callees = method.calleesList;
@@ -275,7 +275,7 @@ public class DatabaseReading2JHotDraw {
 			}
 		}
 				 GoldVal=""; 
-				for (MethodTrace2 tracemeth2 : methodtraces) {
+				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
 						List<Method2Representation> Callers = method2.callersList;
@@ -306,7 +306,7 @@ public class DatabaseReading2JHotDraw {
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
 		/* GoldVal=""; 
-		for (MethodTrace2 tracemeth : methodtraces) {
+		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
 				List<Method2Representation> CalleesExecuted = method.calleesListExecuted;
@@ -332,7 +332,7 @@ public class DatabaseReading2JHotDraw {
 			}
 		}
 				 GoldVal=""; 
-				for (MethodTrace2 tracemeth2 : methodtraces) {
+				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
 						List<Method2Representation> CallersExecuted = method2.callersListExecuted;
@@ -360,7 +360,7 @@ public class DatabaseReading2JHotDraw {
 
 		}
 
-		for (MethodTrace2 methtr : methodtraces2) {
+		for (MethodTraceSubjectTSubjectN methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));
 		}
 
@@ -412,11 +412,11 @@ public class DatabaseReading2JHotDraw {
 		DatabaseReading2JHotDraw.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
-	public static List<MethodTrace2> getMethodtraces2() {
+	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2() {
 		return methodtraces2;
 	}
 
-	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
+	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectN> methodtraces2) {
 		DatabaseReading2JHotDraw.methodtraces2 = methodtraces2;
 	}
 	

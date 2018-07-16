@@ -43,7 +43,7 @@ import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
-import mypackage.MethodTrace2;
+import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.RequirementGold;
 
 public class TracesTable extends JFrame {
@@ -119,7 +119,7 @@ public class TracesTable extends JFrame {
 	PredictionEvaluation AllTMethodLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTMethodLevelCalleesClass= new PredictionEvaluation(); 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
+	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
@@ -190,7 +190,7 @@ public class TracesTable extends JFrame {
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][10000];
 		// Create the editors to be used for each row
-		for (MethodTrace2 methodtrace : methodtraces2) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
