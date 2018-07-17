@@ -561,8 +561,11 @@ public class TracesTableChess extends JFrame {
 					
 				} else {
 					for (String item : items3) {
-						item = item.replaceAll("\\(.*\\)", "");
-						if (item.equals(caller.toString()) == true) {
+						item = item.replaceAll("\\(.*\\).*", "");
+						item = item.replaceAll(":", ",");
+						String mycaller=caller.toString(); 
+						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
+						if (item.equals(mycaller) == true) {
 							equalbool = true;
 							BothInParsedAndExecutedCallees++; 
 						}
@@ -1717,7 +1720,7 @@ public class TracesTableChess extends JFrame {
 					data[j][AllTClassLevelCallers]+ ","+		data[j][AllTClassLevelCallees]+ ","+		data[j][AllTMethodLevelCallers]+ 
 					","+		data[j][AllTMethodLevelCallees]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
 							+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+methodtrace.gold2);
 				
 			bw.newLine();

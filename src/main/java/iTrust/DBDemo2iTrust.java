@@ -738,127 +738,133 @@ public class DBDemo2iTrust {
 ////////////        /*********************************************************************************************************************************************************************************/
 //////////    	
 //////////    	//BUILD PARAMETERS TABLE 
-//for(CtType<?> clazz : classFactory.getAll()) {
-//    		
-//    		System.out.println(clazz.getSimpleName());
-//    		System.out.println(clazz.getPackage());
-//    		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
-//    		String MethodReferenced=null; 
-//    		String MethodName=null; 
-//    		String parameter=null; 
-//    	    String ClassName=null; 
-//    	    String classid=null; 
-//    		String parameterclass=null; 
-//    		String paramclassid=null; 
-//    				
-//    		 //for(CtField<?> field : clazz.getFields()) {
-//    				for(CtMethod<?> method :clazz.getMethods()) {
-//    	    			List<CtParameter<?>> params = method.getParameters(); 
-//    				
-//    	    			
-//    	    			
-//    	    		
-//    	    	
-//    	    			for( CtParameter<?> myparam :params) {
-//    	    				boolean flag2=false; 
-//    	    				
-//    	    				ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-//    	    				
-//	    					while(classnames.next()){
-//	    						 ClassName =classnames.getString("classname"); 
-//	    					
-//	    			   		   }
-//	    					
-//	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-//    	    				
-//	    					while(classids.next()){
-//	    						 classid =classids.getString("id"); 
-//	    					
-//	    			   		   }
-//	    					
-//    	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-//    	    				
-//    	    					while(methods.next()){
-//    	    						MethodReferenced =methods.getString("id"); 
-//    	    					
-//    	    			   		   }
-//    	    				
-//    	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
-//        	    				
-//    	    					while(paramclassids.next()){
-//    	    						flag2=true; 
-//    	    						paramclassid =paramclassids.getString("id"); 
-//    	    					
-//    	    			   		   }
-//    	    			
-//    	    				
-//    	    					
-//    	    					
-//    	    				
-//    	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
-//    	    						System.out.println("HERE IS A PARAMETER: "+ myparam);
-//    	    						if(MethodReferenced==null) {
-//    	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
-//    	    						}
-//    	    						if(MethodReferenced!=null && flag2==true)
-//    	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0+"')");
-//
-//    	    				//	}
-//    	    				
-//    	    				
-//    	    			}
-//    	    			
-//    	    		
-//    	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
-//    	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-//    	    		
-//    	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-//    	    				for(CtReturn ret: returnstatement) {
-//    	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
-//    	    					ret.getReturnedExpression().getType(); 
-//    	    				
-//    	    			}*/
-//    	    			boolean flag=false; 
-//    	    			CtTypeReference<?> MethodType = method.getType();  
-//     	    			System.out.println("METHOD TYPE  "+ MethodType);
-//     	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-//	    				
-//    					while(classnames.next()){
-//    						 ClassName =classnames.getString("classname"); 
-//    					
-//    			   		   }
-//    					
-//    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-//	    				
-//    					while(classids.next()){
-//    						 classid =classids.getString("id"); 
-//    					
-//    			   		   }
-//    					
-//	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-//	    				
-//	    					while(methods.next()){
-//	    						MethodReferenced =methods.getString("id"); 
-//	    					
-//	    			   		   }
-//	    				
-//	    					
-//	    					
-//	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
-//		    				
-//	    					while(parameterclasses.next()){
-//	    						parameterclass =parameterclasses.getString("id"); 
-//	    						flag=true; 
-//	    					
-//	    			   		   }
-//     	    			
-//    	    			if(MethodReferenced!=null && flag==true)
-//    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1+"')");
-//
-//    	    		
-//    	    		}
-//    		 //}
-//    	}
+    List<String> paramlist= new ArrayList<String>();   	
+
+for(CtType<?> clazz : classFactory.getAll()) {
+    		
+    		System.out.println(clazz.getSimpleName());
+    		System.out.println(clazz.getPackage());
+    		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
+    		String MethodReferenced=null; 
+    		String MethodName=null; 
+    		String parameter=null; 
+    	    String ClassName=null; 
+    	    String classid=null; 
+    		String parameterclass=null; 
+    		String paramclassid=null; 
+    				
+    		 //for(CtField<?> field : clazz.getFields()) {
+    				for(CtMethod<?> method :clazz.getMethods()) {
+    	    			List<CtParameter<?>> params = method.getParameters(); 
+    				
+    	    			
+    	    			
+    	    		
+    	    	
+    	    			for( CtParameter<?> myparam :params) {
+    	    				String paramInfo=""; 
+    	    				boolean flag2=false; 
+    	    				
+    	    				ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+    	    				
+	    					while(classnames.next()){
+	    						 ClassName =classnames.getString("classname"); 
+	    					
+	    			   		   }
+	    					
+	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+    	    				
+	    					while(classids.next()){
+	    						 classid =classids.getString("id"); 
+	    					
+	    			   		   }
+	    					
+    	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+    	    				
+    	    					while(methods.next()){
+    	    						MethodReferenced =methods.getString("id"); 
+    	    					
+    	    			   		   }
+    	    				
+    	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
+        	    				
+    	    					while(paramclassids.next()){
+    	    						flag2=true; 
+    	    						paramclassid =paramclassids.getString("id"); 
+    	    					
+    	    			   		   }
+    	    			
+    	    				
+    	    					
+    	    					
+    	    				
+    	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
+    	    						System.out.println("HERE IS A PARAMETER: "+ myparam);
+    	    						 paramInfo= myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
+    	    						if(MethodReferenced==null) {
+    	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
+    	    						}
+    	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
+        	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0+"')");
+        	    		    			paramlist.add(paramInfo); 
+    	    						}
+
+    	    				//	}
+    	    				
+    	    				
+    	    			}
+    	    			
+    	    		
+    	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
+    	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+    	    		
+    	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+    	    				for(CtReturn ret: returnstatement) {
+    	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
+    	    					ret.getReturnedExpression().getType(); 
+    	    				
+    	    			}*/
+    	    			boolean flag=false; 
+    	    			CtTypeReference<?> MethodType = method.getType();  
+     	    			System.out.println("METHOD TYPE  "+ MethodType);
+     	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+	    				
+    					while(classnames.next()){
+    						 ClassName =classnames.getString("classname"); 
+    					
+    			   		   }
+    					
+    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+	    				
+    					while(classids.next()){
+    						 classid =classids.getString("id"); 
+    					
+    			   		   }
+    					
+	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+	    				
+	    					while(methods.next()){
+	    						MethodReferenced =methods.getString("id"); 
+	    					
+	    			   		   }
+	    				
+	    					
+	    					
+	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
+		    				
+	    					while(parameterclasses.next()){
+	    						parameterclass =parameterclasses.getString("id"); 
+	    						flag=true; 
+	    					
+	    			   		   }
+     	    			String paramInfo=MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
+    	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false)
+    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1+"')");
+    	    				paramlist.add(paramInfo);
+    	    		
+    	    		}
+    		 //}
+    	}
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/
@@ -1935,388 +1941,416 @@ String callerexecutedid=null;
 //	/*********************************************************************************************************************************************************************************/   
 ////BUILD TABLE FOR TRACES CLASSES 
 //
-List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
-	int counter=1; 
-try { 
-		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\iTrustTracesFinal.txt");
-		fileReader = new FileReader(file);
-		bufferedReader = new BufferedReader(fileReader);	
-		line = bufferedReader.readLine(); 
-		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
-		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
-		while ((line = bufferedReader.readLine()) != null) {
-			System.out.println(line);
-			String[] linesplitted = line.split(","); 
-			method=linesplitted[1]; 
-			requirement=linesplitted[2]; 
-			gold=linesplitted[4]; 
-			subject=linesplitted[5]; 
-			
-			String shortmethod=method.substring(0, method.indexOf("(")); 
-			  String[] parts = shortmethod.split("[$]", 2);
-			shortmethod=parts[0]; 
-			shortmethod=shortmethod.replaceAll("clinit", "init"); 
-			
-			 shortmethod=ParseLine(line); 
-			 
-			System.out.println("HERE IS THIS SHORT METHODDD========>"+ shortmethod); 
-	 String goldvalue=null; 
-	 String subjectvalue=null; 
-		
-	 String interfacename=null; 
-		ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-		while(interfaces.next()){
-			interfacename = interfaces.getString("interfacename"); 
-			   }
-		String interfaceid=null; 
-		ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
-		while(interfacesids.next()){
-			interfaceid = interfacesids.getString("interfaceclassid"); 
-			   } 
-		shortmethod=shortmethod.trim(); 
-		shortmethod=shortmethod.replaceAll("clinit", "init");
-		shortmethod=shortmethod.replaceAll("null", "");
-
-		classname=null; 
-		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
-		while(classnames.next()){
-			classname = classnames.getString("classname"); 
-			   }
-		classid=null; 
-		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'");
-		while(classids.next()){
-			classid = classids.getString("classid"); 
-			   }
-	requirement=requirement.trim(); 
-	requirementid=null; 
-	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
-	while(requirements.next()){
-		requirementid = requirements.getString("id"); 
-		   }	
-	
-
-	goldvalue=null; 
-	List<String> goldvaluesList= new ArrayList<String>();
-	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-	 while(goldvalues.next()){
-			goldvalue = goldvalues.getString("gold"); 
-
-		    goldvalue=goldvalue.trim();
-			goldvaluesList.add(goldvalue);
-			   }
-	 
-	 subjectvalue=null; 
-	 List<String> subjectvaluesList= new ArrayList<String>();
-		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-		while(subjectvalues.next()){
-			subjectvalue = subjectvalues.getString("subject"); 
-
-			subjectvalue=subjectvalue.trim();
-			subjectvaluesList.add(subjectvalue);
-			   }
-		if(requirementid!=null && classid!=null ) {
-	 //1 TT
-		if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-	 //2 ET
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-	 //3 TE
-	 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-	 //4 NN
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-	 //5 NT
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-	 //6 EN
-	 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-		//7 NE
-	 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-		 //8 TN
-	 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-		 // 9 EE
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
-			st.executeUpdate(statement8);
-
-	 }
-		}
-		
-		
-		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
-		if(interfaceid!=null && interfacename!=null ) {
-
-			 //1 TT
-				if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-			 //2 ET
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-			 //3 TE
-			 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-			 //4 NN
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-			 //5 NT
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-			 //6 EN
-			 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-				//7 NE
-			 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-				 //8 TN
-			 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-				 // 9 EE
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-
-			 }
-				
-		}
-		
-	/*	
-		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
-		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
-				if(requirementid!=null && classid!=null ) {
-					RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
+//List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
+//	int counter=1; 
+//try {   Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
+//
+//		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\iTrustTracesFinal.txt");
+//		fileReader = new FileReader(file);
+//		bufferedReader = new BufferedReader(fileReader);	
+//		line = bufferedReader.readLine(); 
+//		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
+//		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
+//		while ((line = bufferedReader.readLine()) != null) {
+//			System.out.println(line);
+//			String[] linesplitted = line.split(","); 
+//			method=linesplitted[1]; 
+//			requirement=linesplitted[2]; 
+//			gold=linesplitted[4]; 
+//			subject=linesplitted[5]; 
+//			
+//			String shortmethod=method.substring(0, method.indexOf("(")); 
+//			  String[] parts = shortmethod.split("[$]", 2);
+//			shortmethod=parts[0]; 
+//			shortmethod=shortmethod.replaceAll("clinit", "init"); 
+//			
+//			 shortmethod=ParseLine(line); 
+//			 
+//			System.out.println("HERE IS THIS SHORT METHODDD========>"+ shortmethod); 
+//	 String goldvalue=null; 
+//	 String subjectvalue=null; 
+//	 classname=null; 
+//		shortmethod=shortmethod.trim(); 
+//		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.shortmethod LIKE'%"+shortmethod+"%'"); 
+//		while(classnames.next()){
+//			classname = classnames.getString("classname"); 
+//			   }
+//		classid=null; 
+//		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.shortmethod LIKE'%"+shortmethod+"%'"); 
+//		while(classids.next()){
+//			classid = classids.getString("classid"); 
+//			   }
+//		
+//	 String interfacename=null; 
+//		ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+//		while(interfaces.next()){
+//			interfacename = interfaces.getString("interfacename"); 
+//			   }
+//		String interfaceid=null; 
+//		ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename LIKE'%"+interfacename+"%'"); 
+//		while(interfacesids.next()){
+//			interfaceid = interfacesids.getString("interfaceclassid"); 
+//			   } 
+//		requirement=requirement.trim(); 
+//		requirementid=null; 
+//		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+//		while(requirements.next()){
+//			requirementid = requirements.getString("id"); 
+//			   }	
+//		
+//
+//		goldvalue=null; 
+//		List<String> goldvaluesList= new ArrayList<String>();
+//		ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//		 while(goldvalues.next()){
+//				goldvalue = goldvalues.getString("gold"); 
+//
+//			    goldvalue=goldvalue.trim();
+//				goldvaluesList.add(goldvalue);
+//				   }
+//		 
+//		 subjectvalue=null; 
+//		 List<String> subjectvaluesList= new ArrayList<String>();
+//			ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//			while(subjectvalues.next()){
+//				subjectvalue = subjectvalues.getString("subject"); 
+//
+//				subjectvalue=subjectvalue.trim();
+//				subjectvaluesList.add(subjectvalue);
+//				   }
+//			String ReqClass=requirementid+"-"+classid;
+//			if(requirementid!=null && classid!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//				
+//		 //1 TT
+//				
+//			if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "TT");
+//				st.executeUpdate(statement8);
+//
+//		 }
+//		 //2 ET
+//		 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "ET");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//		 //3 TE
+//		 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "TE");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//		 //4 NN
+//		 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "NN");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//		 //5 NT
+//		 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "NT");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//		 //6 EN
+//		 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "EN");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//			//7 NE
+//		 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "NE");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//			 //8 TN
+//		 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "TN");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//			 // 9 EE
+//		 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//				String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
+//				RequirementClassHashMap.put(ReqClass, "EE");
+//
+//				st.executeUpdate(statement8);
+//
+//		 }
+//			}
+//			
+//			 ReqClass=requirementid+"-"+interfaceid;
+//			//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
+//			if(interfaceid!=null && interfacename!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//				
+//				 //1 TT
+//					if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "TT");
+//
+//				 }
+//				 //2 ET
+//				 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "ET");
+//
+//				 }
+//				 //3 TE
+//				 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "TE");
+//
+//				 }
+//				 //4 NN
+//				 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "NN");
+//
+//
+//				 }
+//				 //5 NT
+//				 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "NT");
+//
+//				 }
+//				 //6 EN
+//				 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "EN");
+//
+//				 }
+//					//7 NE
+//				 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "NE");
+//
+//				 }
+//					 //8 TN
+//				 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "TN");
+//				 }			
+//
+//					 // 9 EE
+//				 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
+//						st.executeUpdate(statement8);
+//						RequirementClassHashMap.put(ReqClass, "EE");
+//				 }
+//					
+//			
+//			}
+//		
+//	/*	
+//		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
+//		//GoldSubjectValues goldsubject= new GoldSubjectValues(goldvalue, subjectvalue); 
+//				if(requirementid!=null && classid!=null ) {
+//					RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, classid, classname, goldvalue, subjectvalue); 
+////					if(GoldHashTable.containsKey(RequirementClassKey)==false) {
+////						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
+////						GoldHashTable.put(RequirementClassKey, goldvalue); 
+////					}
+////					else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+////						GoldHashTable.put(RequirementClassKey, goldvalue); 
+////					}
+////				
+////					else {
+////						//if there is at least 1T then it is a trace
+////						GoldHashTable.put(RequirementClassKey, goldvalue); 
+////						RequirementClassKey.setGoldflag(goldvalue); 
+////					}
+//					goldvalue=goldvalue.trim();
 //					if(GoldHashTable.containsKey(RequirementClassKey)==false) {
 //						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
 //						GoldHashTable.put(RequirementClassKey, goldvalue); 
 //					}
-//					else if((GoldHashTable.get(RequirementClassKey).equals("T")==false) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+//					//if there is at least 1T then it is a trace
+//					else if((goldvalue.equals("T")) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
 //						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
 //					}
 //				
-//					else {
+//					else if ((goldvalue.equals("E") &&( RequirementClassKey.getGoldflag().equals("E")==false)
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false))){
+//						
+//						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//					else if (goldvalue.equals("N") &&( RequirementClassKey.getGoldflag().equals("E")==false) 
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
 //						//if there is at least 1T then it is a trace
 //						GoldHashTable.put(RequirementClassKey, goldvalue); 
 //						RequirementClassKey.setGoldflag(goldvalue); 
 //					}
-					goldvalue=goldvalue.trim();
-					if(GoldHashTable.containsKey(RequirementClassKey)==false) {
-						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-					}
-					//if there is at least 1T then it is a trace
-					else if((goldvalue.equals("T")) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-				
-					else if ((goldvalue.equals("E") &&( RequirementClassKey.getGoldflag().equals("E")==false)
-							&&( RequirementClassKey.getGoldflag().equals("T")==false))){
-						
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					else if (goldvalue.equals("N") &&( RequirementClassKey.getGoldflag().equals("E")==false) 
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						//if there is at least 1T then it is a trace
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					
-					
-					
-					
-					
+//					
+//					
+//					
+//					
+//					
+////					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////					}
+////					
+////					else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////					}
+////					else {
+////						
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////						RequirementClassKey.setSubjectflag(subjectvalue); 
+////					}
+//					
 //					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+//						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//					}
+//					//if there is at least 1T then it is a trace
+//					else if((subjectvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//				
+//					else if ((subjectvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
+//						
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//					else if ((subjectvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
+//						//if there is at least 1T then it is a trace
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//					if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
+//						st.executeUpdate(statement8); 
+//						RequirementClassKeys.add(RequirementClassKey); 
+//					}
+//				
+//					
+//				}*/
+//			//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
+//				/*if(interfaceid!=null && interfacename!=null ) {
+//					RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, interfaceid, interfacename, goldvalue, subjectvalue); 
+//					if(GoldHashTable.containsKey(RequirementClassKey)==false) {
+//						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
+//						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//					}
+//					//if there is at least 1T then it is a trace
+//					else if((goldvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+//						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//				
+//					else if ((goldvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
+//						
+//						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//					else if ((goldvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
+//						//if there is at least 1T then it is a trace
+//						GoldHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
 //					}
 //					
-//					else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-//					}
-//					else {
-//						
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-//						RequirementClassKey.setSubjectflag(subjectvalue); 
-//					}
-					
-					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
-						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-					}
-					//if there is at least 1T then it is a trace
-					else if((subjectvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-				
-					else if ((subjectvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					else if ((subjectvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						//if there is at least 1T then it is a trace
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
-						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
-						st.executeUpdate(statement8); 
-						RequirementClassKeys.add(RequirementClassKey); 
-					}
-				
-					
-				}*/
-			//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
-				/*if(interfaceid!=null && interfacename!=null ) {
-					RequirementClassKey RequirementClassKey= new RequirementClassKey(requirementid, requirement, interfaceid, interfacename, goldvalue, subjectvalue); 
-					if(GoldHashTable.containsKey(RequirementClassKey)==false) {
-						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-					}
-					//if there is at least 1T then it is a trace
-					else if((goldvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-				
-					else if ((goldvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					else if ((goldvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						//if there is at least 1T then it is a trace
-						GoldHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					
-					
-					
-					
-					
-					
-					
-					
-//					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-//					}
 //					
-//					else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+//					
+//					
+//					
+//					
+//					
+//					
+////					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////					}
+////					
+////					else if((SubjectHashTable.get(RequirementClassKey).equals("T")==false) && (RequirementClassKey.getSubjectflag().equals("T")==false) ) {
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////					}
+////					else {
+////						
+////						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
+////						RequirementClassKey.setSubjectflag(subjectvalue); 
+////					}
+//					
+//					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
+//						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
 //					}
-//					else {
+//					//if there is at least 1T then it is a trace
+//					else if((subjectvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//				
+//					else if ((subjectvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
 //						
-//						SubjectHashTable.put(RequirementClassKey, subjectvalue); 
-//						RequirementClassKey.setSubjectflag(subjectvalue); 
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
 //					}
-					
-					if(SubjectHashTable.containsKey(RequirementClassKey)==false) {
-						System.out.println(RequirementClassKey.getClassName()+"   "+ RequirementClassKey.getClassName_id()+"   "+ RequirementClassKey.getRequirement_id()+ "   "+goldvalue);
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-					}
-					//if there is at least 1T then it is a trace
-					else if((subjectvalue.equals("T")==true) &&( RequirementClassKey.getGoldflag().equals("T")==false)  ) {
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-				
-					else if ((subjectvalue.equals("E")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false)
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					else if ((subjectvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
-							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
-						//if there is at least 1T then it is a trace
-						SubjectHashTable.put(RequirementClassKey, goldvalue); 
-						RequirementClassKey.setGoldflag(goldvalue); 
-					}
-					if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
-						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
-						st.executeUpdate(statement8); 
-						RequirementClassKeys.add(RequirementClassKey); 
-					}
-				
-					
-				}*/
-		counter++; 
-		
-	
-
-		
-	
-
-
-
-		}
-	
-	
-	
-	
-	}
-	
-	catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//					else if ((subjectvalue.equals("N")==true) &&( RequirementClassKey.getGoldflag().equals("E")==false) 
+//							&&( RequirementClassKey.getGoldflag().equals("T")==false)){
+//						//if there is at least 1T then it is a trace
+//						SubjectHashTable.put(RequirementClassKey, goldvalue); 
+//						RequirementClassKey.setGoldflag(goldvalue); 
+//					}
+//					if(RequirementClassKey.contains(RequirementClassKeys, RequirementClassKey)==false) {
+//						String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+GoldHashTable.get(RequirementClassKey) +"','" +SubjectHashTable.get(RequirementClassKey)+"')";	
+//						st.executeUpdate(statement8); 
+//						RequirementClassKeys.add(RequirementClassKey); 
+//					}
+//				
+//					
+//				}*/
+//		counter++; 
+//		
+//	
+//
+//		
+//	
+//
+//
+//
+//		}
+//	
+//	
+//	
+//	
+//	}
+//	
+//	catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 		
 	}
 		

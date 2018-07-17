@@ -291,7 +291,7 @@ public class MethodTraceSubjectTSubjectN {
 				 
 				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
 				 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
-				 while(callersExecuted.next() && index<100) {
+				 while(callersExecuted.next()) {
 					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
 					 ResultSet methodtraces=st2.executeQuery("select traces.* from traces where methodid='" + id+"'"); 
 					 while(methodtraces.next()) {
