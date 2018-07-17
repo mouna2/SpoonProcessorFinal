@@ -5,11 +5,19 @@ public class Parameter2 {
 	ClassRepresentation2 ParameterType;
 	ClassRepresentation2 OwnerClass;
 	String isReturn;
+	String methodname; 
 	public String getParameterName() {
 		return parameterName;
 	}
 	public void setParameterName(String parameterName) {
 		this.parameterName = parameterName;
+	}
+	
+	public String getMethodname() {
+		return methodname;
+	}
+	public void setMethodname(String methodname) {
+		this.methodname = methodname;
 	}
 	public ClassRepresentation2 getParameterType() {
 		return ParameterType;
@@ -43,7 +51,7 @@ public class Parameter2 {
 	@Override
 	public String toString() {
 		return "Parameter [parameterName=" + parameterName + ", ParameterType=" + ParameterType.toString() + ", OwnerClass="
-				+ OwnerClass.toString() + ", isReturn=" + isReturn + "]";
+				+ OwnerClass.toString() + ", methodname=" + methodname  + ", isReturn=" + isReturn + "]";
 	} 
 	
 	

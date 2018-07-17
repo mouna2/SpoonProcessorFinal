@@ -475,6 +475,8 @@ public class Method2Details {
 					 OwnerType.setClassname(parameters.getString("classname"));
 					 param.setOwnerClass(OwnerType);
 					 
+					 param.setMethodname(parameters.getString("methodname"));
+					 
 					 param.setIsReturn(parameters.getString("isreturn"));
 					 parametersList.add(param); 
 					 methoddet2.setParameters(parametersList);

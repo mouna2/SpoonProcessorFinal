@@ -731,6 +731,7 @@ for(CtType<?> clazz : classFactory.getAll()) {
     				
     		 //for(CtField<?> field : clazz.getFields()) {
     				for(CtMethod<?> method :clazz.getMethods()) {
+
     	    			List<CtParameter<?>> params = method.getParameters(); 
     				
     	    			
@@ -780,7 +781,7 @@ for(CtType<?> clazz : classFactory.getAll()) {
     	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
     	    						}
             		    			paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
-
+            		    			System.out.println("PARAM INFO:   ================>"+ paramInfo);
     	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
         	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0+"')");
 
@@ -836,7 +837,8 @@ for(CtType<?> clazz : classFactory.getAll()) {
 	    					
 	    			   		   }
      	    			String paramInfo=MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
-    	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false) {
+    	    			boolean cond= paramlist.contains(paramInfo);
+     	    			if(MethodReferenced!=null && flag==true && cond==false) {
     		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1+"')");
     		    			paramlist.add(paramInfo);
     	    			}
