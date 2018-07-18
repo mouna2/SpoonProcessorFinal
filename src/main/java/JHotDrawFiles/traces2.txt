@@ -1,0 +1,21 @@
+5776, org.jhotdraw.draw.AbstractDrawing.-init-()V, 01: Paint figures and connections, inner, N, N, T, InnerPureSurroundedT, IN, 1, 0, 0, 1, 0, 0
+5777, org.jhotdraw.draw.AbstractDrawing.-init-()V, 02: Create figures and connections, inner, T, T, T, InnerPureSurroundedT, CT, 1, 0, 0, 1, 0, 0
+5778, org.jhotdraw.draw.AbstractDrawing.-init-()V, 03: Delete figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5779, org.jhotdraw.draw.AbstractDrawing.-init-()V, 04: Delete connections, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5780, org.jhotdraw.draw.AbstractDrawing.-init-()V, 05: Select and deselect figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5781, org.jhotdraw.draw.AbstractDrawing.-init-()V, 06: Move- scale- or rotate figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5782, org.jhotdraw.draw.AbstractDrawing.-init-()V, 07: Change properties of figures, inner, N, N, F, InnerBoundary, IN, 0, 1, 0, 1, 0, 0
+5783, org.jhotdraw.draw.AbstractDrawing.-init-()V, 08: Edit  text in figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5784, org.jhotdraw.draw.AbstractDrawing.-init-()V, 09: Align figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5785, org.jhotdraw.draw.AbstractDrawing.-init-()V, 10: Change z-ordering, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5786, org.jhotdraw.draw.AbstractDrawing.-init-()V, 11: Grouping and ungrouping figures, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5787, org.jhotdraw.draw.AbstractDrawing.-init-()V, 12: Launch the application, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5788, org.jhotdraw.draw.AbstractDrawing.-init-()V, 13: Open an existing drawing, inner, T, T, N, InnerPureSurroundedN, IT, 0, 1, 0, 0, 1, 0
+5789, org.jhotdraw.draw.AbstractDrawing.-init-()V, 14: Save a drawing, inner, T, T, N, InnerPureSurroundedN, IT, 0, 1, 0, 0, 1, 0
+5790, org.jhotdraw.draw.AbstractDrawing.-init-()V, 15: Scalability:  Drawings should be as large as possible, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5791, org.jhotdraw.draw.AbstractDrawing.-init-()V, 16: Performance: Quickly redraw figures if changed, inner, N, N, F, InnerBoundary, IN, 1, 0, 0, 0, 1, 0
+5792, org.jhotdraw.draw.AbstractDrawing.-init-()V, 17: Performance: Quickly locate figures based on x-y coordinates, inner, N, N, F, InnerBoundary, IN, 1, 0, 0, 0, 1, 0
+5793, org.jhotdraw.draw.AbstractDrawing.-init-()V, 18: Interoperability: Support data exchange via the clipboard, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5794, org.jhotdraw.draw.AbstractDrawing.-init-()V, 19: Usability: Support operating system specific user interfaces, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5795, org.jhotdraw.draw.AbstractDrawing.-init-()V, 20: Performance: Strive for a short startup latency, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
+5796, org.jhotdraw.draw.AbstractDrawing.-init-()V, 21: Recoverability: periodic auto-save, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0
