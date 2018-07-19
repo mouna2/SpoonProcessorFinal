@@ -1441,7 +1441,7 @@ public class TracesTableJHotDraw extends JFrame {
 					
 					
 					
-					if (CountMethodTCallee >=1 )
+					if (CountMethodTCallee >=2 )
 					 {
 				data[j][AtLeast2TPredictionMethodLevelCallers] = "T";
 				String Result=AtLeast2TPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 

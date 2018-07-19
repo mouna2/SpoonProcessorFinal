@@ -1,4 +1,4 @@
-OWNER CLASS PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=35240, FalsePositive=0, FalseNegative=427]
+OWNER CLASS PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=42601, FalsePositive=0, FalseNegative=1894]
 MAJORITY CLASS LEVEL CALLERS PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=0, FalsePositive=0, FalseNegative=0]
 MAJORITY CLASS LEVEL CALLEES PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=0, FalsePositive=0, FalseNegative=0]
 MAJORITY METHOD LEVEL CALLERS PREDICTION: PredictionEvaluation [TruePositive=0, TrueNegative=0, FalsePositive=0, FalseNegative=0]
