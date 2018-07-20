@@ -738,133 +738,133 @@ public class DBDemo2iTrust {
 ////////////        /*********************************************************************************************************************************************************************************/
 //////////    	
 //////////    	//BUILD PARAMETERS TABLE 
-    List<String> paramlist= new ArrayList<String>();   	
-
-for(CtType<?> clazz : classFactory.getAll()) {
-    		
-    		System.out.println(clazz.getSimpleName());
-    		System.out.println(clazz.getPackage());
-    		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
-    		String MethodReferenced=null; 
-    		String MethodName=null; 
-    		String parameter=null; 
-    	    String ClassName=null; 
-    	    String classid=null; 
-    		String parameterclass=null; 
-    		String paramclassid=null; 
-    				
-    		 //for(CtField<?> field : clazz.getFields()) {
-    				for(CtMethod<?> method :clazz.getMethods()) {
-    	    			List<CtParameter<?>> params = method.getParameters(); 
-    				
-    	    			
-    	    			
-    	    		
-    	    	
-    	    			for( CtParameter<?> myparam :params) {
-    	    				String paramInfo=""; 
-    	    				boolean flag2=false; 
-    	    				
-    	    				ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-    	    				
-	    					while(classnames.next()){
-	    						 ClassName =classnames.getString("classname"); 
-	    					
-	    			   		   }
-	    					
-	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-    	    				
-	    					while(classids.next()){
-	    						 classid =classids.getString("id"); 
-	    					
-	    			   		   }
-	    					
-    	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-    	    				
-    	    					while(methods.next()){
-    	    						MethodReferenced =methods.getString("id"); 
-    	    					
-    	    			   		   }
-    	    				
-    	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
-        	    				
-    	    					while(paramclassids.next()){
-    	    						flag2=true; 
-    	    						paramclassid =paramclassids.getString("id"); 
-    	    					
-    	    			   		   }
-    	    			
-    	    				
-    	    					
-    	    					
-    	    				
-    	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
-    	    						System.out.println("HERE IS A PARAMETER: "+ myparam);
-    	    						 paramInfo= myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
-    	    						if(MethodReferenced==null) {
-    	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
-    	    						}
-    	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
-        	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0+"')");
-        	    		    			paramlist.add(paramInfo); 
-    	    						}
-
-    	    				//	}
-    	    				
-    	    				
-    	    			}
-    	    			
-    	    		
-    	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
-    	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-    	    		
-    	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-    	    				for(CtReturn ret: returnstatement) {
-    	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
-    	    					ret.getReturnedExpression().getType(); 
-    	    				
-    	    			}*/
-    	    			boolean flag=false; 
-    	    			CtTypeReference<?> MethodType = method.getType();  
-     	    			System.out.println("METHOD TYPE  "+ MethodType);
-     	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-	    				
-    					while(classnames.next()){
-    						 ClassName =classnames.getString("classname"); 
-    					
-    			   		   }
-    					
-    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-	    				
-    					while(classids.next()){
-    						 classid =classids.getString("id"); 
-    					
-    			   		   }
-    					
-	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-	    				
-	    					while(methods.next()){
-	    						MethodReferenced =methods.getString("id"); 
-	    					
-	    			   		   }
-	    				
-	    					
-	    					
-	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
-		    				
-	    					while(parameterclasses.next()){
-	    						parameterclass =parameterclasses.getString("id"); 
-	    						flag=true; 
-	    					
-	    			   		   }
-     	    			String paramInfo=MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
-    	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false)
-    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1+"')");
-    	    				paramlist.add(paramInfo);
-    	    		
-    	    		}
-    		 //}
-    	}
+//    List<String> paramlist= new ArrayList<String>();   	
+//
+//for(CtType<?> clazz : classFactory.getAll()) {
+//    		
+//    		System.out.println(clazz.getSimpleName());
+//    		System.out.println(clazz.getPackage());
+//    		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
+//    		String MethodReferenced=null; 
+//    		String MethodName=null; 
+//    		String parameter=null; 
+//    	    String ClassName=null; 
+//    	    String classid=null; 
+//    		String parameterclass=null; 
+//    		String paramclassid=null; 
+//    				
+//    		 //for(CtField<?> field : clazz.getFields()) {
+//    				for(CtMethod<?> method :clazz.getMethods()) {
+//    	    			List<CtParameter<?>> params = method.getParameters(); 
+//    				
+//    	    			
+//    	    			
+//    	    		
+//    	    	
+//    	    			for( CtParameter<?> myparam :params) {
+//    	    				String paramInfo=""; 
+//    	    				boolean flag2=false; 
+//    	    				
+//    	    				ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//    	    				
+//	    					while(classnames.next()){
+//	    						 ClassName =classnames.getString("classname"); 
+//	    					
+//	    			   		   }
+//	    					
+//	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//    	    				
+//	    					while(classids.next()){
+//	    						 classid =classids.getString("id"); 
+//	    					
+//	    			   		   }
+//	    					
+//    	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+//    	    				
+//    	    					while(methods.next()){
+//    	    						MethodReferenced =methods.getString("id"); 
+//    	    					
+//    	    			   		   }
+//    	    				
+//    	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
+//        	    				
+//    	    					while(paramclassids.next()){
+//    	    						flag2=true; 
+//    	    						paramclassid =paramclassids.getString("id"); 
+//    	    					
+//    	    			   		   }
+//    	    			
+//    	    				
+//    	    					
+//    	    					
+//    	    				
+//    	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
+//    	    						System.out.println("HERE IS A PARAMETER: "+ myparam);
+//    	    						 paramInfo= myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
+//    	    						if(MethodReferenced==null) {
+//    	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
+//    	    						}
+//    	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
+//        	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0+"')");
+//        	    		    			paramlist.add(paramInfo); 
+//    	    						}
+//
+//    	    				//	}
+//    	    				
+//    	    				
+//    	    			}
+//    	    			
+//    	    		
+//    	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
+//    	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+//    	    		
+//    	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+//    	    				for(CtReturn ret: returnstatement) {
+//    	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
+//    	    					ret.getReturnedExpression().getType(); 
+//    	    				
+//    	    			}*/
+//    	    			boolean flag=false; 
+//    	    			CtTypeReference<?> MethodType = method.getType();  
+//     	    			System.out.println("METHOD TYPE  "+ MethodType);
+//     	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//	    				
+//    					while(classnames.next()){
+//    						 ClassName =classnames.getString("classname"); 
+//    					
+//    			   		   }
+//    					
+//    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//	    				
+//    					while(classids.next()){
+//    						 classid =classids.getString("id"); 
+//    					
+//    			   		   }
+//    					
+//	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+//	    				
+//	    					while(methods.next()){
+//	    						MethodReferenced =methods.getString("id"); 
+//	    					
+//	    			   		   }
+//	    				
+//	    					
+//	    					
+//	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
+//		    				
+//	    					while(parameterclasses.next()){
+//	    						parameterclass =parameterclasses.getString("id"); 
+//	    						flag=true; 
+//	    					
+//	    			   		   }
+//     	    			String paramInfo=MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
+//    	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false)
+//    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1+"')");
+//    	    				paramlist.add(paramInfo);
+//    	    		
+//    	    		}
+//    		 //}
+//    	}
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/
@@ -1006,131 +1006,131 @@ for(CtType<?> clazz : classFactory.getAll()) {
 /////////////*********************************************************************************************************************************************************************************/	
 /////////////*********************************************************************************************************************************************************************************/   	
 //////////////BUILD METHODSCALLED TABLE
-//   	List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
-//   	for(CtType<?> clazz : classFactory.getAll()) {
-//   		
-//   		for(CtMethod<?> method :clazz.getMethods()) {
-//   			
-//   			String methname=method.getSimpleName(); 
-//   			System.out.println(methname);
-//   			// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
-//   			 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
-//   			for( CtInvocation calledmethod: methodcalls) {
-//   				String callingmethodid=null; 
-//   				String callingmethodsrefinedid=null; 
-//   				String callingmethodsrefinedname=null; 
-//   				String callingmethodclass=null; 
-//   				String calledmethodid=null; 
-//   				String calledmethodname=null; 
-//   				String calledmethodclass=null; 
-//   				String paramclassid=null; 
-//   				String CALLEEID=null; 
-//   				String CALLEECLASSNAME=null; 
-//   				String CallerMethodID=null; 
-//   				//CALLING METHOD ID 
-//   				String CALLEENAME= calledmethod.getExecutable().getSignature().toString(); 
-//   				String CALLERCLASSNAME=clazz.getQualifiedName() ; 
-//   				String CallerMethod= method.getSignature(); 
-//   				System.out.println("CALLER METHOD NAME: "+ CallerMethod);
-//   				System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
-//   				ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'"); 
-//   				//while(callingmethodsrefined.next()){
-//   				if(callingmethodsrefined3.next()) {
-//   					CallerMethodID = callingmethodsrefined3.getString("id"); 
-//   					System.out.println("CALLER METHOD ID: "+ CallerMethodID);
-//   				}
-//   				System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
-//   				
-//   				
-//   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   				ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CALLEENAME+"'"); 
-//   				//while(callingmethodsrefined.next()){
-//   				if(callingmethodsrefined.next()) {
-//   					CALLEEID = callingmethodsrefined.getString("id"); 
-//   					System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//   				}
-//   					
-//
-//   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   				ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+CALLEENAME+"'"); 
-//   				//while(callingmethodsrefined.next()){
-//   				if(callingmethodsrefined2.next()) {
-//   					CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//   					System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
-//   				}
-//   				
-//   				
-//   				
-//   		   		//   }
-//   				 
-//   				//CALLING METHOD NAME 
-//   				//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   			/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
-//   				while(callingmethodsrefinednames.next()){
-//   					callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
-//   		   		   }*/
-//   				
-//   				
-//   				//CALLING METHOD CLASS 
-//   				//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   			/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
-//   				while(callingmethodsclasses.next()){
-//   					callingmethodclass = callingmethodsclasses.getString("classname"); 
-//   		   		   }*/
-//   				
-//   				
-//   				//CALLED METHOD ID 
-//   				/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   				while(calledmethodsids.next()){
-//   					calledmethodid = calledmethodsids.getString("id"); 
-//   		   		   }
-//   				 
-//   				//CALLED METHOD NAME 
-//   				ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   				while(callemethodnames.next()){
-//   					calledmethodname = callemethodnames.getString("methodname"); 
-//   		   		   }
-//   				
-//   				
-//   				//CALLED METHOD CLASS 
-//   				ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//   				while(calledmethodclasses.next()){
-//   					calledmethodclass = calledmethodclasses.getString("classname"); 
-//   		   		   }
-//   				
-//   				*/
-//   				//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
-//
-//   			    
-//   				
-//   				
-//   				methodcalls methodcall= new methodcalls(CALLEEID, CALLEENAME, CALLEECLASSNAME, CallerMethodID, CallerMethod, CALLERCLASSNAME); 
-//   				
-//   				
-//   				if(methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
-//   					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"')";
-//   					
-//   					st.executeUpdate(statement);
-//   					methodcallsList.add(methodcall); 
-//   				}
-//   			
-//   				
-//   				
-//   				
-//   				
-//   				
-//   				
-//   				
-//   				
-//
-//   			
-//   			}
-//   		}
-//
-//
-//   		
-//
-//   	}       	
+  	List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
+   	for(CtType<?> clazz : classFactory.getAll()) {
+   		
+   		for(CtMethod<?> method :clazz.getMethods()) {
+   			
+   			String methname=method.getSimpleName(); 
+   			System.out.println(methname);
+   			// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
+   			 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
+   			for( CtInvocation calledmethod: methodcalls) {
+   				String callingmethodid=null; 
+   				String callingmethodsrefinedid=null; 
+   				String callingmethodsrefinedname=null; 
+   				String callingmethodclass=null; 
+   				String calledmethodid=null; 
+   				String calledmethodname=null; 
+   				String calledmethodclass=null; 
+   				String paramclassid=null; 
+   				String CALLEEID=null; 
+   				String CALLEECLASSNAME=null; 
+   				String CallerMethodID=null; 
+   				//CALLING METHOD ID 
+   				String CALLEENAME= calledmethod.getExecutable().getSignature().toString(); 
+   				String CALLERCLASSNAME=clazz.getQualifiedName() ; 
+   				String CallerMethod= method.getSignature(); 
+   				System.out.println("CALLER METHOD NAME: "+ CallerMethod);
+   				System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
+   				ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'"); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined3.next()) {
+   					CallerMethodID = callingmethodsrefined3.getString("id"); 
+   					System.out.println("CALLER METHOD ID: "+ CallerMethodID);
+   				}
+   				System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
+   				
+   				
+   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				
+   					
+
+   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+CALLEENAME+"' "); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined2.next()) {
+   					CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+   					System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
+   				}
+   				ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CALLEENAME+"'"); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined.next()) {
+   					CALLEEID = callingmethodsrefined.getString("id"); 
+   					System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+   				}
+   				
+   				
+   		   		//   }
+   				 
+   				//CALLING METHOD NAME 
+   				//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   			/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
+   				while(callingmethodsrefinednames.next()){
+   					callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
+   		   		   }*/
+   				
+   				
+   				//CALLING METHOD CLASS 
+   				//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   			/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
+   				while(callingmethodsclasses.next()){
+   					callingmethodclass = callingmethodsclasses.getString("classname"); 
+   		   		   }*/
+   				
+   				
+   				//CALLED METHOD ID 
+   				/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(calledmethodsids.next()){
+   					calledmethodid = calledmethodsids.getString("id"); 
+   		   		   }
+   				 
+   				//CALLED METHOD NAME 
+   				ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(callemethodnames.next()){
+   					calledmethodname = callemethodnames.getString("methodname"); 
+   		   		   }
+   				
+   				
+   				//CALLED METHOD CLASS 
+   				ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(calledmethodclasses.next()){
+   					calledmethodclass = calledmethodclasses.getString("classname"); 
+   		   		   }
+   				
+   				*/
+   				//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
+
+   			    
+   				
+   				
+   				methodcalls methodcall= new methodcalls(CALLEEID, CALLEENAME, CALLEECLASSNAME, CallerMethodID, CallerMethod, CALLERCLASSNAME); 
+   				
+   				
+   				if(methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
+   					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"')";
+   					
+   					st.executeUpdate(statement);
+   					methodcallsList.add(methodcall); 
+   				}
+   			
+   				
+   				
+   				
+   				
+   				
+   				
+   				
+   				
+
+   			
+   			}
+   		}
+
+
+   		
+
+   	}        	
 /////////*********************************************************************************************************************************************************************************/	
 /////////*********************************************************************************************************************************************************************************/	
 /////////*********************************************************************************************************************************************************************************/   	

@@ -985,131 +985,131 @@ public class DBDemo2Gantt {
 /////////*********************************************************************************************************************************************************************************/	
 /////////*********************************************************************************************************************************************************************************/   	
 //////////BUILD METHODSCALLED TABLE
-//List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
-//for(CtType<?> clazz : classFactory.getAll()) {
-//	
-//	for(CtMethod<?> method :clazz.getMethods()) {
-//		
-//		String methname=method.getSimpleName(); 
-//		System.out.println(methname);
-//		// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
-//		 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
-//		for( CtInvocation calledmethod: methodcalls) {
-//			String callingmethodid=null; 
-//			String callingmethodsrefinedid=null; 
-//			String callingmethodsrefinedname=null; 
-//			String callingmethodclass=null; 
-//			String calledmethodid=null; 
-//			String calledmethodname=null; 
-//			String calledmethodclass=null; 
-//			String paramclassid=null; 
-//			String CALLEEID=null; 
-//			String CALLEECLASSNAME=null; 
-//			String CallerMethodID=null; 
-//			//CALLING METHOD ID 
-//			String CALLEENAME= calledmethod.getExecutable().getSignature().toString(); 
-//			String CALLERCLASSNAME=clazz.getQualifiedName() ; 
-//			String CallerMethod= method.getSignature(); 
-//			System.out.println("CALLER METHOD NAME: "+ CallerMethod);
-//			System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
-//			ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'"); 
-//			//while(callingmethodsrefined.next()){
-//			if(callingmethodsrefined3.next()) {
-//				CallerMethodID = callingmethodsrefined3.getString("id"); 
-//				System.out.println("CALLER METHOD ID: "+ CallerMethodID);
-//			}
-//			System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
-//			
-//			
-//			//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//			ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CALLEENAME+"'"); 
-//			//while(callingmethodsrefined.next()){
-//			if(callingmethodsrefined.next()) {
-//				CALLEEID = callingmethodsrefined.getString("id"); 
-//				System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//			}
-//				
-//
-//			//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+CALLEENAME+"'"); 
-//			//while(callingmethodsrefined.next()){
-//			if(callingmethodsrefined2.next()) {
-//				CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//				System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
-//			}
-//			
-//			
-//			
-//	   		//   }
-//			 
-//			//CALLING METHOD NAME 
-//			//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//		/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
-//			while(callingmethodsrefinednames.next()){
-//				callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
-//	   		   }*/
-//			
-//			
-//			//CALLING METHOD CLASS 
-//			//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//		/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
-//			while(callingmethodsclasses.next()){
-//				callingmethodclass = callingmethodsclasses.getString("classname"); 
-//	   		   }*/
-//			
-//			
-//			//CALLED METHOD ID 
-//			/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//			while(calledmethodsids.next()){
-//				calledmethodid = calledmethodsids.getString("id"); 
-//	   		   }
-//			 
-//			//CALLED METHOD NAME 
-//			ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//			while(callemethodnames.next()){
-//				calledmethodname = callemethodnames.getString("methodname"); 
-//	   		   }
-//			
-//			
-//			//CALLED METHOD CLASS 
-//			ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//			while(calledmethodclasses.next()){
-//				calledmethodclass = calledmethodclasses.getString("classname"); 
-//	   		   }
-//			
-//			*/
-//			//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
-//
-//		    
-//			
-//			
-//			methodcalls methodcall= new methodcalls(CALLEEID, CALLEENAME, CALLEECLASSNAME, CallerMethodID, CallerMethod, CALLERCLASSNAME); 
-//			
-//			
-//			if(methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
-//				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"')";
-//				
-//				st.executeUpdate(statement);
-//				methodcallsList.add(methodcall); 
-//			}
-//		
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//
-//		
-//		}
-//	}
-//
-//
-//	
-//
-//}       	 	
+   	List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
+   	for(CtType<?> clazz : classFactory.getAll()) {
+   		
+   		for(CtMethod<?> method :clazz.getMethods()) {
+   			
+   			String methname=method.getSimpleName(); 
+   			System.out.println(methname);
+   			// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
+   			 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
+   			for( CtInvocation calledmethod: methodcalls) {
+   				String callingmethodid=null; 
+   				String callingmethodsrefinedid=null; 
+   				String callingmethodsrefinedname=null; 
+   				String callingmethodclass=null; 
+   				String calledmethodid=null; 
+   				String calledmethodname=null; 
+   				String calledmethodclass=null; 
+   				String paramclassid=null; 
+   				String CALLEEID=null; 
+   				String CALLEECLASSNAME=null; 
+   				String CallerMethodID=null; 
+   				//CALLING METHOD ID 
+   				String CALLEENAME= calledmethod.getExecutable().getSignature().toString(); 
+   				String CALLERCLASSNAME=clazz.getQualifiedName() ; 
+   				String CallerMethod= method.getSignature(); 
+   				System.out.println("CALLER METHOD NAME: "+ CallerMethod);
+   				System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
+   				ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'and methods.classname='"+CALLERCLASSNAME+"'"); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined3.next()) {
+   					CallerMethodID = callingmethodsrefined3.getString("id"); 
+   					System.out.println("CALLER METHOD ID: "+ CallerMethodID);
+   				}
+   				System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
+   				
+   				
+   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				
+   					
+
+   				//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+CALLEENAME+"' "); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined2.next()) {
+   					CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+   					System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
+   				}
+   				ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CALLEENAME+"'and methods.classname='"+CALLEECLASSNAME+"'"); 
+   				//while(callingmethodsrefined.next()){
+   				if(callingmethodsrefined.next()) {
+   					CALLEEID = callingmethodsrefined.getString("id"); 
+   					System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+   				}
+   				
+   				
+   		   		//   }
+   				 
+   				//CALLING METHOD NAME 
+   				//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   			/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
+   				while(callingmethodsrefinednames.next()){
+   					callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
+   		   		   }*/
+   				
+   				
+   				//CALLING METHOD CLASS 
+   				//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   			/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
+   				while(callingmethodsclasses.next()){
+   					callingmethodclass = callingmethodsclasses.getString("classname"); 
+   		   		   }*/
+   				
+   				
+   				//CALLED METHOD ID 
+   				/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(calledmethodsids.next()){
+   					calledmethodid = calledmethodsids.getString("id"); 
+   		   		   }
+   				 
+   				//CALLED METHOD NAME 
+   				ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(callemethodnames.next()){
+   					calledmethodname = callemethodnames.getString("methodname"); 
+   		   		   }
+   				
+   				
+   				//CALLED METHOD CLASS 
+   				ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+   				while(calledmethodclasses.next()){
+   					calledmethodclass = calledmethodclasses.getString("classname"); 
+   		   		   }
+   				
+   				*/
+   				//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
+
+   			    
+   				
+   				
+   				methodcalls methodcall= new methodcalls(CALLEEID, CALLEENAME, CALLEECLASSNAME, CallerMethodID, CallerMethod, CALLERCLASSNAME); 
+   				
+   				
+   				if(methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
+   					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"')";
+   					
+   					st.executeUpdate(statement);
+   					methodcallsList.add(methodcall); 
+   				}
+   			
+   				
+   				
+   				
+   				
+   				
+   				
+   				
+   				
+
+   			
+   			}
+   		}
+
+
+   		
+
+   	}       	     	 	
 ///////*********************************************************************************************************************************************************************************/	
 ///////*********************************************************************************************************************************************************************************/	
 ///////*********************************************************************************************************************************************************************************/   	
@@ -1774,53 +1774,53 @@ int counter=1;
 	/*********************************************************************************************************************************************************************************/   
 //BUILD TABLE FOR TRACES CLASSES 
 
-List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
- counter=1;
-ResultSet Counts=st.executeQuery("SELECT COUNT(*) FROM traces" ); 
-Counts.next();
-int rowCount = Counts.getInt(1);
-System.out.println("ROW COUNT "+ rowCount);
-try {	Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
-
-		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal.txt");
-		fileReader = new FileReader(file);
-		bufferedReader = new BufferedReader(fileReader);	
-		line = bufferedReader.readLine(); 
-		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
-		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
-		while ((line = bufferedReader.readLine()) != null) {
-			System.out.println(line);
-			System.out.println("MY COUNTER"+counter);
-			String[] linesplitted = line.split(","); 
-			method=linesplitted[1]; 
-			requirement=linesplitted[2]; 
-			gold=linesplitted[4]; 
-			subject=linesplitted[5]; 
-			String shortmethod=method.substring(0, method.indexOf("(")); 
-			  String[] parts = shortmethod.split("[$]", 2);
-			shortmethod=parts[0]; 
-			
-			
-			 shortmethod=ParseLine(line); 
-			 shortmethod=shortmethod.replaceAll("clinit", "init"); 
-			 shortmethod=shortmethod.replaceAll("null", ""); 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
-	 String goldvalue=null; 
-	 String subjectvalue=null; 
-		
-	
-	 
-	classname=null; 
-	shortmethod=shortmethod.trim(); 
-	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
-	while(classnames.next()){
-		classname = classnames.getString("classname"); 
-		   }
-	classid=null; 
-	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
-	while(classids.next()){
-		classid = classids.getString("classid"); 
-		   }
+//List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
+// counter=1;
+//ResultSet Counts=st.executeQuery("SELECT COUNT(*) FROM traces" ); 
+//Counts.next();
+//int rowCount = Counts.getInt(1);
+//System.out.println("ROW COUNT "+ rowCount);
+//try {	Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
+//
+//		file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal.txt");
+//		fileReader = new FileReader(file);
+//		bufferedReader = new BufferedReader(fileReader);	
+//		line = bufferedReader.readLine(); 
+//		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
+//		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>();  
+//		while ((line = bufferedReader.readLine()) != null) {
+//			System.out.println(line);
+//			System.out.println("MY COUNTER"+counter);
+//			String[] linesplitted = line.split(","); 
+//			method=linesplitted[1]; 
+//			requirement=linesplitted[2]; 
+//			gold=linesplitted[4]; 
+//			subject=linesplitted[5]; 
+//			String shortmethod=method.substring(0, method.indexOf("(")); 
+//			  String[] parts = shortmethod.split("[$]", 2);
+//			shortmethod=parts[0]; 
+//			
+//			
+//			 shortmethod=ParseLine(line); 
+//			 shortmethod=shortmethod.replaceAll("clinit", "init"); 
+//			 shortmethod=shortmethod.replaceAll("null", ""); 
+//			System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+//	 String goldvalue=null; 
+//	 String subjectvalue=null; 
+//		
+//	
+//	 
+//	classname=null; 
+//	shortmethod=shortmethod.trim(); 
+//	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
+//	while(classnames.next()){
+//		classname = classnames.getString("classname"); 
+//		   }
+//	classid=null; 
+//	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation LIKE'%"+shortmethod+"%'"); 
+//	while(classids.next()){
+//		classid = classids.getString("classid"); 
+//		   }
 //	String interfacename=null; 
 //	ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname LIKE'%"+classname+"%'");
 //	while(interfaces.next()){
@@ -1833,217 +1833,217 @@ try {	Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,Stri
 //		   } 
 	
 	
-	List<String> InterfaceNameIds= new ArrayList<String>(); 
-	String interfacename=null; 
-	String interfaceid=null; 
-	ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-	while(interfaces.next()){
-		
-		interfacename = interfaces.getString("interfacename"); 
-		interfaceid = interfaces.getString("interfaceclassid"); 
-		String combination=interfaceid+"-"+interfacename; 
-		InterfaceNameIds.add(combination); 
-		   }
-	
-	
-	
-	requirement=requirement.trim(); 
-	requirementid=null; 
-	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
-	while(requirements.next()){
-		requirementid = requirements.getString("id"); 
-		   }	
-	
-
-	goldvalue=null; 
-	List<String> goldvaluesList= new ArrayList<String>();
-	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-	 while(goldvalues.next()){
-			goldvalue = goldvalues.getString("gold"); 
-
-		    goldvalue=goldvalue.trim();
-			goldvaluesList.add(goldvalue);
-			   }
-	 
-	 subjectvalue=null; 
-	 List<String> subjectvaluesList= new ArrayList<String>();
-		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-		while(subjectvalues.next()){
-			subjectvalue = subjectvalues.getString("subject"); 
-
-			subjectvalue=subjectvalue.trim();
-			subjectvaluesList.add(subjectvalue);
-			   }
-		String ReqClass=requirementid+"-"+classid;
-		if(requirementid!=null && classid!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
-			
-	 //1 TT
-			System.out.println("YEAH");
-		if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TT");
-			st.executeUpdate(statement8);
-
-	 }
-	 //2 ET
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "ET");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //3 TE
-	 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TE");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //4 NN
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NN");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //5 NT
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NT");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //6 EN
-	 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "EN");
-
-			st.executeUpdate(statement8);
-
-	 }
-		//7 NE
-	 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NE");
-
-			st.executeUpdate(statement8);
-
-	 }
-		 //8 TN
-	 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TN");
-
-			st.executeUpdate(statement8);
-
-	 }
-		 // 9 EE
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "EE");
-
-			st.executeUpdate(statement8);
-
-	 }
-		}
-		
-		 ReqClass=requirementid+"-"+interfaceid;
-		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
-		 for(String interfacenameid: InterfaceNameIds) {
-			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
-			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
-			 ReqClass=requirementid+"-"+interfaceid;
-		if(interfaceid!=null && interfacename!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
-			
-			 //1 TT
-				if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TT");
-
-			 }
-			 //2 ET
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "ET");
-
-			 }
-			 //3 TE
-			 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TE");
-
-			 }
-			 //4 NN
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NN");
-
-
-			 }
-			 //5 NT
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NT");
-
-			 }
-			 //6 EN
-			 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "EN");
-
-			 }
-				//7 NE
-			 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NE");
-
-			 }
-				 //8 TN
-			 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TN");
-			 }			
-
-				 // 9 EE
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "EE");
-			 }
-				
-		
-		}
-		 }
-		
-	counter++; 
-
-		
-	
-
-
-
-		}
-	
-	
-	
-	
-	}
-	catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//	List<String> InterfaceNameIds= new ArrayList<String>(); 
+//	String interfacename=null; 
+//	String interfaceid=null; 
+//	ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+//	while(interfaces.next()){
+//		
+//		interfacename = interfaces.getString("interfacename"); 
+//		interfaceid = interfaces.getString("interfaceclassid"); 
+//		String combination=interfaceid+"-"+interfacename; 
+//		InterfaceNameIds.add(combination); 
+//		   }
+//	
+//	
+//	
+//	requirement=requirement.trim(); 
+//	requirementid=null; 
+//	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+//	while(requirements.next()){
+//		requirementid = requirements.getString("id"); 
+//		   }	
+//	
+//
+//	goldvalue=null; 
+//	List<String> goldvaluesList= new ArrayList<String>();
+//	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//	 while(goldvalues.next()){
+//			goldvalue = goldvalues.getString("gold"); 
+//
+//		    goldvalue=goldvalue.trim();
+//			goldvaluesList.add(goldvalue);
+//			   }
+//	 
+//	 subjectvalue=null; 
+//	 List<String> subjectvaluesList= new ArrayList<String>();
+//		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//		while(subjectvalues.next()){
+//			subjectvalue = subjectvalues.getString("subject"); 
+//
+//			subjectvalue=subjectvalue.trim();
+//			subjectvaluesList.add(subjectvalue);
+//			   }
+//		String ReqClass=requirementid+"-"+classid;
+//		if(requirementid!=null && classid!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//			
+//	 //1 TT
+//			System.out.println("YEAH");
+//		if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TT");
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //2 ET
+//	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "ET");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //3 TE
+//	 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //4 NN
+//	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //5 NT
+//	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NT");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //6 EN
+//	 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "EN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		//7 NE
+//	 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		 //8 TN
+//	 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		 // 9 EE
+//	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "EE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		}
+//		
+//		 ReqClass=requirementid+"-"+interfaceid;
+//		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
+//		 for(String interfacenameid: InterfaceNameIds) {
+//			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
+//			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
+//			 ReqClass=requirementid+"-"+interfaceid;
+//		if(interfaceid!=null && interfacename!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//			
+//			 //1 TT
+//				if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TT");
+//
+//			 }
+//			 //2 ET
+//			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "ET");
+//
+//			 }
+//			 //3 TE
+//			 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TE");
+//
+//			 }
+//			 //4 NN
+//			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NN");
+//
+//
+//			 }
+//			 //5 NT
+//			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NT");
+//
+//			 }
+//			 //6 EN
+//			 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "EN");
+//
+//			 }
+//				//7 NE
+//			 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NE");
+//
+//			 }
+//				 //8 TN
+//			 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TN");
+//			 }			
+//
+//				 // 9 EE
+//			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "EE");
+//			 }
+//				
+//		
+//		}
+//		 }
+//		
+//	counter++; 
+//
+//		
+//	
+//
+//
+//
+//		}
+//	
+//	
+//	
+//	
+//	}
+//	catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 	}
 	
 	
