@@ -284,8 +284,9 @@ public class MethodTrace2 {
 					
 				 }
 				 
-				 
-				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
+				 System.out.println("TRACENAME======="+ tracename);
+				// ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
+				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where fullcallee='" + tracename+"'"); 
 				 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
 				 while(callersExecuted.next()) {
 					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
@@ -346,7 +347,7 @@ public class MethodTrace2 {
 							 System.out.println("FULL METHOD NAME: "+ fullmethodname);
 								
 								
-								 
+							 System.out.println("TRACENAME======="+ tracename);
 								  callees=st.executeQuery("select methodcalls.* from methodcalls where fullcaller='" + interfacename+"'"); 
 								// this.callersList= new  ArrayList<Method2Representation>(); 
 								 while(callees.next()) {
@@ -377,7 +378,9 @@ public class MethodTrace2 {
 				 
 				 
 				 
-				 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where callermethodid='" + id+"'"); 
+			//	 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where callermethodid='" + id+"'"); 
+				 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where fullcaller='" + tracename+"'"); 
+
 				 this.callersListExecuted= new  ArrayList<Method2Representation>(); 
 				 while(calleesExecuted.next()) {
 //					 List<RequirementGold> requirementsGold = new ArrayList<RequirementGold>(); 
