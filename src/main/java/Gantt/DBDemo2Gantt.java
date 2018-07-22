@@ -1547,174 +1547,174 @@ String callerexecutedid=null;
  List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
 tracesmethodscallees tmc = null; 
 int counter=1; 
-//try {
-//	
-//	line = bufferedReader.readLine(); 
-//	while ((line = bufferedReader.readLine()) != null) {
-//		System.out.println("HERE IS THE COUNTER======> "+counter);
-//		System.out.println(line);
-//		String[] linesplitted = line.split(","); 
-//		method=linesplitted[1]; 
-//		requirement=linesplitted[2]; 
-//		gold=linesplitted[4]; 
-//		subject=linesplitted[5]; 
-//		String shortmethod=method.substring(0, method.indexOf("(")); 
-//		  String[] parts = shortmethod.split("[$]", 2);
-//		shortmethod=parts[0]; 
-//		shortmethod=shortmethod.replaceAll("clinit", "init"); 
-//		requirement=requirement.trim(); 
-//		shortmethod=ParseLine(line); 
-//		System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
-//		shortmethod=shortmethod.replaceAll("\\s+", ""); 
-//		methodid=null; 
-//			ResultSet methodids = st.executeQuery("SELECT methods.id from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-//			while(methodids.next()){
-//				methodid = methodids.getString("id"); 
-//				   }
-//		
-//		
-//		 classname=null; 
-//		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-//		while(classnames.next()){
-//			classname = classnames.getString("classname"); 
-//			   }
-//		
-//		
-//		//COMPUTING INTERFACE CLASS IDS AND INTERFACE NAMES 
-////				String interfacename=null; 
-////					ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
-////					while(interfaces.next()){
-////						interfacename = interfaces.getString("interfacename"); 
-////						   }
-////					String interfaceid=null; 
-////					ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
-////					while(interfacesids.next()){
-////						interfaceid = interfacesids.getString("interfaceclassid"); 
-////						   }
-//		List<String> InterfaceNameIds= new ArrayList<String>(); 
-//		String interfacename=null; 
-//		String interfaceid=null; 
-//		ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-//		while(interfaces.next()){
-//			
-//			interfacename = interfaces.getString("interfacename"); 
-//			 interfaceid = interfaces.getString("interfaceclassid"); 
-//			String combination=interfaceid+"-"+interfacename; 
-//			InterfaceNameIds.add(combination); 
-//			   }				
-//					//////////////////////////////////////////////////////////////////
-//		
-//		classid=null; 
-//		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-//		while(classids.next()){
-//			classid = classids.getString("classid"); 
-//			   }
-//		requirementid=null; 
-//		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
-//		while(requirements.next()){
-//			requirementid = requirements.getString("id"); 
-//			   }
-//		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
-//		// Retrieving the calleeid
-//		calleeid=null; 
-//			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
-//			while(calleesparsed.next()){
-//				 calleeid = calleesparsed.getString("calleemethodid"); }
-//			calleeidexecuted=null; 	   
-//			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
-//			while(calleesexecuted.next()){
-//				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
-//				   }
-//			callerid=null; 
-//			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
-//			while(callersparsed.next()){
-//				  callerid = callersparsed.getString("callermethodid"); }
-//			callerexecutedid=null; 	   
-//			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
-//			while(callersexecuted.next()){
-//				 callerexecutedid = callersexecuted.getString("callermethodid"); 
-//				   }
-//	
-//		
-//		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
-//		//otherwise, use the value from the methodcallsexecuted table 
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			
-//			
-//			
-//		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
-//		if(methodid!=null && requirementid!=null ) {
-//			if(tr.contains(TraceListMethods, tr)==false) {
-//				  
-//				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-//				st.executeUpdate(statement);
-//				TraceListMethods.add(tr); 
-//				
-//				
-//			}
-//			
-//			
-//		}
-//		
-//		//ADDING INTERFACES TO THE TRACES TABLE 
-//		 for(String interfacenameid: InterfaceNameIds) {
-//			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
-//			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
-//		 if(methodid!=null && requirementid!=null && interfacename!=null) {
-//			 System.out.println("SHORT METHOD: " +shortmethod);
-//			 System.out.println(" METHOD ID: " +methodid);
-//			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, shortmethod, methodid, interfacename, interfaceid, gold, subject); 
-//			if(tr.contains(TraceListMethods, tracesmethods)==false) {
-//				  
-//				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-//				st.executeUpdate(statement);
-//				TraceListMethods.add(tracesmethods); 
-//				
-//				
-//			}
-//		}
-//		else {
-//			System.out.println(shortmethod);
-//			System.out.println("I am here");
-//		}
-//		
-//		
-//		 }	
-//		
-//		
-//		 counter++; 
-//		
-//		
-//	}
-//	
-//	
-//	String filename= "TracesCalleesList.txt"; 
-//	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
-//		oos.writeObject(TracesCalleesList);
-//		oos.flush();
-//		oos.close();
-//		
-//}
-//catch (IOException e) {
-//	// TODO Auto-generated catch block
-//	e.printStackTrace();
-//}
+try {
+	
+	line = bufferedReader.readLine(); 
+	while ((line = bufferedReader.readLine()) != null) {
+		System.out.println("HERE IS THE COUNTER======> "+counter);
+		System.out.println(line);
+		String[] linesplitted = line.split(","); 
+		method=linesplitted[1]; 
+		requirement=linesplitted[2]; 
+		gold=linesplitted[4]; 
+		subject=linesplitted[5]; 
+		String shortmethod=method.substring(0, method.indexOf("(")); 
+		  String[] parts = shortmethod.split("[$]", 2);
+		shortmethod=parts[0]; 
+		shortmethod=shortmethod.replaceAll("clinit", "init"); 
+		requirement=requirement.trim(); 
+		shortmethod=ParseLine(line); 
+		System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
+		shortmethod=shortmethod.replaceAll("\\s+", ""); 
+		methodid=null; 
+			ResultSet methodids = st.executeQuery("SELECT methods.id from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+			while(methodids.next()){
+				methodid = methodids.getString("id"); 
+				   }
+		
+		
+		 classname=null; 
+		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+		while(classnames.next()){
+			classname = classnames.getString("classname"); 
+			   }
+		
+		
+		//COMPUTING INTERFACE CLASS IDS AND INTERFACE NAMES 
+//				String interfacename=null; 
+//					ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
+//					while(interfaces.next()){
+//						interfacename = interfaces.getString("interfacename"); 
+//						   }
+//					String interfaceid=null; 
+//					ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
+//					while(interfacesids.next()){
+//						interfaceid = interfacesids.getString("interfaceclassid"); 
+//						   }
+		List<String> InterfaceNameIds= new ArrayList<String>(); 
+		String interfacename=null; 
+		String interfaceid=null; 
+		ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+		while(interfaces.next()){
+			
+			interfacename = interfaces.getString("interfacename"); 
+			 interfaceid = interfaces.getString("interfaceclassid"); 
+			String combination=interfaceid+"-"+interfacename; 
+			InterfaceNameIds.add(combination); 
+			   }				
+					//////////////////////////////////////////////////////////////////
+		
+		classid=null; 
+		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+		while(classids.next()){
+			classid = classids.getString("classid"); 
+			   }
+		requirementid=null; 
+		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+		while(requirements.next()){
+			requirementid = requirements.getString("id"); 
+			   }
+		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
+		// Retrieving the calleeid
+		calleeid=null; 
+			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
+			while(calleesparsed.next()){
+				 calleeid = calleesparsed.getString("calleemethodid"); }
+			calleeidexecuted=null; 	   
+			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
+			while(calleesexecuted.next()){
+				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
+				   }
+			callerid=null; 
+			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
+			while(callersparsed.next()){
+				  callerid = callersparsed.getString("callermethodid"); }
+			callerexecutedid=null; 	   
+			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
+			while(callersexecuted.next()){
+				 callerexecutedid = callersexecuted.getString("callermethodid"); 
+				   }
+	
+		
+		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
+		//otherwise, use the value from the methodcallsexecuted table 
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
+				 TracesCalleesList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
+				 TracesCalleesList.add(tmc); 
+			}
+			
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
+				 TracesCallersList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
+				 TracesCallersList.add(tmc); 
+			}
+			
+			
+			
+		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
+		if(methodid!=null && requirementid!=null ) {
+			if(tr.contains(TraceListMethods, tr)==false) {
+				  
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				st.executeUpdate(statement);
+				TraceListMethods.add(tr); 
+				
+				
+			}
+			
+			
+		}
+		
+		//ADDING INTERFACES TO THE TRACES TABLE 
+		 for(String interfacenameid: InterfaceNameIds) {
+			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
+			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
+		 if(methodid!=null && requirementid!=null && interfacename!=null) {
+			 System.out.println("SHORT METHOD: " +shortmethod);
+			 System.out.println(" METHOD ID: " +methodid);
+			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, shortmethod, methodid, interfacename, interfaceid, gold, subject); 
+			if(tr.contains(TraceListMethods, tracesmethods)==false) {
+				  
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				st.executeUpdate(statement);
+				TraceListMethods.add(tracesmethods); 
+				
+				
+			}
+		}
+		else {
+			System.out.println(shortmethod);
+			System.out.println("I am here");
+		}
+		
+		
+		 }	
+		
+		
+		 counter++; 
+		
+		
+	}
+	
+	
+	String filename= "TracesCalleesList.txt"; 
+	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+		oos.writeObject(TracesCalleesList);
+		oos.flush();
+		oos.close();
+		
+}
+catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 /////*********************************************************************************************************************************************************************************/	
 /////*********************************************************************************************************************************************************************************/	
 /////*********************************************************************************************************************************************************************************/   
