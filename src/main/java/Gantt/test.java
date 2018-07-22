@@ -60,7 +60,11 @@ public class test {
 					 
 					    String methodname=method.substring(0, method.indexOf("(")); 
 					    String methodparam=method.substring(method.indexOf("(")+1, method.indexOf(")")); 
-					    String[] words = methodparam.split("(?<!^)(?=[A-Z])");
+					    String[] words = methodparam.split("(?<!^)(?=[ISLBY])");
+					    
+					    
+					    
+					    
 					    Matcher matcher = pattern.matcher(methodparam);
 					    while (matcher.find()) {
 					    	 System.out.println("Found "+matcher.groupCount());

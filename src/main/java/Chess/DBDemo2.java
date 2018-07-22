@@ -1019,6 +1019,8 @@ for(CtMethod<?> method :clazz.getMethods()) {
 		String CallerMethodID=null; 
 		//CALLING METHOD ID 
 		String CALLEENAME= calledmethod.getExecutable().getSignature().toString(); 
+		String methodCallee=calledmethod.getExecutable().getClass().getSimpleName();
+		System.out.println("METHOD CALLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: "+methodCallee);
 		if(calledmethod.getTarget()!=null) {
 			String CALLEENAMETARGET= calledmethod.getTarget().toString(); 
 			System.out.println("TARGET: "+ CALLEENAMETARGET);
