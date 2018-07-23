@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.pattern.FullLocationPatternConverter;
+import org.codehaus.plexus.util.cli.Arg;
 import org.eclipse.jdt.core.dom.FieldAccess;
 
 import Tables.RequirementClassKey;
@@ -38,6 +39,7 @@ import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
 import spoon.reflect.code.CtBlock;
+import spoon.reflect.code.CtConstructorCall;
 import spoon.reflect.code.CtExpression;
 import spoon.reflect.code.CtFieldAccess;
 import spoon.reflect.code.CtInvocation;
@@ -1003,6 +1005,19 @@ List<methodcalls> methodcallsList = new ArrayList<methodcalls>();
 for(CtType<?> clazz : classFactory.getAll()) {
 
 for(CtMethod<?> method :clazz.getMethods()) {
+	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
+	
+	for( CtConstructorCall myclass: ctNewClasses) {
+		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
+				"CLASSS    "+
+				myclass.getExecutable().getDeclaringType().getQualifiedName());
+		
+List list = myclass.getArguments();
+		for(  Object arg:list) {
+			System.out.println("ARG"+arg.toString());
+		}
+	}
+	
 	
 	String methname=method.getSimpleName(); 
 	//System.out.println("CALLER METHOD=====>"+methname);
@@ -1110,6 +1125,11 @@ for(CtMethod<?> method :clazz.getMethods()) {
 				
 				List args = ((CtInvocation) invocationTarget).getArguments(); 
 				
+				System.out.println(args.toString());
+				
+				
+				
+				
 				String calleeName = ((CtInvocation) invocationTarget).getExecutable().getSignature();
 				
 				String calleeDeclaringTypeName = ((CtInvocation) invocationTarget).getExecutable().getDeclaringType().getQualifiedName(); 
@@ -1150,7 +1170,8 @@ for(CtMethod<?> method :clazz.getMethods()) {
 			}
 			
 				invocationTarget=((CtInvocation<?>) invocationTarget).getTarget(); 
-		}else if(invocationTarget instanceof CtFieldAccess<?>) {
+		}	
+			else if(invocationTarget instanceof CtFieldAccess<?>) {
 			fieldaccesssflag=true; 
 			//System.out.println("Field Access");
 			invocationTarget=((CtFieldAccess<?>) invocationTarget).getTarget(); 
@@ -1240,6 +1261,7 @@ for(CtMethod<?> method :clazz.getMethods()) {
 		
 	}
 }
+
 
 
 
