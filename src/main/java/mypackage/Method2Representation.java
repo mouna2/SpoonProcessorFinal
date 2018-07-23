@@ -38,7 +38,7 @@ public class Method2Representation {
 	}
 	
 	public String toString2() {
-		return  methodid + ": methodname=" + methodname +"]";
+		return "["+  methodid + ": methodname=" + methodname  + ": classname=" + classrep.classname + ": classid=" + classrep.classid +"]";
 	}
 	
 	public String PrintList(List<Method2Representation> methods) {

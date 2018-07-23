@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MethodTrace3 {
+public class MethodTraceOld {
 	
 	public Method2Representation MethodRepresentation; 
 	public Requirement2 Requirement; 
@@ -99,23 +99,23 @@ public class MethodTrace3 {
 		this.calleesListExecuted = calleesListExecuted;
 	}
 
-	public ArrayList<MethodTrace3> getMethodtraces() {
+	public ArrayList<MethodTraceOld> getMethodtraces() {
 		return methodtraces;
 	}
 
-	public void setMethodtraces(ArrayList<MethodTrace3> methodtraces) {
+	public void setMethodtraces(ArrayList<MethodTraceOld> methodtraces) {
 		this.methodtraces = methodtraces;
 	}
 
-	public HashMap<Integer, MethodTrace3> getMethodtraceHashMap() {
+	public HashMap<Integer, MethodTraceOld> getMethodtraceHashMap() {
 		return methodtraceHashMap;
 	}
 
-	public void setMethodtraceHashMap(HashMap<Integer, MethodTrace3> methodtraceHashMap) {
+	public void setMethodtraceHashMap(HashMap<Integer, MethodTraceOld> methodtraceHashMap) {
 		this.methodtraceHashMap = methodtraceHashMap;
 	}
 
-	public ArrayList<MethodTrace3> methodtraces; 
+	public ArrayList<MethodTraceOld> methodtraces; 
 	
 	public String getGoldprediction() {
 		return goldprediction;
@@ -125,9 +125,9 @@ public class MethodTrace3 {
 		this.goldprediction = goldprediction;
 	}
 
-	HashMap<Integer, MethodTrace3> methodtraceHashMap= new HashMap<Integer, MethodTrace3> (); 
+	HashMap<Integer, MethodTraceOld> methodtraceHashMap= new HashMap<Integer, MethodTraceOld> (); 
 	
-	public MethodTrace3() {
+	public MethodTraceOld() {
 		super();
 	}
 
@@ -171,7 +171,7 @@ public class MethodTrace3 {
 		this.subject = subject;
 	}
 
-	public MethodTrace3(Method2Representation methodRepresentation, Requirement2 requirement,
+	public MethodTraceOld(Method2Representation methodRepresentation, Requirement2 requirement,
 			ClassRepresentation2 classRepresentation, String gold, String subject) {
 		super();
 		MethodRepresentation = methodRepresentation;
@@ -181,7 +181,7 @@ public class MethodTrace3 {
 		this.subject = subject;
 	}
 	
-	public  HashMap<Integer, MethodTrace3> ReadClassesRepresentations(Connection conn) throws SQLException {
+	public  HashMap<Integer, MethodTraceOld> ReadClassesRepresentations(Connection conn) throws SQLException {
 		DatabaseReading2 db = new DatabaseReading2(); 
 		ClassDetails2 classdet= new ClassDetails2(); 
 		//CLASSESHASHMAP
@@ -196,7 +196,7 @@ public class MethodTrace3 {
 		//END OF TEST 
 			 ResultSet myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
 			 while(myresults.next() ) {
-				 MethodTrace3 mytrace= new MethodTrace3(); 
+				 MethodTraceOld mytrace= new MethodTraceOld(); 
 				 RequirementGold RequirementGold = new RequirementGold(); 
 				 Requirement2 requirement = new Requirement2(); 
 				 requirement.setID(myresults.getString("requirementid"));
@@ -369,8 +369,8 @@ public class MethodTrace3 {
 		return methodtraceHashMap;
 	}
 	
-	public List<MethodTrace3> getElement(List<MethodTrace3> methodtraces2, String ID, String goldpred, String goldprediction2, String RequirementID) {
-		for(MethodTrace3 methodtrace: methodtraces2) {
+	public List<MethodTraceOld> getElement(List<MethodTraceOld> methodtraces2, String ID, String goldpred, String goldprediction2, String RequirementID) {
+		for(MethodTraceOld methodtrace: methodtraces2) {
 			if(methodtrace.getMethodRepresentation().methodid.equals(ID) && methodtrace.Requirement.ID.equals(RequirementID)) {
 				if(goldprediction2.equals("goldpredictionCallee")){
 					methodtrace.setGoldpredictionCallee(goldpred);
@@ -386,7 +386,7 @@ public class MethodTrace3 {
 		
 	}
 
-	public String toString(MethodTrace3 methtr) {
+	public String toString(MethodTraceOld methtr) {
 		String mycaller = ""; 
 		String mycallee = ""; 
 		String mycallerexecuted = ""; 

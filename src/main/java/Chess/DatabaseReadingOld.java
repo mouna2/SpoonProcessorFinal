@@ -1,4 +1,4 @@
-package iTrust;
+package Chess;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -22,29 +22,24 @@ import Chess.TracesTableChess;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
-import mainPackage.ClassRepresentation;
+import mainPackage.*;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
-import mypackage.MethodTrace2;
 import mypackage.MethodTraceOld;
 import mypackage.Requirement2;
-import mypackage.RequirementClass;
-import mypackage.RequirementGold;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
 import spoon.reflect.factory.ClassFactory;
 
-public class DatabaseReading2itrust {
+public class DatabaseReadingOld {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTraceOld> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -52,22 +47,16 @@ public class DatabaseReading2itrust {
 		return methodlist;
 	}
 
-
-
 	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
 		return linkedmethodhashmap;
 	}
 
-
-
 	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
-		DatabaseReading2itrust.linkedmethodhashmap = linkedmethodhashmap;
+		DatabaseReadingOld.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
-
-
 	public static void setMethodlist(List<Method2Details> methodlist) {
-		DatabaseReading2itrust.methodlist = methodlist;
+		DatabaseReadingOld.methodlist = methodlist;
 	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
@@ -85,23 +74,23 @@ public class DatabaseReading2itrust {
 	}
 
 	public static void setClassestraces2(List<ClassTrace2> classestraces2) {
-		DatabaseReading2itrust.classestraces2 = classestraces2;
+		DatabaseReadingOld.classestraces2 = classestraces2;
 	}
 
 	/**
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasechess";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust", "root", "123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess", "root", "123456");
 		SpoonAPI spoon = new Launcher();
-		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\iTrust");
+		spoon.addInputResource("C:\\Users\\mouna\\Downloads\\chessgantcode\\workspace_codeBase\\Chess");
 		spoon.getEnvironment().setAutoImports(true);
 		spoon.getEnvironment().setNoClasspath(true);
 
@@ -119,7 +108,7 @@ public class DatabaseReading2itrust {
 	 * @throws IOException ***********************************************************************************************************************/
 	public static void MakePredictions() throws SQLException, IOException {
 		Connection conn = null;
-		DatabaseReading2itrust DatabaseReading = new DatabaseReading2itrust();
+		DatabaseReadingOld DatabaseReading = new DatabaseReadingOld();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
@@ -154,20 +143,25 @@ public class DatabaseReading2itrust {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		/*Method2Details methoddet2 = new Method2Details();
+		Method2Details methoddet2 = new Method2Details();
 		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
-		setMethodlist(methodlist);*/
+		setMethodlist(methodlist);
+		
+///////////////////////////////////////////////////////////////////////////////////////
+ LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
-	/*	ClassDetails2 classdet2 = new ClassDetails2();
+		ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
 		List<ClassDetails2> classlist = new ArrayList<ClassDetails2>(classhashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
-		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
-		Method2Details methoddet2 = new Method2Details();
+		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());
+
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		MethodTraceOld methodtrace2 = new MethodTraceOld();
@@ -181,19 +175,15 @@ public class DatabaseReading2itrust {
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
 		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
-		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
-		setLinkedmethodhashmap(linkedmethodhashmap);
-		///////////////////////////////////////////////////////////////////////////////////////
 		ClassTrace2 classtrace2= new ClassTrace2(); 
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+
 		System.out.println("MOUNA");
-		
-		
 		/*String goldprediction=""; 
-		for (MethodTrace2 tracemeth : methodtraces) {
+		for (MethodTrace3 tracemeth : methodtraces) {
 			Requirement2 requirement = tracemeth.getRequirement();
 			Method2Representation MethodRepresentation = tracemeth.getMethodRepresentation();
 			String gold = tracemeth.getGold();
@@ -202,9 +192,9 @@ public class DatabaseReading2itrust {
 				List<Method2Representation> Callees = method.calleesList;
 				for (Method2Representation Callee : Callees) {
 					if (Callee.methodid.equals(tracemeth.getMethodRepresentation().methodid)) {
-						HashMap<Requirement2, MethodTrace2> methodtracesHash = method.getMethodtraces();
-						List<MethodTrace2> methodtracesList = new ArrayList<MethodTrace2>(methodtracesHash.values());
-						for (MethodTrace2 methtrace : methodtracesList) {
+						HashMap<Requirement2, MethodTrace3> methodtracesHash = method.getMethodtraces();
+						List<MethodTrace3> methodtracesList = new ArrayList<MethodTrace3>(methodtracesHash.values());
+						for (MethodTrace3 methtrace : methodtracesList) {
 							if (methtrace.getRequirement().ID.equals(tracemeth.getRequirement().ID)) {
 								System.out.println("HEYYYYYYYYYYYYYYYY CALLEE");
 								goldprediction="goldpredictionCallee"; 
@@ -216,10 +206,10 @@ public class DatabaseReading2itrust {
 				List<Method2Representation> Callers = method.callersList;
 				for (Method2Representation Caller : Callers) {
 					if (Caller.methodid.equals(tracemeth.getMethodRepresentation().methodid)) {
-						HashMap<Requirement2, MethodTrace2> methodtracesHashCallers = method.getMethodtraces();
-						List<MethodTrace2> methodtracesCallersList = new ArrayList<MethodTrace2>(
+						HashMap<Requirement2, MethodTrace3> methodtracesHashCallers = method.getMethodtraces();
+						List<MethodTrace3> methodtracesCallersList = new ArrayList<MethodTrace3>(
 								methodtracesHashCallers.values());
-						for (MethodTrace2 methtrace : methodtracesCallersList) {
+						for (MethodTrace3 methtrace : methodtracesCallersList) {
 							if (methtrace.getRequirement().ID.equals(tracemeth.getRequirement().ID)) {
 								System.out.println("HEYYYYYYYYYYYYYYYY CALLER ");
 								goldprediction="goldpredictionCaller"; 
@@ -246,11 +236,11 @@ public class DatabaseReading2itrust {
 		
 		
 		
+		/*
 		
-	/*	
 		String goldprediction=""; 
 		String GoldVal=""; 
-		for (MethodTrace2 tracemeth : methodtraces) { 
+		for (MethodTrace3 tracemeth : methodtraces) { 
 			
 			for (Method2Details method : methodlist) {
 				List<Method2Representation> Callees = method.calleesList;
@@ -276,7 +266,7 @@ public class DatabaseReading2itrust {
 			}
 		}
 				 GoldVal=""; 
-				for (MethodTrace2 tracemeth2 : methodtraces) {
+				for (MethodTrace3 tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
 						List<Method2Representation> Callers = method2.callersList;
@@ -307,7 +297,7 @@ public class DatabaseReading2itrust {
 		/***********************************************************************************************************************/
 		/***********************************************************************************************************************/
 		/* GoldVal=""; 
-		for (MethodTrace2 tracemeth : methodtraces) {
+		for (MethodTrace3 tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
 				List<Method2Representation> CalleesExecuted = method.calleesListExecuted;
@@ -333,7 +323,7 @@ public class DatabaseReading2itrust {
 			}
 		}
 				 GoldVal=""; 
-				for (MethodTrace2 tracemeth2 : methodtraces) {
+				for (MethodTrace3 tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
 						List<Method2Representation> CallersExecuted = method2.callersListExecuted;
@@ -360,8 +350,8 @@ public class DatabaseReading2itrust {
 			}
 
 		}
-
-		for (MethodTrace2 methtr : methodtraces2) {
+*/
+		/*for (MethodTrace3 methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));
 		}
 
@@ -400,26 +390,28 @@ public class DatabaseReading2itrust {
 		}
 		System.out.println("GOLDMATCHINGCALLER/TOTAL NOT NULL: =====> " + GoldMatchingCaller + " / " + MethodTracesSizeNotNullCaller);
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
-
-	*/
-	}
-
-	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
-		return classesRequirementtraceshashmap;
+*/
+	
 	}
 
 	public static void setClassesRequirementtraceshashmap(
 			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
-		DatabaseReading2itrust.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
+		DatabaseReadingOld.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
 	public static List<MethodTraceOld> getMethodtraces2() {
 		return methodtraces2;
 	}
 
-	public static void setMethodtraces2(List<MethodTraceOld> methodtraces) {
-		DatabaseReading2itrust.methodtraces2 = methodtraces;
+	public static void setMethodtraces2(List<MethodTraceOld> methodtraces2) {
+		DatabaseReadingOld.methodtraces2 = methodtraces2;
 	}
+
+	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
+		return classesRequirementtraceshashmap;
+	}
+
+	
 	
 	
 	
