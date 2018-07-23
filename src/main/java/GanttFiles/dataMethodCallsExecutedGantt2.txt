@@ -1,4 +1,3 @@
-"net.sourceforge.ganttproject.GanttSplash$1.paint(Ljava/awt/Graphics;)V" --- "net.sourceforge.ganttproject.ChartComponentBase$MouseListenerBase.mouseExited(Ljava/awt/event/MouseEvent;)V"
 "net.sourceforge.ganttproject.shape.ShapePaint.-init-(II[I)V" --- "net.sourceforge.ganttproject.shape.ShapePaint.-init-(II[I)V"
 "net.sourceforge.ganttproject.gui.GanttTaskPropertiesBean.setSelectedTask()V" --- "net.sourceforge.ganttproject.shape.ShapePaint.equals(Ljava/lang/Object;)Z"
 "net.sourceforge.ganttproject.gui.GanttTaskPropertiesBean.setSelectedTask()V" --- "net.sourceforge.ganttproject.task.TaskImpl.getCompletionPercentage()I"

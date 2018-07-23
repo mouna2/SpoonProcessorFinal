@@ -2509,6 +2509,7 @@ counter2++;
 		res=res.replaceAll(",,", ","); 
 		res=res.replaceAll(";", ","); 
 		res=res.replaceAll(",,", ","); 
+		res=res.replaceAll(",\\[,", ",\\["); 
 		res=res.replaceAll(",\\)", "\\)"); 
 		//res=res.replaceAll("Ljava", "java"); 
 		System.out.println(res);
