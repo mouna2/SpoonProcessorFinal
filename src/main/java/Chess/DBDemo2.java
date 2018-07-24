@@ -45,6 +45,7 @@ import spoon.reflect.code.CtFieldAccess;
 import spoon.reflect.code.CtInvocation;
 import spoon.reflect.code.CtReturn;
 import spoon.reflect.code.CtStatement;
+import spoon.reflect.code.CtTargetedExpression;
 import spoon.reflect.declaration.CtConstructor;
 import spoon.reflect.declaration.CtField;
 import spoon.reflect.declaration.CtMethod;
@@ -1001,6 +1002,14 @@ public class DBDemo2 {
 /////////////*********************************************************************************************************************************************************************************/   	
 //////////////BUILD METHODSCALLED TABLE
 	int counter=0; 
+	String CallerMethodIDcons=null; 
+	String CALLERCLASSNAMEcons=null; 
+	String CALLERCLASSIDcons=null; 
+	String fullcallerinscons=null; 
+	String CalleeMethodIDcons=null; 
+	String CALLEECLASSNAMEcons=null; 
+	String CALLEECLASSIDcons=null; 
+	String fullcalleeinscons=null; 
 List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
 for(CtType<?> clazz : classFactory.getAll()) {
 
@@ -1008,14 +1017,125 @@ for(CtMethod<?> method :clazz.getMethods()) {
 	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
 	
 	for( CtConstructorCall myclass: ctNewClasses) {
+		//CONSTRUCTOR 
 		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
 				"CLASSS    "+
 				myclass.getExecutable().getDeclaringType().getQualifiedName());
+
+		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
 		
-List list = myclass.getArguments();
-		for(  Object arg:list) {
-			System.out.println("ARG"+arg.toString());
+		String constructorName=myclass.getExecutable().getSignature(); 
+		String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
+		System.out.println("CONSTRUCTOR NAME "+ constructorName);
+		
+		
+		
+	
+		
+		
+		String fullcallerins=null; 
+		String fullcalleeins=null; 
+		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
+				+ "and methods.classname='"+constructorClassName+"'"); 
+		//while(callingmethodsrefined.next()){
+		if(callingmethodsrefined.next()) {
+			CalleeMethodIDcons = callingmethodsrefined.getString("id"); 
+			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
+			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
+
+			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
 		}
+		
+		
+	callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+FullCallerMeth+"'"); 
+		//while(callingmethodsrefined.next()){
+		if(callingmethodsrefined.next()) {
+			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+		}
+		
+		
+		
+		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
+		//System.out.println(methodcall.toString()); 
+		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+			
+			st.executeUpdate(statement);
+			methodcallsList.add(methodcall); 
+		}
+		
+		
+//			List args = (myclass.getExecutable().getArguments()); 
+		
+//		System.out.println("hEYYYYYY"+args.toString());
+		
+		
+		List list = myclass.getArguments();
+		
+		System.out.println("LIST "+ list);
+		
+		for(Object elem: list) {
+			
+			if(elem instanceof CtInvocation) {
+				
+				 CtExecutableReference elemexec = ((CtInvocation) elem).getExecutable(); 
+				System.out.println("ELEM"+elem);
+				System.out.println("EXEC"+elemexec);
+				String targetType=elemexec.getDeclaringType().getQualifiedName(); 
+				
+				
+				
+				
+				  CtExpression targ = ((CtInvocation) elem).getTarget(); 
+					if(targ instanceof CtInvocation) {
+						CtExecutableReference targex = ((CtInvocation) targ).getExecutable(); 
+						System.out.println("TARG"+targex);
+						String executableType=targex.getDeclaringType().getQualifiedName(); 
+						
+						
+						CtExpression targetoftarget = ((CtTargetedExpression) targ).getTarget(); 
+						while(!targetoftarget.toString().equals("") && targetoftarget instanceof CtInvocation==true ) {
+							
+							
+							System.out.println("TARGET OF TARGET: "+targetoftarget);
+							if(targetoftarget instanceof CtInvocation<?> ) {
+								targetoftarget=((CtInvocation<?>) targetoftarget).getTarget(); 
+
+							}
+							else if(targetoftarget instanceof CtConstructorCall<?>) {
+								targetoftarget=((CtConstructorCall<?>) targetoftarget).getTarget(); 
+							}
+							else if(targetoftarget instanceof CtFieldAccess<?>) {
+								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
+							}else if(targetoftarget instanceof CtField<?>) {
+								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
+							}
+							
+							String targetoftargetType=targex.getDeclaringType().getQualifiedName(); 
+							
+						}
+					}
+//				if(elemtarg==null) {
+//					System.out.println("ELEM"+elem);
+//				}
+//				while(elemtarg!=null) {
+//					
+//					elemtarg = ((CtInvocation<?>) elemtarg).getTarget(); 
+//					System.out.println("ELEM TARG: "+elemtarg);
+//				}
+				
+			}else if(elem instanceof CtFieldAccess) {
+				System.out.println("ELEMFILEDACCESS"+elem);
+			}
+		}
+		
 	}
 	
 	
@@ -1125,8 +1245,10 @@ List list = myclass.getArguments();
 				
 				List args = ((CtInvocation) invocationTarget).getArguments(); 
 				
-				System.out.println(args.toString());
-				
+				System.out.println("hEYYYYYY"+args.toString());
+				for(Object elem: args) {
+				//	System.out.println("hEYYYYYY"+elem.toString());
+				}
 				
 				
 				
