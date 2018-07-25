@@ -471,7 +471,7 @@ public class DBDemo3Gantt {
     	
     	
     	
-    	//BUILD CLASSES TABLE 
+  //  	BUILD CLASSES TABLE 
 //    	for(CtType<?> clazz : classFactory.getAll(true)) {
 //    		
 //    	
@@ -1001,38 +1001,114 @@ public class DBDemo3Gantt {
     	
     	
     	String calleeDeclaringTypeName=null; 
+    	
     List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
     for(CtType<?> clazz : classFactory.getAll(true)) {
     	List<CtConstructorCall> constructorcallers = clazz.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
     	   for(CtConstructorCall<?> cons :constructorcallers) {
     	    	List<CtInvocation> MethodsInvokedByConstructors = cons.getElements(new TypeFilter<CtInvocation>(CtInvocation.class));
     	    	for(CtInvocation<?> consInvocation: MethodsInvokedByConstructors) {
-    	    		
+    	    		String CalleeMethodID=null;  
+    	    		String CALLEECLASSNAME=null;  
+    	    		String CALLEECLASSID =null;  
+    	    		String fullcalleeins=null;   
+    	    		String CallerMethodIDcons=null; 
+    	        	String CALLERCLASSNAMEcons=null; 
+    	        	String CALLERCLASSIDcons=null; 
+    	        	String fullcallerinscons=null; 
+    	        	String fullcaller=null; 
+    	        	String fullcallee=null; 
+    	        	String InvokedMethodNamePackageFree=null;
+    	        	String ConstructorNamePackageFree=null; 
+    	        	
     	    		if(cons.getExecutable().getDeclaringType()!=null) {
     	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
     	    		String constructorName=cons.getExecutable().getSignature(); 
     	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
     	    		System.out.println("BEFORE constructorName====>"+constructorName);
+    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
     	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
     	    		constructorName=RemoveDollarConstructor(constructorName); 
-    	    		System.out.println("constructorClassName====>"+constructorClassName);	    		
-    	    		System.out.println("constructorName====>"+constructorName);
+    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
+    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorName=TransformConstructorIntoInit(constructorName); 
+    	    		//System.out.println("constructorClassName====>"+constructorClassName);	    		
+    	    		//System.out.println("constructorName====>"+constructorName);
     	    		System.out.println("\n");
+    	    		fullcaller=constructorName; 
+    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
+    	    		//System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
+    	    		//System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
+    	    		
+    	    		
+    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
+    	    				+ "and methods.classname='"+constructorClassName+"'"); 
+    	    		//while(callingmethodsrefined.next()){
+    	    		if(callingmethodsrefined.next()) {
+    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	    		}
     	    		}
     	    		
     	    		
     	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
     	    			String InvokedClassName = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
         	    		String InvokedMethodName=consInvocation.getExecutable().getSignature(); 
+        	    		fullcallee=InvokedMethodName; 
         	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassName);
         	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodName);
         	    		InvokedClassName=RemoveDollarConstructor(InvokedClassName); 
         	    		InvokedMethodName=RemoveDollarConstructor(InvokedMethodName); 
-        	    		System.out.println("InvokedClassName====>"+InvokedClassName);
-        	    		System.out.println("InvokedMethodName====>"+InvokedMethodName);
+        	    	//	System.out.println("InvokedClassName====>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName====>"+InvokedMethodName);
+        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
         	    		System.out.println("\n");
+        	    		if(consInvocation instanceof CtConstructorCall) {
+        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
+        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    		}
+        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
+        	    		
+        	    		
+        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+    	    					
+        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
+        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
+        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
+        	  
+        	    		//while(callingmethodsrefined.next()){
+        	    		if(callingmethodsrefined.next()) {
+        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
+        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
+        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
+        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
+
+        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+        	    			 
+        	    				
+        	    		}
+        	    		
+        	    		
     	    		}
     	    	
+    	    		
+    	    		
+    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
+    	    		//System.out.println(methodcall.toString()); 
+    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
+    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    	    			
+    	    			st.executeUpdate(statement);
+    	    			methodcallsList.add(methodcall); 
+    	    		}
     	    	}
     		   
     		   
@@ -1062,7 +1138,7 @@ public class DBDemo3Gantt {
     	
     			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
     		
-    			constructorClassName = RemoveDollar(constructorClassName);
+    			constructorClassName = RemoveDollarConstructor(constructorClassName);
     			
     		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
     				"CLASSS    "+
@@ -1071,15 +1147,16 @@ public class DBDemo3Gantt {
     		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
     		
     		String constructorName=myclass.getExecutable().getSignature(); 
+    		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
     		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
     		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-    		System.out.println("CONSTRUCTOR NAME "+ constructorName);
-    		System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
+    		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
+    		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
     		
     		
     	
     		
-    		
+    		//System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
     		constructorClassName=RemoveDollar(constructorClassName); 
     		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
     				+ "and methods.classname='"+constructorClassName+"'"); 
@@ -1106,8 +1183,8 @@ public class DBDemo3Gantt {
     		}
     		
     		
-    		System.out.println("FULL CALLER INS CONS"+fullcallerinscons);
-			System.out.println("FULL CALLEE INS CONS"+fullcalleeinscons);
+    		//System.out.println("FULL CALLER INS CONS"+fullcallerinscons);
+			//System.out.println("FULL CALLEE INS CONS"+fullcalleeinscons);
     		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
     		//System.out.println(methodcall.toString()); 
     		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
@@ -1267,8 +1344,8 @@ public class DBDemo3Gantt {
     				methodcalls methodcall= new methodcalls(CALLEEID, fullcalleeins, CALLEECLASSNAME, CALLEECLASSID, CallerMethodID, fullcallerins, CALLERCLASSNAME); 
     				//
     				//System.out.println("======>"+methodcall.toString()); 
-    				System.out.println("FULL CALLER"+fullcallerins);
-        			System.out.println("FULL CALLEE"+fullcalleeins);
+    		//		System.out.println("FULL CALLER"+fullcallerins);
+        	//		System.out.println("FULL CALLEE"+fullcalleeins);
     				if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
     					
     					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLERCLASSID+"','" +fullcallerins+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
@@ -1304,7 +1381,7 @@ public class DBDemo3Gantt {
     				
     				List args = ((CtInvocation) invocationTarget).getArguments(); 
     				
-    				System.out.println("hEYYYYYY"+args.toString());
+    			//	System.out.println("hEYYYYYY"+args.toString());
     				for(Object elem: args) {
     				//	System.out.println("hEYYYYYY"+elem.toString());
     				}
@@ -1312,11 +1389,11 @@ public class DBDemo3Gantt {
     				
     				
     				String calleeName = ((CtInvocation) invocationTarget).getExecutable().getSignature();
-    				System.out.println("CALLEE NAME"+calleeName);
-    				System.out.println(((CtInvocation) invocationTarget).getExecutable());
+    			//	System.out.println("CALLEE NAME"+calleeName);
+    			//	System.out.println(((CtInvocation) invocationTarget).getExecutable());
     				if((((CtInvocation) invocationTarget).getExecutable().getDeclaringType())!=null) {
     					 calleeDeclaringTypeName = ((CtInvocation) invocationTarget).getExecutable().getDeclaringType().getQualifiedName(); 
-        				System.out.println("CALLEE type"+calleeDeclaringTypeName);
+        		//		System.out.println("CALLEE type"+calleeDeclaringTypeName);
     				}
     				
     				List<CtParameter<?>> myparams = ((CtInvocation) invocationTarget).getExecutable().getParameters(); 
@@ -2947,8 +3024,28 @@ res = String.valueOf(chars);
 System.out.println("final res : "+res);
 return res; 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+public String KeepOnlyMethodName(String constructor) {
+	String params= constructor.substring(constructor.indexOf("("), constructor.length()); 
+	constructor=constructor.substring(0, constructor.indexOf("(")); 
+	constructor=constructor.substring(constructor.lastIndexOf(".")+1, constructor.length()); 
+	constructor=constructor+params; 
+
+return constructor; 
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+public String TransformConstructorIntoInit(String constructor) {
+	String params= constructor.substring(constructor.indexOf("("), constructor.length()); 
+	constructor= constructor.substring(0, constructor.indexOf("(")); 
 	
+	//String part2= constructor.substring(constructor.indexOf("("), constructor.length()); 
+	constructor=constructor+".-init-"+params; 
 	
+	return constructor; 
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 public String RemoveDollarConstructor(String text) {
@@ -2961,9 +3058,9 @@ public String RemoveDollarConstructor(String text) {
 	char[] chars = text.toCharArray();
 	 int r = 0; 
 	 int pos = text.indexOf("$"); 
-	System.out.println("HERE IS THE TEXT "+text);
+	//System.out.println("HERE IS THE TEXT "+text);
 	if(text.contains("$")) {
-		if(chars.length-pos>2 && chars[pos+2]!='(') {
+		if(chars.length-pos>7 && chars[pos+2]!='(') {
 			
 		
 		while(r<chars.length ) {
@@ -2984,12 +3081,12 @@ public String RemoveDollarConstructor(String text) {
 				 if(chars[pos]!='.'&& chars[pos]!='('&& chars[pos]!=')') {
 					 r--; 
 					 pos--; 
-					 System.out.println(chars[r]);
+				//	 System.out.println(chars[r]);
 					 StringBuilder sb = new StringBuilder();
 					 sb.append(chars);
 					
 					 sb.deleteCharAt(r);
-					 System.out.println(sb);
+				//	 System.out.println(sb);
 					 chars = sb.toString().toCharArray();
 					 int length=chars.length; 
 //					 if(r==length) {
@@ -3027,8 +3124,11 @@ public String RemoveDollarConstructor(String text) {
 	}
 		
 	}
+	else {
+		res=text; 
+	}
 
-	System.out.println("RES====>"+res);
+	//System.out.println("RES====>"+res);
 	
 
 	
@@ -3067,12 +3167,12 @@ public String RemoveDollarConstructor(String text) {
 				 if(chars[pos]!='.'&& chars[pos]!='('&& chars[pos]!=')') {
 					 r--; 
 					 pos--; 
-					 System.out.println(chars[r]);
+				//	 System.out.println(chars[r]);
 					 StringBuilder sb = new StringBuilder();
 					 sb.append(chars);
 					
 					 sb.deleteCharAt(r);
-					 System.out.println(sb);
+				//	 System.out.println(sb);
 					 chars = sb.toString().toCharArray();
 					 int length=chars.length; 
 //					 if(r==length) {
@@ -3100,7 +3200,7 @@ public String RemoveDollarConstructor(String text) {
 		
 	}
 	String res = String.valueOf(chars);
-	System.out.println("RES====>"+res);
+//	System.out.println("RES====>"+res);
 	return res; 
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
