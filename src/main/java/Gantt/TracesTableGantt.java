@@ -155,12 +155,89 @@ public class TracesTableGantt extends JFrame {
 	PredictionEvaluation MajorityParametersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast1NParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2NParameterClass= new PredictionEvaluation(); 
-
 	PredictionEvaluation AtLeast1TParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2TParameterClass= new PredictionEvaluation(); 
-
 	PredictionEvaluation AllNParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClass= new PredictionEvaluation(); 
+	
+	PredictionEvaluation OwnerClassPredictionClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NParameterClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TParameterClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClassGold3= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClassGold3= new PredictionEvaluation(); 
+	
+	
+	
+	PredictionEvaluation OwnerClassPredictionClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
+	
+	
+	
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
@@ -174,8 +251,16 @@ public class TracesTableGantt extends JFrame {
 	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
+	File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold3.txt");
+	FileOutputStream fos3 = new FileOutputStream(fout3);
+	
+	File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold4.txt");
+	FileOutputStream fos4 = new FileOutputStream(fout4);
+	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
+	BufferedWriter bwGold3 = new BufferedWriter(new OutputStreamWriter(fos3));
+	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fos4));
 	
 	private final String userName = "root";
 	private final String password = "123456";
