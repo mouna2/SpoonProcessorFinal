@@ -211,7 +211,8 @@ public class MethodTrace2 {
 				 methodrep.setMethodid(myresults.getString("methodid"));
 				// methodrep.setMethodname(myresults.getString("method"));
 				 String fullmethodname= myresults.getString("fullmethod"); 
-				 methodrep.setMethodname(myresults.getString("fullmethod"));
+				 methodrep.setMethodname(myresults.getString("methodname"));
+				 methodrep.setFullmethodname(myresults.getString("fullmethod"));
 				 mytrace.setMethodRepresentation(methodrep);
 				 
 				 mytrace.setClassRepresentation(classrep);
@@ -226,14 +227,13 @@ public class MethodTrace2 {
 				 }
 				
 				 
-				 
 				 mytrace.setGold(myresults.getString("gold"));
 				 
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				 mytrace.setGold2(myresults.getString("gold2"));
 				 String id= mytrace.getMethodRepresentation().methodid; 
-				 String tracename= mytrace.getMethodRepresentation().methodname; 
+				 String tracename= mytrace.getMethodRepresentation().fullmethodname; 
 				 ResultSet callers=st.executeQuery("select methodcalls.* from methodcalls where fullcallee='" + tracename+"'"); 
 				 this.callersList= new  ArrayList<Method2Representation>(); 
 				 while(callers.next()) {
@@ -320,8 +320,11 @@ public class MethodTrace2 {
 						 System.out.println("FULL METHOD NAME: "+ fullmethodname);
 							
 							String myclass=  mytrace.ClassRepresentation.classname; 
+							 fullmethodname=  mytrace.MethodRepresentation.fullmethodname; 
+							String shortmethodname=  mytrace.MethodRepresentation.methodname; 
+							System.out.println("FULL METHOD NAME: "+ fullmethodname);
 							 System.out.println("MYCLASS: "+ myclass);
-							String shortmethodname=fullmethodname.substring(myclass.length(), fullmethodname.length()); 
+						//	String shortmethodname=fullmethodname.substring(myclass.length(), fullmethodname.length()); 
 							 String interfacename= inter.classname+shortmethodname; 
 							 
 							  callers=st.executeQuery("select methodcalls.* from methodcalls where fullcallee='" + interfacename+"'"); 

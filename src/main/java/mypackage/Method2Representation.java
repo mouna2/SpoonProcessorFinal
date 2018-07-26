@@ -6,6 +6,7 @@ import java.util.List;
 public class Method2Representation {
 	public String methodid; 
 	public String methodname;
+	public String fullmethodname;
 	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
 	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
@@ -67,6 +68,12 @@ public class Method2Representation {
 	}
 	public void setClassrep(ClassRepresentation2 classrep) {
 		this.classrep = classrep;
+	}
+	public String getFullmethodname() {
+		return fullmethodname;
+	}
+	public void setFullmethodname(String fullmethodname) {
+		this.fullmethodname = fullmethodname;
 	}
 	
 	

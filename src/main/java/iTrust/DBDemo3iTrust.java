@@ -1616,11 +1616,13 @@ try {
 		//CALLING METHOD ID 
 		
 		if(ClassFROM.contains("$")) {
-			ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
+			//ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
+			ClassFROM=RemoveDollarConstructor(ClassFROM); 
 
 		}
 		if(ClassTO.contains("$")) {
-			ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
+			//ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
+			ClassTO=RemoveDollarConstructor(ClassTO); 
 		}
 //		if(MethodTOTransformed.equals("-clinit-")) {
 //			MethodTOTransformed="-init-"; 
@@ -1843,7 +1845,7 @@ try {
 					String MethodTORefined= MethodTO;
 					String MethodTOAbbreviation = ClassTO+"."+MethodTORefined; 
 					String FullMethTO= RewriteFullMethod(MethodTOAbbreviation); 
-					if(calledmethodid==null) {
+					if(calledmethodid==null  && classTOid!=null) {
 						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
 
 						//RECALCULATION PHASE: CALLED METHOD ID 

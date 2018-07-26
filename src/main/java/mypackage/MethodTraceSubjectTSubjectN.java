@@ -228,6 +228,7 @@ public class MethodTraceSubjectTSubjectN {
 				 Method2Representation methodrep= new Method2Representation(); 
 				 methodrep.setMethodid(myresults.getString("methodid"));
 				 methodrep.setMethodname(myresults.getString("method"));
+				 methodrep.setMethodname(myresults.getString("methodname"));
 				 mytrace.setMethodRepresentation(methodrep);
 				 
 				 mytrace.setClassRepresentation(classrep);

@@ -1,5 +1,7 @@
 package Gantt;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class testt {
 
 	public static void main(String[] args) {
@@ -16,11 +18,380 @@ public class testt {
 		//TransformConstructorIntoInit(text); 
 	text=" net.sourceforge.ganttproject.ChartComponentBase$2.-init-(Lnet/sourceforge/ganttproject/ChartComponentBase;[Lnet/sourceforge/ganttproject/gui/options/model/GPOptionGroup;Lnet/sourceforge/ganttproject/gui/UIFacade;)V, 01: Create Tasks, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 1, 0\r\n" + 
 			"";
-		meth(text); 
+	text="de.java_chess.javaChess.JavaChess.-init-(Lde.java_chess.javaChess.JavaChess)"; 
+	text="de.java_chess.javaChess.renderer2d.ControlLayer$2";
+	
+	
+	text="de.java_chess.javaChess.game.GameImpl.GameStatus$2"; 
+	
+	text="de.java_chess.javaChess.game.GameImpl.GameStatus$2"; 
+	text="de.java_chess.javaChess.game.GameImpl$GameStatus"; 
+	text="de.java_chess.javaChess.renderer2d.ControlLayer$2.-init-"; 
+	// res= RewriteFullMethod(text); 
 		
 		
 	}
 	
+	
+	
+public static String RewriteFullMethodCallExecutedRemoveDollars(String input) {
+	
+	String res=input; 
+	StringBuilder buf = new StringBuilder();
+	
+
+
+		boolean flag=false; 
+		char[] chars = res.toCharArray();
+		int r = 0; 
+		int pos=0; 
+		
+		int myindex= input.indexOf("$"); 
+		char c= chars[myindex+1]; 
+		if(Character.isDigit(c) && myindex+2==chars.length) {
+			System.out.println("yeah");
+			while(r<chars.length) {
+				if(chars[r]=='$' ) {
+				 pos=r; 
+				// temp = chars[r+1]; 
+				StringBuilder sb = new StringBuilder();
+				sb.append(chars);
+				sb.deleteCharAt(r);
+				chars = sb.toString().toCharArray();
+				flag=true; 
+				}
+				int i=1; 
+				if(pos>0) {
+					while( flag==true) {
+						if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+							System.out.println(chars[r]);
+							StringBuilder sb = new StringBuilder();
+							sb.append(chars);
+							sb.deleteCharAt(pos);
+							chars = sb.toString().toCharArray();
+							pos++; 
+							//r++; 
+							if(pos>chars.length) {
+								flag=false; 
+							}
+						}
+					
+
+						}
+				}
+
+				
+					r++; 
+				
+				
+
+				}
+			
+		}
+		else if(Character.isDigit(c)) {
+			while(r<chars.length) {
+				if(chars[r]=='$' ) {
+				 pos=r; 
+				// temp = chars[r+1]; 
+				StringBuilder sb = new StringBuilder();
+				sb.append(chars);
+				sb.deleteCharAt(r);
+				chars = sb.toString().toCharArray();
+				flag=true; 
+				}
+				int i=1; 
+				if(pos>0) {
+					while( flag==true) {
+						if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+							System.out.println(chars[r]);
+							StringBuilder sb = new StringBuilder();
+							sb.append(chars);
+							sb.deleteCharAt(pos);
+							chars = sb.toString().toCharArray();
+							pos++; 
+							//r++; 
+							if(chars[pos-1]=='.') {
+								flag=false; 
+							}
+						}
+					
+
+						}
+				}
+
+				
+					r++; 
+				
+				
+
+				}
+		}
+		else {
+			
+			while(r<chars.length) {
+				if(chars[r]=='$' ) {
+				 pos=r; 
+				// temp = chars[r+1]; 
+				StringBuilder sb = new StringBuilder();
+				sb.append(chars);
+				sb.deleteCharAt(r);
+				chars = sb.toString().toCharArray();
+				flag=true; 
+				}
+				int i=1; 
+				if(pos>0) {
+					while(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos<chars.length && flag==true) {
+						pos=r-i; 
+						System.out.println(chars[r]);
+						StringBuilder sb = new StringBuilder();
+						sb.append(chars);
+						sb.deleteCharAt(pos);
+						chars = sb.toString().toCharArray();
+				i++; 
+						//r++; 
+
+						}
+				}
+
+				
+					r++; 
+				
+				
+
+				}
+		}
+		
+
+		res = String.valueOf(chars);
+		System.out.println(res);
+		return res; 
+	}
+
+	
+
+	
+
+	
+
+
+	
+	public String RemoveDollarConstructor(String text) {
+
+		
+		
+		String res=""; 
+		
+		boolean  flag=false; 
+		char[] chars = text.toCharArray();
+		 int r = 0; 
+		 int pos = text.indexOf("$"); 
+		//System.out.println("HERE IS THE TEXT "+text);
+		 int count = StringUtils.countMatches("text", "$");
+	if(count==1) {
+		if(text.contains("$")) {
+			if(chars.length-pos>7 && chars[pos+2]!='(') {
+				
+			
+			while(r<chars.length ) {
+				if(chars[r]=='$' ) {
+					// pos = r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					 pos--; 
+					
+					
+				}
+				
+				 while( flag==true ) {
+					 if(chars[pos]!='.'&& chars[pos]!='('&& chars[pos]!=')') {
+						 r--; 
+						 pos--; 
+					//	 System.out.println(chars[r]);
+						 StringBuilder sb = new StringBuilder();
+						 sb.append(chars);
+						
+						 sb.deleteCharAt(r);
+					//	 System.out.println(sb);
+						 chars = sb.toString().toCharArray();
+						 int length=chars.length; 
+//						 if(r==length) {
+//							 flag=false; 
+//						 }
+						
+						
+					 }
+					 else {
+						 flag=false; 
+					 }
+					
+					 //r++; 
+					 
+				 }
+				flag=false; 
+				 if(flag==true) {
+					 r--; 
+				 }else {
+					 r++;  
+				 }
+				 
+				
+			}
+			 res = String.valueOf(chars);
+		}else {
+			String part2=""; 
+			String part1=""; 
+			 res = String.valueOf(chars);
+			  part1=res.substring(0,res.indexOf("$")); 
+			 if(res.contains("(")) {
+				  part2=res.substring(res.indexOf("("),res.length()); 
+			 }
+			res=part1+part2; 
+		}
+			
+		}
+
+		
+	}else if(count==2) {
+		String methodname=text.substring(0, text.indexOf("(")); 
+		String parameters=text.substring(text.indexOf("("), text.length()); 
+		
+		methodname=methodname.substring(0, methodname.lastIndexOf("$")); 
+		String part1meth=methodname.substring(0, methodname.lastIndexOf(".")); 
+		String part2meth=methodname.substring(methodname.indexOf("$"), methodname.length()); 
+		res=part1meth+part2meth+parameters; 
+	}
+		//System.out.println("RES====>"+res);
+	else {
+		res=text; 
+	}
+
+		
+		return res; 
+
+
+	}
+
+
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+		
+	public static String RemoveDollarConstructorTest(String text) {
+
+		
+		
+		String res=""; 
+		
+		boolean  flag=false; 
+		char[] chars = text.toCharArray();
+		 int r = 0; 
+		 int pos = text.indexOf("$"); 
+		//System.out.println("HERE IS THE TEXT "+text);
+		 int count = StringUtils.countMatches("text", "$");
+	if(count==1) {
+		if(text.contains("$")) {
+			if(chars.length-pos>7 && chars[pos+2]!='(') {
+				
+			
+			while(r<chars.length ) {
+				if(chars[r]=='$' ) {
+					// pos = r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					 pos--; 
+					
+					
+				}
+				
+				 while( flag==true ) {
+					 if(chars[pos]!='.'&& chars[pos]!='('&& chars[pos]!=')') {
+						 r--; 
+						 pos--; 
+					//	 System.out.println(chars[r]);
+						 StringBuilder sb = new StringBuilder();
+						 sb.append(chars);
+						
+						 sb.deleteCharAt(r);
+					//	 System.out.println(sb);
+						 chars = sb.toString().toCharArray();
+						 int length=chars.length; 
+//						 if(r==length) {
+//							 flag=false; 
+//						 }
+						
+						
+					 }
+					 else {
+						 flag=false; 
+					 }
+					
+					 //r++; 
+					 
+				 }
+				flag=false; 
+				 if(flag==true) {
+					 r--; 
+				 }else {
+					 r++;  
+				 }
+				 
+				
+			}
+			 res = String.valueOf(chars);
+		}else {
+			String part2=""; 
+			String part1=""; 
+			 res = String.valueOf(chars);
+			  part1=res.substring(0,res.indexOf("$")); 
+			 if(res.contains("(")) {
+				  part2=res.substring(res.indexOf("("),res.length()); 
+			 }
+			res=part1+part2; 
+		}
+			
+		}
+
+		
+	}else if(count==2) {
+		String methodname=text.substring(0, text.indexOf("(")); 
+		String parameters=text.substring(text.indexOf("("), text.length()); 
+		
+		methodname=methodname.substring(0, methodname.lastIndexOf("$")); 
+		String part1meth=methodname.substring(0, methodname.lastIndexOf(".")); 
+		String part2meth=methodname.substring(methodname.indexOf("$"), methodname.length()); 
+		res=part1meth+part2meth+parameters; 
+	}
+		//System.out.println("RES====>"+res);
+	else {
+		res=text; 
+	}
+
+		
+		return res; 
+
+
+	}
+	
+	
+	
+	
+	public  static String GetMethodNameAndParams(String method) {
+		// TODO Auto-generated method stub
+		System.out.println("METH BEFORE TRUNCATION"+method);
+		String params=method.substring(method.indexOf("("), method.length()); 
+		String BeforeParams=method.substring(0, method.indexOf("(")); 
+		String methname=BeforeParams.substring(BeforeParams.lastIndexOf(".")+1, BeforeParams.length()); 
+		String res= methname+params; 
+		System.out.println("RES"+ res);
+		return res;
+	}
 	public static void TransformConstructorIntoInit(String constructor) {
 		String params= constructor.substring(constructor.indexOf("("), constructor.length()); 
 		constructor= constructor.substring(0, constructor.indexOf("(")); 

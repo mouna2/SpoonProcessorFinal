@@ -293,7 +293,7 @@ public class TracesTableChess extends JFrame {
 		for (MethodTrace2 methodtrace : methodtraces2) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
-			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
+			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
 			data[j][ClassID] = methodtrace.ClassRepresentation.classid;

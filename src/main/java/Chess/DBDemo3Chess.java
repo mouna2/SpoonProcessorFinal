@@ -383,6 +383,7 @@ public class DBDemo3Chess {
 		   		"  `requirement` LONGTEXT NULL,\r\n" + 
 		   		"  `requirementid` INT,\r\n" + 
 		   		"  `method` LONGTEXT NULL,\r\n" + 
+		   		"  `methodname` LONGTEXT NULL,\r\n" + 
 		   		"  `fullmethod` LONGTEXT NULL,\r\n" +
 		   		"  `methodid` INT NULL,\r\n" + 
 		   		"  `classname` LONGTEXT NULL,\r\n" + 
@@ -1783,11 +1784,24 @@ try {
 		//CALLING METHOD ID 
 		
 		if(ClassFROM.contains("$")) {
-			ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
+			System.out.println("CLASS FROM BEFORE ======>"+ClassFROM);
+			//ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
+			ClassFROM=RewriteFullMethodCallExecutedRemoveDollars(ClassFROM); 
+			System.out.println("CLASS FROM======>"+ClassFROM);
+
+		}
+		else {
+			System.out.println("CLASS FROM======>"+ClassFROM);
 
 		}
 		if(ClassTO.contains("$")) {
-			ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
+			System.out.println("ClassTO BEFORE======>"+ClassTO);
+			//ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
+			ClassTO=RewriteFullMethodCallExecutedRemoveDollars(ClassTO); 
+			System.out.println("ClassTO======>"+ClassTO);
+		}
+		else {
+			System.out.println("ClassTO======>"+ClassTO);
 		}
 //		if(MethodTOTransformed.equals("-clinit-")) {
 //			MethodTOTransformed="-init-"; 
@@ -1797,6 +1811,8 @@ try {
 //		}
 		MethodTO= MethodTO.replaceAll("-clinit-", "-init"); 
 		MethodFROM= MethodFROM.replaceAll("-clinit-", "-init"); 
+		System.out.println("MethodTO======>"+MethodTO);
+		System.out.println("MethodFROM======>"+MethodFROM);
 		 String regEx = "[A-Z]";
 	    Pattern pattern = Pattern.compile(regEx);
 	 
@@ -1827,6 +1843,8 @@ try {
 		
 		MethodTO=MethodTO.replaceAll("Lantlr", "antlr"); 
 		MethodFROM=MethodFROM.replaceAll("Lantlr", "antlr"); 
+		MethodTO=MethodTO.replaceAll("Lde", "de"); 
+		MethodFROM=MethodFROM.replaceAll("Lde", "de"); 
 		//CALLED METHOD ID 
 		ResultSet calledmethodsids= st.executeQuery("SELECT methods.* from methods  where methods.methodname='"+MethodTO+"'and methods.classname='"+ClassTO+"'"); 
 		while(calledmethodsids.next()){
@@ -2010,7 +2028,7 @@ try {
 					String MethodTORefined= MethodTO;
 					String MethodTOAbbreviation = ClassTO+"."+MethodTORefined; 
 					String FullMethTO= RewriteFullMethod(MethodTOAbbreviation); 
-					if(calledmethodid==null) {
+					if(calledmethodid==null && classTOid!=null) {
 						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
 
 						//RECALCULATION PHASE: CALLED METHOD ID 
@@ -2078,7 +2096,7 @@ try {
 				    String FullMethodTO= ClassTO+"."+MethodTO; 
 				    fullcaller=RewriteFullMethod(FullMethodFROM); 
 				    fullcallee=RewriteFullMethod(FullMethodTO); 
-					String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+calledmethodid+"','" +fullcaller +"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
+					String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','" +fullcaller +"','"+calledmethodid+"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
 					st.executeUpdate(statement);
 					methodcallsexecutedlist.add(mce); 	
 					
@@ -2391,8 +2409,11 @@ System.out.println(method);
 		if(methodid!=null && requirementid!=null ) {
 			boolean mycond=tr.contains(TraceListMethods, tr);
 			if(mycond==false) {
-				method=RewriteFullMethod(method);   
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				method=RewriteFullMethod(method);  
+				String methodnameAndParams= GetMethodNameAndParams(method); 
+				method=method.replaceAll("Lde", "de"); 
+				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
 				st.executeUpdate(statement);
 				TraceListMethods.add(tr); 
 				
@@ -2405,11 +2426,14 @@ System.out.println(method);
 		 if(methodid!=null && requirementid!=null && interfacename!=null) {
 			 System.out.println("SHORT METHOD: " +shortmethod);
 			 System.out.println(" METHOD ID: " +methodid);
+			String methodnameAndParams= GetMethodNameAndParams(method); 
 			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
 			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
 			if(mycond==false) {
 				method=RewriteFullMethod(method);   
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				method=method.replaceAll("Lde", "de"); 
+				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
 				st.executeUpdate(statement);
 				TraceListMethods.add(tracesmethods); 
 				
@@ -2861,8 +2885,150 @@ counter2++;
 		e.printStackTrace();
 	}
 	}
+	private String GetMethodNameAndParams(String method) {
+		// TODO Auto-generated method stub
+		System.out.println("METH BEFORE TRUNCATION"+method);
+		String params=method.substring(method.indexOf("("), method.length()); 
+		String BeforeParams=method.substring(0, method.indexOf("(")); 
+		String methname=BeforeParams.substring(BeforeParams.lastIndexOf(".")+1, BeforeParams.length()); 
+		String res= methname+params; 
+		System.out.println("RES"+ res);
+		return res;
+	}
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	
+	public static String RewriteFullMethodCallExecutedRemoveDollars(String input) {
+		
+		String res=input; 
+		StringBuilder buf = new StringBuilder();
+		
+
+
+			boolean flag=false; 
+			char[] chars = res.toCharArray();
+			int r = 0; 
+			int pos=0; 
+			
+			int myindex= input.indexOf("$"); 
+			char c= chars[myindex+1]; 
+			if(Character.isDigit(c) && myindex+2==chars.length) {
+				System.out.println("yeah");
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while( flag==true) {
+							if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+								System.out.println(chars[r]);
+								StringBuilder sb = new StringBuilder();
+								sb.append(chars);
+								sb.deleteCharAt(pos);
+								chars = sb.toString().toCharArray();
+								pos++; 
+								//r++; 
+								if(pos>chars.length) {
+									flag=false; 
+								}
+							}
+						
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+				
+			}
+			else if(Character.isDigit(c)) {
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while( flag==true) {
+							if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+								System.out.println(chars[r]);
+								StringBuilder sb = new StringBuilder();
+								sb.append(chars);
+								sb.deleteCharAt(pos);
+								chars = sb.toString().toCharArray();
+								pos++; 
+								//r++; 
+								if(chars[pos-1]=='.') {
+									flag=false; 
+								}
+							}
+						
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+			}
+			else {
+				
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos<chars.length && flag==true) {
+							pos=r-i; 
+							System.out.println(chars[r]);
+							StringBuilder sb = new StringBuilder();
+							sb.append(chars);
+							sb.deleteCharAt(pos);
+							chars = sb.toString().toCharArray();
+					i++; 
+							//r++; 
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+			}
+			
+
+			res = String.valueOf(chars);
+			System.out.println(res);
+			return res; 
+		}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 public String RewriteFullMethod(String input) {
