@@ -1,1 +1,2 @@
- 37207, net.sourceforge.ganttproject.shape.PaintCellRenderer.getListCellRendererComponent(Ljavax/swing/JList;Ljava/lang/Object;IZZ)Ljava/awt/Component;, 01: Create Tasks, leaf, N, N, T, LeafMixedSurroundedT, IN, 1, 1, 0, 0, 0, 0
+
+567, net.sourceforge.ganttproject.FacadeInvalidator.isValid()Z, 09: Add/Remove Task Links, leaf, N, N, N, LeafMixedSurroundedN, CN, 0, 1, 0, 0, 0, 0
