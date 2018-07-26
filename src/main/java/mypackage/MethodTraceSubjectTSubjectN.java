@@ -21,12 +21,30 @@ public class MethodTraceSubjectTSubjectN {
 	public String gold2; 
 	public String SubjectT; 
 	public String SubjectN; 
+	public String gold3; 
+	public String gold4; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
 	
+	public String getGold3() {
+		return gold3;
+	}
+
+	public void setGold3(String gold3) {
+		this.gold3 = gold3;
+	}
+
+	public String getGold4() {
+		return gold4;
+	}
+
+	public void setGold4(String gold4) {
+		this.gold4 = gold4;
+	}
+
 	public String getGold2() {
 		return gold2;
 	}
@@ -215,6 +233,10 @@ public class MethodTraceSubjectTSubjectN {
 				 mytrace.setClassRepresentation(classrep);
 				 
 				 mytrace.setGold(myresults.getString("gold"));
+
+				 mytrace.setGold3(myresults.getString("gold3"));
+				 
+				 mytrace.setGold4(myresults.getString("gold4"));
 				 
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
