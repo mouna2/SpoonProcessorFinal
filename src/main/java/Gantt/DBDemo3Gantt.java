@@ -1035,6 +1035,154 @@ public class DBDemo3Gantt {
     	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
     	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
     	    		constructorName=TransformConstructorIntoInit(constructorName); 
+    	    		System.out.println("AFTER constructorClassName====>"+constructorClassName);	    		
+    	    		System.out.println("AFTER constructorName====>"+constructorName);
+    	    		System.out.println("\n");
+    	    		fullcaller=constructorName; 
+    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
+    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
+    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
+    	    		
+    	    		
+    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
+    	    				+ "and methods.classname='"+constructorClassName+"'"); 
+    	    		//while(callingmethodsrefined.next()){
+    	    		if(callingmethodsrefined.next()) {
+    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	    		}
+    	    		}
+    	    		
+    	    		
+    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
+    	    			String InvokedClassNameBEFORE = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
+        	    		String InvokedMethodNameBEFORE=consInvocation.getExecutable().getSignature(); 
+        	    		fullcallee=InvokedMethodNameBEFORE; 
+        	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassNameBEFORE);
+        	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodNameBEFORE);
+        	    		String InvokedClassName=RemoveDollarConstructor(InvokedClassNameBEFORE); 
+        	    		String InvokedMethodName=RemoveDollarConstructor(InvokedMethodNameBEFORE); 
+        	    	System.out.println("AFTER InvokedClassName====>"+InvokedClassName);
+        	    		System.out.println("AFTER InvokedMethodName====>"+InvokedMethodName);
+        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+        	    		System.out.println("\n");
+        	    		if(consInvocation instanceof CtConstructorCall) {
+        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
+        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    		}
+        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
+        	    		
+        	    		
+        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+    	    					
+        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
+        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
+        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
+        	  
+        	    		//while(callingmethodsrefined.next()){
+        	    		if(callingmethodsrefined.next()) {
+        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
+        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
+        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
+        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
+
+        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+        	    			 
+        	    				
+        	    		}
+        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
+        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNameBEFORE+"'"
+            	    				+ "and methods.classname='"+InvokedClassNameBEFORE+"'"); 
+            	  
+            	    		//while(callingmethodsrefined.next()){
+            	    		if(callingmethodsrefined2.next()) {
+            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
+            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+
+            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+            	    			 
+            	    				
+            	    		}
+        	    		}
+        	    
+        	    		
+        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
+        	    			String fullmethod=InvokedClassNameBEFORE+"."+InvokedMethodNameBEFORE; 
+        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
+            	  
+            	    		//while(callingmethodsrefined.next()){
+            	    		if(callingmethodsrefined2.next()) {
+            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
+            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+
+            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+            	    			 
+            	    				
+            	    		}
+        	    		}
+        	    		
+        	    		
+        	    		
+        	    		
+    	    		}
+    	    	
+    	    		
+    	    		
+    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
+    	    		//System.out.println(methodcall.toString()); 
+    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
+    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    	    			
+    	    			st.executeUpdate(statement);
+    	    			methodcallsList.add(methodcall); 
+    	    		}
+    	    	}
+    		   
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	List<CtConstructorCall> ConstructorsCalledByConstructors = cons.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
+    	    	for(CtConstructorCall<?> consInvocation: ConstructorsCalledByConstructors) {
+    	    		String CalleeMethodID=null;  
+    	    		String CALLEECLASSNAME=null;  
+    	    		String CALLEECLASSID =null;  
+    	    		String fullcalleeins=null;   
+    	    		String CallerMethodIDcons=null; 
+    	        	String CALLERCLASSNAMEcons=null; 
+    	        	String CALLERCLASSIDcons=null; 
+    	        	String fullcallerinscons=null; 
+    	        	String fullcaller=null; 
+    	        	String fullcallee=null; 
+    	        	String InvokedMethodNamePackageFree=null;
+    	        	String ConstructorNamePackageFree=null; 
+    	        	
+    	    		if(cons.getDeclaringType()!=null) {
+//      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
+//    	    		String constructorName=cons.getExecutable().getSignature(); 
+    	    		String constructorClassName=cons.getType().getQualifiedName();
+    	    		String constructorName=cons.getSignature(); 
+    	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
+    	    		System.out.println("BEFORE constructorName====>"+constructorName);
+    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
+    	    		constructorName=RemoveDollarConstructor(constructorName); 
+    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
+    	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorName=TransformConstructorIntoInit(constructorName); 
     	    		//System.out.println("constructorClassName====>"+constructorClassName);	    		
     	    		//System.out.println("constructorName====>"+constructorName);
     	    		System.out.println("\n");
@@ -1130,7 +1278,6 @@ public class DBDemo3Gantt {
     	    			methodcallsList.add(methodcall); 
     	    		}
     	    	}
-    		   
     		   
     		   
     		   
