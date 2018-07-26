@@ -383,6 +383,7 @@ public class DBDemo3iTrust {
 		   		"  `requirement` LONGTEXT NULL,\r\n" + 
 		   		"  `requirementid` INT,\r\n" + 
 		   		"  `method` LONGTEXT NULL,\r\n" + 
+		   		"  `methodname` LONGTEXT NULL,\r\n" + 
 		   		"  `fullmethod` LONGTEXT NULL,\r\n" +
 		   		"  `methodid` INT NULL,\r\n" + 
 		   		"  `classname` LONGTEXT NULL,\r\n" + 
@@ -2121,6 +2122,8 @@ try {
 //method=method.replaceAll("booleanI", "boolean,int"); 
 //method=method.replaceAll("intshort", "int,short"); 
 		method=RewriteFullMethod(method);
+		System.out.println("METHOD PARSED::::::::::::::"+method);
+
 method=method.trim(); 
 String shortmethod=method.substring(0, method.indexOf("("));
 System.out.println(method);
@@ -2226,8 +2229,11 @@ System.out.println(method);
 		if(methodid!=null && requirementid!=null ) {
 			boolean mycond=tr.contains(TraceListMethods, tr);
 			if(mycond==false) {
-				method=RewriteFullMethod(method);   
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				method=RewriteFullMethod(method);  
+				String methodnameAndParams= GetMethodNameAndParams(method); 
+				method=method.replaceAll("Lde", "de"); 
+				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
 				st.executeUpdate(statement);
 				TraceListMethods.add(tr); 
 				
@@ -2244,12 +2250,15 @@ System.out.println(method);
 			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
 			if(mycond==false) {
 				method=RewriteFullMethod(method);   
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-				st.executeUpdate(statement);
-				TraceListMethods.add(tracesmethods); 
-				
-				
-			}
+				method=method.replaceAll("Lde", "de"); 
+				String methodnameAndParams= GetMethodNameAndParams(method); 
+				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+					st.executeUpdate(statement);
+					TraceListMethods.add(tracesmethods); 
+					
+					
+				}
 		}
 		else {
 			System.out.println(shortmethod);
@@ -3248,6 +3257,18 @@ public String RemoveDollarConstructor(String text) {
 		 return data; 
 	}
 	
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+private String GetMethodNameAndParams(String method) {
+// TODO Auto-generated method stub
+System.out.println("METH BEFORE TRUNCATION"+method);
+String params=method.substring(method.indexOf("("), method.length()); 
+String BeforeParams=method.substring(0, method.indexOf("(")); 
+String methname=BeforeParams.substring(BeforeParams.lastIndexOf(".")+1, BeforeParams.length()); 
+String res= methname+params; 
+System.out.println("RES"+ res);
+return res;
+}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	
 public List<tracesmethodscallees> GetList() {

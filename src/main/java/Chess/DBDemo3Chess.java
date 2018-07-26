@@ -2303,7 +2303,16 @@ try {
 //method=method.replaceAll("bytede", "byte,de"); 
 //method=method.replaceAll("booleanI", "boolean,int"); 
 //method=method.replaceAll("intshort", "int,short"); 
+		method=RewriteFullMethodCallExecutedRemoveDollarsTraces(method);
+		method=method.substring(0, method.indexOf(")")+1);
+		method=method.replaceAll("Lde", "de");
+		method=method.replaceAll("Lantlr", "antlr");
+		method=method.replaceAll("Ljava", "java");
 		method=RewriteFullMethod(method);
+
+		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
+		method=method.replaceAll(",\\)", ")");
+		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
 method=method.trim(); 
 String shortmethod=method.substring(0, method.indexOf("("));
 System.out.println(method);
@@ -2409,7 +2418,7 @@ System.out.println(method);
 		if(methodid!=null && requirementid!=null ) {
 			boolean mycond=tr.contains(TraceListMethods, tr);
 			if(mycond==false) {
-				method=RewriteFullMethod(method);  
+			//	method=RewriteFullMethod(method);  
 				String methodnameAndParams= GetMethodNameAndParams(method); 
 				method=method.replaceAll("Lde", "de"); 
 				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
@@ -2430,7 +2439,7 @@ System.out.println(method);
 			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
 			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
 			if(mycond==false) {
-				method=RewriteFullMethod(method);   
+				//	method=RewriteFullMethod(method);   
 				method=method.replaceAll("Lde", "de"); 
 				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
 				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
@@ -2547,6 +2556,7 @@ try {
 			subject=linesplitted[5]; 
 			method=method.replace("/", "."); 
 			method=method.replace(";", ","); 
+			method=method.replaceAll("Lantlr", "antlr");
 			method=method.replace("Lde", "de"); 
 //			  int endIndex = method.lastIndexOf(",)");
 //			    if (endIndex != -1)  
@@ -2627,10 +2637,18 @@ try {
 //			  method=parts[0]; 
 			  method=method.replaceAll("clinit", "init"); 
 		//	shortmethod=ParseLine(line); 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER"); 
+			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER");
+			  System.out.println("BEFORE METH========>"+ method); 
+
+			  method=RewriteFullMethodCallExecutedRemoveDollarsTraces(method);
 			  method=RewriteFullMethod(method);
+			  method=method.substring(0, method.indexOf(")")+1);
+				method=method.replaceAll("Lde", "de");
+				method=method.replaceAll("Ljava", "java");
+				method=method.replaceAll(",\\)", ")");
+				System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
 			  
-			  System.out.println("HERE IS THIS long METHOD========>"+ method); 
+			  System.out.println("FINAL METH========>"+ method); 
 			
 			methodid=null; 
 			String myclass= method.substring(0, method.lastIndexOf(".")); 
@@ -2896,6 +2914,145 @@ counter2++;
 		return res;
 	}
 
+	
+	
+	
+	
+	public static String RewriteFullMethodCallExecutedRemoveDollarsTraces(String input) {
+		
+		String res=input; 
+		StringBuilder buf = new StringBuilder();
+		
+
+
+			boolean flag=false; 
+			char[] chars = res.toCharArray();
+			int r = 0; 
+			int pos=0; 
+			
+			int myindex= input.indexOf("$"); 
+			char c= chars[myindex+1]; 
+			if((Character.isDigit(c) && myindex+2==chars.length) || (Character.isDigit(c) && chars[myindex+2]=='(')) {
+				System.out.println("yeah");
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while( flag==true) {
+							if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+								System.out.println(chars[r]);
+								StringBuilder sb = new StringBuilder();
+								sb.append(chars);
+								sb.deleteCharAt(pos);
+								chars = sb.toString().toCharArray();
+								pos++; 
+								//r++; 
+								if(pos>chars.length) {
+									flag=false; 
+								}
+								if(chars[pos-1]=='(') {
+									flag=false; 
+								}
+							}
+						
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+				
+			}
+			else if(Character.isDigit(c)) {
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while( flag==true) {
+							if(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos-1<chars.length ) {
+								System.out.println(chars[r]);
+								StringBuilder sb = new StringBuilder();
+								sb.append(chars);
+								sb.deleteCharAt(pos);
+								chars = sb.toString().toCharArray();
+								pos++; 
+								//r++; 
+								if(chars[pos-1]=='.') {
+									flag=false; 
+								}
+							}
+						
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+			}
+			else {
+				
+				while(r<chars.length) {
+					if(chars[r]=='$' ) {
+					 pos=r; 
+					// temp = chars[r+1]; 
+					StringBuilder sb = new StringBuilder();
+					sb.append(chars);
+					sb.deleteCharAt(r);
+					chars = sb.toString().toCharArray();
+					flag=true; 
+					}
+					int i=1; 
+					if(pos>0) {
+						while(chars[pos-1]!='.'&& chars[pos-1]!='('&& chars[pos-1]!=')' && pos<chars.length && flag==true) {
+							pos=r-i; 
+							System.out.println(chars[r]);
+							StringBuilder sb = new StringBuilder();
+							sb.append(chars);
+							sb.deleteCharAt(pos);
+							chars = sb.toString().toCharArray();
+					i++; 
+							//r++; 
+
+							}
+					}
+
+					
+						r++; 
+					
+					
+
+					}
+			}
+			
+
+			res = String.valueOf(chars);
+			System.out.println(res);
+			return res; 
+		}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public static String RewriteFullMethodCallExecutedRemoveDollars(String input) {
 		
