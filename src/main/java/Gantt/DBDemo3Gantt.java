@@ -2914,15 +2914,15 @@ public String RewriteFullMethod(String input) {
 		params=params1+","+params2; 
 		}
 		else{
-		if(params.charAt(i-2)==';') {
-			String[] parts = params.split(";");
+		if(params.charAt(i-2)==',') {
+			String[] parts = params.split(",");
 			String AppendedParts=""; 
 			for(String part: parts) {
 				if(part.charAt(0)=='[') {
 					part=part.substring(1, part.length()); 
 					part=part+"[]"; 
 				}
-				AppendedParts=AppendedParts+part+";"; 
+				AppendedParts=AppendedParts+part+","; 
 				params=AppendedParts; 
 			}
 //		String params1 = params.substring(0, i-1); 
