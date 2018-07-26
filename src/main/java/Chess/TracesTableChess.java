@@ -194,12 +194,12 @@ public class TracesTableChess extends JFrame {
 	PredictionEvaluation MajorityParametersClassGold2= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast1NParameterClassGold2= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2NParameterClassGold2= new PredictionEvaluation(); 
-
 	PredictionEvaluation AtLeast1TParameterClassGold2= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2TParameterClassGold2= new PredictionEvaluation(); 
-
 	PredictionEvaluation AllNParameterClassGold2= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClassGold2= new PredictionEvaluation(); 
+	
+	
 	
 	
 	ClassTrace2 myclasstrace = new ClassTrace2();
