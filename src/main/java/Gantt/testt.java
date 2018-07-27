@@ -36,14 +36,15 @@ public class testt {
 	text="access$102(Lnet.sourceforge.ganttproject.GanttOptions,java.awt.Font)"; 
 	text="net.sourceforge.ganttproject.GanttGraphicArea$OldMouseMotionListenerImpl"; 
 	text="edu.ncsu.csc.itrust.dao.mysql.AccessDAO.-init-(edu.ncsu.csc.itrust.dao.DAOFactory)"; 
-	String	method=RewriteFullMethodCallExecutedRemoveDollars(text);
-	method=method.substring(0, method.indexOf(")")+1);
-	method=method.replaceAll("Lde", "de");
-	method=method.replaceAll("Lantlr", "antlr");
-	method=method.replaceAll("Ljava", "java");
+	text="net.sourceforge.ganttproject.io.GanttXMLOpen$GanttXMLParser"; 
+//	String	method=RewriteFullMethodCallExecutedRemoveDollars(text);
+//	method=method.substring(0, method.indexOf(")")+1);
+//	method=method.replaceAll("Lde", "de");
+//	method=method.replaceAll("Lantlr", "antlr");
+//	method=method.replaceAll("Ljava", "java");
 //	method=RewriteFullMethod(method);
-	RemovePackage(text); 
-		
+//	RemovePackage(text); 
+	RewriteFullMethodCallExecutedRemoveDollars(text);
 	}
 	
 	
@@ -77,7 +78,7 @@ public class testt {
 		// TODO Auto-generated method stub
 		boolean flag=true; 
 		int r=0; 
-		int pos=0; 
+		int pos=1; 
 		char[] chars = text.toCharArray(); 
 		while(r<chars.length) {
 			if(chars[r]=='$' ) {
