@@ -1,3 +1,4 @@
+"net.sourceforge.ganttproject.GanttProject.-init-(ZZ)V" --- "net.sourceforge.ganttproject.ResourceTreeTable$5.columnMarginChanged(Ljavax/swing/event/ChangeEvent;)V"
 "net.sourceforge.ganttproject.ChartComponentBase$1.startDateChanged(Lnet/sourceforge/ganttproject/chart/ChartViewState$ViewStateEvent;)V" --- "net.sourceforge.ganttproject.gui.options.model.DefaultEnumerationOption.-init-(Ljava/lang/String;[Ljava/lang/String;)V"
 "net.sourceforge.ganttproject.gui.GanttTaskPropertiesBean.setSelectedTask()V" --- "net.sourceforge.ganttproject.shape.ShapePaint.equals([Ljava/lang/Object;)Z"
 "net.sourceforge.ganttproject.gui.GanttTaskPropertiesBean.setSelectedTask()V" --- "net.sourceforge.ganttproject.task.TaskImpl.getCompletionPercentage()I"
