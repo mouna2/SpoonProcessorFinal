@@ -35,13 +35,14 @@ public class testt {
 	text="-init-(float,float,int,int,float,[float,float)"; 
 	text="access$102(Lnet.sourceforge.ganttproject.GanttOptions,java.awt.Font)"; 
 	text="net.sourceforge.ganttproject.GanttGraphicArea$OldMouseMotionListenerImpl"; 
+	text="edu.ncsu.csc.itrust.dao.mysql.AccessDAO.-init-(edu.ncsu.csc.itrust.dao.DAOFactory)"; 
 	String	method=RewriteFullMethodCallExecutedRemoveDollars(text);
 	method=method.substring(0, method.indexOf(")")+1);
 	method=method.replaceAll("Lde", "de");
 	method=method.replaceAll("Lantlr", "antlr");
 	method=method.replaceAll("Ljava", "java");
 //	method=RewriteFullMethod(method);
-	PushDollarToStart(text); 
+	RemovePackage(text); 
 		
 	}
 	
@@ -49,7 +50,27 @@ public class testt {
 
 	
 	
-	
+	private static String RemovePackage(String fullmeth) {
+		// TODO Auto-generated method stub
+		System.out.println(fullmeth);
+		String params= fullmeth.substring(fullmeth.indexOf("("), fullmeth.length()); 
+		System.out.println(params);
+		String rest=fullmeth.substring(0, fullmeth.indexOf("(")); 
+		System.out.println(rest);
+		rest=rest.substring(rest.lastIndexOf("."), rest.length());
+		System.out.println(rest);
+		fullmeth=fullmeth.substring(0, fullmeth.indexOf("(")); 
+		System.out.println(fullmeth);
+		fullmeth=fullmeth.substring(0, fullmeth.lastIndexOf(".")); 
+		System.out.println(fullmeth);
+		fullmeth=fullmeth.substring(fullmeth.lastIndexOf(".")+1, fullmeth.length()); 
+		System.out.println(fullmeth);
+		String result= fullmeth+rest+params; 
+		System.out.println(result);
+		
+		
+		return result;
+	}
 
 
 	private static void PushDollarToStart(String text) {

@@ -2876,6 +2876,7 @@ counter2++;
 		 text=text.replaceAll("Lnet", "net"); 
 		 text=text.replaceAll("Ljava", "java"); 
 		 text=text.replaceAll("Lorg", "org"); 
+		text=text.replaceAll("clinit", "init"); 
 		 return text; 
 	}
 	
