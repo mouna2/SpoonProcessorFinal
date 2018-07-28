@@ -140,10 +140,12 @@ public class AddGold2Column {
 					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
 					String methodname= splittedline[0]; 
 					methodname=methodname.replaceAll("::", "."); 
+					System.out.println(methodname);
 					//methodname=methodname.replaceAll("constructor", "-init-"); 
 					//methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
 				
 					String RequirementID= ""+counter;
+					String val=splittedline[i];
 					if(splittedline[i].equals("")) {
 						SubjectTSubjectNObj.setGold2("N");
 					}

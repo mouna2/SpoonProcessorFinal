@@ -37,6 +37,7 @@ public class testt {
 	text="net.sourceforge.ganttproject.GanttGraphicArea$OldMouseMotionListenerImpl"; 
 	text="edu.ncsu.csc.itrust.dao.mysql.AccessDAO.-init-(edu.ncsu.csc.itrust.dao.DAOFactory)"; 
 	text="net.sourceforge.ganttproject.io.GanttXMLOpen$GanttXMLParser"; 
+	text ="createZoomButton(org.jhotdraw.draw.DrawingView,double[],";
 //	String	method=RewriteFullMethodCallExecutedRemoveDollars(text);
 //	method=method.substring(0, method.indexOf(")")+1);
 //	method=method.replaceAll("Lde", "de");
@@ -44,13 +45,35 @@ public class testt {
 //	method=method.replaceAll("Ljava", "java");
 //	method=RewriteFullMethod(method);
 //	RemovePackage(text); 
-	RewriteFullMethodCallExecutedRemoveDollars(text);
+//	RewriteFullMethodCallExecutedRemoveDollars(text);
+	
+	text=AddParenthesis(text);
+	System.out.println(text);
 	}
 	
 	
 
 	
 	
+	private static String AddParenthesis(String text) {
+		// TODO Auto-generated method stub
+		String res="";
+		char[] CHARS = text.toCharArray();
+		StringBuilder t=new StringBuilder();
+		if(CHARS[CHARS.length-1]!=')') {
+			t.append(CHARS);
+			t.append(")");
+			 res = String.valueOf(t);
+		}
+		
+		res=res.replaceAll(",\\)", ")");
+		return res;
+	}
+
+
+
+
+
 	private static String RemovePackage(String fullmeth) {
 		// TODO Auto-generated method stub
 		System.out.println(fullmeth);
