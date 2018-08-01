@@ -119,8 +119,8 @@ public class AddSubjectTSubjectNJHotDraw {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
 		List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 

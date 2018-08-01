@@ -1,0 +1,2 @@
+ 
+ 199, net.sourceforge.ganttproject.ChartComponentBase$MouseListenerBase.mouseExited(java/awt/event/MouseEvent;)V, 01: Create Tasks, leaf, N, N, N, LeafPureSurroundedN, CN, 0, 2, 0, 0, 0, 0

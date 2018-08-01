@@ -353,6 +353,7 @@ public class Method2Details {
 		int index=1; 
 		
 		 ResultSet myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
+		 System.out.println(index);
 		 while(myresults.next() ) {
 			 	methoddet2= new Method2Details(); 
 			     String id = myresults.getString("id"); 			

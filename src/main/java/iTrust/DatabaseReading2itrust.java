@@ -18,16 +18,19 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTableChess;
+import Chess.TracesTableChessFINAL;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
+import mypackage.DatabaseReading2;
+import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
+import mypackage.MethodTraceOld;
 import mypackage.MethodTraceOld;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
@@ -44,7 +47,8 @@ public class DatabaseReading2itrust {
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-
+	public static HashMap<String, Interface2> interfacehashmap=null; 
+	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -189,6 +193,17 @@ public class DatabaseReading2itrust {
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+		Interface2 myinterface2= new Interface2(); 
+		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
+		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
+		setInterfaces(interfacehashmap);
+		///////////////////////////////////////////////////////////////////////////////////////
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
+		setInterfaces(interfacehashmapAlreadyImpl);
+		///////////////////////////////////////////////////////////////////////////////////////
 		System.out.println("MOUNA");
 		
 		
@@ -403,6 +418,17 @@ public class DatabaseReading2itrust {
 
 	*/
 	}
+	public static void setInterfaces(HashMap ínterfacehashmap) {
+		// TODO Auto-generated method stub
+		DatabaseReading2.interfacehashmap=ínterfacehashmap;
+		
+	}
+	
+	public static HashMap  getInterfaces() {
+		// TODO Auto-generated method stub
+		return interfacehashmap;
+		
+	}
 
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
 		return classesRequirementtraceshashmap;
@@ -420,6 +446,14 @@ public class DatabaseReading2itrust {
 	public static void setMethodtraces2(List<MethodTraceOld> methodtraces) {
 		DatabaseReading2itrust.methodtraces2 = methodtraces;
 	}
+	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
+		return interfacehashmapAlreadyImpl;
+	}
+
+	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
+		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
+	}
+
 	
 	
 	

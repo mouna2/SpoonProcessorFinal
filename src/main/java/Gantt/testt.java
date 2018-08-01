@@ -37,7 +37,7 @@ public class testt {
 	text="net.sourceforge.ganttproject.GanttGraphicArea$OldMouseMotionListenerImpl"; 
 	text="edu.ncsu.csc.itrust.dao.mysql.AccessDAO.-init-(edu.ncsu.csc.itrust.dao.DAOFactory)"; 
 	text="net.sourceforge.ganttproject.io.GanttXMLOpen$GanttXMLParser"; 
-	text ="createZoomButton(org.jhotdraw.draw.DrawingView,double[],";
+	text ="createZoomButton(org.jhotdraw.draw.DrawingView,double[])";
 //	String	method=RewriteFullMethodCallExecutedRemoveDollars(text);
 //	method=method.substring(0, method.indexOf(")")+1);
 //	method=method.replaceAll("Lde", "de");
@@ -46,15 +46,44 @@ public class testt {
 //	method=RewriteFullMethod(method);
 //	RemovePackage(text); 
 //	RewriteFullMethodCallExecutedRemoveDollars(text);
+//	text="Point2D$Double"; 
+//	//text="fsdjsdfjkjklsdf"; 
+//	if(text.contains("2D$Double")) {
+//		System.out.println("yeah");
+//	}else {
+//		System.out.println("NOOOOO ");
+//	}
+//	text=AddParenthesis(text);
+//	System.out.println(text);
 	
-	text=AddParenthesis(text);
-	System.out.println(text);
+	res=ReturnParams(text); 
+	System.out.println(res);
+	
+	res=KeepMethodName(text); 
+	System.out.println(res);
 	}
+	
 	
 	
 
 	
 	
+	public static String ReturnParams(String method) {
+		// TODO Auto-generated method stub
+		
+		String Paramlist=method.substring(method.indexOf("("), method.indexOf(")")+1); 
+		return Paramlist;
+	}
+
+	public static String KeepMethodName(String method) {
+		// TODO Auto-generated method stub
+		
+		String menthodname=method.substring(0, method.indexOf("(")); 
+		return menthodname;
+	}
+
+
+
 	private static String AddParenthesis(String text) {
 		// TODO Auto-generated method stub
 		String res="";

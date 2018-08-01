@@ -1,0 +1,2 @@
+ 
+ 29190, org.jhotdraw.geom.Geom.chop(java/awt/Shape;java/awt/geom/Point2D$Double;)java/awt/geom/Point2D$Double;, 21: Recoverability: periodic auto-save, inner, N, N, N, InnerPureSurroundedN, CN, 0, 1, 0, 0, 2, 0

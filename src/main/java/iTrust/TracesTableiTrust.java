@@ -44,6 +44,7 @@ import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
+import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
@@ -165,6 +166,8 @@ public class TracesTableiTrust extends JFrame {
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceOld> methodtraces2 = new ArrayList<MethodTraceOld>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
+	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
+	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
@@ -221,6 +224,9 @@ public class TracesTableiTrust extends JFrame {
 		DatabaseReading2itrust.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+		 
+		 InterfacesHashMap = db.getInterfaces();
+		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
 		//classtraces2 = db.getClassestraces2();
 		//methodlist = db.getMethodlist();
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -695,18 +701,138 @@ public class TracesTableiTrust extends JFrame {
 				
 				
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			//***********************************************CALLERS**************************************************//	
+			//***********************************************CALLERS**************************************************//	
+			//***********************************************CALLERS**************************************************//	
+
+			for (Method2Representation methcaller : CallerMethodsList) {
+				if (methcaller != null) {
+							boolean flag=false; 
+							
+								for(Method2Representation item: CallerMethodsList) {
+									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									
+									if(value!=null) {
+										String ownerclassid=value.InterfaceClass.classid;
+									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										CallerMethodListFinal.remove(item); 
+									}
+									}
+								}
+						
+				
+							
+			
+					
+				}
+			}
+			
+			
+
+			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+
+			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
+
+			for( Method2Representation item : CallerMethodListFinal ) {
+				String val= item.classrep.classid+"-"+item.methodname;
+			    if( CallerMethodsListNoDuplicates.add( val )) {
+			    	CallerMethodsListFinalNoDuplicates.add( item );
+			    }
+			}
+			
+			
+			
+			
+			
+				//***********************************************CALLEES**************************************************//	
+				//***********************************************CALLEES**************************************************//	
+				//***********************************************CALLEES**************************************************//	
+
+			
+			
+			
+			
+			
+			for (Method2Representation methcaller : CalleeMethodsList) {
+				if (methcaller != null) {
+					
+				
+						
+					
+						
+							boolean flag=false; 
+							
+								for(Method2Representation item: CalleeMethodsList) {
+									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									
+									if(value!=null) {
+										String ownerclassid=value.InterfaceClass.classid;
+									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										CalleeMethodListFinal.remove(item); 
+									}
+									}
+								}
+						
+				
+							
+			
+					
+				}
+			}
+			
+			List<Method2Representation> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+
+			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
+
+			for( Method2Representation item : CalleeMethodListFinal ) {
+				String val= item.classrep.classid+"-"+item.methodname;
+			    if( CalleeMethodsListNoDuplicates.add( val )) {
+			    	CalleeMethodsListFinalNoDuplicates.add( item );
+			    }
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			String AppendedCallers=""; 
-			for(String CallerMethod: setitems1And2) {
+			for(Method2Representation CallerMethod: CallerMethodsListFinalNoDuplicates) {
 				if(CallerMethod!=null) {
-					AppendedCallers=AppendedCallers+CallerMethod+"-"; 
+					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
 				}
 				
 			}
-			
+			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
-			for(String CalleeMethod: setitems3And4) {
+			for(Method2Representation CalleeMethod: CalleeMethodsListFinalNoDuplicates) {
 				if(CalleeMethod!=null) {
-					AppendedCallees=AppendedCallees+CalleeMethod+"-"; 
+					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
 				}
 				
 			}

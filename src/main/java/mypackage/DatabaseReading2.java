@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTableChess;
+import Chess.TracesTableChessFINAL;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
@@ -32,9 +32,12 @@ public class DatabaseReading2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace2> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
+	public static List<Interface2> interfaces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
+	public static HashMap<String, Interface2> interfacehashmap=null; 
+	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -175,6 +178,17 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
 		///////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////
+		Interface2 myinterface2= new Interface2(); 
+		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
+		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
+		setInterfaces(interfacehashmap);
+///////////////////////////////////////////////////////////////////////////////////////
+		
+///////////////////////////////////////////////////////////////////////////////////////
+interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
+setInterfaces(interfacehashmapAlreadyImpl);
+///////////////////////////////////////////////////////////////////////////////////////
 
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
@@ -389,6 +403,18 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 	
 	}
 
+	public static void setInterfaces(HashMap ínterfacehashmap) {
+		// TODO Auto-generated method stub
+		DatabaseReading2.interfacehashmap=ínterfacehashmap;
+		
+	}
+	
+	public static HashMap  getInterfaces() {
+		// TODO Auto-generated method stub
+		return interfacehashmap;
+		
+	}
+
 	public static void setClassesRequirementtraceshashmap(
 			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
 		DatabaseReading2.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
@@ -405,6 +431,16 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
 		return classesRequirementtraceshashmap;
 	}
+
+	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
+		return interfacehashmapAlreadyImpl;
+	}
+
+	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
+		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
+	}
+
+	
 
 	
 	

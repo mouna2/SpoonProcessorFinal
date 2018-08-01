@@ -43,10 +43,12 @@ import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
+import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
@@ -235,11 +237,12 @@ public class TracesTableGantt extends JFrame {
 	PredictionEvaluation AtLeast2TParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
-	
+	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
+	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
 	
 	
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
+	static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectNOriginal>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
@@ -305,6 +308,9 @@ public class TracesTableGantt extends JFrame {
 		DatabaseReading2Gantt.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+		 
+		 InterfacesHashMap = db.getInterfaces();
+		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
 		//classtraces2 = db.getClassestraces2();
 		//methodlist = db.getMethodlist();
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -333,7 +339,7 @@ public class TracesTableGantt extends JFrame {
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][100];
 		// Create the editors to be used for each row
-		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+		for (MethodTraceSubjectTSubjectNOriginal methodtrace : methodtraces2) {
 			System.out.println("LOOP INDEX===========> "+j); 
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
@@ -750,6 +756,157 @@ public class TracesTableGantt extends JFrame {
 					CalleeMethodListFinal.add(methcaller);
 				}
 			}
+			
+			
+			
+			
+			/****************************************************************************************************************************************************/
+			/****************************************************************************************************************************************************/
+			/****************************************************************************************************************************************************/
+		
+			
+			
+			
+			//***********************************************CALLERS**************************************************//	
+			//***********************************************CALLERS**************************************************//	
+			//***********************************************CALLERS**************************************************//	
+
+			for (Method2Representation methcaller : CallerMethodsList) {
+				if (methcaller != null) {
+							boolean flag=false; 
+							
+								for(Method2Representation item: CallerMethodsList) {
+									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									
+									if(value!=null) {
+										String ownerclassid=value.InterfaceClass.classid;
+									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										CallerMethodListFinal.remove(item); 
+									}
+									}
+								}
+						
+				
+							
+			
+					
+				}
+			}
+			
+			
+
+			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+
+			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
+
+			for( Method2Representation item : CallerMethodListFinal ) {
+				String val= item.classrep.classid+"-"+item.methodname;
+			    if( CallerMethodsListNoDuplicates.add( val )) {
+			    	CallerMethodsListFinalNoDuplicates.add( item );
+			    }
+			}
+			
+			
+			
+			
+			
+				//***********************************************CALLEES**************************************************//	
+				//***********************************************CALLEES**************************************************//	
+				//***********************************************CALLEES**************************************************//	
+
+			
+			
+			
+			
+			
+			for (Method2Representation methcaller : CalleeMethodsList) {
+				if (methcaller != null) {
+					
+				
+						
+					
+						
+							boolean flag=false; 
+							
+								for(Method2Representation item: CalleeMethodsList) {
+									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									
+									if(value!=null) {
+										String ownerclassid=value.InterfaceClass.classid;
+									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										CalleeMethodListFinal.remove(item); 
+									}
+									}
+								}
+						
+				
+							
+			
+					
+				}
+			}
+			
+			List<Method2Representation> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+
+			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
+
+			for( Method2Representation item : CalleeMethodListFinal ) {
+				String val= item.classrep.classid+"-"+item.methodname;
+			    if( CalleeMethodsListNoDuplicates.add( val )) {
+			    	CalleeMethodsListFinalNoDuplicates.add( item );
+			    }
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+			String AppendedCallers=""; 
+			for(Method2Representation CallerMethod: CallerMethodsListFinalNoDuplicates) {
+				if(CallerMethod!=null) {
+					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
+				}
+				
+			}
+			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
+			String AppendedCallees=""; 
+			for(Method2Representation CalleeMethod: CalleeMethodsListFinalNoDuplicates) {
+				if(CalleeMethod!=null) {
+					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
+				}
+				
+			}
+			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
+			AppendedCallees=AppendedCallees.replaceAll(",", "/"); 
+			
+			
+			
+			
+			/****************************************************************************************************************************************************/
+			/****************************************************************************************************************************************************/
+			/****************************************************************************************************************************************************/
+		
+			
 			int lengthitems1And2 = items1And2.length;
 			Set<String> setitems1And2 = new HashSet<String>();
 
@@ -766,29 +923,14 @@ public class TracesTableGantt extends JFrame {
 				
 				
 			}
-			String AppendedCallers=""; 
-			for(String CallerMethod: setitems1And2) {
-				if(CallerMethod!=null) {
-					AppendedCallers=AppendedCallers+CallerMethod+"-"; 
-				}
-				
-			}
 			
-			String AppendedCallees=""; 
-			for(String CalleeMethod: setitems3And4) {
-				if(CalleeMethod!=null) {
-					AppendedCallees=AppendedCallees+CalleeMethod+"-"; 
-				}
-				
-			}
-			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
-			AppendedCallees=AppendedCallees.replaceAll(",", "/"); 
+			
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 			if(CallerMethodListFinal.isEmpty()==false && CallerMethodListFinal!=null ) {
-				for (Method2Representation callermeth : CallerMethodListFinal) {
+				for (Method2Representation callermeth : CallerMethodsListFinalNoDuplicates) {
 					ClassRepresentation2 classrep = callermeth.getClassrep();
 				//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid, methodtrace.Requirement.getID());
 					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
@@ -857,7 +999,7 @@ public class TracesTableGantt extends JFrame {
 			int CounterTraceClassCalleeE = 0;
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation calleemeth : CalleeMethodListFinal) {
+			for (Method2Representation calleemeth : CalleeMethodsListFinalNoDuplicates) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
 				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
 				//		methodtrace.Requirement.getID());

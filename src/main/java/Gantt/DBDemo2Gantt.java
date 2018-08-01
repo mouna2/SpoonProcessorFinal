@@ -1567,6 +1567,9 @@ try {
 		System.out.println("HERE IS THIS SHORT METHOD========>"+ shortmethod); 
 		shortmethod=shortmethod.replaceAll("\\s+", ""); 
 		methodid=null; 
+		
+		
+		
 			ResultSet methodids = st.executeQuery("SELECT methods.id from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
 			while(methodids.next()){
 				methodid = methodids.getString("id"); 

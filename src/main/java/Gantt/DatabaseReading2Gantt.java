@@ -18,17 +18,20 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTableChess;
+import Chess.TracesTableChessFINAL;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
+import mypackage.DatabaseReading2;
+import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodTrace2;
-import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.MethodTraceSubjectTSubjectNOriginal;
+import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
@@ -39,12 +42,13 @@ import spoon.reflect.factory.ClassFactory;
 
 public class DatabaseReading2Gantt {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
-	public static List<MethodTraceSubjectTSubjectN> methodtraces2 = null;
+	public static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-
+	public static HashMap<String, Interface2> interfacehashmap=null; 
+	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -170,9 +174,9 @@ public class DatabaseReading2Gantt {
 		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
-		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-		HashMap<Integer, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
-		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
+		MethodTraceSubjectTSubjectNOriginal methodtrace2 = new MethodTraceSubjectTSubjectNOriginal();
+		HashMap<Integer, MethodTraceSubjectTSubjectNOriginal> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
+		List<MethodTraceSubjectTSubjectNOriginal> methodtraces = new ArrayList<MethodTraceSubjectTSubjectNOriginal>(methodtracehashmap.values());
 		setMethodtraces2(methodtraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		
@@ -189,6 +193,17 @@ public class DatabaseReading2Gantt {
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+		Interface2 myinterface2= new Interface2(); 
+		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
+		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
+		setInterfaces(interfacehashmap);
+		///////////////////////////////////////////////////////////////////////////////////////
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
+		setInterfaces(interfacehashmapAlreadyImpl);
+		///////////////////////////////////////////////////////////////////////////////////////
 		System.out.println("MOUNA");
 		
 		
@@ -403,6 +418,17 @@ public class DatabaseReading2Gantt {
 
 	*/
 	}
+	public static void setInterfaces(HashMap ínterfacehashmap) {
+		// TODO Auto-generated method stub
+		DatabaseReading2.interfacehashmap=ínterfacehashmap;
+		
+	}
+	
+	public static HashMap  getInterfaces() {
+		// TODO Auto-generated method stub
+		return interfacehashmap;
+		
+	}
 
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
 		return classesRequirementtraceshashmap;
@@ -413,13 +439,21 @@ public class DatabaseReading2Gantt {
 		DatabaseReading2Gantt.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
-	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2() {
+	public static List<MethodTraceSubjectTSubjectNOriginal> getMethodtraces2() {
 		return methodtraces2;
 	}
 
-	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectN> methodtraces) {
+	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces) {
 		DatabaseReading2Gantt.methodtraces2 = methodtraces;
 	}
+	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
+		return interfacehashmapAlreadyImpl;
+	}
+
+	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
+		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
+	}
+
 	
 	
 	
