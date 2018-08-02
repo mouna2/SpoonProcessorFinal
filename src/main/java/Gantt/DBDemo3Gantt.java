@@ -257,38 +257,38 @@ public class DBDemo3Gantt {
 //		   		"    ON DELETE NO ACTION\r\n" + 
 //		   		"    ON UPDATE NO ACTION);"); 
 			
-			
-		   st.executeUpdate("CREATE TABLE `databasegantt`.`parameters` (\r\n" + 
-		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
-		   		"  `parametername` VARCHAR(200) NULL,\r\n" + 
-		   		"  `parametertype` VARCHAR(200) NULL,\r\n" + 
-		   		"  `parameterclass` INT NULL,\r\n" + 
-		   		"  `classid` INT NULL,\r\n" + 
-		   		"  `classname` VARCHAR(200) NULL,\r\n" + 
-		   		"  `methodid` INT NULL,\r\n" + 
-		   		"  `methodname` LONGTEXT NULL,\r\n" + 
-		   		"  `isreturn` TINYINT NOT NULL,\r\n"+
-		   		"  PRIMARY KEY (`id`),\r\n" + 
-		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
-		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
-		   		"  INDEX `methodid_idx` (`methodid` ASC),\r\n" + 
-		   		"  CONSTRAINT `classid8`\r\n" + 
-		   		"    FOREIGN KEY (`classid`)\r\n" + 
-		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,\r\n" + 
-		   		"  CONSTRAINT `classid3`\r\n" + 
-		   		"    FOREIGN KEY (`classid`)\r\n" + 
-		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,\r\n" + 
-		   		"  CONSTRAINT `methodid`\r\n" + 
-		   		"    FOREIGN KEY (`methodid`)\r\n" + 
-		   		"    REFERENCES `databasegantt`.`methods` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION"+   	
-		   		 ")"); 
-		   
+//			
+//		   st.executeUpdate("CREATE TABLE `databasegantt`.`parameters` (\r\n" + 
+//		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
+//		   		"  `parametername` VARCHAR(200) NULL,\r\n" + 
+//		   		"  `parametertype` VARCHAR(200) NULL,\r\n" + 
+//		   		"  `parameterclass` INT NULL,\r\n" + 
+//		   		"  `classid` INT NULL,\r\n" + 
+//		   		"  `classname` VARCHAR(200) NULL,\r\n" + 
+//		   		"  `methodid` INT NULL,\r\n" + 
+//		   		"  `methodname` LONGTEXT NULL,\r\n" + 
+//		   		"  `isreturn` TINYINT NOT NULL,\r\n"+
+//		   		"  PRIMARY KEY (`id`),\r\n" + 
+//		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
+//		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
+//		   		"  INDEX `methodid_idx` (`methodid` ASC),\r\n" + 
+//		   		"  CONSTRAINT `classid8`\r\n" + 
+//		   		"    FOREIGN KEY (`classid`)\r\n" + 
+//		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
+//		   		"    ON DELETE NO ACTION\r\n" + 
+//		   		"    ON UPDATE NO ACTION,\r\n" + 
+//		   		"  CONSTRAINT `classid3`\r\n" + 
+//		   		"    FOREIGN KEY (`classid`)\r\n" + 
+//		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
+//		   		"    ON DELETE NO ACTION\r\n" + 
+//		   		"    ON UPDATE NO ACTION,\r\n" + 
+//		   		"  CONSTRAINT `methodid`\r\n" + 
+//		   		"    FOREIGN KEY (`methodid`)\r\n" + 
+//		   		"    REFERENCES `databasegantt`.`methods` (`id`)\r\n" + 
+//		   		"    ON DELETE NO ACTION\r\n" + 
+//		   		"    ON UPDATE NO ACTION"+   	
+//		   		 ")"); 
+//		   
 		   
 
 //		   st.executeUpdate("CREATE TABLE `databasegantt`.`fieldclasses` (\r\n" + 
@@ -2369,8 +2369,8 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
  bufferedReader = new BufferedReader(fileReader);
  stringBuffer = new StringBuffer();
  
-// List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
-//tracesmethodscallees tmc = null; 
+ List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
+tracesmethodscallees tmc = null; 
 //int COUNTER3=1; 
 //try {
 //	
@@ -2390,7 +2390,7 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
 //		String calleeidexecuted=null; 
 //		String callerid=null; 
 //		String callerexecutedid=null; 
-//		
+//		String newmeth= null; 
 //		
 //		
 //		System.out.println(line);
@@ -2440,39 +2440,7 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
 //				classname = methodids.getString("classname"); 
 //				classid = methodids.getString("classid"); 
 //				   }
-////		if(methodid==null) {
-////			 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+method+"'"); 
-////			while(methodids.next()){
-////				methodid = methodids.getString("id"); 
-////				classname = methodids.getString("classname"); 
-////				classid = methodids.getString("classid"); 
-////		}
-////		}
-////			if(methodid==null) {
-////				
-////				 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////				while(methodids.next()){
-////					methodid = methodids.getString("id"); 
-////					classname = methodids.getString("classname"); 
-////					classid = methodids.getString("classid"); 
-////			}
-////			}
-////		 classname=null; 
-////		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////		while(classnames.next()){
-////			classname = classnames.getString("classname"); 
-////			   }
-//		//COMPUTING INTERFACE CLASS IDS AND INTERFACE NAMES 
-////		String interfacename=null; 
-////			ResultSet interfaces = st.executeQuery("SELECT interfaces.interfacename from interfaces where interfaces.classname ='"+classname+"'"); 
-////			while(interfaces.next()){
-////				interfacename = interfaces.getString("interfacename"); 
-////				   }
-////			String interfaceid=null; 
-////			ResultSet interfacesids = st.executeQuery("SELECT interfaces.interfaceclassid from interfaces where interfaces.interfacename ='"+interfacename+"'"); 
-////			while(interfacesids.next()){
-////				interfaceid = interfacesids.getString("interfaceclassid"); 
-////				   }
+//
 //			
 //			
 //			
@@ -2552,8 +2520,11 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
 //	method=RewriteFullMethod(method);  
 //	String methodnameAndParams= GetMethodNameAndParams(method); 
 //	method=method.replaceAll("Lde", "de"); 
+//	String statement; 
 //	methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-//	String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+//	 statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+//
+//
 //	st.executeUpdate(statement);
 //	TraceListMethods.add(tr); 
 //	
@@ -2752,7 +2723,7 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
 //	 String method=null; 
 //	 String gold=null; 
 //	 String subject=null; 
-//	
+//	 String newmeth=null; 
 //	
 //	
 //	
@@ -2811,17 +2782,17 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main
 //	System.out.println(method);
 //	
 //	
-//	String classname=null; 
+//	String classname=null;
+//	String classid=null; 
+//
 //	method=method.trim();
-//	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.fullmethod ='"+method+"'"); 
+//	ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
 //	while(classnames.next()){
 //		classname = classnames.getString("classname"); 
+//		classid = classnames.getString("classid"); 
 //		   }
-//	String classid=null; 
-//	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.fullmethod ='"+method+"'"); 
-//	while(classids.next()){
-//		classid = classids.getString("classid"); 
-//		   }
+//	
+//	
 //	String interfacename=null; 
 //	String interfaceid=null; 
 //	ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");

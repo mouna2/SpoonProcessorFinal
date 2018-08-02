@@ -252,13 +252,16 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHotDraw.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
-	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluation.txt");
+	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluation.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationJHotDraw.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
-	File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold3.txt");
+	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold3.txt");
+	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold3JHOTDRAW.txt");
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
-	File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold4.txt");
+	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold4.txt");
+	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4JHOTDRAW.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -351,6 +354,25 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
+			
+			data[j][CallerClassesT] = 0;
+			data[j][CallerClassesN] = 0;
+			data[j][CallerClassesE] = 0;
+			data[j][CallerMethodsT] = 0;
+			data[j][CallerMethodsN] = 0;
+			data[j][CallerMethodsE] = 0;
+			data[j][CalleeClassesT] = 0;
+			data[j][CalleeClassesN] = 0;
+			data[j][CalleeClassesE] = 0;
+			data[j][CalleeMethodsT] = 0;
+			data[j][CalleeMethodsN] = 0;
+			data[j][CalleeMethodsE] = 0;
+			data[j][CalleeMethodsNumber] = 0;
+			data[j][CallerMethodsNumber] = 0;
+			data[j][CallerClassesNumber] = 0;
+			data[j][CalleeClassesNumber] = 0;
+			
+			
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
@@ -938,7 +960,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 
 			int mysize = myclasstracesCallers.size();
 
-			data[j][CallerClassesNumber] = myclasstracesCallers.size();
+		//	data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
 			if(myclasstracesCallers!=null && myclasstracesCallers.isEmpty()==false) {
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
@@ -956,6 +978,8 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				data[j][CallerClassesT] = CounterTraceClassCallerT;
 				data[j][CallerClassesN] = CounterTraceClassCallerN;
 				data[j][CallerClassesE] = CounterTraceClassCallerE;
+				data[j][CallerClassesNumber] = CounterTraceClassCallerT+CounterTraceClassCallerN+CounterTraceClassCallerE;
+
 			}
 			
 //DUPLICATE CLASSES
@@ -1002,7 +1026,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			//NO DUPLICATE CLASSES 
 
-			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
+		//	data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 			if(myclasstracesCallees!=null && myclasstracesCallees.isEmpty()==false) {
 				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 					String mytrace=mycalleeclass.gettrace(); 
@@ -1019,6 +1043,8 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				data[j][CalleeClassesT] = CounterTraceClassCalleeT;
 				data[j][CalleeClassesN] = CounterTraceClassCalleeN;
 				data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+				data[j][CalleeClassesNumber] = CounterTraceClassCalleeE+CounterTraceClassCalleeN+CounterTraceClassCalleeT;
+
 			}
 			
 			//DUPLICATE CLASSES
@@ -1047,14 +1073,16 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			
 			
-			data[j][CallerMethodsNumber] = mycallerclasses.size();
-			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
-			
+//			data[j][CallerMethodsNumber] = mycallerclasses.size();
+//			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
+			data[j][CalleeMethodsNumber] = CountMethodTCallee+CountMethodNCallee+CountMethodECallee;
+
 			
 			data[j][CallerMethodsT] = CountMethodT;
 			data[j][CallerMethodsN] = CountMethodN;
 			data[j][CallerMethodsE] = CountMethodE;
-			
+			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
+
 			 System.out.println("OwnerClassNVarString: "+data[j][OwnerClassN].toString());
 			 System.out.println("OwnerClassTVarString: "+data[j][OwnerClassT].toString());		 
 			 System.out.println("OwnerClassEVarString: "+data[j][OwnerClassE].toString());

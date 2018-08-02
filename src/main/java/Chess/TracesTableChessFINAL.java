@@ -215,13 +215,19 @@ public class TracesTableChessFINAL extends JFrame {
 
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
-	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
+	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+
 	FileOutputStream fos = new FileOutputStream(fout);
 	
-	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
+//	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChess.txt");
+
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
-	File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
+	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2.txt");
+
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -309,6 +315,23 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
+			
+			data[j][CallerClassesT] = 0;
+			data[j][CallerClassesN] = 0;
+			data[j][CallerClassesE] = 0;
+			data[j][CallerMethodsT] = 0;
+			data[j][CallerMethodsN] = 0;
+			data[j][CallerMethodsE] = 0;
+			data[j][CalleeClassesT] = 0;
+			data[j][CalleeClassesN] = 0;
+			data[j][CalleeClassesE] = 0;
+			data[j][CalleeMethodsT] = 0;
+			data[j][CalleeMethodsN] = 0;
+			data[j][CalleeMethodsE] = 0;
+			data[j][CalleeMethodsNumber] = 0;
+			data[j][CallerMethodsNumber] = 0;
+			data[j][CallerClassesNumber] = 0;
+			data[j][CalleeClassesNumber] = 0;
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 
@@ -887,7 +910,7 @@ public class TracesTableChessFINAL extends JFrame {
 				
 			}
 
-			data[j][CallerMethodsNumber] = mycallerclasses.size();
+			//data[j][CallerMethodsNumber] = mycallerclasses.size();
 			
 			ArrayList<ClassTrace2> myclasstracesCallers = new ArrayList<ClassTrace2>();// unique
 			for (ClassTrace2 classtrace : mycallerclasses) {
@@ -902,7 +925,7 @@ public class TracesTableChessFINAL extends JFrame {
 
 			int mysize = myclasstracesCallers.size();
 
-			data[j][CallerClassesNumber] = myclasstracesCallers.size();
+		//	data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.gettrace().equals("T")) {
@@ -917,6 +940,8 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CallerClassesT] = CounterTraceClassCallerT;
 			data[j][CallerClassesN] = CounterTraceClassCallerN;
 			data[j][CallerClassesE] = CounterTraceClassCallerE;
+			data[j][CallerClassesNumber] = CounterTraceClassCallerT+CounterTraceClassCallerN+CounterTraceClassCallerE;
+
 //DUPLICATE CLASSES
 			int CountMethodT = 0; 
 			int CountMethodN = 0; 
@@ -948,7 +973,7 @@ public class TracesTableChessFINAL extends JFrame {
 				}
 				
 			}
-			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
+			//data[j][CalleeMethodsNumber] = mycalleeclasses.size();
 			
 			
 			ArrayList<ClassTrace2> myclasstracesCallees = new ArrayList<ClassTrace2>();// unique
@@ -960,7 +985,7 @@ public class TracesTableChessFINAL extends JFrame {
 			}
 			//NO DUPLICATE CLASSES 
 
-			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
+			//data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 			System.out.println("FUINAL COIUNTER ===============>"+ myfinalcounter);
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 				if (mycalleeclass.gettrace().equals("T")) {
@@ -975,6 +1000,8 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CalleeClassesT] = CounterTraceClassCalleeT;
 			data[j][CalleeClassesN] = CounterTraceClassCalleeN;
 			data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+			data[j][CalleeClassesNumber] = CounterTraceClassCalleeE+CounterTraceClassCalleeN+CounterTraceClassCalleeT;
+
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
@@ -992,12 +1019,13 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CalleeMethodsT] = CountMethodTCallee;
 			data[j][CalleeMethodsN] = CountMethodNCallee;
 			data[j][CalleeMethodsE] = CountMethodECallee;
-			
+			data[j][CalleeMethodsNumber] = CountMethodTCallee+CountMethodNCallee+CountMethodECallee;
 			
 			data[j][CallerMethodsT] = CountMethodT;
 			data[j][CallerMethodsN] = CountMethodN;
 			data[j][CallerMethodsE] = CountMethodE;
-			
+			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
+
 			myfinalcounter++; 
 		//OWNER CLASS PREDICTION 
 		 Object OwnerClassNVar = data[j][OwnerClassN]; 

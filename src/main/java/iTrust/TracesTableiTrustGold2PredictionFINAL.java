@@ -219,10 +219,14 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogiTrust.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
-	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluation.txt");
+	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluation.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationITRUST.txt");
+
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
-	File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluationGold2.txt");
+	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluationGold2.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold2ITRUST.txt");
+
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -290,6 +294,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 		String[] items4 = new String[methodtraces2.size()];
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
+		
 //		String[] items1 = new String[100];
 //		String[] items2 = new String[100];
 //		String[] items3 = new String[100];
@@ -326,6 +331,10 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 			data[j][CalleeMethodsT] = 0;
 			data[j][CalleeMethodsN] = 0;
 			data[j][CalleeMethodsE] = 0;
+			data[j][CalleeMethodsNumber] = 0;
+			data[j][CallerMethodsNumber] = 0;
+			data[j][CallerClassesNumber] = 0;
+			data[j][CalleeClassesNumber] = 0;
 			// data[j][CalleePrediction]= methodtrace.goldpredictionCaller;
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
@@ -901,7 +910,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 
 			int mysize = myclasstracesCallers.size();
 
-			data[j][CallerClassesNumber] = myclasstracesCallers.size();
+		//	data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
 			if(myclasstracesCallers!=null && myclasstracesCallers.isEmpty()==false) {
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
@@ -919,6 +928,8 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				data[j][CallerClassesT] = CounterTraceClassCallerT;
 				data[j][CallerClassesN] = CounterTraceClassCallerN;
 				data[j][CallerClassesE] = CounterTraceClassCallerE;
+				data[j][CallerClassesNumber] = CounterTraceClassCallerT+CounterTraceClassCallerN+CounterTraceClassCallerE;
+
 			}
 			
 //DUPLICATE CLASSES
@@ -965,7 +976,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 			}
 			//NO DUPLICATE CLASSES 
 
-			data[j][CalleeClassesNumber] = myclasstracesCallees.size();
+			//data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 			if(myclasstracesCallees!=null && myclasstracesCallees.isEmpty()==false) {
 				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 					String mytrace=mycalleeclass.gettrace(); 
@@ -982,6 +993,8 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				data[j][CalleeClassesT] = CounterTraceClassCalleeT;
 				data[j][CalleeClassesN] = CounterTraceClassCalleeN;
 				data[j][CalleeClassesE] = CounterTraceClassCalleeE;
+				data[j][CalleeClassesNumber] = CounterTraceClassCalleeE+CounterTraceClassCalleeN+CounterTraceClassCalleeT;
+
 			}
 			
 			//DUPLICATE CLASSES
@@ -1012,14 +1025,16 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 			mycallerclasses = mycallerclasses.stream().filter(t -> t != null).collect(Collectors.toList()); 
 			mycalleeclasses = mycalleeclasses.stream().filter(t -> t != null).collect(Collectors.toList()); 
 
-			data[j][CallerMethodsNumber] = mycallerclasses.size();
-			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
-			
+//			data[j][CallerMethodsNumber] = mycallerclasses.size();
+//			data[j][CalleeMethodsNumber] = mycalleeclasses.size();
+			data[j][CalleeMethodsNumber] = CountMethodTCallee+CountMethodNCallee+CountMethodECallee;
+
 			
 			data[j][CallerMethodsT] = CountMethodT;
 			data[j][CallerMethodsN] = CountMethodN;
 			data[j][CallerMethodsE] = CountMethodE;
-			
+			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
+
 			 System.out.println("OwnerClassNVarString: "+data[j][OwnerClassN].toString());
 			 System.out.println("OwnerClassTVarString: "+data[j][OwnerClassT].toString());		 
 			 System.out.println("OwnerClassEVarString: "+data[j][OwnerClassE].toString());
