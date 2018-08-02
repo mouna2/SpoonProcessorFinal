@@ -256,37 +256,41 @@ public class DBDemo3Gantt {
 //		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
 //		   		"    ON DELETE NO ACTION\r\n" + 
 //		   		"    ON UPDATE NO ACTION);"); 
-//		   st.executeUpdate("CREATE TABLE `databasegantt`.`parameters` (\r\n" + 
-//		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
-//		   		"  `parametername` VARCHAR(200) NULL,\r\n" + 
-//		   		"  `parametertype` VARCHAR(200) NULL,\r\n" + 
-//		   		"  `parameterclass` INT NULL,\r\n" + 
-//		   		"  `classid` INT NULL,\r\n" + 
-//		   		"  `classname` VARCHAR(200) NULL,\r\n" + 
-//		   		"  `methodid` INT NULL,\r\n" + 
-//		   		"  `methodname`  VARCHAR(300) NULL,\r\n" + 
-//		   		"  `isreturn` TINYINT NOT NULL,\r\n"+
-//		   		"  PRIMARY KEY (`id`),\r\n" + 
-//		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
-//		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
-//		   		"  INDEX `methodid_idx` (`methodid` ASC),\r\n" + 
-//		   		"  CONSTRAINT cons UNIQUE (id, parametername, classid, classname, methodname), \r\n"+
-//		   		"  CONSTRAINT `classid8`\r\n" + 
-//		   		"    FOREIGN KEY (`classid`)\r\n" + 
-//		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
-//		   		"    ON DELETE NO ACTION\r\n" + 
-//		   		"    ON UPDATE NO ACTION,\r\n" + 
-//		   		"  CONSTRAINT `classid3`\r\n" + 
-//		   		"    FOREIGN KEY (`classid`)\r\n" + 
-//		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
-//		   		"    ON DELETE NO ACTION\r\n" + 
-//		   		"    ON UPDATE NO ACTION,\r\n" + 
-//		   		"  CONSTRAINT `methodid`\r\n" + 
-//		   		"    FOREIGN KEY (`methodid`)\r\n" + 
-//		   		"    REFERENCES `databasegantt`.`methods` (`id`)\r\n" + 
-//		   		"    ON DELETE NO ACTION\r\n" + 
-//		   		"    ON UPDATE NO ACTION"+   	
-//		   		 ")"); 
+			
+			
+		   st.executeUpdate("CREATE TABLE `databasegantt`.`parameters` (\r\n" + 
+		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
+		   		"  `parametername` VARCHAR(200) NULL,\r\n" + 
+		   		"  `parametertype` VARCHAR(200) NULL,\r\n" + 
+		   		"  `parameterclass` INT NULL,\r\n" + 
+		   		"  `classid` INT NULL,\r\n" + 
+		   		"  `classname` VARCHAR(200) NULL,\r\n" + 
+		   		"  `methodid` INT NULL,\r\n" + 
+		   		"  `methodname` LONGTEXT NULL,\r\n" + 
+		   		"  `isreturn` TINYINT NOT NULL,\r\n"+
+		   		"  PRIMARY KEY (`id`),\r\n" + 
+		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
+		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
+		   		"  INDEX `methodid_idx` (`methodid` ASC),\r\n" + 
+		   		"  CONSTRAINT `classid8`\r\n" + 
+		   		"    FOREIGN KEY (`classid`)\r\n" + 
+		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
+		   		"    ON DELETE NO ACTION\r\n" + 
+		   		"    ON UPDATE NO ACTION,\r\n" + 
+		   		"  CONSTRAINT `classid3`\r\n" + 
+		   		"    FOREIGN KEY (`classid`)\r\n" + 
+		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
+		   		"    ON DELETE NO ACTION\r\n" + 
+		   		"    ON UPDATE NO ACTION,\r\n" + 
+		   		"  CONSTRAINT `methodid`\r\n" + 
+		   		"    FOREIGN KEY (`methodid`)\r\n" + 
+		   		"    REFERENCES `databasegantt`.`methods` (`id`)\r\n" + 
+		   		"    ON DELETE NO ACTION\r\n" + 
+		   		"    ON UPDATE NO ACTION"+   	
+		   		 ")"); 
+		   
+		   
+
 //		   st.executeUpdate("CREATE TABLE `databasegantt`.`fieldclasses` (\r\n" + 
 //		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
 //		   		"  `fieldname` LONGTEXT NULL,\r\n" + 
@@ -885,6 +889,94 @@ public class DBDemo3Gantt {
     	       	    		
     	       	    		}
     	       		 //}
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    	       				
+    		       			List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
+    		   	       	   for(CtConstructor<?> cons :constructorcallers) {	
+    		 	       	    			List<CtParameter<?>> params = cons.getParameters(); 
+    		 	       				
+    		 	       	    			
+    		 	       	    			
+    		 	       	    		
+    		 	       	    	
+    		 	       	    			for( CtParameter<?> myparam :params) {
+    		 	       	    				String paramInfo=""; 
+    		 	       	    				boolean flag2=false; 
+    		 	       	    				String meth=cons.getSignature().toString(); 
+    		 	       	    				meth="-init-"+meth.substring(meth.indexOf("("), meth.indexOf(")")+1); 
+    		 	       	    				String fullmethod=clazz.getQualifiedName()+"."+meth; 
+    		 	       	    				ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
+    		 	       	    				
+    		 	   	    					while(classnames.next()){
+    		 	   	    						 ClassName =classnames.getString("classname"); 
+    		 	   	    						 classid =classnames.getString("classid"); 
+    		 	   	    						MethodReferenced =classnames.getString("id"); 
+    		 	   	    			   		   }
+    		 	   	    					
+
+    		 	       	    				
+    		 	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
+    		 	           	    				
+    		 	       	    					while(paramclassids.next()){
+    		 	       	    						flag2=true; 
+    		 	       	    						paramclassid =paramclassids.getString("id"); 
+    		 	       	    					
+    		 	       	    			   		   }
+    		 	       	    			
+    		 	       	    				
+    		 	       	    					
+    		 	       	    					
+    		 	           		    			 paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +cons.getSignature().toString()+"','" +0; 
+
+    		 	       	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
+    		 	       	    					//	System.out.println("HERE IS A PARAMETER: "+ myparam);
+    		 	       	    						System.out.println("paramInfo  "+paramInfo);
+    		 	       	    						if(MethodReferenced==null) {
+    		 	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
+    		 	       	    						}
+    		 	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
+    		 	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+fullmethod+"','" +0+"')");
+    		 	           	    		    			paramlist.add(paramInfo); 
+    		 	       	    						}
+
+    		 	       	    				//	}
+    		 	       	    				
+    		 	       	    				
+    		 	       	    			}
+    		 	       	    			
+    		 	       	    		
+
+    		 	       	    	
+
+    		 	       	    		
+    		 	       	    		
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       				
+    		   	       		 //}
+    		   	       	}
+    	       				
+    	       				
+    	       				
     	       	}
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
