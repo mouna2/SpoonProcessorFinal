@@ -511,8 +511,9 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
-				data [j][paramatersNumber]= myparametercount; 
-				
+				//data [j][paramatersNumber]= myparametercount; 
+				data [j][paramatersNumber]= counterParameterT+counterParameterN+counterParameterE; 
+
 				
 				
 				

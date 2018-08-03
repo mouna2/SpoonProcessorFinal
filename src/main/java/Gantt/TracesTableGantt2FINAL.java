@@ -552,7 +552,9 @@ public class TracesTableGantt2FINAL extends JFrame {
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
-				data [j][paramatersNumber]= myparametercount; 
+				data [j][paramatersNumber]= counterParameterT+counterParameterN+counterParameterE; 
+
+				//data [j][paramatersNumber]= myparametercount; 
 				
 				
 				

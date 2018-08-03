@@ -549,8 +549,9 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
-				data [j][paramatersNumber]= myparametercount; 
-				
+			//	data [j][paramatersNumber]= myparametercount; 
+				data [j][paramatersNumber]= counterParameterT+counterParameterN+counterParameterE; 
+
 				
 				
 				
