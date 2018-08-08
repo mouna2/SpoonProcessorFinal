@@ -33,6 +33,7 @@ public class methodcalls {
 		this.callingmethodclass = callingmethodclass;
 	}
 	public boolean equals(methodcalls mc) {
+//		System.out.println(mc.toString());
 		if(methodcalledid.equals(mc.methodcalledid) && calleeclassid.equals(mc.calleeclassid) && methodcalledname.equals(mc.methodcalledname) && menthodcalledclass.equals(mc.menthodcalledclass) && callingmethodid.equals(mc.callingmethodid)  && callingmethodname.equals(mc.callingmethodname) && callingmethodclass.equals(mc.callingmethodclass) ) {
 			return true; 
 		}
@@ -41,6 +42,9 @@ public class methodcalls {
 	
 	public boolean contains(List<methodcalls> MethodCallsList, methodcalls f) {
 		for(methodcalls mc: MethodCallsList) {
+//			System.out.println("mc="+mc.toString());
+//			System.out.println("f="+f.toString());
+
 			if(mc.equals(f)) {
 				return true; 
 			}
