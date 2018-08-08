@@ -22,7 +22,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.pattern.FullLocationPatternConverter;
@@ -94,7 +93,7 @@ import spoon.reflect.visitor.filter.TypeFilter;
  * 
  * java.net.ConnectException: Connection refused
  */
-public class DBDemo3JHotDraw3 {
+public class DBDemo3JHotDraw4 {
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
@@ -118,12 +117,12 @@ public class DBDemo3JHotDraw3 {
 	public List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
 
 	
-	public DBDemo3JHotDraw3(List<tracesmethodscallees> tracesCalleesList) {
+	public DBDemo3JHotDraw4(List<tracesmethodscallees> tracesCalleesList) {
 		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
 
 	}
 
-	public DBDemo3JHotDraw3() {
+	public DBDemo3JHotDraw4() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -443,22 +442,18 @@ public class DBDemo3JHotDraw3 {
 	 * Connect to the DB and do some stuff
 	 */
 	public static void main(String[] args) {
-		DBDemo3JHotDraw3 app = new DBDemo3JHotDraw3();
+		DBDemo3JHotDraw2 app = new DBDemo3JHotDraw2();
 		app.run();
 	}
 	
 	public void Spoon() throws SQLException, FileNotFoundException {
-		DBDemo3JHotDraw3 dao = new DBDemo3JHotDraw3();
+		DBDemo3JHotDraw2 dao = new DBDemo3JHotDraw2();
 	Connection conn=getConnection();
 	Statement st= conn.createStatement();
 	
 	    
 		SpoonAPI spoon = new Launcher();
-    	//spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
-    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw\\samples\\mini\\ConnectingFiguresSample.java");
-    	//spoon.getEnvironment().setSourceClasspath("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
-
-    	
+    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
     	spoon.getEnvironment().setAutoImports(true);
     	spoon.getEnvironment().setNoClasspath(true);
     	CtModel model = spoon.buildModel();
@@ -692,11 +687,7 @@ public class DBDemo3JHotDraw3 {
 					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
 					int packagesize= "edu.ncsu.csc.itrust.".length(); 
 						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
-						if(FullConstructorName.contains("$")==false) {
-							FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.indexOf("("), FullConstructorName.length()); 
-
-			    		}
-					//	FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
+						FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
 						
 							System.out.println("FULL CONSTRUCTOR NAME AFTER:"+FullConstructorName);
 
@@ -776,31 +767,8 @@ public class DBDemo3JHotDraw3 {
 			    			mymethodlist.add(meth); 
 						}
 						
-						 CtBlock<?> methodbody = method.getBody(); 
-						 if(methodbody!=null) {
-					 			List<CtMethod> methoddeclared = methodbody.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
-				    			
-			    				 for(CtMethod<?> mymeth: methoddeclared) {
-			 						
-						    			System.out.println("yes");
-						    		
-						    		
-						    				 String methodsignature2=mymeth.getSignature(); 
-						    				 String FullMethodNameRefined2=methodsignature2.substring(0, methodsignature2.indexOf("(")); 
-						    				 String methodabbreviation2=myclassname+"."+FullMethodNameRefined2; 
-						    				 String longmeth2=myclassname+"."+methodsignature2; 
-								    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+methodsignature2 +"','" +FullMethodNameRefined2+"','" +methodabbreviation2+"','" +longmeth2+"','" +myclassid+"','" +myclassname+"')");
+						
 
-						    			
-						    				
-						    			
-						    		
-								
-							}
-						 }
-			   
-			    			
-			
     	
 					}
 
@@ -1191,22 +1159,17 @@ public class DBDemo3JHotDraw3 {
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/   	
 ////////////////BUILD METHODSCALLED TABLE
-    	int counter=1; 
+    	int counter=0; 
     	
     	
     	String calleeDeclaringTypeName=null; 
     	
     List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
     for(CtType<?> clazz : classFactory.getAll(true)) {
-    	System.out.println("counter "+counter);
-     
-    	
     	List<CtConstructorCall> constructorcallers = clazz.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
     	   for(CtConstructorCall<?> cons :constructorcallers) {
     	    	List<CtInvocation> MethodsInvokedByConstructors = cons.getElements(new TypeFilter<CtInvocation>(CtInvocation.class));
     	    	for(CtInvocation<?> consInvocation: MethodsInvokedByConstructors) {
-    	        	System.out.println("counter "+counter);
-
     	    		String CalleeMethodID=null;  
     	    		String CALLEECLASSNAME=null;  
     	    		String CALLEECLASSID =null;  
@@ -1257,8 +1220,6 @@ public class DBDemo3JHotDraw3 {
     	    		
     	    		
     	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
-    	    	    	System.out.println("counter "+counter);
-
     	    			String InvokedClassName = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
         	    		String InvokedMethodName=consInvocation.getExecutable().getSignature(); 
         	    		fullcallee=InvokedMethodName; 
@@ -1308,12 +1269,9 @@ public class DBDemo3JHotDraw3 {
     	    		//System.out.println(methodcall.toString()); 
     	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
     	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
-    	    			 counter++; 
+    	    			
     	    			st.executeUpdate(statement);
     	    			methodcallsList.add(methodcall); 
-						 System.out.println("counter====="+counter);
-						 System.out.println("mouna=====");
-
     	    		}
     	    	}
     		   
@@ -1329,191 +1287,7 @@ public class DBDemo3JHotDraw3 {
     	
     	for( CtConstructorCall myclass: ctNewClasses) {
     		//CONSTRUCTOR 
-			String methodinside=null; 
-			String methodinsideclass=null; 
-			String MethodIDINSIDE =null; 
-			String CLASSNAMEINSIDE = null; 
-			String CLASSIDINSIDE = null; 
-			String MethodIDInvoked=null; 
-			String  CLASSNAMEInvoked =null; 
-			String CLASSIDInvoked=null; 
-    		if(myclass instanceof CtConstructorCall<?>) {
-    			System.out.println("yes");
-    			
-    			List<CtMethod> methoddeclared = myclass.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
-    			for(CtMethod<?> meth: methoddeclared) {
-    				 methodinside=meth.getSignature(); 
-    				 methodinsideclass=clazz.getQualifiedName(); 
-    				System.out.println("heyyyyyyyyy "+meth.getSignature());
-    				String mymethod=methodinsideclass+"."+methodinside; 
-    				
-    				
-    				
-    				ResultSet methodsinside = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+mymethod+"'"); 
-    	    		//while(callingmethodsrefined.next()){
-    	    		if(methodsinside.next()) {
-    	    			 MethodIDINSIDE = methodsinside.getString("id"); 
-    	    			 CLASSNAMEINSIDE = methodsinside.getString("classname"); 
-    	    			 CLASSIDINSIDE = methodsinside.getString("classid"); 
-
-    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-    	    		}
-    	    		List<CtInvocation> methodcalled = meth.getElements(new TypeFilter<CtInvocation>(CtInvocation.class)); 
-        			for(CtInvocation<?> invo: methodcalled) {	
-        				System.out.println(invo);
-        				String methodInvoked=invo.getExecutable().getSignature(); 
-        				System.out.println(methodInvoked);
-        				if(invo.getExecutable().getDeclaringType()!=null) {
-        					String InvocationPackage=invo.getExecutable().getDeclaringType().toString(); 
-            				
-            				String fullinvocation= InvocationPackage+"."+methodInvoked; 
-            				ResultSet methodsinvoked = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullinvocation+"'"); 
-            	    		//while(callingmethodsrefined.next()){
-            	    		if(methodsinvoked.next()) {
-            	    			 MethodIDInvoked = methodsinvoked.getString("id"); 
-            	    			 CLASSNAMEInvoked = methodsinvoked.getString("classname"); 
-            	    			 CLASSIDInvoked = methodsinvoked.getString("classid"); 
-
-            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-            	    			 
-            	    			 methodcalls methodcall = new methodcalls(MethodIDInvoked, fullinvocation, CLASSNAMEInvoked, MethodIDINSIDE, mymethod, CLASSNAMEINSIDE, CLASSIDINSIDE); 
-            	    	    		//System.out.println(methodcall.toString()); 
-            	    	    		if( methodcall.contains(methodcallsList, methodcall)==false && MethodIDINSIDE!=null && MethodIDInvoked!=null) {
-            	    	    			
-            	    	    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+MethodIDINSIDE +"','" +methodinside+"','" +CLASSNAMEINSIDE+"','" +CLASSIDINSIDE+"','" +methodinsideclass+"."+methodinside+"','" +MethodIDInvoked+"','" +methodInvoked+"','" +CLASSNAMEInvoked+"','" +CLASSIDInvoked+"','" +fullinvocation+"')";
-            	    	          			 counter++; 
-            	    	          			st.executeUpdate(statement);
-            	    	          			methodcallsList.add(methodcall); 
-            	    	    			
-            	    			 
-            	    			 
-            	    		}
-            			}
-            	    		List<CtConstructorCall> constructors = meth.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class)); 
-                			for(CtConstructorCall<?> cons: constructors) {	
-                				
-                				
-                				System.out.println("CONS::::::::::::::::::::::::::"+ cons);
-                				
-                				String constructorClassName=	cons.getExecutable().getDeclaringType().toString(); 
-                				
-                				
-                				
-                				System.out.println("CONS::::::::::::::::::::::::::"+ constructorClassName);
-
-                				
-                				
-                			
-            	
-
-
-            			constructorClassName = RemoveDollarConstructor(constructorClassName);
-            			
-            		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
-            				"CLASSS    "+
-            				myclass.getExecutable().getDeclaringType().getQualifiedName());
-
-            		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
-            		
-            		String constructorName=cons.getExecutable().getSignature(); 
-            		//constructorName=constructorName.substring(0, constructorName.indexOf("("))+".-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-
-            		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
-        	    				+ "and methods.classname='"+constructorClassName+"'"); 
-        	    		//while(callingmethodsrefined.next()){
-        	    		String	CalleeMethodIDcons=null; 
-        	    		String	CALLEECLASSNAMEcons =null; 
-        	    		String	CALLEECLASSIDcons =null; 
-        	    		String	 fullcalleeinscons =null; 
-        	    		if(callingmethodsrefined.next()) {
-        	    			CalleeMethodIDcons = callingmethodsrefined.getString("id"); 
-        	    			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-        	    			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
-        	    			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
-
-        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-        	    		}
-        			
-        	    		
-        	    		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, MethodIDINSIDE, mymethod, CLASSNAMEINSIDE, CLASSIDINSIDE); 
-        	    		//System.out.println(methodcall.toString()); 
-        	    		if( methodcall.contains(methodcallsList, methodcall)==false && MethodIDINSIDE!=null && CalleeMethodIDcons!=null) {
-        	    			if(methodinside==null) {
-        	    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+MethodIDINSIDE +"','" +methodinside+"','" +CLASSNAMEINSIDE+"','" +CLASSIDINSIDE+"','" +methodinsideclass+"."+methodinside+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
-        	          			 counter++; 
-        	          			st.executeUpdate(statement);
-        	          			methodcallsList.add(methodcall); 
-        	    			}
-        				
-        			}
-                			}
-        				}
-        				
-    		}
-        			
-        			
-        			
-        			
-        			
-        		/////////////////////////////////////////////////////////////////////	
-        			
-        	   		List<CtConstructorCall> constructorcalls = meth.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class)); 
-        			for(CtConstructorCall<?> invo: constructorcalls) {	
-        				System.out.println(invo);
-        				String methodInvoked=invo.getExecutable().getSignature(); 
-        				System.out.println(methodInvoked);
-        				String InvocationPackage=invo.getExecutable().getDeclaringType().toString(); 
-        				String fullinvocation= InvocationPackage+"."+methodInvoked; 
-        	    		//while(callingmethodsrefined.next()){
-        				
-            		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
-            				"CLASSS    "+
-            				myclass.getExecutable().getDeclaringType().getQualifiedName());
-
-            		
-            		String constructorName=myclass.getExecutable().getSignature(); 
-            		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
-            		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-            		if(constructorName.contains("$")==false) {
-                		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-
-            		}
-            		String FullCallerMeth=clazz.getQualifiedName()+"."+constructorName; 
-    				ResultSet methodsinvoked = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+FullCallerMeth+"'"); 
-
-            		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
-        	    		if(methodsinvoked.next()) {
-       	    			 MethodIDInvoked = methodsinvoked.getString("id"); 
-       	    			 CLASSNAMEInvoked = methodsinvoked.getString("classname"); 
-       	    			 CLASSIDInvoked = methodsinvoked.getString("classid"); 
-
-       	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-       	    			 
-       	    			 methodcalls methodcall = new methodcalls(MethodIDInvoked, FullCallerMeth, CLASSNAMEInvoked, MethodIDINSIDE, mymethod, CLASSNAMEINSIDE, CLASSIDINSIDE); 
-       	    	    		//System.out.println(methodcall.toString()); 
-       	    	    		if( methodcall.contains(methodcallsList, methodcall)==false && MethodIDINSIDE!=null && MethodIDInvoked!=null) {
-       	    	    			
-       	    	    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+MethodIDINSIDE +"','" +methodinside+"','" +CLASSNAMEINSIDE+"','" +CLASSIDINSIDE+"','" +methodinsideclass+"."+methodinside+"','" +MethodIDInvoked+"','" +constructorName+"','" +CLASSNAMEInvoked+"','" +CLASSIDInvoked+"','" +FullCallerMeth+"')";
-       	    	          			 counter++; 
-       	    	          			st.executeUpdate(statement);
-       	    	          			methodcallsList.add(methodcall); 
-       	    	    			
-       	    			 
-       	    			 
-       	    		}
-       			}
-        			
-    			
-    	    		
-    	    
-    		}
-        			
-        			
-        			
-    		}
-        	System.out.println("counter "+counter);
-
+    		
     		String CallerMethodIDcons=null; 
         	String CALLERCLASSNAMEcons=null; 
         	String CALLERCLASSIDcons=null; 
@@ -1524,9 +1298,10 @@ public class DBDemo3JHotDraw3 {
     		String fullcallerinscons=null; 
     		String fullcalleeinscons=null; 
     		String constructorClassName=null; 
-    	//	String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-    		
+    		String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+    	
     			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+    		
     			constructorClassName = RemoveDollarConstructor(constructorClassName);
     			
     		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
@@ -1538,10 +1313,7 @@ public class DBDemo3JHotDraw3 {
     		String constructorName=myclass.getExecutable().getSignature(); 
     		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
     		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-    		if(constructorName.contains("$")==false) {
-        		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-
-    		}
+    		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
     		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
     		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
     		
@@ -1580,175 +1352,10 @@ public class DBDemo3JHotDraw3 {
     		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
     		//System.out.println(methodcall.toString()); 
     		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
-    		
-    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
-       			 counter++; 
-       			st.executeUpdate(statement);
-       			methodcallsList.add(methodcall); 
-    		
-    		
-				 System.out.println("counter====="+counter);
-				 System.out.println("mouna");
-
-    		}
-    		
-    		
-//    			List args = (myclass.getExecutable().getArguments()); 
-    		
-//    		System.out.println("hEYYYYYY"+args.toString());
-    		
-    		
-    		List list = myclass.getArguments();
-    		
-    		//System.out.println("LIST "+ list);
-    		
-    		for(Object elem: list) {
+    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
     			
-    			if(elem instanceof CtInvocation) {
-    				
-    				 CtExecutableReference elemexec = ((CtInvocation) elem).getExecutable(); 
-//    				System.out.println("ELEM"+elem);
-//    				System.out.println("EXEC"+elemexec);
-    				if(elemexec.getDeclaringType()!=null) {
-    					String targetType=elemexec.getDeclaringType().getQualifiedName(); 	
-    				}
-    				
-    				
-    				
-    				
-    				
-    				  CtExpression targ = ((CtInvocation) elem).getTarget(); 
-    					if(targ instanceof CtInvocation) {
-    						CtExecutableReference targex = ((CtInvocation) targ).getExecutable(); 
-//    						System.out.println("TARG"+targex);
-    						if(targex.getDeclaringType()!=null) {
-        						String executableType=targex.getDeclaringType().getQualifiedName(); 
-
-    						}
-    						
-    						
-    						CtExpression targetoftarget = ((CtTargetedExpression) targ).getTarget(); 
-    						while(!targetoftarget.toString().equals("") && targetoftarget instanceof CtInvocation==true ) {
-    							
-    							
-//    							System.out.println("TARGET OF TARGET: "+targetoftarget);
-    							if(targetoftarget instanceof CtInvocation<?> ) {
-    								targetoftarget=((CtInvocation<?>) targetoftarget).getTarget(); 
-
-    							}
-    							else if(targetoftarget instanceof CtConstructorCall<?>) {
-    								targetoftarget=((CtConstructorCall<?>) targetoftarget).getTarget(); 
-    							}
-    							else if(targetoftarget instanceof CtFieldAccess<?>) {
-    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
-    							}else if(targetoftarget instanceof CtField<?>) {
-    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
-    							}
-    							
-    							String targetoftargetType=targex.getDeclaringType().getQualifiedName(); 
-    							
-    						}
-    					}
-//    				if(elemtarg==null) {
-//    					System.out.println("ELEM"+elem);
-//    				}
-//    				while(elemtarg!=null) {
-//    					
-//    					elemtarg = ((CtInvocation<?>) elemtarg).getTarget(); 
-//    					System.out.println("ELEM TARG: "+elemtarg);
-//    				}
-    				
-    			}else if(elem instanceof CtFieldAccess) {
-    				//System.out.println("ELEMFILEDACCESS"+elem);
-    			}
-    		}
-    		
-    	}
-        	System.out.println("counter "+counter);
-
-    		String CallerMethodIDcons=null; 
-        	String CALLERCLASSNAMEcons=null; 
-        	String CALLERCLASSIDcons=null; 
-        	
-        	String CalleeMethodIDcons=null; 
-        	String CALLEECLASSNAMEcons=null; 
-        	String CALLEECLASSIDcons=null; 
-    		String fullcallerinscons=null; 
-    		String fullcalleeinscons=null; 
-    		String constructorClassName=null; 
-    	//	String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-    		
-    			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-    		
-    			constructorClassName = RemoveDollarConstructor(constructorClassName);
-    			
-    		System.out.println("MYCLASS"+ clazz.getQualifiedName()+"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
-    				"CLASSS    "+
-    				myclass.getExecutable().getDeclaringType().getQualifiedName());
-
-    		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
-    		
-    		String constructorName=myclass.getExecutable().getSignature(); 
-    		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
-    		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-    		if(constructorName.contains("$")==false) {
-        		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-
-    		}
-    		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
-    		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
-    		
-    		
-    	
-    		
-    		//System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
-    		constructorClassName=RemoveDollar(constructorClassName); 
-    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
-    				+ "and methods.classname='"+constructorClassName+"'"); 
-    		//while(callingmethodsrefined.next()){
-    		if(callingmethodsrefined.next()) {
-    			CalleeMethodIDcons = callingmethodsrefined.getString("id"); 
-    			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-    			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
-    			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
-
-    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-    		}
-    		
-    		
-    	callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+FullCallerMeth+"'"); 
-    		//while(callingmethodsrefined.next()){
-    		if(callingmethodsrefined.next()) {
-    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
-    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
-    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-
-    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-    		}
-    		
-    		
-    		//System.out.println("FULL CALLER INS CONS"+fullcallerinscons);
-			//System.out.println("FULL CALLEE INS CONS"+fullcalleeinscons);
-    		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
-    		//System.out.println(methodcall.toString()); 
-    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
-    			if(methodinside==null) {
-    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
-       			 counter++; 
-       			st.executeUpdate(statement);
-       			methodcallsList.add(methodcall); 
-    			}
-    			else {
-    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+MethodIDINSIDE +"','" +methodinside+"','" +CLASSNAMEINSIDE+"','" +CLASSIDINSIDE+"','" +methodinsideclass+"."+methodinside+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
-          			 counter++; 
-          			st.executeUpdate(statement);
-          			methodcallsList.add(methodcall); 
-    			}
-    		
-				 System.out.println("counter====="+counter);
-				 System.out.println("mouna");
-
+    			st.executeUpdate(statement);
+    			methodcallsList.add(methodcall); 
     		}
     		
     		
@@ -1830,8 +1437,6 @@ public class DBDemo3JHotDraw3 {
     	// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
     	 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
     	for( CtInvocation invocation: methodcalls) {
-        	System.out.println("counter "+counter);
-
     		String callingmethodid=null; 
     		String callingmethodsrefinedid=null; 
     		String callingmethodsrefinedname=null; 
@@ -1911,11 +1516,6 @@ public class DBDemo3JHotDraw3 {
     					
     					st.executeUpdate(statement);
     					methodcallsList.add(methodcall); 
-    					 counter++; 
-    					 System.out.println("yes");
-						 System.out.println("counter====="+counter);
-						 System.out.println("yes");
-
     				}
     			}
     		}
@@ -1991,9 +1591,6 @@ public class DBDemo3JHotDraw3 {
     						
     						st.executeUpdate(statement);
     						methodcallsList.add(methodcall); 
-    						 counter++; 
-    						 System.out.println("counter====="+counter);
-    						 System.out.println("MOUNA=====");
     					}
     					
     			}
@@ -2094,7 +1691,7 @@ public class DBDemo3JHotDraw3 {
 
 
 
-   
+
     }       		    		
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
