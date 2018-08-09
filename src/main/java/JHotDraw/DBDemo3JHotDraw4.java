@@ -685,7 +685,7 @@ public class DBDemo3JHotDraw4 {
 
 					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
 					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
-					int packagesize= "edu.ncsu.csc.itrust.".length(); 
+					int packagesize= "org.jhotdraw.".length(); 
 						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
 						FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
 						
@@ -1162,8 +1162,11 @@ public class DBDemo3JHotDraw4 {
     	int counter=0; 
     	
     	
-    	String calleeDeclaringTypeName=null; 
-    	
+    	String calleeDeclaringTypeName=null;
+    	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//METHODS INVOKED BY CONSTRUCTORS
+    	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
     for(CtType<?> clazz : classFactory.getAll(true)) {
     	List<CtConstructorCall> constructorcallers = clazz.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
@@ -1282,9 +1285,18 @@ public class DBDemo3JHotDraw4 {
     	   
     	   
     	   
+    	   
+    	   
+ 
+    	   
+    	   
+    	   
     for(CtMethod<?> method :clazz.getMethods()) {
     	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
-    	
+ 	   
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CONSTRUCTORS INVOKED BY METHODS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     	for( CtConstructorCall myclass: ctNewClasses) {
     		//CONSTRUCTOR 
     		
@@ -1431,7 +1443,10 @@ public class DBDemo3JHotDraw4 {
     		
     	}
     	
-    	
+ 	   
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//METHODS INVOKED BY METHODS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     	String methname=method.getSimpleName(); 
     	//System.out.println("CALLER METHOD=====>"+methname);
     	// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
@@ -1613,75 +1628,7 @@ public class DBDemo3JHotDraw4 {
     	
     		
     		
-    		//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    		
-    			
-
-
-    		
-    		
-//    		ResultSet callingclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLEECLASSNAME+"' "); 
-//    		//while(callingmethodsrefined.next()){
-//    		if(callingclasses.next()) {
-//    			CALLEECLASSID = callingclasses.getString("id"); 
-//    			System.out.println("CALLEE CLASS ID: "+ CALLEECLASSID);
-//    		}
-    		
-    		
-
-    		
-//    		if(CALLERCLASSID==null) {
-//    			ResultSet callerclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLERCLASSNAME+"' "); 
-//    			//while(callingmethodsrefined.next()){
-//    			if(callerclasses.next()) {
-//    				CALLERCLASSID = callerclasses.getString("id"); 
-//    				System.out.println("CALLEE CLASS ID: "+ CALLERCLASSID);
-//    			}
-//    		}
     	
-    		
-       		//   }
-    		 
-    		//CALLING METHOD NAME 
-    		//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    	/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
-    		while(callingmethodsrefinednames.next()){
-    			callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
-       		   }*/
-    		
-    		
-    		//CALLING METHOD CLASS 
-    		//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    	/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
-    		while(callingmethodsclasses.next()){
-    			callingmethodclass = callingmethodsclasses.getString("classname"); 
-       		   }*/
-    		
-    		
-    		//CALLED METHOD ID 
-    		/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    		while(calledmethodsids.next()){
-    			calledmethodid = calledmethodsids.getString("id"); 
-       		   }
-    		 
-    		//CALLED METHOD NAME 
-    		ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    		while(callemethodnames.next()){
-    			calledmethodname = callemethodnames.getString("methodname"); 
-       		   }
-    		
-    		
-    		//CALLED METHOD CLASS 
-    		ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-    		while(calledmethodclasses.next()){
-    			calledmethodclass = calledmethodclasses.getString("classname"); 
-       		   }
-    		
-    		*/
-    		//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
-
-    	    
-    		
 
     	
     		
