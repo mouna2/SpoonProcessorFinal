@@ -169,6 +169,8 @@ public class DatabaseReading2JHotDraw {
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
+		System.out.println("***************0");
+
 		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
@@ -176,32 +178,42 @@ public class DatabaseReading2JHotDraw {
 		HashMap<Integer, MethodTraceSubjectTSubjectNOriginal> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
 		List<MethodTraceSubjectTSubjectNOriginal> methodtraces = new ArrayList<MethodTraceSubjectTSubjectNOriginal>(methodtracehashmap.values());
 		setMethodtraces2(methodtraces);
+		System.out.println("***************1");
+		
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		/*ClassTrace2 classtrace2= new ClassTrace2(); 
+		ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
-		setClassestraces2(classestraces);*/
+		setClassestraces2(classestraces);
 		///////////////////////////////////////////////////////////////////////////////////////
 		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
 		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
 		setLinkedmethodhashmap(linkedmethodhashmap);
+		System.out.println("***************2");
+
 		///////////////////////////////////////////////////////////////////////////////////////
-		ClassTrace2 classtrace2= new ClassTrace2(); 
+		 classtrace2= new ClassTrace2(); 
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
+		System.out.println("***************3");
+
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		Interface2 myinterface2= new Interface2(); 
 		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
 		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
 		setInterfaces(interfacehashmap);
+		System.out.println("***************4");
+
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		///////////////////////////////////////////////////////////////////////////////////////
 		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
 		setInterfaces(interfacehashmapAlreadyImpl);
+		System.out.println("***************5****************");
+
 		///////////////////////////////////////////////////////////////////////////////////////
 		System.out.println("MOUNA");
 		

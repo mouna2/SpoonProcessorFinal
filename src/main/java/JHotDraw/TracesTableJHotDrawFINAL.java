@@ -273,6 +273,9 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	private final String password = "123456";
 	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
 	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	
+	List<Method2Representation> CallerMethodListFinal2 = new ArrayList<Method2Representation>();
+	List<Method2Representation> CalleeMethodListFinal2 = new ArrayList<Method2Representation>();
 
 	public List<Method2Representation> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
@@ -769,6 +772,9 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			CallerMethodListFinal = new ArrayList<Method2Representation>();
 			CalleeMethodListFinal = new ArrayList<Method2Representation>();
+			
+			CallerMethodListFinal2 = new ArrayList<Method2Representation>();
+			CalleeMethodListFinal2 = new ArrayList<Method2Representation>();
 
 			for (Method2Representation methcaller : CallerMethodsList) {
 				if (methcaller != null) {
@@ -779,6 +785,17 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			for (Method2Representation methcaller : CalleeMethodsList) {
 				if (methcaller != null) {
 					CalleeMethodListFinal.add(methcaller);
+				}
+			}
+			for (Method2Representation methcaller : CallerMethodsList) {
+				if (methcaller != null) {
+					CallerMethodListFinal2.add(methcaller);
+				}
+			}
+
+			for (Method2Representation methcaller : CalleeMethodsList) {
+				if (methcaller != null) {
+					CalleeMethodListFinal2.add(methcaller);
 				}
 			}
 			int lengthitems1And2 = items1And2.length;
@@ -806,11 +823,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			//***********************************************CALLERS**************************************************//	
 			//***********************************************CALLERS**************************************************//	
 
-			for (Method2Representation methcaller : CallerMethodsList) {
+			for (Method2Representation methcaller : CallerMethodListFinal2) {
 				if (methcaller != null) {
 							boolean flag=false; 
 							
-								for(Method2Representation item: CallerMethodsList) {
+								for(Method2Representation item: CallerMethodListFinal2) {
 									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
@@ -855,7 +872,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			
 			
-			for (Method2Representation methcaller : CalleeMethodsList) {
+			for (Method2Representation methcaller : CalleeMethodListFinal2) {
 				if (methcaller != null) {
 					
 				
@@ -864,7 +881,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 						
 							boolean flag=false; 
 							
-								for(Method2Representation item: CalleeMethodsList) {
+								for(Method2Representation item: CalleeMethodListFinal2) {
 									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									

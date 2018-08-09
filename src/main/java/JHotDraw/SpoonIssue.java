@@ -130,7 +130,7 @@ public class SpoonIssue {
 	    
 		SpoonAPI spoon = new Launcher();
     	//spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
-    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw\\samples\\mini\\ConnectingFiguresSample.java");
+    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
 
     	
     	spoon.getEnvironment().setAutoImports(true);

@@ -88,6 +88,7 @@ public class Interface2 {
 				 
 				
 				 ClassRepresentationHashMap.put(key, myinterface); 
+				 System.out.println("index 5 "+index);
 				 index++; 
 		 }
 		
@@ -137,9 +138,10 @@ public class Interface2 {
 				 
 				 String key=interfaceclassid+"-"+interfacename;
 				 
-				
+				 System.out.println(myinterface.toString()); 
 				 ClassRepresentationHashMap.put(key, myinterface); 
 				 index++; 
+				 System.out.println("index 6 "+index);
 		 }
 		
 			System.out.println("FIELD TYPE CLASSES");

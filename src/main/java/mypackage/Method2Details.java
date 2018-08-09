@@ -545,6 +545,7 @@ public class Method2Details {
 				// System.out.println("METHOD DETAILS 2 tostring: "+methoddet2.toString());
 				 index=index+1; 
 				 myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
+				 System.out.println("index 3 "+index);
 				 
 		 }
 		

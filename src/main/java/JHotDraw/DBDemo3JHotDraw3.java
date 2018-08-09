@@ -454,8 +454,8 @@ public class DBDemo3JHotDraw3 {
 	
 	    
 		SpoonAPI spoon = new Launcher();
-    	//spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
-    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw\\samples\\mini\\ConnectingFiguresSample.java");
+    	spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
+    	//spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw\\samples\\mini\\ConnectingFiguresSample.java");
     	//spoon.getEnvironment().setSourceClasspath("C:\\Users\\mouna\\ownCloud\\Share\\src_jhotdraw");
 
     	

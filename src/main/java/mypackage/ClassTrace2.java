@@ -141,6 +141,7 @@ public class ClassTrace2 {
 			//	 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
 				 index++; 
 				 myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
+				 System.out.println("INDEX 4 "+index);
 			 }
 			 
 			return classtraceHashMapRequirementClass;

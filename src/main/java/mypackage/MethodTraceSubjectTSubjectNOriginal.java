@@ -486,6 +486,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 				// System.out.println("my trace tostring: "+mytrace.toString());
 				
 				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
+				 System.out.println("index 1 "+index);
 			
 			 }
 		
