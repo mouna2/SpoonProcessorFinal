@@ -662,187 +662,195 @@ public class DBDemo3JHotDraw3 {
 //////////////////        /*********************************************************************************************************************************************************************************/	
 //////////////////        /*********************************************************************************************************************************************************************************/	  	
 //////////////////    	//BUILD METHODS TABLE 
-    	List<methods> mymethodlist = new ArrayList<methods>(); 
-    	for(CtType<?> clazz : classFactory.getAll(true)) {
-    		
-    	
-    		String myclassid = null;
-    		String myclassname = null;
-    		
-    		//ALTERNATIVE: Collection<CtMethod<?>> methods = clazz.getAllMethods(); 
-			Collection<CtMethod<?>> methods = clazz.getMethods(); 
-			System.out.println("CLASS SIMPLE NAME :    "+clazz.getSimpleName());
-			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-			
-			int count = StringUtils.countMatches(clazz.getPackage().toString(), ".");
-			//System.out.println("count:   "+count);
-			//NEEDS TO BE CHANGED 
-		//	if(count==2) {
-			 List<CtConstructor> MyContructorlist = clazz.getElements(new TypeFilter<>(CtConstructor.class)); 
-			 for(CtConstructor<?> constructor: MyContructorlist) {
-				 
-				 	
-					String FullConstructorName=constructor.getSignature().toString(); 
-					
-					String methodabbreviation=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
-					 methodabbreviation=FullClassName+".-init-"; 
-
-					System.out.println("FULL CONSTRUCTOR NAME BEFORE METHOD ABBREVIATION:"+methodabbreviation);
-
-					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
-					int packagesize= "org.jhotdraw.".length(); 
-						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
-						if(FullConstructorName.contains("$")==false) {
-							FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.indexOf("("), FullConstructorName.length()); 
-
-			    		}
-					//	FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
-						
-							System.out.println("FULL CONSTRUCTOR NAME AFTER:"+FullConstructorName);
-
-						ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-						while(classesreferenced.next()){
-							myclassid= classesreferenced.getString("id"); 
-					//		System.out.println("class referenced: "+myclass);	
-				   		   }
-						ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-						while(classnames.next()){
-							myclassname= classnames.getString("classname"); 
-					//		System.out.println("class referenced: "+myclass);	
-				   		   }
-						
-							System.out.println("FullClassName====="+ FullConstructorName);
-					
-							String FullMethodNameRefined=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
-							//String FullMethodName=constructor.getSignature().toString(); 
-							String fullmeth= myclassname+"."+FullConstructorName; 
-							System.out.println(FullClassName);
-							methods meth= new methods(fullmeth, myclassid, myclassname); 
-							if(meth.contains(mymethodlist, meth)==false ) {
-								fullmeth=ReplaceLorgLjava(fullmeth);
-								myclassname=ReplaceLorgLjava(myclassname);
-								methodabbreviation=ReplaceLorgLjava(methodabbreviation);
-								FullMethodNameRefined=ReplaceLorgLjava(FullMethodNameRefined);
-							FullConstructorName=	ReplaceLorgLjava(FullConstructorName);
-							 String params=FullConstructorName.substring(FullConstructorName.indexOf("("), FullConstructorName.length()); 
-		    				 String methodname=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
-
-		    				 if(methodname.contains(".")) {
-		    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
-		    					 FullConstructorName="-init-"+params; 
-		    				 }
-		    				 if(FullMethodNameRefined.contains(".")) {
-		    					 FullMethodNameRefined=FullMethodNameRefined.substring(FullMethodNameRefined.lastIndexOf(".")+1, FullMethodNameRefined.length()); 
-		    				 }
-				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"')");
-
-								
-				    			mymethodlist.add(meth); 
-							}
-						
-
-						}
-			 
-			 
-			 
-			for(CtMethod<?> method: methods) {
-				 
-				 
-				String FullMethodName=method.getSignature().toString(); 
-				System.out.println("==============>"+method.getShortRepresentation().toString());
-				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-			//	System.out.println(FullClassName);
-				String FullMethodNameRefined=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
-				String longmeth= clazz.getQualifiedName()+"."+FullMethodName; 
-				String methodabbreviation=longmeth.substring(0, longmeth.indexOf("(")); 
-					ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-					while(classesreferenced.next()){
-						myclassid= classesreferenced.getString("id"); 
-				//		System.out.println("class referenced: "+myclass);	
-			   		   }
-					ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-					while(classnames.next()){
-						myclassname= classnames.getString("classname"); 
-				//		System.out.println("class referenced: "+myclass);	
-			   		   }
-					
-				
-				
-						String fullmeth= myclassname+"."+FullMethodName; 
-						System.out.println(FullClassName);
-						methods meth= new methods(FullMethodName, myclassid, myclassname); 
-						if(meth.contains(mymethodlist, meth)==false ) {
-							fullmeth=ReplaceLorgLjava(fullmeth);
-							methodabbreviation=ReplaceLorgLjava(methodabbreviation);
-							FullMethodName=ReplaceLorgLjava(FullMethodName);
-							FullMethodNameRefined=ReplaceLorgLjava(FullMethodNameRefined);
-							longmeth=ReplaceLorgLjava(longmeth);
-						myclassname=	ReplaceLorgLjava(myclassname);
-						 String params=FullMethodName.substring(FullMethodName.indexOf("("), FullMethodName.length()); 
-	    				 String methodname=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
-
-	    				 if(methodname.contains(".")) {
-	    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
-	    					 FullMethodName=methodname+params; 
-	    				 }
-	    				 if(FullMethodNameRefined.contains(".")) {
-	    					 FullMethodNameRefined=FullMethodNameRefined.substring(FullMethodNameRefined.lastIndexOf(".")+1, FullMethodNameRefined.length()); 
-	    				 }
-			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"')");
-
-							
-			    			mymethodlist.add(meth); 
-						}
-						
-						 CtBlock<?> methodbody = method.getBody(); 
-						 if(methodbody!=null) {
-					 			List<CtMethod> methoddeclared = methodbody.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
-				    			
-			    				 for(CtMethod<?> mymeth: methoddeclared) {
-			 						
-						    			System.out.println("yes");
-						    		
-						    		
-						    				 String methodsignature2=mymeth.getSignature(); 
-						    				 String FullMethodNameRefined2=methodsignature2.substring(0, methodsignature2.indexOf("(")); 
-						    				 String methodabbreviation2=myclassname+"."+FullMethodNameRefined2; 
-						    				 String longmeth2=myclassname+"."+methodsignature2; 
-						    				 String params=methodsignature2.substring(methodsignature2.indexOf("("), methodsignature2.length()); 
-						    				 String methodname=methodsignature2.substring(0, methodsignature2.indexOf("(")); 
-
-						    				 if(methodname.contains(".")) {
-						    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
-						    					 methodsignature2=methodname+params; 
-						    				 }
-						    				 if(FullMethodNameRefined2.contains(".")) {
-						    				 FullMethodNameRefined2=FullMethodNameRefined2.substring(FullMethodNameRefined2.lastIndexOf(".")+1, FullMethodNameRefined2.length()); 
-						    				 }
-						    				 st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+methodsignature2 +"','" +FullMethodNameRefined2+"','" +methodabbreviation2+"','" +longmeth2+"','" +myclassid+"','" +myclassname+"')");
-
-						    			
-						    				
-						    			
-						    		
-								
-							}
-						 }
-			   
-			    			
-			
-    	
-					}
-
-					
-				
-				
-			//}
-			
-			
-		
-			
-		
-    	}
+//    	List<methods> mymethodlist = new ArrayList<methods>(); 
+//    	for(CtType<?> clazz : classFactory.getAll(true)) {
+//    		
+//    	
+//    		String myclassid = null;
+//    		String myclassname = null;
+//    		
+//    		//ALTERNATIVE: Collection<CtMethod<?>> methods = clazz.getAllMethods(); 
+//			Collection<CtMethod<?>> methods = clazz.getMethods(); 
+//			System.out.println("CLASS SIMPLE NAME :    "+clazz.getSimpleName());
+//			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//			
+//			int count = StringUtils.countMatches(clazz.getPackage().toString(), ".");
+//			//System.out.println("count:   "+count);
+//			//NEEDS TO BE CHANGED 
+//		//	if(count==2) {
+//			 List<CtConstructor> MyContructorlist = clazz.getElements(new TypeFilter<>(CtConstructor.class)); 
+//			 for(CtConstructor<?> constructor: MyContructorlist) {
+//				 
+//				 	
+//					String FullConstructorName=constructor.getSignature().toString(); 
+//					
+//					String methodabbreviation=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
+//					 methodabbreviation=FullClassName+".-init-"; 
+//
+//					System.out.println("FULL CONSTRUCTOR NAME BEFORE METHOD ABBREVIATION:"+methodabbreviation);
+//
+//					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
+//					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
+//					int packagesize= "org.jhotdraw.".length(); 
+//						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
+//						if(FullConstructorName.contains("$")==false) {
+//							FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.indexOf("("), FullConstructorName.length()); 
+//
+//			    		}
+//					//	FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
+//						
+//							System.out.println("FULL CONSTRUCTOR NAME AFTER:"+FullConstructorName);
+//
+//						ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//						while(classesreferenced.next()){
+//							myclassid= classesreferenced.getString("id"); 
+//					//		System.out.println("class referenced: "+myclass);	
+//				   		   }
+//						ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//						while(classnames.next()){
+//							myclassname= classnames.getString("classname"); 
+//					//		System.out.println("class referenced: "+myclass);	
+//				   		   }
+//						
+//							System.out.println("FullClassName====="+ FullConstructorName);
+//					
+//							String FullMethodNameRefined=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
+//							//String FullMethodName=constructor.getSignature().toString(); 
+//							String fullmeth= myclassname+"."+FullConstructorName; 
+//							System.out.println("FULLMETH:"+fullmeth);
+//							System.out.println(FullClassName);
+//							methods meth= new methods(fullmeth, myclassid, myclassname); 
+//							if(meth.contains(mymethodlist, meth)==false ) {
+//								fullmeth=ReplaceLorgLjava(fullmeth);
+//								myclassname=ReplaceLorgLjava(myclassname);
+//								methodabbreviation=ReplaceLorgLjava(methodabbreviation);
+//								FullMethodNameRefined=ReplaceLorgLjava(FullMethodNameRefined);
+//							FullConstructorName=	ReplaceLorgLjava(FullConstructorName);
+//							 String params=FullConstructorName.substring(FullConstructorName.indexOf("("), FullConstructorName.length()); 
+//		    				 String methodname=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
+//
+//		    				 if(methodname.contains(".")) {
+//		    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
+//		    					 FullConstructorName="-init-"+params; 
+//		    				 }
+//		    				 if(FullMethodNameRefined.contains(".")) {
+//		    					 FullMethodNameRefined=FullMethodNameRefined.substring(FullMethodNameRefined.lastIndexOf(".")+1, FullMethodNameRefined.length()); 
+//		    				 }
+//								 fullmeth= myclassname+"."+FullConstructorName; 
+//								 fullmeth=ReplaceLorgLjava(fullmeth);
+//		    				 	System.out.println("FULLLLLLL METHOD"+fullmeth);
+//				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"')");
+//
+//								
+//				    			mymethodlist.add(meth); 
+//							}
+//						
+//
+//						}
+//			 
+//			 
+//			 
+//			for(CtMethod<?> method: methods) {
+//				 
+//				 
+//				String FullMethodName=method.getSignature().toString(); 
+//				System.out.println("==============>"+method.getShortRepresentation().toString());
+//				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
+//			//	System.out.println(FullClassName);
+//				String FullMethodNameRefined=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
+//				String longmeth= clazz.getQualifiedName()+"."+FullMethodName; 
+//				String methodabbreviation=longmeth.substring(0, longmeth.indexOf("(")); 
+//					ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//					while(classesreferenced.next()){
+//						myclassid= classesreferenced.getString("id"); 
+//				//		System.out.println("class referenced: "+myclass);	
+//			   		   }
+//					ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//					while(classnames.next()){
+//						myclassname= classnames.getString("classname"); 
+//				//		System.out.println("class referenced: "+myclass);	
+//			   		   }
+//					
+//				
+//				
+//						String fullmeth= myclassname+"."+FullMethodName; 
+//						System.out.println(FullClassName);
+//						methods meth= new methods(FullMethodName, myclassid, myclassname); 
+//						if(meth.contains(mymethodlist, meth)==false ) {
+//							fullmeth=ReplaceLorgLjava(fullmeth);
+//							methodabbreviation=ReplaceLorgLjava(methodabbreviation);
+//							FullMethodName=ReplaceLorgLjava(FullMethodName);
+//							FullMethodNameRefined=ReplaceLorgLjava(FullMethodNameRefined);
+//							longmeth=ReplaceLorgLjava(longmeth);
+//						myclassname=	ReplaceLorgLjava(myclassname);
+//						 String params=FullMethodName.substring(FullMethodName.indexOf("("), FullMethodName.length()); 
+//	    				 String methodname=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
+//
+//	    				 if(methodname.contains(".")) {
+//	    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
+//	    					 FullMethodName=methodname+params; 
+//	    				 }
+//	    				 if(FullMethodNameRefined.contains(".")) {
+//	    					 FullMethodNameRefined=FullMethodNameRefined.substring(FullMethodNameRefined.lastIndexOf(".")+1, FullMethodNameRefined.length()); 
+//	    				 }
+//	    				 	System.out.println("FULLLLLLL METHOD"+fullmeth);
+//
+//			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"')");
+//
+//							
+//			    			mymethodlist.add(meth); 
+//						}
+//						
+//						 CtBlock<?> methodbody = method.getBody(); 
+//						 if(methodbody!=null) {
+//					 			List<CtMethod> methoddeclared = methodbody.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
+//				    			
+//			    				 for(CtMethod<?> mymeth: methoddeclared) {
+//			 						
+//						    			System.out.println("yes");
+//						    		
+//						    		
+//						    				 String methodsignature2=mymeth.getSignature(); 
+//						    				 String FullMethodNameRefined2=methodsignature2.substring(0, methodsignature2.indexOf("(")); 
+//						    				 String methodabbreviation2=myclassname+"."+FullMethodNameRefined2; 
+//						    				 String longmeth2=myclassname+"."+methodsignature2; 
+//						    				 String params=methodsignature2.substring(methodsignature2.indexOf("("), methodsignature2.length()); 
+//						    				 String methodname=methodsignature2.substring(0, methodsignature2.indexOf("(")); 
+//
+//						    				 if(methodname.contains(".")) {
+//						    					 methodname=methodname.substring(methodname.lastIndexOf(".")+1, methodname.length()); 
+//						    					 methodsignature2=methodname+params; 
+//						    				 }
+//						    				 if(FullMethodNameRefined2.contains(".")) {
+//						    				 FullMethodNameRefined2=FullMethodNameRefined2.substring(FullMethodNameRefined2.lastIndexOf(".")+1, FullMethodNameRefined2.length()); 
+//						    				 }
+//						    				 	System.out.println("FULLLLLLL METHOD"+fullmeth);
+//
+//						    				 st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+methodsignature2 +"','" +FullMethodNameRefined2+"','" +methodabbreviation2+"','" +longmeth2+"','" +myclassid+"','" +myclassname+"')");
+//
+//						    			
+//						    				
+//						    			
+//						    		
+//								
+//							}
+//						 }
+//			   
+//			    			
+//			
+//    	
+//					}
+//
+//					
+//				
+//				
+//			//}
+//			
+//			
+//		
+//			
+//		
+//    	}
 //////////////////////////      	/*********************************************************************************************************************************************************************************/	
 //////////////////////////        /*********************************************************************************************************************************************************************************/	
 //////////////////////////        /*********************************************************************************************************************************************************************************/
@@ -1368,7 +1376,7 @@ public class DBDemo3JHotDraw3 {
 			String CLASSIDInvoked=null; 
     		if(myclass instanceof CtConstructorCall<?>) {
     			System.out.println("yes");
-    			
+    			System.out.println("MYCLASS ============================================="+myclass.getExecutable()+"MYCLASS ============================================="+myclass.getExecutable().getDeclaringType());
     			List<CtMethod> methoddeclared = myclass.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
     			for(CtMethod<?> meth: methoddeclared) {
     				 methodinside=meth.getSignature(); 
@@ -1387,6 +1395,14 @@ public class DBDemo3JHotDraw3 {
 
     	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		}
+    	    		
+    	    		
+	    			String res=myclass.getExecutable().getType()+".-init-"+myclass.getExecutable().toString().substring(myclass.getExecutable().toString().indexOf("("), myclass.getExecutable().toString().length()); 
+    	    		
+	    			
+
+    	    		
+    	    		
     	    		List<CtInvocation> methodcalled = meth.getElements(new TypeFilter<CtInvocation>(CtInvocation.class)); 
         			for(CtInvocation<?> invo: methodcalled) {	
         				System.out.println(invo);
@@ -1608,8 +1624,32 @@ public class DBDemo3JHotDraw3 {
     		 String myfullcallee="";
     	    		if(myclass instanceof CtConstructorCall<?>) {
     	    			System.out.println("yes");
+    	    			System.out.println("MYCLASS ============================================="+myclass.getExecutable()+"MYCLASS ============================================="+myclass.getExecutable().getDeclaringType());
+    	    			String res=myclass.getExecutable().getType()+".-init-"+myclass.getExecutable().toString().substring(myclass.getExecutable().toString().indexOf("("), myclass.getExecutable().toString().length()); 
+    	    		
     	    			
-    	    			 methoddeclared = myclass.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
+    	    			
+    	    			ResultSet consinfo = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+res+"'"); 
+    	        		//while(callingmethodsrefined.next()){
+    	        		if(consinfo.next()) {
+    	        			String CalleeMethodIDconsINF = consinfo.getString("id"); 
+    	        			String CALLEECLASSNAMEconsINF = consinfo.getString("classname"); 
+    	        			String CALLEECLASSIDconsINF = consinfo.getString("classid"); 
+    	        			String fullcalleeinsconsINF = consinfo.getString("fullmethod"); 
+    	        			String constructorNameINF = consinfo.getString("methodname"); 
+    	        			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	        			
+    	        			methodcalls methodcall = new methodcalls(CalleeMethodIDconsINF, fullcalleeinsconsINF, CALLEECLASSNAMEconsINF, CALLEECLASSIDconsINF, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
+    	        			if(CallerMethodIDcons!=null) {
+    	        				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDconsINF+"','" +constructorNameINF+"','" +CALLEECLASSNAMEconsINF+"','" +CALLEECLASSIDconsINF+"','" +fullcalleeinsconsINF+"')";
+       	          			 counter++; 
+       	          			st.executeUpdate(statement);
+       	          			methodcallsList.add(methodcall); 
+    	        			}
+    	        		
+    	        		}
+    	    			
+    	    			methoddeclared = myclass.getElements(new TypeFilter<CtMethod>(CtMethod.class)); 
     	    			
     	    			for(CtMethod<?> meth: methoddeclared) {
     	    			      System.out.println("HEYYYYYY I AM HERE     "+ meth.getSignature());
