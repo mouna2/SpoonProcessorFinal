@@ -865,7 +865,6 @@ public class TracesTableChessFINAL extends JFrame {
 			List<Method2Representation> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
-
 			for( Method2Representation item : CalleeMethodListFinal ) {
 				String val= item.classrep.classid+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
@@ -901,28 +900,32 @@ public class TracesTableChessFINAL extends JFrame {
 				
 				
 			}
+			CallerMethodListFinal=removeDuplicates(CallerMethodListFinal); 
+
 			String AppendedCallers=""; 
-			for(Method2Representation CallerMethod: CallerMethodsListFinalNoDuplicates) {
+			for(Method2Representation CallerMethod: CallerMethodListFinal) {
 				if(CallerMethod!=null) {
 					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
 				}
 				
 			}
+			CalleeMethodListFinal=removeDuplicates(CalleeMethodListFinal); 
 			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
-			for(Method2Representation CalleeMethod: CalleeMethodsListFinalNoDuplicates) {
+			for(Method2Representation CalleeMethod: CalleeMethodListFinal) {
 				if(CalleeMethod!=null) {
 					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
 				}
 				
 			}
+
 			AppendedCallees=AppendedCallees.replaceAll(",", "/"); 
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation callermeth : CallerMethodsListFinalNoDuplicates) {
+			for (Method2Representation callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
@@ -986,7 +989,7 @@ public class TracesTableChessFINAL extends JFrame {
 			int CounterTraceClassCalleeE = 0;
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation calleemeth : CalleeMethodsListFinalNoDuplicates) {
+			for (Method2Representation calleemeth : CalleeMethodListFinal) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
 				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
 
@@ -2622,6 +2625,22 @@ public class TracesTableChessFINAL extends JFrame {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+		  // convert input array to populated list
+
+		  // convert list to populated set
+		  
+		  
+		
+		  HashSet<Method2Representation> set=new HashSet(list); 
+		  set.addAll(list);
+		 
+		  list = new ArrayList<Method2Representation>(set);
+		  // convert set to array & return, 
+		  // use cast because you can't create generic arrays
+		  return list;
+		}	
 }
 
 

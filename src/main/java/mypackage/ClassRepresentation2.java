@@ -91,5 +91,38 @@ public class ClassRepresentation2 {
 	public String toString() {
 		return "[classid=" + classid + ", classname=" + classname +"]";
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((classid == null) ? 0 : classid.hashCode());
+		result = prime * result + ((classname == null) ? 0 : classname.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ClassRepresentation2 other = (ClassRepresentation2) obj;
+		if (classid == null) {
+			if (other.classid != null)
+				return false;
+		} else if (!classid.equals(other.classid))
+			return false;
+		if (classname == null) {
+			if (other.classname != null)
+				return false;
+		} else if (!classname.equals(other.classname))
+			return false;
+		return true;
+	}
 	
 }

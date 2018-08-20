@@ -75,6 +75,47 @@ public class Method2Representation {
 	public void setFullmethodname(String fullmethodname) {
 		this.fullmethodname = fullmethodname;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((classrep == null) ? 0 : classrep.hashCode());
+		result = prime * result + ((fullmethodname == null) ? 0 : fullmethodname.hashCode());
+		result = prime * result + ((methodid == null) ? 0 : methodid.hashCode());
+		result = prime * result + ((methodname == null) ? 0 : methodname.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Method2Representation other = (Method2Representation) obj;
+		if (classrep == null) {
+			if (other.classrep != null)
+				return false;
+		} else if (!classrep.equals(other.classrep))
+			return false;
+		if (fullmethodname == null) {
+			if (other.fullmethodname != null)
+				return false;
+		} else if (!fullmethodname.equals(other.fullmethodname))
+			return false;
+		if (methodid == null) {
+			if (other.methodid != null)
+				return false;
+		} else if (!methodid.equals(other.methodid))
+			return false;
+		if (methodname == null) {
+			if (other.methodname != null)
+				return false;
+		} else if (!methodname.equals(other.methodname))
+			return false;
+		return true;
+	}
 	
 	
 	

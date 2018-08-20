@@ -943,23 +943,24 @@ public class TracesTableGantt2FINAL extends JFrame {
 			
 			
 			
-		
+			CallerMethodListFinal=removeDuplicates(CallerMethodListFinal); 
+
 			String AppendedCallers=""; 
-			for(Method2Representation CallerMethod: CallerMethodsListFinalNoDuplicates) {
+			for(Method2Representation CallerMethod: CallerMethodListFinal) {
 				if(CallerMethod!=null) {
 					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
 				}
 				
 			}
+			CalleeMethodListFinal=removeDuplicates(CalleeMethodListFinal); 
 			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
-			for(Method2Representation CalleeMethod: CalleeMethodsListFinalNoDuplicates) {
+			for(Method2Representation CalleeMethod: CalleeMethodListFinal) {
 				if(CalleeMethod!=null) {
 					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
 				}
 				
 			}
-			
 			
 			
 			
@@ -2976,6 +2977,22 @@ public class TracesTableGantt2FINAL extends JFrame {
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+		  // convert input array to populated list
+
+		  // convert list to populated set
+		  
+		  
+		
+		  HashSet<Method2Representation> set=new HashSet(list); 
+		  set.addAll(list);
+		 
+		  list = new ArrayList<Method2Representation>(set);
+		  // convert set to array & return, 
+		  // use cast because you can't create generic arrays
+		  return list;
+		}	
 }
 
 
