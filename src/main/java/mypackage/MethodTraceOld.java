@@ -209,7 +209,7 @@ public class MethodTraceOld {
 				 
 				 Method2Representation methodrep= new Method2Representation(); 
 				 methodrep.setMethodid(myresults.getString("methodid"));
-				 methodrep.setMethodname(myresults.getString("method"));
+				 methodrep.setMethodname(myresults.getString("fullmethod"));
 				 mytrace.setMethodRepresentation(methodrep);
 				 
 				 mytrace.setClassRepresentation(classrep);
@@ -359,7 +359,7 @@ public class MethodTraceOld {
 				 index++; 
 			//	 MethodTraceSubjectTSubjectN methtrace= new MethodTraceSubjectTSubjectN(); 
 				// System.out.println("my trace tostring: "+mytrace.toString());
-				
+				System.out.println("index1 "+index);
 				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
 			
 			 }

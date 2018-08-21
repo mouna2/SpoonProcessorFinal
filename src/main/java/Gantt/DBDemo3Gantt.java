@@ -256,7 +256,7 @@ public class DBDemo3Gantt {
 //		   		"    REFERENCES `databasegantt`.`classes` (`id`)\r\n" + 
 //		   		"    ON DELETE NO ACTION\r\n" + 
 //		   		"    ON UPDATE NO ACTION);"); 
-			
+//			
 //			
 //		   st.executeUpdate("CREATE TABLE `databasegantt`.`parameters` (\r\n" + 
 //		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
@@ -289,8 +289,8 @@ public class DBDemo3Gantt {
 //		   		"    ON UPDATE NO ACTION"+   	
 //		   		 ")"); 
 //		   
-		   
-
+//		   
+//
 //		   st.executeUpdate("CREATE TABLE `databasegantt`.`fieldclasses` (\r\n" + 
 //		   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
 //		   		"  `fieldname` LONGTEXT NULL,\r\n" + 
@@ -422,7 +422,7 @@ public class DBDemo3Gantt {
 //			 		"  PRIMARY KEY (`id`),\r\n" + 
 //			 		"  UNIQUE INDEX `idtracesclasses_UNIQUE` (`id` ASC));\r\n" + 
 //			 		""); 
-//		   
+		   
 		   try {
 			Spoon();
 		} catch (FileNotFoundException e) {
@@ -796,8 +796,7 @@ public class DBDemo3Gantt {
 //    	       	    					while(methods.next()){
 //    	       	    						MethodReferenced =methods.getString("id"); 
 //    	       	    					
-//    	       	    			   		   }
-    	       	    				
+//    	       	    			  
     	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
     	           	    				
     	       	    					while(paramclassids.next()){
@@ -871,7 +870,16 @@ public class DBDemo3Gantt {
 	   	    						 classid =classnames.getString("classid"); 
 	   	    						MethodReferenced =classnames.getString("id"); 
 	   	    			   		   }
-    	   	    					
+	   	    					if(MethodType.toString().contains("<")==true) {
+	 	   	    					String methtype=MethodType.toString().substring(MethodType.toString().indexOf("<")+1, MethodType.toString().indexOf(">")); 
+	 	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+methtype+"'"); 
+		   		    				
+		   	    					while(parameterclasses.next()){
+		   	    						parameterclass =parameterclasses.getString("id"); 
+		   	    						flag=true; 
+		   	    					
+		   	    			   		   }
+	 	   	    					}
     	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
     	   		    				
     	   	    					while(parameterclasses.next()){
@@ -1032,11 +1040,11 @@ public class DBDemo3Gantt {
 //	
 //
 //}
-/////////////////*********************************************************************************************************************************************************************************/	
-/////////////////*********************************************************************************************************************************************************************************/	
-/////////////////*********************************************************************************************************************************************************************************/   	
-//////////////////BUILD FIELDS TABLE -- METHODS
-//////////////
+///////////////////*********************************************************************************************************************************************************************************/	
+///////////////////*********************************************************************************************************************************************************************************/	
+///////////////////*********************************************************************************************************************************************************************************/   	
+////////////////////BUILD FIELDS TABLE -- METHODS
+////////////////
 //for(CtType<?> clazz : classFactory.getAll(true)) {
 //	String fieldname=null; 
 //	String Fieldid=null; 
@@ -1110,10 +1118,10 @@ public class DBDemo3Gantt {
 //	
 //
 //}   	
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/   	
-////////////////BUILD METHODSCALLED TABLE
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/   	
+//////////////////BUILD METHODSCALLED TABLE
 //    	int counter=0; 
 //    	
 //    	
@@ -1816,16 +1824,16 @@ public class DBDemo3Gantt {
 //
 //
 //    }       		    		
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/   	
-////////////////BUILD METHODSCALLED EXECUTED TABLE
-////////////   counter=0; 
-File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\dataMethodCallsExecutedGantt2.txt");
-FileReader fileReader = new FileReader(file);
-BufferedReader bufferedReader = new BufferedReader(fileReader);
-StringBuffer stringBuffer = new StringBuffer();
-String line;
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/   	
+//////////////////BUILD METHODSCALLED EXECUTED TABLE
+//////////////   counter=0; 
+//File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\dataMethodCallsExecutedGantt2.txt");
+//FileReader fileReader = new FileReader(file);
+//BufferedReader bufferedReader = new BufferedReader(fileReader);
+//StringBuffer stringBuffer = new StringBuffer();
+//String line;
 //try {
 //	
 //	List<methodcallsexecuted> methodcallsexecutedlist= new ArrayList<methodcallsexecuted>(); 
@@ -2357,20 +2365,20 @@ String line;
 //	// TODO Auto-generated catch block
 //	e.printStackTrace();
 //}
+////////////////
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/   
+//////
+//////////////////CREATE TRACES TABLE 
 //////////////
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/   
-////
-////////////////CREATE TRACES TABLE 
-////////////
-file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal2.txt");
- fileReader = new FileReader(file);
- bufferedReader = new BufferedReader(fileReader);
- stringBuffer = new StringBuffer();
- 
- List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
-tracesmethodscallees tmc = null; 
+//file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal2.txt");
+// fileReader = new FileReader(file);
+// bufferedReader = new BufferedReader(fileReader);
+// stringBuffer = new StringBuffer();
+// 
+// List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
+//tracesmethodscallees tmc = null; 
 //int COUNTER3=1; 
 //try {
 //	
@@ -2581,65 +2589,65 @@ tracesmethodscallees tmc = null;
 //	// TODO Auto-generated catch block
 //	e.printStackTrace();
 //}
-///////*********************************************************************************************************************************************************************************/	
-///////*********************************************************************************************************************************************************************************/	
-///////*********************************************************************************************************************************************************************************/   
-////////make prediction on the column goldprediction 
-////////int counter=0;
-///////*
-//////for(tracesmethodscallees tc: TracesCalleesList) {
-//////	
+/////////*********************************************************************************************************************************************************************************/	
+/////////*********************************************************************************************************************************************************************************/	
+/////////*********************************************************************************************************************************************************************************/   
+//////////make prediction on the column goldprediction 
+//////////int counter=0;
+/////////*
+////////for(tracesmethodscallees tc: TracesCalleesList) {
+////////	
+////////
+////////	System.out.println("COUNTER "+counter +"tc.gold===============================================================>"+tc.gold); 
+////////	System.out.println("tc.callee===============================================================>"+tc.callee); 
+////////	System.out.println("tc.requirementid===============================================================>"+tc.requirementid+   "------"+tc.callee); 
+////////
+////////	 String query = "update traces set goldpredictioncallee = ? where methodid = ? and requirementid = ?";
+////////     PreparedStatement pstmt = conn.prepareStatement(query); // create a statement
+////////     pstmt.setString(1, tc.gold); // set input parameter 1
+////////     pstmt.setString(2, tc.callee); // set input parameter 2
+////////     pstmt.setString(3, tc.requirementid); // set input parameter 3
+////////     pstmt.executeUpdate(); // execute update statement
+////////	
+////////	//PreparedStatement preparedstatement = conn.prepareStatement("update table `databasegantt`.`traces` SET `traces`.`goldprediction`='"+tc.gold+"' where `traces`.`methodid`='"+tc.callee+"'"); 
+////////	// int goldpredictions = preparedstatement.executeUpdate();
+////////	// conn.commit();
+////////	// preparedstatement.close();
+////////     counter++; 
+////////	
+////////	
+////////}
+////////
+////////counter=0;
+////////for(tracesmethodscallees tc: TracesCallersList) {
+////////	
+////////
+////////	System.out.println("COUNTER "+counter +"tc.gold===============================================================>"+tc.gold); 
+////////	System.out.println("tc.callee===============================================================>"+tc.callee); 
+////////	System.out.println("tc.requirementid===============================================================>"+tc.requirementid+   "------"+tc.callee); 
+////////
+////////	 String query = "update traces set goldpredictioncaller = ? where methodid = ? and requirementid = ?";
+////////     PreparedStatement pstmt = conn.prepareStatement(query); // create a statement
+////////     pstmt.setString(1, tc.gold); // set input parameter 1
+////////     pstmt.setString(2, tc.callee); // set input parameter 2
+////////     pstmt.setString(3, tc.requirementid); // set input parameter 3
+////////     pstmt.executeUpdate(); // execute update statement
+////////	
+////////	//PreparedStatement preparedstatement = conn.prepareStatement("update table `databasegantt`.`traces` SET `traces`.`goldprediction`='"+tc.gold+"' where `traces`.`methodid`='"+tc.callee+"'"); 
+////////	// int goldpredictions = preparedstatement.executeUpdate();
+////////	// conn.commit();
+////////	// preparedstatement.close();
+////////	counter++; 
+////////	
+////////	
+////////}
+//////////*/
+////////
+////////	/*********************************************************************************************************************************************************************************/	
+////////	/*********************************************************************************************************************************************************************************/	
+////////	/*********************************************************************************************************************************************************************************/   
+//////////BUILD TABLE FOR TRACES CLASSES 
 //////
-//////	System.out.println("COUNTER "+counter +"tc.gold===============================================================>"+tc.gold); 
-//////	System.out.println("tc.callee===============================================================>"+tc.callee); 
-//////	System.out.println("tc.requirementid===============================================================>"+tc.requirementid+   "------"+tc.callee); 
-//////
-//////	 String query = "update traces set goldpredictioncallee = ? where methodid = ? and requirementid = ?";
-//////     PreparedStatement pstmt = conn.prepareStatement(query); // create a statement
-//////     pstmt.setString(1, tc.gold); // set input parameter 1
-//////     pstmt.setString(2, tc.callee); // set input parameter 2
-//////     pstmt.setString(3, tc.requirementid); // set input parameter 3
-//////     pstmt.executeUpdate(); // execute update statement
-//////	
-//////	//PreparedStatement preparedstatement = conn.prepareStatement("update table `databasegantt`.`traces` SET `traces`.`goldprediction`='"+tc.gold+"' where `traces`.`methodid`='"+tc.callee+"'"); 
-//////	// int goldpredictions = preparedstatement.executeUpdate();
-//////	// conn.commit();
-//////	// preparedstatement.close();
-//////     counter++; 
-//////	
-//////	
-//////}
-//////
-//////counter=0;
-//////for(tracesmethodscallees tc: TracesCallersList) {
-//////	
-//////
-//////	System.out.println("COUNTER "+counter +"tc.gold===============================================================>"+tc.gold); 
-//////	System.out.println("tc.callee===============================================================>"+tc.callee); 
-//////	System.out.println("tc.requirementid===============================================================>"+tc.requirementid+   "------"+tc.callee); 
-//////
-//////	 String query = "update traces set goldpredictioncaller = ? where methodid = ? and requirementid = ?";
-//////     PreparedStatement pstmt = conn.prepareStatement(query); // create a statement
-//////     pstmt.setString(1, tc.gold); // set input parameter 1
-//////     pstmt.setString(2, tc.callee); // set input parameter 2
-//////     pstmt.setString(3, tc.requirementid); // set input parameter 3
-//////     pstmt.executeUpdate(); // execute update statement
-//////	
-//////	//PreparedStatement preparedstatement = conn.prepareStatement("update table `databasegantt`.`traces` SET `traces`.`goldprediction`='"+tc.gold+"' where `traces`.`methodid`='"+tc.callee+"'"); 
-//////	// int goldpredictions = preparedstatement.executeUpdate();
-//////	// conn.commit();
-//////	// preparedstatement.close();
-//////	counter++; 
-//////	
-//////	
-//////}
-////////*/
-//////
-//////	/*********************************************************************************************************************************************************************************/	
-//////	/*********************************************************************************************************************************************************************************/	
-//////	/*********************************************************************************************************************************************************************************/   
-////////BUILD TABLE FOR TRACES CLASSES 
-////
 //List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
 //Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
 //

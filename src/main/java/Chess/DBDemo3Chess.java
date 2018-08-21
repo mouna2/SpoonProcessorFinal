@@ -642,8 +642,8 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 					System.out.println("FULL CONSTRUCTOR NAME BEFORE METHOD ABBREVIATION:"+methodabbreviation);
 
 					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
-					int packagesize= "net.sourceforge.ganttproject.".length(); 
+					//24 is the size of the string "de.java_chess.javaChess.javaChess."
+					int packagesize= "de.java_chess.javaChess.".length(); 
 						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
 						FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
 						
@@ -854,7 +854,16 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
  	   	    						 classid =classnames.getString("classid"); 
  	   	    						MethodReferenced =classnames.getString("id"); 
  	   	    			   		   }
-  	   	    					
+ 	   	    				if(MethodType.toString().contains("<")==true) {
+ 	   	    					String methtype=MethodType.toString().substring(MethodType.toString().indexOf("<")+1, MethodType.toString().indexOf(">")); 
+ 	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+methtype+"'"); 
+	   		    				
+	   	    					while(parameterclasses.next()){
+	   	    						parameterclass =parameterclasses.getString("id"); 
+	   	    						flag=true; 
+	   	    					
+	   	    			   		   }
+ 	   	    					}
   	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
   	   		    				
   	   	    					while(parameterclasses.next()){
