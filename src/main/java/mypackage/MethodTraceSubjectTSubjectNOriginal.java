@@ -29,6 +29,12 @@ public class MethodTraceSubjectTSubjectNOriginal {
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
 	
+	@Override
+	public String toString() {
+		return "MethodTraceSubjectTSubjectNOriginal [MethodRepresentation=" + MethodRepresentation + ", Requirement="
+				+ Requirement + ", ClassRepresentation=" + ClassRepresentation + "]";
+	}
+
 	public String getGold3() {
 		return gold3;
 	}

@@ -70,6 +70,7 @@ public class PredictionEvaluation {
 				predictionEvaluation.FalsePositive++; 
 
 			}
+		System.out.println(predictionEvaluation.toString());
 		}
 		
 	}

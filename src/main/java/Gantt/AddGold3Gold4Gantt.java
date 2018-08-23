@@ -119,8 +119,8 @@ public class AddGold3Gold4Gantt {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold4 LONGTEXT");
 		int counter=1; 

@@ -27,6 +27,12 @@ public class MethodTraceOld {
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
 	
+	@Override
+	public String toString() {
+		return "MethodTraceOld [MethodRepresentation=" + MethodRepresentation + ", Requirement=" + Requirement
+				+ ", ClassRepresentation=" + ClassRepresentation + "]";
+	}
+
 	public String getGold2() {
 		return gold2;
 	}
