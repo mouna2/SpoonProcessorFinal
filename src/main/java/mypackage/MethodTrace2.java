@@ -171,6 +171,12 @@ public class MethodTrace2 {
 		this.subject = subject;
 	}
 
+	@Override
+	public String toString() {
+		return "MethodTrace2 [MethodRepresentation=" + MethodRepresentation + ", Requirement=" + Requirement
+				+ ", ClassRepresentation=" + ClassRepresentation + "]";
+	}
+
 	public MethodTrace2(Method2Representation methodRepresentation, Requirement2 requirement,
 			ClassRepresentation2 classRepresentation, String gold, String subject) {
 		super();

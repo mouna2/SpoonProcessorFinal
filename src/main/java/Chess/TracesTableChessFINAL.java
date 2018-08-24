@@ -1918,7 +1918,7 @@ public class TracesTableChessFINAL extends JFrame {
 						if(flagGold==false) {
 						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallers].toString()); 
 						AllTClassLevelCallersClass.UpdateCounters(Result, AllTClassLevelCallersClass);
-						System.out.println(AllTClassLevelCallersClass.toString());
+						System.out.println(methodtrace.toString());
 						if(Result!=null) {
 							System.out.println("MY RESULT "+Result);
 							if(Result.equals("FP")) {

@@ -216,24 +216,24 @@ public class TracesTableChessParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogChessParsed.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChess.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessParsed.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessGold2Parsed.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logchess.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\logchessParsed.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -1918,7 +1918,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 						if(flagGold==false) {
 						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallers].toString()); 
 						AllTClassLevelCallersClass.UpdateCounters(Result, AllTClassLevelCallersClass);
-						System.out.println(AllTClassLevelCallersClass.toString());
+						System.out.println(methodtrace.toString());
 						if(Result!=null) {
 							System.out.println("MY RESULT "+Result);
 							if(Result.equals("FP")) {
@@ -1926,7 +1926,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 								bwlog.newLine();
 								bwlog.write(methodtrace.toString());
 								bwlog.newLine();
-								for(Method2Representation call: methodtrace.getCallersList()) {
+								for(Method2Representation call: CallerMethodsList) {
 									bwlog.write("callerlist "+ call.toString2());
 									
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1938,20 +1938,8 @@ public class TracesTableChessParsedCalls extends JFrame {
 									 }
 									 bwlog.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-									bwlog.write("callerlistEXEC "+ call.toString2());
-									bwlog.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog.newLine();
-										 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCalleesList()) {
+								
+								for(Method2Representation call: CalleeMethodsList) {
 									bwlog.write("calleelist "+ call.toString2());
 									bwlog.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1964,19 +1952,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 									 }
 									 bwlog.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-									bwlog.write("calleelistEXEC "+ call.toString2());
-									bwlog.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog.newLine();
-										 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog.newLine();
-								}
+					
 								bwlog.write("***********************************"); 
 								bwlog.newLine();
 							}
