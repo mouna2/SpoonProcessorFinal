@@ -264,11 +264,16 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4JHOTDRAW.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdraw.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawALLTCALLERS.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
-	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 
+	
+	File mylogcallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawALLTCALLEES.txt");
+	FileOutputStream mylogfilecallees = new FileOutputStream(mylogcallees);
+	BufferedWriter bwlogcallees = new BufferedWriter(new OutputStreamWriter(mylogfilecallees));
+	
+	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold3 = new BufferedWriter(new OutputStreamWriter(fos3));
@@ -2270,7 +2275,71 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 						if(methodtrace.getGold4()!=null && flagGold4==false){
 							String Result2=AllTClassLevelCalleesClassGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][AllTClassLevelCallees].toString()); 
 							AllTClassLevelCalleesClassGold4.UpdateCounters(Result2, AllTClassLevelCalleesClassGold4);
+							if(Result2!=null) {
+								System.out.println("MY RESULT "+Result2);
+								if(Result2.equals("FP")) {
+									bwlogcallees.write("***********************************"); 
+									bwlogcallees.newLine();
+									bwlogcallees.write(methodtrace.toString());
+									bwlogcallees.newLine();
+									for(Method2Representation call: methodtrace.getCallersList()) {
+										bwlogcallees.write("callerlist "+ call.toString2());
+										
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 if(trace!=null) {
+											 bwlogcallees.newLine();
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlogcallees.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+										bwlogcallees.write("callerlistEXEC "+ call.toString2());
+										bwlogcallees.newLine();
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace!=null) {
+											 bwlogcallees.newLine();
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlogcallees.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesList()) {
+										bwlogcallees.write("calleelist "+ call.toString2());
+										bwlogcallees.newLine();
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace!=null) {
+											 bwlogcallees.newLine();
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlogcallees.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+										bwlogcallees.write("calleelistEXEC "+ call.toString2());
+										bwlogcallees.newLine();
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace!=null) {
+											 bwlogcallees.newLine();
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlogcallees.newLine();
+									}
+									bwlogcallees.write("***********************************"); 
+									bwlogcallees.newLine();
+								}
 							}
+						
+						
+						}
 				}
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
