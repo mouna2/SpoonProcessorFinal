@@ -233,7 +233,7 @@ public class TracesTableChessFINAL extends JFrame {
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logitrust.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logchess.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -2303,6 +2303,10 @@ public class TracesTableChessFINAL extends JFrame {
 		 * Object[][] data = { {"Color", "Red"}, {"Shape", "Square"}, {"Fruit",
 		 * "Banana"}, {"Plain", "Text"} };
 		 */
+		
+		bwlog.write(AllTClassLevelCallersClass.toString()); 
+		bwlog.newLine();
+		bwlog.close(); 
 		System.out.println("OWNER CLASS PREDICTION: "+OwnerClassPredictionClass.toString()); 
 		System.out.println("MAJORITY CLASS LEVEL CALLERS PREDICTION: "+MajorityClassLevelCallersClass.toString()); 
 		System.out.println("MAJORITY CLASS LEVEL CALLEES PREDICTION: "+MajorityClassLevelCalleesClass.toString()); 
