@@ -216,17 +216,17 @@ public class TracesTableChessParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogChessParsed.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogChessPARSED.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessParsed.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessPARSED.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessGold2Parsed.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationChessGold2PARSED.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
@@ -1926,7 +1926,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 								bwlog.newLine();
 								bwlog.write(methodtrace.toString());
 								bwlog.newLine();
-								for(Method2Representation call: CallerMethodsList) {
+								for(Method2Representation call: CallerMethodListFinal) {
 									bwlog.write("callerlist "+ call.toString2());
 									
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1939,7 +1939,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 									 bwlog.newLine();
 								}
 								
-								for(Method2Representation call: CalleeMethodsList) {
+								for(Method2Representation call: CalleeMethodListFinal) {
 									bwlog.write("calleelist "+ call.toString2());
 									bwlog.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 

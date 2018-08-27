@@ -119,8 +119,8 @@ public class AddGold3Gold4JHotDraw {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold4 LONGTEXT");
 		int counter=1; 
@@ -144,26 +144,32 @@ public class AddGold3Gold4JHotDraw {
 			}
 			while(counter<=TracesNumber) {
 				ResultSet TraceInformation= st.executeQuery("SELECT traces.* from traces where id ='"+counter+"'"); 
+				boolean subjectTflag=false; 
+				boolean subjectNflag=false; 
 				while(TraceInformation.next()) {
 					String	SubjectTstr=TraceInformation.getString("SubjectT"); 
 					String SubjectNstr=TraceInformation.getString("SubjectN"); 
 					
 					 if(SubjectTstr!=null) {
 						 SubjectT=Integer.parseInt(SubjectTstr); 
+						 subjectTflag=true; 
 					 }
 					 if(SubjectNstr!=null) {
 						 SubjectN=Integer.parseInt(SubjectNstr); 
+						 subjectNflag=true; 
 					 }
 				}
 				
 				
 				
 				
+				if(subjectNflag==true && subjectTflag==true) {
+					gold3=PredictGold3(SubjectT, SubjectN); 
+					gold4=PredictGold4(SubjectT, SubjectN); 
+					
+					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"'WHERE id='"+counter+"'"); 
+				}
 				
-				gold3=PredictGold3(SubjectT, SubjectN); 
-				gold4=PredictGold4(SubjectT, SubjectN); 
-				
-				st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"'WHERE id='"+counter+"'"); 
 				
 				
 				

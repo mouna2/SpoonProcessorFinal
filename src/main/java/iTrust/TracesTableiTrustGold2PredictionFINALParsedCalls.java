@@ -216,23 +216,23 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogiTrust.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogiTrustPARSED.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationITRUST.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationITRUSTPARSED.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluationGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold2ITRUST.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold2ITRUSTPARSED.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logitrust.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\logitrustPARSED.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -1941,11 +1941,11 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 									bwlog.newLine();
 									bwlog.write(methodtrace.toString());
 									bwlog.newLine();
-									for(Method2Representation call: methodtrace.getCallersList()) {
+									for(Method2Representation call: CallerMethodListFinal) {
 										bwlog.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-										 if(trace!=null) {
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 if(trace2!=null) {
 											 bwlog.newLine();
 											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
 											
@@ -1953,25 +1953,13 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 										 }
 										 bwlog.newLine();
 									}
-									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-										bwlog.write("callerlistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									for(Method2Representation call: methodtrace.getCalleesList()) {
+									
+									for(Method2Representation call: CalleeMethodListFinal) {
 										bwlog.write("calleelist "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
 
-										 if(trace!=null) {
+										 if(trace2!=null) {
 											 bwlog.newLine();
 											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
 											
@@ -1979,19 +1967,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 										 }
 										 bwlog.newLine();
 									}
-									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-										bwlog.write("calleelistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
+						
 									bwlog.write("***********************************"); 
 									bwlog.newLine();
 								}

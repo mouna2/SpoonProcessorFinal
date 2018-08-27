@@ -249,22 +249,22 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHotDraw.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogJHotDrawPARSED.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationJHotDraw.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationJHotDrawPARSED.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold3.txt");
-	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold3JHOTDRAW.txt");
+	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold3JHOTDRAWPARSED.txt");
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
 	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold4.txt");
-	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4JHOTDRAW.txt");
+	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold4JHOTDRAWPARSED.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdraw.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\logjhotdrawPARSED.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -2184,11 +2184,11 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 									bwlog.newLine();
 									bwlog.write(methodtrace.toString());
 									bwlog.newLine();
-									for(Method2Representation call: methodtrace.getCallersList()) {
+									for(Method2Representation call: CallerMethodListFinal) {
 										bwlog.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-										 if(trace!=null) {
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 if(trace2!=null) {
 											 bwlog.newLine();
 											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
 											
@@ -2196,25 +2196,13 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 										 }
 										 bwlog.newLine();
 									}
-									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-										bwlog.write("callerlistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									for(Method2Representation call: methodtrace.getCalleesList()) {
+									
+									for(Method2Representation call: CalleeMethodListFinal) {
 										bwlog.write("calleelist "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
 
-										 if(trace!=null) {
+										 if(trace2!=null) {
 											 bwlog.newLine();
 											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
 											
@@ -2222,19 +2210,7 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 										 }
 										 bwlog.newLine();
 									}
-									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-										bwlog.write("calleelistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
+						
 									bwlog.write("***********************************"); 
 									bwlog.newLine();
 								}
