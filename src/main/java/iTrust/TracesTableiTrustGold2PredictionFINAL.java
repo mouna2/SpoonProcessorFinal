@@ -2026,9 +2026,15 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 							if(flagGold==false) {
 							String Result=AllTClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallees].toString()); 
 							AllTClassLevelCalleesClass.UpdateCounters(Result, AllTClassLevelCalleesClass);
-							if(Result!=null) {
-								System.out.println("MY RESULT "+Result);
-								if(Result.equals("FP")) {
+			
+							
+							}if(methodtrace.getGold2()!=null && flagGold2==false){
+							String Result2=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallees].toString()); 
+							AllTClassLevelCalleesClassGold2.UpdateCounters(Result2, AllTClassLevelCalleesClassGold2);
+							
+							if(Result2!=null) {
+								System.out.println("MY RESULT "+Result2);
+								if(Result2.equals("FP")) {
 									bwlogcallees.write("***********************************"); 
 									bwlogcallees.newLine();
 									bwlogcallees.write(methodtrace.toString());
@@ -2089,9 +2095,6 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 								}
 							}
 							
-							}if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallees].toString()); 
-							AllTClassLevelCalleesClassGold2.UpdateCounters(Result2, AllTClassLevelCalleesClassGold2);
 							}
 					}
 					/**************************************************************************************************************/
