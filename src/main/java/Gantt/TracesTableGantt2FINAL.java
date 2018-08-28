@@ -2666,6 +2666,8 @@ public class TracesTableGantt2FINAL extends JFrame {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
 		bw2.newLine();
+		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
+		bw2.newLine();
 		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
 		bw2.newLine();
 		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
@@ -2734,6 +2736,8 @@ public class TracesTableGantt2FINAL extends JFrame {
 		bwGold3.write("ALL N METHOD LEVEL CALLERS: "+AllNMethodLevelCallersClassGold3.toString()); 
 		bwGold3.newLine();
 		bwGold3.write("ALL N METHOD LEVEL CALLEES: "+AllNMethodLevelCalleesClassGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClassGold3.toString()); 
 		bwGold3.newLine();
 		bwGold3.write("ALL T CLASS LEVEL CALLERS: "+AllTClassLevelCallersClassGold3.toString()); 
 		bwGold3.newLine();
@@ -2815,6 +2819,8 @@ public class TracesTableGantt2FINAL extends JFrame {
 		bwGold4.write("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClassGold4.toString()); 
 		bwGold4.newLine();
 		bwGold4.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClassGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClassGold4.toString()); 
 		bwGold4.newLine();
 		bwGold4.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClassGold4.toString()); 
 		bwGold4.newLine();

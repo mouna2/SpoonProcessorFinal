@@ -2561,6 +2561,8 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 		bwGold2.newLine();
 		bwGold2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClassGold2.toString()); 
 		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
+		bwGold2.newLine();
 		bwGold2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClassGold2.toString()); 
 		bwGold2.newLine();
 		bwGold2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClassGold2.toString()); 

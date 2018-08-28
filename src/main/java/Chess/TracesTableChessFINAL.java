@@ -2400,6 +2400,8 @@ public class TracesTableChessFINAL extends JFrame {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
 		bw2.newLine();
+		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
+		bw2.newLine();
 		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
 		bw2.newLine();
 		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
@@ -2475,6 +2477,8 @@ public class TracesTableChessFINAL extends JFrame {
 		bwGold2.write("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClassGold2.toString()); 
 		bwGold2.newLine();
 		bwGold2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClassGold2.toString()); 
 		bwGold2.newLine();
 		bwGold2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClassGold2.toString()); 
 		bwGold2.newLine();
