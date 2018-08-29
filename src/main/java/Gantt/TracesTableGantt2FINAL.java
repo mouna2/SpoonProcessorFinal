@@ -1145,13 +1145,13 @@ public class TracesTableGantt2FINAL extends JFrame {
 				String Result=OwnerClassPredictionClass.ComparePredictionToGold(methodtrace.getGold().trim().trim(), data[j][OwnerClassPrediction].toString()); 
 				OwnerClassPredictionClass.UpdateCounters(Result, OwnerClassPredictionClass);
 				flagGold=true; 
-				if(methodtrace.getGold3()!=null ){
+				if(methodtrace.getGold3()!=null && methodtrace.getGold3().equals("null")==false){
 					String Result2=OwnerClassPredictionClassGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][OwnerClassPrediction].toString()); 
 					OwnerClassPredictionClassGold3.UpdateCounters(Result2, OwnerClassPredictionClassGold3);
 					flagGold3=true; 	
 				}
 				
-				if(methodtrace.getGold4()!=null){
+				if(methodtrace.getGold4()!=null && methodtrace.getGold4().equals("null")==false){
 					String Result2=OwnerClassPredictionClassGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][OwnerClassPrediction].toString()); 
 					OwnerClassPredictionClassGold4.UpdateCounters(Result2, OwnerClassPredictionClassGold4);
 					flagGold4=true; 	
