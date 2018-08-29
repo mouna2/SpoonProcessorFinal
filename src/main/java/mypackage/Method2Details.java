@@ -18,7 +18,7 @@ public class Method2Details {
 	public List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	public List<Parameter2> parametersList= new ArrayList<Parameter2>(); 
 	public List<MethodField2> methodfieldsList= new ArrayList<MethodField2>();  
-	public HashMap<Requirement2, MethodTrace2> methodtraces= new HashMap <Requirement2, MethodTrace2>();
+	public HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
 	
 	
 	HashMap<Integer, Method2Details> MethodDetailsHashMap= new HashMap<Integer, Method2Details>(); 
@@ -72,15 +72,16 @@ public class Method2Details {
 	public void setMethodfields(List<MethodField2> methodfields) {
 		this.methodfieldsList = methodfields;
 	}
-	public HashMap<Requirement2, MethodTrace2> getMethodtraces() {
+
+	public HashMap<String, MethodTrace2> getMethodtraces() {
 		return methodtraces;
 	}
-	public void setMethodtraces(HashMap<Requirement2, MethodTrace2> methodtraces) {
+	public void setMethodtraces(HashMap<String, MethodTrace2> methodtraces) {
 		this.methodtraces = methodtraces;
 	}
 	public Method2Details(Method2Representation methodrep, ClassRepresentation2 ownerClass,
 			List<Method2Representation> callers, List<Method2Representation> callees, List<Parameter2> parameters,
-			List<MethodField2> methodfields, HashMap<Requirement2, MethodTrace2> methodtraces) {
+			List<MethodField2> methodfields, HashMap<String, MethodTrace2> methodtraces) {
 		super();
 		this.methodrep = methodrep;
 		OwnerClass = ownerClass;
@@ -96,7 +97,7 @@ public class Method2Details {
 			List<Method2Representation> callersList, List<Method2Representation> calleesList,
 			List<Method2Representation> callersListExecuted, List<Method2Representation> calleesListExecuted,
 			List<Parameter2> parametersList, List<MethodField2> methodfieldsList,
-			HashMap<Requirement2, MethodTrace2> methodtraces, HashMap<Integer, Method2Details> methodDetailsHashMap) {
+			HashMap<String, MethodTrace2> methodtraces, HashMap<Integer, Method2Details> methodDetailsHashMap) {
 		super();
 		this.methodrep = methodrep;
 		OwnerClass = ownerClass;
@@ -284,7 +285,7 @@ public class Method2Details {
 				 
 				 ResultSet methodtracesres = st.executeQuery("SELECT traces.* from traces where methodid ='"+id+"'"); 
 					//populateTables(classtraces, conn);
-				 this.methodtraces= new  HashMap <Requirement2, MethodTrace2>();	
+				 this.methodtraces= new  HashMap <String, MethodTrace2>();	
 				 while(methodtracesres.next()) {
 						
 						MethodTrace2 MethodTrace= new MethodTrace2();
@@ -307,7 +308,7 @@ public class Method2Details {
 						methodrepres.setMethodid(methodtracesres.getString("methodid"));
 						methodrepres.setMethodname(methodtracesres.getString("method"));
 						MethodTrace.setMethodRepresentation(methodrepres);
-						methodtraces.put(requirement, MethodTrace);
+						methodtraces.put(requirement.getID(), MethodTrace);
 						methoddet2.setMethodtraces(methodtraces);
 						
 						
@@ -510,12 +511,14 @@ public class Method2Details {
 				 
 				 ResultSet methodtracesres = st.executeQuery("SELECT traces.* from traces where methodid ='"+id+"'"); 
 					//populateTables(classtraces, conn);
-				 this.methodtraces= new  HashMap <Requirement2, MethodTrace2>();	
+				 this.methodtraces= new  HashMap <String, MethodTrace2>();	
 				 while(methodtracesres.next()) {
 						
 						MethodTrace2 MethodTrace= new MethodTrace2();
 						//classtrace.setID(classtraces.getString("id"));
 						MethodTrace.setGold(methodtracesres.getString("gold"));
+						
+						MethodTrace.setGold2(methodtracesres.getString("gold2"));
 						
 						MethodTrace.setSubject(methodtracesres.getString("subject"));
 						
@@ -533,7 +536,7 @@ public class Method2Details {
 						methodrepres.setMethodid(methodtracesres.getString("methodid"));
 						methodrepres.setMethodname(methodtracesres.getString("method"));
 						MethodTrace.setMethodRepresentation(methodrepres);
-						methodtraces.put(requirement, MethodTrace);
+						methodtraces.put(requirement.getID(), MethodTrace);
 						methoddet2.setMethodtraces(methodtraces);
 						
 						
