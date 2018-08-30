@@ -11,3 +11,16 @@ Queries used in mysql workbench to replace all the null values within the gold2,
 -SET SQL_SAFE_UPDATES = 0;
 -update databaseitrust.traces set traces.gold2 = "E" where traces.gold2 = "null";
 -update databasechess.traces set traces.gold2 = "E" where traces.gold2 = "null";
+-After creating the database, need to run the following query on MySQLWorkBench:  
+ALTER TABLE databasejhotdraw.traces ADD COLUMN gold2 VARCHAR(15) AFTER gold3;
+ALTER TABLE databasegantt.traces ADD COLUMN gold2 VARCHAR(15) AFTER gold3;
+ALTER TABLE databasechess.traces ADD COLUMN gold3 VARCHAR(15) AFTER gold2;
+ALTER TABLE databasechess.traces ADD COLUMN gold4 VARCHAR(15) AFTER gold2;
+ALTER TABLE databaseitrust.traces ADD COLUMN gold3 VARCHAR(15) AFTER gold2;
+ALTER TABLE databaseitrust.traces ADD COLUMN gold4 VARCHAR(15) AFTER gold2;
+
+Here is the list of the database files to be run in order to populate the databases for each program: 
+-DBDemo3JHotDraw3
+-DBDemo3iTrust
+-DBDemo3Gantt
+-DBDemoChess
