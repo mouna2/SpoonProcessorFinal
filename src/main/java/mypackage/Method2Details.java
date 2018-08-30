@@ -516,10 +516,14 @@ public class Method2Details {
 						
 						MethodTrace2 MethodTrace= new MethodTrace2();
 						//classtrace.setID(classtraces.getString("id"));
+						
+						
+					
 						MethodTrace.setGold(methodtracesres.getString("gold"));
-						
+					
 						MethodTrace.setGold2(methodtracesres.getString("gold2"));
-						
+						MethodTrace.setGold4(methodtracesres.getString("gold4"));
+						MethodTrace.setGold3(methodtracesres.getString("gold3"));
 						MethodTrace.setSubject(methodtracesres.getString("subject"));
 						
 						Requirement2 requirement= new Requirement2();

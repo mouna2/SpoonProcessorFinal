@@ -19,6 +19,8 @@ public class MethodTrace2 {
 	public String goldpredictionCaller; 
 	public String goldpredictionCallee; 
 	public String gold2; 
+	public String gold3; 
+	public String gold4; 
 	public String SubjectT; 
 	public String SubjectN; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
@@ -65,6 +67,22 @@ public class MethodTrace2 {
 
 	public String getSubjectN() {
 		return SubjectN;
+	}
+
+	public String getGold3() {
+		return gold3;
+	}
+
+	public void setGold3(String gold3) {
+		this.gold3 = gold3;
+	}
+
+	public String getGold4() {
+		return gold4;
+	}
+
+	public void setGold4(String gold4) {
+		this.gold4 = gold4;
 	}
 
 	public void setSubjectN(String subjectN) {
