@@ -2406,6 +2406,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						}
 				}
 			//}
+					
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
@@ -2424,19 +2425,17 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						}
 					
 						if(entered==true) {
-					
-						data[j][ACHRAFTRACE]="T"; 
-						if(methodtrace.getGold()!=null ) {
-						String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
-						ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
-						}
-						}
-						
 						if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
 							TraceCountTotal++; 
 							
 						}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
 							NoTraceCountTotal++; 
+						}
+						data[j][ACHRAFTRACE]="T"; 
+						if(methodtrace.getGold()!=null ) {
+						String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
+						ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
+						}
 						}
 						
 				}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
@@ -2453,19 +2452,17 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					}
 					
 					if(entered==true) {
-					
-					data[j][ACHRAFNOTRACE]="N"; 
-					if(methodtrace.getGold()!=null ) {
-						String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
-						ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
-					}
-					}
-					
 					if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
 						
 						NoTraceCountTotal++; 
 					}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
 						TraceCountTotal++; 
+					}
+					data[j][ACHRAFNOTRACE]="N"; 
+					if(methodtrace.getGold()!=null ) {
+						String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
+						ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
+					}
 					}
 					
 			}else {
@@ -2494,14 +2491,12 @@ if(CountMethodTACHRAFGold2>0 && CountMethodTACHRAFCalleeGold2>0) {
 						ACHRAFGold2Trace.UpdateCounters(Result, ACHRAFGold2Trace);	
 						}
 						
-						
-						}
-						
 						if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
 							TraceCountTotalGold2++; 
 						}
 						else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 							NoTraceCountTotalGold2++; 
+						}
 						}
 				}
 
@@ -2524,9 +2519,6 @@ else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 						
 					
 						}
-					
-						}
-						
 						if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 							NoTraceCountTotalGold2++; 
 							
@@ -2535,9 +2527,15 @@ else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 						else	if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
 							TraceCountTotalGold2++; 
 						}
+						}
 			}else {
 				failGold2++; 
 			}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//}
+
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
