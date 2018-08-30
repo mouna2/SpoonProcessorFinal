@@ -65,7 +65,10 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 	double NoTracePureGold2=0; 
 	double TraceMixedGold2=0; 
 	double NoTraceMixedGold2=0; 
-	
+	double TraceCountTotal=0; 
+	double NoTraceCountTotal=0; 
+	double TraceCountTotalGold2=0; 
+	double NoTraceCountTotalGold2=0; 
 	double failGold=0; 
 	double failGold2=0; 
 	
@@ -2413,39 +2416,58 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 									//ACHRAF
 									
 									
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									//ACHRAF
 									if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 										
 										
 										if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
-											if(methodtrace.getGold().trim().equals("T")) {
-												TracePureGold++; 
-											}
 											
-											
+											TracePureGold++; 
+										
 											
 										} else {
 											TraceMixedGold++; 
 										}
+									
+										
+										if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+											TraceCountTotal++; 
+											
+										}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+											NoTraceCountTotal++; 
+										}
 										data[j][ACHRAFTRACE]="T"; 
+										if(methodtrace.getGold()!=null ) {
 										String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
 										ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
+										}
 										
 								}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 									
 									
 									if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
-										if(methodtrace.getGold().trim().equals("N")) {
-											NoTracePureGold++; 
-										}
+										NoTracePureGold++; 
 										
-								
+										
 										
 									} else {
 										NoTraceMixedGold++; 
 									}
+									
+									if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+										
+										NoTraceCountTotal++; 
+									}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+										TraceCountTotal++; 
+									}
 									data[j][ACHRAFNOTRACE]="N"; 
-									String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
-									ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);	
+									if(methodtrace.getGold()!=null ) {
+										String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
+										ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
+									}
 									
 							}else {
 								failGold++; 
@@ -2458,47 +2480,56 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 										
 										
 										if(CountMethodNACHRAFGold2+CountMethodNACHRAFCalleeGold2==0) {
-											if(methodtrace.getGold2()!=null) {
-												if(methodtrace.getGold2().trim().equals("T")) {
-													TracePureGold2++; 
-												}
-											}
-											
-											
+										
+											TracePureGold2++; 
 											
 											
 										} else {
 											TraceMixedGold2++; 
 										}
 										data[j][ACHRAFTRACE]="T"; 
-										if(methodtrace.getGold2()!=null) {
+										if(methodtrace.getGold2()!=null ) {
 										String Result=ACHRAFGold2Trace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFTRACE].toString()); 
 										ACHRAFGold2Trace.UpdateCounters(Result, ACHRAFGold2Trace);	
 										}
-								}else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
+										
+										if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
+											TraceCountTotalGold2++; 
+										}
+										else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
+											NoTraceCountTotalGold2++; 
+										}
+								}
+
+
+				else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 									
 									
 									if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0) {
-										if(methodtrace.getGold2()!=null) {
-											if(methodtrace.getGold2().trim().equals("N")) {
-												NoTracePureGold2++; 
-											}
+										NoTracePureGold2++; 
+										}else {
+											NoTraceMixedGold2++; 
 										}
-									
 										
-								
+										data[j][ACHRAFNOTRACE]="N"; 
+										if(methodtrace.getGold2()!=null ) {
+										String Result=ACHRAFGold2NOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
+										ACHRAFGold2NOTrace.UpdateCounters(Result, ACHRAFGold2NOTrace);
+										}
+										if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
+											NoTraceCountTotalGold2++; 
+											
 										
-									} else {
-										NoTraceMixedGold2++; 
-									}
-									data[j][ACHRAFNOTRACE]="N"; 
-									if(methodtrace.getGold2()!=null) {
-									String Result=ACHRAFGold2NOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
-									ACHRAFGold2NOTrace.UpdateCounters(Result, ACHRAFGold2NOTrace);		
-									}
+									} 
+										else	if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
+											TraceCountTotalGold2++; 
+										}
 							}else {
 								failGold2++; 
 							}
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/

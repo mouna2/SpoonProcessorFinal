@@ -70,6 +70,16 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 	double failGold=0; 
 	double failGold3=0; 
 	double failGold4=0; 
+	
+	
+	
+	double TraceCountTotal=0; 
+	double NoTraceCountTotal=0; 
+	double TraceCountTotalGold3=0; 
+	double NoTraceCountTotalGold3=0; 
+	double TraceCountTotalGold4=0; 
+	double NoTraceCountTotalGold4=0; 
+	
 	int Row=0; 
 	int MethodID=1; 
 	int MethodName=2; 
@@ -186,9 +196,10 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 
 	PredictionEvaluation ACHRAFTraceGold3= new PredictionEvaluation(); 
 	PredictionEvaluation ACHRAFNOTraceGold3= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTraceGold4= new PredictionEvaluation(); 
 	PredictionEvaluation ACHRAFNOTraceGold4= new PredictionEvaluation(); 
-	
+	PredictionEvaluation ACHRAFGold4Trace= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFTrace= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFNOTrace= new PredictionEvaluation(); 
 	
 
 	PredictionEvaluation OwnerClassPredictionClassGold3= new PredictionEvaluation(); 
@@ -231,8 +242,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 	PredictionEvaluation AllTMethodLevelCallersCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllNClassLevelsCallersCalleesClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTClassLevelCallersCalleesClass= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTrace= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFNOTrace= new PredictionEvaluation(); 
+
 	
 	PredictionEvaluation OwnerClassPredictionClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClassGold4= new PredictionEvaluation(); 
@@ -270,8 +280,6 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 	PredictionEvaluation AtLeast2TParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold4Trace= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold4NOTrace= new PredictionEvaluation(); 
 	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
 	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
 		PredictionEvaluation AllNMethodLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
@@ -1032,18 +1040,21 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 			int CountMethodEACHRAFCallee = 0; 
 			for (Method2Representation mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
-				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
-				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null) {
-					if (methtrace.gold.trim().equals("T")) {
-						CountMethodTACHRAFCallee++;
-					} else if (methtrace.gold.trim().equals("N")) {
-						CountMethodNACHRAFCallee++;
-					} else if (methtrace.gold.trim().equals("E")) {
-						CountMethodEACHRAFCallee++;
-					}
-				}
+				 if(methdet!=null) {
+						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
+						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
+						if(methtrace!=null) {
+							if (methtrace.gold.trim().equals("T")) {
+								CountMethodTACHRAFCallee++;
+							} else if (methtrace.gold.trim().equals("N")) {
+								CountMethodNACHRAFCallee++;
+							} else if (methtrace.gold.trim().equals("E")) {
+								CountMethodEACHRAFCallee++;
+							}
+						}
+				 }
+			
 			
 			}
 			
@@ -1054,18 +1065,21 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 			int CountMethodEACHRAFgold3 = 0; 
 			for (Method2Representation mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
-				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
-				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null) {
-				if (methtrace.gold3.trim().equals("T")) {
-					CountMethodTACHRAFgold3++;
-				} else if (methtrace.gold3.trim().equals("N")) {
-					CountMethodNACHRAFgold3++;
-				} else if (methtrace.gold3.trim().equals("E")) {
-					CountMethodEACHRAFgold3++;
-				}
-			}
+				 if(methdet!=null) {
+					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
+						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
+						if(methtrace!=null && methtrace.gold3!=null) {
+						if (methtrace.gold3.trim().equals("T")) {
+							CountMethodTACHRAFgold3++;
+						} else if (methtrace.gold3.trim().equals("N")) {
+							CountMethodNACHRAFgold3++;
+						} else if (methtrace.gold3.trim().equals("E")) {
+							CountMethodEACHRAFgold3++;
+						}
+					}
+				 }
+				
 			}
 			
 			int CountMethodTACHRAFgold3Callee = 0; 
@@ -1073,18 +1087,21 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 			int CountMethodEACHRAFgold3Callee = 0; 
 			for (Method2Representation mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
-				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
-				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null) {
-					if (methtrace.gold3.trim().equals("T")) {
-						CountMethodTACHRAFgold3Callee++;
-					} else if (methtrace.gold3.trim().equals("N")) {
-						CountMethodNACHRAFgold3Callee++;
-					} else if (methtrace.gold3.trim().equals("E")) {
-						CountMethodEACHRAFgold3Callee++;
-					}
-				}
+				 if(methdet!=null) {
+					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
+						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
+						if(methtrace!=null && methtrace.gold3!=null) {
+							if (methtrace.gold3.trim().equals("T")) {
+								CountMethodTACHRAFgold3Callee++;
+							} else if (methtrace.gold3.trim().equals("N")) {
+								CountMethodNACHRAFgold3Callee++;
+							} else if (methtrace.gold3.trim().equals("E")) {
+								CountMethodEACHRAFgold3Callee++;
+							}
+						} 
+				 }
+				
 			
 			}
 			
@@ -1094,10 +1111,11 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 			int CountMethodEACHRAFgold4 = 0; 
 			for (Method2Representation mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null) {
+				if(methtrace!=null && methtrace.gold4!=null) {
 				if (methtrace.gold4.trim().equals("T")) {
 					CountMethodTACHRAFgold4++;
 				} else if (methtrace.gold4.trim().equals("N")) {
@@ -1107,16 +1125,18 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 				}
 			}
 			}
+			}
 			
 			int CountMethodTACHRAFgold4Callee = 0; 
 			int CountMethodNACHRAFgold4Callee = 0; 
 			int CountMethodEACHRAFgold4Callee = 0; 
 			for (Method2Representation mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null) {
+				if(methtrace!=null  && methtrace.gold4!=null) {
 					if (methtrace.gold4.trim().equals("T")) {
 						CountMethodTACHRAFgold4Callee++;
 					} else if (methtrace.gold4.trim().equals("N")) {
@@ -1127,7 +1147,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 				}
 			
 			}
-			
+			}
 			
 			
 			CallerMethodListFinal=removeDuplicates(CallerMethodListFinal); 
@@ -2851,39 +2871,55 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
 								//ACHRAF
+								//ACHRAF
 								if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 									
 									
 									if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
-										if(methodtrace.getGold().trim().equals("T")) {
-											TracePureGold++; 
-										}
 										
-										
+										TracePureGold++; 
+									
 										
 									} else {
 										TraceMixedGold++; 
 									}
+								
+									
+									if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+										TraceCountTotal++; 
+										
+									}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+										NoTraceCountTotal++; 
+									}
 									data[j][ACHRAFTRACE]="T"; 
+									if(methodtrace.getGold()!=null ) {
 									String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
 									ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
+									}
 									
 							}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 								
 								
 								if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
-									if(methodtrace.getGold().trim().equals("N")) {
-										NoTracePureGold++; 
-									}
+									NoTracePureGold++; 
 									
-							
+									
 									
 								} else {
 									NoTraceMixedGold++; 
 								}
+								
+								if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+									
+									NoTraceCountTotal++; 
+								}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+									TraceCountTotal++; 
+								}
 								data[j][ACHRAFNOTRACE]="N"; 
-								String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
-								ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);	
+								if(methodtrace.getGold()!=null ) {
+									String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
+									ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
+								}
 								
 						}else {
 							failGold++; 
@@ -2891,101 +2927,112 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 								
 								
 				/********************************************************************************************************************/				
-								/********************************************************************************************************************/				
 								
-								if(CountMethodTACHRAFgold3>0 && CountMethodTACHRAFgold3Callee>0) {
-																	
-																	
-																	if(CountMethodNACHRAFgold3+CountMethodNACHRAFgold3Callee==0) {
-																		if(methodtrace.getGold3()!=null) {
-																			if(methodtrace.getGold3().trim().equals("T")) {
-																				TracePureGold3++; 
-																			}
-																		}
-																		
-																		
-																		
-																		
-																	} else {
-																		TraceMixedGold3++; 
-																	}
-																	data[j][ACHRAFTRACE]="T"; 
-																	if(methodtrace.getGold3()!=null) {
-																	String Result=ACHRAFTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFTRACE].toString()); 
-																	ACHRAFTraceGold3.UpdateCounters(Result, ACHRAFTraceGold3);	
-																	}
-															}else if(CountMethodNACHRAFgold3>0 && CountMethodNACHRAFgold3Callee>0) {
-																
-																
-																if(CountMethodTACHRAFgold3+CountMethodTACHRAFgold3Callee==0) {
-																	if(methodtrace.getGold3()!=null) {
-																		if(methodtrace.getGold3().trim().equals("N")) {
-																			NoTracePureGold3++; 
-																		}
-																	}
-																
-																	
-															
-																	
-																} else {
-																	NoTraceMixedGold3++; 
-																}
-																data[j][ACHRAFNOTRACE]="N"; 
-																if(methodtrace.getGold3()!=null) {
-																String Result=ACHRAFNOTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFNOTRACE].toString()); 
-																ACHRAFNOTraceGold3.UpdateCounters(Result, ACHRAFNOTraceGold3);		
-																}
-														}else {
-															failGold3++; 
-														}
-																			
-												/********************************************************************************************************************/				
-																
-								if(CountMethodTACHRAFgold4>0 && CountMethodTACHRAFgold4Callee>0) {
-																	
-																	
-																	if(CountMethodNACHRAFgold4+CountMethodNACHRAFgold4Callee==0) {
-																		if(methodtrace.getGold4()!=null) {
-																			if(methodtrace.getGold4().trim().equals("T")) {
-																				TracePureGold4++; 
-																			}
-																		}
-																		
-																		
-																		
-																		
-																	} else {
-																		TraceMixedGold4++; 
-																	}
-																	data[j][ACHRAFTRACE]="T"; 
-																	if(methodtrace.getGold4()!=null) {
-																	String Result=ACHRAFGold4Trace.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFTRACE].toString()); 
-																	ACHRAFGold4Trace.UpdateCounters(Result, ACHRAFGold4Trace);	
-																	}
-															}else if(CountMethodNACHRAFgold4>0 && CountMethodNACHRAFgold4Callee>0) {
-																
-																
-																if(CountMethodTACHRAFgold4+CountMethodTACHRAFgold4Callee==0) {
-																	if(methodtrace.getGold4()!=null) {
-																		if(methodtrace.getGold4().trim().equals("N")) {
-																			NoTracePureGold4++; 
-																		}
-																	}
-																
-																	
-															
-																	
-																} else {
-																	NoTraceMixedGold4++; 
-																}
-																data[j][ACHRAFNOTRACE]="N"; 
-																if(methodtrace.getGold4()!=null) {
-																String Result=ACHRAFNOTraceGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFNOTRACE].toString()); 
-																ACHRAFNOTraceGold4.UpdateCounters(Result, ACHRAFNOTraceGold4);		
-																}
-														}else {
-															failGold4++; 
-														}
+			if(CountMethodTACHRAFgold3>0 && CountMethodTACHRAFgold3Callee>0) {
+									
+									
+									if(CountMethodNACHRAFgold3+CountMethodNACHRAFgold3Callee==0) {
+									
+										TracePureGold3++; 
+										
+										
+									} else {
+										TraceMixedGold3++; 
+									}
+									data[j][ACHRAFTRACE]="T"; 
+									if(methodtrace.getGold3()!=null ) {
+									String Result=ACHRAFTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFTRACE].toString()); 
+									ACHRAFTraceGold3.UpdateCounters(Result, ACHRAFTraceGold3);	
+									}
+									
+									if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("T")) {
+										TraceCountTotalGold3++; 
+									}
+									else if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("N")) {
+										NoTraceCountTotalGold3++; 
+									}
+							}
+
+
+			else if(CountMethodNACHRAFgold3>0 && CountMethodNACHRAFgold3Callee>0) {
+								
+								
+								if(CountMethodTACHRAFgold3+CountMethodTACHRAFgold3Callee==0) {
+									NoTracePureGold3++; 
+									}else {
+										NoTraceMixedGold3++; 
+									}
+									
+									data[j][ACHRAFNOTRACE]="N"; 
+									if(methodtrace.getGold3()!=null ) {
+									String Result=ACHRAFNOTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFNOTRACE].toString()); 
+									ACHRAFNOTraceGold3.UpdateCounters(Result, ACHRAFNOTraceGold3);
+									}
+									if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("N")) {
+										NoTraceCountTotalGold3++; 
+										
+									
+								} 
+									else	if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("T")) {
+										TraceCountTotalGold3++; 
+									}
+						}else {
+							failGold3++; 
+						}
+						
+							/********************************************************************************************************************/				
+								
+			if(CountMethodTACHRAFgold4>0 && CountMethodTACHRAFgold4Callee>0) {
+									
+									
+									if(CountMethodNACHRAFgold4+CountMethodNACHRAFgold4Callee==0) {
+									
+										TracePureGold4++; 
+										
+										
+									} else {
+										TraceMixedGold4++; 
+									}
+									data[j][ACHRAFTRACE]="T"; 
+									if(methodtrace.getGold4()!=null ) {
+									String Result=ACHRAFGold4Trace.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFTRACE].toString()); 
+									ACHRAFGold4Trace.UpdateCounters(Result, ACHRAFGold4Trace);	
+									}
+									
+									if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("T")) {
+										TraceCountTotalGold4++; 
+									}
+									else if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("N")) {
+										NoTraceCountTotalGold4++; 
+									}
+							}
+
+
+			else if(CountMethodNACHRAFgold4>0 && CountMethodNACHRAFgold4Callee>0) {
+								
+								
+								if(CountMethodTACHRAFgold4+CountMethodTACHRAFgold4Callee==0) {
+									NoTracePureGold4++; 
+									}else {
+										NoTraceMixedGold4++; 
+									}
+									
+									data[j][ACHRAFNOTRACE]="N"; 
+									if(methodtrace.getGold4()!=null ) {
+									String Result=ACHRAFNOTraceGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFNOTRACE].toString()); 
+									ACHRAFNOTraceGold4.UpdateCounters(Result, ACHRAFNOTraceGold4);
+									}
+									if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("N")) {
+										NoTraceCountTotalGold4++; 
+										
+									
+								} 
+									else	if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("T")) {
+										TraceCountTotalGold4++; 
+									}
+						}else {
+							failGold4++; 
+						}
 																/**************************************************************************************************************/
 																/**************************************************************************************************************/
 																/**************************************************************************************************************/				
@@ -3537,7 +3584,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 		bwGold4.newLine();
 		bwGold4.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelsCallersCalleesClassGold4.toString()); 
 		bwGold4.newLine();
-		bwGold4.write("ACHRAF TRACE: "+ACHRAFTraceGold4.toString()); 
+		bwGold4.write("ACHRAF TRACE: "+ACHRAFGold4Trace.toString()); 
 		bwGold4.newLine();
 		bwGold4.write("ACHRAF NO TRACE: "+ACHRAFNOTraceGold4.toString()); 
 		bwGold4.newLine();
