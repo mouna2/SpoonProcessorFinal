@@ -2874,41 +2874,45 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 								//ACHRAF
 								if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 									
-									
+									boolean entered=false; 
 									if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
 										
 										TracePureGold++; 
-									
+										entered=true; 
 										
 									} else {
 										TraceMixedGold++; 
+										entered=true; 
 									}
 								
+									if(entered==true) {
+										if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+											TraceCountTotal++; 
+											
+										}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+											NoTraceCountTotal++; 
+										}
+										data[j][ACHRAFTRACE]="T"; 
+										if(methodtrace.getGold()!=null ) {
+										String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
+										ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
+										}
+									}
 									
-									if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
-										TraceCountTotal++; 
-										
-									}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
-										NoTraceCountTotal++; 
-									}
-									data[j][ACHRAFTRACE]="T"; 
-									if(methodtrace.getGold()!=null ) {
-									String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
-									ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
-									}
 									
 							}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 								
-								
+								boolean entered=false; 
 								if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
 									NoTracePureGold++; 
-									
+									entered=true; 
 									
 									
 								} else {
 									NoTraceMixedGold++; 
+									entered=true; 
 								}
-								
+								if(entered==true) {
 								if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
 									
 									NoTraceCountTotal++; 
@@ -2920,6 +2924,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 									String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
 									ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
 								}
+								}
 								
 						}else {
 							failGold++; 
@@ -2930,15 +2935,17 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 								
 			if(CountMethodTACHRAFgold3>0 && CountMethodTACHRAFgold3Callee>0) {
 									
-									
+				boolean entered=false; 
 									if(CountMethodNACHRAFgold3+CountMethodNACHRAFgold3Callee==0) {
 									
 										TracePureGold3++; 
-										
+										entered=true; 
 										
 									} else {
 										TraceMixedGold3++; 
+										entered=true; 
 									}
+									if(entered==true) {
 									data[j][ACHRAFTRACE]="T"; 
 									if(methodtrace.getGold3()!=null ) {
 									String Result=ACHRAFTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFTRACE].toString()); 
@@ -2951,18 +2958,21 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 									else if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("N")) {
 										NoTraceCountTotalGold3++; 
 									}
+									}
 							}
 
 
 			else if(CountMethodNACHRAFgold3>0 && CountMethodNACHRAFgold3Callee>0) {
 								
-								
+				boolean entered=false; 
 								if(CountMethodTACHRAFgold3+CountMethodTACHRAFgold3Callee==0) {
 									NoTracePureGold3++; 
+									entered=true; 
 									}else {
 										NoTraceMixedGold3++; 
+										entered=true; 
 									}
-									
+								if(entered==true) {
 									data[j][ACHRAFNOTRACE]="N"; 
 									if(methodtrace.getGold3()!=null ) {
 									String Result=ACHRAFNOTraceGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][ACHRAFNOTRACE].toString()); 
@@ -2976,6 +2986,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 									else	if(methodtrace.getGold3()!=null && methodtrace.getGold3().trim().equals("T")) {
 										TraceCountTotalGold3++; 
 									}
+								}
 						}else {
 							failGold3++; 
 						}
@@ -2984,15 +2995,17 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 								
 			if(CountMethodTACHRAFgold4>0 && CountMethodTACHRAFgold4Callee>0) {
 									
-									
+				boolean entered=false; 
 									if(CountMethodNACHRAFgold4+CountMethodNACHRAFgold4Callee==0) {
 									
 										TracePureGold4++; 
-										
+										entered=true; 
 										
 									} else {
 										TraceMixedGold4++; 
+										entered=true; 
 									}
+									if(entered==true) {
 									data[j][ACHRAFTRACE]="T"; 
 									if(methodtrace.getGold4()!=null ) {
 									String Result=ACHRAFGold4Trace.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFTRACE].toString()); 
@@ -3005,18 +3018,21 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 									else if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("N")) {
 										NoTraceCountTotalGold4++; 
 									}
+									}
 							}
 
 
 			else if(CountMethodNACHRAFgold4>0 && CountMethodNACHRAFgold4Callee>0) {
 								
-								
+								boolean entered=false; 
 								if(CountMethodTACHRAFgold4+CountMethodTACHRAFgold4Callee==0) {
 									NoTracePureGold4++; 
+									entered=true; 
 									}else {
 										NoTraceMixedGold4++; 
+										entered=true; 
 									}
-									
+								if(entered==true) {
 									data[j][ACHRAFNOTRACE]="N"; 
 									if(methodtrace.getGold4()!=null ) {
 									String Result=ACHRAFNOTraceGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][ACHRAFNOTRACE].toString()); 
@@ -3030,6 +3046,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF extends JFrame {
 									else	if(methodtrace.getGold4()!=null && methodtrace.getGold4().trim().equals("T")) {
 										TraceCountTotalGold4++; 
 									}
+								}
 						}else {
 							failGold4++; 
 						}

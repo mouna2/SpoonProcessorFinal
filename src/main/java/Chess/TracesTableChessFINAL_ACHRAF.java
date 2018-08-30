@@ -372,7 +372,8 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][100];
 		double MethodTraceCountGoldLikelihood=0; 
-		double ClassTraceCountLikelihood=0; 
+		double ClassTraceCountLikelihoodGold=0; 
+		double ClassTraceCountLikelihoodGold2=0; 
 		double MethodTraceCountGold2Likelihood=0; 
 		int myfinalcounter=1; 
 		// Create the editors to be used for each row
@@ -450,18 +451,27 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 			
 			
 		
+			boolean enteredGold=false; 
+			boolean enteredGold2=false; 
 			
-			if(data[j][OwnerClassT].toString().equals("1")) {
-				ClassTraceCountLikelihood++; 
-			}
 			if(methodtrace.gold.equals("T")) {
 				MethodTraceCountGoldLikelihood++; 
+				enteredGold=true; 
 			}
 			if(methodtrace.gold2!=null) {
 				if(methodtrace.gold2.equals("T")) {
 					MethodTraceCountGold2Likelihood++; 
+					enteredGold2=true; 
 				}
 				
+			}
+			if(data[j][OwnerClassT].toString().equals("1") && enteredGold==true) {
+				ClassTraceCountLikelihoodGold++; 
+				 
+			}
+			if(data[j][OwnerClassT].toString().equals("1") && enteredGold2==true) {
+				ClassTraceCountLikelihoodGold2++; 
+				 
 			}
 		
 			
@@ -2402,17 +2412,18 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					//ACHRAF
 					if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 						
-						
+						boolean entered=false; 
 						if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
 							
 							TracePureGold++; 
-						
+							entered=true; 
 							
 						} else {
 							TraceMixedGold++; 
+							entered=true; 
 						}
 					
-						
+						if(entered==true) {
 						if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
 							TraceCountTotal++; 
 							
@@ -2424,19 +2435,22 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
 						ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
 						}
+						}
 						
 				}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 					
-					
+					boolean entered=false; 
 					if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
 						NoTracePureGold++; 
-						
+						entered=true; 
 						
 						
 					} else {
 						NoTraceMixedGold++; 
+						entered=true; 
 					}
 					
+					if(entered==true) {
 					if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
 						
 						NoTraceCountTotal++; 
@@ -2448,6 +2462,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
 						ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
 					}
+					}
 					
 			}else {
 				failGold++; 
@@ -2458,15 +2473,17 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 if(CountMethodTACHRAFGold2>0 && CountMethodTACHRAFCalleeGold2>0) {
 						
-						
+	boolean entered=false; 
 						if(CountMethodNACHRAFGold2+CountMethodNACHRAFCalleeGold2==0) {
 						
 							TracePureGold2++; 
 							
-							
+							entered=true; 
 						} else {
 							TraceMixedGold2++; 
+							entered=true; 
 						}
+						if(entered==true) {
 						data[j][ACHRAFTRACE]="T"; 
 						if(methodtrace.getGold2()!=null ) {
 						String Result=ACHRAFGold2Trace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFTRACE].toString()); 
@@ -2479,22 +2496,27 @@ if(CountMethodTACHRAFGold2>0 && CountMethodTACHRAFCalleeGold2>0) {
 						else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 							NoTraceCountTotalGold2++; 
 						}
+						}
 				}
 
 
 else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 					
-					
+					boolean entered=false; 
 					if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0) {
 						NoTracePureGold2++; 
+						entered=true; 
 						}else {
 							NoTraceMixedGold2++; 
+							entered=true; 
 						}
+						if(entered==true) {
+							data[j][ACHRAFNOTRACE]="N"; 
+							if(methodtrace.getGold2()!=null ) {
+							String Result=ACHRAFGold2NOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
+							ACHRAFGold2NOTrace.UpdateCounters(Result, ACHRAFGold2NOTrace);
 						
-						data[j][ACHRAFNOTRACE]="N"; 
-						if(methodtrace.getGold2()!=null ) {
-						String Result=ACHRAFGold2NOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
-						ACHRAFGold2NOTrace.UpdateCounters(Result, ACHRAFGold2NOTrace);
+					
 						}
 						if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 							NoTraceCountTotalGold2++; 
@@ -2503,6 +2525,7 @@ else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 					} 
 						else	if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
 							TraceCountTotalGold2++; 
+						}
 						}
 			}else {
 				failGold2++; 
@@ -2814,8 +2837,8 @@ else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 		System.out.println("NO TRACE PURE GOLD 2 CORRECTNESS  : "+NOTracePureGold2Correctness); 
 		System.out.println("TRACE PURE GOLD 2 CORRECTNESS  : "+TracePureGold2Correctness+"\n"); 
 		
-		double LikelihoodMethodTracingGold=MethodTraceCountGoldLikelihood/ClassTraceCountLikelihood*100; 
-		double LikelihoodMethodTracingGold2=MethodTraceCountGold2Likelihood/ClassTraceCountLikelihood*100; 
+		double LikelihoodMethodTracingGold=MethodTraceCountGoldLikelihood/ClassTraceCountLikelihoodGold*100; 
+		double LikelihoodMethodTracingGold2=MethodTraceCountGold2Likelihood/ClassTraceCountLikelihoodGold2*100; 
 		
 		System.out.println("LIKELIHOOD METHOD TRACING GOLD  : "+LikelihoodMethodTracingGold); 
 		System.out.println("LIKELIHOOD METHOD TRACING GOLD2  : "+LikelihoodMethodTracingGold2); 
