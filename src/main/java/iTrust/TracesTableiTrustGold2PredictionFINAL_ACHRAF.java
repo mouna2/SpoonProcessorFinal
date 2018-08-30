@@ -2409,7 +2409,6 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
-	
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -2428,17 +2427,19 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 										}
 									
 										if(entered==true) {
-										if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
-											TraceCountTotal++; 
-											
-										}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
-											NoTraceCountTotal++; 
-										}
+									
 										data[j][ACHRAFTRACE]="T"; 
 										if(methodtrace.getGold()!=null ) {
 										String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
 										ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
 										}
+										}
+										
+										if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+											TraceCountTotal++; 
+											
+										}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+											NoTraceCountTotal++; 
 										}
 										
 								}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
@@ -2455,17 +2456,19 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 									}
 									
 									if(entered==true) {
-									if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
-										
-										NoTraceCountTotal++; 
-									}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
-										TraceCountTotal++; 
-									}
+									
 									data[j][ACHRAFNOTRACE]="N"; 
 									if(methodtrace.getGold()!=null ) {
 										String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
 										ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
 									}
+									}
+									
+									if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("N")) {
+										
+										NoTraceCountTotal++; 
+									}else if(methodtrace.getGold()!=null && methodtrace.getGold().trim().equals("T")) {
+										TraceCountTotal++; 
 									}
 									
 							}else {
@@ -2494,12 +2497,14 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 										ACHRAFGold2Trace.UpdateCounters(Result, ACHRAFGold2Trace);	
 										}
 										
+										
+										}
+										
 										if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
 											TraceCountTotalGold2++; 
 										}
 										else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 											NoTraceCountTotalGold2++; 
-										}
 										}
 								}
 
@@ -2522,6 +2527,9 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 										
 									
 										}
+									
+										}
+										
 										if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
 											NoTraceCountTotalGold2++; 
 											
@@ -2530,10 +2538,12 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 										else	if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
 											TraceCountTotalGold2++; 
 										}
-										}
 							}else {
 								failGold2++; 
 							}
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
