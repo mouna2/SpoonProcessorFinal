@@ -2637,10 +2637,15 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 								/**************************************************************************************************************/
 								//ACHRAF
 								//ACHRAF
+								/**************************************************************************************************************/
+								/**************************************************************************************************************/
+								/**************************************************************************************************************/
+								//ACHRAF
+								//ACHRAF
 								if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 									
 									boolean entered=false; 
-									if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
+									if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0 && methodtrace.getGold()!=null) {
 										
 										TracePureGold++; 
 										entered=true; 
@@ -2668,7 +2673,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 							}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 								
 								boolean entered=false; 
-								if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
+								if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0 && methodtrace.getGold()!=null) {
 									NoTracePureGold++; 
 									entered=true; 
 									
@@ -2701,7 +2706,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 			if(CountMethodTACHRAFgold3>0 && CountMethodTACHRAFgold3Callee>0) {
 									
 				boolean entered=false; 
-									if(CountMethodNACHRAFgold3+CountMethodNACHRAFgold3Callee==0) {
+									if(CountMethodNACHRAFgold3+CountMethodNACHRAFgold3Callee==0 && methodtrace.getGold3()!=null) {
 									
 										TracePureGold3++; 
 										entered=true; 
@@ -2730,7 +2735,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 			else if(CountMethodNACHRAFgold3>0 && CountMethodNACHRAFgold3Callee>0) {
 								
 				boolean entered=false; 
-								if(CountMethodTACHRAFgold3+CountMethodTACHRAFgold3Callee==0) {
+								if(CountMethodTACHRAFgold3+CountMethodTACHRAFgold3Callee==0 && methodtrace.getGold3()!=null) {
 									NoTracePureGold3++; 
 									entered=true; 
 									}else {
@@ -2761,7 +2766,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 			if(CountMethodTACHRAFgold4>0 && CountMethodTACHRAFgold4Callee>0) {
 									
 				boolean entered=false; 
-									if(CountMethodNACHRAFgold4+CountMethodNACHRAFgold4Callee==0) {
+									if(CountMethodNACHRAFgold4+CountMethodNACHRAFgold4Callee==0 && methodtrace.getGold4()!=null) {
 									
 										TracePureGold4++; 
 										entered=true; 
@@ -2790,7 +2795,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 			else if(CountMethodNACHRAFgold4>0 && CountMethodNACHRAFgold4Callee>0) {
 								
 								boolean entered=false; 
-								if(CountMethodTACHRAFgold4+CountMethodTACHRAFgold4Callee==0) {
+								if(CountMethodTACHRAFgold4+CountMethodTACHRAFgold4Callee==0 && methodtrace.getGold4()!=null) {
 									NoTracePureGold4++; 
 									entered=true; 
 									}else {
@@ -2815,6 +2820,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 						}else {
 							failGold4++; 
 						}
+								
 								
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/

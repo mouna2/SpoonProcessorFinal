@@ -2410,7 +2410,6 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
 	
-									
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -2418,7 +2417,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 									if(CountMethodTACHRAF>0 && CountMethodTACHRAFCallee>0) {
 										
 										boolean entered=false; 
-										if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0) {
+										if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0 && methodtrace.getGold()!=null ) {
 											
 											TracePureGold++; 
 											entered=true; 
@@ -2445,7 +2444,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 								}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 									
 									boolean entered=false; 
-									if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0) {
+									if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0 && methodtrace.getGold()!=null ) {
 										NoTracePureGold++; 
 										entered=true; 
 										
@@ -2479,7 +2478,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 				if(CountMethodTACHRAFGold2>0 && CountMethodTACHRAFCalleeGold2>0) {
 										
 					boolean entered=false; 
-										if(CountMethodNACHRAFGold2+CountMethodNACHRAFCalleeGold2==0) {
+										if(CountMethodNACHRAFGold2+CountMethodNACHRAFCalleeGold2==0 && methodtrace.getGold2()!=null ) {
 										
 											TracePureGold2++; 
 											
@@ -2508,7 +2507,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 				else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 									
 									boolean entered=false; 
-									if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0) {
+									if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0 && methodtrace.getGold2()!=null ) {
 										NoTracePureGold2++; 
 										entered=true; 
 										}else {
@@ -2538,7 +2537,6 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF extends JFrame {
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
-									
 									//}
 			
 		//NEEDS TO BE UNCOMMENTED 
