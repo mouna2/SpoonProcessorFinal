@@ -53,7 +53,7 @@ import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
 
-public class TracesTableChessFINAL_ACHRAF extends JFrame {
+public class TracesTableChessFINAL_ACHRAFReq2 extends JFrame {
 //	int TracePureGold=0; 
 //	int NoTracePureGold=0; 
 //	int TraceMixedGold=0; 
@@ -267,12 +267,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessACHRAF.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessACHRAFReq2.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2ACHRAF.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2ACHRAFReq2.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
@@ -313,7 +313,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableChessFINAL_ACHRAF() throws SQLException, IOException {
+	public TracesTableChessFINAL_ACHRAFReq2() throws SQLException, IOException {
 	
 //		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 //						+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
@@ -1290,13 +1290,13 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						} */else if ((counterParameterN >= counterParameterT)) {
 							data[j][MajorityParameters] = "N";
 						}
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 							String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityParameters].toString()); 
 							MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
 						}
 						
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
+						if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 							String Result2=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityParameters].toString()); 
 							MajorityParametersClassGold2.UpdateCounters(Result2, MajorityParametersClassGold2);
 						}
@@ -1315,11 +1315,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 				if (counterParameterN >=1 )
 						 {
 					data[j][AtLeast1NParameter] = "N";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NParameter].toString()); 
 					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
+					if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NParameter].toString()); 
 					AtLeast1NParameterClassGold2.UpdateCounters(Result2, AtLeast1NParameterClassGold2);
 					}
@@ -1338,12 +1338,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 				if (counterParameterN >=2 )
 						 {
 					data[j][AtLeast2NParameter] = "N";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						
 						String Result=AtLeast2NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NParameter].toString()); 
 					AtLeast2NParameterClass.UpdateCounters(Result, AtLeast2NParameterClass);
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
+					if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NParameter].toString()); 
 					AtLeast2NParameterClassGold2.UpdateCounters(Result2, AtLeast2NParameterClassGold2);
 					}
@@ -1361,10 +1361,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 				if (counterParameterT >=1 )
 						 {
 					data[j][AtLeast1TParameter] = "T";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TParameter].toString()); 
 					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TParameter].toString()); 
 					AtLeast1TParameterClassGold2.UpdateCounters(Result2, AtLeast1TParameterClassGold2);
 					}
@@ -1382,10 +1382,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (counterParameterT >=2 )
 							 {
 						data[j][AtLeast2TParameter] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeast2TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TParameter].toString()); 
 						AtLeast2TParameterClass.UpdateCounters(Result, AtLeast2TParameterClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TParameter].toString()); 
 						AtLeast2TParameterClassGold2.UpdateCounters(Result2, AtLeast2TParameterClassGold2);
 						}
@@ -1405,11 +1405,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllTParameters] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTParameters].toString()); 
 						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
 						}
-						if(methodtrace.getGold2()!=null && flagGold2==false){
+						if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTParameters].toString()); 
 						AllTParameterClassGold2.UpdateCounters(Result2, AllTParameterClassGold2);
 						}
@@ -1428,14 +1428,14 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllNParameters] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNParameters].toString()); 
 						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
 						
 		
 						
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNParameters].toString()); 
 						AllNParameterClassGold2.UpdateCounters(Result2, AllNParameterClassGold2);
 						}
@@ -1474,10 +1474,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					}*/ else if (CounterTraceClassCalleeN >= CounterTraceClassCalleeT) {
 						data[j][MajorityClassLevelCallees] = "N";
 					}
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=MajorityClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallees].toString()); 
 					MajorityClassLevelCalleesClass.UpdateCounters(Result, MajorityClassLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallees].toString()); 
 					MajorityClassLevelCalleesClassGold2.UpdateCounters(Result2, MajorityClassLevelCalleesClassGold2);
 					}
@@ -1515,7 +1515,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						 {
 						data[j][MajorityClassLevelCallers] = "N";
 					} 
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallers].toString()); 
 					MajorityClassLevelCallersClass.UpdateCounters(Result, MajorityClassLevelCallersClass);
 					if(Result!=null) {
@@ -1591,7 +1591,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 					
 					
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallers].toString()); 
 					MajorityClassLevelCallersClassGold2.UpdateCounters(Result2, MajorityClassLevelCallersClassGold2);
 					}
@@ -1625,10 +1625,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						data[j][MajorityMethodLevelCallees] = "N";
 					}
 				
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=MajorityMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallees].toString()); 
 					MajorityMethodLevelCalleesClass.UpdateCounters(Result, MajorityMethodLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=MajorityMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallees].toString()); 
 					MajorityMethodLevelCalleesClassGold2.UpdateCounters(Result2, MajorityMethodLevelCalleesClassGold2);
 					}
@@ -1661,10 +1661,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 							) {
 						data[j][MajorityMethodLevelCallers] = "N";
 					}
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=MajorityMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallers].toString()); 
 					MajorityMethodLevelCallersClass.UpdateCounters(Result, MajorityMethodLevelCallersClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=MajorityMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallers].toString()); 
 					MajorityMethodLevelCallersClassGold2.UpdateCounters(Result2, MajorityMethodLevelCallersClassGold2);
 					}
@@ -1685,10 +1685,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						data[j][AtLeast1NPredictionClassLevelCallers] = "N";
 						Object var= 	data[j][AtLeast1NPredictionClassLevelCallers]; 
 						String NEWVAR=var.toString(); 
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastNPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
 						AtLeastNPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastNPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
 						AtLeastNPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeastNPredictionClassLevelCallersClassGold2);
 						}
@@ -1709,10 +1709,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CounterTraceClassCallerT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastTPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
 						AtLeastTPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastTPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
 						AtLeastTPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeastTPredictionClassLevelCallersClassGold2);
 						}
@@ -1736,10 +1736,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CounterTraceClassCalleeN >=1 )
 							 {
 						data[j][AtLeast1NPredictionClassLevelCallees] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastNPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
 						AtLeastNPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastNPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
 						AtLeastNPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastNPredictionClassLevelCalleesClassGold2);
 						}
@@ -1761,10 +1761,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CounterTraceClassCalleeT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallees] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastTPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
 						AtLeastTPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastTPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
 						AtLeastTPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastTPredictionClassLevelCalleesClassGold2);
 						}
@@ -1784,10 +1784,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CountMethodN >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallers] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastNPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
 						AtLeastNPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastNPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
 						AtLeastNPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeastNPredictionMethodLevelCallersClassGold2);
 						}
@@ -1807,10 +1807,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CountMethodT >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallers] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastTPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeastTPredictionMethodLevelCallersClassGold2);
 						}
@@ -1830,10 +1830,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CountMethodNCallee >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallees] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastNPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
 						AtLeastNPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastNPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
 						AtLeastNPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastNPredictionMethodLevelCalleesClassGold2);
 						}
@@ -1855,10 +1855,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if (CountMethodTCallee >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallees] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeastTPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
 						AtLeastTPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeastTPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
 						AtLeastTPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastTPredictionMethodLevelCalleesClassGold2);
 						}
@@ -1884,10 +1884,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 							data[j][AtLeast2NPredictionClassLevelCallees] = "N";
 							Object var= 	data[j][AtLeast2NPredictionClassLevelCallees]; 
 							String NEWVAR=var.toString(); 
-							if(flagGold==false) {
+							if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 								String Result=AtLeast2NPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionClassLevelCallees].toString()); 
 								AtLeast2NPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeast2NPredictionClassLevelCalleesClass);
-							}if(methodtrace.getGold2()!=null && flagGold2==false){
+							}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 							String Result2=AtLeast2NPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallees].toString()); 
 							AtLeast2NPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2NPredictionClassLevelCalleesClassGold2);
 							}
@@ -1908,10 +1908,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CounterTraceClassCalleeT >=2 )
 						 {
 					data[j][AtLeast2TPredictionClassLevelCallees] = "T";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast2TPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallees].toString()); 
 					AtLeast2TPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeast2TPredictionClassLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2TPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallees].toString()); 
 					AtLeast2TPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCalleesClassGold2);
 					}
@@ -1935,10 +1935,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CountMethodN >=2 )
 								 {
 							data[j][AtLeast2NPredictionMethodLevelCallers] = "N";
-							if(flagGold==false) {
+							if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 							String Result=AtLeast2NPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionMethodLevelCallers].toString()); 
 							AtLeast2NPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCallersClass);
-							}if(methodtrace.getGold2()!=null && flagGold2==false){
+							}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 							String Result2=AtLeast2NPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallers].toString()); 
 							AtLeast2NPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2NPredictionMethodLevelCallersClassGold2);
 							}
@@ -1959,10 +1959,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 							if (CounterTraceClassCallerT >=2 )
 							 {
 						data[j][AtLeast2TPredictionClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeast2TPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 						AtLeast2TPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 						AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCallersClassGold2);
 						}
@@ -1981,10 +1981,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CountMethodT >=2 )
 						 {
 					data[j][AtLeast2TPredictionMethodLevelCallers] = "T";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast2TPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 
 					AtLeast2TPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2TPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 
 					AtLeast2TPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionMethodLevelCallersClassGold2);
 					}
@@ -2021,10 +2021,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CountMethodNCallee >=2 )
 						 {
 					data[j][AtLeast2NPredictionMethodLevelCallees] = "N";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast2NPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionMethodLevelCallees].toString()); 
 					AtLeast2NPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCalleesClass);
-					}	if(methodtrace.getGold2()!=null && flagGold2==false){
+					}	if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2NPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallees].toString()); 
 					AtLeast2NPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2NPredictionMethodLevelCalleesClassGold2);
 					}
@@ -2044,12 +2044,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CountMethodTCallee >=2 )
 						 {
 					data[j][AtLeast2TPredictionMethodLevelCallees] = "T";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeast2TPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionMethodLevelCallees].toString()); 
 						AtLeast2TPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCalleesClass);
 
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
+					if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2TPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallees].toString()); 
 					AtLeast2TPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2TPredictionMethodLevelCalleesClassGold2);
 					}
@@ -2069,11 +2069,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CounterTraceClassCallerN >=2 )
 						 {
 					data[j][AtLeast2NPredictionClassLevelCallers] = "N";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 					String Result=AtLeast2NPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionClassLevelCallers].toString()); 
 					AtLeast2NPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2NPredictionClassLevelCallersClass);
 					
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
+					}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2NPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallers].toString()); 
 					AtLeast2NPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2NPredictionClassLevelCallersClassGold2);
 					}
@@ -2095,12 +2095,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 						if (CounterTraceClassCallerT >=2 )
 						 {
 					data[j][AtLeast2TPredictionClassLevelCallers] = "T";
-					if(flagGold==false) {
+					if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AtLeast2TPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 						AtLeast2TPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionClassLevelCallersClass);
 
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
+					if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 					String Result2=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 					AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCallersClassGold2);
 					}
@@ -2129,10 +2129,10 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 						
 						data[j][AllTMethodLevelCallees] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllTMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallees].toString()); 
 						AllTMethodLevelCalleesClass.UpdateCounters(Result, AllTMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllTMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallees].toString()); 
 						AllTMethodLevelCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCalleesClassGold2);
 						}
@@ -2150,11 +2150,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllTMethodLevelCallers] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllTMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallers].toString()); 
 						AllTMethodLevelCallersClass.UpdateCounters(Result, AllTMethodLevelCallersClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllTMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallers].toString()); 
 						AllTMethodLevelCallersClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersClassGold2);
 						}
@@ -2172,14 +2172,14 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallers].toString()); 
 						AllTClassLevelCallersClass.UpdateCounters(Result, AllTClassLevelCallersClass);
 						System.out.println(methodtrace.toString());
 						
 						}
 						
-						if(methodtrace.getGold2()!=null && flagGold2==false){
+						if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 							String Result2=AllTClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallers].toString()); 
 							AllTClassLevelCallersClassGold2.UpdateCounters(Result2, AllTClassLevelCallersClassGold2);
 							if(Result2!=null) {
@@ -2259,12 +2259,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallees] = "T";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllTClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallees].toString()); 
 						AllTClassLevelCalleesClass.UpdateCounters(Result, AllTClassLevelCalleesClass);
 				
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallees].toString()); 
 						AllTClassLevelCalleesClassGold2.UpdateCounters(Result2, AllTClassLevelCalleesClassGold2);
 						}
@@ -2282,7 +2282,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallers] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllNClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallers].toString()); 
 						AllNClassLevelCallersClass.UpdateCounters(Result, AllNClassLevelCallersClass);
 						if(Result!=null) {
@@ -2347,7 +2347,7 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 								bwlog2.newLine();
 							}
 						}
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllNClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallers].toString()); 
 						AllNClassLevelCallersClassGold2.UpdateCounters(Result2, AllNClassLevelCallersClassGold2);
 						
@@ -2371,11 +2371,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallees] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllNClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallees].toString()); 
 						AllNClassLevelCalleesClass.UpdateCounters(Result, AllNClassLevelCalleesClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllNClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallees].toString()); 
 						AllNClassLevelCalleesClassGold2.UpdateCounters(Result2, AllNClassLevelCalleesClassGold2);
 						}
@@ -2394,11 +2394,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallers] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 						String Result=AllNMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallers].toString()); 
 						AllNMethodLevelCallersClass.UpdateCounters(Result, AllNMethodLevelCallersClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
+						}if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllNMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallers].toString()); 
 						AllNMethodLevelCallersClassGold2.UpdateCounters(Result2, AllNMethodLevelCallersClassGold2);
 						}
@@ -2417,12 +2417,12 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallees] = "N";
-						if(flagGold==false) {
+						if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 							String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallees].toString()); 
 							AllNMethodLevelCalleesClass.UpdateCounters(Result, AllNMethodLevelCalleesClass);
 						}
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
+						if(methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2")){
 						String Result2=AllNMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallees].toString()); 
 						AllNMethodLevelCalleesClassGold2.UpdateCounters(Result2, AllNMethodLevelCalleesClassGold2);
 						}
@@ -2436,11 +2436,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if(CountMethodT>0 && CountMethodTCallee>0) {
 						if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold()!=null ) {
 							data[j][pureTCallersGold] = "N";
-							if(flagGold==false) {
+							if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 								String Result=PureTCallersGold.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][pureTCallersGold].toString()); 
 								PureTCallersGold.UpdateCounters(Result, PureTCallersGold);
 							}
-							if(methodtrace!=null && methodtrace.getGold2()!=null &&flagGold2==false) {
+							if(methodtrace!=null && methodtrace.getGold2()!=null &&flagGold2==false  && methodtrace.Requirement.getID().equals("2")) {
 								String Result=PureTCallersGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][pureTCallersGold].toString()); 
 								PureTCallersGold2.UpdateCounters(Result, PureTCallersGold2);
 							}
@@ -2457,11 +2457,11 @@ public class TracesTableChessFINAL_ACHRAF extends JFrame {
 					if(CountMethodN>0 && CountMethodNCallee>0) {
 						if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
 							data[j][pureNCallersGold] = "N";
-							if(flagGold==false) {
+							if(flagGold==false  && methodtrace.Requirement.getID().equals("2")) {
 								String Result=PureNCallersGold.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][pureNCallersGold].toString()); 
 								PureNCallersGold.UpdateCounters(Result, PureNCallersGold);
 							}
-							if(methodtrace!=null &&  methodtrace.getGold2()!=null && flagGold2==false ) {
+							if(methodtrace!=null &&  methodtrace.getGold2()!=null && flagGold2==false  && methodtrace.Requirement.getID().equals("2") ) {
 								String Result=PureNCallersGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][pureNCallersGold].toString()); 
 								PureNCallersGold2.UpdateCounters(Result, PureNCallersGold2);
 							}
@@ -3455,7 +3455,7 @@ else if(CountMethodNACHRAFGold2>0 && CountMethodNACHRAFCalleeGold2>0) {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINAL_ACHRAF frame = new TracesTableChessFINAL_ACHRAF();
+		TracesTableChessFINAL_ACHRAFReq2 frame = new TracesTableChessFINAL_ACHRAFReq2();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
