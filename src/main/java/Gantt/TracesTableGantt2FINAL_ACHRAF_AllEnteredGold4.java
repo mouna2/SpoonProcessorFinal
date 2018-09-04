@@ -54,7 +54,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
-public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
+public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 	double TraceCountTotal=0; 
 	double NoTraceCountTotal=0; 
 	double TraceCountTotalGold3=0; 
@@ -336,7 +336,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableGantt2FINAL_ACHRAF_AllEntered() throws SQLException, IOException {
+	public TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4() throws SQLException, IOException {
 //	
 //		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
 //				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
@@ -2212,7 +2212,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL T METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=4) {
+				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=3) {
 					
 					
 					
@@ -2238,7 +2238,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLERS 
 				
-				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=4) {
+				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=3) {
 					
 					
 					
@@ -2266,7 +2266,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL T CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=4) {
+				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=3) {
 					
 					
 				
@@ -2358,7 +2358,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL T CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0 && CounterTraceClassCalleeT>=4) {
+				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0 && CounterTraceClassCalleeT>=3) {
 					
 					
 					
@@ -2386,7 +2386,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL N CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=4) {
+				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=3) {
 					
 					
 					
@@ -2413,7 +2413,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL N CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=4) {
+				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=3) {
 					
 					
 					
@@ -2441,7 +2441,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL N METHOD LEVEL CALLERS 
 				
 				
-				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=4) {
+				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=3) {
 					
 					
 					
@@ -2469,7 +2469,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				//ALL N METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=4) {
+				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=3) {
 					
 					
 					
@@ -3583,7 +3583,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableGantt2FINAL_ACHRAF_AllEntered frame = new TracesTableGantt2FINAL_ACHRAF_AllEntered();
+		TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 frame = new TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
