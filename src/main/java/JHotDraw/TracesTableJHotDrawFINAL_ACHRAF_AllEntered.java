@@ -3061,7 +3061,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 				
 			
 					
-					if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=2 && CountMethodN>=2) {
+					if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>0 && CountMethodN>0) {
 					
 				
 						data[j][AllNMethodLevelCallersCallees] = "N";
@@ -3087,7 +3087,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 					
 				
 						
-						if(CountMethodT==0 && CountMethodE==0 && CountMethodTCallee>=2 && CountMethodT>=2) {
+						if(CountMethodN==0 && CountMethodE==0 && CountMethodTCallee>0 && CountMethodT>0) {
 						
 					
 							data[j][AllTMethodLevelCallersCallees] = "T";
@@ -3111,7 +3111,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 						
 					
 							
-							if(CountMethodTCallee==0 && CountMethodECallee==0 && CounterTraceClassCalleeN>=2 && CounterTraceClassCallerN>=2) {
+							if(CountMethodTCallee==0 && CountMethodECallee==0 && CounterTraceClassCalleeN>0 && CounterTraceClassCallerN>0) {
 							
 						
 								data[j][AllNMethodLevelCallersCallees] = "N";
@@ -3137,7 +3137,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 							
 						
 								
-								if(CountMethodT==0 && CountMethodE==0 && CounterTraceClassCalleeT>=2 && CounterTraceClassCallerT>=2) {
+								if(CountMethodN==0 && CountMethodE==0 && CounterTraceClassCalleeT>0 && CounterTraceClassCallerT>0) {
 								
 							
 									data[j][AllTMethodLevelCallersCallees] = "T";

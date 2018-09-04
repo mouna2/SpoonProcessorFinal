@@ -2581,7 +2581,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 						
 					
 							
-							if(CountMethodT==0 && CountMethodE==0 && CountMethodTCallee>=1 && CountMethodT>=1) {
+							if(CountMethodN==0 && CountMethodE==0 && CountMethodTCallee>=1 && CountMethodT>=1) {
 							
 						
 								data[j][AllTMethodLevelCallersCallees] = "T";
@@ -2631,7 +2631,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 								
 							
 									
-									if(CountMethodT==0 && CountMethodE==0 && CounterTraceClassCalleeT>=1 && CounterTraceClassCallerT>=1) {
+									if(CountMethodN==0 && CountMethodE==0 && CounterTraceClassCalleeT>=1 && CounterTraceClassCallerT>=1) {
 									
 								
 										data[j][AllTMethodLevelCallersCallees] = "T";

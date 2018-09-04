@@ -2434,7 +2434,7 @@ public class TracesTableChessFINAL_ACHRAF_AllEntered extends JFrame {
 					/**************************************************************************************************************/
 					//PURE T CALLERS 
 					if(CountMethodT>0 && CountMethodTCallee>0) {
-						if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold()!=null ) {
+						if(CountMethodN+CountMethodNCallee==0  ) {
 							data[j][pureTCallersGold] = "T";
 //							if(true) {
 								String Result=PureTCallersGold.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][pureTCallersGold].toString()); 
@@ -2469,7 +2469,7 @@ public class TracesTableChessFINAL_ACHRAF_AllEntered extends JFrame {
 					/**************************************************************************************************************/
 					//PURE N CALLERS 
 					if(CountMethodN>0 && CountMethodNCallee>0) {
-						if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
+						if(CountMethodT+CountMethodTCallee==0  ) {
 							data[j][pureNCallersGold] = "N";
 //							if(true) {
 								String Result=PureNCallersGold.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][pureNCallersGold].toString()); 

@@ -1341,7 +1341,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 				else if(counterParameterT==0 && counterParameterN==0 && counterParameterE>=4) {
 					data[j][MajorityParameters] = "E";
 				}
-				else if(counterParameterT==0 && counterParameterN>=3) {
+				else if(counterParameterT==0 && counterParameterN>=4) {
 					data[j][MajorityParameters] = "N";
 				}
 				else {
@@ -2526,7 +2526,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 					
 				
 						
-						if(CountMethodT==0 && CountMethodE==0 && CountMethodTCallee>=1 && CountMethodT>=1) {
+						if(CountMethodN==0 && CountMethodE==0 && CountMethodTCallee>=1 && CountMethodT>=1) {
 						
 					
 							data[j][AllTMethodLevelCallersCallees] = "T";
@@ -2576,7 +2576,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 							
 						
 								
-								if(CountMethodT==0 && CountMethodE==0 && CounterTraceClassCalleeT>=1 && CounterTraceClassCallerT>=1) {
+								if(CountMethodN==0 && CountMethodE==0 && CounterTraceClassCalleeT>=1 && CounterTraceClassCallerT>=1) {
 								
 							
 									data[j][AllTMethodLevelCallersCallees] = "T";
