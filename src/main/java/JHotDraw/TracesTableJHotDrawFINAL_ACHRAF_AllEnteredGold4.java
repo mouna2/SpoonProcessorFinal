@@ -2704,7 +2704,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL T METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=4) {
+				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=4 ) {
 					
 					
 					
@@ -2730,8 +2730,8 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLERS 
 				
-				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=4) {
-					
+				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=6) {
+//				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=3 && CountMethodTCallee>=3) {	
 					
 					
 				
@@ -2760,7 +2760,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				
 				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=4) {
 					
-					
+//					if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=2 && CounterTraceClassCalleeT>=2) {
 				
 						data[j][AllTClassLevelCallers] = "T";
 						if(true && methodtrace.getGold()!=null) {
@@ -2946,7 +2946,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=4) {
+				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=5) {
 					
 					
 					
@@ -2973,7 +2973,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=4) {
+				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=5) {
 					
 					
 					
@@ -3001,7 +3001,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N METHOD LEVEL CALLERS 
 				
 				
-				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=4) {
+				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=5) {
 					
 					
 					
@@ -3029,7 +3029,7 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=4) {
+				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=5) {
 					
 					
 					

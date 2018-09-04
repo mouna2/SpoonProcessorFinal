@@ -1335,13 +1335,13 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 					
 					) {
 				
-				if(counterParameterT>=counterParameterN && counterParameterT>=4) {
+				if(counterParameterT>=counterParameterN && counterParameterT>=6) {
 					data[j][MajorityParameters] = "T";
 				}
-				else if(counterParameterT==0 && counterParameterN==0 && counterParameterE>=4) {
+				else if(counterParameterT==0 && counterParameterN==0 && counterParameterE>=6) {
 					data[j][MajorityParameters] = "E";
 				}
-				else if(counterParameterT==0 && counterParameterN>=4) {
+				else if(counterParameterT==0 && counterParameterN>=6) {
 					data[j][MajorityParameters] = "N";
 				}
 				else {
@@ -1483,7 +1483,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL T PARAMETER PREDICTION
 				
 				
-					if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=4) {
+					if(counterParameterE==0 && counterParameterN==0 && counterParameterT>=6) {
 						
 						
 						
@@ -1512,7 +1512,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N PARAMETER PREDICTION
 				
 				
-					if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=4) {
+					if(counterParameterT==0 && counterParameterE==0 && counterParameterN>=6) {
 						
 						
 						
@@ -2212,7 +2212,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL T METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=3) {
+				if(CountMethodNCallee==0 && CountMethodECallee==0 && CountMethodTCallee>=4 && CountMethodT>=4) {
 					
 					
 					
@@ -2238,7 +2238,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				
 				//ALL T METHOD LEVEL CALLERS 
 				
-				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=3) {
+				if(CountMethodN==0 && CountMethodE==0  && CountMethodT>=5 && CountMethodTCallee>=5) {
 					
 					
 					
@@ -2266,7 +2266,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL T CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=3) {
+				if(CounterTraceClassCallerE==0 && CounterTraceClassCallerN==0 && CounterTraceClassCallerT>=6) {
 					
 					
 				
@@ -2358,7 +2358,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL T CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0 && CounterTraceClassCalleeT>=3) {
+				if(CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN==0 && CounterTraceClassCalleeT>=3 && CounterTraceClassCallerT>=3) {
 					
 					
 					
@@ -2386,7 +2386,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N CLASS LEVEL CALLERS 
 				
 				
-				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=3) {
+				if(CounterTraceClassCallerT==0 && CounterTraceClassCallerE==0 && CounterTraceClassCallerN>=6) {
 					
 					
 					
@@ -2413,7 +2413,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N CLASS LEVEL CALLEES 
 				
 				
-				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=3) {
+				if(CounterTraceClassCalleeT==0 && CounterTraceClassCalleeE==0 && CounterTraceClassCalleeN>=6) {
 					
 					
 					
@@ -2441,7 +2441,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N METHOD LEVEL CALLERS 
 				
 				
-				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=3) {
+				if(CountMethodT==0 && CountMethodE==0 && CountMethodN>=7) {
 					
 					
 					
@@ -2469,7 +2469,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				//ALL N METHOD LEVEL CALLEES 
 				
 				
-				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=3) {
+				if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=7) {
 					
 					
 					
@@ -2500,7 +2500,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 				
 			
 					
-					if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=3 && CountMethodN>=3) {
+					if(CountMethodTCallee==0 && CountMethodECallee==0 && CountMethodNCallee>=6 && CountMethodN>=6) {
 					
 				
 						data[j][AllNMethodLevelCallersCallees] = "N";
@@ -2526,7 +2526,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 					
 				
 						
-						if(CountMethodN==0 && CountMethodE==0 && CountMethodTCallee>=3 && CountMethodT>=3) {
+						if(CountMethodN==0 && CountMethodE==0 && CountMethodTCallee>=6 && CountMethodT>=6) {
 						
 					
 							data[j][AllTMethodLevelCallersCallees] = "T";
@@ -2550,7 +2550,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 						
 					
 							
-							if(CountMethodTCallee==0 && CountMethodECallee==0 && CounterTraceClassCalleeN>=3 && CounterTraceClassCallerN>=3) {
+							if(CountMethodTCallee==0 && CountMethodECallee==0 && CounterTraceClassCalleeN>=6 && CounterTraceClassCallerN>=6) {
 							
 						
 								data[j][AllNMethodLevelCallersCallees] = "N";
@@ -2576,7 +2576,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 							
 						
 								
-								if(CountMethodN==0 && CountMethodE==0 && CounterTraceClassCalleeT>=3 && CounterTraceClassCallerT>=3) {
+								if(CountMethodN==0 && CountMethodE==0 && CounterTraceClassCalleeT>=6 && CounterTraceClassCallerT>=6) {
 								
 							
 									data[j][AllTMethodLevelCallersCallees] = "T";
