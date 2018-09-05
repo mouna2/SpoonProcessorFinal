@@ -4682,7 +4682,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 												
 										}
 							
-							
+							  
 			
 			
 			
