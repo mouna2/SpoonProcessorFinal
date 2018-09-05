@@ -32,7 +32,7 @@ public class AddGold2Column {
 
 	private final int portNumber = 3306;
 	
-	private final String dbName = "databasegantt";
+	private final String dbName = "databaseitrust";
 
 	/**
 	 * Get a new database connection
@@ -45,7 +45,7 @@ public class AddGold2Column {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust","root","123456");
 
 		return conn;
 	}

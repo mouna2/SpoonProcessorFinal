@@ -45,7 +45,7 @@ public class AddGold2Column {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
 
 		return conn;
 	}
@@ -120,7 +120,7 @@ public class AddGold2Column {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
 		
 		try {

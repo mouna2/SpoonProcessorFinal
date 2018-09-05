@@ -14,10 +14,37 @@ public class ClassTrace2 {
 		Requirement2 requirement; 
 		ClassRepresentation2 myclass; 
 		String trace; 
+		String trace2; 
+		String trace3; 
+		String trace4; 
 		String subject;
 		
 		
 		
+		public String getTrace2() {
+			return trace2;
+		}
+
+		public void setTrace2(String trace2) {
+			this.trace2 = trace2;
+		}
+
+		public String getTrace3() {
+			return trace3;
+		}
+
+		public void setTrace3(String trace3) {
+			this.trace3 = trace3;
+		}
+
+		public String getTrace4() {
+			return trace4;
+		}
+
+		public void setTrace4(String trace4) {
+			this.trace4 = trace4;
+		}
+
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
 		LinkedHashMap<String, ClassTrace2> classtraceHashMapRequirementClass= new LinkedHashMap<String, ClassTrace2> (); 
 		
@@ -133,7 +160,9 @@ public class ClassTrace2 {
 				 myclasstrace.setMyclass(classrep);
 				 
 				 myclasstrace.settrace(myresults.getString("gold"));
-				 
+				 myclasstrace.setTrace2(myresults.getString("gold2"));
+				 myclasstrace.setTrace3(myresults.getString("gold3"));
+				 myclasstrace.setTrace4(myresults.getString("gold4"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 
 				String ReqClass= myclasstrace.getRequirement().ID+"-"+myclasstrace.getMyclass().classid; 
@@ -148,6 +177,8 @@ public class ClassTrace2 {
 		}
 		
 		
+		
+
 		public ClassTrace2 FindTrace(List<ClassTrace2> classtraces2, String ClassID, String RequirementID) {
 			for(ClassTrace2 ct: classtraces2) {
 				if(ct.myclass.getClassid().equals(ClassID) && ct.requirement.ID.equals(RequirementID)) {

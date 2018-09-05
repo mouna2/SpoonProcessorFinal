@@ -223,6 +223,7 @@ public class TracesTableChessFINAL extends JFrame {
 	static List<MethodTrace2> methodtraces2 = new ArrayList<MethodTrace2>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
+	 
 	 LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
 	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
 	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
@@ -494,6 +495,9 @@ public class TracesTableChessFINAL extends JFrame {
 			int counterParameterT=0; 
 			int counterParameterN=0; 
 			int counterParameterE=0; 
+			int counterParameterTGOLD2=0; 
+			int counterParameterNGOLD2=0; 
+			int counterParameterEGOLD2=0; 
 			 myparameters = new String[methodtraces2.size()];
 			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
 			String ParametersAppended=""; 
@@ -515,6 +519,18 @@ public class TracesTableChessFINAL extends JFrame {
 					}else {
 						counterParameterE++; 
 					}
+					
+					String mytrace2=mycallerclass.getTrace2(); 
+					if(mytrace2!=null) {
+						if(mytrace2.equals("T")) {
+							counterParameterTGOLD2++; 
+						}else if (mytrace2.equals("N")) {
+							counterParameterNGOLD2++; 
+						}else {
+							counterParameterEGOLD2++; 
+						}
+					}
+					
 				}
 				
 
@@ -951,6 +967,9 @@ public class TracesTableChessFINAL extends JFrame {
 			int CounterTraceClassCallerT = 0;
 			int CounterTraceClassCallerN = 0;
 			int CounterTraceClassCallerE = 0;
+			int CounterTraceClassCallerTGOLD2 = 0;
+			int CounterTraceClassCallerNGOLD2 = 0;
+			int CounterTraceClassCallerEGOLD2 = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
 			for (Method2Representation callermeth : CallerMethodListFinal) {
@@ -989,6 +1008,16 @@ public class TracesTableChessFINAL extends JFrame {
 				} else if (mycallerclass.gettrace().equals("E")) {
 					CounterTraceClassCallerE++;
 				}
+				if (mycallerclass.getTrace2()!=null) {
+					if (mycallerclass.getTrace2().equals("T")) {
+						CounterTraceClassCallerTGOLD2++;
+					} else if (mycallerclass.getTrace2().equals("N")) {
+						CounterTraceClassCallerNGOLD2++;
+					} else if (mycallerclass.getTrace2().equals("E")) {
+						CounterTraceClassCallerEGOLD2++;
+					}
+				}
+				
 			}
 
 			data[j][CallerClassesT] = CounterTraceClassCallerT;
@@ -1000,6 +1029,10 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodT = 0; 
 			int CountMethodN = 0; 
 			int CountMethodE = 0; 
+			
+			int CountMethodTGOLD2 = 0; 
+			int CountMethodNGOLD2 = 0; 
+			int CountMethodEGOLD2 = 0; 
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
 				if (mycallerclass.gettrace().equals("T")) {
 					CountMethodT++;
@@ -1008,6 +1041,16 @@ public class TracesTableChessFINAL extends JFrame {
 				} else if (mycallerclass.gettrace().equals("E")) {
 					CountMethodE++;
 				}
+				if(mycallerclass.getTrace2()!=null) {
+					if (mycallerclass.getTrace2().equals("T")) {
+						CountMethodTGOLD2++;
+					} else if (mycallerclass.getTrace2().equals("N")) {
+						CountMethodNGOLD2++;
+					} else if (mycallerclass.getTrace2().equals("E")) {
+						CountMethodEGOLD2++;
+					}
+				}
+				
 			}
 
 		
@@ -1015,6 +1058,10 @@ public class TracesTableChessFINAL extends JFrame {
 			int CounterTraceClassCalleeT = 0;
 			int CounterTraceClassCalleeN = 0;
 			int CounterTraceClassCalleeE = 0;
+			
+			int CounterTraceClassCalleeTGOLD2 = 0;
+			int CounterTraceClassCalleeNGOLD2 = 0;
+			int CounterTraceClassCalleeEGOLD2 = 0;
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
 			for (Method2Representation calleemeth : CalleeMethodListFinal) {
@@ -1049,6 +1096,17 @@ public class TracesTableChessFINAL extends JFrame {
 				} else if (mycalleeclass.gettrace().equals("E")) {
 					CounterTraceClassCalleeE++;
 				}
+				
+				if(mycalleeclass.getTrace2()!=null) {
+					if (mycalleeclass.getTrace2().equals("T")) {
+						CounterTraceClassCalleeTGOLD2++;
+					} else if (mycalleeclass.getTrace2().equals("N")) {
+						CounterTraceClassCalleeNGOLD2++;
+					} else if (mycalleeclass.getTrace2().equals("E")) {
+						CounterTraceClassCalleeEGOLD2++;
+					}
+				}
+			
 			}
 
 			data[j][CalleeClassesT] = CounterTraceClassCalleeT;
@@ -1060,14 +1118,36 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
 			int CountMethodECallee = 0; 
+			
+			int CountMethodTCalleeGOLD2 = 0; 
+			int CountMethodNCalleeGOLD2 = 0; 
+			int CountMethodECalleeGOLD2 = 0; 
 			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-				if (mycalleeclass.gettrace().equals("T")) {
-					CountMethodTCallee++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
-					CountMethodNCallee++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
-					CountMethodECallee++;
+				if(mycalleeclass.getTrace2()!=null) {
+					if (mycalleeclass.getTrace2().equals("T")) {
+						CountMethodTCalleeGOLD2++;
+					} else if (mycalleeclass.getTrace2().equals("N")) {
+						CountMethodNCalleeGOLD2++;
+					} else if (mycalleeclass.getTrace2().equals("E")) {
+						CountMethodECalleeGOLD2++;
+					}
 				}
+			
+			}
+			
+			
+			
+			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
+				if(mycalleeclass.gettrace()!=null) {
+					if (mycalleeclass.gettrace().equals("T")) {
+						CountMethodTCallee++;
+					} else if (mycalleeclass.gettrace().equals("N")) {
+						CountMethodNCallee++;
+					} else if (mycalleeclass.gettrace().equals("E")) {
+						CountMethodECallee++;
+					}
+				}
+			
 			}
 			
 			data[j][CalleeMethodsT] = CountMethodTCallee;
@@ -1137,16 +1217,13 @@ public class TracesTableChessFINAL extends JFrame {
 						} */else if ((counterParameterN >= counterParameterT)) {
 							data[j][MajorityParameters] = "N";
 						}
-						if(flagGold==false) {
+						if(true) {
 							String Result=MajorityParametersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityParameters].toString()); 
 							MajorityParametersClass.UpdateCounters(Result, MajorityParametersClass);
 						}
 						
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityParameters].toString()); 
-							MajorityParametersClassGold2.UpdateCounters(Result2, MajorityParametersClassGold2);
-						}
+						
 					
 					}
 				
@@ -1162,14 +1239,11 @@ public class TracesTableChessFINAL extends JFrame {
 				if (counterParameterN >=1 )
 						 {
 					data[j][AtLeast1NParameter] = "N";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast1NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NParameter].toString()); 
 					AtLeast1NParameterClass.UpdateCounters(Result, AtLeast1NParameterClass);
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NParameter].toString()); 
-					AtLeast1NParameterClassGold2.UpdateCounters(Result2, AtLeast1NParameterClassGold2);
-					}
+					
 				} 
 			
 				
@@ -1185,15 +1259,12 @@ public class TracesTableChessFINAL extends JFrame {
 				if (counterParameterN >=2 )
 						 {
 					data[j][AtLeast2NParameter] = "N";
-					if(flagGold==false) {
+					if(true) {
 						
 						String Result=AtLeast2NParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NParameter].toString()); 
 					AtLeast2NParameterClass.UpdateCounters(Result, AtLeast2NParameterClass);
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NParameter].toString()); 
-					AtLeast2NParameterClassGold2.UpdateCounters(Result2, AtLeast2NParameterClassGold2);
-					}
+					
 				} 
 			/**************************************************************************************************************/
 			/**************************************************************************************************************/
@@ -1208,12 +1279,9 @@ public class TracesTableChessFINAL extends JFrame {
 				if (counterParameterT >=1 )
 						 {
 					data[j][AtLeast1TParameter] = "T";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast1TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TParameter].toString()); 
 					AtLeast1TParameterClass.UpdateCounters(Result, AtLeast1TParameterClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TParameter].toString()); 
-					AtLeast1TParameterClassGold2.UpdateCounters(Result2, AtLeast1TParameterClassGold2);
 					}
 				} 
 				/**************************************************************************************************************/
@@ -1229,12 +1297,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (counterParameterT >=2 )
 							 {
 						data[j][AtLeast2TParameter] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeast2TParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TParameter].toString()); 
 						AtLeast2TParameterClass.UpdateCounters(Result, AtLeast2TParameterClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TParameter].toString()); 
-						AtLeast2TParameterClassGold2.UpdateCounters(Result2, AtLeast2TParameterClassGold2);
 						}
 					} 
 				/**************************************************************************************************************/
@@ -1252,14 +1317,11 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllTParameters] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllTParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTParameters].toString()); 
 						AllTParameterClass.UpdateCounters(Result, AllTParameterClass);
 						}
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTParameters].toString()); 
-						AllTParameterClassGold2.UpdateCounters(Result2, AllTParameterClassGold2);
-						}
+						
 						
 				}
 				/**************************************************************************************************************/
@@ -1275,7 +1337,7 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllNParameters] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNParameters].toString()); 
 						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
 						
@@ -1347,9 +1409,6 @@ public class TracesTableChessFINAL extends JFrame {
 						}
 						
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNParameters].toString()); 
-						AllNParameterClassGold2.UpdateCounters(Result2, AllNParameterClassGold2);
 						}
 				}
 				/**************************************************************************************************************/
@@ -1386,12 +1445,9 @@ public class TracesTableChessFINAL extends JFrame {
 					}*/ else if (CounterTraceClassCalleeN >= CounterTraceClassCalleeT) {
 						data[j][MajorityClassLevelCallees] = "N";
 					}
-					if(flagGold==false) {
+					if(true) {
 					String Result=MajorityClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallees].toString()); 
 					MajorityClassLevelCalleesClass.UpdateCounters(Result, MajorityClassLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallees].toString()); 
-					MajorityClassLevelCalleesClassGold2.UpdateCounters(Result2, MajorityClassLevelCalleesClassGold2);
 					}
 				}
 			
@@ -1425,12 +1481,9 @@ public class TracesTableChessFINAL extends JFrame {
 						 {
 						data[j][MajorityClassLevelCallers] = "N";
 					} 
-					if(flagGold==false) {
+					if(true) {
 					String Result=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityClassLevelCallers].toString()); 
 					MajorityClassLevelCallersClass.UpdateCounters(Result, MajorityClassLevelCallersClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=MajorityClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallers].toString()); 
-					MajorityClassLevelCallersClassGold2.UpdateCounters(Result2, MajorityClassLevelCallersClassGold2);
 					}
 				}
 				/**************************************************************************************************************/
@@ -1462,12 +1515,9 @@ public class TracesTableChessFINAL extends JFrame {
 						data[j][MajorityMethodLevelCallees] = "N";
 					}
 				
-					if(flagGold==false) {
+					if(true) {
 					String Result=MajorityMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallees].toString()); 
 					MajorityMethodLevelCalleesClass.UpdateCounters(Result, MajorityMethodLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=MajorityMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallees].toString()); 
-					MajorityMethodLevelCalleesClassGold2.UpdateCounters(Result2, MajorityMethodLevelCalleesClassGold2);
 					}
 				}
 				/**************************************************************************************************************/
@@ -1498,12 +1548,9 @@ public class TracesTableChessFINAL extends JFrame {
 							) {
 						data[j][MajorityMethodLevelCallers] = "N";
 					}
-					if(flagGold==false) {
+					if(true) {
 					String Result=MajorityMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][MajorityMethodLevelCallers].toString()); 
 					MajorityMethodLevelCallersClass.UpdateCounters(Result, MajorityMethodLevelCallersClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=MajorityMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallers].toString()); 
-					MajorityMethodLevelCallersClassGold2.UpdateCounters(Result2, MajorityMethodLevelCallersClassGold2);
 					}
 				}
 				
@@ -1522,12 +1569,9 @@ public class TracesTableChessFINAL extends JFrame {
 						data[j][AtLeast1NPredictionClassLevelCallers] = "N";
 						Object var= 	data[j][AtLeast1NPredictionClassLevelCallers]; 
 						String NEWVAR=var.toString(); 
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastNPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
 						AtLeastNPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastNPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
-						AtLeastNPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeastNPredictionClassLevelCallersClassGold2);
 						}
 					} 
 				
@@ -1546,12 +1590,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CounterTraceClassCallerT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastTPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
 						AtLeastTPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastTPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
-						AtLeastTPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeastTPredictionClassLevelCallersClassGold2);
 						}
 					} 
 					
@@ -1573,12 +1614,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CounterTraceClassCalleeN >=1 )
 							 {
 						data[j][AtLeast1NPredictionClassLevelCallees] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastNPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
 						AtLeastNPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastNPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
-						AtLeastNPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastNPredictionClassLevelCalleesClassGold2);
 						}
 					} 
 					
@@ -1598,12 +1636,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CounterTraceClassCalleeT >=1 )
 							 {
 						data[j][AtLeast1TPredictionClassLevelCallees] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastTPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
 						AtLeastTPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastTPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
-						AtLeastTPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastTPredictionClassLevelCalleesClassGold2);
 						}
 					} 
 					
@@ -1621,12 +1656,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CountMethodN >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallers] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastNPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
 						AtLeastNPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastNPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
-						AtLeastNPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeastNPredictionMethodLevelCallersClassGold2);
 						}
 					} 
 					
@@ -1644,12 +1676,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CountMethodT >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallers] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastTPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
 						AtLeastTPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastTPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
-						AtLeastTPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeastTPredictionMethodLevelCallersClassGold2);
 						}
 					} 
 					
@@ -1667,12 +1696,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CountMethodNCallee >=1 )
 							 {
 						data[j][AtLeast1NPredictionMethodLevelCallees] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastNPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
 						AtLeastNPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastNPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
-						AtLeastNPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastNPredictionMethodLevelCalleesClassGold2);
 						}
 					} 
 					
@@ -1692,12 +1718,9 @@ public class TracesTableChessFINAL extends JFrame {
 					if (CountMethodTCallee >=1 )
 							 {
 						data[j][AtLeast1TPredictionMethodLevelCallees] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeastTPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
 						AtLeastTPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeastTPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
-						AtLeastTPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeastTPredictionMethodLevelCalleesClassGold2);
 						}
 						}
 					 
@@ -1721,12 +1744,9 @@ public class TracesTableChessFINAL extends JFrame {
 							data[j][AtLeast2NPredictionClassLevelCallees] = "N";
 							Object var= 	data[j][AtLeast2NPredictionClassLevelCallees]; 
 							String NEWVAR=var.toString(); 
-							if(flagGold==false) {
+							if(true) {
 								String Result=AtLeast2NPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionClassLevelCallees].toString()); 
 								AtLeast2NPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeast2NPredictionClassLevelCalleesClass);
-							}if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=AtLeast2NPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallees].toString()); 
-							AtLeast2NPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2NPredictionClassLevelCalleesClassGold2);
 							}
 						} 
 					
@@ -1745,12 +1765,9 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CounterTraceClassCalleeT >=2 )
 						 {
 					data[j][AtLeast2TPredictionClassLevelCallees] = "T";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast2TPredictionClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallees].toString()); 
 					AtLeast2TPredictionClassLevelCalleesClass.UpdateCounters(Result, AtLeast2TPredictionClassLevelCalleesClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2TPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallees].toString()); 
-					AtLeast2TPredictionClassLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCalleesClassGold2);
 					}
 				} 
 							
@@ -1772,12 +1789,9 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CountMethodN >=2 )
 								 {
 							data[j][AtLeast2NPredictionMethodLevelCallers] = "N";
-							if(flagGold==false) {
+							if(true) {
 							String Result=AtLeast2NPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionMethodLevelCallers].toString()); 
 							AtLeast2NPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCallersClass);
-							}if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=AtLeast2NPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallers].toString()); 
-							AtLeast2NPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2NPredictionMethodLevelCallersClassGold2);
 							}
 						} 
 						
@@ -1796,12 +1810,9 @@ public class TracesTableChessFINAL extends JFrame {
 							if (CounterTraceClassCallerT >=2 )
 							 {
 						data[j][AtLeast2TPredictionClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AtLeast2TPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 						AtLeast2TPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
-						AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCallersClassGold2);
 						}
 					} 
 					
@@ -1818,12 +1829,9 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CountMethodT >=2 )
 						 {
 					data[j][AtLeast2TPredictionMethodLevelCallers] = "T";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast2TPredictionMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 
 					AtLeast2TPredictionMethodLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClass);
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2TPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 
-					AtLeast2TPredictionMethodLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionMethodLevelCallersClassGold2);
 					}
 				} 
 						
@@ -1858,13 +1866,10 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CountMethodNCallee >=2 )
 						 {
 					data[j][AtLeast2NPredictionMethodLevelCallees] = "N";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast2NPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionMethodLevelCallees].toString()); 
 					AtLeast2NPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCalleesClass);
-					}	if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2NPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallees].toString()); 
-					AtLeast2NPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2NPredictionMethodLevelCalleesClassGold2);
-					}
+					}	
 				} 
 						
 						
@@ -1881,15 +1886,12 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CountMethodTCallee >=2 )
 						 {
 					data[j][AtLeast2TPredictionMethodLevelCallees] = "T";
-					if(flagGold==false) {
+					if(true) {
 						String Result=AtLeast2TPredictionMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionMethodLevelCallees].toString()); 
 						AtLeast2TPredictionMethodLevelCalleesClass.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCalleesClass);
 
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2TPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallees].toString()); 
-					AtLeast2TPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result2, AtLeast2TPredictionMethodLevelCalleesClassGold2);
-					}
+					
 				} 
 						
 					
@@ -1906,13 +1908,10 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CounterTraceClassCallerN >=2 )
 						 {
 					data[j][AtLeast2NPredictionClassLevelCallers] = "N";
-					if(flagGold==false) {
+					if(true) {
 					String Result=AtLeast2NPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2NPredictionClassLevelCallers].toString()); 
 					AtLeast2NPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2NPredictionClassLevelCallersClass);
 					
-					}if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2NPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallers].toString()); 
-					AtLeast2NPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2NPredictionClassLevelCallersClassGold2);
 					}
 				} 
 				
@@ -1932,15 +1931,12 @@ public class TracesTableChessFINAL extends JFrame {
 						if (CounterTraceClassCallerT >=2 )
 						 {
 					data[j][AtLeast2TPredictionClassLevelCallers] = "T";
-					if(flagGold==false) {
+					if(true) {
 						String Result=AtLeast2TPredictionClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
 						AtLeast2TPredictionClassLevelCallersClass.UpdateCounters(Result, AtLeast2TPredictionClassLevelCallersClass);
 
 					}
-					if(methodtrace.getGold2()!=null && flagGold2==false){
-					String Result2=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
-					AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result2, AtLeast2TPredictionClassLevelCallersClassGold2);
-					}
+					
 					}
 						
 						
@@ -1966,12 +1962,9 @@ public class TracesTableChessFINAL extends JFrame {
 					
 						
 						data[j][AllTMethodLevelCallees] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllTMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallees].toString()); 
 						AllTMethodLevelCalleesClass.UpdateCounters(Result, AllTMethodLevelCalleesClass);
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllTMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallees].toString()); 
-						AllTMethodLevelCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCalleesClassGold2);
 						}
 				}
 				
@@ -1987,13 +1980,10 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllTMethodLevelCallers] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllTMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallers].toString()); 
 						AllTMethodLevelCallersClass.UpdateCounters(Result, AllTMethodLevelCallersClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllTMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallers].toString()); 
-						AllTMethodLevelCallersClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersClassGold2);
 						}
 					
 				}
@@ -2009,79 +1999,14 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallers] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllTClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallers].toString()); 
 						AllTClassLevelCallersClass.UpdateCounters(Result, AllTClassLevelCallersClass);
 						System.out.println(methodtrace.toString());
 						
 						}
 						
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=AllTClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallers].toString()); 
-							AllTClassLevelCallersClassGold2.UpdateCounters(Result2, AllTClassLevelCallersClassGold2);
-							if(Result2!=null) {
-								System.out.println("MY RESULT "+Result2);
-								if(Result2.equals("FP")) {
-									bwlog.write("***********************************"); 
-									bwlog.newLine();
-									bwlog.write(methodtrace.toString());
-									bwlog.newLine();
-									for(Method2Representation call: methodtrace.getCallersList()) {
-										bwlog.write("callerlist "+ call.toString2());
-										
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-										 if(trace2!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-										bwlog.write("callerlistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace2!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									for(Method2Representation call: methodtrace.getCalleesList()) {
-										bwlog.write("calleelist "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace2!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-										bwlog.write("calleelistEXEC "+ call.toString2());
-										bwlog.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-										 if(trace2!=null) {
-											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-											
-											
-										 }
-										 bwlog.newLine();
-									}
-									bwlog.write("***********************************"); 
-									bwlog.newLine();
-								}
-							}
-					}
+						
 						}
 				/**************************************************************************************************************/
 				/**************************************************************************************************************/
@@ -2096,14 +2021,11 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllTClassLevelCallees] = "T";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllTClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTClassLevelCallees].toString()); 
 						AllTClassLevelCalleesClass.UpdateCounters(Result, AllTClassLevelCalleesClass);
 				
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallees].toString()); 
-						AllTClassLevelCalleesClassGold2.UpdateCounters(Result2, AllTClassLevelCalleesClassGold2);
 						}
 				}
 				/**************************************************************************************************************/
@@ -2119,7 +2041,7 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallers] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllNClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallers].toString()); 
 						AllNClassLevelCallersClass.UpdateCounters(Result, AllNClassLevelCallersClass);
 						if(Result!=null) {
@@ -2184,13 +2106,6 @@ public class TracesTableChessFINAL extends JFrame {
 								bwlog2.newLine();
 							}
 						}
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllNClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallers].toString()); 
-						AllNClassLevelCallersClassGold2.UpdateCounters(Result2, AllNClassLevelCallersClassGold2);
-						
-						
-						
-						
 						}
 						
 						
@@ -2208,13 +2123,10 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllNClassLevelCallees] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllNClassLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallees].toString()); 
 						AllNClassLevelCalleesClass.UpdateCounters(Result, AllNClassLevelCalleesClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllNClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallees].toString()); 
-						AllNClassLevelCalleesClassGold2.UpdateCounters(Result2, AllNClassLevelCalleesClassGold2);
 						}
 					
 				}
@@ -2231,13 +2143,10 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallers] = "N";
-						if(flagGold==false) {
+						if(true) {
 						String Result=AllNMethodLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallers].toString()); 
 						AllNMethodLevelCallersClass.UpdateCounters(Result, AllNMethodLevelCallersClass);
 						
-						}if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllNMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallers].toString()); 
-						AllNMethodLevelCallersClassGold2.UpdateCounters(Result2, AllNMethodLevelCallersClassGold2);
 						}
 				}
 				
@@ -2254,15 +2163,12 @@ public class TracesTableChessFINAL extends JFrame {
 					
 				
 						data[j][AllNMethodLevelCallees] = "N";
-						if(flagGold==false) {
+						if(true) {
 							String Result=AllNMethodLevelCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallees].toString()); 
 							AllNMethodLevelCalleesClass.UpdateCounters(Result, AllNMethodLevelCalleesClass);
 						}
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=AllNMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallees].toString()); 
-						AllNMethodLevelCalleesClassGold2.UpdateCounters(Result2, AllNMethodLevelCalleesClassGold2);
-						}
+						
 				}
 			//}
 					
@@ -2279,15 +2185,12 @@ public class TracesTableChessFINAL extends JFrame {
 						
 					
 							data[j][AllNMethodLevelCallersCallees] = "N";
-							if(flagGold==false) {
+							if(true) {
 								String Result=AllTMethodLevelCallersCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
 								AllTMethodLevelCallersCalleesClass.UpdateCounters(Result, AllTMethodLevelCallersCalleesClass);
 							}
 						
-							if(methodtrace.getGold2()!=null && flagGold2==false){
-							String Result2=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
-							AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersCalleesClassGold2);
-							}
+							
 					}
 				//}
 						
@@ -2305,15 +2208,12 @@ public class TracesTableChessFINAL extends JFrame {
 							
 						
 								data[j][AllTMethodLevelCallersCallees] = "T";
-								if(flagGold==false) {
+								if(true) {
 									String Result=AllTMethodLevelCallersCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
 									AllTMethodLevelCallersCalleesClass.UpdateCounters(Result, AllTMethodLevelCallersCalleesClass);
 								}
 							
-								if(methodtrace.getGold2()!=null && flagGold2==false){
-								String Result2=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
-								AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersCalleesClassGold2);
-								}
+								
 						}
 							
 							/**************************************************************************************************************/
@@ -2329,15 +2229,12 @@ public class TracesTableChessFINAL extends JFrame {
 								
 							
 									data[j][AllNMethodLevelCallersCallees] = "N";
-									if(flagGold==false) {
+									if(true) {
 										String Result=AllTMethodLevelCallersCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
 										AllTMethodLevelCallersCalleesClass.UpdateCounters(Result, AllTMethodLevelCallersCalleesClass);
 									}
 								
-									if(methodtrace.getGold2()!=null && flagGold2==false){
-									String Result2=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
-									AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersCalleesClassGold2);
-									}
+									
 							}
 						//}
 								
@@ -2355,15 +2252,12 @@ public class TracesTableChessFINAL extends JFrame {
 									
 								
 										data[j][AllTMethodLevelCallersCallees] = "T";
-										if(flagGold==false) {
+										if(true) {
 											String Result=AllTMethodLevelCallersCalleesClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
 											AllTMethodLevelCallersCalleesClass.UpdateCounters(Result, AllTMethodLevelCallersCalleesClass);
 										}
 									
-										if(methodtrace.getGold2()!=null && flagGold2==false){
-										String Result2=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
-										AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result2, AllTMethodLevelCallersCalleesClassGold2);
-										}
+										
 								}
 					/**************************************************************************************************************/
 					/**************************************************************************************************************/
@@ -2373,15 +2267,12 @@ public class TracesTableChessFINAL extends JFrame {
 						
 						
 						data[j][ACHRAFTRACE] = "T";
-						if(flagGold==false) {
+						if(true) {
 							String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFTRACE].toString()); 
 							ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
 						}
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=ACHRAFGold2Trace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFTRACE].toString()); 
-						ACHRAFGold2Trace.UpdateCounters(Result2, ACHRAFGold2Trace);
-						}
+						
 				}
 					
 					/**************************************************************************************************************/
@@ -2392,16 +2283,1179 @@ public class TracesTableChessFINAL extends JFrame {
 						
 						
 						data[j][ACHRAFNOTRACE] = "N";
-						if(flagGold==false) {
+						if(true) {
 							String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][ACHRAFNOTRACE].toString()); 
 							ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
 						}
 					
-						if(methodtrace.getGold2()!=null && flagGold2==false){
-						String Result2=ACHRAFGold2NOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
-						ACHRAFGold2NOTrace.UpdateCounters(Result2, ACHRAFGold2NOTrace);
-						}
+						
 				}
+					
+					
+					
+					
+				
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					if((counterParameterTGOLD2!=0 || counterParameterNGOLD2!=0|| counterParameterEGOLD2!=0)
+							/*	||
+								(CounterTraceClassCallerN!=0 && CounterTraceClassCallerE!=0)
+								||(CounterTraceClassCallerT!=0 && CounterTraceClassCallerE!=0)*/
+								) {
+							
+							if(counterParameterTGOLD2==counterParameterNGOLD2 && counterParameterTGOLD2>0) {
+								data[j][MajorityParameters] = "T";
+							}
+							else if(counterParameterTGOLD2==0 && counterParameterNGOLD2==0 && counterParameterEGOLD2>0) {
+								data[j][MajorityParameters] = "E";
+							}
+							else if(counterParameterTGOLD2==0 && counterParameterNGOLD2>0 && counterParameterEGOLD2>0) {
+								data[j][MajorityParameters] = "N";
+							}
+							else if (((counterParameterTGOLD2 >= counterParameterNGOLD2
+								//	&& counterParameterNGOLD2 >= counterParameterEGOLD2
+									)
+									//|| (counterParameterTGOLD2 >= counterParameterEGOLD2
+										//	&& counterParameterEGOLD2 >= counterParameterNGOLD2
+									//		)
+									)
+									) {
+								data[j][MajorityParameters] = "T";
+							}/* else if (((counterParameterEGOLD2 >= counterParameterNGOLD2
+									&& counterParameterNGOLD2 >= counterParameterTGOLD2)
+									|| (counterParameterEGOLD2 >= counterParameterTGOLD2
+											&& counterParameterTGOLD2 >= counterParameterNGOLD2))
+								) {
+								data[j][MajorityParameters] = "E";
+							} */else if ((counterParameterNGOLD2 >= counterParameterTGOLD2)) {
+								data[j][MajorityParameters] = "N";
+							}
+							if(true && methodtrace.getGold2()!=null) {
+								String Result=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityParameters].toString()); 
+								MajorityParametersClassGold2.UpdateCounters(Result, MajorityParametersClassGold2);
+							}
+							
+						
+							
+						
+						}
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//AT LEAST 1N PREDICTION PARAMETER
+					
+					
+					
+					
+					
+					if (counterParameterNGOLD2 >=1 )
+							 {
+						data[j][AtLeast1NParameter] = "N";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NParameter].toString()); 
+						AtLeast1NParameterClassGold2.UpdateCounters(Result, AtLeast1NParameterClassGold2);
+						}
+						
+					} 
+				
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//AT LEAST 2N PREDICTION PARAMETER
+					
+					
+					
+					
+					
+					if (counterParameterNGOLD2 >=2 )
+							 {
+						data[j][AtLeast2NParameter] = "N";
+						if(true && methodtrace.getGold2()!=null) {
+							
+							String Result=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NParameter].toString()); 
+						AtLeast2NParameterClassGold2.UpdateCounters(Result, AtLeast2NParameterClassGold2);
+						}
+						
+					} 
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				/**************************************************************************************************************/
+				
+				//AT LEAST 1T PREDICTION PARAMETER
+				
+				
+					
+					
+					
+					if (counterParameterTGOLD2 >=1 )
+							 {
+						data[j][AtLeast1TParameter] = "T";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TParameter].toString()); 
+						AtLeast1TParameterClassGold2.UpdateCounters(Result, AtLeast1TParameterClassGold2);
+						}
+					} 
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//AT LEAST 2T PREDICTION PARAMETER
+					
+					
+						
+						
+						
+						if (counterParameterTGOLD2 >=2 )
+								 {
+							data[j][AtLeast2TParameter] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TParameter].toString()); 
+							AtLeast2TParameterClassGold2.UpdateCounters(Result, AtLeast2TParameterClassGold2);
+							}
+						} 
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+				    /**************************************************************************************************************/	
+					
+					
+					
+					//ALL T PARAMETER PREDICTION
+					
+					
+					if(counterParameterEGOLD2==0 && counterParameterNGOLD2==0 && counterParameterTGOLD2>=1) {
+						
+						
+						
+					
+							data[j][AllTParameters] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTParameters].toString()); 
+							AllTParameterClassGold2.UpdateCounters(Result, AllTParameterClassGold2);
+							}
+							
+							
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL N PARAMETER PREDICTION
+					
+					
+					if(counterParameterTGOLD2==0 && counterParameterEGOLD2==0 && counterParameterNGOLD2>=1) {
+						
+						
+						
+					
+							data[j][AllNParameters] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNParameters].toString()); 
+							AllNParameterClassGold2.UpdateCounters(Result, AllNParameterClassGold2);
+							
+							if(Result!=null) {
+								
+								
+
+								System.out.println("MY RESULT "+Result);
+								if(Result.equals("FN")) {
+									bwlog3.write("***********************************"); 
+									bwlog3.newLine();
+									bwlog3.write(methodtrace.toString());
+									bwlog3.newLine();
+									for(Method2Representation call: methodtrace.getCallersList()) {
+										bwlog3.write("callerlist "+ call.toString2());
+										
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 if(trace2!=null) {
+											 bwlog3.newLine();
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog3.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+										bwlog3.write("callerlistEXEC "+ call.toString2());
+										bwlog3.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog3.newLine();
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog3.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesList()) {
+										bwlog3.write("calleelist "+ call.toString2());
+										bwlog3.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog3.newLine();
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog3.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+										bwlog3.write("calleelistEXEC "+ call.toString2());
+										bwlog3.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog3.newLine();
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog3.newLine();
+									}
+									bwlog3.write("***********************************"); 
+									bwlog3.newLine();
+								}
+							
+							}
+							
+							
+							}
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//MAJORITY CLASS LEVEL CALLEES PREDICTION 
+
+					//FIRST IF makes sure there is a mixture 
+					if((CounterTraceClassCalleeTGOLD2!=0 || CounterTraceClassCalleeNGOLD2!=0 || CounterTraceClassCalleeEGOLD2!=0)
+						/*	||
+							(CounterTraceClassCallerNGOLD2!=0 && CounterTraceClassCallerEGOLD2!=0)
+							||(CounterTraceClassCallerTGOLD2!=0 && CounterTraceClassCallerEGOLD2!=0)*/
+							) {
+						
+						if(CounterTraceClassCalleeTGOLD2==CounterTraceClassCalleeNGOLD2 && CounterTraceClassCalleeTGOLD2>0) {
+							data[j][MajorityClassLevelCallees] = "T";
+						}
+						else if(CounterTraceClassCalleeTGOLD2==0 && CounterTraceClassCalleeNGOLD2==0 && CounterTraceClassCalleeEGOLD2>0) {
+							data[j][MajorityClassLevelCallees] = "E";
+						}
+						else if(CounterTraceClassCalleeTGOLD2==0 && CounterTraceClassCalleeNGOLD2>0 && CounterTraceClassCalleeEGOLD2>0) {
+							data[j][MajorityClassLevelCallees] = "N";
+						}
+						else if ((CounterTraceClassCalleeTGOLD2 >= CounterTraceClassCalleeNGOLD2
+								)
+								) {
+							data[j][MajorityClassLevelCallees] = "T";
+						} /*else if (((CounterTraceClassCallerEGOLD2 >= CounterTraceClassCallerNGOLD2
+								&& CounterTraceClassCallerNGOLD2 >= CounterTraceClassCallerTGOLD2)
+								|| (CounterTraceClassCallerEGOLD2 >= CounterTraceClassCallerTGOLD2
+										&& CounterTraceClassCallerTGOLD2 >= CounterTraceClassCallerNGOLD2))
+							) {
+							data[j][MajorityClassLevelCallees] = "E";
+						}*/ else if (CounterTraceClassCalleeNGOLD2 >= CounterTraceClassCalleeTGOLD2) {
+							data[j][MajorityClassLevelCallees] = "N";
+						}
+						if(true && methodtrace.getGold2()!=null && data[j][MajorityClassLevelCallees]!=null) {
+						String Result=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallees].toString()); 
+						MajorityClassLevelCalleesClassGold2.UpdateCounters(Result, MajorityClassLevelCalleesClassGold2);
+						}
+					}
+				
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//MAJORITY CLASS LEVEL CALLERS PREDICTION 
+
+					//FIRST IF makes sure there is a mixture 
+					if((CounterTraceClassCallerTGOLD2!=0 || CounterTraceClassCallerNGOLD2!=0 ||CounterTraceClassCallerEGOLD2!=0)
+							/*||
+							(CounterTraceClassCalleeNGOLD2!=0 && CounterTraceClassCalleeEGOLD2!=0)
+							||(CounterTraceClassCalleeTGOLD2!=0 && CounterTraceClassCalleeEGOLD2!=0)*/) {
+						
+						if(CounterTraceClassCallerTGOLD2==CounterTraceClassCallerNGOLD2 && CounterTraceClassCallerTGOLD2>0) {
+							data[j][MajorityClassLevelCallers] = "T";
+						}
+						else if(CounterTraceClassCallerTGOLD2==0 && CounterTraceClassCallerNGOLD2==0 && CounterTraceClassCallerEGOLD2>0) {
+							data[j][MajorityClassLevelCallers] = "E";
+						}
+						else if(CounterTraceClassCallerTGOLD2==0 && CounterTraceClassCallerNGOLD2>0 && CounterTraceClassCallerEGOLD2>0) {
+							data[j][MajorityClassLevelCallers] = "N";
+						}
+						else if(CounterTraceClassCallerTGOLD2==0 && CounterTraceClassCallerNGOLD2>0 && CounterTraceClassCallerEGOLD2>0) {
+							data[j][MajorityClassLevelCallers] = "E";
+						}
+						else if (CounterTraceClassCallerTGOLD2 >= CounterTraceClassCallerNGOLD2) {
+							data[j][MajorityClassLevelCallers] = "T";
+						} else if (CounterTraceClassCallerNGOLD2>=CounterTraceClassCallerTGOLD2)
+							 {
+							data[j][MajorityClassLevelCallers] = "N";
+						} 
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=MajorityClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallers].toString()); 
+						MajorityClassLevelCallersClassGold2.UpdateCounters(Result, MajorityClassLevelCallersClassGold2);
+						}
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//MAJORITY METHOD LEVEL CALLEES PREDICTION 
+
+					
+					//FIRST IF makes sure there is a mixture 
+					if((CountMethodTCalleeGOLD2!=0 || CountMethodNCalleeGOLD2!=0 || CountMethodECalleeGOLD2!=0)/*||
+							(CountMethodNCalleeGOLD2!=0 && CountMethodECalleeGOLD2!=0)
+							||(CountMethodTCalleeGOLD2!=0 && CountMethodECalleeGOLD2!=0)*/) {
+						if(CountMethodTCalleeGOLD2==CountMethodNCalleeGOLD2 && CountMethodTCalleeGOLD2>0) {
+							data[j][MajorityMethodLevelCallees] = "T";
+						}
+						else if(CountMethodTCalleeGOLD2==0 && CountMethodNCalleeGOLD2==0 && CountMethodECalleeGOLD2>0) {
+							data[j][MajorityMethodLevelCallees] = "E";
+						}
+						else if(CountMethodTCalleeGOLD2==0 && CountMethodNCalleeGOLD2>0 && CountMethodECalleeGOLD2>0) {
+							data[j][MajorityMethodLevelCallees] = "N";
+						} 
+						
+						else if(CountMethodTCalleeGOLD2>=CountMethodNCalleeGOLD2)
+						 {
+							data[j][MajorityMethodLevelCallees] = "T";
+						}  else if (CountMethodNCalleeGOLD2 >= CountMethodTCalleeGOLD2
+							
+								) {
+							data[j][MajorityMethodLevelCallees] = "N";
+						}
+					
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=MajorityMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallees].toString()); 
+						MajorityMethodLevelCalleesClassGold2.UpdateCounters(Result, MajorityMethodLevelCalleesClassGold2);
+						}
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//MAJORITY METHOD LEVEL CALLERS PREDICTION 
+					
+					//FIRST IF makes sure there is a mixture 
+					if((CountMethodTGOLD2!=0 || CountMethodNGOLD2!=0|| CountMethodEGOLD2!=0 )/*||
+							(CountMethodNGOLD2!=0 && CountMethodEGOLD2!=0)
+							||(CountMethodTGOLD2!=0 && CountMethodEGOLD2!=0)*/) {
+						
+						if(CountMethodTGOLD2==CountMethodNGOLD2 && CountMethodTGOLD2>0) {
+							data[j][MajorityMethodLevelCallers] = "T";
+						}
+						else if(CountMethodTGOLD2==0 && CountMethodNGOLD2==0 && CountMethodEGOLD2>0) {
+							data[j][MajorityMethodLevelCallers] = "E";
+						}
+						else if(CountMethodTGOLD2==0 && CountMethodNGOLD2>0 && CountMethodEGOLD2>0) {
+							data[j][MajorityMethodLevelCallers] = "N";
+						}
+						
+						else if (CountMethodTGOLD2 >= CountMethodNGOLD2){
+							data[j][MajorityMethodLevelCallers] = "T";
+						}  else if (CountMethodNGOLD2 >= CountMethodTGOLD2
+								
+								) {
+							data[j][MajorityMethodLevelCallers] = "N";
+						}
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=MajorityMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallers].toString()); 
+						MajorityMethodLevelCallersClassGold2.UpdateCounters(Result, MajorityMethodLevelCallersClassGold2);
+						}
+					}
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//1AT LEAST 1N PREDICTION CLASS LEVEL CALLERS 
+					
+					
+						
+						
+						
+						if (CounterTraceClassCallerNGOLD2 >=1 )
+								 {
+							data[j][AtLeast1NPredictionClassLevelCallers] = "N";
+							Object var= 	data[j][AtLeast1NPredictionClassLevelCallers]; 
+							String NEWVAR=var.toString(); 
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastNPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallers].toString()); 
+							AtLeastNPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClassGold2);
+							}
+						} 
+					
+						
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//2AT LEAST 1T PREDICTION CLASS LEVEL CALLERS 
+					
+					
+						
+						
+						
+						if (CounterTraceClassCallerTGOLD2 >=1 )
+								 {
+							data[j][AtLeast1TPredictionClassLevelCallers] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastTPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallers].toString()); 
+							AtLeastTPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClassGold2);
+							}
+						} 
+						
+							
+						
+					
+					
+			
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//3AT LEAST 1N PREDICTION CLASS LEVEL CALLEES 
+				
+					
+						
+						
+						
+						if (CounterTraceClassCalleeNGOLD2 >=1 )
+								 {
+							data[j][AtLeast1NPredictionClassLevelCallees] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastNPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallees].toString()); 
+							AtLeastNPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClassGold2);
+							}
+						} 
+						
+					
+					
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+				
+					//4AT LEAST 1T PREDICTION CLASS LEVEL CALLEES 
+					
+					
+						
+						
+						
+						if (CounterTraceClassCalleeTGOLD2 >=1 )
+								 {
+							data[j][AtLeast1TPredictionClassLevelCallees] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastTPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallees].toString()); 
+							AtLeastTPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClassGold2);
+							}
+						} 
+						
+						
+					
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//5AT LEAST 1N PREDICTION METHOD LEVEL CALLERS 
+					
+					
+						
+						
+						if (CountMethodNGOLD2 >=1 )
+								 {
+							data[j][AtLeast1NPredictionMethodLevelCallers] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastNPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallers].toString()); 
+							AtLeastNPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClassGold2);
+							}
+						} 
+						
+						
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					//6AT LEAST 1T PREDICTION METHOD LEVEL CALLERS 
+				
+					
+						
+						
+						
+						if (CountMethodTGOLD2 >=1 )
+								 {
+							data[j][AtLeast1TPredictionMethodLevelCallers] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastTPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallers].toString()); 
+							AtLeastTPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClassGold2);
+							}
+						} 
+						
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//7AT LEAST 1N PREDICTION METHOD LEVEL CALLEES 
+					
+					
+						
+						
+						
+						if (CountMethodNCalleeGOLD2 >=1 )
+								 {
+							data[j][AtLeast1NPredictionMethodLevelCallees] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastNPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallees].toString()); 
+							AtLeastNPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClassGold2);
+							}
+						} 
+						
+					
+			
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//8AT LEAST 1T PREDICTION METHOD LEVEL CALLEES 
+					
+					
+						
+						
+						
+						if (CountMethodTCalleeGOLD2 >=1 )
+								 {
+							data[j][AtLeast1TPredictionMethodLevelCallees] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeastTPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallees].toString()); 
+							AtLeastTPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClassGold2);
+							}
+							}
+						 
+						
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//AT LEAST 2N PREDICTION CLASS LEVEL CALLEES 
+						
+						
+							
+							
+							
+							if (CounterTraceClassCalleeNGOLD2 >=2 )
+									 {
+								data[j][AtLeast2NPredictionClassLevelCallees] = "N";
+								Object var= 	data[j][AtLeast2NPredictionClassLevelCallees]; 
+								String NEWVAR=var.toString(); 
+								if(true && methodtrace.getGold2()!=null) {
+									String Result=AtLeast2NPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallees].toString()); 
+									AtLeast2NPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionClassLevelCalleesClassGold2);
+								}
+							} 
+						
+							
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//AT LEAST 2T PREDICTION CLASS LEVEL CALLEES 
+						
+						
+							
+							
+							
+							if (CounterTraceClassCalleeTGOLD2 >=2 )
+							 {
+						data[j][AtLeast2TPredictionClassLevelCallees] = "T";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast2TPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallees].toString()); 
+						AtLeast2TPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCalleesClassGold2);
+						}
+					} 
+								
+							
+						
+						
+				
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//AT LEAST 2N PREDICTION METHOD LEVEL CALLERS 
+					
+						
+							
+							
+							
+							
+							if (CountMethodNGOLD2 >=2 )
+									 {
+								data[j][AtLeast2NPredictionMethodLevelCallers] = "N";
+								if(true && methodtrace.getGold2()!=null) {
+								String Result=AtLeast2NPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallers].toString()); 
+								AtLeast2NPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCallersClassGold2);
+								}
+							} 
+							
+							
+						
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/
+						
+							//AT LEAST 2T PREDICTION CLASS LEVEL CALLERS 
+							
+							
+								
+								
+								
+								if (CounterTraceClassCallerTGOLD2 >=2 )
+								 {
+							data[j][AtLeast2TPredictionClassLevelCallers] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
+							AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
+							}
+						} 
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+					
+						//AT LEAST 2T PREDICTION METHOD LEVEL CALLERS 
+						
+						
+							
+							
+							
+							if (CountMethodTGOLD2 >=2 )
+							 {
+						data[j][AtLeast2TPredictionMethodLevelCallers] = "T";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast2TPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallers].toString()); 
+						AtLeast2TPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
+						}
+					} 
+							
+							
+						
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						//AT LEAST 2N PREDICTION METHOD LEVEL CALLEES 
+
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						
+							
+							
+							if (CountMethodNCalleeGOLD2 >=2 )
+							 {
+						data[j][AtLeast2NPredictionMethodLevelCallees] = "N";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast2NPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallees].toString()); 
+						AtLeast2NPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCalleesClassGold2);
+						}	
+					} 
+							
+							
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						//AT LEAST 2T PREDICTION METHOD LEVEL CALLEES 
+					
+						
+							
+							
+							
+							if (CountMethodTCalleeGOLD2 >=2 )
+							 {
+						data[j][AtLeast2TPredictionMethodLevelCallees] = "T";
+						if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeast2TPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallees].toString()); 
+							AtLeast2TPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCalleesClassGold2);
+
+						}
+						
+					} 
+							
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//AT LEAST 2N PREDICTION CLASS LEVEL CALLERS 
+						
+						
+							
+							
+							
+							if (CounterTraceClassCallerNGOLD2 >=2 )
+							 {
+						data[j][AtLeast2NPredictionClassLevelCallers] = "N";
+						if(true && methodtrace.getGold2()!=null) {
+						String Result=AtLeast2NPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallers].toString()); 
+						AtLeast2NPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2NPredictionClassLevelCallersClassGold2);
+						
+						}
+					} 
+					
+						
+				
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//AT LEAST 2T PREDICTION CLASS LEVEL CALLERS 
+						
+						
+							
+							
+							
+							if (CounterTraceClassCallerTGOLD2 >=2 )
+							 {
+						data[j][AtLeast2TPredictionClassLevelCallers] = "T";
+						if(true && methodtrace.getGold2()!=null) {
+							String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallers].toString()); 
+							AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCallersClassGold2);
+
+						}
+						
+						}
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/	 
+					//ALL T METHOD LEVEL CALLEES 
+					
+					
+					if(CountMethodNCalleeGOLD2==0 && CountMethodECalleeGOLD2==0 && CountMethodTCalleeGOLD2>=1) {
+						
+						
+						
+							
+							data[j][AllTMethodLevelCallees] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllTMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallees].toString()); 
+							AllTMethodLevelCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCalleesClassGold2);
+							}
+					}
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL T METHOD LEVEL CALLERS 
+					
+					if(CountMethodNGOLD2==0 && CountMethodEGOLD2==0  && CountMethodTGOLD2>=1) {
+						
+						
+						
+					
+							data[j][AllTMethodLevelCallers] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllTMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallers].toString()); 
+							AllTMethodLevelCallersClassGold2.UpdateCounters(Result, AllTMethodLevelCallersClassGold2);
+							
+							}
+						
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL T CLASS LEVEL CALLERS 
+					
+					
+					if(CounterTraceClassCallerEGOLD2==0 && CounterTraceClassCallerNGOLD2==0 && CounterTraceClassCallerTGOLD2>=1) {
+						
+						
+					
+							data[j][AllTClassLevelCallers] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllTClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallers].toString()); 
+							AllTClassLevelCallersClassGold2.UpdateCounters(Result, AllTClassLevelCallersClassGold2);
+							System.out.println(methodtrace.toString());
+							
+							}
+							
+							
+							}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL T CLASS LEVEL CALLEES 
+					
+					
+					if(CounterTraceClassCalleeEGOLD2==0 && CounterTraceClassCalleeNGOLD2==0 && CounterTraceClassCalleeTGOLD2>=1) {
+						
+						
+						
+					
+							data[j][AllTClassLevelCallees] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallees].toString()); 
+							AllTClassLevelCalleesClassGold2.UpdateCounters(Result, AllTClassLevelCalleesClassGold2);
+					
+							
+							}
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL N CLASS LEVEL CALLERS 
+					
+					
+				
+						
+					if(CounterTraceClassCallerTGOLD2==0 && CounterTraceClassCallerEGOLD2==0 && CounterTraceClassCallerNGOLD2>=1) {
+						
+					
+							data[j][AllNClassLevelCallers] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllNClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallers].toString()); 
+							AllNClassLevelCallersClassGold2.UpdateCounters(Result, AllNClassLevelCallersClassGold2);
+							if(Result!=null) {
+								System.out.println("MY RESULT "+Result);
+								if(Result.equals("FN")) {
+									bwlog2.write("***********************************"); 
+									bwlog2.newLine();
+									bwlog2.write(methodtrace.toString());
+									bwlog2.newLine();
+									for(Method2Representation call: methodtrace.getCallersList()) {
+										bwlog2.write("callerlist "+ call.toString2());
+										
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 if(trace2!=null) {
+											 bwlog2.newLine();
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog2.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+										bwlog2.write("callerlistEXEC "+ call.toString2());
+										bwlog2.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog2.newLine();
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog2.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesList()) {
+										bwlog2.write("calleelist "+ call.toString2());
+										bwlog2.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog2.newLine();
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog2.newLine();
+									}
+									for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+										bwlog2.write("calleelistEXEC "+ call.toString2());
+										bwlog2.newLine();
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+										 if(trace2!=null) {
+											 bwlog2.newLine();
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											
+											
+										 }
+										 bwlog2.newLine();
+									}
+									bwlog2.write("***********************************"); 
+									bwlog2.newLine();
+								}
+							}
+							}
+							
+							
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL N CLASS LEVEL CALLEES 
+					
+					
+			
+						
+						if(CounterTraceClassCalleeTGOLD2==0 && CounterTraceClassCalleeEGOLD2==0 && CounterTraceClassCalleeNGOLD2>=1) {
+						
+					
+							data[j][AllNClassLevelCallees] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllNClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallees].toString()); 
+							AllNClassLevelCalleesClassGold2.UpdateCounters(Result, AllNClassLevelCalleesClassGold2);
+							
+							}
+						
+					}
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL N METHOD LEVEL CALLERS 
+					
+					
+				
+						
+						if(CountMethodTGOLD2==0 && CountMethodEGOLD2==0 && CountMethodNGOLD2>=1) {	
+						
+					
+							data[j][AllNMethodLevelCallers] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+							String Result=AllNMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallers].toString()); 
+							AllNMethodLevelCallersClassGold2.UpdateCounters(Result, AllNMethodLevelCallersClassGold2);
+							
+							}
+					}
+					
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					/**************************************************************************************************************/
+					
+					//ALL N METHOD LEVEL CALLEES 
+					
+					
+				
+						
+						if(CountMethodTCalleeGOLD2==0 && CountMethodECalleeGOLD2==0 && CountMethodNCalleeGOLD2>=1) {
+						
+					
+							data[j][AllNMethodLevelCallees] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+								String Result=AllNMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallees].toString()); 
+								AllNMethodLevelCalleesClassGold2.UpdateCounters(Result, AllNMethodLevelCalleesClassGold2);
+							}
+						
+							
+					}
+				//}
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						
+						//ALL N METHOD LEVEL CALLERS CALLEES 
+						
+						
+					
+							
+							if(CountMethodTCalleeGOLD2==0 && CountMethodECalleeGOLD2==0 && CountMethodNCalleeGOLD2>=1 && CountMethodNGOLD2>=1) {
+							
+						
+								data[j][AllNMethodLevelCallersCallees] = "N";
+								if(true && methodtrace.getGold2()!=null) {
+									String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
+									AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
+								}
+							
+								
+						}
+					//}
+							
+							
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/
+							/**************************************************************************************************************/
+							
+							//ALL T METHOD LEVEL CALLERS CALLEES 
+							
+							
+						
+								
+								if(CountMethodTGOLD2==0 && CountMethodEGOLD2==0 && CountMethodTCalleeGOLD2>=1 && CountMethodTGOLD2>=1) {
+								
+							
+									data[j][AllTMethodLevelCallersCallees] = "T";
+									if(true && methodtrace.getGold2()!=null) {
+										String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
+										AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
+									}
+								
+									
+							}
+								
+								/**************************************************************************************************************/
+								/**************************************************************************************************************/
+								/**************************************************************************************************************/
+								
+								//ALL N CLASS LEVEL CALLERS CALLEES 
+								
+								
+							
+									
+									if(CountMethodTCalleeGOLD2==0 && CountMethodECalleeGOLD2==0 && CounterTraceClassCalleeNGOLD2>=1 && CounterTraceClassCallerNGOLD2>=1) {
+									
+								
+										data[j][AllNMethodLevelCallersCallees] = "N";
+										if(true && methodtrace.getGold2()!=null) {
+											String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersCallees].toString()); 
+											AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
+										}
+									
+										
+								}
+							//}
+									
+									
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									/**************************************************************************************************************/
+									
+									//ALL T CLASS LEVEL CALLERS CALLEES 
+									
+									
+								
+										
+										if(CountMethodTGOLD2==0 && CountMethodEGOLD2==0 && CounterTraceClassCalleeTGOLD2>=1 && CounterTraceClassCallerTGOLD2>=1) {
+										
+									
+											data[j][AllTMethodLevelCallersCallees] = "T";
+											if(true && methodtrace.getGold2()!=null) {
+												String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersCallees].toString()); 
+												AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
+											}
+										
+											
+									}
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						//ACHRAF
+						if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
+							
+							
+							data[j][ACHRAFTRACE] = "T";
+							if(true && methodtrace.getGold2()!=null) {
+								String Result=ACHRAFTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFTRACE].toString()); 
+								ACHRAFTrace.UpdateCounters(Result, ACHRAFTrace);
+							}
+						
+							
+					}
+						
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						/**************************************************************************************************************/
+						//ACHRAF NO TRACE 
+						if(CountMethodNCalleeGOLD2>0 && CountMethodNGOLD2>0) {
+							
+							
+							data[j][ACHRAFNOTRACE] = "N";
+							if(true && methodtrace.getGold2()!=null) {
+								String Result=ACHRAFNOTrace.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][ACHRAFNOTRACE].toString()); 
+								ACHRAFNOTrace.UpdateCounters(Result, ACHRAFNOTrace);
+							}
+						
+							
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 			
 			JComboBox comboBox1 = new JComboBox(items1And2);
 			DefaultCellEditor dce1 = new DefaultCellEditor(comboBox1);
