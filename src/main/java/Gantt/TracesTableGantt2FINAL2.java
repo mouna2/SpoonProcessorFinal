@@ -4452,7 +4452,7 @@ public class TracesTableGantt2FINAL2 extends JFrame {
 							
 							//ALL T METHOD LEVEL CALLERS 
 							
-							if(CountMethodNGOLD4==0 && CountMethodEGOLD4==0  && CountMethodTGOLD4>=4) {
+							if(CountMethodNGOLD4==0 && CountMethodEGOLD4==0  && CountMethodTGOLD4>=7) {
 								
 								
 								

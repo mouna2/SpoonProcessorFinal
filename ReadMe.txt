@@ -24,3 +24,10 @@ Here is the list of the database files to be run in order to populate the databa
 -DBDemo3iTrust
 -DBDemo3Gantt
 -DBDemoChess
+
+TableLog needs to be adapted depending on whether we are interested in Gold, Gold2, Gold3 or Gold4 for each one of the four programs 
+
+Chess: Gold, Gold2	
+iTrust: Gold, Gold2	
+Gantt: Gold, Gold3, Gold4
+JHOTDRAW: Gold, Gold3, Gold4
