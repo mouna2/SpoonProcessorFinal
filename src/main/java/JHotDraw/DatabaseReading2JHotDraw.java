@@ -94,7 +94,7 @@ public class DatabaseReading2JHotDraw {
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasejhotdraw";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
