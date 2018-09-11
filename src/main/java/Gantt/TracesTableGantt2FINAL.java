@@ -5578,7 +5578,7 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 							data[j][AtLeast2NPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast2NPredictionClassLevelCalleesGOLD4] 
 							+ "," + data[j][AtLeast2NPredictionMethodLevelCallersGOLD4]+ "," + data[j][AtLeast2NPredictionMethodLevelCalleesGOLD4]
 							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD4]
-							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD4]
+							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD4] 
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD4]	
 							+ "," + data[j][AllNClassLevelCallersGOLD4]
 					+ "," +data[j][AllNClassLevelCalleesGOLD4]+ "," + data[j][AllNMethodLevelCallersGOLD4]+ "," + data[j][AllNMethodLevelCalleesGOLD4]+ "," +
