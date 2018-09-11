@@ -5556,7 +5556,7 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 					+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
 					 );
  
-			           
+			               
 			bwGold4TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold4] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD4] + "," + data[j][OwnerClassNGOLD4] + ","
 					+ data[j][OwnerClassEGOLD4] + "," + data[j][CallerMethodsNumberGOLD4]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD4] + "," +
