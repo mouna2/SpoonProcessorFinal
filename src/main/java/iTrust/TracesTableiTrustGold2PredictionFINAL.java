@@ -4236,8 +4236,8 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		
 		if(methodtrace.getGold2()!=null ) {
 		data[j][CLASSTRACEMethodLevelPureGold2]=TracePureGold2ValueMethodLevel; 
-		String Result=PredictionCLASSNOTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueMethodLevel); 
-		PredictionCLASSNOTRACEMethodLevelPureGold2.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold2);
+		String Result=PredictionCLASSTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelPureGold2.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold2);
 		}
 		
 		if(methodtrace.getGold2()!=null ) {

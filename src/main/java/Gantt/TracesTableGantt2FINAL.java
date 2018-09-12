@@ -5636,8 +5636,8 @@ if(CountMethodTGOLD3>0 && CountMethodTCalleeGOLD3>0) {
 	
 	if(methodtrace.getGold3()!=null ) {
 	data[j][CLASSTRACEMethodLevelPureGold3]=TracePureGold3ValueMethodLevel; 
-	String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueMethodLevel); 
-	PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
+	String Result=PredictionCLASSTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueMethodLevel); 
+	PredictionCLASSTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold3);
 	}
 	
 	if(methodtrace.getGold3()!=null ) {
@@ -5712,8 +5712,8 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 	
 	if(methodtrace.getGold4()!=null ) {
 	data[j][CLASSTRACEMethodLevelPureGold4]=TracePureGold4ValueMethodLevel; 
-	String Result=PredictionCLASSNOTRACEMethodLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueMethodLevel); 
-	PredictionCLASSNOTRACEMethodLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold4);
+	String Result=PredictionCLASSTRACEMethodLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueMethodLevel); 
+	PredictionCLASSTRACEMethodLevelPureGold4.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold4);
 	}
 	
 	if(methodtrace.getGold4()!=null ) {
