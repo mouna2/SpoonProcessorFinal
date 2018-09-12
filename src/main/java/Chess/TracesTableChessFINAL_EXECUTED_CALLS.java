@@ -53,7 +53,7 @@ import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
 
-public class TracesTableChessFINAL extends JFrame {
+public class TracesTableChessFINAL_EXECUTED_CALLS extends JFrame {
 	int Row=0; 
 	int MethodID=1; 
 	int MethodName=2; 
@@ -405,21 +405,21 @@ public class TracesTableChessFINAL extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessEXEC.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChess.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessEXEC.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2EXEC.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
-	File foutGold2TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGOLD2.txt");
+	File foutGold2TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGOLD2EXEC.txt");
 	FileOutputStream fosGold2 = new FileOutputStream(foutGold2TableLog);
 	BufferedWriter bwGold2TableLog = new BufferedWriter(new OutputStreamWriter(fosGold2));
 
@@ -462,7 +462,7 @@ public class TracesTableChessFINAL extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableChessFINAL() throws SQLException, IOException {
+	public TracesTableChessFINAL_EXECUTED_CALLS() throws SQLException, IOException {
 	
 
 		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
@@ -478,8 +478,8 @@ public class TracesTableChessFINAL extends JFrame {
 				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 				
-				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
+//				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
+//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
 				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
 				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
@@ -715,66 +715,57 @@ public class TracesTableChessFINAL extends JFrame {
 			
 			
 			
-			for (Method2Representation caller : methodtrace.getCallersList()) {
-				items1[CountCallers] = caller.toString2();
-				callersarr[CountCallers] = caller;
-				System.out.println(caller.toString2());
-				CountCallers++;
-				
-				
-				
-				
-				
-
-			}
+			
+//			for (Method2Representation caller : methodtrace.getCallersList()) {
+//				items1[CountCallers] = caller.toString2();
+//				callersarr[CountCallers] = caller;
+//				System.out.println(caller.toString2());
+//				CountCallers++;
+//				
+//				
+//				
+//				
+//				
+//
+//			}
 
 			int CountCallersExecuted = 0;
 			items2 = new String[methodtrace.getCallersListExecuted().size()];
 			callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
 			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
 
-				boolean equalbool = false;
-				if (items1.length == 0) {
+//				boolean equalbool = false;
+//				if (items1.length == 0) {
 					items2[CountCallersExecuted] = caller.toString2();
 					callersex[CountCallersExecuted] = caller;
 				
 						
 					
 					CountCallersExecuted++;
-					OnlyinExecutedCallers++; 
+					//OnlyinExecutedCallers++; 
 
-				} else {
-					for (String item : items1) {
-						item = item.replaceAll("\\(.*\\)", "");
-
-						if (item.equals(caller.toString2()) == true) {
-							BothParsedAndExecutedCallers++; 
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						items2[CountCallersExecuted] = caller.toString2();
-						callersex[CountCallersExecuted] = caller;
-						CountCallersExecuted++;
-						OnlyinExecutedCallers++; 
-					}
-				}
+//				} else {
+//					for (String item : items1) {
+//						item = item.replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(caller.toString2()) == true) {
+//						//	BothParsedAndExecutedCallers++; 
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						items2[CountCallersExecuted] = caller.toString2();
+//						callersex[CountCallersExecuted] = caller;
+//						CountCallersExecuted++;
+////						OnlyinExecutedCallers++; 
+//					}
+//				}
 
 			}
 		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 			
 			
@@ -791,91 +782,88 @@ public class TracesTableChessFINAL extends JFrame {
 			}
 			
 			int Count=0; 
-			for (Method2Representation caller : methodtrace.getCallersList()) {
-
-				boolean equalbool = false;
-				if (itemsExecuted.length == 0) {
-					items5[Count] = caller.toString2();
-				
-						
-					
-					Count++; 
-					OnlyinParsedCallers++; 
-
-				} else {
-					for (String item : itemsExecuted) {
-					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(callerString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyinParsedCallers++; 
-					}
-				}
-
-			}
+//			for (Method2Representation caller : methodtrace.getCallersList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecuted.length == 0) {
+//					items5[Count] = caller.toString2();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyinParsedCallers++; 
+//
+//				} else {
+//					for (String item : itemsExecuted) {
+//					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(callerString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyinParsedCallers++; 
+//					}
+//				}
+//
+//			}
 
 			String[] items1And2 = new String[items1.length + items2.length];
-			items1And2 = (String[]) ArrayUtils.addAll(items1, items2);
+			items1And2 = (String[]) ArrayUtils.addAll(items2, items1);
 			Method2Representation[] CallerMethods = new Method2Representation[items1.length + items2.length];
 			CallerMethods = (Method2Representation[]) ArrayUtils.addAll(callersarr, callersex);
 			//=======> LIST OF CALLERS AFTER MERGING CALLERS + CALLERSEXECUTED 
 			List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods);
 			
 			
-			int BothInParsedAndExecutedCallees=0; 
-			int OnlyInParsedCallees=0; 
-			int OnlyInExecutedCallees=0; 
+		//	int BothInParsedAndExecutedCallees=0; 
+		//	int OnlyInParsedCallees=0; 
+		//	int OnlyInExecutedCallees=0; 
 			// data[j][OwnerClassE]=items1;
-			int CountCallees = 0;
-			items3 = new String[methodtrace.getCalleesList().size()];
-			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
-			for (Method2Representation caller : methodtrace.getCalleesList()) {
-				items3[CountCallees] = caller.toString2();
-				calleesarr[CountCallees] = caller;
-				System.out.println(caller.toString2());
-				CountCallees++;
-			
-			}
+//			int CountCallees = 0;
+//			items3 = new String[methodtrace.getCalleesList().size()];
+//			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
+//			for (Method2Representation caller : methodtrace.getCalleesList()) {
+//				items3[CountCallees] = caller.toString2();
+//				calleesarr[CountCallees] = caller;
+//				System.out.println(caller.toString2());
+//				CountCallees++;
+//			
+//			}
 
 			int CountCalleesExecuted = 0;
 			items4 = new String[methodtrace.getCalleesListExecuted().size()];
 			calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
 			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
-				boolean equalbool = false;
-				if (items3.length == 0) {
+//				boolean equalbool = false;
+//				if (items3.length == 0) {
 					items4[CountCalleesExecuted] = caller.toString2();
 					calleesex[CountCalleesExecuted] = caller;
 					CountCalleesExecuted++;
-					OnlyInExecutedCallees++; 
+				//	OnlyInExecutedCallees++; 
 					
-				} else {
-					for (String item : items3) {
-						item = item.replaceAll("\\(.*\\).*", "");
-						item = item.replaceAll(":", ",");
-						String mycaller=caller.toString(); 
-						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
-						if (item.equals(mycaller) == true) {
-							equalbool = true;
-							BothInParsedAndExecutedCallees++; 
-						}
-					}
-					if (equalbool == false) {
-						items4[CountCalleesExecuted] = caller.toString2();
-						calleesex[CountCalleesExecuted] = caller;
-						OnlyInExecutedCallees++; 
-
-						CountCalleesExecuted++;
-				
-					}
-				}
+//				} else {
+//					for (String item : items3) {
+//						item = item.replaceAll("\\(.*\\)", "");
+//						if (item.equals(caller.toString()) == true) {
+//							equalbool = true;
+//						//	BothInParsedAndExecutedCallees++; 
+//						}
+//					}
+//					if (equalbool == false) {
+//						items4[CountCalleesExecuted] = caller.toString2();
+//						calleesex[CountCalleesExecuted] = caller;
+//					//	OnlyInExecutedCallees++; 
+//
+//						CountCalleesExecuted++;
+//				
+//					}
+//				}
 
 			}
 
@@ -883,45 +871,45 @@ public class TracesTableChessFINAL extends JFrame {
 			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
 			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
 				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
-				System.out.println(callee.toString2());
+				itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
+				System.out.println(callee.toString());
 				CountCalleeExecuted++;
 			}
 			
 			 Count=0; 
-			for (Method2Representation callee : methodtrace.getCalleesList()) {
-
-				boolean equalbool = false;
-				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString2();
-				
-						
-					
-					Count++; 
-					OnlyInParsedCallees++; 
-
-				} else {
-					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(calleeString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyInParsedCallees++; 
-					}
-				}
-
-			}
-			
+//			for (Method2Representation callee : methodtrace.getCalleesList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecutedCallees.length == 0) {
+//					items6[Count] = callee.toString();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyInParsedCallees++; 
+//
+//				} else {
+//					for (String item : itemsExecutedCallees) {
+//					String	calleeString = callee.toString().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(calleeString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyInParsedCallees++; 
+//					}
+//				}
+//
+//			}
+			 System.out.println("LENGTH OF ITEMS4: "+items4.length);
 			String[] items3And4 = new String[items3.length + items4.length];
-			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);
+			items3And4 = (String[]) ArrayUtils.addAll(items4, items3);
 			Method2Representation[] CalleeMethods = new Method2Representation[items3.length + items4.length];
 			CalleeMethods = (Method2Representation[]) ArrayUtils.addAll(calleesarr, calleesex);
 			//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
@@ -1202,7 +1190,7 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodTACHRAF = 0; 
 			int CountMethodNACHRAF = 0; 
 			int CountMethodEACHRAF = 0; 
-			for (Method2Representation mycaller: CallerMethodListFinal) {
+			for (Method2Representation mycaller: methodtrace.getCallersListExecuted()) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1221,7 +1209,7 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodTACHRAFCallee = 0; 
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
-			for (Method2Representation mycaller: CalleeMethodListFinal) {
+			for (Method2Representation mycaller: methodtrace.getCalleesListExecuted()) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1246,7 +1234,7 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodTACHRAFGold2 = 0; 
 			int CountMethodNACHRAFGold2 = 0; 
 			int CountMethodEACHRAFGold2 = 0; 
-			for (Method2Representation mycaller: CallerMethodListFinal) {
+			for (Method2Representation mycaller: methodtrace.getCallersListExecuted()) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1270,7 +1258,7 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodTACHRAFCalleeGold2 = 0; 
 			int CountMethodNACHRAFCalleeGold2 = 0; 
 			int CountMethodEACHRAFCalleeGold2 = 0; 
-			for (Method2Representation mycaller: CalleeMethodListFinal) {
+			for (Method2Representation mycaller: methodtrace.getCalleesListExecuted()) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -4514,8 +4502,8 @@ failGold2++;
 					+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
 					+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
 					+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
-					+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-					+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
+//					+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
+//					+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
 					+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
 					+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
 					"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
@@ -4559,9 +4547,16 @@ failGold2++;
 					data[j][AllTClassLevelCallersAtLeast2TGOLD2]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD2]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD2]+ 
 					","
 					
-					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD2]+","+
-					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumberGOLD2]+","+ParametersAppended+","+data [j][CountParamaterTGOLD2]+","+data [j][CountParamaterNGOLD2]+","+data [j][CountParamaterEGOLD2]+","+data[j][MajorityParametersGOLD2]+","+data[j][AtLeast1NParameterGOLD2]
+					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD2]
+//							+","+
+//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers
+//					+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
+//					+","+BothInParsedAndExecutedCallees
+					
+					+","+
+					
+					
+					data[j][paramatersNumberGOLD2]+","+ParametersAppended+","+data [j][CountParamaterTGOLD2]+","+data [j][CountParamaterNGOLD2]+","+data [j][CountParamaterEGOLD2]+","+data[j][MajorityParametersGOLD2]+","+data[j][AtLeast1NParameterGOLD2]
 							+","+data[j][AtLeast1TParameterGOLD2]+","+data[j][AtLeast2TParameterGOLD2]+","+data[j][AtLeast2NParameterGOLD2]+","+data[j][AllNParametersGOLD2]+","+data[j][AllTParametersGOLD2]+","+
 							data[j][ACHRAFTRACEPureGOLD2]+","+data[j][ACHRAFTRACEMixedGOLD2]+","+data[j][ACHRAFNOTRACEPureGOLD2]+","+data[j][ACHRAFNOTRACEMixedGOLD2]+","+	
 							data[j][AllNMethodLevelCallersCalleesGOLD2]+","+data[j][AllTMethodLevelCallersCalleesGOLD2]+","+data[j][AllTClassLevelCallersCalleesGOLD2]+","+data[j][AllNClassLevelCallersCalleesGOLD2]
@@ -4605,11 +4600,23 @@ failGold2++;
 					
 ","+data[j][AllNClassLevelCallersAtLeast2NGOLD]
 		+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD]+ "," +
-		data[j][AllTClassLevelCallersAtLeast2TGOLD]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD]+ 
-		","+
+		data[j][AllTClassLevelCallersAtLeast2TGOLD]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD]
+				
+//				+ 
+//		","+
+//					
+//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers
 					
-					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+					
+//					
+//					+","+
+//					OnlyInParsedCallees+","+OnlyInExecutedCallees
+//					+","+BothInParsedAndExecutedCallees
+					
+					
+					
+					
+					+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
 							+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
 							data[j][ACHRAFTRACEPureGold]+","+data[j][ACHRAFTRACEMixedGold]+","+data[j][ACHRAFNOTRACEPureGold]+","+data[j][ACHRAFNOTRACEMixedGold]+","+	
 							data[j][AllNMethodLevelCallersCallees]+","+data[j][AllTMethodLevelCallersCallees]+","+data[j][AllTClassLevelCallersCallees]+","+data[j][AllNClassLevelCallersCallees]+","+	
@@ -5245,7 +5252,7 @@ failGold2++;
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINAL frame = new TracesTableChessFINAL();
+		TracesTableChessFINAL_EXECUTED_CALLS frame = new TracesTableChessFINAL_EXECUTED_CALLS();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

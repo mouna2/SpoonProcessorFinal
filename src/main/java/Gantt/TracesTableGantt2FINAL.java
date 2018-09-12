@@ -132,7 +132,6 @@ public class TracesTableGantt2FINAL extends JFrame {
 	int AtLeast2NParameter=68; 
 	int AllNParameters=69; 
 	int AllTParameters=70; 
-	
 	int ACHRAFTRACEPureGold=71; 
 	int ACHRAFTRACEMixedGold=72; 
 	int ACHRAFNOTRACEPureGold=73; 
@@ -149,165 +148,194 @@ public class TracesTableGantt2FINAL extends JFrame {
 	int AllTClassLevelCallersAtLeast2TGOLD=84; 
 	int AllTMethodLevelCalleesAtLeast2TGOLD=85; 
 	int AllTMethodLevelCallersAtLeast2TGOLD=86;
-	
-	int Gold3=87; 
-	int OwnerClassTGOLD3=88; 
-	int OwnerClassNGOLD3=89; 
-	int OwnerClassEGOLD3=90; 
-	int CallerMethodsNumberGOLD3=91; 
-	int CallerMethodsTGOLD3=92; 
-	int CallerMethodsNGOLD3=93; 
-	int CallerMethodsEGOLD3=94; 
-	int CallerClassesNumberGOLD3=95; 
-	int CallerClassesTGOLD3=96; 
-	int CallerClassesNGOLD3=97; 
-	int CallerClassesEGOLD3=98; 
-	int CalleeMethodsNumberGOLD3=99; 
-	int CalleeMethodsTGOLD3=100; 
-	int CalleeMethodsNGOLD3=101; 
-	int CalleeMethodsEGOLD3=102; 
-	int CalleeClassesNumberGOLD3=103; 
-	int CalleeClassesTGOLD3=104; 
-	int CalleeClassesNGOLD3=105; 
-	int CalleeClassesEGOLD3=106; 
-	int OwnerClassPredictionGOLD3=107; 
-	int MajorityClassLevelCalleesGOLD3=108; 
-	int MajorityClassLevelCallersGOLD3=109; 
-	int MajorityMethodLevelCalleesGOLD3=110; 
-	int MajorityMethodLevelCallersGOLD3=111; 
-	int AtLeast1NPredictionClassLevelCalleesGOLD3=112; 
-	int AtLeast1NPredictionClassLevelCallersGOLD3=113; 
-	int AtLeast1NPredictionMethodLevelCalleesGOLD3=114; 
-	int AtLeast1NPredictionMethodLevelCallersGOLD3=115; 
-	int AtLeast1TPredictionClassLevelCalleesGOLD3=116; 
-	int AtLeast1TPredictionClassLevelCallersGOLD3=117; 
-	int AtLeast1TPredictionMethodLevelCalleesGOLD3=118; 
-	int AtLeast1TPredictionMethodLevelCallersGOLD3=119; 
-	int AtLeast2NPredictionClassLevelCalleesGOLD3=120; 
-	int AtLeast2NPredictionClassLevelCallersGOLD3=121; 
-	int AtLeast2NPredictionMethodLevelCalleesGOLD3=122; 
-	int AtLeast2NPredictionMethodLevelCallersGOLD3=123; 
-	int AtLeast2TPredictionClassLevelCalleesGOLD3=124; 
-	int AtLeast2TPredictionClassLevelCallersGOLD3=125; 
-	int AtLeast2TPredictionMethodLevelCalleesGOLD3=126; 
-	int AtLeast2TPredictionMethodLevelCallersGOLD3=127; 
-	int AllNClassLevelCalleesGOLD3=128; 
-	int AllNClassLevelCallersGOLD3=129; 
-	int AllNMethodLevelCalleesGOLD3=126; 
-	int AllNMethodLevelCallersGOLD3=127; 
-	int AllTClassLevelCalleesGOLD3=128; 
-	int AllTClassLevelCallersGOLD3=129; 
-	int AllTMethodLevelCalleesGOLD3=130; 
-	int AllTMethodLevelCallersGOLD3=131; 
-	int CallersGOLD3=132; 
-	int CalleesGOLD3=133; 
-	int paramatersNumberGOLD3=134; 
-	int CountParamaterTGOLD3=135; 
-	int CountParamaterNGOLD3=136; 
-	int CountParamaterEGOLD3=137; 
-	int MajorityParametersGOLD3=138; 
-	int AtLeast1NParameterGOLD3=139; 
-	int AtLeast1TParameterGOLD3=140; 
-	int AtLeast2TParameterGOLD3=141; 
-	int AtLeast2NParameterGOLD3=142; 
-	int AllNParametersGOLD3=143; 
-	int AllTParametersGOLD3=144; 
-	int ACHRAFTRACEPureGOLD3=145; 
-	int ACHRAFTRACEMixedGOLD3=146; 
-	int ACHRAFNOTRACEPureGOLD3=147; 
-	int ACHRAFNOTRACEMixedGOLD3=148; 
-	int AllNMethodLevelCallersCalleesGOLD3=149; 
-	int AllTMethodLevelCallersCalleesGOLD3=150; 
-	int AllTClassLevelCallersCalleesGOLD3=151; 
-	int AllNClassLevelCallersCalleesGOLD3=152; 
-	int AllNClassLevelCalleesAtLeast2NGOLD3=153; 
-	int AllNClassLevelCallersAtLeast2NGOLD3=154; 
-	int AllNMethodLevelCalleesAtLeast2NGOLD3=155; 
-	int AllNMethodLevelCallersAtLeast2NGOLD3=156; 
-	int AllTClassLevelCalleesAtLeast2TGOLD3=153; 
-	int AllTClassLevelCallersAtLeast2TGOLD3=154; 
-	int AllTMethodLevelCalleesAtLeast2TGOLD3=155; 
-	int AllTMethodLevelCallersAtLeast2TGOLD3=156; 
+	int CLASSTRACEMethodLevelPureGold=87; 
+	int CLASSTRACEMethodLevelMixedGold=88; 
+	int CLASSNOTRACEMethodLevelPureGold=89; 
+	int CLASSNOTRACEMethodLevelMixedGold=90;
+	int CLASSTRACEClassLevelPureGold=91; 
+	int CLASSTRACEClassLevelMixedGold=92; 
+	int CLASSNOTRACEClassLevelPureGold=93; 
+	int CLASSNOTRACEClassLevelMixedGold=94;
 	
 	
-	int Gold4=157; 
-	int OwnerClassTGOLD4=158; 
-	int OwnerClassNGOLD4=159; 
-	int OwnerClassEGOLD4=160; 
-	int CallerMethodsNumberGOLD4=161; 
-	int CallerMethodsTGOLD4=162; 
-	int CallerMethodsNGOLD4=163; 
-	int CallerMethodsEGOLD4=164; 
-	int CallerClassesNumberGOLD4=165; 
-	int CallerClassesTGOLD4=166; 
-	int CallerClassesNGOLD4=167; 
-	int CallerClassesEGOLD4=168; 
-	int CalleeMethodsNumberGOLD4=169; 
-	int CalleeMethodsTGOLD4=170; 
-	int CalleeMethodsNGOLD4=171; 
-	int CalleeMethodsEGOLD4=172; 
-	int CalleeClassesNumberGOLD4=173; 
-	int CalleeClassesTGOLD4=174; 
-	int CalleeClassesNGOLD4=175; 
-	int CalleeClassesEGOLD4=176; 
-	int OwnerClassPredictionGOLD4=177; 
-	int MajorityClassLevelCalleesGOLD4=178; 
-	int MajorityClassLevelCallersGOLD4=179; 
-	int MajorityMethodLevelCalleesGOLD4=180; 
-	int MajorityMethodLevelCallersGOLD4=181; 
-	int AtLeast1NPredictionClassLevelCalleesGOLD4=182; 
-	int AtLeast1NPredictionClassLevelCallersGOLD4=183; 
-	int AtLeast1NPredictionMethodLevelCalleesGOLD4=184; 
-	int AtLeast1NPredictionMethodLevelCallersGOLD4=185; 
-	int AtLeast1TPredictionClassLevelCalleesGOLD4=186; 
-	int AtLeast1TPredictionClassLevelCallersGOLD4=187; 
-	int AtLeast1TPredictionMethodLevelCalleesGOLD4=188; 
-	int AtLeast1TPredictionMethodLevelCallersGOLD4=189; 
-	int AtLeast2NPredictionClassLevelCalleesGOLD4=190; 
-	int AtLeast2NPredictionClassLevelCallersGOLD4=191; 
-	int AtLeast2NPredictionMethodLevelCalleesGOLD4=192; 
-	int AtLeast2NPredictionMethodLevelCallersGOLD4=193; 
-	int AtLeast2TPredictionClassLevelCalleesGOLD4=194; 
-	int AtLeast2TPredictionClassLevelCallersGOLD4=195; 
-	int AtLeast2TPredictionMethodLevelCalleesGOLD4=196; 
-	int AtLeast2TPredictionMethodLevelCallersGOLD4=197; 
-	int AllNClassLevelCalleesGOLD4=198; 
-	int AllNClassLevelCallersGOLD4=199; 
-	int AllNMethodLevelCalleesGOLD4=200; 
-	int AllNMethodLevelCallersGOLD4=201; 
-	int AllTClassLevelCalleesGOLD4=202; 
-	int AllTClassLevelCallersGOLD4=203; 
-	int AllTMethodLevelCalleesGOLD4=204; 
-	int AllTMethodLevelCallersGOLD4=205; 
-	int CallersGOLD4=206; 
-	int CalleesGOLD4=207; 
-	int paramatersNumberGOLD4=208; 
-	int CountParamaterTGOLD4=209; 
-	int CountParamaterNGOLD4=210; 
-	int CountParamaterEGOLD4=211; 
-	int MajorityParametersGOLD4=212; 
-	int AtLeast1NParameterGOLD4=213; 
-	int AtLeast1TParameterGOLD4=214; 
-	int AtLeast2TParameterGOLD4=215; 
-	int AtLeast2NParameterGOLD4=216; 
-	int AllNParametersGOLD4=217; 
-	int AllTParametersGOLD4=218; 
-	int ACHRAFTRACEPureGOLD4=219; 
-	int ACHRAFTRACEMixedGOLD4=220; 
-	int ACHRAFNOTRACEPureGOLD4=221; 
-	int ACHRAFNOTRACEMixedGOLD4=222; 
-	int AllNMethodLevelCallersCalleesGOLD4=223; 
-	int AllTMethodLevelCallersCalleesGOLD4=224; 
-	int AllTClassLevelCallersCalleesGOLD4=225; 
-	int AllNClassLevelCallersCalleesGOLD4=226; 
-	int AllNClassLevelCalleesAtLeast2NGOLD4=227; 
-	int AllNClassLevelCallersAtLeast2NGOLD4=228; 
-	int AllNMethodLevelCalleesAtLeast2NGOLD4=229; 
-	int AllNMethodLevelCallersAtLeast2NGOLD4=230; 
-	int AllTClassLevelCalleesAtLeast2TGOLD4=231; 
-	int AllTClassLevelCallersAtLeast2TGOLD4=232; 
-	int AllTMethodLevelCalleesAtLeast2TGOLD4=233; 
-	int AllTMethodLevelCallersAtLeast2TGOLD4=234; 
+	
+	int Gold3=95; 
+	int OwnerClassTGOLD3=96; 
+	int OwnerClassNGOLD3=97; 
+	int OwnerClassEGOLD3=98; 
+	int CallerMethodsNumberGOLD3=99; 
+	int CallerMethodsTGOLD3=100; 
+	int CallerMethodsNGOLD3=101; 
+	int CallerMethodsEGOLD3=102; 
+	int CallerClassesNumberGOLD3=103; 
+	int CallerClassesTGOLD3=104; 
+	int CallerClassesNGOLD3=105; 
+	int CallerClassesEGOLD3=106; 
+	int CalleeMethodsNumberGOLD3=107; 
+	int CalleeMethodsTGOLD3=108; 
+	int CalleeMethodsNGOLD3=109; 
+	int CalleeMethodsEGOLD3=110; 
+	int CalleeClassesNumberGOLD3=111; 
+	int CalleeClassesTGOLD3=112; 
+	int CalleeClassesNGOLD3=113; 
+	int CalleeClassesEGOLD3=114; 
+	int OwnerClassPredictionGOLD3=115; 
+	int MajorityClassLevelCalleesGOLD3=116; 
+	int MajorityClassLevelCallersGOLD3=117; 
+	int MajorityMethodLevelCalleesGOLD3=118; 
+	int MajorityMethodLevelCallersGOLD3=119; 
+	int AtLeast1NPredictionClassLevelCalleesGOLD3=120; 
+	int AtLeast1NPredictionClassLevelCallersGOLD3=121; 
+	int AtLeast1NPredictionMethodLevelCalleesGOLD3=122; 
+	int AtLeast1NPredictionMethodLevelCallersGOLD3=123; 
+	int AtLeast1TPredictionClassLevelCalleesGOLD3=124; 
+	int AtLeast1TPredictionClassLevelCallersGOLD3=125; 
+	int AtLeast1TPredictionMethodLevelCalleesGOLD3=126; 
+	int AtLeast1TPredictionMethodLevelCallersGOLD3=127; 
+	int AtLeast2NPredictionClassLevelCalleesGOLD3=128; 
+	int AtLeast2NPredictionClassLevelCallersGOLD3=129; 
+	int AtLeast2NPredictionMethodLevelCalleesGOLD3=130; 
+	int AtLeast2NPredictionMethodLevelCallersGOLD3=131; 
+	int AtLeast2TPredictionClassLevelCalleesGOLD3=132; 
+	int AtLeast2TPredictionClassLevelCallersGOLD3=133; 
+	int AtLeast2TPredictionMethodLevelCalleesGOLD3=134; 
+	int AtLeast2TPredictionMethodLevelCallersGOLD3=135; 
+	int AllNClassLevelCalleesGOLD3=136; 
+	int AllNClassLevelCallersGOLD3=137; 
+	int AllNMethodLevelCalleesGOLD3=138; 
+	int AllNMethodLevelCallersGOLD3=139; 
+	int AllTClassLevelCalleesGOLD3=140; 
+	int AllTClassLevelCallersGOLD3=141; 
+	int AllTMethodLevelCalleesGOLD3=142; 
+	int AllTMethodLevelCallersGOLD3=143; 
+	int CallersGOLD3=144; 
+	int CalleesGOLD3=145; 
+	int paramatersNumberGOLD3=146; 
+	int CountParamaterTGOLD3=147; 
+	int CountParamaterNGOLD3=148; 
+	int CountParamaterEGOLD3=149; 
+	int MajorityParametersGOLD3=150; 
+	int AtLeast1NParameterGOLD3=151; 
+	int AtLeast1TParameterGOLD3=152; 
+	int AtLeast2TParameterGOLD3=153; 
+	int AtLeast2NParameterGOLD3=154; 
+	int AllNParametersGOLD3=155; 
+	int AllTParametersGOLD3=156; 
+	int ACHRAFTRACEPureGOLD3=157; 
+	int ACHRAFTRACEMixedGOLD3=158; 
+	int ACHRAFNOTRACEPureGOLD3=159; 
+	int ACHRAFNOTRACEMixedGOLD3=160; 
+	int AllNMethodLevelCallersCalleesGOLD3=161; 
+	int AllTMethodLevelCallersCalleesGOLD3=162; 
+	int AllTClassLevelCallersCalleesGOLD3=163; 
+	int AllNClassLevelCallersCalleesGOLD3=164; 
+	int AllNClassLevelCalleesAtLeast2NGOLD3=165; 
+	int AllNClassLevelCallersAtLeast2NGOLD3=166; 
+	int AllNMethodLevelCalleesAtLeast2NGOLD3=167; 
+	int AllNMethodLevelCallersAtLeast2NGOLD3=168; 
+	int AllTClassLevelCalleesAtLeast2TGOLD3=169; 
+	int AllTClassLevelCallersAtLeast2TGOLD3=170; 
+	int AllTMethodLevelCalleesAtLeast2TGOLD3=171; 
+	int AllTMethodLevelCallersAtLeast2TGOLD3=172; 
+	int CLASSTRACEMethodLevelPureGold3=173; 
+	int CLASSTRACEMethodLevelMixedGold3=174; 
+	int CLASSNOTRACEMethodLevelPureGold3=175; 
+	int CLASSNOTRACEMethodLevelMixedGold3=176;
+	int CLASSTRACEClassLevelPureGold3=177; 
+	int CLASSTRACEClassLevelMixedGold3=178; 
+	int CLASSNOTRACEClassLevelPureGold3=179; 
+	int CLASSNOTRACEClassLevelMixedGold3=180;
+	
+	
+	int Gold4=181; 
+	int OwnerClassTGOLD4=182; 
+	int OwnerClassNGOLD4=183; 
+	int OwnerClassEGOLD4=184; 
+	int CallerMethodsNumberGOLD4=185; 
+	int CallerMethodsTGOLD4=186; 
+	int CallerMethodsNGOLD4=187; 
+	int CallerMethodsEGOLD4=188; 
+	int CallerClassesNumberGOLD4=189; 
+	int CallerClassesTGOLD4=190; 
+	int CallerClassesNGOLD4=191; 
+	int CallerClassesEGOLD4=192; 
+	int CalleeMethodsNumberGOLD4=193; 
+	int CalleeMethodsTGOLD4=194; 
+	int CalleeMethodsNGOLD4=195; 
+	int CalleeMethodsEGOLD4=196; 
+	int CalleeClassesNumberGOLD4=197; 
+	int CalleeClassesTGOLD4=198; 
+	int CalleeClassesNGOLD4=199; 
+	int CalleeClassesEGOLD4=200; 
+	int OwnerClassPredictionGOLD4=201; 
+	int MajorityClassLevelCalleesGOLD4=202; 
+	int MajorityClassLevelCallersGOLD4=203; 
+	int MajorityMethodLevelCalleesGOLD4=204; 
+	int MajorityMethodLevelCallersGOLD4=205; 
+	int AtLeast1NPredictionClassLevelCalleesGOLD4=206; 
+	int AtLeast1NPredictionClassLevelCallersGOLD4=207; 
+	int AtLeast1NPredictionMethodLevelCalleesGOLD4=208; 
+	int AtLeast1NPredictionMethodLevelCallersGOLD4=209; 
+	int AtLeast1TPredictionClassLevelCalleesGOLD4=210; 
+	int AtLeast1TPredictionClassLevelCallersGOLD4=211; 
+	int AtLeast1TPredictionMethodLevelCalleesGOLD4=212; 
+	int AtLeast1TPredictionMethodLevelCallersGOLD4=213; 
+	int AtLeast2NPredictionClassLevelCalleesGOLD4=214; 
+	int AtLeast2NPredictionClassLevelCallersGOLD4=215; 
+	int AtLeast2NPredictionMethodLevelCalleesGOLD4=216; 
+	int AtLeast2NPredictionMethodLevelCallersGOLD4=217; 
+	int AtLeast2TPredictionClassLevelCalleesGOLD4=218; 
+	int AtLeast2TPredictionClassLevelCallersGOLD4=219; 
+	int AtLeast2TPredictionMethodLevelCalleesGOLD4=220; 
+	int AtLeast2TPredictionMethodLevelCallersGOLD4=221; 
+	int AllNClassLevelCalleesGOLD4=222; 
+	int AllNClassLevelCallersGOLD4=223; 
+	int AllNMethodLevelCalleesGOLD4=224; 
+	int AllNMethodLevelCallersGOLD4=225; 
+	int AllTClassLevelCalleesGOLD4=226; 
+	int AllTClassLevelCallersGOLD4=227; 
+	int AllTMethodLevelCalleesGOLD4=228; 
+	int AllTMethodLevelCallersGOLD4=229; 
+	int CallersGOLD4=230; 
+	int CalleesGOLD4=231; 
+	int paramatersNumberGOLD4=232; 
+	int CountParamaterTGOLD4=233; 
+	int CountParamaterNGOLD4=234; 
+	int CountParamaterEGOLD4=235; 
+	int MajorityParametersGOLD4=236; 
+	int AtLeast1NParameterGOLD4=237; 
+	int AtLeast1TParameterGOLD4=238; 
+	int AtLeast2TParameterGOLD4=239; 
+	int AtLeast2NParameterGOLD4=240; 
+	int AllNParametersGOLD4=241; 
+	int AllTParametersGOLD4=242; 
+	int ACHRAFTRACEPureGOLD4=243; 
+	int ACHRAFTRACEMixedGOLD4=244; 
+	int ACHRAFNOTRACEPureGOLD4=245; 
+	int ACHRAFNOTRACEMixedGOLD4=246; 
+	int AllNMethodLevelCallersCalleesGOLD4=247; 
+	int AllTMethodLevelCallersCalleesGOLD4=248; 
+	int AllTClassLevelCallersCalleesGOLD4=249; 
+	int AllNClassLevelCallersCalleesGOLD4=250; 
+	int AllNClassLevelCalleesAtLeast2NGOLD4=251; 
+	int AllNClassLevelCallersAtLeast2NGOLD4=252; 
+	int AllNMethodLevelCalleesAtLeast2NGOLD4=253; 
+	int AllNMethodLevelCallersAtLeast2NGOLD4=254; 
+	int AllTClassLevelCalleesAtLeast2TGOLD4=255; 
+	int AllTClassLevelCallersAtLeast2TGOLD4=256; 
+	int AllTMethodLevelCalleesAtLeast2TGOLD4=257; 
+	int AllTMethodLevelCallersAtLeast2TGOLD4=258; 
+	int CLASSTRACEMethodLevelPureGold4=259; 
+	int CLASSTRACEMethodLevelMixedGold4=260; 
+	int CLASSNOTRACEMethodLevelPureGold4=261; 
+	int CLASSNOTRACEMethodLevelMixedGold4=262;
+	int CLASSTRACEClassLevelPureGold4=263; 
+	int CLASSTRACEClassLevelMixedGold4=264; 
+	int CLASSNOTRACEClassLevelPureGold4=265; 
+	int CLASSNOTRACEClassLevelMixedGold4=266;
+	
+	
+	
 	int counterFN=0; 
 	double TracePureGold=0; 
 	double NoTracePureGold=0; 
@@ -371,7 +399,6 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation MajorityParametersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast1NParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2NParameterClass= new PredictionEvaluation(); 
-
 	PredictionEvaluation AtLeast1TParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AtLeast2TParameterClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllNMethodLevelCallersCalleesClass= new PredictionEvaluation(); 
@@ -392,6 +419,15 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold=new PredictionEvaluation();  
+	
 	
 	PredictionEvaluation OwnerClassPredictionClassGold3= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClassGold3= new PredictionEvaluation(); 
@@ -449,7 +485,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold3=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold3=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold3=new PredictionEvaluation(); 
-	
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold3=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold3=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold3=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold3=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold3=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold3=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold3=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold3=new PredictionEvaluation();  
 	
 	PredictionEvaluation OwnerClassPredictionClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClassGold4= new PredictionEvaluation(); 
@@ -507,7 +550,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold4=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold4=new PredictionEvaluation();  
 	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold4=new PredictionEvaluation(); 	
-		 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold4=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold4=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold4=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold4=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold4=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold4=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold4=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold4=new PredictionEvaluation();  	 
 		
 		
 		
@@ -608,8 +658,9 @@ public class TracesTableGantt2FINAL extends JFrame {
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
 				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
+				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
 				+"gold3" );
-
 
 
 
@@ -1398,7 +1449,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodTACHRAFGold4 = 0; 
 			int CountMethodNACHRAFGold4 = 0; 
 			int CountMethodEACHRAFGold4 = 0; 
-			for (Method2Representation mycaller: methodtrace.getCallersListExecuted()) {
+			for (Method2Representation mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1425,7 +1476,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodTACHRAFCallee = 0; 
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
-			for (Method2Representation mycaller: methodtrace.getCalleesListExecuted()) {
+			for (Method2Representation mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1451,7 +1502,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 
 		
 		
-			for (Method2Representation mycaller: methodtrace.getCallersListExecuted()) {
+			for (Method2Representation mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1477,7 +1528,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodTACHRAFCalleeGold3 = 0; 
 			int CountMethodNACHRAFCalleeGold3 = 0; 
 			int CountMethodEACHRAFCalleeGold3 = 0; 
-			for (Method2Representation mycaller: methodtrace.getCalleesListExecuted()) {
+			for (Method2Representation mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -5425,8 +5476,480 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 					
 					
 					
-					
-					
+String TracePureGoldValueMethodLevel=""; 
+String TraceMixedGoldValueMethodLevel=""; 
+String TracePureGold3ValueMethodLevel=""; 
+String TraceMixedGold3ValueMethodLevel=""; 
+String NOTracePureGoldValueMethodLevel=""; 
+String NOTraceMixedGoldValueMethodLevel=""; 
+String NOTracePureGold3ValueMethodLevel=""; 
+String NOTraceMixedGold3ValueMethodLevel=""; 
+String TracePureGold4ValueMethodLevel=""; 
+String TraceMixedGold4ValueMethodLevel=""; 
+String NOTracePureGold4ValueMethodLevel=""; 
+String NOTraceMixedGold4ValueMethodLevel=""; 
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+//ACHRAF
+if(CountMethodT>0 && CountMethodTCallee>0) {
+	
+	boolean entered=false; 
+	if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold()!=null ) {
+		
+		TracePureGold++; 
+		TracePureGoldValueMethodLevel="T"; 
+		entered=true; 
+		
+	} else if(methodtrace.getGold()!=null){
+		TraceMixedGold++; 
+		TraceMixedGoldValueMethodLevel="T"; 
+		entered=true; 
+	}
+
+	if(entered==true) {
+	if(methodtrace.getGold()!=null ) {
+	data[j][CLASSTRACEMethodLevelPureGold]=TracePureGoldValueMethodLevel; 
+	String Result=PredictionCLASSTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueMethodLevel); 
+	PredictionCLASSTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold);
+	}
+	
+	if(methodtrace.getGold()!=null ) {
+		data[j][CLASSTRACEMethodLevelMixedGold]=TraceMixedGoldValueMethodLevel; 
+		String Result=PredictionCLASSTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold);
+		}
+	}
+	
+}else if(CountMethodN>0 && CountMethodNCallee>0) {
+
+boolean entered=false; 
+if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
+	
+	NoTracePureGold++; 
+	NOTracePureGoldValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelPureGold]=NOTracePureGoldValueMethodLevel; 
+	entered=true; 
+	
+	
+} else if(methodtrace.getGold()!=null) {
+	NoTraceMixedGold++; 
+	NOTraceMixedGoldValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelMixedGold]=NOTraceMixedGoldValueMethodLevel; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+
+if(methodtrace.getGold()!=null ) {
+	String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+	}
+	
+	if(methodtrace.getGold()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+		}
+}
+
+}else {
+failGold++; 
+}
+
+
+/********************************************************************************************************************/				
+
+if(CountMethodTGOLD3>0 && CountMethodTCalleeGOLD3>0) {
+	
+	boolean entered=false; 
+	if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold3()!=null ) {
+		
+		TracePureGold3++; 
+		TracePureGold3ValueMethodLevel="T"; 
+		entered=true; 
+		
+	} else if(methodtrace.getGold3()!=null) {
+		TraceMixedGold3++; 
+		TraceMixedGold3ValueMethodLevel="T"; 
+		entered=true; 
+	}
+
+	if(entered==true) {
+	
+	if(methodtrace.getGold3()!=null ) {
+	data[j][CLASSTRACEMethodLevelPureGold3]=TracePureGold3ValueMethodLevel; 
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
+	}
+	
+	if(methodtrace.getGold3()!=null ) {
+		data[j][CLASSTRACEMethodLevelMixedGold3]=TraceMixedGold3ValueMethodLevel; 
+		String Result=PredictionCLASSTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TraceMixedGold3ValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold3);
+		}
+	}
+	
+}else if(CountMethodN>0 && CountMethodNCallee>0) {
+
+boolean entered=false; 
+if(CountMethodTGOLD3+CountMethodTCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
+	
+	NoTracePureGold3++; 
+	NOTracePureGold3ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelPureGold3]=NOTracePureGold3ValueMethodLevel; 
+	entered=true; 
+	
+	
+} else if(methodtrace.getGold3()!=null) {
+	NoTraceMixedGold3++; 
+	NOTraceMixedGold3ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelMixedGold3]=NOTraceMixedGold3ValueMethodLevel; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold3()!=null ) {
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTracePureGold3ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
+	}
+	
+	if(methodtrace.getGold3()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTraceMixedGold3ValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold3);
+		}
+}
+
+}else {
+failGold3++; 
+}
+
+/********************************************************************************************************************/				
+
+if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
+	
+	boolean entered=false; 
+	if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold4()!=null ) {
+		
+		TracePureGold4++; 
+		TracePureGold4ValueMethodLevel="T"; 
+		entered=true; 
+		
+	} else if(methodtrace.getGold4()!=null) {
+		TraceMixedGold4++; 
+		TraceMixedGold4ValueMethodLevel="T"; 
+		entered=true; 
+	}
+
+	if(entered==true) {
+	
+	if(methodtrace.getGold4()!=null ) {
+	data[j][CLASSTRACEMethodLevelPureGold4]=TracePureGold4ValueMethodLevel; 
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold4);
+	}
+	
+	if(methodtrace.getGold4()!=null ) {
+		data[j][CLASSTRACEMethodLevelMixedGold4]=TraceMixedGold4ValueMethodLevel; 
+		String Result=PredictionCLASSTRACEMethodLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TraceMixedGold4ValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelMixedGold4.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold4);
+		}
+	}
+	
+}else if(CountMethodN>0 && CountMethodNCallee>0) {
+
+boolean entered=false; 
+if(CountMethodTGOLD4+CountMethodTCalleeGOLD4==0 && methodtrace.getGold4()!=null ) {
+	
+	NoTracePureGold4++; 
+	NOTracePureGold4ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelPureGold4]=NOTracePureGold4ValueMethodLevel; 
+	entered=true; 
+	
+	
+} else if(methodtrace.getGold4()!=null) {
+	NoTraceMixedGold4++; 
+	NOTraceMixedGold4ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelMixedGold4]=NOTraceMixedGold4ValueMethodLevel; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold4()!=null ) {
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTracePureGold4ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold4);
+	}
+	
+	if(methodtrace.getGold4()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTraceMixedGold4ValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelMixedGold4.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold4);
+		}
+}
+
+}else {
+failGold4++; 
+}
+
+
+
+
+
+
+
+
+String TracePureGoldValueClassLevel=""; 
+String TraceMixedGoldValueClassLevel=""; 
+String TracePureGold3ValueClassLevel=""; 
+String TraceMixedGold3ValueClassLevel=""; 
+String NOTracePureGoldValueClassLevel=""; 
+String NOTraceMixedGoldValueClassLevel=""; 
+String NOTracePureGold3ValueClassLevel=""; 
+String NOTraceMixedGold3ValueClassLevel=""; 
+String NOTracePureGold4ValueClassLevel=""; 
+String NOTraceMixedGold4ValueClassLevel=""; 
+String TracePureGold4ValueClassLevel=""; 
+String TraceMixedGold4ValueClassLevel=""; 
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+//ACHRAF
+if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerN+CounterTraceClassCalleeN==0 && methodtrace.getGold()!=null ) {
+	
+	TracePureGold++; 
+	TracePureGoldValueClassLevel="T"; 
+	entered=true; 
+	
+} else if(methodtrace.getGold()!=null){
+	TraceMixedGold++; 
+	TraceMixedGoldValueClassLevel="T"; 
+	entered=true; 
+}
+
+if(entered==true) {
+if(methodtrace.getGold()!=null ) {
+data[j][CLASSTRACEClassLevelPureGold]=TracePureGoldValueClassLevel; 
+String Result=PredictionCLASSTRACEClassLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueClassLevel); 
+PredictionCLASSTRACEClassLevelPureGold.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold);
+}
+
+if(methodtrace.getGold()!=null ) {
+	data[j][CLASSTRACEClassLevelMixedGold]=TraceMixedGoldValueClassLevel; 
+	String Result=PredictionCLASSTRACEClassLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueClassLevel); 
+	PredictionCLASSTRACEClassLevelMixedGold.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold);
+	}
+}
+
+}else if(CounterTraceClassCallerN>0 && CounterTraceClassCalleeN>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerT+CounterTraceClassCalleeT==0 && methodtrace.getGold()!=null ) {
+
+NoTracePureGold++; 
+NOTracePureGoldValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelPureGold]=NOTracePureGoldValueClassLevel; 
+entered=true; 
+
+
+} else if(methodtrace.getGold()!=null) {
+NoTraceMixedGold++; 
+NOTraceMixedGoldValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelMixedGold]=NOTraceMixedGoldValueClassLevel; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+
+if(methodtrace.getGold()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold);
+}
+
+if(methodtrace.getGold()!=null ) {
+	String Result=PredictionCLASSNOTRACEClassLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueClassLevel); 
+	PredictionCLASSNOTRACEClassLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold);
+	}
+}
+
+}else {
+failGold++; 
+}
+
+
+/********************************************************************************************************************/				
+
+if(CounterTraceClassCallerTGOLD3>0 && CounterTraceClassCalleeTGOLD3>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerNGOLD3+CounterTraceClassCalleeNGOLD3==0 && methodtrace.getGold3()!=null ) {
+	
+	TracePureGold3++; 
+	TracePureGold3ValueClassLevel="T"; 
+	entered=true; 
+	
+} else if(methodtrace.getGold3()!=null) {
+	TraceMixedGold3++; 
+	TraceMixedGold3ValueClassLevel="T"; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+if(methodtrace.getGold3()!=null ) {
+data[j][CLASSTRACEClassLevelPureGold3]=TracePureGold3ValueClassLevel; 
+String Result=PredictionCLASSNOTRACEClassLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold3);
+}
+
+if(methodtrace.getGold3()!=null ) {
+	data[j][CLASSTRACEClassLevelMixedGold3]=TraceMixedGold3ValueClassLevel; 
+	String Result=PredictionCLASSTRACEClassLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TraceMixedGold3ValueClassLevel); 
+	PredictionCLASSTRACEClassLevelMixedGold3.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold3);
+	}
+}
+
+}else if(CounterTraceClassCallerNGOLD3>0 && CounterTraceClassCalleeNGOLD3>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerTGOLD3+CounterTraceClassCalleeTGOLD3==0 && methodtrace.getGold3()!=null ) {
+
+NoTracePureGold3++; 
+NOTracePureGold3ValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelPureGold3]=NOTracePureGold3ValueClassLevel; 
+entered=true; 
+
+
+} else if(methodtrace.getGold3()!=null) {
+NoTraceMixedGold3++; 
+NOTraceMixedGold3ValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelMixedGold3]=NOTraceMixedGold3ValueClassLevel; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold3()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTracePureGold3ValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold3);
+}
+
+if(methodtrace.getGold3()!=null ) {
+	String Result=PredictionCLASSNOTRACEClassLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTraceMixedGold3ValueClassLevel); 
+	PredictionCLASSNOTRACEClassLevelMixedGold3.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold3);
+	}
+}
+
+}else {
+failGold3++; 
+}
+	
+/********************************************************************************************************************/				
+
+if(CounterTraceClassCallerTGOLD4>0 && CounterTraceClassCalleeTGOLD4>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerNGOLD4+CounterTraceClassCalleeNGOLD4==0 && methodtrace.getGold4()!=null ) {
+	
+	TracePureGold4++; 
+	TracePureGold4ValueClassLevel="T"; 
+	entered=true; 
+	
+} else if(methodtrace.getGold4()!=null) {
+	TraceMixedGold4++; 
+	TraceMixedGold4ValueClassLevel="T"; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+if(methodtrace.getGold4()!=null ) {
+data[j][CLASSTRACEClassLevelPureGold4]=TracePureGold4ValueClassLevel; 
+String Result=PredictionCLASSNOTRACEClassLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold4);
+}
+
+if(methodtrace.getGold4()!=null ) {
+	data[j][CLASSTRACEClassLevelMixedGold4]=TraceMixedGold4ValueClassLevel; 
+	String Result=PredictionCLASSTRACEClassLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TraceMixedGold4ValueClassLevel); 
+	PredictionCLASSTRACEClassLevelMixedGold4.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold4);
+	}
+}
+
+}else if(CounterTraceClassCallerNGOLD4>0 && CounterTraceClassCalleeNGOLD4>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerTGOLD4+CounterTraceClassCalleeTGOLD4==0 && methodtrace.getGold4()!=null ) {
+
+NoTracePureGold4++; 
+NOTracePureGold4ValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelPureGold4]=NOTracePureGold4ValueClassLevel; 
+entered=true; 
+
+
+} else if(methodtrace.getGold4()!=null) {
+NoTraceMixedGold4++; 
+NOTraceMixedGold4ValueClassLevel="N"; 
+data[j][CLASSNOTRACEClassLevelMixedGold4]=NOTraceMixedGold4ValueClassLevel; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold4()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTracePureGold4ValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold4);
+}
+
+if(methodtrace.getGold4()!=null ) {
+	String Result=PredictionCLASSNOTRACEClassLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTraceMixedGold4ValueClassLevel); 
+	PredictionCLASSNOTRACEClassLevelMixedGold4.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold4);
+	}
+}
+
+}else {
+failGold4++; 
+}					
 					
 					
 					
@@ -5470,7 +5993,7 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 				}
 			}
 
-			bwGold3TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold3, Subject, OwnerClassT, OwnerClassN, "
+			bwGold3TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 					+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 					+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
 					+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
@@ -5489,6 +6012,8 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 					"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 					+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
 					+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+					+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
+					+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
 					 );
 
 			
@@ -5517,47 +6042,32 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 							+ "," + data[j][AllNClassLevelCallersGOLD3]
 					+ "," +data[j][AllNClassLevelCalleesGOLD3]+ "," + data[j][AllNMethodLevelCallersGOLD3]+ "," + data[j][AllNMethodLevelCalleesGOLD3]+ "," +
 					data[j][AllTClassLevelCallersGOLD3]+ ","+		data[j][AllTClassLevelCalleesGOLD3]+ ","+		data[j][AllTMethodLevelCallersGOLD3]+ 
-					","+		data[j][AllTMethodLevelCalleesGOLD3]+","+
 					
-	","+data[j][AllNClassLevelCallersAtLeast2NGOLD3]
-			+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD3]+ "," +
-			data[j][AllTClassLevelCallersAtLeast2TGOLD3]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD3]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD3]+ 
-			","+
 					
+					
+					","+data[j][AllNClassLevelCallersAtLeast2NGOLD3]
+					+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD3]+ "," +
+					data[j][AllTClassLevelCallersAtLeast2TGOLD3]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD3]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD3]+ 
+					","
+					
+					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD3]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
 					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumberGOLD3]+","+ParametersAppended+","+data [j][CountParamaterTGOLD3]+","+data [j][CountParamaterNGOLD3]+","+data [j][CountParamaterEGOLD3]+","+data[j][MajorityParametersGOLD3]+","+data[j][AtLeast1NParameterGOLD3]
 							+","+data[j][AtLeast1TParameterGOLD3]+","+data[j][AtLeast2TParameterGOLD3]+","+data[j][AtLeast2NParameterGOLD3]+","+data[j][AllNParametersGOLD3]+","+data[j][AllTParametersGOLD3]+","+
 							data[j][ACHRAFTRACEPureGOLD3]+","+data[j][ACHRAFTRACEMixedGOLD3]+","+data[j][ACHRAFNOTRACEPureGOLD3]+","+data[j][ACHRAFNOTRACEMixedGOLD3]+","+	
-							data[j][AllNMethodLevelCallersCalleesGOLD3]+","+data[j][AllTMethodLevelCallersCalleesGOLD3]+","+data[j][AllTClassLevelCallersCalleesGOLD3]+","+data[j][AllNClassLevelCallersCalleesGOLD3]);
+							data[j][AllNMethodLevelCallersCalleesGOLD3]+","+data[j][AllTMethodLevelCallersCalleesGOLD3]+","+data[j][AllTClassLevelCallersCalleesGOLD3]+","+data[j][AllNClassLevelCallersCalleesGOLD3]
+									
+									+","+	data[j][CLASSTRACEMethodLevelPureGold3]+","+data[j][CLASSTRACEMethodLevelMixedGold3]+","+data[j][CLASSNOTRACEMethodLevelPureGold3]+","+data[j][CLASSNOTRACEMethodLevelMixedGold3]+","+	
+									data[j][CLASSTRACEClassLevelPureGold3]+","+data[j][CLASSTRACEClassLevelMixedGold3]+","+data[j][CLASSNOTRACEClassLevelPureGold3]+","+data[j][CLASSNOTRACEClassLevelMixedGold3]+","
+					
+					);
 			bwGold3TableLog.newLine();
 
 			
 			
 			
-
-			bwGold4TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold4, Subject, OwnerClassT, OwnerClassN, "
-					+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-					+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-					+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
-					+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
-					+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
-					+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
-					+"AtLeast2TPredictionClassLevelCallees, AtLeast2TPredictionClassLevelCallers, AtLeast2TPredictionMethodLevelCallees, AtLeast2TPredictionMethodLevelCallers,"
-					+"AllNClassLevelCallees, AllNClassLevelCallers, AllNMethodLevelCallees, AllNMethodLevelCallers,"
-					+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
-					+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
-					+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
-					+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-					+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-					+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-					+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
-					"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
-					+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-					+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
-					 );
-      
 			
-			                  
+						
 			bwGold4TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold4] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD4] + "," + data[j][OwnerClassNGOLD4] + ","
 					+ data[j][OwnerClassEGOLD4] + "," + data[j][CallerMethodsNumberGOLD4]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD4] + "," +
@@ -5578,24 +6088,30 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 							data[j][AtLeast2NPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast2NPredictionClassLevelCalleesGOLD4] 
 							+ "," + data[j][AtLeast2NPredictionMethodLevelCallersGOLD4]+ "," + data[j][AtLeast2NPredictionMethodLevelCalleesGOLD4]
 							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD4]
-							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD4] 
+							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD4]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD4]	
 							+ "," + data[j][AllNClassLevelCallersGOLD4]
 					+ "," +data[j][AllNClassLevelCalleesGOLD4]+ "," + data[j][AllNMethodLevelCallersGOLD4]+ "," + data[j][AllNMethodLevelCalleesGOLD4]+ "," +
 					data[j][AllTClassLevelCallersGOLD4]+ ","+		data[j][AllTClassLevelCalleesGOLD4]+ ","+		data[j][AllTMethodLevelCallersGOLD4]+ 
-					","+		data[j][AllTMethodLevelCalleesGOLD4]+","+
-					 
-","+data[j][AllNClassLevelCallersAtLeast2NGOLD4]
-		+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD4]+ "," +
-		data[j][AllTClassLevelCallersAtLeast2TGOLD4]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD4]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD4]+ 
-		","+
 					
 					
+					
+					","+data[j][AllNClassLevelCallersAtLeast2NGOLD4]
+					+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD4]+ "," +
+					data[j][AllTClassLevelCallersAtLeast2TGOLD4]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD4]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD4]+ 
+					","
+					
+					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD4]+","+
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
 					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumberGOLD4]+","+ParametersAppended+","+data [j][CountParamaterTGOLD4]+","+data [j][CountParamaterNGOLD4]+","+data [j][CountParamaterEGOLD4]+","+data[j][MajorityParametersGOLD4]+","+data[j][AtLeast1NParameterGOLD4]
 							+","+data[j][AtLeast1TParameterGOLD4]+","+data[j][AtLeast2TParameterGOLD4]+","+data[j][AtLeast2NParameterGOLD4]+","+data[j][AllNParametersGOLD4]+","+data[j][AllTParametersGOLD4]+","+
 							data[j][ACHRAFTRACEPureGOLD4]+","+data[j][ACHRAFTRACEMixedGOLD4]+","+data[j][ACHRAFNOTRACEPureGOLD4]+","+data[j][ACHRAFNOTRACEMixedGOLD4]+","+	
-							data[j][AllNMethodLevelCallersCalleesGOLD4]+","+data[j][AllTMethodLevelCallersCalleesGOLD4]+","+data[j][AllTClassLevelCallersCalleesGOLD4]+","+data[j][AllNClassLevelCallersCalleesGOLD4]);
+							data[j][AllNMethodLevelCallersCalleesGOLD4]+","+data[j][AllTMethodLevelCallersCalleesGOLD4]+","+data[j][AllTClassLevelCallersCalleesGOLD4]+","+data[j][AllNClassLevelCallersCalleesGOLD4]
+									
+									+","+	data[j][CLASSTRACEMethodLevelPureGold4]+","+data[j][CLASSTRACEMethodLevelMixedGold4]+","+data[j][CLASSNOTRACEMethodLevelPureGold4]+","+data[j][CLASSNOTRACEMethodLevelMixedGold4]+","+	
+									data[j][CLASSTRACEClassLevelPureGold4]+","+data[j][CLASSTRACEClassLevelMixedGold4]+","+data[j][CLASSNOTRACEClassLevelPureGold4]+","+data[j][CLASSNOTRACEClassLevelMixedGold4]+","
+					
+					);
 			bwGold4TableLog.newLine();
 			
 			
@@ -5622,18 +6138,28 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 							+ "," +data[j][AtLeast2TPredictionClassLevelCallers]+ "," + data[j][AtLeast2TPredictionClassLevelCallees]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCallers]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCallees]	
+									
 							+ "," + data[j][AllNClassLevelCallers]
 					+ "," +data[j][AllNClassLevelCallees]+ "," + data[j][AllNMethodLevelCallers]+ "," + data[j][AllNMethodLevelCallees]+ "," +
 					data[j][AllTClassLevelCallers]+ ","+		data[j][AllTClassLevelCallees]+ ","+		data[j][AllTMethodLevelCallers]+ 
 					","+		data[j][AllTMethodLevelCallees]+","+
+					
+","+data[j][AllNClassLevelCallersAtLeast2NGOLD]
+		+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD]+ "," +
+		data[j][AllTClassLevelCallersAtLeast2TGOLD]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD]+ 
+		","+
+					
 					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
 					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
 							+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
 							data[j][ACHRAFTRACEPureGold]+","+data[j][ACHRAFTRACEMixedGold]+","+data[j][ACHRAFNOTRACEPureGold]+","+data[j][ACHRAFNOTRACEMixedGold]+","+	
 							data[j][AllNMethodLevelCallersCallees]+","+data[j][AllTMethodLevelCallersCallees]+","+data[j][AllTClassLevelCallersCallees]+","+data[j][AllNClassLevelCallersCallees]+","+	
+							data[j][CLASSTRACEMethodLevelPureGold]+","+data[j][CLASSTRACEMethodLevelMixedGold]+","+data[j][CLASSNOTRACEMethodLevelPureGold]+","+data[j][CLASSNOTRACEMethodLevelMixedGold]+","+	
+							data[j][CLASSTRACEClassLevelPureGold]+","+data[j][CLASSTRACEClassLevelMixedGold]+","+data[j][CLASSNOTRACEClassLevelPureGold]+","+data[j][CLASSNOTRACEClassLevelMixedGold]+","+	
 							methodtrace.gold3);
 				
 			bw.newLine();
+
 
 			j++;
 			
@@ -5738,9 +6264,6 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
 		bw2.newLine();
-		
-		
-		
 		bw2.write("ALL N CLASS LEVEL CALLERS AT LEAST 2N : "+AllNClassLevelCallersClassAtLeast2NGold.toString()); 
 		bw2.newLine();
 		bw2.write("ALL N CLASS LEVEL CALLEES AT LEAST 2N : "+AllNClassLevelCalleesClassAtLeast2NGold.toString()); 
@@ -5757,9 +6280,6 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLEES AT LEAST 2T: "+AllTMethodLevelCalleesClassAtLeast2TGold.toString()); 
 		bw2.newLine();
-		
-		
-		
 		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
 		bw2.newLine();
 		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
@@ -5789,6 +6309,22 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 		bw2.write("ACHRAF NO TRACE PURE GOLD: "+ACHRAFNOTracePureGold.toString()); 
 		bw2.newLine();
 		bw2.write("ACHRAF NO TRACE MIXED GOLD: "+ACHRAFNOTraceMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold.toString()); 
 		bw2.newLine();
 		bw2.close();
 		
@@ -5897,6 +6433,22 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 		bwGold3.newLine();
 		bwGold3.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelCallersCalleesClassGold3.toString()); 
 		bwGold3.newLine();
+		bwGold3.write(" TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write(" TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write(" NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write(" TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write(" TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write(" NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold3.toString()); 
+		bwGold3.newLine();
+		bwGold3.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold3.toString()); 
+		bwGold3.newLine();
 		bwGold3.close();
 		
 		
@@ -5998,6 +6550,22 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 		bwGold4.write("ALL T CLASS LEVEL CALLERS CALLEES: "+AllTClassLevelCallersCalleesClassGold4.toString()); 
 		bwGold4.newLine();
 		bwGold4.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelCallersCalleesClassGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write(" NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold4.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold4.toString()); 
 		bwGold4.newLine();
 		bwGold4.close();
 		

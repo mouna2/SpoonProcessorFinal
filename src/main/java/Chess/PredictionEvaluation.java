@@ -36,7 +36,7 @@ public class PredictionEvaluation {
 		FalsePositive = falsePositive;
 		FalseNegative = falseNegative;
 	}
-	public PredictionEvaluation() {
+	public  PredictionEvaluation() {
 		// TODO Auto-generated constructor stub
 	} 
 	
