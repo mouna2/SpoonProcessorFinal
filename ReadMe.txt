@@ -35,6 +35,13 @@ Gantt: Gold, Gold3, Gold4
 JHOTDRAW: Gold, Gold3, Gold4
 
 
+query to know how many methods belong to classes that trace: 
+
+SELECT DISTINCT  traces.methodid FROM databasegantt.traces INNER JOIN databasegantt.tracesclasses where traces.classid=tracesclasses.classid and tracesclasses.gold='T';
+
+
+
+
 
 
 Java Files to be executed to produce predictions for Chess: 
