@@ -31,3 +31,24 @@ Chess: Gold, Gold2
 iTrust: Gold, Gold2	
 Gantt: Gold, Gold3, Gold4
 JHOTDRAW: Gold, Gold3, Gold4
+
+
+Java Files to be executed to produce predictions for Chess: 
+-TracesTableChessFinal: Merged executed calls + parsed calls 
+-TracesTableChessFinal_EXECUTED_CALLS: executed calls
+-TracesTableChessFinal_PARSED_CALLS: parsed calls 
+
+Java Files to be executed to produce predictions for iTrust: 
+-TracesTableiTrustFinal: Merged executed calls + parsed calls 
+-TracesTableiTrustFinal_EXECUTED_CALLS: executed calls
+-TracesTableiTrustFinal_PARSED_CALLS: parsed calls
+
+Java Files to be executed to produce predictions for Gantt: 
+-TracesTableGanttFinal: Merged executed calls + parsed calls 
+-TracesTableGanttFinal_EXECUTED_CALLS: executed calls
+-TracesTableGanttFinal_PARSED_CALLS: parsed calls  
+
+Java Files to be executed to produce predictions for JHotDraw: 
+-TracesTableJHotDrawFinal: Merged executed calls + parsed calls 
+-TracesTableJHotDrawFinal_EXECUTED_CALLS: executed calls
+-TracesTableJHotDrawFinal_PARSED_CALLS: parsed calls 
