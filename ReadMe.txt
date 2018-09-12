@@ -50,9 +50,9 @@ Java Files to be executed to produce predictions for Chess:
 -TracesTableChessFinal_PARSED_CALLS: parsed calls 
 
 Java Files to be executed to produce predictions for iTrust: 
--TracesTableiTrustFinal: Merged executed calls + parsed calls 
--TracesTableiTrustFinal_EXECUTED_CALLS: executed calls
--TracesTableiTrustFinal_PARSED_CALLS: parsed calls
+-TracesTableiTrustGold2PredictionFINAL: Merged executed calls + parsed calls 
+-TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS: executed calls
+-TracesTableiTrustGold2PredictionFINAL_PARSED_CALLS: parsed calls
 
 Java Files to be executed to produce predictions for Gantt: 
 -TracesTableGanttFinal: Merged executed calls + parsed calls 
