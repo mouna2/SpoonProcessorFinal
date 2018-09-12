@@ -4187,8 +4187,8 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 	
 	
 	if(methodtrace.getGold()!=null ) {
-		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
-		PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+		String Result=PredictionCLASSNOTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold);
 		}
 		
 		if(methodtrace.getGold()!=null ) {
@@ -4353,8 +4353,8 @@ if(entered==true) {
 
 
 if(methodtrace.getGold()!=null ) {
-	String Result=PredictionCLASSNOTRACEClassLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevel); 
-	PredictionCLASSNOTRACEClassLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold);
+	String Result=PredictionCLASSNOTRACEClassLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevel); 
+	PredictionCLASSNOTRACEClassLevelPureGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold);
 	}
 	
 	if(methodtrace.getGold()!=null ) {
@@ -4389,8 +4389,8 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 	
 	if(methodtrace.getGold2()!=null ) {
 	data[j][CLASSTRACEClassLevelPureGold2]=TracePureGold2ValueClassLevel; 
-	String Result=PredictionCLASSNOTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueClassLevel); 
-	PredictionCLASSNOTRACEClassLevelPureGold2.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold2);
+	String Result=PredictionCLASSTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueClassLevel); 
+	PredictionCLASSTRACEClassLevelPureGold2.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold2);
 	}
 	
 	if(methodtrace.getGold2()!=null ) {
@@ -4444,6 +4444,7 @@ failGold2++;
 	
 	
 }
+	
 	
 					
 					

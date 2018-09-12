@@ -5507,6 +5507,9 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 /**************************************************************************************************************/				
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+/**************************************************************************************************************/				
 String TracePureGoldValueMethodLevel=""; 
 String TraceMixedGoldValueMethodLevel=""; 
 String TracePureGold3ValueMethodLevel=""; 
@@ -5524,159 +5527,158 @@ String NOTraceMixedGold4ValueMethodLevel="";
 /**************************************************************************************************************/
 //ACHRAF
 if(flagGold==false) {
-	if(CountMethodT>0 && CountMethodTCallee>0) {
-		
-		boolean entered=false; 
-		if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold()!=null ) {
-			
-			TracePureGold++; 
-			TracePureGoldValueMethodLevel="T"; 
-			entered=true; 
-			
-		} else if(methodtrace.getGold()!=null){
-			TraceMixedGold++; 
-			TraceMixedGoldValueMethodLevel="T"; 
-			entered=true; 
-		}
+	
 
-		if(entered==true) {
-		if(methodtrace.getGold()!=null ) {
-		data[j][CLASSTRACEMethodLevelPureGold]=TracePureGoldValueMethodLevel; 
-		String Result=PredictionCLASSTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueMethodLevel); 
-		PredictionCLASSTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold);
-		}
-		
-		if(methodtrace.getGold()!=null ) {
-			data[j][CLASSTRACEMethodLevelMixedGold]=TraceMixedGoldValueMethodLevel; 
-			String Result=PredictionCLASSTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueMethodLevel); 
-			PredictionCLASSTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold);
-			}
-		}
-		
-	}else if(CountMethodN>0 && CountMethodNCallee>0) {
-
+if(CountMethodT>0 && CountMethodTCallee>0) {
+	
 	boolean entered=false; 
-	if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
+	if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold()!=null ) {
 		
-		NoTracePureGold++; 
-		NOTracePureGoldValueMethodLevel="N"; 
-		data[j][CLASSNOTRACEMethodLevelPureGold]=NOTracePureGoldValueMethodLevel; 
+		TracePureGold++; 
+		TracePureGoldValueMethodLevel="T"; 
 		entered=true; 
 		
-		
-	} else if(methodtrace.getGold()!=null) {
-		NoTraceMixedGold++; 
-		NOTraceMixedGoldValueMethodLevel="N"; 
-		data[j][CLASSNOTRACEMethodLevelMixedGold]=NOTraceMixedGoldValueMethodLevel; 
+	} else if(methodtrace.getGold()!=null){
+		TraceMixedGold++; 
+		TraceMixedGoldValueMethodLevel="T"; 
 		entered=true; 
 	}
 
 	if(entered==true) {
-
-
-
-
-
-
-
-
 	if(methodtrace.getGold()!=null ) {
-		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
-		PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+	data[j][CLASSTRACEMethodLevelPureGold]=TracePureGoldValueMethodLevel; 
+	String Result=PredictionCLASSTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueMethodLevel); 
+	PredictionCLASSTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold);
+	}
+	
+	if(methodtrace.getGold()!=null ) {
+		data[j][CLASSTRACEMethodLevelMixedGold]=TraceMixedGoldValueMethodLevel; 
+		String Result=PredictionCLASSTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold);
 		}
-		
-		if(methodtrace.getGold()!=null ) {
-			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueMethodLevel); 
-			PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
-			}
 	}
+	
+}else if(CountMethodN>0 && CountMethodNCallee>0) {
 
-	}else {
-	failGold++; 
-	}
-
+boolean entered=false; 
+if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
+	
+	NoTracePureGold++; 
+	NOTracePureGoldValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelPureGold]=NOTracePureGoldValueMethodLevel; 
+	entered=true; 
+	
+	
+} else if(methodtrace.getGold()!=null) {
+	NoTraceMixedGold++; 
+	NOTraceMixedGoldValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelMixedGold]=NOTraceMixedGoldValueMethodLevel; 
+	entered=true; 
 }
 
+if(entered==true) {
+
+
+
+
+
+
+
+
+if(methodtrace.getGold()!=null ) {
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold);
+	}
+	
+	if(methodtrace.getGold()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+		}
+}
+
+}else {
+failGold++; 
+}
+}	
 
 /********************************************************************************************************************/				
 if(flagGold3==false) {
-	if(CountMethodTGOLD3>0 && CountMethodTCalleeGOLD3>0) {
-		
-		boolean entered=false; 
-		if(CountMethodNGOLD3+CountMethodNCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
-			
-			TracePureGold3++; 
-			TracePureGold3ValueMethodLevel="T"; 
-			entered=true; 
-			
-		} else if(methodtrace.getGold3()!=null) {
-			TraceMixedGold3++; 
-			TraceMixedGold3ValueMethodLevel="T"; 
-			entered=true; 
-		}
-
-		if(entered==true) {
-		
-		if(methodtrace.getGold3()!=null ) {
-		data[j][CLASSTRACEMethodLevelPureGold3]=TracePureGold3ValueMethodLevel; 
-		String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueMethodLevel); 
-		PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
-		}
-		
-		if(methodtrace.getGold3()!=null ) {
-			data[j][CLASSTRACEMethodLevelMixedGold3]=TraceMixedGold3ValueMethodLevel; 
-			String Result=PredictionCLASSTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TraceMixedGold3ValueMethodLevel); 
-			PredictionCLASSTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold3);
-			}
-		}
-		
-	}else if(CountMethodNGOLD3>0 && CountMethodNCalleeGOLD3>0) {
-
+if(CountMethodTGOLD3>0 && CountMethodTCalleeGOLD3>0) {
+	
 	boolean entered=false; 
-	if(CountMethodTGOLD3+CountMethodTCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
+	if(CountMethodNGOLD3+CountMethodNCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
 		
-		NoTracePureGold3++; 
-		NOTracePureGold3ValueMethodLevel="N"; 
-		data[j][CLASSNOTRACEMethodLevelPureGold3]=NOTracePureGold3ValueMethodLevel; 
+		TracePureGold3++; 
+		TracePureGold3ValueMethodLevel="T"; 
 		entered=true; 
 		
-		
 	} else if(methodtrace.getGold3()!=null) {
-		NoTraceMixedGold3++; 
-		NOTraceMixedGold3ValueMethodLevel="N"; 
-		data[j][CLASSNOTRACEMethodLevelMixedGold3]=NOTraceMixedGold3ValueMethodLevel; 
+		TraceMixedGold3++; 
+		TraceMixedGold3ValueMethodLevel="T"; 
 		entered=true; 
 	}
 
 	if(entered==true) {
-
-
-
-
-
-
-
+	
 	if(methodtrace.getGold3()!=null ) {
-		String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTracePureGold3ValueMethodLevel); 
-		PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
+	data[j][CLASSTRACEMethodLevelPureGold3]=TracePureGold3ValueMethodLevel; 
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
+	}
+	
+	if(methodtrace.getGold3()!=null ) {
+		data[j][CLASSTRACEMethodLevelMixedGold3]=TraceMixedGold3ValueMethodLevel; 
+		String Result=PredictionCLASSTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TraceMixedGold3ValueMethodLevel); 
+		PredictionCLASSTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold3);
 		}
-		
-		if(methodtrace.getGold3()!=null ) {
-			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTraceMixedGold3ValueMethodLevel); 
-			PredictionCLASSNOTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold3);
-			}
 	}
+	
+}else if(CountMethodNGOLD3>0 && CountMethodNCalleeGOLD3>0) {
 
-	}else {
-	failGold3++; 
+boolean entered=false; 
+if(CountMethodTGOLD3+CountMethodTCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
+	
+	NoTracePureGold3++; 
+	NOTracePureGold3ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelPureGold3]=NOTracePureGold3ValueMethodLevel; 
+	entered=true; 
+	
+	
+} else if(methodtrace.getGold3()!=null) {
+	NoTraceMixedGold3++; 
+	NOTraceMixedGold3ValueMethodLevel="N"; 
+	data[j][CLASSNOTRACEMethodLevelMixedGold3]=NOTraceMixedGold3ValueMethodLevel; 
+	entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold3()!=null ) {
+	String Result=PredictionCLASSNOTRACEMethodLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTracePureGold3ValueMethodLevel); 
+	PredictionCLASSNOTRACEMethodLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold3);
 	}
+	
+	if(methodtrace.getGold3()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), NOTraceMixedGold3ValueMethodLevel); 
+		PredictionCLASSNOTRACEMethodLevelMixedGold3.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold3);
+		}
+}
+
+}else {
+failGold3++; 
+}
 
 }
 
+
 /********************************************************************************************************************/				
 if(flagGold4==false) {
-	
-
 if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 	
 	boolean entered=false; 
@@ -5753,8 +5755,6 @@ failGold4++;
 
 
 
-
-
 String TracePureGoldValueClassLevel=""; 
 String TraceMixedGoldValueClassLevel=""; 
 String TracePureGold3ValueClassLevel=""; 
@@ -5772,8 +5772,6 @@ String TraceMixedGold4ValueClassLevel="";
 /**************************************************************************************************************/
 //ACHRAF
 if(flagGold==false) {
-	
-
 if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 
 boolean entered=false; 
@@ -5831,8 +5829,8 @@ if(entered==true) {
 
 
 if(methodtrace.getGold()!=null ) {
-String Result=PredictionCLASSNOTRACEClassLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevel); 
-PredictionCLASSNOTRACEClassLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold);
+String Result=PredictionCLASSNOTRACEClassLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevel); 
+PredictionCLASSNOTRACEClassLevelPureGold.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold);
 }
 
 if(methodtrace.getGold()!=null ) {
@@ -5867,8 +5865,8 @@ if(entered==true) {
 
 if(methodtrace.getGold3()!=null ) {
 data[j][CLASSTRACEClassLevelPureGold3]=TracePureGold3ValueClassLevel; 
-String Result=PredictionCLASSNOTRACEClassLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueClassLevel); 
-PredictionCLASSNOTRACEClassLevelPureGold3.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold3);
+String Result=PredictionCLASSTRACEClassLevelPureGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), TracePureGold3ValueClassLevel); 
+PredictionCLASSTRACEClassLevelPureGold3.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold3);
 }
 
 if(methodtrace.getGold3()!=null ) {
@@ -5918,7 +5916,10 @@ if(methodtrace.getGold3()!=null ) {
 }else {
 failGold3++; 
 }
-}	
+
+
+
+}
 /********************************************************************************************************************/				
 if(flagGold4==false) {
 if(CounterTraceClassCallerTGOLD4>0 && CounterTraceClassCalleeTGOLD4>0) {
@@ -5940,8 +5941,8 @@ if(entered==true) {
 
 if(methodtrace.getGold4()!=null ) {
 data[j][CLASSTRACEClassLevelPureGold4]=TracePureGold4ValueClassLevel; 
-String Result=PredictionCLASSNOTRACEClassLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueClassLevel); 
-PredictionCLASSNOTRACEClassLevelPureGold4.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold4);
+String Result=PredictionCLASSTRACEClassLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueClassLevel); 
+PredictionCLASSTRACEClassLevelPureGold4.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold4);
 }
 
 if(methodtrace.getGold4()!=null ) {
@@ -5990,14 +5991,12 @@ if(methodtrace.getGold4()!=null ) {
 
 }else {
 failGold4++; 
-}					
-					
-					
-					
-					
-					
-}					
-					
+}
+
+
+
+}
+
 					
 					
 					
