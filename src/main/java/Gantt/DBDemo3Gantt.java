@@ -750,242 +750,242 @@ public class DBDemo3Gantt {
 //////////////////////    	
 ////////////////////    	
 //////    	//PARAMETERS
-    	   List<String> paramlist= new ArrayList<String>();   	
-    	   for(CtType<?> clazz : classFactory.getAll(true)) {
-    	       		
-    	       		System.out.println(clazz.getSimpleName());
-    	       		System.out.println(clazz.getPackage());
-    	       		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
-    	       		String MethodReferenced=null; 
-    	       		String MethodName=null; 
-    	       		String parameter=null; 
-    	       	    String ClassName=null; 
-    	       	    String classid=null; 
-    	       		String parameterclass=null; 
-    	       		String paramclassid=null; 
-    	       				
-    	       		 //for(CtField<?> field : clazz.getFields()) {
-    	       				for(CtMethod<?> method :clazz.getMethods()) {
-    	       	    			List<CtParameter<?>> params = method.getParameters(); 
-    	       				
-    	       	    			
-    	       	    			
-    	       	    		
-    	       	    	
-    	       	    			for( CtParameter<?> myparam :params) {
-    	       	    				String paramInfo=""; 
-    	       	    				boolean flag2=false; 
-    	       	    				String fullmethod=clazz.getQualifiedName()+"."+method.getSignature().toString(); 
-    	       	    				ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
-    	       	    				
-    	   	    					while(classnames.next()){
-    	   	    						 ClassName =classnames.getString("classname"); 
-    	   	    						 classid =classnames.getString("classid"); 
-    	   	    						MethodReferenced =classnames.getString("id"); 
-    	   	    			   		   }
-    	   	    					
-//    	   	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//    	   List<String> paramlist= new ArrayList<String>();   	
+//    	   for(CtType<?> clazz : classFactory.getAll(true)) {
+//    	       		
+//    	       		System.out.println(clazz.getSimpleName());
+//    	       		System.out.println(clazz.getPackage());
+//    	       		String fullname= clazz.getPackage()+""+clazz.getQualifiedName(); 
+//    	       		String MethodReferenced=null; 
+//    	       		String MethodName=null; 
+//    	       		String parameter=null; 
+//    	       	    String ClassName=null; 
+//    	       	    String classid=null; 
+//    	       		String parameterclass=null; 
+//    	       		String paramclassid=null; 
+//    	       				
+//    	       		 //for(CtField<?> field : clazz.getFields()) {
+//    	       				for(CtMethod<?> method :clazz.getMethods()) {
+//    	       	    			List<CtParameter<?>> params = method.getParameters(); 
+//    	       				
+//    	       	    			
+//    	       	    			
+//    	       	    		
+//    	       	    	
+//    	       	    			for( CtParameter<?> myparam :params) {
+//    	       	    				String paramInfo=""; 
+//    	       	    				boolean flag2=false; 
+//    	       	    				String fullmethod=clazz.getQualifiedName()+"."+method.getSignature().toString(); 
+//    	       	    				ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
 //    	       	    				
-//    	   	    					while(classids.next()){
-//    	   	    						 classid =classids.getString("id"); 
-//    	   	    					
+//    	   	    					while(classnames.next()){
+//    	   	    						 ClassName =classnames.getString("classname"); 
+//    	   	    						 classid =classnames.getString("classid"); 
+//    	   	    						MethodReferenced =classnames.getString("id"); 
 //    	   	    			   		   }
-    	   	    					
-//    	       	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-//    	       	    				
-//    	       	    					while(methods.next()){
-//    	       	    						MethodReferenced =methods.getString("id"); 
+//    	   	    					
+////    	   	    					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+////    	       	    				
+////    	   	    					while(classids.next()){
+////    	   	    						 classid =classids.getString("id"); 
+////    	   	    					
+////    	   	    			   		   }
+//    	   	    					
+////    	       	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+////    	       	    				
+////    	       	    					while(methods.next()){
+////    	       	    						MethodReferenced =methods.getString("id"); 
+////    	       	    					
+////    	       	    			  
+//    	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
+//    	           	    				
+//    	       	    					while(paramclassids.next()){
+//    	       	    						flag2=true; 
+//    	       	    						paramclassid =paramclassids.getString("id"); 
 //    	       	    					
-//    	       	    			  
-    	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
-    	           	    				
-    	       	    					while(paramclassids.next()){
-    	       	    						flag2=true; 
-    	       	    						paramclassid =paramclassids.getString("id"); 
-    	       	    					
-    	       	    			   		   }
-    	       	    			
-    	       	    				
-    	       	    					
-    	       	    					
-    	           		    			 paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
-
-    	       	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
-    	       	    					//	System.out.println("HERE IS A PARAMETER: "+ myparam);
-    	       	    						System.out.println("paramInfo  "+paramInfo);
-    	       	    						if(MethodReferenced==null) {
-    	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
-    	       	    						}
-    	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
-    	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +0+"')");
-    	           	    		    			paramlist.add(paramInfo); 
-    	       	    						}
-
-    	       	    				//	}
-    	       	    				
-    	       	    				
-    	       	    			}
-    	       	    			
-    	       	    		
-    	       	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
-    	       	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-    	       	    		
-    	       	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
-    	       	    				for(CtReturn ret: returnstatement) {
-    	       	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
-    	       	    					ret.getReturnedExpression().getType(); 
-    	       	    				
-    	       	    			}*/
-    	       	    			boolean flag=false; 
-    	       	    			CtTypeReference<?> MethodType = method.getType();  
-    	        	    		//	System.out.println("METHOD TYPE  "+ MethodType);
-//    	        	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+//    	       	    			   		   }
+//    	       	    			
+//    	       	    				
+//    	       	    					
+//    	       	    					
+//    	           		    			 paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +0; 
+//
+//    	       	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
+//    	       	    					//	System.out.println("HERE IS A PARAMETER: "+ myparam);
+//    	       	    						System.out.println("paramInfo  "+paramInfo);
+//    	       	    						if(MethodReferenced==null) {
+//    	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
+//    	       	    						}
+//    	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
+//    	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +0+"')");
+//    	           	    		    			paramlist.add(paramInfo); 
+//    	       	    						}
+//
+//    	       	    				//	}
+//    	       	    				
+//    	       	    				
+//    	       	    			}
+//    	       	    			
+//    	       	    		
+//    	       	    			/*List<CtStatement> bodystatements = methodbody.getStatements(); 
+//    	       	    			//List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+//    	       	    		
+//    	       	    				List<CtReturn> returnstatement = methodbody.getElements(new TypeFilter<>(CtReturn.class)); 
+//    	       	    				for(CtReturn ret: returnstatement) {
+//    	       	    					System.out.println("HERE IS RETURN: "+ret.getReturnedExpression().getType());
+//    	       	    					ret.getReturnedExpression().getType(); 
+//    	       	    				
+//    	       	    			}*/
+//    	       	    			boolean flag=false; 
+//    	       	    			CtTypeReference<?> MethodType = method.getType();  
+//    	        	    		//	System.out.println("METHOD TYPE  "+ MethodType);
+////    	        	    			ResultSet classnames = st.executeQuery("SELECT classes.classname from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+////    	   	    				
+////    	       					while(classnames.next()){
+////    	       						 ClassName =classnames.getString("classname"); 
+////    	       					
+////    	       			   		   }
+////    	       					
+////    	       					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
+////    	   	    				
+////    	       					while(classids.next()){
+////    	       						 classid =classids.getString("id"); 
+////    	       					
+////    	       			   		   }
+////    	       					
+////    	   	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
+////    	   	    				
+////    	   	    					while(methods.next()){
+////    	   	    						MethodReferenced =methods.getString("id"); 
+////    	   	    					
+////    	   	    			   		   }
+//    	       	    			
+//	       	    				String fullmethod=clazz.getQualifiedName()+"."+method.getSignature().toString(); 
+//
 //    	   	    				
-//    	       					while(classnames.next()){
-//    	       						 ClassName =classnames.getString("classname"); 
-//    	       					
-//    	       			   		   }
-//    	       					
-//    	       					ResultSet classids = st.executeQuery("SELECT classes.id from classes INNER JOIN methods ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' "); 
-//    	   	    				
-//    	       					while(classids.next()){
-//    	       						 classid =classids.getString("id"); 
-//    	       					
-//    	       			   		   }
-//    	       					
-//    	   	    					ResultSet methods = st.executeQuery("SELECT methods.id from methods INNER JOIN classes ON classes.id=methods.classid where methods.methodname='"+method.getSignature().toString()+"' and classes.id='"+classid+"'"); 
-//    	   	    				
-//    	   	    					while(methods.next()){
-//    	   	    						MethodReferenced =methods.getString("id"); 
+//    	       	    			ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
+//	       	    				
+//	   	    					while(classnames.next()){
+//	   	    						 ClassName =classnames.getString("classname"); 
+//	   	    						 classid =classnames.getString("classid"); 
+//	   	    						MethodReferenced =classnames.getString("id"); 
+//	   	    			   		   }
+//	   	    					if(MethodType.toString().contains("<")==true) {
+//	 	   	    					String methtype=MethodType.toString().substring(MethodType.toString().indexOf("<")+1, MethodType.toString().indexOf(">")); 
+//	 	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+methtype+"'"); 
+//		   		    				
+//		   	    					while(parameterclasses.next()){
+//		   	    						parameterclass =parameterclasses.getString("id"); 
+//		   	    						flag=true; 
+//		   	    					
+//		   	    			   		   }
+//	 	   	    					}
+//    	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
+//    	   		    				
+//    	   	    					while(parameterclasses.next()){
+//    	   	    						parameterclass =parameterclasses.getString("id"); 
+//    	   	    						flag=true; 
 //    	   	    					
 //    	   	    			   		   }
-    	       	    			
-	       	    				String fullmethod=clazz.getQualifiedName()+"."+method.getSignature().toString(); 
-
-    	   	    				
-    	       	    			ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
-	       	    				
-	   	    					while(classnames.next()){
-	   	    						 ClassName =classnames.getString("classname"); 
-	   	    						 classid =classnames.getString("classid"); 
-	   	    						MethodReferenced =classnames.getString("id"); 
-	   	    			   		   }
-	   	    					if(MethodType.toString().contains("<")==true) {
-	 	   	    					String methtype=MethodType.toString().substring(MethodType.toString().indexOf("<")+1, MethodType.toString().indexOf(">")); 
-	 	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+methtype+"'"); 
-		   		    				
-		   	    					while(parameterclasses.next()){
-		   	    						parameterclass =parameterclasses.getString("id"); 
-		   	    						flag=true; 
-		   	    					
-		   	    			   		   }
-	 	   	    					}
-    	   	    					ResultSet parameterclasses = st.executeQuery("SELECT classes.id from classes where classes.classname='"+MethodType+"'"); 
-    	   		    				
-    	   	    					while(parameterclasses.next()){
-    	   	    						parameterclass =parameterclasses.getString("id"); 
-    	   	    						flag=true; 
-    	   	    					
-    	   	    			   		   }
-    	       		    			String paramInfo= MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
-    	       		    			System.out.println("paramInfo  "+paramInfo);
-    	       	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false) {
-    	       		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +1+"')");
-    	       		    			paramlist.add(paramInfo);
-    	       	    			}
-
-    	       	    		
-    	       	    		}
-    	       		 //}
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    	       				
-    		       			List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
-    		   	       	   for(CtConstructor<?> cons :constructorcallers) {	
-    		 	       	    			List<CtParameter<?>> params = cons.getParameters(); 
-    		 	       				
-    		 	       	    			
-    		 	       	    			
-    		 	       	    		
-    		 	       	    	
-    		 	       	    			for( CtParameter<?> myparam :params) {
-    		 	       	    				String paramInfo=""; 
-    		 	       	    				boolean flag2=false; 
-    		 	       	    				String meth=cons.getSignature().toString(); 
-    		 	       	    				meth="-init-"+meth.substring(meth.indexOf("("), meth.indexOf(")")+1); 
-    		 	       	    				String fullmethod=clazz.getQualifiedName()+"."+meth; 
-    		 	       	    				ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
-    		 	       	    				
-    		 	   	    					while(classnames.next()){
-    		 	   	    						 ClassName =classnames.getString("classname"); 
-    		 	   	    						 classid =classnames.getString("classid"); 
-    		 	   	    						MethodReferenced =classnames.getString("id"); 
-    		 	   	    			   		   }
-    		 	   	    					
-
-    		 	       	    				
-    		 	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
-    		 	           	    				
-    		 	       	    					while(paramclassids.next()){
-    		 	       	    						flag2=true; 
-    		 	       	    						paramclassid =paramclassids.getString("id"); 
-    		 	       	    					
-    		 	       	    			   		   }
-    		 	       	    			
-    		 	       	    				
-    		 	       	    					
-    		 	       	    					
-    		 	           		    			 paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +cons.getSignature().toString()+"','" +0; 
-
-    		 	       	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
-    		 	       	    					//	System.out.println("HERE IS A PARAMETER: "+ myparam);
-    		 	       	    						System.out.println("paramInfo  "+paramInfo);
-    		 	       	    						if(MethodReferenced==null) {
-    		 	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
-    		 	       	    						}
-    		 	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
-    		 	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+fullmethod+"','" +0+"')");
-    		 	           	    		    			paramlist.add(paramInfo); 
-    		 	       	    						}
-
-    		 	       	    				//	}
-    		 	       	    				
-    		 	       	    				
-    		 	       	    			}
-    		 	       	    			
-    		 	       	    		
-
-    		 	       	    	
-
-    		 	       	    		
-    		 	       	    		
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       				
-    		   	       		 //}
-    		   	       	}
-    	       				
-    	       				
-    	       				
-    	       	}
+//    	       		    			String paramInfo= MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
+//    	       		    			System.out.println("paramInfo  "+paramInfo);
+//    	       	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false) {
+//    	       		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +1+"')");
+//    	       		    			paramlist.add(paramInfo);
+//    	       	    			}
+//
+//    	       	    		
+//    	       	    		}
+//    	       		 //}
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    	       				
+//    		       			List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
+//    		   	       	   for(CtConstructor<?> cons :constructorcallers) {	
+//    		 	       	    			List<CtParameter<?>> params = cons.getParameters(); 
+//    		 	       				
+//    		 	       	    			
+//    		 	       	    			
+//    		 	       	    		
+//    		 	       	    	
+//    		 	       	    			for( CtParameter<?> myparam :params) {
+//    		 	       	    				String paramInfo=""; 
+//    		 	       	    				boolean flag2=false; 
+//    		 	       	    				String meth=cons.getSignature().toString(); 
+//    		 	       	    				meth="-init-"+meth.substring(meth.indexOf("("), meth.indexOf(")")+1); 
+//    		 	       	    				String fullmethod=clazz.getQualifiedName()+"."+meth; 
+//    		 	       	    				ResultSet classnames = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
+//    		 	       	    				
+//    		 	   	    					while(classnames.next()){
+//    		 	   	    						 ClassName =classnames.getString("classname"); 
+//    		 	   	    						 classid =classnames.getString("classid"); 
+//    		 	   	    						MethodReferenced =classnames.getString("id"); 
+//    		 	   	    			   		   }
+//    		 	   	    					
+//
+//    		 	       	    				
+//    		 	       	    					ResultSet paramclassids = st.executeQuery("SELECT classes.id from classes where classes.classname='"+myparam.getType()+"'"); 
+//    		 	           	    				
+//    		 	       	    					while(paramclassids.next()){
+//    		 	       	    						flag2=true; 
+//    		 	       	    						paramclassid =paramclassids.getString("id"); 
+//    		 	       	    					
+//    		 	       	    			   		   }
+//    		 	       	    			
+//    		 	       	    				
+//    		 	       	    					
+//    		 	       	    					
+//    		 	           		    			 paramInfo=myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +cons.getSignature().toString()+"','" +0; 
+//
+//    		 	       	    				//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
+//    		 	       	    					//	System.out.println("HERE IS A PARAMETER: "+ myparam);
+//    		 	       	    						System.out.println("paramInfo  "+paramInfo);
+//    		 	       	    						if(MethodReferenced==null) {
+//    		 	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
+//    		 	       	    						}
+//    		 	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
+//    		 	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+fullmethod+"','" +0+"')");
+//    		 	           	    		    			paramlist.add(paramInfo); 
+//    		 	       	    						}
+//
+//    		 	       	    				//	}
+//    		 	       	    				
+//    		 	       	    				
+//    		 	       	    			}
+//    		 	       	    			
+//    		 	       	    		
+//
+//    		 	       	    	
+//
+//    		 	       	    		
+//    		 	       	    		
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       				
+//    		   	       		 //}
+//    		   	       	}
+//    	       				
+//    	       				
+//    	       				
+//    	       	}
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/	
 ///////////////*********************************************************************************************************************************************************************************/
@@ -1829,11 +1829,11 @@ public class DBDemo3Gantt {
 /////////////////*********************************************************************************************************************************************************************************/   	
 //////////////////BUILD METHODSCALLED EXECUTED TABLE
 //////////////   counter=0; 
-//File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\dataMethodCallsExecutedGantt2.txt");
-//FileReader fileReader = new FileReader(file);
-//BufferedReader bufferedReader = new BufferedReader(fileReader);
-//StringBuffer stringBuffer = new StringBuffer();
-//String line;
+File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\dataMethodCallsExecutedGantt2.txt");
+FileReader fileReader = new FileReader(file);
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+StringBuffer stringBuffer = new StringBuffer();
+String line;
 //try {
 //	
 //	List<methodcallsexecuted> methodcallsexecutedlist= new ArrayList<methodcallsexecuted>(); 
@@ -2372,223 +2372,223 @@ public class DBDemo3Gantt {
 //////
 //////////////////CREATE TRACES TABLE 
 //////////////
-//file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal2.txt");
-// fileReader = new FileReader(file);
-// bufferedReader = new BufferedReader(fileReader);
-// stringBuffer = new StringBuffer();
-// 
-// List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
-//tracesmethodscallees tmc = null; 
-//int COUNTER3=1; 
-//try {
-//	
-//	line = bufferedReader.readLine(); 
-//	while ((line = bufferedReader.readLine()) != null) {
-//		
-//		String requirement=null; 
-//		 String method=null; 
-//		 String gold=null; 
-//		 String subject=null; 
-//		 String methodid=null; 
-//		 String classname=null; 
-//		 String classid=null; 
-//		 String requirementid=null; 
-//		String calleeid=null; 
-//		String goldprediction=null; 
-//		String calleeidexecuted=null; 
-//		String callerid=null; 
-//		String callerexecutedid=null; 
-//		String newmeth= null; 
-//		
-//		
-//		System.out.println(line);
-//		String[] linesplitted = line.split(","); 
-//		method=linesplitted[1]; 
-//		requirement=linesplitted[2]; 
-//		gold=linesplitted[4]; 
-//		subject=linesplitted[5]; 
-//		method=method.replace("/", "."); 
-//		method=method.replace(";", ","); 
-//		method=method.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
-//		method=method.replaceAll("\\(I\\)", "\\(int\\)"); 
-//		method=method.replaceAll("\\$\\(", "\\("); 
-//		method=method.replaceAll("II", "int,int,"); 
-//		method=method.replaceAll("ZZ", "boolean,boolean,"); 
-//		method=method.replaceAll(",Z\\)", ",boolean\\)"); 
-//		method=method.replaceAll(",\\)", "\\)"); 
-//		method=method.replaceAll(",I\\)", ",int\\)"); 
-//		method=method.replaceAll("Cint", "char,int"); 
-//		method=method.replaceAll("Ijava", "int,java"); 
-//		method=method.replaceAll("clinit", "init"); 
-//		System.out.println();
-//		System.out.println("LINE====>"+line);
-//		System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
-//		String params=ReturnParams(method); 
-//		String mymethodname=KeepMethodName(method); 
-//		
-//		
-//		params=RewriteFullMethodRemoveDollarTraces(params); 
-//		
-//		System.out.println("hey");
-//		params=RewriteFullMethod(params);
-//		
-//		method=mymethodname+params; 
-//		method=ReplaceLnetLjava(method);
-//		
-//		method=method.replaceAll("clinit", "init"); 
-//		System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "COUNTER"); 
-//
-//		System.out.println();
-//		method=method.trim(); 
-//		String shortmethod=method.substring(0, method.indexOf("("));
-//		System.out.println(method);
-//			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
-//			while(methodids.next()){
-//				methodid = methodids.getString("id"); 
-//				classname = methodids.getString("classname"); 
-//				classid = methodids.getString("classid"); 
-//				   }
-//
-//			
-//			
-//			
-//			List<String> InterfaceNameIds= new ArrayList<String>(); 
-//			String interfacename=null; 
-//			String interfaceid=null; 
-//			ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-//			while(interfaces.next()){
-//				
-//				interfacename = interfaces.getString("interfacename"); 
-//				 interfaceid = interfaces.getString("interfaceclassid"); 
-//				String combination=interfaceid+"-"+interfacename; 
-//				InterfaceNameIds.add(combination); 
-//				   }			
-//			//////////////////////////////////////////////////////////////////
-//			
-//			
-////		classid=null; 
-////		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////		while(classids.next()){
-////			classid = classids.getString("classid"); 
-////			   }
-//		requirementid=null; 
-//		requirement=requirement.trim();
-//		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
-//		while(requirements.next()){
-//			requirementid = requirements.getString("id"); 
+file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TracesGanttFinal2.txt");
+ fileReader = new FileReader(file);
+ bufferedReader = new BufferedReader(fileReader);
+ stringBuffer = new StringBuffer();
+ 
+ List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
+tracesmethodscallees tmc = null; 
+int COUNTER3=1; 
+try {
+	
+	line = bufferedReader.readLine(); 
+	while ((line = bufferedReader.readLine()) != null) {
+		
+		String requirement=null; 
+		 String method=null; 
+		 String gold=null; 
+		 String subject=null; 
+		 String methodid=null; 
+		 String classname=null; 
+		 String classid=null; 
+		 String requirementid=null; 
+		String calleeid=null; 
+		String goldprediction=null; 
+		String calleeidexecuted=null; 
+		String callerid=null; 
+		String callerexecutedid=null; 
+		String newmeth= null; 
+		
+		
+		System.out.println(line);
+		String[] linesplitted = line.split(","); 
+		method=linesplitted[1]; 
+		requirement=linesplitted[2]; 
+		gold=linesplitted[4]; 
+		subject=linesplitted[5]; 
+		method=method.replace("/", "."); 
+		method=method.replace(";", ","); 
+		method=method.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
+		method=method.replaceAll("\\(I\\)", "\\(int\\)"); 
+		method=method.replaceAll("\\$\\(", "\\("); 
+		method=method.replaceAll("II", "int,int,"); 
+		method=method.replaceAll("ZZ", "boolean,boolean,"); 
+		method=method.replaceAll(",Z\\)", ",boolean\\)"); 
+		method=method.replaceAll(",\\)", "\\)"); 
+		method=method.replaceAll(",I\\)", ",int\\)"); 
+		method=method.replaceAll("Cint", "char,int"); 
+		method=method.replaceAll("Ijava", "int,java"); 
+		method=method.replaceAll("clinit", "init"); 
+		System.out.println();
+		System.out.println("LINE====>"+line);
+		System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
+		String params=ReturnParams(method); 
+		String mymethodname=KeepMethodName(method); 
+		
+		
+		params=RewriteFullMethodRemoveDollarTraces(params); 
+		
+		System.out.println("hey");
+		params=RewriteFullMethod(params);
+		
+		method=mymethodname+params; 
+		method=ReplaceLnetLjava(method);
+		
+		method=method.replaceAll("clinit", "init"); 
+		System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "COUNTER"); 
+
+		System.out.println();
+		method=method.trim(); 
+		String shortmethod=method.substring(0, method.indexOf("("));
+		System.out.println(method);
+			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
+			while(methodids.next()){
+				methodid = methodids.getString("id"); 
+				classname = methodids.getString("classname"); 
+				classid = methodids.getString("classid"); 
+				   }
+
+			
+			
+			
+			List<String> InterfaceNameIds= new ArrayList<String>(); 
+			String interfacename=null; 
+			String interfaceid=null; 
+			ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
+			while(interfaces.next()){
+				
+				interfacename = interfaces.getString("interfacename"); 
+				 interfaceid = interfaces.getString("interfaceclassid"); 
+				String combination=interfaceid+"-"+interfacename; 
+				InterfaceNameIds.add(combination); 
+				   }			
+			//////////////////////////////////////////////////////////////////
+			
+			
+//		classid=null; 
+//		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//		while(classids.next()){
+//			classid = classids.getString("classid"); 
 //			   }
-//		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
-//		// Retrieving the calleeid
-//		calleeid=null; 
-//			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
-//			while(calleesparsed.next()){
-//				 calleeid = calleesparsed.getString("calleemethodid"); }
-//			calleeidexecuted=null; 	   
-//			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
-//			while(calleesexecuted.next()){
-//				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
-//				   }
-//			callerid=null; 
-//			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
-//			while(callersparsed.next()){
-//				  callerid = callersparsed.getString("callermethodid"); }
-//			callerexecutedid=null; 	   
-//			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
-//			while(callersexecuted.next()){
-//				 callerexecutedid = callersexecuted.getString("callermethodid"); 
-//				   }
-//	
-//		
-//		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
-//		//otherwise, use the value from the methodcallsexecuted table 
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			
-//			
-//			
-//		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
-//		if(methodid!=null && requirementid!=null && classid!=null) {
-//			boolean mycond=tr.contains(TraceListMethods, tr);
-//if(mycond==false) {
-//	method=RewriteFullMethod(method);  
-//	String methodnameAndParams= GetMethodNameAndParams(method); 
-//	method=method.replaceAll("Lde", "de"); 
-//	String statement; 
-//	methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-//	 statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-//
-//
-//	st.executeUpdate(statement);
-//	TraceListMethods.add(tr); 
-//	
-//	
-//}
-//			
-//			
-//		}
-//		//ADDING INTERFACES TO THE TRACES TABLE 
-//		 for(String interfacenameid: InterfaceNameIds) {
-//			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
-//			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
-//		 if(methodid!=null && requirementid!=null && interfacename!=null) {
-//			 System.out.println("SHORT METHOD: " +shortmethod);
-//			 System.out.println(" METHOD ID: " +methodid);
-//			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
-//			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
-//			if(mycond==false) {
-//			method=RewriteFullMethod(method);   
-//			method=method.replaceAll("Lde", "de"); 
-//			String methodnameAndParams= GetMethodNameAndParams(method); 
-//			methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-//			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-//				st.executeUpdate(statement);
-//				TraceListMethods.add(tracesmethods); 
-//				
-//				
-//			}
-//		}
-//		else {
-//			System.out.println(shortmethod);
-//			System.out.println("I am here");
-//		}
-//			
-//			
-//		 }	
-//		
-//		
-//	//	 counter++; 
-//		
-//		
-//	}
-//	
-//	
-//	
-//	/*String filename= "TracesCalleesList.txt"; 
-//	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
-//		oos.writeObject(TracesCalleesList);
-//		oos.flush();
-//		oos.close();*/
-//}
-//	
-//catch (IOException e) {
-//	// TODO Auto-generated catch block
-//	e.printStackTrace();
-//}
+			requirement=requirement.trim(); 
+		
+			ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+			while(requirements.next()){
+				requirementid = requirements.getString("id"); 
+				   }	
+		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
+		// Retrieving the calleeid
+		calleeid=null; 
+			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
+			while(calleesparsed.next()){
+				 calleeid = calleesparsed.getString("calleemethodid"); }
+			calleeidexecuted=null; 	   
+			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
+			while(calleesexecuted.next()){
+				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
+				   }
+			callerid=null; 
+			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
+			while(callersparsed.next()){
+				  callerid = callersparsed.getString("callermethodid"); }
+			callerexecutedid=null; 	   
+			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
+			while(callersexecuted.next()){
+				 callerexecutedid = callersexecuted.getString("callermethodid"); 
+				   }
+	
+		
+		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
+		//otherwise, use the value from the methodcallsexecuted table 
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
+				 TracesCalleesList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
+				 TracesCalleesList.add(tmc); 
+			}
+			
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
+				 TracesCallersList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
+				 TracesCallersList.add(tmc); 
+			}
+			
+			
+			
+		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
+		if(methodid!=null && requirementid!=null && classid!=null) {
+			boolean mycond=tr.contains(TraceListMethods, tr);
+if(mycond==false) {
+	method=RewriteFullMethod(method);  
+	String methodnameAndParams= GetMethodNameAndParams(method); 
+	method=method.replaceAll("Lde", "de"); 
+	String statement; 
+	methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+	 statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+
+
+	st.executeUpdate(statement);
+	TraceListMethods.add(tr); 
+	
+	
+}
+			
+			
+		}
+		//ADDING INTERFACES TO THE TRACES TABLE 
+		 for(String interfacenameid: InterfaceNameIds) {
+			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
+			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
+		 if(methodid!=null && requirementid!=null && interfacename!=null) {
+			 System.out.println("SHORT METHOD: " +shortmethod);
+			 System.out.println(" METHOD ID: " +methodid);
+			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
+			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
+			if(mycond==false) {
+			method=RewriteFullMethod(method);   
+			method=method.replaceAll("Lde", "de"); 
+			String methodnameAndParams= GetMethodNameAndParams(method); 
+			methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				st.executeUpdate(statement);
+				TraceListMethods.add(tracesmethods); 
+				
+				
+			}
+		}
+		else {
+			System.out.println(shortmethod);
+			System.out.println("I am here");
+		}
+			
+			
+		 }	
+		
+		
+	//	 counter++; 
+		
+		
+	}
+	
+	
+	
+	/*String filename= "TracesCalleesList.txt"; 
+	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+		oos.writeObject(TracesCalleesList);
+		oos.flush();
+		oos.close();*/
+}
+	
+catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 /////////*********************************************************************************************************************************************************************************/	
 /////////*********************************************************************************************************************************************************************************/	
 /////////*********************************************************************************************************************************************************************************/   

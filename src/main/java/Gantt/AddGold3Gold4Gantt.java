@@ -173,6 +173,7 @@ public class AddGold3Gold4Gantt {
 				
 				
 				counter++; 
+				System.out.println(counter);
 			}
 			
 			

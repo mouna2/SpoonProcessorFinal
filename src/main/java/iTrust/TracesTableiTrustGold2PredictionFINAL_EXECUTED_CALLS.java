@@ -4105,6 +4105,9 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 	/**************************************************************************************************************/
 	/**************************************************************************************************************/
 	//ACHRAF
+	if(flagGold==false) {
+		
+	
 	if(CountMethodT>0 && CountMethodTCallee>0) {
 		
 		boolean entered=false; 
@@ -4175,14 +4178,14 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 }else {
 failGold++; 
 }
-	
+	}	
 	
 /********************************************************************************************************************/				
-	
+	if(flagGold2==false) {
 if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		
 		boolean entered=false; 
-		if(CountMethodN+CountMethodNCallee==0 && methodtrace.getGold2()!=null ) {
+		if(CountMethodNGOLD2+CountMethodNCalleeGOLD2==0 && methodtrace.getGold2()!=null ) {
 			
 			TracePureGold2++; 
 			TracePureGold2ValueMethodLevel="T"; 
@@ -4209,7 +4212,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			}
 		}
 		
-}else if(CountMethodN>0 && CountMethodNCallee>0) {
+}else if(CountMethodNGOLD2>0 && CountMethodNCalleeGOLD2>0) {
 	
 	boolean entered=false; 
 	if(CountMethodTGOLD2+CountMethodTCalleeGOLD2==0 && methodtrace.getGold2()!=null ) {
@@ -4250,7 +4253,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 failGold2++; 
 }
 
-
+	}
 
 	
 	
@@ -4270,6 +4273,7 @@ String NOTraceMixedGold2ValueClassLevel="";
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 //ACHRAF
+if(flagGold==false) {
 if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 	
 	boolean entered=false; 
@@ -4341,9 +4345,9 @@ if(methodtrace.getGold()!=null ) {
 failGold++; 
 }
 
-
+}
 /********************************************************************************************************************/				
-
+if(flagGold2==false) {
 if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 	
 	boolean entered=false; 
@@ -4416,8 +4420,9 @@ failGold2++;
 }
 	
 	
-					
-					
+	
+}
+	
 					
 					
 					
@@ -4749,29 +4754,31 @@ failGold2++;
 		bw2.newLine();
 		bw2.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelsCallersCalleesClass.toString()); 
 		bw2.newLine();
-		bw2.write("ACHRAF TRACE PURE GOLD: "+ACHRAFTracePureGold.toString()); 
+		bw2.write("ACHRAF TRACE PURE: "+ACHRAFTracePureGold.toString()); 
 		bw2.newLine();
 		bw2.write("ACHRAF TRACE MIXED GOLD: "+ACHRAFTraceMixedGold.toString()); 
 		bw2.newLine();
-		bw2.write("ACHRAF NO TRACE PURE GOLD: "+ACHRAFNOTracePureGold.toString()); 
+		bw2.write("ACHRAF NO TRACE PURE: "+ACHRAFNOTracePureGold.toString()); 
 		bw2.newLine();
 		bw2.write("ACHRAF NO TRACE MIXED GOLD: "+ACHRAFNOTraceMixedGold.toString()); 
 		bw2.newLine();
-		bw2.write("TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold.toString()); 
 		bw2.newLine();
-		bw2.write("TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold.toString()); 
 		bw2.newLine();
-		bw2.write("NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold.toString()); 
+		bw2.write("TRACE PURE METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold.toString()); 
 		bw2.newLine();
-		bw2.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold.toString()); 
+		bw2.write("TRACE MIXED METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold.toString()); 
 		bw2.newLine();
-		bw2.write("TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold.toString()); 
+		bw2.write("NO TRACE PURE METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold.toString()); 
 		bw2.newLine();
-		bw2.write("TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold.toString()); 
+		bw2.write("NO TRACE MIXED METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold.toString()); 
 		bw2.newLine();
-		bw2.write("NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold.toString()); 
+		bw2.write("TRACE PURE CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold.toString()); 
 		bw2.newLine();
-		bw2.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold.toString()); 
+		bw2.write("TRACE MIXED CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE PURE CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE MIXED CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold.toString()); 
 		bw2.newLine();
 		bw2.close();
 		
@@ -4875,21 +4882,21 @@ failGold2++;
 		bwGold2.newLine();
 		bwGold2.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelCallersCalleesClassGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold2.toString()); 
+		bwGold2.write("TRACE PURE METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold2.toString()); 
+		bwGold2.write("TRACE MIXED METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold2.toString()); 
+		bwGold2.write("NO TRACE PURE METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold2.toString()); 
+		bwGold2.write("NO TRACE MIXED METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold2.toString()); 
+		bwGold2.write("TRACE PURE CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold2.toString()); 
+		bwGold2.write("TRACE MIXED CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold2.toString()); 
+		bwGold2.write("NO TRACE PURE CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold2.toString()); 
 		bwGold2.newLine();
-		bwGold2.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold2.toString()); 
+		bwGold2.write("NO TRACE MIXED CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold2.toString()); 
 		bwGold2.newLine();
 		bwGold2.close();
 		
