@@ -6264,22 +6264,6 @@ failGold4++;
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
 		bw2.newLine();
-		bw2.write("TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold.toString()); 
-		bw2.newLine();
-		bw2.write("TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold.toString()); 
-		bw2.newLine();
-		bw2.write("NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold.toString()); 
-		bw2.newLine();
-		bw2.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold.toString()); 
-		bw2.newLine();
-		bw2.write("TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold.toString()); 
-		bw2.newLine();
-		bw2.write("TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold.toString()); 
-		bw2.newLine();
-		bw2.write("NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold.toString()); 
-		bw2.newLine();
-		bw2.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold.toString()); 
-		bw2.newLine();
 		bw2.write("ALL N CLASS LEVEL CALLERS AT LEAST 2N : "+AllNClassLevelCallersClassAtLeast2NGold.toString()); 
 		bw2.newLine();
 		bw2.write("ALL N CLASS LEVEL CALLEES AT LEAST 2N : "+AllNClassLevelCalleesClassAtLeast2NGold.toString()); 
@@ -6296,9 +6280,6 @@ failGold4++;
 		bw2.newLine();
 		bw2.write("ALL T METHOD LEVEL CALLEES AT LEAST 2T: "+AllTMethodLevelCalleesClassAtLeast2TGold.toString()); 
 		bw2.newLine();
-		
-		
-		
 		bw2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
 		bw2.newLine();
 		bw2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
@@ -6329,7 +6310,22 @@ failGold4++;
 		bw2.newLine();
 		bw2.write("ACHRAF NO TRACE MIXED GOLD: "+ACHRAFNOTraceMixedGold.toString()); 
 		bw2.newLine();
-		
+		bw2.write("TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE PURE GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE MIXED GOLD METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE PURE GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold.toString()); 
+		bw2.newLine();
+		bw2.write("NO TRACE MIXED GOLD CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold.toString()); 
+		bw2.newLine();
 		bw2.close();
 		
 		
