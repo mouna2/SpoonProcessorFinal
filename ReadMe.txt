@@ -20,10 +20,12 @@ ALTER TABLE databaseitrust.traces ADD COLUMN gold3 VARCHAR(15) AFTER gold2;
 ALTER TABLE databaseitrust.traces ADD COLUMN gold4 VARCHAR(15) AFTER gold2;
 
 Here is the list of the database files to be run in order to populate the databases for each program: 
--DBDemo3JHotDraw3
--DBDemo3iTrust
--DBDemo3Gantt
--DBDemoChess
+-DBDemo3JHotDraw followed by AddSubjectTSubjectNJHotDraw, AddGold3Gold4JHotDraw,  AddGold3Gold4JHotDrawTRACESCLASSES
+-DBDemo3iTrust followed by AddGold2Column, AddGold2ColumnTRACESCLASSES
+-DBDemo3Gantt followed by AddSubjectTSubjectNGANTT, AddGold3Gold4Gantt,  AddGold3Gold4GanttTRACESCLASSES
+-DBDemoChess followed by AddGold2Column, AddGold2ColumnTRACESCLASSES
+
+
 
 TableLog needs to be adapted depending on whether we are interested in Gold, Gold2, Gold3 or Gold4 for each one of the four programs 
 
@@ -31,6 +33,8 @@ Chess: Gold, Gold2
 iTrust: Gold, Gold2	
 Gantt: Gold, Gold3, Gold4
 JHOTDRAW: Gold, Gold3, Gold4
+
+
 
 
 Java Files to be executed to produce predictions for Chess: 
