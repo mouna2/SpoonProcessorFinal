@@ -5559,13 +5559,13 @@ if(CountMethodT>0 && CountMethodTCallee>0) {
 	}
 
 	if(entered==true) {
-	if(methodtrace.getGold()!=null ) {
+	if(methodtrace.getGold()!=null) {
 	data[j][CLASSTRACEMethodLevelPureGold]=TracePureGoldValueMethodLevel; 
 	String Result=PredictionCLASSTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueMethodLevel); 
 	PredictionCLASSTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold);
 	}
 	
-	if(methodtrace.getGold()!=null ) {
+	if(methodtrace.getGold()!=null) {
 		data[j][CLASSTRACEMethodLevelMixedGold]=TraceMixedGoldValueMethodLevel; 
 		String Result=PredictionCLASSTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueMethodLevel); 
 		PredictionCLASSTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold);
@@ -5710,16 +5710,82 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 
 	if(entered==true) {
 	
-	if(methodtrace.getGold4()!=null ) {
+	if(methodtrace.getGold4()!=null) {
 	data[j][CLASSTRACEMethodLevelPureGold4]=TracePureGold4ValueMethodLevel; 
 	String Result=PredictionCLASSTRACEMethodLevelPureGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueMethodLevel); 
 	PredictionCLASSTRACEMethodLevelPureGold4.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold4);
 	}
+	}
 	
-	if(methodtrace.getGold4()!=null ) {
+	if(entered==true) {
+	if(methodtrace.getGold4()!=null) {
 		data[j][CLASSTRACEMethodLevelMixedGold4]=TraceMixedGold4ValueMethodLevel; 
 		String Result=PredictionCLASSTRACEMethodLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), TraceMixedGold4ValueMethodLevel); 
 		PredictionCLASSTRACEMethodLevelMixedGold4.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold4);
+		
+		if(Result!=null) {
+			System.out.println("MY RESULT "+Result);
+			if(Result.equals("FP")) {
+				bwlog.write("***********************************"); 
+				bwlog.newLine();
+				bwlog.write(methodtrace.toString());
+				bwlog.newLine();
+				for(Method2Representation call: methodtrace.getCallersList()) {
+					bwlog.write("callerlist "+ call.toString2());
+					
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+					 if(trace2!=null) {
+						 bwlog.newLine();
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).getTrace4());
+						
+						
+					 }
+					 bwlog.newLine();
+				}
+				for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+					bwlog.write("callerlistEXEC "+ call.toString2());
+					bwlog.newLine();
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+					 if(trace2!=null) {
+						 bwlog.newLine();
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).getTrace4());
+						
+						
+					 }
+					 bwlog.newLine();
+				}
+				for(Method2Representation call: methodtrace.getCalleesList()) {
+					bwlog.write("calleelist "+ call.toString2());
+					bwlog.newLine();
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+					 if(trace2!=null) {
+						 bwlog.newLine();
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).getTrace4());
+						
+						
+					 }
+					 bwlog.newLine();
+				}
+				for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+					bwlog.write("calleelistEXEC "+ call.toString2());
+					bwlog.newLine();
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+					 if(trace2!=null) {
+						 bwlog.newLine();
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).getTrace4());
+						
+						
+					 }
+					 bwlog.newLine();
+				}
+				bwlog.write("***********************************"); 
+				bwlog.newLine();
+			}
+		}
+		
 		}
 	}
 	
@@ -5757,6 +5823,17 @@ if(methodtrace.getGold4()!=null ) {
 	if(methodtrace.getGold4()!=null ) {
 		String Result=PredictionCLASSNOTRACEMethodLevelMixedGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTraceMixedGold4ValueMethodLevel); 
 		PredictionCLASSNOTRACEMethodLevelMixedGold4.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold4);
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
 		}
 }
 
