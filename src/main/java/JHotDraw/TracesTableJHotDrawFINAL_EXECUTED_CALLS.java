@@ -635,31 +635,6 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 	public TracesTableJHotDrawFINAL_EXECUTED_CALLS() throws SQLException, IOException {
 	
 
-		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
-				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
-				+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
-				+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
-				+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
-				+"AtLeast2TPredictionClassLevelCallees, AtLeast2TPredictionClassLevelCallers, AtLeast2TPredictionMethodLevelCallees, AtLeast2TPredictionMethodLevelCallers,"
-				+"AllNClassLevelCallees, AllNClassLevelCallers, AllNMethodLevelCallees, AllNMethodLevelCallers,"
-				+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
-				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
-				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
-				
-//				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
-				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
-				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
-				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
-				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
-				+"gold3" );
-
-
 		bwGold3TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -673,17 +648,16 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 //				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
 				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
-				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
+				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold, gold3"
 				 );
 
-		
 		bwGold4TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -697,17 +671,42 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 //				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
 				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
-				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
+				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold, gold3"
+				 );
+		
+		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
+				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
+				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
+				+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
+				+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
+				+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
+				+"AtLeast2TPredictionClassLevelCallees, AtLeast2TPredictionClassLevelCallers, AtLeast2TPredictionMethodLevelCallees, AtLeast2TPredictionMethodLevelCallers,"
+				+"AllNClassLevelCallees, AllNClassLevelCallers, AllNMethodLevelCallees, AllNMethodLevelCallers,"
+				+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
+				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
+				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
+//				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
+//				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
+				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
+				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
+				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
+				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
+				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold, gold3"
 				 );
 		
 		bw.newLine();
+		bwGold3TableLog.newLine();
+		bwGold4TableLog.newLine();
 		DatabaseReading2JHotDraw db = new DatabaseReading2JHotDraw();
 		DatabaseReading2JHotDraw.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
@@ -747,6 +746,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.methodname; 
+			data[j][MethodName] = data[j][MethodName].toString().replaceAll(",", "/"); 
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
 			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
@@ -6041,65 +6041,6 @@ failGold4++;
 
 	
 			
-			bwGold3TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
-					+ data[j][ClassName] + "," + data[j][Gold3] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD3] + "," + data[j][OwnerClassNGOLD3] + ","
-					+ data[j][OwnerClassEGOLD3] + "," + data[j][CallerMethodsNumberGOLD3]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD3] + "," +
-					data[j][CallerMethodsNGOLD3] + "," + data[j][CallerMethodsEGOLD3] + ","
-					+ data[j][CallerClassesNumberGOLD3] + "," + data[j][CallerClassesTGOLD3] + "," + data[j][CallerClassesNGOLD3] + "," + data[j][CallerClassesEGOLD3] + 
-					"," + data[j][CalleeMethodsNumberGOLD3]+ "," + AppendedCallees +  ","
-					+ data[j][CalleeMethodsTGOLD3] + "," + data[j][CalleeMethodsNGOLD3] + "," + data[j][CalleeMethodsEGOLD3] + "," + data[j][CalleeClassesNumberGOLD3] + 
-					"," + data[j][CalleeClassesTGOLD3] + ","
-					+ data[j][CalleeClassesNGOLD3] + "," + data[j][CalleeClassesEGOLD3] + "," + data[j][OwnerClassPredictionGOLD3] + "," + data[j][MajorityClassLevelCallersGOLD3]+ "," +
-					data[j][MajorityClassLevelCalleesGOLD3]+","+data[j][MajorityMethodLevelCallersGOLD3]+","+data[j][MajorityMethodLevelCalleesGOLD3]
-							+ "," + 
-					data[j][AtLeast1NPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast1NPredictionClassLevelCalleesGOLD3] 
-					+ "," + data[j][AtLeast1NPredictionMethodLevelCallersGOLD3]+ "," + data[j][AtLeast1NPredictionMethodLevelCalleesGOLD3]
-					+ "," +data[j][AtLeast1TPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast1TPredictionClassLevelCalleesGOLD3]
-					+ "," + data[j][AtLeast1TPredictionMethodLevelCallersGOLD3]
-					+ "," + data[j][AtLeast1TPredictionMethodLevelCalleesGOLD3]
-							+ "," + 
-							data[j][AtLeast2NPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast2NPredictionClassLevelCalleesGOLD3] 
-							+ "," + data[j][AtLeast2NPredictionMethodLevelCallersGOLD3]+ "," + data[j][AtLeast2NPredictionMethodLevelCalleesGOLD3]
-							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD3]
-							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD3]
-							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD3]	
-							+ "," + data[j][AllNClassLevelCallersGOLD3]
-					+ "," +data[j][AllNClassLevelCalleesGOLD3]+ "," + data[j][AllNMethodLevelCallersGOLD3]+ "," + data[j][AllNMethodLevelCalleesGOLD3]+ "," +
-					data[j][AllTClassLevelCallersGOLD3]+ ","+		data[j][AllTClassLevelCalleesGOLD3]+ ","+		data[j][AllTMethodLevelCallersGOLD3]+ 
-					
-					
-					
-					","+data[j][AllNClassLevelCallersAtLeast2NGOLD3]
-					+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD3]+ "," +
-					data[j][AllTClassLevelCallersAtLeast2TGOLD3]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD3]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD3]+ 
-					","
-					
-					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD3]
-							
-//							+","+
-//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers
-//					
-//					+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-//					+","+BothInParsedAndExecutedCallees
-//					
-					
-					
-					+","+data[j][paramatersNumberGOLD3]+","+ParametersAppended+","+data [j][CountParamaterTGOLD3]+","+data [j][CountParamaterNGOLD3]+","+data [j][CountParamaterEGOLD3]+","+data[j][MajorityParametersGOLD3]+","+data[j][AtLeast1NParameterGOLD3]
-							+","+data[j][AtLeast1TParameterGOLD3]+","+data[j][AtLeast2TParameterGOLD3]+","+data[j][AtLeast2NParameterGOLD3]+","+data[j][AllNParametersGOLD3]+","+data[j][AllTParametersGOLD3]+","+
-							data[j][ACHRAFTRACEPureGOLD3]+","+data[j][ACHRAFTRACEMixedGOLD3]+","+data[j][ACHRAFNOTRACEPureGOLD3]+","+data[j][ACHRAFNOTRACEMixedGOLD3]+","+	
-							data[j][AllNMethodLevelCallersCalleesGOLD3]+","+data[j][AllTMethodLevelCallersCalleesGOLD3]+","+data[j][AllTClassLevelCallersCalleesGOLD3]+","+data[j][AllNClassLevelCallersCalleesGOLD3]
-									
-									+","+	data[j][CLASSTRACEMethodLevelPureGold3]+","+data[j][CLASSTRACEMethodLevelMixedGold3]+","+data[j][CLASSNOTRACEMethodLevelPureGold3]+","+data[j][CLASSNOTRACEMethodLevelMixedGold3]+","+	
-									data[j][CLASSTRACEClassLevelPureGold3]+","+data[j][CLASSTRACEClassLevelMixedGold3]+","+data[j][CLASSNOTRACEClassLevelPureGold3]+","+data[j][CLASSNOTRACEClassLevelMixedGold3]+","
-					
-					);
-			bwGold3TableLog.newLine();
-
-			
-			
-			
-			
-						
 			bwGold4TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold4] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD4] + "," + data[j][OwnerClassNGOLD4] + ","
 					+ data[j][OwnerClassEGOLD4] + "," + data[j][CallerMethodsNumberGOLD4]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD4] + "," +
@@ -6122,37 +6063,76 @@ failGold4++;
 							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD4]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD4]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD4]	
-							+ "," + data[j][AllNClassLevelCallersGOLD4]
-					+ "," +data[j][AllNClassLevelCalleesGOLD4]+ "," + data[j][AllNMethodLevelCallersGOLD4]+ "," + data[j][AllNMethodLevelCalleesGOLD4]+ "," +
-					data[j][AllTClassLevelCallersGOLD4]+ ","+		data[j][AllTClassLevelCalleesGOLD4]+ ","+		data[j][AllTMethodLevelCallersGOLD4]+ 
-					
-					
-					
-					","+data[j][AllNClassLevelCallersAtLeast2NGOLD4]
-					+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD4]+ "," +
-					data[j][AllTClassLevelCallersAtLeast2TGOLD4]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD4]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD4]+ 
-					","
-					
-					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD4]+","+
-					
-					
-//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-//					+","+BothInParsedAndExecutedCallees+","+
-
-
-data[j][paramatersNumberGOLD4]+","+
-					
-					
-					ParametersAppended+","+data [j][CountParamaterTGOLD4]+","+data [j][CountParamaterNGOLD4]+","+data [j][CountParamaterEGOLD4]+","+data[j][MajorityParametersGOLD4]+","+data[j][AtLeast1NParameterGOLD4]
-							+","+data[j][AtLeast1TParameterGOLD4]+","+data[j][AtLeast2TParameterGOLD4]+","+data[j][AtLeast2NParameterGOLD4]+","+data[j][AllNParametersGOLD4]+","+data[j][AllTParametersGOLD4]+","+
-							data[j][ACHRAFTRACEPureGOLD4]+","+data[j][ACHRAFTRACEMixedGOLD4]+","+data[j][ACHRAFNOTRACEPureGOLD4]+","+data[j][ACHRAFNOTRACEMixedGOLD4]+","+	
-							data[j][AllNMethodLevelCallersCalleesGOLD4]+","+data[j][AllTMethodLevelCallersCalleesGOLD4]+","+data[j][AllTClassLevelCallersCalleesGOLD4]+","+data[j][AllNClassLevelCallersCalleesGOLD4]
-									
-									+","+	data[j][CLASSTRACEMethodLevelPureGold4]+","+data[j][CLASSTRACEMethodLevelMixedGold4]+","+data[j][CLASSNOTRACEMethodLevelPureGold4]+","+data[j][CLASSNOTRACEMethodLevelMixedGold4]+","+	
-									data[j][CLASSTRACEClassLevelPureGold4]+","+data[j][CLASSTRACEClassLevelMixedGold4]+","+data[j][CLASSNOTRACEClassLevelPureGold4]+","+data[j][CLASSNOTRACEClassLevelMixedGold4]+","
+									+ "," + data[j][AllNClassLevelCallersGOLD4]
+											+ "," +data[j][AllNClassLevelCalleesGOLD4]+ "," + data[j][AllNMethodLevelCallersGOLD4]+ "," + data[j][AllNMethodLevelCalleesGOLD4]+ "," +
+											data[j][AllTClassLevelCallersGOLD4]+ ","+		data[j][AllTClassLevelCalleesGOLD4]+ ","+		data[j][AllTMethodLevelCallersGOLD4]+ 
+											","+		data[j][AllTMethodLevelCalleesGOLD4]+","+
+											
+						","+data[j][AllNClassLevelCallersAtLeast2NGOLD4]
+								+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD4]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD4]+ "," +
+								data[j][AllTClassLevelCallersAtLeast2TGOLD4]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD4]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD4]+ 
+								","+
+											
+//											OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
+//											+","+BothInParsedAndExecutedCallees+","+
+											
+											
+											data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterTGOLD4]+","+data [j][CountParamaterNGOLD4]+","+data [j][CountParamaterEGOLD4]+","+data[j][MajorityParametersGOLD4]+","+data[j][AtLeast1NParameterGOLD4]
+													+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
+													data[j][ACHRAFTRACEPureGOLD4]+","+data[j][ACHRAFTRACEMixedGOLD4]+","+data[j][ACHRAFNOTRACEPureGOLD4]+","+data[j][ACHRAFNOTRACEMixedGOLD4]+","+	
+													data[j][AllNMethodLevelCallersCalleesGOLD4]+","+data[j][AllTMethodLevelCallersCalleesGOLD4]+","+data[j][AllTClassLevelCallersCalleesGOLD4]+","+data[j][AllNClassLevelCallersCalleesGOLD4]+","+	
+													data[j][CLASSTRACEMethodLevelPureGold4]+","+data[j][CLASSTRACEMethodLevelMixedGold4]+","+data[j][CLASSNOTRACEMethodLevelPureGold4]+","+data[j][CLASSNOTRACEMethodLevelMixedGold4]+","+	
+													data[j][CLASSTRACEClassLevelPureGold4]+","+data[j][CLASSTRACEClassLevelMixedGold4]+","+data[j][CLASSNOTRACEClassLevelPureGold4]+","+data[j][CLASSNOTRACEClassLevelMixedGold4]
 					
 					);
 			bwGold4TableLog.newLine();
+			bwGold3TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
+					+ data[j][ClassName] + "," + data[j][Gold3] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD3] + "," + data[j][OwnerClassNGOLD3] + ","
+					+ data[j][OwnerClassEGOLD3] + "," + data[j][CallerMethodsNumberGOLD3]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD3] + "," +
+					data[j][CallerMethodsNGOLD3] + "," + data[j][CallerMethodsEGOLD3] + ","
+					+ data[j][CallerClassesNumberGOLD3] + "," + data[j][CallerClassesTGOLD3] + "," + data[j][CallerClassesNGOLD3] + "," + data[j][CallerClassesEGOLD3] + 
+					"," + data[j][CalleeMethodsNumberGOLD3]+ "," + AppendedCallees +  ","
+					+ data[j][CalleeMethodsTGOLD3] + "," + data[j][CalleeMethodsNGOLD3] + "," + data[j][CalleeMethodsEGOLD3] + "," + data[j][CalleeClassesNumberGOLD3] + 
+					"," + data[j][CalleeClassesTGOLD3] + ","
+					+ data[j][CalleeClassesNGOLD3] + "," + data[j][CalleeClassesEGOLD3] + "," + data[j][OwnerClassPredictionGOLD3] + "," + data[j][MajorityClassLevelCallersGOLD3]+ "," +
+					data[j][MajorityClassLevelCalleesGOLD3]+","+data[j][MajorityMethodLevelCallersGOLD3]+","+data[j][MajorityMethodLevelCalleesGOLD3]
+							+ "," + 
+					data[j][AtLeast1NPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast1NPredictionClassLevelCalleesGOLD3] 
+					+ "," + data[j][AtLeast1NPredictionMethodLevelCallersGOLD3]+ "," + data[j][AtLeast1NPredictionMethodLevelCalleesGOLD3]
+					+ "," +data[j][AtLeast1TPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast1TPredictionClassLevelCalleesGOLD3]
+					+ "," + data[j][AtLeast1TPredictionMethodLevelCallersGOLD3]
+					+ "," + data[j][AtLeast1TPredictionMethodLevelCalleesGOLD3]
+							+ "," + 
+							data[j][AtLeast2NPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast2NPredictionClassLevelCalleesGOLD3] 
+							+ "," + data[j][AtLeast2NPredictionMethodLevelCallersGOLD3]+ "," + data[j][AtLeast2NPredictionMethodLevelCalleesGOLD3]
+							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD3]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD3]
+							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD3]
+							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD3]	
+									+ "," + data[j][AllNClassLevelCallersGOLD3]
+											+ "," +data[j][AllNClassLevelCalleesGOLD3]+ "," + data[j][AllNMethodLevelCallersGOLD3]+ "," + data[j][AllNMethodLevelCalleesGOLD3]+ "," +
+											data[j][AllTClassLevelCallersGOLD3]+ ","+		data[j][AllTClassLevelCalleesGOLD3]+ ","+		data[j][AllTMethodLevelCallersGOLD3]+ 
+											","+		data[j][AllTMethodLevelCalleesGOLD3]+","+
+											
+						","+data[j][AllNClassLevelCallersAtLeast2NGOLD3]
+								+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD3]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD3]+ "," +
+								data[j][AllTClassLevelCallersAtLeast2TGOLD3]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD3]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD3]+ 
+								","+
+											
+//											OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
+//											+","+BothInParsedAndExecutedCallees+","+
+											
+											
+											
+											data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterTGOLD3]+","+data [j][CountParamaterNGOLD3]+","+data [j][CountParamaterEGOLD3]+","+data[j][MajorityParametersGOLD3]+","+data[j][AtLeast1NParameterGOLD3]
+													+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
+													data[j][ACHRAFTRACEPureGOLD3]+","+data[j][ACHRAFTRACEMixedGOLD3]+","+data[j][ACHRAFNOTRACEPureGOLD3]+","+data[j][ACHRAFNOTRACEMixedGOLD3]+","+	
+													data[j][AllNMethodLevelCallersCalleesGOLD3]+","+data[j][AllTMethodLevelCallersCalleesGOLD3]+","+data[j][AllTClassLevelCallersCalleesGOLD3]+","+data[j][AllNClassLevelCallersCalleesGOLD3]+","+	
+													data[j][CLASSTRACEMethodLevelPureGold3]+","+data[j][CLASSTRACEMethodLevelMixedGold3]+","+data[j][CLASSNOTRACEMethodLevelPureGold3]+","+data[j][CLASSNOTRACEMethodLevelMixedGold3]+","+	
+													data[j][CLASSTRACEClassLevelPureGold3]+","+data[j][CLASSTRACEClassLevelMixedGold3]+","+data[j][CLASSNOTRACEClassLevelPureGold3]+","+data[j][CLASSNOTRACEClassLevelMixedGold3]
+					
+					);
+			bwGold3TableLog.newLine();
+
 			
 			
 			
@@ -6189,18 +6169,18 @@ data[j][paramatersNumberGOLD4]+","+
 		data[j][AllTClassLevelCallersAtLeast2TGOLD]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD]+ 
 		","+
 					
-//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+
-//					
-//					
-//					OnlyInParsedCallees+","+OnlyInExecutedCallees
+//					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
 //					+","+BothInParsedAndExecutedCallees+","+
-data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
+					
+					
+					
+					data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterT]+","+data [j][CountParamaterN]+","+data [j][CountParamaterE]+","+data[j][MajorityParameters]+","+data[j][AtLeast1NParameter]
 							+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
 							data[j][ACHRAFTRACEPureGold]+","+data[j][ACHRAFTRACEMixedGold]+","+data[j][ACHRAFNOTRACEPureGold]+","+data[j][ACHRAFNOTRACEMixedGold]+","+	
 							data[j][AllNMethodLevelCallersCallees]+","+data[j][AllTMethodLevelCallersCallees]+","+data[j][AllTClassLevelCallersCallees]+","+data[j][AllNClassLevelCallersCallees]+","+	
 							data[j][CLASSTRACEMethodLevelPureGold]+","+data[j][CLASSTRACEMethodLevelMixedGold]+","+data[j][CLASSNOTRACEMethodLevelPureGold]+","+data[j][CLASSNOTRACEMethodLevelMixedGold]+","+	
 							data[j][CLASSTRACEClassLevelPureGold]+","+data[j][CLASSTRACEClassLevelMixedGold]+","+data[j][CLASSNOTRACEClassLevelPureGold]+","+data[j][CLASSNOTRACEClassLevelMixedGold]+","+	
-							methodtrace.gold3);
+							methodtrace.gold2);
 				
 			bw.newLine();
 

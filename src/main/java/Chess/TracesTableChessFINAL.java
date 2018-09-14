@@ -477,14 +477,14 @@ public class TracesTableChessFINAL extends JFrame {
 				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
 				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
-				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
+				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold"
 				 );
 
 		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Subject, OwnerClassT, OwnerClassN, "
@@ -501,12 +501,12 @@ public class TracesTableChessFINAL extends JFrame {
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 				
 				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E" 
-				+ "MajorityParameter ,AtLeast1NParameterPrediction" + 
+				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
+				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees"
+				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
 				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
 				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold,"
 				+"gold2" );
@@ -517,6 +517,7 @@ public class TracesTableChessFINAL extends JFrame {
 
 		
 		bw.newLine();
+		bwGold2TableLog.newLine();
 		DatabaseReading2 db = new DatabaseReading2();
 		DatabaseReading2.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
@@ -556,6 +557,7 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
+			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
 			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
@@ -4567,26 +4569,23 @@ failGold2++;
 							+ "," +data[j][AtLeast2TPredictionClassLevelCallersGOLD2]+ "," + data[j][AtLeast2TPredictionClassLevelCalleesGOLD2]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCallersGOLD2]
 							+ "," + data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2]	
-							+ "," + data[j][AllNClassLevelCallersGOLD2]
-					+ "," +data[j][AllNClassLevelCalleesGOLD2]+ "," + data[j][AllNMethodLevelCallersGOLD2]+ "," + data[j][AllNMethodLevelCalleesGOLD2]+ "," +
-					data[j][AllTClassLevelCallersGOLD2]+ ","+		data[j][AllTClassLevelCalleesGOLD2]+ ","+		data[j][AllTMethodLevelCallersGOLD2]+ 
-					
-					
-					
-					","+data[j][AllNClassLevelCallersAtLeast2NGOLD2]
-					+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD2]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD2]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD2]+ "," +
-					data[j][AllTClassLevelCallersAtLeast2TGOLD2]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD2]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD2]+ 
-					","
-					
-					+		data[j][AllTMethodLevelCalleesAtLeast2TGOLD2]+","+
-					OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-					+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumberGOLD2]+","+ParametersAppended+","+data [j][CountParamaterTGOLD2]+","+data [j][CountParamaterNGOLD2]+","+data [j][CountParamaterEGOLD2]+","+data[j][MajorityParametersGOLD2]+","+data[j][AtLeast1NParameterGOLD2]
-							+","+data[j][AtLeast1TParameterGOLD2]+","+data[j][AtLeast2TParameterGOLD2]+","+data[j][AtLeast2NParameterGOLD2]+","+data[j][AllNParametersGOLD2]+","+data[j][AllTParametersGOLD2]+","+
-							data[j][ACHRAFTRACEPureGOLD2]+","+data[j][ACHRAFTRACEMixedGOLD2]+","+data[j][ACHRAFNOTRACEPureGOLD2]+","+data[j][ACHRAFNOTRACEMixedGOLD2]+","+	
-							data[j][AllNMethodLevelCallersCalleesGOLD2]+","+data[j][AllTMethodLevelCallersCalleesGOLD2]+","+data[j][AllTClassLevelCallersCalleesGOLD2]+","+data[j][AllNClassLevelCallersCalleesGOLD2]
-									
-									+","+	data[j][CLASSTRACEMethodLevelPureGold2]+","+data[j][CLASSTRACEMethodLevelMixedGold2]+","+data[j][CLASSNOTRACEMethodLevelPureGold2]+","+data[j][CLASSNOTRACEMethodLevelMixedGold2]+","+	
-									data[j][CLASSTRACEClassLevelPureGold2]+","+data[j][CLASSTRACEClassLevelMixedGold2]+","+data[j][CLASSNOTRACEClassLevelPureGold2]+","+data[j][CLASSNOTRACEClassLevelMixedGold2]+","
+									+ "," + data[j][AllNClassLevelCallersGOLD2]
+											+ "," +data[j][AllNClassLevelCalleesGOLD2]+ "," + data[j][AllNMethodLevelCallersGOLD2]+ "," + data[j][AllNMethodLevelCalleesGOLD2]+ "," +
+											data[j][AllTClassLevelCallersGOLD2]+ ","+		data[j][AllTClassLevelCalleesGOLD2]+ ","+		data[j][AllTMethodLevelCallersGOLD2]+ 
+											","+		data[j][AllTMethodLevelCalleesGOLD2]+","+
+											
+						","+data[j][AllNClassLevelCallersAtLeast2NGOLD2]
+								+ "," +data[j][AllNClassLevelCallersAtLeast2NGOLD2]+ "," + data[j][AllNMethodLevelCallersAtLeast2NGOLD2]+ "," + data[j][AllNMethodLevelCalleesAtLeast2NGOLD2]+ "," +
+								data[j][AllTClassLevelCallersAtLeast2TGOLD2]+ ","+		data[j][AllTClassLevelCalleesAtLeast2TGOLD2]+ ","+		data[j][AllTMethodLevelCallersAtLeast2TGOLD2]+ 
+								","+
+											
+											OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
+											+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterTGOLD2]+","+data [j][CountParamaterNGOLD2]+","+data [j][CountParamaterEGOLD2]+","+data[j][MajorityParametersGOLD2]+","+data[j][AtLeast1NParameterGOLD2]
+													+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
+													data[j][ACHRAFTRACEPureGOLD2]+","+data[j][ACHRAFTRACEMixedGOLD2]+","+data[j][ACHRAFNOTRACEPureGOLD2]+","+data[j][ACHRAFNOTRACEMixedGOLD2]+","+	
+													data[j][AllNMethodLevelCallersCalleesGOLD2]+","+data[j][AllTMethodLevelCallersCalleesGOLD2]+","+data[j][AllTClassLevelCallersCalleesGOLD2]+","+data[j][AllNClassLevelCallersCalleesGOLD2]+","+	
+													data[j][CLASSTRACEMethodLevelPureGold2]+","+data[j][CLASSTRACEMethodLevelMixedGold2]+","+data[j][CLASSNOTRACEMethodLevelPureGold2]+","+data[j][CLASSNOTRACEMethodLevelMixedGold2]+","+	
+													data[j][CLASSTRACEClassLevelPureGold2]+","+data[j][CLASSTRACEClassLevelMixedGold2]+","+data[j][CLASSNOTRACEClassLevelPureGold2]+","+data[j][CLASSNOTRACEClassLevelMixedGold2]
 					
 					);
 			bwGold2TableLog.newLine();
@@ -4976,36 +4975,36 @@ failGold2++;
 				"79-ACHRAFTRACEPureGOLD", "80-ACHRAFTRACEMixedGOLD", "81-ACHRAFNOTRACEPureGOLD", "82-ACHRAFNOTRACEMixedGOLD", 
 				"83-AllTMethodLevelCallersCalleesClass ", "84-AllNMethodLevelCallersCalleesClass",
 				"85-AllTClassLevelCallersCalleesClass", "86-AllNClassLevelCallersCalleesClass", 
-				"CLASSTRACEMethodLevelPureGold","CLASSTRACEMethodLevelMixedGold","CLASSNOTRACEMethodLevelPureGold","CLASSNOTRACEMethodLevelMixedGold",
-				"CLASSTRACEClassLevelPureGold","CLASSTRACEClassLevelMixedGold","CLASSNOTRACEClassLevelPureGold","CLASSNOTRACEClassLevelMixedGold",
+				"87-CLASSTRACEMethodLevelPureGold","88-CLASSTRACEMethodLevelMixedGold","89-CLASSNOTRACEMethodLevelPureGold","90-CLASSNOTRACEMethodLevelMixedGold",
+				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"87-GOLD2", "88-OwnerClass T GOLD2", "89-Owner Class N GOLD2", "90-Owner Class E GOLD2", "91-# caller methods GOLD2",
-				"92-# caller methods T GOLD2", "93-#caller methods N GOLD2", "94-#caller methods E GOLD2", "95-# caller classes GOLD2",
-				"96-# caller classes T GOLD2", "97-#caller classes N GOLD2", "98-#caller classes E GOLD2", "99-# callee methods GOLD2",
-				"100-# callee methods T GOLD2", "101-#callee methods N GOLD2", "102-#callee methods E GOLD2", "103-# callee classes GOLD2",
-				"104-# callee classes T GOLD2", "105-#callee classes N GOLD2", "106-#callee classes E GOLD2",  "107-OwnerClassPrediction GOLD2",
-				"108-MajorityClassLevelCallees GOLD2","109-MajorityClassLevelCallers GOLD2", "110-MajorityMethodLevelCallees GOLD2","111-MajorityMethodLevelCallers GOLD2",
-				"112->1NPredictionClassLevelCallees GOLD2", "113->1NPredictionClassLevelCallers GOLD2", "114->1NPredictionMethodLevelCallees GOLD2", 
-				"115->1NPredictionMethodLevelCallers GOLD2", "116->1TPredictionClassLevelCallees GOLD2", "117->1TPredictionClassLevelCallers GOLD2", 
-				"118->1TPredictionMethodLevelCallees GOLD2", "119->1TPredictionMethodLevelCallers GOLD2", 
-				"120->2NPredictionClassLevelCallees GOLD2", "121->2NPredictionClassLevelCallers GOLD2", "122->2NPredictionMethodLevelCallees GOLD2", 
-				"123->2NPredictionMethodLevelCallers GOLD2", "124->2TPredictionClassLevelCallees GOLD2", "125->2TPredictionClassLevelCallers GOLD2", 
-				"126->2TPredictionMethodLevelCallees GOLD2", "127->2TPredictionMethodLevelCallers GOLD2", 
-				"128-AllNClassLevelCallees GOLD2", "129-AllNClassLevelCallers GOLD2","130-AllNMethodLevelCallees GOLD2","131-AllNMethodLevelCallers GOLD2",
-				"132-AllTClassLevelCallees GOLD2", "133-AllTClassLevelCallers GOLD2", "134-AllTMethodLevelCallees GOLD2", "135-AllTMethodLevelCallers  GOLD2"
-				,"136-AllNAtLeast2NClassLevelCallees GOLD2", "137-AllNAtLeast2NClassLevelCallers GOLD2","138-AllNAtLeast2NMethodLevelCallees GOLD2","139-AllNAtLeast2NMethodLevelCallers GOLD2",
-				"140-AllTAtLeast2TClassLevelCallees GOLD2", "141-AllTAtLeast2TClassLevelCallers GOLD2", "142-AllTAtLeast2TMethodLevelCallees GOLD2", "143-AllTAtLeast2TMethodLevelCallers GOLD2"
+				"95-GOLD2", "96-OwnerClass T GOLD2", "97-Owner Class N GOLD2", "98-Owner Class E GOLD2", "99-# caller methods GOLD2",
+				"100-# caller methods T GOLD2", "101-#caller methods N GOLD2", "102-#caller methods E GOLD2", "103-# caller classes GOLD2",
+				"104-# caller classes T GOLD2", "105-#caller classes N GOLD2", "106-#caller classes E GOLD2", "107-# callee methods GOLD2",
+				"108-# callee methods T GOLD2", "109-#callee methods N GOLD2", "110-#callee methods E GOLD2", "111-# callee classes GOLD2",
+				"112-# callee classes T GOLD2", "113-#callee classes N GOLD2", "114-#callee classes E GOLD2",  "115-OwnerClassPrediction GOLD2",
+				"116-MajorityClassLevelCallees GOLD2","117-MajorityClassLevelCallers GOLD2", "118-MajorityMethodLevelCallees GOLD2","119-MajorityMethodLevelCallers GOLD2",
+				"120->1NPredictionClassLevelCallees GOLD2", "121->1NPredictionClassLevelCallers GOLD2", "122->1NPredictionMethodLevelCallees GOLD2", 
+				"123->1NPredictionMethodLevelCallers GOLD2", "124->1TPredictionClassLevelCallees GOLD2", "125->1TPredictionClassLevelCallers GOLD2", 
+				"126->1TPredictionMethodLevelCallees GOLD2", "127->1TPredictionMethodLevelCallers GOLD2", 
+				"128->2NPredictionClassLevelCallees GOLD2", "129->2NPredictionClassLevelCallers GOLD2", "130->2NPredictionMethodLevelCallees GOLD2", 
+				"131->2NPredictionMethodLevelCallers GOLD2", "132->2TPredictionClassLevelCallees GOLD2", "133->2TPredictionClassLevelCallers GOLD2", 
+				"134->2TPredictionMethodLevelCallees GOLD2", "135->2TPredictionMethodLevelCallers GOLD2", 
+				"136-AllNClassLevelCallees GOLD2", "137-AllNClassLevelCallers GOLD2","138-AllNMethodLevelCallees GOLD2","139-AllNMethodLevelCallers GOLD2",
+				"140-AllTClassLevelCallees GOLD2", "141-AllTClassLevelCallers GOLD2", "142-AllTMethodLevelCallees GOLD2", "143-AllTMethodLevelCallers  GOLD2"
+				,"144-AllNAtLeast2NClassLevelCallees GOLD2", "145-AllNAtLeast2NClassLevelCallers GOLD2","146-AllNAtLeast2NMethodLevelCallees GOLD2","147-AllNAtLeast2NMethodLevelCallers GOLD2",
+				"148-AllTAtLeast2TClassLevelCallees GOLD2", "149-AllTAtLeast2TClassLevelCallers GOLD2", "150-AllTAtLeast2TMethodLevelCallees GOLD2", "151-AllTAtLeast2TMethodLevelCallers GOLD2"
 				
-				,"144-Callers GOLD2", "145-Callees GOLD2", "146-#parameters GOLD2","147-# Parameter T" ,"148-# Parameter N" ,"149-# Parameter E" ,
-				"150-MajorityParameterPrediction GOLD2", "151-AtLeast1NParameterPrediction GOLD2", 
-				"152-AtLeast1TParameterPrediction GOLD2", "153-AtLeast2TParameterPrediction GOLD2", 
-				"154-AtLeast2NParameterPrediction GOLD2", "155-AllNParameterPrediction GOLD2", "156-AllTParameterPrediction GOLD2",
-				"157-ACHRAFTRACEPureGOLD 2", "158-ACHRAFTRACEMixedGOLD2", "159-ACHRAFNOTRACEPureGOLD 2", "160-ACHRAFNOTRACEMixed GOLD2", 
-				"161-AllTMethodLevelCallersCalleesClass GOLD2", "162-AllNMethodLevelCallersCalleesClass GOLD2",
-				"163-AllTClassLevelCallersCalleesClass GOLD2", "164-AllNClassLevelCallersCalleesClass GOLD2", 
-				"CLASSTRACEMethodLevelPureGold2","CLASSTRACEMethodLevelMixedGold2","CLASSNOTRACEMethodLevelPureGold2","CLASSNOTRACEMethodLevelMixedGold2]",
-				"CLASSTRACEClassLevelPureGold2","CLASSTRACEClassLevelMixedGold2","CLASSNOTRACEClassLevelPureGold2","CLASSNOTRACEClassLevelMixedGold2"
+				,"152-Callers GOLD2", "153-Callees GOLD2", "154-#parameters GOLD2","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction GOLD2", "159-AtLeast1NParameterPrediction GOLD2", 
+				"160-AtLeast1TParameterPrediction GOLD2", "161-AtLeast2TParameterPrediction GOLD2", 
+				"162-AtLeast2NParameterPrediction GOLD2", "163-AllNParameterPrediction GOLD2", "164-AllTParameterPrediction GOLD2",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed GOLD2", 
+				"169-AllTMethodLevelCallersCalleesClass GOLD2", "170-AllNMethodLevelCallersCalleesClass GOLD2",
+				"171-AllTClassLevelCallersCalleesClass GOLD2", "172-AllNClassLevelCallersCalleesClass GOLD2", 
+				"173-CLASSTRACEMethodLevelPureGold2","174-CLASSTRACEMethodLevelMixedGold2","175-CLASSNOTRACEMethodLevelPureGold2","176-CLASSNOTRACEMethodLevelMixedGold2]",
+				"177-CLASSTRACEClassLevelPureGold2","178-CLASSTRACEClassLevelMixedGold2","179-CLASSNOTRACEClassLevelPureGold2","180-CLASSNOTRACEClassLevelMixedGold2"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		 
