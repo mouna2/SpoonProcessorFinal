@@ -993,29 +993,29 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 			//***********************************************CALLERS**************************************************//	
 			//***********************************************CALLERS**************************************************//	
 
-			for (Method2Representation methcaller : CallerMethodsList) {
-				if (methcaller != null) {
-							boolean flag=false; 
-							
-								for(Method2Representation item: CallerMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
-									
-									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
-										CallerMethodListFinal.remove(item); 
-									}
-									}
-								}
-						
-				
-							
-			
-					
-				}
-			}
-			
+//			for (Method2Representation methcaller : CallerMethodsList) {
+//				if (methcaller != null) {
+//							boolean flag=false; 
+//							
+//								for(Method2Representation item: CallerMethodsList) {
+//									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+//									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+//									
+//									if(value!=null) {
+//										String ownerclassid=value.InterfaceClass.classid;
+//									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+//										CallerMethodListFinal.remove(item); 
+//									}
+//									}
+//								}
+//						
+//				
+//							
+//			
+//					
+//				}
+//			}
+//			
 			
 
 			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
@@ -1042,34 +1042,34 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 			
 			
 			
-			for (Method2Representation methcaller : CalleeMethodsList) {
-				if (methcaller != null) {
-					
-				
-						
-					
-						
-							boolean flag=false; 
-							
-								for(Method2Representation item: CalleeMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
-									
-									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
-										CalleeMethodListFinal.remove(item); 
-									}
-									}
-								}
-						
-				
-							
-			
-					
-				}
-			}
-			
+//			for (Method2Representation methcaller : CalleeMethodsList) {
+//				if (methcaller != null) {
+//					
+//				
+//						
+//					
+//						
+//							boolean flag=false; 
+//							
+//								for(Method2Representation item: CalleeMethodsList) {
+//									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+//									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+//									
+//									if(value!=null) {
+//										String ownerclassid=value.InterfaceClass.classid;
+//									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+//										CalleeMethodListFinal.remove(item); 
+//									}
+//									}
+//								}
+//						
+//				
+//							
+//			
+//					
+//				}
+//			}
+//			
 			
 			
 			

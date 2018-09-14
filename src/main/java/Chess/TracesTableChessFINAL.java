@@ -432,11 +432,11 @@ public class TracesTableChessFINAL extends JFrame {
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllNClassLevelCallers.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessTraceMixed.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	
-	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllNParameters.txt");
+	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessPure.txt");
 	FileOutputStream mylogfile3 = new FileOutputStream(mylog3);
 	BufferedWriter bwlog3 = new BufferedWriter(new OutputStreamWriter(mylogfile3));
 	
@@ -601,7 +601,7 @@ public class TracesTableChessFINAL extends JFrame {
 		
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-			String trace = myclasstraceHashMap.gettrace().trim();
+			String trace = myclasstraceHashMap.gettrace().trim().trim();
 			trace=trace.trim(); 
 			if (trace.equals("T")) {
 				data[j][OwnerClassT] = "1";
@@ -673,7 +673,7 @@ public class TracesTableChessFINAL extends JFrame {
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
-					String mytrace=mycallerclass.gettrace().trim(); 
+					String mytrace=mycallerclass.gettrace().trim().trim(); 
 					if(mytrace.equals("T")) {
 						counterParameterT++; 
 					}else if (mytrace.equals("N")) {
@@ -987,33 +987,33 @@ public class TracesTableChessFINAL extends JFrame {
 			
 			
 			
-			//***********************************************CALLERS**************************************************//	
-			//***********************************************CALLERS**************************************************//	
-			//***********************************************CALLERS**************************************************//	
-
-			for (Method2Representation methcaller : CallerMethodsList) {
-				if (methcaller != null) {
-							boolean flag=false; 
-							
-								for(Method2Representation item: CallerMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
-									
-									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
-										CallerMethodListFinal.remove(item); 
-									}
-									}
-								}
-						
-				
-							
-			
-					
-				}
-			}
-			
+//			//***********************************************CALLERS**************************************************//	
+//			//***********************************************CALLERS**************************************************//	
+//			//***********************************************CALLERS**************************************************//	
+//
+//			for (Method2Representation methcaller : CallerMethodsList) {
+//				if (methcaller != null) {
+//							boolean flag=false; 
+//							
+//								for(Method2Representation item: CallerMethodsList) {
+//									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+//									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+//									
+//									if(value!=null) {
+//										String ownerclassid=value.InterfaceClass.classid;
+//									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+//										CallerMethodListFinal.remove(item); 
+//									}
+//									}
+//								}
+//						
+//				
+//							
+//			
+//					
+//				}
+//			}
+//			
 			
 
 			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
@@ -1030,43 +1030,43 @@ public class TracesTableChessFINAL extends JFrame {
 			
 			
 			
-			
-				//***********************************************CALLEES**************************************************//	
-				//***********************************************CALLEES**************************************************//	
-				//***********************************************CALLEES**************************************************//	
-
-			
-			
-			
-			
-			
-			for (Method2Representation methcaller : CalleeMethodsList) {
-				if (methcaller != null) {
-					
-				
-						
-					
-						
-							boolean flag=false; 
-							
-								for(Method2Representation item: CalleeMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
-									
-									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
-										CalleeMethodListFinal.remove(item); 
-									}
-									}
-								}
-						
-				
-							
-			
-					
-				}
-			}
+//			
+//				//***********************************************CALLEES**************************************************//	
+//				//***********************************************CALLEES**************************************************//	
+//				//***********************************************CALLEES**************************************************//	
+//
+//			
+//			
+//			
+//			
+//			
+//			for (Method2Representation methcaller : CalleeMethodsList) {
+//				if (methcaller != null) {
+//					
+//				
+//						
+//					
+//						
+//							boolean flag=false; 
+//							
+//								for(Method2Representation item: CalleeMethodsList) {
+//									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+//									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+//									
+//									if(value!=null) {
+//										String ownerclassid=value.InterfaceClass.classid;
+//									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+//										CalleeMethodListFinal.remove(item); 
+//									}
+//									}
+//								}
+//						
+//				
+//							
+//			
+//					
+//				}
+//			}
 			
 			
 			
@@ -1301,11 +1301,11 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodNGOLD2 = 0; 
 			int CountMethodEGOLD2 = 0; 
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
-				if (mycallerclass.gettrace().equals("T")) {
+				if (mycallerclass.gettrace().trim().equals("T")) {
 					CountMethodT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
+				} else if (mycallerclass.gettrace().trim().equals("N")) {
 					CountMethodN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
+				} else if (mycallerclass.gettrace().trim().equals("E")) {
 					CountMethodE++;
 				}
 				if(mycallerclass.getTrace2()!=null) {
@@ -1327,11 +1327,11 @@ public class TracesTableChessFINAL extends JFrame {
 			//data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 			System.out.println("FUINAL COIUNTER ===============>"+ myfinalcounter);
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-				if (mycalleeclass.gettrace().equals("T")) {
+				if (mycalleeclass.gettrace().trim().equals("T")) {
 					CounterTraceClassCalleeT++;
-				} else if (mycalleeclass.gettrace().equals("N")) {
+				} else if (mycalleeclass.gettrace().trim().equals("N")) {
 					CounterTraceClassCalleeN++;
-				} else if (mycalleeclass.gettrace().equals("E")) {
+				} else if (mycalleeclass.gettrace().trim().equals("E")) {
 					CounterTraceClassCalleeE++;
 				}
 				
@@ -1351,11 +1351,11 @@ public class TracesTableChessFINAL extends JFrame {
 			
 			//NO DUPLICATE CLASSES 
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-				if (mycallerclass.gettrace().equals("T")) {
+				if (mycallerclass.gettrace().trim().equals("T")) {
 					CounterTraceClassCallerT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
+				} else if (mycallerclass.gettrace().trim().equals("N")) {
 					CounterTraceClassCallerN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
+				} else if (mycallerclass.gettrace().trim().equals("E")) {
 					CounterTraceClassCallerE++;
 				}
 				if (mycallerclass.getTrace2()!=null) {
@@ -1404,12 +1404,12 @@ public class TracesTableChessFINAL extends JFrame {
 			int CountMethodECalleeGOLD2 = 0; 
 			
 			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-				if(mycalleeclass.gettrace()!=null) {
-					if (mycalleeclass.gettrace().equals("T")) {
+				if(mycalleeclass.gettrace().trim()!=null) {
+					if (mycalleeclass.gettrace().trim().equals("T")) {
 						CountMethodTCallee++;
-					} else if (mycalleeclass.gettrace().equals("N")) {
+					} else if (mycalleeclass.gettrace().trim().equals("N")) {
 						CountMethodNCallee++;
-					} else if (mycalleeclass.gettrace().equals("E")) {
+					} else if (mycalleeclass.gettrace().trim().equals("E")) {
 						CountMethodECallee++;
 					}
 				}
@@ -1643,72 +1643,7 @@ public class TracesTableChessFINAL extends JFrame {
 						String Result=AllNParameterClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNParameters].toString()); 
 						AllNParameterClass.UpdateCounters(Result, AllNParameterClass);
 						
-						if(Result!=null) {
-							
-							
-
-							System.out.println("MY RESULT "+Result);
-							if(Result.equals("FN")) {
-								bwlog3.write("***********************************"); 
-								bwlog3.newLine();
-								bwlog3.write(methodtrace.toString());
-								bwlog3.newLine();
-								for(Method2Representation call: methodtrace.getCallersList()) {
-									bwlog3.write("callerlist "+ call.toString2());
-									
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-									 if(trace2!=null) {
-										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog3.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-									bwlog3.write("callerlistEXEC "+ call.toString2());
-									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog3.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCalleesList()) {
-									bwlog3.write("calleelist "+ call.toString2());
-									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog3.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-									bwlog3.write("calleelistEXEC "+ call.toString2());
-									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog3.newLine();
-								}
-								bwlog3.write("***********************************"); 
-								bwlog3.newLine();
-							}
-						
-						}
+		
 						
 						
 						}
@@ -2344,68 +2279,7 @@ public class TracesTableChessFINAL extends JFrame {
 						if(flagGold==false) {
 						String Result=AllNClassLevelCallersClass.ComparePredictionToGold(methodtrace.getGold().trim(), data[j][AllNClassLevelCallers].toString()); 
 						AllNClassLevelCallersClass.UpdateCounters(Result, AllNClassLevelCallersClass);
-						if(Result!=null) {
-							System.out.println("MY RESULT "+Result);
-							if(Result.equals("FN")) {
-								bwlog2.write("***********************************"); 
-								bwlog2.newLine();
-								bwlog2.write(methodtrace.toString());
-								bwlog2.newLine();
-								for(Method2Representation call: methodtrace.getCallersList()) {
-									bwlog2.write("callerlist "+ call.toString2());
-									
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-									 if(trace2!=null) {
-										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog2.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-									bwlog2.write("callerlistEXEC "+ call.toString2());
-									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog2.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCalleesList()) {
-									bwlog2.write("calleelist "+ call.toString2());
-									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog2.newLine();
-								}
-								for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-									bwlog2.write("calleelistEXEC "+ call.toString2());
-									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-									 if(trace2!=null) {
-										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-										
-										
-									 }
-									 bwlog2.newLine();
-								}
-								bwlog2.write("***********************************"); 
-								bwlog2.newLine();
-							}
-						}
+				
 						}
 						
 						
@@ -2909,72 +2783,7 @@ public class TracesTableChessFINAL extends JFrame {
 											String Result=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNParametersGOLD2].toString()); 
 											AllNParameterClassGold2.UpdateCounters(Result, AllNParameterClassGold2);
 											
-											if(Result!=null) {
-												
-												
-
-												System.out.println("MY RESULT "+Result);
-												if(Result.equals("FN")) {
-													bwlog3.write("***********************************"); 
-													bwlog3.newLine();
-													bwlog3.write(methodtrace.toString());
-													bwlog3.newLine();
-													for(Method2Representation call: methodtrace.getCallersList()) {
-														bwlog3.write("callerlist "+ call.toString2());
-														
-														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-														 if(trace2!=null) {
-															 bwlog3.newLine();
-															 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-															
-															
-														 }
-														 bwlog3.newLine();
-													}
-													for(Method2Representation call: methodtrace.getCallersListExecuted()) {
-														bwlog3.write("callerlistEXEC "+ call.toString2());
-														bwlog3.newLine();
-														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-														 if(trace2!=null) {
-															 bwlog3.newLine();
-															 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-															
-															
-														 }
-														 bwlog3.newLine();
-													}
-													for(Method2Representation call: methodtrace.getCalleesList()) {
-														bwlog3.write("calleelist "+ call.toString2());
-														bwlog3.newLine();
-														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-														 if(trace2!=null) {
-															 bwlog3.newLine();
-															 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-															
-															
-														 }
-														 bwlog3.newLine();
-													}
-													for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
-														bwlog3.write("calleelistEXEC "+ call.toString2());
-														bwlog3.newLine();
-														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
-
-														 if(trace2!=null) {
-															 bwlog3.newLine();
-															 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
-															
-															
-														 }
-														 bwlog3.newLine();
-													}
-													bwlog3.write("***********************************"); 
-													bwlog3.newLine();
-												}
-											
-											}
+								
 											
 											
 											}
@@ -4206,11 +4015,99 @@ public class TracesTableChessFINAL extends JFrame {
 	if(methodtrace.getGold()!=null ) {
 		String Result=PredictionCLASSNOTRACEMethodLevelPureGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevel); 
 		PredictionCLASSNOTRACEMethodLevelPureGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold);
+		
+	
+	
+		if(Result!=null) {
+			
+			
+
+			System.out.println("MY RESULT "+Result);
+			if(Result.equals("FN")) {
+				bwlog3.write("***********************************"); 
+				bwlog3.newLine();
+				bwlog3.write(methodtrace.toString());
+				bwlog3.newLine();
+				for(Method2Representation call: CallerMethodListFinal) {
+					bwlog3.write("callerlist "+ call.toString2());
+					
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+					 if(trace2!=null) {
+						 bwlog3.newLine();
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+						
+						
+					 }
+					 bwlog3.newLine();
+				}
+	
+				for(Method2Representation call: CalleeMethodListFinal) {
+					bwlog3.write("calleelist "+ call.toString2());
+					bwlog3.newLine();
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+					 if(trace2!=null) {
+						 bwlog3.newLine();
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+						
+						
+					 }
+					 bwlog3.newLine();
+				}
+		
+				bwlog3.write("***********************************"); 
+				bwlog3.newLine();
+			}
+		
 		}
+	
+	
+	
+	
+	
+	
+	}
 		
 		if(methodtrace.getGold()!=null ) {
 			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueMethodLevel); 
 			PredictionCLASSNOTRACEMethodLevelMixedGold.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold);
+			
+			if(Result!=null) {
+				System.out.println("MY RESULT "+Result);
+				if(Result.equals("FN")) {
+					for(Method2Representation call: CallerMethodListFinal) {
+						bwlog2.write("callerlist "+ call.toString2());
+						
+						 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+						 if(trace2!=null) {
+							 bwlog2.newLine();
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+							
+							
+						 }
+						 bwlog2.newLine();
+					}
+		
+					for(Method2Representation call: CalleeMethodListFinal) {
+						bwlog2.write("calleelist "+ call.toString2());
+						bwlog2.newLine();
+						 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+
+						 if(trace2!=null) {
+							 bwlog2.newLine();
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+							
+							
+						 }
+						 bwlog2.newLine();
+					
+					}
+					bwlog2.write("***********************************"); 
+					bwlog2.newLine();
+				}
+			}
+			
+			
 			}
 	}
 	
@@ -4642,8 +4539,8 @@ failGold2++;
 		}
 
 		bw.close();
-		
-		
+		bwlog3.close();
+		bwlog2.close();
 		bwlog.write(AllTClassLevelCallersClass.toString()); 
 		bwlog.newLine();
 		bwlog.close(); 
