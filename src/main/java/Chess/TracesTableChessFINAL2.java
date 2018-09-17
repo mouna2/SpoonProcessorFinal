@@ -264,11 +264,11 @@ public class TracesTableChessFINAL2 extends JFrame {
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllTClassLevelCallers.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllNClassLevelCallers.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllNClassLevelCallers.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	private final String userName = "root";

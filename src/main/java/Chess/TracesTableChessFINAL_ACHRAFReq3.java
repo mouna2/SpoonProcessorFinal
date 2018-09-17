@@ -262,32 +262,32 @@ public class TracesTableChessFINAL_ACHRAFReq3 extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\CHESS_REQUIREMENTS_SEPARATED\\TableLogChess.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessACHRAFReq3.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\CHESS_REQUIREMENTS_SEPARATED\\PredictionEvaluationChessACHRAFReq3.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2ACHRAFReq3.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\CHESS_REQUIREMENTS_SEPARATED\\PredictionEvaluationChessGold2ACHRAFReq3.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllTClassLevelCallers.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessAllNClassLevelCallers.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllNClassLevelCallers.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	
-	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logChessMajorityClassLevelCallers.txt");
+	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessMajorityClassLevelCallers.txt");
 	FileOutputStream mylogfile3 = new FileOutputStream(mylog3);
 	BufferedWriter bwlog3 = new BufferedWriter(new OutputStreamWriter(mylogfile3));
 	

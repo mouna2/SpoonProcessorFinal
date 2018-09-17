@@ -252,15 +252,15 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logiTrustAllTClassLevelCallers.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logiTrustAllNClassLevelCallers.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllNClassLevelCallers.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	
-	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logiTrustAllNParameters.txt");
+	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllNParameters.txt");
 	FileOutputStream mylogfile3 = new FileOutputStream(mylog3);
 	BufferedWriter bwlog3 = new BufferedWriter(new OutputStreamWriter(mylogfile3));
 	

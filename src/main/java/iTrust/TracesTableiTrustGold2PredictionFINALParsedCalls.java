@@ -216,23 +216,23 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogiTrustPARSED.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\TableLogiTrustPARSED.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationITRUSTPARSED.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\PredictionEvaluationITRUSTPARSED.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\iTrustFiles\\PredictionEvaluationGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold2ITRUSTPARSED.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\PredictionEvaluationGold2ITRUSTPARSED.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\logitrustPARSED.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\logs\\logitrustPARSED.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));

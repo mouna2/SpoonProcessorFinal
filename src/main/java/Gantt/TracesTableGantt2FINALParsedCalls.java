@@ -248,20 +248,20 @@ public class TracesTableGantt2FINALParsedCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\TableLogGanttPARSED.txt");
+	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\TableLogGanttPARSED.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGANTTPARSED.txt");
+	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\PredictionEvaluationGANTTPARSED.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold3.txt");
-	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold3GANTTPARSED.txt");
+	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\PredictionEvaluationGold3GANTTPARSED.txt");
 
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
 	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold4.txt");
-	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\PredictionEvaluationGold4GANTTPARSED.txt");
+	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\PredictionEvaluationGold4GANTTPARSED.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -269,7 +269,7 @@ public class TracesTableGantt2FINALParsedCalls extends JFrame {
 	BufferedWriter bwGold3 = new BufferedWriter(new OutputStreamWriter(fos3));
 	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fos4));
 
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logsParsed\\logganttPARSED.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\logs\\logganttPARSED.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog); 
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	

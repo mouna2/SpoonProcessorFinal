@@ -294,12 +294,12 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logitrustALLTCALLERSFP.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logitrustALLTCALLERSFP.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
 	
-	File mylogCallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logitrustALLTCALLEESFP.txt");
+	File mylogCallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logitrustALLTCALLEESFP.txt");
 	FileOutputStream mylogfileCallees = new FileOutputStream(mylogCallees);
 	BufferedWriter bwlogcallees = new BufferedWriter(new OutputStreamWriter(mylogfileCallees));
 	

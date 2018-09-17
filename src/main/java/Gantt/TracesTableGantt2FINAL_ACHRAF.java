@@ -311,7 +311,7 @@ public class TracesTableGantt2FINAL_ACHRAF extends JFrame {
 	BufferedWriter bwGold3 = new BufferedWriter(new OutputStreamWriter(fos3));
 	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fos4));
 
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\loggantt.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\loggantt.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog); 
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	

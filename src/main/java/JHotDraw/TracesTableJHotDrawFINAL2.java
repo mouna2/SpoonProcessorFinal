@@ -309,22 +309,22 @@ public class TracesTableJHotDrawFINAL2 extends JFrame {
 	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4JHOTDRAW_ACHRAF.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawALLTCALLERSFP.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawALLTCALLERSFP.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 
 	
-	File mylogcallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawALLTCALLEESFP.txt");
+	File mylogcallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawALLTCALLEESFP.txt");
 	FileOutputStream mylogfilecallees = new FileOutputStream(mylogcallees);
 	BufferedWriter bwlogcallees = new BufferedWriter(new OutputStreamWriter(mylogfilecallees));
 	
 	
 	
-	File MajorityCallersLogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawMajorityClassCallersFP.txt");
+	File MajorityCallersLogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawMajorityClassCallersFP.txt");
 	FileOutputStream MajorityCallersFP = new FileOutputStream(MajorityCallersLogFP);
 	BufferedWriter bwlogMajorityCallersFP = new BufferedWriter(new OutputStreamWriter(MajorityCallersFP));
 	
-	File MajorityCallersLogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logjhotdrawMajorityClassCallersFN.txt");
+	File MajorityCallersLogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawMajorityClassCallersFN.txt");
 	FileOutputStream MajorityCallersFN = new FileOutputStream(MajorityCallersLogFN);
 	BufferedWriter bwlogMajorityCallersFN = new BufferedWriter(new OutputStreamWriter(MajorityCallersFN));
 	

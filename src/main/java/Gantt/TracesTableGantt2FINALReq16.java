@@ -608,7 +608,7 @@ public class TracesTableGantt2FINALReq16 extends JFrame {
 	FileOutputStream fosGold4 = new FileOutputStream(foutGold4TableLog);
 	BufferedWriter bwGold4TableLog = new BufferedWriter(new OutputStreamWriter(fosGold4));
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\loggantt.txt");
+	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\logs\\loggantt.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog); 
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
