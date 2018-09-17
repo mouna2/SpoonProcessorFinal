@@ -598,7 +598,23 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 			data[j][CallerMethodsNumberGOLD2] = 0;
 			data[j][CallerClassesNumberGOLD2] = 0;
 			data[j][CalleeClassesNumberGOLD2] = 0;
-		
+			data[j][CLASSTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSTRACEClassLevelPureGold] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSTRACEClassLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold2] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold2] = "null";
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 			String trace = myclasstraceHashMap.gettrace().trim();
@@ -3923,14 +3939,14 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 													}
 									
 														
-									String TracePureGoldValue=""; 
-									String TraceMixedGoldValue=""; 
-									String TracePureGold2Value=""; 
-									String TraceMixedGold2Value=""; 
-									String NOTracePureGoldValue=""; 
-									String NOTraceMixedGoldValue=""; 
-									String NOTracePureGold2Value=""; 
-									String NOTraceMixedGold2Value=""; 
+									String TracePureGoldValue="null"; 
+									String TraceMixedGoldValue="null"; 
+									String TracePureGold2Value="null"; 
+									String TraceMixedGold2Value="null"; 
+									String NOTracePureGoldValue="null"; 
+									String NOTraceMixedGoldValue="null"; 
+									String NOTracePureGold2Value="null"; 
+									String NOTraceMixedGold2Value="null"; 
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
@@ -4116,14 +4132,14 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 	
 	
 	
-	String TracePureGoldValueMethodLevel=""; 
-	String TraceMixedGoldValueMethodLevel=""; 
-	String TracePureGold2ValueMethodLevel=""; 
-	String TraceMixedGold2ValueMethodLevel=""; 
-	String NOTracePureGoldValueMethodLevel=""; 
-	String NOTraceMixedGoldValueMethodLevel=""; 
-	String NOTracePureGold2ValueMethodLevel=""; 
-	String NOTraceMixedGold2ValueMethodLevel=""; 
+	String TracePureGoldValueMethodLevel="null"; 
+	String TraceMixedGoldValueMethodLevel="null"; 
+	String TracePureGold2ValueMethodLevel="null"; 
+	String TraceMixedGold2ValueMethodLevel="null"; 
+	String NOTracePureGoldValueMethodLevel="null"; 
+	String NOTraceMixedGoldValueMethodLevel="null"; 
+	String NOTracePureGold2ValueMethodLevel="null"; 
+	String NOTraceMixedGold2ValueMethodLevel="null"; 
 	/**************************************************************************************************************/
 	/**************************************************************************************************************/
 	/**************************************************************************************************************/
@@ -4284,14 +4300,14 @@ failGold2++;
 	
 
 
-String TracePureGoldValueClassLevel=""; 
-String TraceMixedGoldValueClassLevel=""; 
-String TracePureGold2ValueClassLevel=""; 
-String TraceMixedGold2ValueClassLevel=""; 
-String NOTracePureGoldValueClassLevel=""; 
-String NOTraceMixedGoldValueClassLevel=""; 
-String NOTracePureGold2ValueClassLevel=""; 
-String NOTraceMixedGold2ValueClassLevel=""; 
+String TracePureGoldValueClassLevel="null"; 
+String TraceMixedGoldValueClassLevel="null"; 
+String TracePureGold2ValueClassLevel="null"; 
+String TraceMixedGold2ValueClassLevel="null"; 
+String NOTracePureGoldValueClassLevel="null"; 
+String NOTraceMixedGoldValueClassLevel="null"; 
+String NOTracePureGold2ValueClassLevel="null"; 
+String NOTraceMixedGold2ValueClassLevel="null"; 
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 /**************************************************************************************************************/

@@ -806,7 +806,31 @@ public class TracesTableGantt2FINALReq3 extends JFrame {
 			data[j][CallerMethodsNumberGOLD4] = 0;
 			data[j][CallerClassesNumberGOLD4] = 0;
 			data[j][CalleeClassesNumberGOLD4] = 0;
-		
+			data[j][CLASSTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSTRACEClassLevelPureGold] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold3] = "null";
+			data[j][CLASSTRACEClassLevelPureGold3] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold3] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold3] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold3] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold3] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold3] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold3] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold4] = "null";
+			data[j][CLASSTRACEClassLevelPureGold4] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold4] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold4] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold4] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold4] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold4] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold4] = "null";
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 			String trace = myclasstraceHashMap.gettrace().trim();
@@ -5224,20 +5248,20 @@ public class TracesTableGantt2FINALReq3 extends JFrame {
 																			
 																				
 																		}					
-									String TracePureGoldValue=""; 
-									String TraceMixedGoldValue=""; 
-								
-									String NOTracePureGoldValue=""; 
-									String NOTraceMixedGoldValue=""; 
-									String NOTracePureGold3Value=""; 
-									String NOTraceMixedGold3Value=""; 
-									String TracePureGold3Value=""; 
-									String TraceMixedGold3Value=""; 
-									
-									String NOTracePureGold4Value=""; 
-									String NOTraceMixedGold4Value=""; 
-									String TracePureGold4Value=""; 
-									String TraceMixedGold4Value=""; 
+																			String TracePureGoldValue="null"; 
+																			String TraceMixedGoldValue="null"; 
+																		
+																			String NOTracePureGoldValue="null"; 
+																			String NOTraceMixedGoldValue="null"; 
+																			String NOTracePureGold3Value="null"; 
+																			String NOTraceMixedGold3Value="null"; 
+																			String TracePureGold3Value="null"; 
+																			String TraceMixedGold3Value="null"; 
+																			
+																			String NOTracePureGold4Value="null"; 
+																			String NOTraceMixedGold4Value="null"; 
+																			String TracePureGold4Value="null"; 
+																			String TraceMixedGold4Value="null"; 
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
@@ -5521,18 +5545,18 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 /**************************************************************************************************************/				
-String TracePureGoldValueMethodLevel=""; 
-String TraceMixedGoldValueMethodLevel=""; 
-String TracePureGold3ValueMethodLevel=""; 
-String TraceMixedGold3ValueMethodLevel=""; 
-String NOTracePureGoldValueMethodLevel=""; 
-String NOTraceMixedGoldValueMethodLevel=""; 
-String NOTracePureGold3ValueMethodLevel=""; 
-String NOTraceMixedGold3ValueMethodLevel=""; 
-String TracePureGold4ValueMethodLevel=""; 
-String TraceMixedGold4ValueMethodLevel=""; 
-String NOTracePureGold4ValueMethodLevel=""; 
-String NOTraceMixedGold4ValueMethodLevel=""; 
+String TracePureGoldValueMethodLevel="null"; 
+String TraceMixedGoldValueMethodLevel="null"; 
+String TracePureGold3ValueMethodLevel="null"; 
+String TraceMixedGold3ValueMethodLevel="null"; 
+String NOTracePureGoldValueMethodLevel="null"; 
+String NOTraceMixedGoldValueMethodLevel="null"; 
+String NOTracePureGold3ValueMethodLevel="null"; 
+String NOTraceMixedGold3ValueMethodLevel="null"; 
+String TracePureGold4ValueMethodLevel="null"; 
+String TraceMixedGold4ValueMethodLevel="null"; 
+String NOTracePureGold4ValueMethodLevel="null"; 
+String NOTraceMixedGold4ValueMethodLevel="null"; 
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 /**************************************************************************************************************/
@@ -5843,18 +5867,18 @@ failGold4++;
 
 
 
-String TracePureGoldValueClassLevel=""; 
-String TraceMixedGoldValueClassLevel=""; 
-String TracePureGold3ValueClassLevel=""; 
-String TraceMixedGold3ValueClassLevel=""; 
-String NOTracePureGoldValueClassLevel=""; 
-String NOTraceMixedGoldValueClassLevel=""; 
-String NOTracePureGold3ValueClassLevel=""; 
-String NOTraceMixedGold3ValueClassLevel=""; 
-String NOTracePureGold4ValueClassLevel=""; 
-String NOTraceMixedGold4ValueClassLevel=""; 
-String TracePureGold4ValueClassLevel=""; 
-String TraceMixedGold4ValueClassLevel=""; 
+String TracePureGoldValueClassLevel="null"; 
+String TraceMixedGoldValueClassLevel="null"; 
+String TracePureGold3ValueClassLevel="null"; 
+String TraceMixedGold3ValueClassLevel="null"; 
+String NOTracePureGoldValueClassLevel="null"; 
+String NOTraceMixedGoldValueClassLevel="null"; 
+String NOTracePureGold3ValueClassLevel="null"; 
+String NOTraceMixedGold3ValueClassLevel="null"; 
+String NOTracePureGold4ValueClassLevel="null"; 
+String NOTraceMixedGold4ValueClassLevel="null"; 
+String TracePureGold4ValueClassLevel="null"; 
+String TraceMixedGold4ValueClassLevel="null"; 
 /**************************************************************************************************************/
 /**************************************************************************************************************/
 /**************************************************************************************************************/
