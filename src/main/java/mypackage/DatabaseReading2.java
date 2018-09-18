@@ -36,8 +36,11 @@ public class DatabaseReading2 {
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
+	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
+	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
+	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
+	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
+	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -180,16 +183,28 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////
 		Interface2 myinterface2= new Interface2(); 
-		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
-		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
-		setInterfaces(interfacehashmap);
-///////////////////////////////////////////////////////////////////////////////////////
+		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
+//		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
+		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+				
+		///////////////////////////////////////////////////////////////////////////////////////
+		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
+		setInterfaces(interfacehashmapAlreadyImpl);
+		///////////////////////////////////////////////////////////////////////////////////////
+		ClassField2 classfield= new ClassField2(); 
+		 HashMap<String, List<ClassField2>> myclassfields = classfield.ReadClassFields(conn); 
+		setClassFieldHashMap(myclassfields);
+		///////////////////////////////////////////////////////////////////////////////////////
+		MethodField2 methodfield= new MethodField2(); 
+		 HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
+		setMethodFieldHashMap(mymethodfields);
 		
 ///////////////////////////////////////////////////////////////////////////////////////
-interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
-setInterfaces(interfacehashmapAlreadyImpl);
-///////////////////////////////////////////////////////////////////////////////////////
-
+		SuperClass2 superclass= new SuperClass2(); 
+		 HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
+		setSuperclassesHashMap(mysuperclasses);
+		/////////////////////////////////////////////
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
@@ -403,15 +418,18 @@ setInterfaces(interfacehashmapAlreadyImpl);
 	
 	}
 
+	
+
 	public static void setInterfaces(HashMap ínterfacehashmap) {
 		// TODO Auto-generated method stub
-		DatabaseReading2.interfacehashmap=ínterfacehashmap;
+		DatabaseReading2.interfacehashmapAlreadyImpl=ínterfacehashmap;
 		
 	}
 	
+
 	public static HashMap  getInterfaces() {
 		// TODO Auto-generated method stub
-		return interfacehashmap;
+		return interfacehashmapAlreadyImpl;
 		
 	}
 
@@ -438,6 +456,38 @@ setInterfaces(interfacehashmapAlreadyImpl);
 
 	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
 		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
+	}
+
+	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+		return interfacehashmapOwnerClass;
+	}
+
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+		DatabaseReading2.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
+	}
+
+	public static HashMap<String, List<ClassField2>> getClassFieldHashMap() {
+		return ClassFieldHashMap;
+	}
+
+	public static void setClassFieldHashMap(HashMap<String, List<ClassField2>> classFieldHashMap) {
+		ClassFieldHashMap = classFieldHashMap;
+	}
+
+	public static HashMap<String, List<MethodField2>> getMethodFieldHashMap() {
+		return MethodFieldHashMap;
+	}
+
+	public static void setMethodFieldHashMap(HashMap<String, List<MethodField2>> methodFieldHashMap) {
+		MethodFieldHashMap = methodFieldHashMap;
+	}
+
+	public static HashMap<String, List<SuperClass2>> getSuperclassesHashMap() {
+		return SuperclassesHashMap;
+	}
+
+	public static void setSuperclassesHashMap(HashMap<String, List<SuperClass2>> superclassesHashMap) {
+		SuperclassesHashMap = superclassesHashMap;
 	}
 
 	

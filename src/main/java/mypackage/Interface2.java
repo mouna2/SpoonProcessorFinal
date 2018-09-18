@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,8 +17,9 @@ public class Interface2 {
 	String ID; 
 	public ClassRepresentation2 InterfaceClass; 
 	public ClassRepresentation2 OwnerClass;
+	 HashMap<String, List<Interface2>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface2>>(); 
 	 HashMap<String, Interface2> ClassRepresentationHashMap= new HashMap<String, Interface2>(); 
-
+	
 	public Interface2(String iD, ClassRepresentation2 interfaceClass, ClassRepresentation2 ownerClass) {
 		super();
 		ID = iD;
@@ -50,7 +53,7 @@ public class Interface2 {
 	}
 	 
 	
-	public  HashMap<String, Interface2> ReadInterfacesRepresentations(Connection conn) throws SQLException {
+	public  HashMap<String, List<Interface2>> ReadInterfacesRepresentations(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
@@ -84,10 +87,17 @@ public class Interface2 {
 				 myinterface.setInterfaceClass(InterfaceClass);
 				 myinterface.setOwnerClass(OwnerClass);
 				 
-				 String key=ownerclassid+"-"+classname;
-				 
+				 String key=ownerclassid;
+				 if(ClassRepresentationHashMapOwnerClass.get(key)!=null) {
+					 List<Interface2> myinterfaceslist= ClassRepresentationHashMapOwnerClass.get(key); 
+					 myinterfaceslist.add(myinterface); 
+					 ClassRepresentationHashMapOwnerClass.put(key, myinterfaceslist); 
+				 }else {
+					 List<Interface2> myinterfaceslist= new ArrayList<Interface2>(); 
+					 myinterfaceslist.add(myinterface); 
+					 ClassRepresentationHashMapOwnerClass.put(key, myinterfaceslist); 
+				 }
 				
-				 ClassRepresentationHashMap.put(key, myinterface); 
 				 System.out.println("index 5 "+index);
 				 index++; 
 		 }
@@ -97,7 +107,7 @@ public class Interface2 {
 		            System.out.println("Value of "+key+" is: "+ resultFieldClasses.get(key).classid+ "   "+resultFieldClasses.get(key).classname+ "   ");
 		        }*/
 		
-		 return ClassRepresentationHashMap; 
+		 return ClassRepresentationHashMapOwnerClass; 
 	}
 	
 	
