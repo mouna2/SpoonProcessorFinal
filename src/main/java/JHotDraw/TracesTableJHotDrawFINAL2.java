@@ -399,8 +399,7 @@ public class TracesTableJHotDrawFINAL2 extends JFrame {
 		DatabaseReading2JHotDraw.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		 InterfacesHashMap = db.getInterfaces();
-		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+		 HashMap InterfacesHashMap = db.getInterfacehashmap();
 		 
 		//classtraces2 = db.getClassestraces2();
 		//methodlist = db.getMethodlist();

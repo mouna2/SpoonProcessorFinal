@@ -24,17 +24,20 @@ import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
+import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
+import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
+import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
@@ -48,7 +51,10 @@ public class DatabaseReading2Gantt {
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
 	public static HashMap<String, Interface2> interfacehashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
+	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
+	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
+	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
+	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -195,16 +201,26 @@ public class DatabaseReading2Gantt {
 		setClassestraces2(classestracesRequirementClass);
 		///////////////////////////////////////////////////////////////////////////////////////
 		Interface2 myinterface2= new Interface2(); 
-		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
-		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
-		setInterfaces(interfacehashmap);
+		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
+//		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
+		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
 		///////////////////////////////////////////////////////////////////////////////////////
-		
-		///////////////////////////////////////////////////////////////////////////////////////
-		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
-		setInterfaces(interfacehashmapAlreadyImpl);
-		///////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("MOUNA");
+				
+///////////////////////////////////////////////////////////////////////////////////////
+ClassField2 classfield= new ClassField2(); 
+HashMap<String, List<ClassField2>> myclassfields = classfield.ReadClassFields(conn); 
+setClassFieldHashMap(myclassfields);
+///////////////////////////////////////////////////////////////////////////////////////
+MethodField2 methodfield= new MethodField2(); 
+HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
+setMethodFieldHashMap(mymethodfields);
+
+///////////////////////////////////////////////////////////////////////////////////////
+SuperClass2 superclass= new SuperClass2(); 
+HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
+setSuperclassesHashMap(mysuperclasses);
+/////////////////////////////////////////////
+System.out.println("MOUNA");
 		
 		
 		/*String goldprediction=""; 
@@ -418,12 +434,56 @@ public class DatabaseReading2Gantt {
 
 	*/
 	}
-	public static void setInterfaces(HashMap ínterfacehashmap) {
-		// TODO Auto-generated method stub
-		DatabaseReading2.interfacehashmap=ínterfacehashmap;
-		
-	}
 	
+	
+	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+		return interfacehashmapOwnerClass;
+	}
+
+
+
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+		DatabaseReading2Gantt.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
+	}
+
+
+
+	public static HashMap<String, List<ClassField2>> getClassFieldHashMap() {
+		return ClassFieldHashMap;
+	}
+
+
+
+	public static void setClassFieldHashMap(HashMap<String, List<ClassField2>> classFieldHashMap) {
+		ClassFieldHashMap = classFieldHashMap;
+	}
+
+
+
+	public static HashMap<String, List<MethodField2>> getMethodFieldHashMap() {
+		return MethodFieldHashMap;
+	}
+
+
+
+	public static void setMethodFieldHashMap(HashMap<String, List<MethodField2>> methodFieldHashMap) {
+		MethodFieldHashMap = methodFieldHashMap;
+	}
+
+
+
+	public static HashMap<String, List<SuperClass2>> getSuperclassesHashMap() {
+		return SuperclassesHashMap;
+	}
+
+
+
+	public static void setSuperclassesHashMap(HashMap<String, List<SuperClass2>> superclassesHashMap) {
+		SuperclassesHashMap = superclassesHashMap;
+	}
+
+
+
 	public static HashMap  getInterfaces() {
 		// TODO Auto-generated method stub
 		return interfacehashmap;
@@ -446,9 +506,7 @@ public class DatabaseReading2Gantt {
 	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces) {
 		DatabaseReading2Gantt.methodtraces2 = methodtraces;
 	}
-	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
-		return interfacehashmapAlreadyImpl;
-	}
+	
 
 	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
 		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;

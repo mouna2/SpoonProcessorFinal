@@ -462,7 +462,7 @@ public class MethodTrace2 {
 				 methodtraceHashMap.put(index, mytrace); 
 				 index++; 
 			//	 MethodTrace2 methtrace= new MethodTrace2(); 
-				// System.out.println("my trace tostring: "+mytrace.toString());
+				 System.out.println("my trace tostring: "+mytrace.toString());
 				
 				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
 			

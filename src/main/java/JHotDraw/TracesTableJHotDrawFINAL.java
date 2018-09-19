@@ -330,6 +330,77 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	
 	
 	
+	
+	int CLASSTRACEMethodLevelPureGold4ACROSS=267; 
+	int CLASSTRACEMethodLevelMixedGold4ACROSS=268; 
+	int CLASSNOTRACEMethodLevelPureGold4ACROSS=269; 
+	int CLASSNOTRACEMethodLevelMixedGold4ACROSS=270;
+	int CLASSTRACEClassLevelPureGold4ACROSS=271; 
+	int CLASSTRACEClassLevelMixedGold4ACROSS=272; 
+	int CLASSNOTRACEClassLevelPureGold4ACROSS=273; 
+	int CLASSNOTRACEClassLevelMixedGold4ACROSS=274;
+	int CallerMethodsNumberGOLD4ACROSS=275; 
+	int CallerMethodsTGOLD4ACROSS=276; 
+	int CallerMethodsNGOLD4ACROSS=277; 
+	int CallerMethodsEGOLD4ACROSS=278; 
+	int CallerClassesNumberGOLD4ACROSS=279; 
+	int CallerClassesTGOLD4ACROSS=280; 
+	int CallerClassesNGOLD4ACROSS=281; 
+	int CallerClassesEGOLD4ACROSS=282; 
+	int CalleeMethodsNumberGOLD4ACROSS=283; 
+	int CalleeMethodsTGOLD4ACROSS=284; 
+	int CalleeMethodsNGOLD4ACROSS=285; 
+	int CalleeMethodsEGOLD4ACROSS=286; 
+	int CalleeClassesNumberGOLD4ACROSS=287; 
+	int CalleeClassesTGOLD4ACROSS=288; 
+	int CalleeClassesNGOLD4ACROSS=289; 
+	int CalleeClassesEGOLD4ACROSS=290; 
+	int CallerMethodsNumberACROSS=291; 
+	int CallerMethodsTACROSS=292; 
+	int CallerMethodsNACROSS=293; 
+	int CallerMethodsEACROSS=294; 
+	int CallerClassesNumberACROSS=295; 
+	int CallerClassesTACROSS=296; 
+	int CallerClassesNACROSS=297; 
+	int CallerClassesEACROSS=298; 
+	int CalleeMethodsNumberACROSS=299; 
+	int CalleeMethodsTACROSS=300; 
+	int CalleeMethodsNACROSS=301; 
+	int CalleeMethodsEACROSS=302; 
+	int CalleeClassesNumberACROSS=303; 
+	int CalleeClassesTACROSS=304; 
+	int CalleeClassesNACROSS=305; 
+	int CalleeClassesEACROSS=306; 
+	int interfacesNumberGOLD4=307; 
+	int CountInterfaceTGOLD4=308; 
+	int CountInterfaceNGOLD4=309; 
+	int CountInterfaceEGOLD4=310; 
+	
+	int FieldClassesNumberGOLD4=311; 
+	int CountFieldClassTGOLD4=312; 
+	int CountFieldClassNGOLD4=313; 
+	int CountFieldClassEGOLD4=314; 
+	
+	int FieldMethodsNumberGOLD4=315; 
+	int CountFieldMethodTGOLD4=316; 
+	int CountFieldMethodNGOLD4=317; 
+	int CountFieldMethodEGOLD4=318; 
+	
+	int SuperClassesNumberGOLD4=319; 
+	int CountFieldSuperClassTGOLD4=320; 
+	int CountFieldSuperClassNGOLD4=321; 
+	int CountFieldSuperClassEGOLD4=322; 
+	
+	
+	
+	int CLASSTRACEMethodLevelPureGoldACROSS=323; 
+	int CLASSTRACEMethodLevelMixedGoldACROSS=324; 
+	int CLASSNOTRACEMethodLevelPureGoldACROSS=325; 
+	int CLASSNOTRACEMethodLevelMixedGoldACROSS=326;
+	int CLASSTRACEClassLevelPureGoldACROSS=327; 
+	int CLASSTRACEClassLevelMixedGoldACROSS=328; 
+	int CLASSNOTRACEClassLevelPureGoldACROSS=329; 
+	int CLASSNOTRACEClassLevelMixedGoldACROSS=330;
 	int counterFN=0; 
 	double TracePureGold=0; 
 	double NoTracePureGold=0; 
@@ -552,6 +623,22 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold4=new PredictionEvaluation();  
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold4=new PredictionEvaluation();   
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold4=new PredictionEvaluation();  	 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold4ACROSS=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold4ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold4ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGoldACROSS=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGoldACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGoldACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGoldACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
 		
 		
 	ClassTrace2 myclasstrace = new ClassTrace2();
@@ -658,10 +745,17 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold"
 				 );
 
-		bwGold4TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold4, Subject, OwnerClassT, OwnerClassN, "
-				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+		bwGold4TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, GOLD4, Subject, OwnerClassT, OwnerClassN, "
+				+ "OwnerClassE, #callermethods, callers, "
+				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-				+ "#calleeclassesE, OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
+				+ "#calleeclassesE, "
+				
+				+"#callermethodsACROSS, #callermethodsTACROSS, #callermethodsNACROSS, #callermethodsEACROSS, #callerclassesACROSS, #callerclassesTACROSS, #callerclassesNACROSS, "
+				+ "#callerclassesEACROSS, #calleemethodsACROSS,#calleemethodsTACROSS, #calleemethodsNACROSS, #calleemethodsEACROSS, #calleeclassesACROSS, #calleeclassesTACROSS, #calleeclassesNACROSS, "
+				+ "#calleeclassesEACROSS, "
+				
+				+ "OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
 				+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
 				+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
 				+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
@@ -672,13 +766,23 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
 				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
 				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
-				+ " #parameters, parameters, # Parameter T, # Parameter N, # Parameter E," 
+				
+				
+				
+				+ " #parametersMethodLevel, parametersMethodLevel, # Parameter TMethodLevel, # Parameter NMethodLevel, # Parameter EMethodLevel," 
+				+ " #interfacesMethodLevel,  # InterfaceTMethodLevel, # InterfaceNMethodLevel, # InterfaceEMethodLevel," 
+				+ " #superclassesMethodLevel,  # SuperclassTMethodLevel, # SuperclassNMethodLevel, # SuperclassEMethodLevel," 
+				+ " #FieldMethodsMethodLevel,  # FieldMethodsTMethodLevel, # FieldMethodsNMethodLevel, # FieldMethodsEMethodLevel," 
+				+ " #FieldClassesMethodLevel,  # FieldClassesTMethodLevel, # FieldClassesNMethodLevel, # FieldClassesEMethodLevel," 
+				
 				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
 				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
 				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
 				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
-				+"ClassTraceMethodLevelPureGold, ClassTraceMethodLevelMixedGold, ClassNoTraceMethodLevelPureGold, ClassNoTraceMethodLevelMixedGold,"
-				+"ClassTraceClassLevelPureGold, ClassTraceClassLevelMixedGold, ClassNoTraceClassLevelPureGold, ClassNoTraceClassLevelMixedGold"
+				+"ClassTraceMethodLevelPure, ClassTraceMethodLevelMixed, ClassNoTraceMethodLevelPure, ClassNoTraceMethodLevelMixed,"
+				+"ClassTraceClassLevelPure, ClassTraceClassLevelMixed, ClassNoTraceClassLevelPure, ClassNoTraceClassLevelMixed,"
+				+"ClassTraceMethodLevelPureACROSS, ClassTraceMethodLevelMixedACROSS, ClassNoTraceMethodLevelPureACROSS, ClassNoTraceMethodLevelMixedACROSS,"
+				+"ClassTraceClassLevelPureACROSS, ClassTraceClassLevelMixedACROSS, ClassNoTraceClassLevelPureACROSS, ClassNoTraceClassLevelMixedACROSS"
 				 );
 		
 		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Gold3, Gold4, Subject, OwnerClassT, OwnerClassN, "
@@ -713,9 +817,8 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 		classtraces2 = db.getClassestraces2();
 	//	methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		 HashMap InterfacesHashMap = db.getInterfaces();
+		 HashMap InterfacesHashMap = db.getInterfacehashmap();
 		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-		  HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -874,8 +977,30 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				
 			}
 			
-			
-		
+			if(myclasstraceHashMap.getTrace4()!=null) {
+				String traceGOLD4 = myclasstraceHashMap.getTrace4();
+				traceGOLD4=traceGOLD4.trim(); 
+				if (traceGOLD4.equals("T")) {
+					data[j][OwnerClassTGOLD4] = "1";
+					data[j][OwnerClassNGOLD4] = "0";
+					data[j][OwnerClassEGOLD4] = "0";
+					System.out.println("OWNERCLASS T  "+j +" set to 1");
+				} else if (traceGOLD4.equals("N")) {
+					data[j][OwnerClassTGOLD4] = "0";
+					data[j][OwnerClassNGOLD4] = "1";
+					data[j][OwnerClassEGOLD4] = "0";
+					System.out.println("OWNERCLASS N  "+j +" set to 1");
+				} else if (traceGOLD4.equals("E")) {
+					data[j][OwnerClassTGOLD4] = "0";
+					data[j][OwnerClassNGOLD4] = "0";
+					data[j][OwnerClassEGOLD4] = "1";
+					System.out.println("OWNERCLASS E  "+j +" set to 1");
+				}
+				
+			}
+
+			data[j][Gold4]=methodtrace.getGold4(); 
+			data[j][Gold3]=methodtrace.getGold3(); 
 			int BothParsedAndExecutedCallers=0; 
 			int OnlyinParsedCallers=0;
 			int OnlyinExecutedCallers=0; 
@@ -1657,6 +1782,10 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			}
 		
+			
+			
+			
+			
 
 			int CounterTraceClassCalleeT = 0;
 			int CounterTraceClassCalleeN = 0;
@@ -1822,12 +1951,185 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			data[j][CallerMethodsE] = CountMethodE;
 			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
 
+			
+			
+			
+			
+			
+			int CountMethodTACROSS = 0; 
+			int CountMethodNACROSS = 0; 
+			int CountMethodEACROSS = 0; 
+			
+			int CountMethodTGOLD4ACROSS = 0; 
+			int CountMethodNGOLD4ACROSS = 0; 
+			int CountMethodEGOLD4ACROSS = 0; 
+			
+			for (ClassTrace2 mycallerclass : mycallerclasses) {
+				if (mycallerclass.gettrace().trim().equals("T") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodTACROSS++;
+				} else if (mycallerclass.gettrace().trim().equals("N") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodNACROSS++;
+				} else if (mycallerclass.gettrace().trim().equals("E") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodEACROSS++;
+				}
+				if(mycallerclass.getTrace4()!=null) {
+					if (mycallerclass.getTrace4().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodTGOLD4ACROSS++;
+					} else if (mycallerclass.getTrace4().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodNGOLD4ACROSS++;
+					} else if (mycallerclass.getTrace4().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEGOLD4ACROSS++;
+					}
+				}
+				
+			}
+			
+			
+			int CountMethodTACROSSCallee = 0; 
+			int CountMethodNACROSSCallee = 0; 
+			int CountMethodEACROSSCallee = 0; 
+			
+			int CountMethodTGOLD4ACROSSCallee = 0; 
+			int CountMethodNGOLD4ACROSSCallee = 0; 
+			int CountMethodEGOLD4ACROSSCallee = 0; 
+			
+			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
+				if (mycalleeclass.gettrace().trim().equals("T") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodTACROSSCallee++;
+				} else if (mycalleeclass.gettrace().trim().equals("N") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodNACROSSCallee++;
+				} else if (mycalleeclass.gettrace().trim().equals("E") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CountMethodEACROSSCallee++;
+				}
+				if(mycalleeclass.getTrace4()!=null) {
+					if (mycalleeclass.getTrace4().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodTGOLD4ACROSSCallee++;
+					} else if (mycalleeclass.getTrace4().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodNGOLD4ACROSSCallee++;
+					} else if (mycalleeclass.getTrace4().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEGOLD4ACROSSCallee++;
+					}
+				}
+				
+			}
+			
+			
+			
+			
+			int CounterTraceClassCalleeTACROSS = 0;
+			int CounterTraceClassCalleeNACROSS = 0;
+			int CounterTraceClassCalleeEACROSS = 0;
+			
+			int CounterTraceClassCalleeTGOLD4ACROSS = 0;
+			int CounterTraceClassCalleeNGOLD4ACROSS = 0;
+			int CounterTraceClassCalleeEGOLD4ACROSS = 0;
+			
+			
+			int CounterTraceClassCallerTACROSS = 0;
+			int CounterTraceClassCallerNACROSS = 0;
+			int CounterTraceClassCallerEACROSS = 0;
+			
+			int CounterTraceClassCallerTGOLD4ACROSS = 0;
+			int CounterTraceClassCallerNGOLD4ACROSS = 0;
+			int CounterTraceClassCallerEGOLD4ACROSS = 0;
+			
+			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
+				if (mycalleeclass.gettrace().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCalleeTACROSS++;
+				} else if (mycalleeclass.gettrace().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCalleeNACROSS++;
+				} else if (mycalleeclass.gettrace().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCalleeEACROSS++;
+				}
+				
+				if(mycalleeclass.getTrace4()!=null) {
+					if (mycalleeclass.getTrace4().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeTGOLD4ACROSS++;
+					} else if (mycalleeclass.getTrace4().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeNGOLD4ACROSS++;
+					} else if (mycalleeclass.getTrace4().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeEGOLD4ACROSS++;
+					}
+				}
+			
+			}
+		
+			
+			
+			//NO DUPLICATE CLASSES 
+			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
+				if (mycallerclass.gettrace().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCallerTACROSS++;
+				} else if (mycallerclass.gettrace().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCallerNACROSS++;
+				} else if (mycallerclass.gettrace().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					CounterTraceClassCallerEACROSS++;
+				}
+				if (mycallerclass.getTrace4()!=null) {
+					if (mycallerclass.getTrace4().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCallerTGOLD4ACROSS++;
+					} else if (mycallerclass.getTrace4().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCallerNGOLD4ACROSS++;
+					} else if (mycallerclass.getTrace4().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCallerEGOLD4ACROSS++;
+					}
+				}
+				
+			}
+			
+			data[j][CalleeMethodsTACROSS] = CountMethodTACROSSCallee;
+			data[j][CalleeMethodsNACROSS] = CountMethodNACROSSCallee;
+			data[j][CalleeMethodsEACROSS] = CountMethodEACROSSCallee;
+			data[j][CalleeMethodsNumberACROSS] = CountMethodTACROSSCallee+CountMethodNACROSSCallee+CountMethodEACROSSCallee;
+			
+			data[j][CallerMethodsTACROSS] = CountMethodTACROSS;
+			data[j][CallerMethodsNACROSS] = CountMethodNACROSS;
+			data[j][CallerMethodsEACROSS] = CountMethodEACROSS;
+			data[j][CallerMethodsNumberACROSS] = CountMethodTACROSS+CountMethodNACROSS+CountMethodEACROSS;
+			
+			data[j][CalleeMethodsTGOLD4ACROSS] = CountMethodTGOLD4ACROSSCallee;
+			data[j][CalleeMethodsNGOLD4ACROSS] = CountMethodNGOLD4ACROSSCallee;
+			data[j][CalleeMethodsEGOLD4ACROSS] = CountMethodEGOLD4ACROSSCallee;
+			data[j][CalleeMethodsNumberGOLD4ACROSS] = CountMethodTGOLD4ACROSSCallee+CountMethodNGOLD4ACROSSCallee+CountMethodEGOLD4ACROSSCallee;
+			
+			data[j][CallerMethodsTGOLD4ACROSS] = CountMethodTGOLD4ACROSS;
+			data[j][CallerMethodsNGOLD4ACROSS] = CountMethodNGOLD4ACROSS;
+			data[j][CallerMethodsEGOLD4ACROSS] = CountMethodEGOLD4ACROSS;
+			data[j][CallerMethodsNumberGOLD4ACROSS] = CountMethodTGOLD4ACROSS+CountMethodNGOLD4ACROSS+CountMethodEGOLD4ACROSS;
+			
+			data[j][CallerClassesTACROSS] = CounterTraceClassCallerTACROSS;
+			data[j][CallerClassesNACROSS] = CounterTraceClassCallerNACROSS;
+			data[j][CallerClassesEACROSS] = CounterTraceClassCallerEACROSS;
+			data[j][CallerClassesNumberACROSS] = CounterTraceClassCallerTACROSS+CounterTraceClassCallerNACROSS+CounterTraceClassCallerEACROSS;
+			
+			data[j][CallerClassesTGOLD4ACROSS] = CounterTraceClassCallerTGOLD4ACROSS;
+			data[j][CallerClassesNGOLD4ACROSS] = CounterTraceClassCallerNGOLD4ACROSS;
+			data[j][CallerClassesEGOLD4ACROSS] = CounterTraceClassCallerEGOLD4ACROSS;
+			data[j][CallerClassesNumberGOLD4ACROSS] = CounterTraceClassCallerTGOLD4ACROSS+CounterTraceClassCallerNGOLD4ACROSS+CounterTraceClassCallerEGOLD4ACROSS;
+
+			
+			
+			data[j][CalleeClassesTACROSS] = CounterTraceClassCalleeTACROSS;
+			data[j][CalleeClassesNACROSS] = CounterTraceClassCalleeNACROSS;
+			data[j][CalleeClassesEACROSS] = CounterTraceClassCalleeEACROSS;
+			data[j][CalleeClassesNumberACROSS] = CounterTraceClassCalleeEACROSS+CounterTraceClassCalleeNACROSS+CounterTraceClassCalleeTACROSS;
+			
+			data[j][CalleeClassesTGOLD4ACROSS] = CounterTraceClassCalleeTGOLD4ACROSS;
+			data[j][CalleeClassesNGOLD4ACROSS] = CounterTraceClassCalleeNGOLD4ACROSS;
+			data[j][CalleeClassesEGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS;
+			data[j][CalleeClassesNumberGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS+CounterTraceClassCalleeNGOLD4ACROSS+CounterTraceClassCalleeTGOLD4ACROSS;
+			
 			myfinalcounter++; 
 		//OWNER CLASS PREDICTION 
-		 Object OwnerClassNVar = data[j][OwnerClassN]; 
-		 Object OwnerClassNVarGOLD3 = data[j][OwnerClassNGOLD3]; 
-		 Object OwnerClassNVarGOLD4 = data[j][OwnerClassNGOLD4]; 
-
+			
+			
+			 Object OwnerClassNVar = data[j][OwnerClassN]; 
+			 Object OwnerClassNVarGOLD3 = data[j][OwnerClassNGOLD3]; 
+			 Object OwnerClassNVarGOLD4 = data[j][OwnerClassNGOLD4]; 
+			 
+			 
+			 
+			 
 			boolean flagGold=false; 
 			boolean flagGold3=false; 
 			boolean flagGold4=false; 
@@ -1839,7 +2141,9 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			}
 			if(OwnerClassNVarGOLD3!=null) {
-				if((OwnerClassNVarGOLD3.toString().equals("1") || data[j][OwnerClassEGOLD3].toString().equals("1"))&& methodtrace.getGold3()!=null){
+				if((OwnerClassNVarGOLD3.toString().equals("1") || data[j][OwnerClassEGOLD3].toString().equals("1"))&& methodtrace.getGold3()!=null
+						
+						&& methodtrace.gold3.trim().equals("null")){
 					data[j][OwnerClassPredictionGOLD3]="N"; 
 					String Result2=OwnerClassPredictionClassGold3.ComparePredictionToGold(methodtrace.getGold3().trim(), data[j][OwnerClassPredictionGOLD3].toString()); 
 					OwnerClassPredictionClassGold3.UpdateCounters(Result2, OwnerClassPredictionClassGold3);
@@ -1848,15 +2152,21 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				
 				
 			}
+		if(methodtrace.gold4!=null ) {
 			
 			if(OwnerClassNVarGOLD4!=null) {
-				if((OwnerClassNVarGOLD4.toString().equals("1") || data[j][OwnerClassEGOLD4].toString().equals("1"))&& methodtrace.getGold4()!=null){
+				if(((OwnerClassNVarGOLD4.toString().equals("1") || data[j][OwnerClassEGOLD4].toString().equals("1"))&& methodtrace.getGold4()!=null)
+						|| methodtrace.gold4.trim().equals("null")==true){
 					data[j][OwnerClassPredictionGOLD4]="N"; 
 					String Result2=OwnerClassPredictionClassGold4.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][OwnerClassPredictionGOLD4].toString()); 
 					OwnerClassPredictionClassGold4.UpdateCounters(Result2, OwnerClassPredictionClassGold4);
 					flagGold4=true; 
 					}
 			}
+		if(methodtrace.gold4.equals("null")==true) {
+			flagGold4=true; 
+		}
+		}
 			
 			//else {
 				
@@ -5300,7 +5610,10 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 										}
 									}
 									
-							}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
+							}
+		
+		
+		if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 								
 								boolean entered=false; 
 								if(CountMethodTACHRAF+CountMethodTACHRAFCallee==0 && methodtrace.getGold()!=null ) {
@@ -5389,7 +5702,10 @@ if(CountMethodTACHRAFGold3>0 && CountMethodTACHRAFCalleeGold3>0) {
 											}
 										}
 										
-								}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
+								}
+
+
+if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 									
 									boolean entered=false; 
 									if(CountMethodTACHRAFGold3+CountMethodTACHRAFCalleeGold3==0 && methodtrace.getGold3()!=null ) {
@@ -5477,7 +5793,10 @@ if(CountMethodTACHRAFGold4>0 && CountMethodTACHRAFCalleeGold4>0) {
 										}
 									}
 									
-							}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
+							}
+
+
+if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 								
 								boolean entered=false; 
 								if(CountMethodTACHRAFGold4+CountMethodTACHRAFCalleeGold4==0 && methodtrace.getGold4()!=null ) {
@@ -5583,7 +5902,10 @@ if(CountMethodT>0 && CountMethodTCallee>0) {
 		}
 	}
 	
-}else if(CountMethodN>0 && CountMethodNCallee>0) {
+}
+
+
+if(CountMethodN>0 && CountMethodNCallee>0) {
 
 boolean entered=false; 
 if(CountMethodT+CountMethodTCallee==0 && methodtrace.getGold()!=null ) {
@@ -5658,7 +5980,10 @@ if(CountMethodTGOLD3>0 && CountMethodTCalleeGOLD3>0) {
 		}
 	}
 	
-}else if(CountMethodNGOLD3>0 && CountMethodNCalleeGOLD3>0) {
+}
+
+
+if(CountMethodNGOLD3>0 && CountMethodNCalleeGOLD3>0) {
 
 boolean entered=false; 
 if(CountMethodTGOLD3+CountMethodTCalleeGOLD3==0 && methodtrace.getGold3()!=null ) {
@@ -5734,7 +6059,10 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 		}
 	}
 	
-}else if(CountMethodNGOLD4>0 && CountMethodNCalleeGOLD4>0) {
+}
+
+
+if(CountMethodNGOLD4>0 && CountMethodNCalleeGOLD4>0) {
 
 boolean entered=false; 
 if(CountMethodTGOLD4+CountMethodTCalleeGOLD4==0 && methodtrace.getGold4()!=null ) {
@@ -5826,7 +6154,11 @@ if(methodtrace.getGold()!=null ) {
 	}
 }
 
-}else if(CounterTraceClassCallerN>0 && CounterTraceClassCalleeN>0) {
+}
+
+
+
+if(CounterTraceClassCallerN>0 && CounterTraceClassCalleeN>0) {
 
 boolean entered=false; 
 if(CounterTraceClassCallerT+CounterTraceClassCalleeT==0 && methodtrace.getGold()!=null ) {
@@ -5901,7 +6233,10 @@ if(methodtrace.getGold3()!=null ) {
 	}
 }
 
-}else if(CounterTraceClassCallerNGOLD3>0 && CounterTraceClassCalleeNGOLD3>0) {
+}
+
+
+if(CounterTraceClassCallerNGOLD3>0 && CounterTraceClassCalleeNGOLD3>0) {
 
 boolean entered=false; 
 if(CounterTraceClassCallerTGOLD3+CounterTraceClassCalleeTGOLD3==0 && methodtrace.getGold3()!=null ) {
@@ -5977,7 +6312,10 @@ if(methodtrace.getGold4()!=null ) {
 	}
 }
 
-}else if(CounterTraceClassCallerNGOLD4>0 && CounterTraceClassCalleeNGOLD4>0) {
+}
+
+
+if(CounterTraceClassCallerNGOLD4>0 && CounterTraceClassCalleeNGOLD4>0) {
 
 boolean entered=false; 
 if(CounterTraceClassCallerTGOLD4+CounterTraceClassCalleeTGOLD4==0 && methodtrace.getGold4()!=null ) {
@@ -6023,21 +6361,362 @@ failGold4++;
 }
 
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
+String TracePureGoldValueMethodLevelACROSS="null"; 
+String TraceMixedGoldValueMethodLevelACROSS="null"; 
+String TracePureGold4ValueMethodLevelACROSS="null"; 
+String TraceMixedGold4ValueMethodLevelACROSS="null"; 
+String NOTracePureGoldValueMethodLevelACROSS="null"; 
+String NOTraceMixedGoldValueMethodLevelACROSS="null"; 
+String NOTracePureGold4ValueMethodLevelACROSS="null"; 
+String NOTraceMixedGold4ValueMethodLevelACROSS="null"; 
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+//ACHRAF
+if(flagGold==false) {
+
+
+if(CountMethodTACROSS>0 && CountMethodTACROSSCallee>0) {
+
+boolean entered=false; 
+if(CountMethodNACROSS+CountMethodNACROSSCallee==0 && methodtrace.getGold()!=null ) {
+
+
+TracePureGoldValueMethodLevelACROSS="T"; 
+entered=true; 
+
+} else if(methodtrace.getGold()!=null){
+
+TraceMixedGoldValueMethodLevelACROSS="T"; 
+entered=true; 
+}
+
+if(entered==true) {
+if(methodtrace.getGold()!=null ) {
+data[j][CLASSTRACEMethodLevelPureGoldACROSS]=TracePureGoldValueMethodLevelACROSS; 
+String Result=PredictionCLASSTRACEMethodLevelPureGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueMethodLevelACROSS); 
+PredictionCLASSTRACEMethodLevelPureGoldACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGoldACROSS);
+}
+
+if(methodtrace.getGold()!=null ) {
+data[j][CLASSTRACEMethodLevelMixedGoldACROSS]=TraceMixedGoldValueMethodLevelACROSS; 
+String Result=PredictionCLASSTRACEMethodLevelMixedGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueMethodLevelACROSS); 
+PredictionCLASSTRACEMethodLevelMixedGoldACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGoldACROSS);
+}
+}
+
+}
+
+
+if(CountMethodNACROSS>0 && CountMethodNACROSSCallee>0) {
+
+boolean entered=false; 
+if(CountMethodTACROSS+CountMethodTACROSSCallee==0 && methodtrace.getGold()!=null ) {
+
+
+NOTracePureGoldValueMethodLevelACROSS="N"; 
+data[j][CLASSNOTRACEMethodLevelPureGoldACROSS]=NOTracePureGoldValueMethodLevelACROSS; 
+entered=true; 
+
+
+} else if(methodtrace.getGold()!=null) {
+
+NOTraceMixedGoldValueMethodLevelACROSS="N"; 
+data[j][CLASSNOTRACEMethodLevelMixedGoldACROSS]=NOTraceMixedGoldValueMethodLevelACROSS; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+
+if(methodtrace.getGold()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelPureGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueMethodLevelACROSS); 
+PredictionCLASSNOTRACEMethodLevelPureGoldACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGoldACROSS);
+
+
+
+
+
+
+
+
+
+
+}
+
+if(methodtrace.getGold()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelMixedGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueMethodLevelACROSS); 
+PredictionCLASSNOTRACEMethodLevelMixedGoldACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGoldACROSS);
+
+
+
+}
+}
+
+}else {
+failGold++; 
+}
+}	
+
+/********************************************************************************************************************/				
+if(flagGold4==false) {
+if(CountMethodTGOLD4ACROSS>0 && CountMethodTGOLD4ACROSSCallee>0) {
+
+boolean entered=false; 
+if(CountMethodNGOLD4ACROSS+CountMethodNGOLD4ACROSSCallee==0 && methodtrace.getGold4()!=null ) {
+
+
+TracePureGold4ValueMethodLevelACROSS="T"; 
+entered=true; 
+
+} else if(methodtrace.getGold4()!=null) {
+
+TraceMixedGold4ValueMethodLevelACROSS="T"; 
+entered=true; 
+}
+
+if(entered==true) {
+
+if(methodtrace.getGold4()!=null ) {
+data[j][CLASSTRACEMethodLevelPureGold4ACROSS]=TracePureGold4ValueMethodLevelACROSS; 
+String Result=PredictionCLASSTRACEMethodLevelPureGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueMethodLevelACROSS); 
+PredictionCLASSTRACEMethodLevelPureGold4ACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold4ACROSS);
+}
+
+if(methodtrace.getGold4()!=null ) {
+data[j][CLASSTRACEMethodLevelMixedGold4ACROSS]=TraceMixedGold4ValueMethodLevelACROSS; 
+String Result=PredictionCLASSTRACEMethodLevelMixedGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), TraceMixedGold4ValueMethodLevelACROSS); 
+PredictionCLASSTRACEMethodLevelMixedGold4ACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold4ACROSS);
+}
+}
+
+}
+
+
+if(CountMethodNGOLD4ACROSS>0 && CountMethodNGOLD4ACROSSCallee>0) {
+
+boolean entered=false; 
+if(CountMethodTGOLD4ACROSS+CountMethodTGOLD4ACROSSCallee==0 && methodtrace.getGold4()!=null ) {
+
+
+NOTracePureGold4ValueMethodLevelACROSS="N"; 
+data[j][CLASSNOTRACEMethodLevelPureGold4ACROSS]=NOTracePureGold4ValueMethodLevelACROSS; 
+entered=true; 
+
+
+} else if(methodtrace.getGold4()!=null) {
+
+NOTraceMixedGold4ValueMethodLevelACROSS="N"; 
+data[j][CLASSNOTRACEMethodLevelMixedGold4ACROSS]=NOTraceMixedGold4ValueMethodLevelACROSS; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold4()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTracePureGold4ValueMethodLevelACROSS); 
+PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS);
+}
+
+if(methodtrace.getGold4()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTraceMixedGold4ValueMethodLevelACROSS); 
+PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS);
+}
+}
+
+}else {
+failGold4++; 
+}
+
+}
+
+
+
+
+
+
+
+String TracePureGoldValueClassLevelACROSS="null"; 
+String TraceMixedGoldValueClassLevelACROSS="null"; 
+String TracePureGold4ValueClassLevelACROSS="null"; 
+String TraceMixedGold4ValueClassLevelACROSS="null"; 
+String NOTracePureGoldValueClassLevelACROSS="null"; 
+String NOTraceMixedGoldValueClassLevelACROSS="null"; 
+String NOTracePureGold4ValueClassLevelACROSS="null"; 
+String NOTraceMixedGold4ValueClassLevelACROSS="null"; 
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+/**************************************************************************************************************/
+//ACHRAF
+if(flagGold==false) {
+if(CounterTraceClassCallerTACROSS>0 && CounterTraceClassCalleeTACROSS>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerNACROSS+CounterTraceClassCalleeNACROSS==0 && methodtrace.getGold()!=null ) {
+
+
+TracePureGoldValueClassLevelACROSS="T"; 
+entered=true; 
+
+} else if(methodtrace.getGold()!=null){
+
+TraceMixedGoldValueClassLevelACROSS="T"; 
+entered=true; 
+}
+
+if(entered==true) {
+if(methodtrace.getGold()!=null ) {
+data[j][CLASSTRACEClassLevelPureGoldACROSS]=TracePureGoldValueClassLevelACROSS; 
+String Result=PredictionCLASSTRACEClassLevelPureGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueClassLevelACROSS); 
+PredictionCLASSTRACEClassLevelPureGoldACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGoldACROSS);
+}
+
+if(methodtrace.getGold()!=null ) {
+data[j][CLASSTRACEClassLevelMixedGoldACROSS]=TraceMixedGoldValueClassLevelACROSS; 
+String Result=PredictionCLASSTRACEClassLevelMixedGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), TraceMixedGoldValueClassLevelACROSS); 
+PredictionCLASSTRACEClassLevelMixedGoldACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGoldACROSS);
+}
+}
+
+}
+
+
+if(CounterTraceClassCallerNACROSS>0 && CounterTraceClassCalleeNACROSS>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerTACROSS+CounterTraceClassCalleeTACROSS==0 && methodtrace.getGold()!=null ) {
+
+
+NOTracePureGoldValueClassLevelACROSS="N"; 
+data[j][CLASSNOTRACEClassLevelPureGoldACROSS]=NOTracePureGoldValueClassLevelACROSS; 
+entered=true; 
+
+
+} else if(methodtrace.getGold()!=null) {
+
+NOTraceMixedGoldValueClassLevelACROSS="N"; 
+data[j][CLASSNOTRACEClassLevelMixedGoldACROSS]=NOTraceMixedGoldValueClassLevelACROSS; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+
+if(methodtrace.getGold()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelPureGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), NOTracePureGoldValueClassLevelACROSS); 
+PredictionCLASSNOTRACEClassLevelPureGoldACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGoldACROSS);
+}
+
+if(methodtrace.getGold()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelMixedGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), NOTraceMixedGoldValueClassLevelACROSS); 
+PredictionCLASSNOTRACEClassLevelMixedGoldACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGoldACROSS);
+}
+}
+
+}else {
+failGold++; 
+}
+
+}
+/********************************************************************************************************************/				
+if(flagGold4==false) {
+if(CounterTraceClassCallerTGOLD4ACROSS>0 && CounterTraceClassCalleeTGOLD4ACROSS>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerNGOLD4ACROSS+CounterTraceClassCalleeNGOLD4ACROSS==0 && methodtrace.getGold4()!=null ) {
+
+
+TracePureGold4ValueClassLevelACROSS="T"; 
+entered=true; 
+
+} else if(methodtrace.getGold4()!=null) {
+
+TraceMixedGold4ValueClassLevelACROSS="T"; 
+entered=true; 
+}
+
+if(entered==true) {
+
+if(methodtrace.getGold4()!=null ) {
+data[j][CLASSTRACEClassLevelPureGold4ACROSS]=TracePureGold4ValueClassLevelACROSS; 
+String Result=PredictionCLASSTRACEClassLevelPureGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), TracePureGold4ValueClassLevelACROSS); 
+PredictionCLASSTRACEClassLevelPureGold4ACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold4ACROSS);
+}
+
+if(methodtrace.getGold4()!=null ) {
+data[j][CLASSTRACEClassLevelMixedGold4ACROSS]=TraceMixedGold4ValueClassLevelACROSS; 
+String Result=PredictionCLASSTRACEClassLevelMixedGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), TraceMixedGold4ValueClassLevelACROSS); 
+PredictionCLASSTRACEClassLevelMixedGold4ACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold4ACROSS);
+}
+}
+
+}
+
+
+if(CounterTraceClassCallerNGOLD4ACROSS>0 && CounterTraceClassCalleeNGOLD4ACROSS>0) {
+
+boolean entered=false; 
+if(CounterTraceClassCallerTGOLD4ACROSS+CounterTraceClassCalleeTGOLD4ACROSS==0 && methodtrace.getGold4()!=null ) {
+
+
+NOTracePureGold4ValueClassLevelACROSS="N"; 
+data[j][CLASSNOTRACEClassLevelPureGold4ACROSS]=NOTracePureGold4ValueClassLevelACROSS; 
+entered=true; 
+
+
+} else if(methodtrace.getGold4()!=null) {
+
+NOTraceMixedGold4ValueClassLevelACROSS="N"; 
+data[j][CLASSNOTRACEClassLevelMixedGold4ACROSS]=NOTraceMixedGold4ValueClassLevelACROSS; 
+entered=true; 
+}
+
+if(entered==true) {
+
+
+
+
+
+
+
+if(methodtrace.getGold4()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelPureGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTracePureGold4ValueClassLevelACROSS); 
+PredictionCLASSNOTRACEClassLevelPureGold4ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold4ACROSS);
+}
+
+if(methodtrace.getGold4()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS.ComparePredictionToGold(methodtrace.getGold4().trim(), NOTraceMixedGold4ValueClassLevelACROSS); 
+PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS);
+}
+}
+
+}else {
+failGold4++; 
+}
+
+
+
+}
+
 					
 					
 					
@@ -6075,13 +6754,31 @@ failGold4++;
 
 			bwGold4TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold4] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD4] + "," + data[j][OwnerClassNGOLD4] + ","
-					+ data[j][OwnerClassEGOLD4] + "," + data[j][CallerMethodsNumberGOLD4]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD4] + "," +
+					+ data[j][OwnerClassEGOLD4] + "," 
+					
+					
+					+ data[j][CallerMethodsNumberGOLD4]+ "," + AppendedCallers + "," + data[j][CallerMethodsTGOLD4] + "," +
 					data[j][CallerMethodsNGOLD4] + "," + data[j][CallerMethodsEGOLD4] + ","
 					+ data[j][CallerClassesNumberGOLD4] + "," + data[j][CallerClassesTGOLD4] + "," + data[j][CallerClassesNGOLD4] + "," + data[j][CallerClassesEGOLD4] + 
 					"," + data[j][CalleeMethodsNumberGOLD4]+ "," + AppendedCallees +  ","
 					+ data[j][CalleeMethodsTGOLD4] + "," + data[j][CalleeMethodsNGOLD4] + "," + data[j][CalleeMethodsEGOLD4] + "," + data[j][CalleeClassesNumberGOLD4] + 
 					"," + data[j][CalleeClassesTGOLD4] + ","
-					+ data[j][CalleeClassesNGOLD4] + "," + data[j][CalleeClassesEGOLD4] + "," + data[j][OwnerClassPredictionGOLD4] + "," + data[j][MajorityClassLevelCallersGOLD4]+ "," +
+					+ data[j][CalleeClassesNGOLD4] + "," + data[j][CalleeClassesEGOLD4] + ","
+							
+							
+							
+							+ data[j][CallerMethodsNumberGOLD4ACROSS]+  "," + data[j][CallerMethodsTGOLD4ACROSS] + "," +
+							data[j][CallerMethodsNGOLD4ACROSS] + "," + data[j][CallerMethodsEGOLD4ACROSS] + ","
+							+ data[j][CallerClassesNumberGOLD4ACROSS] + "," + data[j][CallerClassesTGOLD4ACROSS] + "," + data[j][CallerClassesNGOLD4ACROSS] + "," + data[j][CallerClassesEGOLD4ACROSS] + 
+							"," + data[j][CalleeMethodsNumberGOLD4ACROSS]+ "," 
+							+ data[j][CalleeMethodsTGOLD4ACROSS] + "," + data[j][CalleeMethodsNGOLD4ACROSS] + "," + data[j][CalleeMethodsEGOLD4ACROSS] + "," + data[j][CalleeClassesNumberGOLD4ACROSS] + 
+							"," + data[j][CalleeClassesTGOLD4ACROSS] + ","
+							+ data[j][CalleeClassesNGOLD4ACROSS] + "," + data[j][CalleeClassesEGOLD4ACROSS] 
+							
+							
+							
+							
+							+ "," + data[j][OwnerClassPredictionGOLD4] + "," + data[j][MajorityClassLevelCallersGOLD4]+ "," +
 					data[j][MajorityClassLevelCalleesGOLD4]+","+data[j][MajorityMethodLevelCallersGOLD4]+","+data[j][MajorityMethodLevelCalleesGOLD4]
 							+ "," + 
 					data[j][AtLeast1NPredictionClassLevelCallersGOLD4]+ "," + data[j][AtLeast1NPredictionClassLevelCalleesGOLD4] 
@@ -6106,14 +6803,35 @@ failGold4++;
 								","+
 											
 											OnlyinParsedCallers	+","+ OnlyinExecutedCallers+","+BothParsedAndExecutedCallers+","+OnlyInParsedCallees+","+OnlyInExecutedCallees
-											+","+BothInParsedAndExecutedCallees+","+data[j][paramatersNumber]+","+ParametersAppended+","+data [j][CountParamaterTGOLD4]+","+data [j][CountParamaterNGOLD4]+","+data [j][CountParamaterEGOLD4]+","+data[j][MajorityParametersGOLD4]+","+data[j][AtLeast1NParameterGOLD4]
-													+","+data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
+											+","+BothInParsedAndExecutedCallees+","
+											+data[j][paramatersNumberGOLD4]+","+ParametersAppended+","+data [j][CountParamaterTGOLD4]+","+data [j][CountParamaterNGOLD4]+","+data [j][CountParamaterEGOLD4]+","
+													
+													
+						
+													
+													
+													
+													
+						+data[j][interfacesNumberGOLD4]+","+data [j][CountInterfaceTGOLD4]+","+data [j][CountInterfaceNGOLD4]+","+data [j][CountInterfaceEGOLD4]	+","	
+						+data[j][SuperClassesNumberGOLD4]+","+data [j][CountFieldSuperClassTGOLD4]+","+data [j][CountFieldSuperClassNGOLD4]+","+data [j][CountFieldSuperClassEGOLD4]	+","	
+						+data[j][FieldMethodsNumberGOLD4]+","+data [j][CountFieldMethodTGOLD4]+","+data [j][CountFieldMethodNGOLD4]+","+data [j][CountFieldMethodEGOLD4]+","
+						+data[j][FieldClassesNumberGOLD4]+","+data [j][CountFieldClassTGOLD4]+","+data [j][CountFieldClassNGOLD4]+","+data [j][CountFieldClassEGOLD4]+","
+													
+													
+													+data[j][MajorityParametersGOLD4]+","+data[j][AtLeast1NParameterGOLD4]+","+
+													
+													
+													data[j][AtLeast1TParameter]+","+data[j][AtLeast2TParameter]+","+data[j][AtLeast2NParameter]+","+data[j][AllNParameters]+","+data[j][AllTParameters]+","+
 													data[j][ACHRAFTRACEPureGOLD4]+","+data[j][ACHRAFTRACEMixedGOLD4]+","+data[j][ACHRAFNOTRACEPureGOLD4]+","+data[j][ACHRAFNOTRACEMixedGOLD4]+","+	
 													data[j][AllNMethodLevelCallersCalleesGOLD4]+","+data[j][AllTMethodLevelCallersCalleesGOLD4]+","+data[j][AllTClassLevelCallersCalleesGOLD4]+","+data[j][AllNClassLevelCallersCalleesGOLD4]+","+	
 													data[j][CLASSTRACEMethodLevelPureGold4]+","+data[j][CLASSTRACEMethodLevelMixedGold4]+","+data[j][CLASSNOTRACEMethodLevelPureGold4]+","+data[j][CLASSNOTRACEMethodLevelMixedGold4]+","+	
-													data[j][CLASSTRACEClassLevelPureGold4]+","+data[j][CLASSTRACEClassLevelMixedGold4]+","+data[j][CLASSNOTRACEClassLevelPureGold4]+","+data[j][CLASSNOTRACEClassLevelMixedGold4]
-					
+													data[j][CLASSTRACEClassLevelPureGold4]+","+data[j][CLASSTRACEClassLevelMixedGold4]+","+data[j][CLASSNOTRACEClassLevelPureGold4]+","+data[j][CLASSNOTRACEClassLevelMixedGold4]+","+
+														
+													
+data[j][CLASSTRACEMethodLevelPureGold4ACROSS]+","+data[j][CLASSTRACEMethodLevelMixedGold4ACROSS]+","+data[j][CLASSNOTRACEMethodLevelPureGold4ACROSS]+","+data[j][CLASSNOTRACEMethodLevelMixedGold4ACROSS]+","+	
+data[j][CLASSTRACEClassLevelPureGold4ACROSS]+","+data[j][CLASSTRACEClassLevelMixedGold4ACROSS]+","+data[j][CLASSNOTRACEClassLevelPureGold4ACROSS]+","+data[j][CLASSNOTRACEClassLevelMixedGold4ACROSS]
 					);
+			
 			bwGold4TableLog.newLine();
 			bwGold3TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold3] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD3] + "," + data[j][OwnerClassNGOLD3] + ","
@@ -6604,6 +7322,21 @@ failGold4++;
 		bwGold4.newLine();
 		bwGold4.write("NO TRACE MIXED CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold4.toString()); 
 		bwGold4.newLine();
+		bwGold4.write("TRACE PURE METHOD LEVEL ACROSS: "+PredictionCLASSTRACEMethodLevelPureGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("TRACE MIXED METHOD LEVEL ACROSS: "+PredictionCLASSTRACEMethodLevelMixedGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE PURE METHOD LEVEL ACROSS: "+PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE MIXED METHOD LEVEL ACROSS: "+PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("TRACE PURE CLASS LEVEL ACROSS: "+PredictionCLASSTRACEClassLevelPureGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("TRACE MIXED CLASS LEVEL ACROSS: "+PredictionCLASSTRACEClassLevelMixedGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE PURE CLASS LEVEL ACROSS: "+PredictionCLASSNOTRACEClassLevelPureGold4ACROSS.toString()); 
+		bwGold4.newLine();
+		bwGold4.write("NO TRACE MIXED CLASS LEVEL ACROSS: "+PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS.toString()); 
 		bwGold4.close();
 		
 		

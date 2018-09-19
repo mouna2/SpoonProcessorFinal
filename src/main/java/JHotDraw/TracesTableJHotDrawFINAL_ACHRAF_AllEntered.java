@@ -39,6 +39,7 @@ import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
+import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
@@ -46,12 +47,14 @@ import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
+import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
+import mypackage.SuperClass2;
 
 public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 	double TracePureGold=0; 
@@ -429,9 +432,15 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 		DatabaseReading2JHotDraw db = new DatabaseReading2JHotDraw();
 		DatabaseReading2JHotDraw.MakePredictions();
 		methodtraces2 = db.getMethodtraces2();
+		classtraces2 = db.getClassestraces2();
+	//	methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		 InterfacesHashMap = db.getInterfaces();
-		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+		 HashMap InterfacesHashMap = db.getInterfacehashmap();
+		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+		  HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+			 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
+			 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
+			 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
 		 
 		//classtraces2 = db.getClassestraces2();
 		//methodlist = db.getMethodlist();
@@ -495,7 +504,6 @@ public class TracesTableJHotDrawFINAL_ACHRAF_AllEntered extends JFrame {
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-			LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
 			 linkedmethodhashmap = db.getLinkedmethodhashmap(); 
 			/*for (ClassTrace2 classtrace : classtraces2) {
 				System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);

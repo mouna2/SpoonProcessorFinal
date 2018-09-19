@@ -380,7 +380,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 
 		 InterfacesHashMap = db.getInterfaces();
-		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+		 
 		//classtraces2 = db.getClassestraces2();
 		//methodlist = db.getMethodlist();
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());

@@ -24,15 +24,18 @@ import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
+import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
+import mypackage.MethodField2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
+import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
@@ -46,7 +49,35 @@ public class DatabaseReading2JHotDraw {
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
 	public static HashMap<String, Interface2> interfacehashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmapAlreadyImpl=null; 
+	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
+	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
+	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
+	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
+
+	
+	
+	public static List<MethodTraceSubjectTSubjectNOriginal> getMethodtraces2() {
+		return methodtraces2;
+	}
+
+
+
+	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces2) {
+		DatabaseReading2JHotDraw.methodtraces2 = methodtraces2;
+	}
+
+
+
+	public static HashMap<String, List<SuperClass2>> getSuperclassesHashMap() {
+		return SuperclassesHashMap;
+	}
+
+
+
+	public static void setSuperclassesHashMap(HashMap<String, List<SuperClass2>> superclassesHashMap) {
+		SuperclassesHashMap = superclassesHashMap;
+	}
+
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -178,44 +209,43 @@ public class DatabaseReading2JHotDraw {
 		HashMap<Integer, MethodTraceSubjectTSubjectNOriginal> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
 		List<MethodTraceSubjectTSubjectNOriginal> methodtraces = new ArrayList<MethodTraceSubjectTSubjectNOriginal>(methodtracehashmap.values());
 		setMethodtraces2(methodtraces);
-		System.out.println("***************1");
-		
 		///////////////////////////////////////////////////////////////////////////////////////
 		
-		ClassTrace2 classtrace2= new ClassTrace2(); 
+		/*ClassTrace2 classtrace2= new ClassTrace2(); 
 		HashMap<Integer, ClassTrace2> classestraceshashmap = classtrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
-		setClassestraces2(classestraces);
+		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
 		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
 		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
 		setLinkedmethodhashmap(linkedmethodhashmap);
-		System.out.println("***************2");
-
 		///////////////////////////////////////////////////////////////////////////////////////
-		 classtrace2= new ClassTrace2(); 
+		ClassTrace2 classtrace2= new ClassTrace2(); 
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
-		System.out.println("***************3");
-
 		///////////////////////////////////////////////////////////////////////////////////////
-
 		Interface2 myinterface2= new Interface2(); 
-		interfacehashmap = myinterface2.ReadInterfacesRepresentations(conn);
-		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmap.values());
-		setInterfaces(interfacehashmap);
-		System.out.println("***************4");
+		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
+//		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
+		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
+		///////////////////////////////////////////////////////////////////////////////////////
+				
+///////////////////////////////////////////////////////////////////////////////////////
+ClassField2 classfield= new ClassField2(); 
+HashMap<String, List<ClassField2>> myclassfields = classfield.ReadClassFields(conn); 
+setClassFieldHashMap(myclassfields);
+///////////////////////////////////////////////////////////////////////////////////////
+MethodField2 methodfield= new MethodField2(); 
+HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
+setMethodFieldHashMap(mymethodfields);
 
-		///////////////////////////////////////////////////////////////////////////////////////
-		
-		///////////////////////////////////////////////////////////////////////////////////////
-		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
-		setInterfaces(interfacehashmapAlreadyImpl);
-		System.out.println("***************5****************");
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		System.out.println("MOUNA");
+///////////////////////////////////////////////////////////////////////////////////////
+SuperClass2 superclass= new SuperClass2(); 
+HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
+setSuperclassesHashMap(mysuperclasses);
+/////////////////////////////////////////////
+System.out.println("MOUNA");
 		
 		
 		/*String goldprediction=""; 
@@ -430,40 +460,79 @@ public class DatabaseReading2JHotDraw {
 	*/
 	}
 
+
+
+	public static HashMap<Integer, String> getClassesHashMap() {
+		return classesHashMap;
+	}
+
+
+
+	public static void setClassesHashMap(HashMap<Integer, String> classesHashMap) {
+		DatabaseReading2JHotDraw.classesHashMap = classesHashMap;
+	}
+
+
+
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
 		return classesRequirementtraceshashmap;
 	}
+
+
 
 	public static void setClassesRequirementtraceshashmap(
 			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
 		DatabaseReading2JHotDraw.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
-	public static List<MethodTraceSubjectTSubjectNOriginal> getMethodtraces2() {
-		return methodtraces2;
-	}
 
-	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces2) {
-		DatabaseReading2JHotDraw.methodtraces2 = methodtraces2;
-	}
-	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
-		return interfacehashmapAlreadyImpl;
-	}
 
-	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
-		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
-	}
-	
-	public static void setInterfaces(HashMap ínterfacehashmap) {
-		// TODO Auto-generated method stub
-		DatabaseReading2.interfacehashmap=ínterfacehashmap;
-		
-	}
-	
-	public static HashMap  getInterfaces() {
-		// TODO Auto-generated method stub
+	public static HashMap<String, Interface2> getInterfacehashmap() {
 		return interfacehashmap;
-		
 	}
+
+
+
+	public static void setInterfacehashmap(HashMap<String, Interface2> interfacehashmap) {
+		DatabaseReading2JHotDraw.interfacehashmap = interfacehashmap;
+	}
+
+
+
+	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+		return interfacehashmapOwnerClass;
+	}
+
+
+
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+		DatabaseReading2JHotDraw.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
+	}
+
+
+
+	public static HashMap<String, List<ClassField2>> getClassFieldHashMap() {
+		return ClassFieldHashMap;
+	}
+
+
+
+	public static void setClassFieldHashMap(HashMap<String, List<ClassField2>> classFieldHashMap) {
+		ClassFieldHashMap = classFieldHashMap;
+	}
+
+
+
+	public static HashMap<String, List<MethodField2>> getMethodFieldHashMap() {
+		return MethodFieldHashMap;
+	}
+
+
+
+	public static void setMethodFieldHashMap(HashMap<String, List<MethodField2>> methodFieldHashMap) {
+		MethodFieldHashMap = methodFieldHashMap;
+	}
+
+
 	
 }

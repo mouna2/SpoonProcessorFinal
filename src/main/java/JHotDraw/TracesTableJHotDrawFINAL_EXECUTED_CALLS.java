@@ -713,9 +713,8 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 		classtraces2 = db.getClassestraces2();
 	//	methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		 HashMap InterfacesHashMap = db.getInterfaces();
+		 HashMap InterfacesHashMap = db.getInterfacehashmap();
 		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-		  HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());

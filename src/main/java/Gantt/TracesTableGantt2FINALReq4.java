@@ -717,7 +717,7 @@ public class TracesTableGantt2FINALReq4 extends JFrame {
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 HashMap InterfacesHashMap = db.getInterfaces();
 		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-		  HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+		  
 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
