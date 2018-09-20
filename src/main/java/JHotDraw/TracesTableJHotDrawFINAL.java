@@ -2210,6 +2210,19 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				
 			}
 			
+			
+			data[j][CalleeClassesTACROSS] = CounterTraceClassCalleeTACROSS;
+			data[j][CalleeClassesNACROSS] = CounterTraceClassCalleeNACROSS;
+			data[j][CalleeClassesEACROSS] = CounterTraceClassCalleeEACROSS;
+			data[j][CalleeClassesNumberACROSS] = CounterTraceClassCalleeEACROSS+CounterTraceClassCalleeNACROSS+CounterTraceClassCalleeTACROSS;
+			
+			data[j][CalleeClassesTGOLD4ACROSS] = CounterTraceClassCalleeTGOLD4ACROSS;
+			data[j][CalleeClassesNGOLD4ACROSS] = CounterTraceClassCalleeNGOLD4ACROSS;
+			data[j][CalleeClassesEGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS;
+			data[j][CalleeClassesNumberGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS+CounterTraceClassCalleeNGOLD4ACROSS+CounterTraceClassCalleeTGOLD4ACROSS;
+			
+			
+			
 			data[j][CalleeMethodsTACROSS] = CountMethodTACROSSCallee;
 			data[j][CalleeMethodsNACROSS] = CountMethodNACROSSCallee;
 			data[j][CalleeMethodsEACROSS] = CountMethodEACROSSCallee;
@@ -2242,15 +2255,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 
 			
 			
-			data[j][CalleeClassesTACROSS] = CounterTraceClassCalleeTACROSS;
-			data[j][CalleeClassesNACROSS] = CounterTraceClassCalleeNACROSS;
-			data[j][CalleeClassesEACROSS] = CounterTraceClassCalleeEACROSS;
-			data[j][CalleeClassesNumberACROSS] = CounterTraceClassCalleeEACROSS+CounterTraceClassCalleeNACROSS+CounterTraceClassCalleeTACROSS;
-			
-			data[j][CalleeClassesTGOLD4ACROSS] = CounterTraceClassCalleeTGOLD4ACROSS;
-			data[j][CalleeClassesNGOLD4ACROSS] = CounterTraceClassCalleeNGOLD4ACROSS;
-			data[j][CalleeClassesEGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS;
-			data[j][CalleeClassesNumberGOLD4ACROSS] = CounterTraceClassCalleeEGOLD4ACROSS+CounterTraceClassCalleeNGOLD4ACROSS+CounterTraceClassCalleeTGOLD4ACROSS;
+		
 			
 			myfinalcounter++; 
 		//OWNER CLASS PREDICTION 

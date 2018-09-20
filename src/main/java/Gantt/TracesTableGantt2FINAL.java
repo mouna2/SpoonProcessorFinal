@@ -2163,7 +2163,35 @@ public class TracesTableGantt2FINAL extends JFrame {
 				}
 				
 			}
+			data[j][CalleeMethodsTGOLD3] = CountMethodTCalleeGOLD3;
+			data[j][CalleeMethodsNGOLD3] = CountMethodNCalleeGOLD3;
+			data[j][CalleeMethodsEGOLD3] = CountMethodECalleeGOLD3;
+			data[j][CalleeMethodsNumberGOLD3] = CountMethodTCalleeGOLD3+CountMethodNCalleeGOLD3+CountMethodECalleeGOLD3;
 			
+			data[j][CallerMethodsTGOLD3] = CountMethodTGOLD3;
+			data[j][CallerMethodsNGOLD3] = CountMethodNGOLD3;
+			data[j][CallerMethodsEGOLD3] = CountMethodEGOLD3;
+			data[j][CallerMethodsNumberGOLD3] = CountMethodTGOLD3+CountMethodNGOLD3+CountMethodEGOLD3;
+			
+			data[j][CalleeMethodsTGOLD4] = CountMethodTCalleeGOLD4;
+			data[j][CalleeMethodsNGOLD4] = CountMethodNCalleeGOLD4;
+			data[j][CalleeMethodsEGOLD4] = CountMethodECalleeGOLD4;
+			data[j][CalleeMethodsNumberGOLD4] = CountMethodTCalleeGOLD4+CountMethodNCalleeGOLD4+CountMethodECalleeGOLD4;
+			
+			data[j][CallerMethodsTGOLD4] = CountMethodTGOLD4;
+			data[j][CallerMethodsNGOLD4] = CountMethodNGOLD4;
+			data[j][CallerMethodsEGOLD4] = CountMethodEGOLD4;
+			data[j][CallerMethodsNumberGOLD4] = CountMethodTGOLD4+CountMethodNGOLD4+CountMethodEGOLD4;
+			
+			data[j][CalleeMethodsT] = CountMethodTCallee;
+			data[j][CalleeMethodsN] = CountMethodNCallee;
+			data[j][CalleeMethodsE] = CountMethodECallee;
+			data[j][CalleeMethodsNumber] = CountMethodTCallee+CountMethodNCallee+CountMethodECallee;
+			
+			data[j][CallerMethodsT] = CountMethodT;
+			data[j][CallerMethodsN] = CountMethodN;
+			data[j][CallerMethodsE] = CountMethodE;
+			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
 			
 			
 			
@@ -2214,35 +2242,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			
 			
 			
-			data[j][CalleeMethodsTGOLD3] = CountMethodTCalleeGOLD3;
-			data[j][CalleeMethodsNGOLD3] = CountMethodNCalleeGOLD3;
-			data[j][CalleeMethodsEGOLD3] = CountMethodECalleeGOLD3;
-			data[j][CalleeMethodsNumberGOLD3] = CountMethodTCalleeGOLD3+CountMethodNCalleeGOLD3+CountMethodECalleeGOLD3;
 			
-			data[j][CallerMethodsTGOLD3] = CountMethodTGOLD3;
-			data[j][CallerMethodsNGOLD3] = CountMethodNGOLD3;
-			data[j][CallerMethodsEGOLD3] = CountMethodEGOLD3;
-			data[j][CallerMethodsNumberGOLD3] = CountMethodTGOLD3+CountMethodNGOLD3+CountMethodEGOLD3;
-			
-			data[j][CalleeMethodsTGOLD4] = CountMethodTCalleeGOLD4;
-			data[j][CalleeMethodsNGOLD4] = CountMethodNCalleeGOLD4;
-			data[j][CalleeMethodsEGOLD4] = CountMethodECalleeGOLD4;
-			data[j][CalleeMethodsNumberGOLD4] = CountMethodTCalleeGOLD4+CountMethodNCalleeGOLD4+CountMethodECalleeGOLD4;
-			
-			data[j][CallerMethodsTGOLD4] = CountMethodTGOLD4;
-			data[j][CallerMethodsNGOLD4] = CountMethodNGOLD4;
-			data[j][CallerMethodsEGOLD4] = CountMethodEGOLD4;
-			data[j][CallerMethodsNumberGOLD4] = CountMethodTGOLD4+CountMethodNGOLD4+CountMethodEGOLD4;
-			
-			data[j][CalleeMethodsT] = CountMethodTCallee;
-			data[j][CalleeMethodsN] = CountMethodNCallee;
-			data[j][CalleeMethodsE] = CountMethodECallee;
-			data[j][CalleeMethodsNumber] = CountMethodTCallee+CountMethodNCallee+CountMethodECallee;
-			
-			data[j][CallerMethodsT] = CountMethodT;
-			data[j][CallerMethodsN] = CountMethodN;
-			data[j][CallerMethodsE] = CountMethodE;
-			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
 
 			myfinalcounter++; 
 		//OWNER CLASS PREDICTION 

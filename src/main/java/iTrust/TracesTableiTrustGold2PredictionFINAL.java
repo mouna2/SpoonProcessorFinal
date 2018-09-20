@@ -1852,7 +1852,15 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 
 			myfinalcounter++; 
 			
+			data[j][CallerClassesT] = CounterTraceClassCallerT;
+			data[j][CallerClassesN] = CounterTraceClassCallerN;
+			data[j][CallerClassesE] = CounterTraceClassCallerE;
+			data[j][CallerClassesNumber] = CounterTraceClassCallerT+CounterTraceClassCallerN+CounterTraceClassCallerE;
 			
+			data[j][CallerClassesTGOLD2] = CounterTraceClassCallerTGOLD2;
+			data[j][CallerClassesNGOLD2] = CounterTraceClassCallerNGOLD2;
+			data[j][CallerClassesEGOLD2] = CounterTraceClassCallerEGOLD2;
+			data[j][CallerClassesNumberGOLD2] = CounterTraceClassCallerTGOLD2+CounterTraceClassCallerNGOLD2+CounterTraceClassCallerEGOLD2;
 			
 			
 			data[j][CalleeMethodsTACROSS] = CountMethodTACROSSCallee;

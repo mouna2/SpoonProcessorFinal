@@ -1782,47 +1782,7 @@ public class TracesTableChessFINAL extends JFrame {
 
 			
 
-			data[j][CalleeMethodsTACROSS] = CountMethodTACROSSCallee;
-			data[j][CalleeMethodsNACROSS] = CountMethodNACROSSCallee;
-			data[j][CalleeMethodsEACROSS] = CountMethodEACROSSCallee;
-			data[j][CalleeMethodsNumberACROSS] = CountMethodTACROSSCallee+CountMethodNACROSSCallee+CountMethodEACROSSCallee;
-			
-			data[j][CallerMethodsTACROSS] = CountMethodTACROSS;
-			data[j][CallerMethodsNACROSS] = CountMethodNACROSS;
-			data[j][CallerMethodsEACROSS] = CountMethodEACROSS;
-			data[j][CallerMethodsNumberACROSS] = CountMethodTACROSS+CountMethodNACROSS+CountMethodEACROSS;
-			
-			data[j][CalleeMethodsTGOLD2ACROSS] = CountMethodTGOLD2ACROSSCallee;
-			data[j][CalleeMethodsNGOLD2ACROSS] = CountMethodNGOLD2ACROSSCallee;
-			data[j][CalleeMethodsEGOLD2ACROSS] = CountMethodEGOLD2ACROSSCallee;
-			data[j][CalleeMethodsNumberGOLD2ACROSS] = CountMethodTGOLD2ACROSSCallee+CountMethodNGOLD2ACROSSCallee+CountMethodEGOLD2ACROSSCallee;
-			
-			data[j][CallerMethodsTGOLD2ACROSS] = CountMethodTGOLD2ACROSS;
-			data[j][CallerMethodsNGOLD2ACROSS] = CountMethodNGOLD2ACROSS;
-			data[j][CallerMethodsEGOLD2ACROSS] = CountMethodEGOLD2ACROSS;
-			data[j][CallerMethodsNumberGOLD2ACROSS] = CountMethodTGOLD2ACROSS+CountMethodNGOLD2ACROSS+CountMethodEGOLD2ACROSS;
-			
-			data[j][CallerClassesTACROSS] = CounterTraceClassCallerTACROSS;
-			data[j][CallerClassesNACROSS] = CounterTraceClassCallerNACROSS;
-			data[j][CallerClassesEACROSS] = CounterTraceClassCallerEACROSS;
-			data[j][CallerClassesNumberACROSS] = CounterTraceClassCallerTACROSS+CounterTraceClassCallerNACROSS+CounterTraceClassCallerEACROSS;
-			
-			data[j][CallerClassesTGOLD2ACROSS] = CounterTraceClassCallerTGOLD2ACROSS;
-			data[j][CallerClassesNGOLD2ACROSS] = CounterTraceClassCallerNGOLD2ACROSS;
-			data[j][CallerClassesEGOLD2ACROSS] = CounterTraceClassCallerEGOLD2ACROSS;
-			data[j][CallerClassesNumberGOLD2ACROSS] = CounterTraceClassCallerTGOLD2ACROSS+CounterTraceClassCallerNGOLD2ACROSS+CounterTraceClassCallerEGOLD2ACROSS;
 
-			
-			
-			data[j][CalleeClassesTACROSS] = CounterTraceClassCalleeTACROSS;
-			data[j][CalleeClassesNACROSS] = CounterTraceClassCalleeNACROSS;
-			data[j][CalleeClassesEACROSS] = CounterTraceClassCalleeEACROSS;
-			data[j][CalleeClassesNumberACROSS] = CounterTraceClassCalleeEACROSS+CounterTraceClassCalleeNACROSS+CounterTraceClassCalleeTACROSS;
-			
-			data[j][CalleeClassesTGOLD2ACROSS] = CounterTraceClassCalleeTGOLD2ACROSS;
-			data[j][CalleeClassesNGOLD2ACROSS] = CounterTraceClassCalleeNGOLD2ACROSS;
-			data[j][CalleeClassesEGOLD2ACROSS] = CounterTraceClassCalleeEGOLD2ACROSS;
-			data[j][CalleeClassesNumberGOLD2ACROSS] = CounterTraceClassCalleeEGOLD2ACROSS+CounterTraceClassCalleeNGOLD2ACROSS+CounterTraceClassCalleeTGOLD2ACROSS;
 			
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
@@ -1883,7 +1843,68 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CallerMethodsNumber] = CountMethodT+CountMethodN+CountMethodE;
 
 			myfinalcounter++; 
-		//OWNER CLASS PREDICTION 
+		
+			data[j][CallerClassesT] = CounterTraceClassCallerT;
+			data[j][CallerClassesN] = CounterTraceClassCallerN;
+			data[j][CallerClassesE] = CounterTraceClassCallerE;
+			data[j][CallerClassesNumber] = CounterTraceClassCallerT+CounterTraceClassCallerN+CounterTraceClassCallerE;
+			
+			data[j][CallerClassesTGOLD2] = CounterTraceClassCallerTGOLD2;
+			data[j][CallerClassesNGOLD2] = CounterTraceClassCallerNGOLD2;
+			data[j][CallerClassesEGOLD2] = CounterTraceClassCallerEGOLD2;
+			data[j][CallerClassesNumberGOLD2] = CounterTraceClassCallerTGOLD2+CounterTraceClassCallerNGOLD2+CounterTraceClassCallerEGOLD2;
+			
+			
+			data[j][CalleeMethodsTACROSS] = CountMethodTACROSSCallee;
+			data[j][CalleeMethodsNACROSS] = CountMethodNACROSSCallee;
+			data[j][CalleeMethodsEACROSS] = CountMethodEACROSSCallee;
+			data[j][CalleeMethodsNumberACROSS] = CountMethodTACROSSCallee+CountMethodNACROSSCallee+CountMethodEACROSSCallee;
+			
+			data[j][CallerMethodsTACROSS] = CountMethodTACROSS;
+			data[j][CallerMethodsNACROSS] = CountMethodNACROSS;
+			data[j][CallerMethodsEACROSS] = CountMethodEACROSS;
+			data[j][CallerMethodsNumberACROSS] = CountMethodTACROSS+CountMethodNACROSS+CountMethodEACROSS;
+			
+			data[j][CalleeMethodsTGOLD2ACROSS] = CountMethodTGOLD2ACROSSCallee;
+			data[j][CalleeMethodsNGOLD2ACROSS] = CountMethodNGOLD2ACROSSCallee;
+			data[j][CalleeMethodsEGOLD2ACROSS] = CountMethodEGOLD2ACROSSCallee;
+			data[j][CalleeMethodsNumberGOLD2ACROSS] = CountMethodTGOLD2ACROSSCallee+CountMethodNGOLD2ACROSSCallee+CountMethodEGOLD2ACROSSCallee;
+			
+			data[j][CallerMethodsTGOLD2ACROSS] = CountMethodTGOLD2ACROSS;
+			data[j][CallerMethodsNGOLD2ACROSS] = CountMethodNGOLD2ACROSS;
+			data[j][CallerMethodsEGOLD2ACROSS] = CountMethodEGOLD2ACROSS;
+			data[j][CallerMethodsNumberGOLD2ACROSS] = CountMethodTGOLD2ACROSS+CountMethodNGOLD2ACROSS+CountMethodEGOLD2ACROSS;
+			
+			data[j][CallerClassesTACROSS] = CounterTraceClassCallerTACROSS;
+			data[j][CallerClassesNACROSS] = CounterTraceClassCallerNACROSS;
+			data[j][CallerClassesEACROSS] = CounterTraceClassCallerEACROSS;
+			data[j][CallerClassesNumberACROSS] = CounterTraceClassCallerTACROSS+CounterTraceClassCallerNACROSS+CounterTraceClassCallerEACROSS;
+			
+			data[j][CallerClassesTGOLD2ACROSS] = CounterTraceClassCallerTGOLD2ACROSS;
+			data[j][CallerClassesNGOLD2ACROSS] = CounterTraceClassCallerNGOLD2ACROSS;
+			data[j][CallerClassesEGOLD2ACROSS] = CounterTraceClassCallerEGOLD2ACROSS;
+			data[j][CallerClassesNumberGOLD2ACROSS] = CounterTraceClassCallerTGOLD2ACROSS+CounterTraceClassCallerNGOLD2ACROSS+CounterTraceClassCallerEGOLD2ACROSS;
+
+			
+			
+			data[j][CalleeClassesTACROSS] = CounterTraceClassCalleeTACROSS;
+			data[j][CalleeClassesNACROSS] = CounterTraceClassCalleeNACROSS;
+			data[j][CalleeClassesEACROSS] = CounterTraceClassCalleeEACROSS;
+			data[j][CalleeClassesNumberACROSS] = CounterTraceClassCalleeEACROSS+CounterTraceClassCalleeNACROSS+CounterTraceClassCalleeTACROSS;
+			
+			data[j][CalleeClassesTGOLD2ACROSS] = CounterTraceClassCalleeTGOLD2ACROSS;
+			data[j][CalleeClassesNGOLD2ACROSS] = CounterTraceClassCalleeNGOLD2ACROSS;
+			data[j][CalleeClassesEGOLD2ACROSS] = CounterTraceClassCalleeEGOLD2ACROSS;
+			data[j][CalleeClassesNumberGOLD2ACROSS] = CounterTraceClassCalleeEGOLD2ACROSS+CounterTraceClassCalleeNGOLD2ACROSS+CounterTraceClassCalleeTGOLD2ACROSS;
+			
+			
+			
+			
+			
+			
+			
+			
+			//OWNER CLASS PREDICTION 
 		 Object OwnerClassNVar = data[j][OwnerClassN]; 
 		 Object OwnerClassNVarGOLD2 = data[j][OwnerClassNGOLD2]; 
 			boolean flagGold=false; 
