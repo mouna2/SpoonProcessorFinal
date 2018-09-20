@@ -649,7 +649,10 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
 		
-		
+	  HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+		 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
+		 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
+		 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
 		
 		
 		
@@ -822,10 +825,16 @@ public class TracesTableGantt2FINAL extends JFrame {
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 HashMap InterfacesHashMap = db.getInterfaces();
 		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-		  HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
-			 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
-			 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
-			 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
+		  
+		  //INTERFACES 
+		  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
+		  //FIELD METHODS 
+		  FieldMethodsHashMap= db.getMethodFieldHashMap();
+		  //FIELD CLASSES 
+		  FieldClassesHashMap= db.getClassFieldHashMap(); 
+		  //SUPERCLASSES
+		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+		
 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -1107,13 +1116,6 @@ public class TracesTableGantt2FINAL extends JFrame {
 			
 			
 			
-			
-			
-			
-			
-			
-			
-			
 			int InterfacesNMethodLevelGOLD4=0; 
 			int InterfacesTMethodLevelGOLD4=0; 
 			int InterfacesEMethodLevelGOLD4=0; 
@@ -1121,14 +1123,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 			if(InterfacesList!=null) {
 				for(Interface2 myinter: InterfacesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.classid,	methodtrace.Requirement.getID().trim());
-					if(myinfo!=null && myinfo.getTrace2()!=null) {
-					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
 						InterfacesTMethodLevelGOLD4++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
 						InterfacesNMethodLevelGOLD4++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
 						InterfacesEMethodLevelGOLD4++; 
 					}
 				}
@@ -1150,14 +1152,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 			if(SuperclassesList!=null) {
 			for(SuperClass2 superclass: SuperclassesList) {
 				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.classid,	methodtrace.Requirement.getID().trim());
-				if(myinfo!=null&& myinfo.getTrace2()!=null) {
-				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+				if(myinfo!=null&& myinfo.getTrace4()!=null) {
+				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
 					SuperclassesTMethodLevelGOLD4++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
 					SuperclassesNMethodLevelGOLD4++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
 					SuperclassesEMethodLevelGOLD4++; 
 				}
 			}
@@ -1176,14 +1178,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 			if(FieldMethodsList!=null) {
 				for(MethodField2 fieldmethod: FieldMethodsList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim());
-					if(myinfo!=null && myinfo.getTrace2()!=null) {
-					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
 						FieldMethodsTMethodLevelGOLD4++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
 						FieldMethodsNMethodLevelGOLD4++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
 						FieldMethodsEMethodLevelGOLD4++; 
 					}
 				}
@@ -1205,14 +1207,14 @@ public class TracesTableGantt2FINAL extends JFrame {
 			if(FieldClassesList!=null) {
 				for(ClassField2 fieldmethod: FieldClassesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim()); 
-					if(myinfo!=null && myinfo.getTrace2()!=null) {
-						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
 							FieldClassesTMethodLevelGOLD4++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
 							FieldClassesNMethodLevelGOLD4++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
 							FieldClassesEMethodLevelGOLD4++; 
 						}
 					}

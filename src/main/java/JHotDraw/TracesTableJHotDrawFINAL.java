@@ -41,6 +41,7 @@ import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
 import Gantt.DatabaseReading2Gantt;
+import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
@@ -48,12 +49,14 @@ import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
+import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementClass;
-import mypackage.RequirementGold; 
+import mypackage.RequirementGold;
+import mypackage.SuperClass2; 
 
 public class TracesTableJHotDrawFINAL extends JFrame {
 	int Row=0; 
@@ -684,7 +687,10 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	File foutGold3TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHOTDRAWGOLD3.txt");
 	FileOutputStream fosGold3 = new FileOutputStream(foutGold3TableLog);
 	BufferedWriter bwGold3TableLog = new BufferedWriter(new OutputStreamWriter(fosGold3));
-	
+	 HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
+	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
+	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
 	
 	File foutGold4TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHOTDRAWGOLD4.txt");
 	FileOutputStream fosGold4 = new FileOutputStream(foutGold4TableLog);
@@ -819,6 +825,15 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 HashMap InterfacesHashMap = db.getInterfacehashmap();
 		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+		  //INTERFACES 
+		  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
+		  //FIELD METHODS 
+		  FieldMethodsHashMap= db.getMethodFieldHashMap();
+		  //FIELD CLASSES 
+		  FieldClassesHashMap= db.getClassFieldHashMap(); 
+		  //SUPERCLASSES
+		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+		 
 
 		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
 		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
@@ -1098,7 +1113,120 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			
 			
+		
 			
+			int InterfacesNMethodLevelGOLD4=0; 
+			int InterfacesTMethodLevelGOLD4=0; 
+			int InterfacesEMethodLevelGOLD4=0; 
+			List<Interface2> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
+			if(InterfacesList!=null) {
+				for(Interface2 myinter: InterfacesList) {
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.classid,	methodtrace.Requirement.getID().trim());
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
+						InterfacesTMethodLevelGOLD4++; 
+					}
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
+						InterfacesNMethodLevelGOLD4++; 
+					}
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
+						InterfacesEMethodLevelGOLD4++; 
+					}
+				}
+				}
+			}
+			
+			
+			
+			data[j][CountInterfaceTGOLD4]=InterfacesTMethodLevelGOLD4; 
+			data[j][CountInterfaceNGOLD4]=InterfacesNMethodLevelGOLD4; 
+			data[j][CountInterfaceEGOLD4]=InterfacesEMethodLevelGOLD4; 
+			data[j][interfacesNumberGOLD4]=InterfacesTMethodLevelGOLD4+InterfacesNMethodLevelGOLD4+InterfacesEMethodLevelGOLD4; 
+			
+			
+			int SuperclassesNMethodLevelGOLD4=0; 
+			int SuperclassesTMethodLevelGOLD4=0; 
+			int SuperclassesEMethodLevelGOLD4=0; 
+			List<SuperClass2> SuperclassesList = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
+			if(SuperclassesList!=null) {
+			for(SuperClass2 superclass: SuperclassesList) {
+				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.classid,	methodtrace.Requirement.getID().trim());
+				if(myinfo!=null&& myinfo.getTrace4()!=null) {
+				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
+					SuperclassesTMethodLevelGOLD4++; 
+				}
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
+					SuperclassesNMethodLevelGOLD4++; 
+				}
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
+					SuperclassesEMethodLevelGOLD4++; 
+				}
+			}
+			}
+			}
+			data[j][CountFieldSuperClassTGOLD4]=SuperclassesTMethodLevelGOLD4; 
+			data[j][CountFieldSuperClassNGOLD4]=SuperclassesNMethodLevelGOLD4; 
+			data[j][CountFieldSuperClassEGOLD4]=SuperclassesEMethodLevelGOLD4; 
+			data[j][SuperClassesNumberGOLD4]=SuperclassesTMethodLevelGOLD4+SuperclassesNMethodLevelGOLD4+SuperclassesEMethodLevelGOLD4; 
+			
+			
+			int FieldMethodsNMethodLevelGOLD4=0; 
+			int FieldMethodsTMethodLevelGOLD4=0; 
+			int FieldMethodsEMethodLevelGOLD4=0; 
+			List<MethodField2> FieldMethodsList = FieldMethodsHashMap.get(methodtrace.ClassRepresentation.classid); 
+			if(FieldMethodsList!=null) {
+				for(MethodField2 fieldmethod: FieldMethodsList) {
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim());
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
+						FieldMethodsTMethodLevelGOLD4++; 
+					}
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
+						FieldMethodsNMethodLevelGOLD4++; 
+					}
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
+						FieldMethodsEMethodLevelGOLD4++; 
+					}
+				}
+				}
+			}
+			
+			
+			
+			data[j][CountFieldMethodTGOLD4]=FieldMethodsTMethodLevelGOLD4; 
+			data[j][CountFieldMethodNGOLD4]=FieldMethodsNMethodLevelGOLD4; 
+			data[j][CountFieldMethodEGOLD4]=FieldMethodsEMethodLevelGOLD4; 
+			data[j][FieldMethodsNumberGOLD4]=FieldMethodsTMethodLevelGOLD4+FieldMethodsNMethodLevelGOLD4+FieldMethodsEMethodLevelGOLD4; 
+			
+			int FieldClassesNMethodLevelGOLD4=0; 
+			int FieldClassesTMethodLevelGOLD4=0; 
+			int FieldClassesEMethodLevelGOLD4=0; 
+			int counterloop=0; 
+			List<ClassField2> FieldClassesList = FieldClassesHashMap.get(methodtrace.ClassRepresentation.classid); 
+			if(FieldClassesList!=null) {
+				for(ClassField2 fieldmethod: FieldClassesList) {
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim()); 
+					if(myinfo!=null && myinfo.getTrace4()!=null) {
+						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("T")) {
+							FieldClassesTMethodLevelGOLD4++; 
+						}
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("N")) {
+							FieldClassesNMethodLevelGOLD4++; 
+						}
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().equals("E")) {
+							FieldClassesEMethodLevelGOLD4++; 
+						}
+					}
+					counterloop++; 
+					System.out.println("counterloop "+counterloop);
+				}
+				
+			}
+		
+			data[j][CountFieldClassTGOLD4]=FieldClassesTMethodLevelGOLD4; 
+			data[j][CountFieldClassNGOLD4]=FieldClassesNMethodLevelGOLD4; 
+			data[j][CountFieldClassEGOLD4]=FieldClassesEMethodLevelGOLD4; 
+			data[j][FieldClassesNumberGOLD4]=FieldClassesTMethodLevelGOLD4+FieldClassesNMethodLevelGOLD4+FieldClassesEMethodLevelGOLD4; 
 			
 			
 			
@@ -1870,6 +1998,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			data[j][CalleeClassesNGOLD4] = CounterTraceClassCalleeNGOLD4;
 			data[j][CalleeClassesEGOLD4] = CounterTraceClassCalleeEGOLD4;
 			data[j][CalleeClassesNumberGOLD4] = CounterTraceClassCalleeEGOLD4+CounterTraceClassCalleeNGOLD4+CounterTraceClassCalleeTGOLD4;
+			
+			
+			
+			
+			
 			//DUPLICATE CLASSES
 			int CountMethodTCallee = 0; 
 			int CountMethodNCallee = 0; 
