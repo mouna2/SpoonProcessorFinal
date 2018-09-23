@@ -1046,32 +1046,32 @@ public class TracesTableGantt2FINAL extends JFrame {
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
 					String mytrace=mycallerclass.gettrace().trim(); 
-					if(mytrace.equals("T")) {
+					if(mytrace.trim().equals("T")) {
 						counterParameterT++; 
-					}else if (mytrace.equals("N")) {
+					}else if (mytrace.trim().equals("N")) {
 						counterParameterN++; 
-					}else {
+					}else if (mytrace.trim().equals("E")){
 						counterParameterE++; 
 					}
 					
 					String mytrace2=mycallerclass.getTrace3(); 
 					if(mytrace2!=null) {
-						if(mytrace2.equals("T")) {
+						if(mytrace2.trim().equals("T")) {
 							counterParameterTGOLD3++; 
-						}else if (mytrace2.equals("N")) {
+						}else if (mytrace2.trim().equals("N")) {
 							counterParameterNGOLD3++; 
-						}else if (mytrace2.equals("E")){
+						}else if (mytrace2.trim().equals("E")){
 							counterParameterEGOLD3++; 
 						}
 					}
 					
 					String mytrace4=mycallerclass.getTrace4(); 
 					if(mytrace4!=null) {
-						if(mytrace4.equals("T")) {
+						if(mytrace4.trim().equals("T")) {
 							counterParameterTGOLD4++; 
-						}else if (mytrace4.equals("N")) {
+						}else if (mytrace4.trim().equals("N")) {
 							counterParameterNGOLD4++; 
-						}else if (mytrace4.equals("E")){
+						}else if (mytrace4.trim().equals("E")){
 							counterParameterEGOLD4++; 
 						}
 					}
