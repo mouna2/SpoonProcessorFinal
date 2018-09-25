@@ -1290,99 +1290,99 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 
 			}
 
-			int CountCallersExecuted = 0;
-			items2 = new String[methodtrace.getCallersListExecuted().size()];
-			callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
-
-				boolean equalbool = false;
-				if (items1.length == 0) {
-					items2[CountCallersExecuted] = caller.toString2();
-					callersex[CountCallersExecuted] = caller;
-				
-						
-					
-					CountCallersExecuted++;
-					OnlyinExecutedCallers++; 
-
-				} else {
-					for (String item : items1) {
-						item = item.replaceAll("\\(.*\\)", "");
-
-						if (item.equals(caller.toString2()) == true) {
-							BothParsedAndExecutedCallers++; 
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						items2[CountCallersExecuted] = caller.toString2();
-						callersex[CountCallersExecuted] = caller;
-						CountCallersExecuted++;
-						OnlyinExecutedCallers++; 
-					}
-				}
-
-			}
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			int CountCallerExecuted=0; 
-			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
-				
-				itemsExecuted[CountCallerExecuted] = caller.toString2();	
-				System.out.println(caller.toString2());
-				CountCallerExecuted++;
-			}
-			
-			int Count=0; 
-			for (Method2Representation caller : methodtrace.getCallersList()) {
-
-				boolean equalbool = false;
-				if (itemsExecuted.length == 0) {
-					items5[Count] = caller.toString2();
-				
-						
-					
-					Count++; 
-					OnlyinParsedCallers++; 
-
-				} else {
-					for (String item : itemsExecuted) {
-					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(callerString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyinParsedCallers++; 
-					}
-				}
-
-			}
+//			int CountCallersExecuted = 0;
+//			items2 = new String[methodtrace.getCallersListExecuted().size()];
+//			callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+//
+//				boolean equalbool = false;
+//				if (items1.length == 0) {
+//					items2[CountCallersExecuted] = caller.toString2();
+//					callersex[CountCallersExecuted] = caller;
+//				
+//						
+//					
+//					CountCallersExecuted++;
+//					OnlyinExecutedCallers++; 
+//
+//				} else {
+//					for (String item : items1) {
+//						item = item.replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(caller.toString2()) == true) {
+//							BothParsedAndExecutedCallers++; 
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						items2[CountCallersExecuted] = caller.toString2();
+//						callersex[CountCallersExecuted] = caller;
+//						CountCallersExecuted++;
+//						OnlyinExecutedCallers++; 
+//					}
+//				}
+//
+//			}
+//		
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			int CountCallerExecuted=0; 
+//			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+//				
+//				itemsExecuted[CountCallerExecuted] = caller.toString2();	
+//				System.out.println(caller.toString2());
+//				CountCallerExecuted++;
+//			}
+//			
+//			int Count=0; 
+//			for (Method2Representation caller : methodtrace.getCallersList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecuted.length == 0) {
+//					items5[Count] = caller.toString2();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyinParsedCallers++; 
+//
+//				} else {
+//					for (String item : itemsExecuted) {
+//					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(callerString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyinParsedCallers++; 
+//					}
+//				}
+//
+//			}
 
 			String[] items1And2 = new String[items1.length + items2.length];
 			items1And2 = (String[]) ArrayUtils.addAll(items1, items2);
@@ -1407,80 +1407,80 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			}
 
-			int CountCalleesExecuted = 0;
-			items4 = new String[methodtrace.getCalleesListExecuted().size()];
-			calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
-				boolean equalbool = false;
-				if (items3.length == 0) {
-					items4[CountCalleesExecuted] = caller.toString2();
-					calleesex[CountCalleesExecuted] = caller;
-					CountCalleesExecuted++;
-					OnlyInExecutedCallees++; 
-					
-				} else {
-					for (String item : items3) {
-						item = item.replaceAll("\\(.*\\).*", "");
-						item = item.replaceAll(":", ",");
-						String mycaller=caller.toString(); 
-						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
-						if (item.equals(mycaller) == true) {
-							equalbool = true;
-							BothInParsedAndExecutedCallees++; 
-						}
-					}
-					if (equalbool == false) {
-						items4[CountCalleesExecuted] = caller.toString2();
-						calleesex[CountCalleesExecuted] = caller;
-						OnlyInExecutedCallees++; 
-
-						CountCalleesExecuted++;
-				
-					}
-				}
-
-			}
-
-			int CountCalleeExecuted=0; 
-			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
-			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
-				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
-				System.out.println(callee.toString2());
-				CountCalleeExecuted++;
-			}
-			
-			 Count=0; 
-			for (Method2Representation callee : methodtrace.getCalleesList()) {
-
-				boolean equalbool = false;
-				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString2();
-				
-						
-					
-					Count++; 
-					OnlyInParsedCallees++; 
-
-				} else {
-					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(calleeString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyInParsedCallees++; 
-					}
-				}
-
-			}
+//			int CountCalleesExecuted = 0;
+//			items4 = new String[methodtrace.getCalleesListExecuted().size()];
+//			calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
+//				boolean equalbool = false;
+//				if (items3.length == 0) {
+//					items4[CountCalleesExecuted] = caller.toString2();
+//					calleesex[CountCalleesExecuted] = caller;
+//					CountCalleesExecuted++;
+//					OnlyInExecutedCallees++; 
+//					
+//				} else {
+//					for (String item : items3) {
+//						item = item.replaceAll("\\(.*\\).*", "");
+//						item = item.replaceAll(":", ",");
+//						String mycaller=caller.toString(); 
+//						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
+//						if (item.equals(mycaller) == true) {
+//							equalbool = true;
+//							BothInParsedAndExecutedCallees++; 
+//						}
+//					}
+//					if (equalbool == false) {
+//						items4[CountCalleesExecuted] = caller.toString2();
+//						calleesex[CountCalleesExecuted] = caller;
+//						OnlyInExecutedCallees++; 
+//
+//						CountCalleesExecuted++;
+//				
+//					}
+//				}
+//
+//			}
+//
+//			int CountCalleeExecuted=0; 
+//			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
+//			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
+//				
+//				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
+//				System.out.println(callee.toString2());
+//				CountCalleeExecuted++;
+//			}
+//			
+//			 Count=0; 
+//			for (Method2Representation callee : methodtrace.getCalleesList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecutedCallees.length == 0) {
+//					items6[Count] = callee.toString2();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyInParsedCallees++; 
+//
+//				} else {
+//					for (String item : itemsExecutedCallees) {
+//					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(calleeString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyInParsedCallees++; 
+//					}
+//				}
+//
+//			}
 			
 			String[] items3And4 = new String[items3.length + items4.length];
 			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);

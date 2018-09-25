@@ -52,6 +52,7 @@ import spoon.reflect.declaration.CtParameter;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.factory.ClassFactory;
 import spoon.reflect.factory.Factory;
+import spoon.reflect.factory.InterfaceFactory;
 import spoon.reflect.factory.MethodFactory;
 import spoon.reflect.path.CtPath;
 import spoon.reflect.reference.CtExecutableReference;
@@ -467,6 +468,7 @@ public class DBDemo3Gantt {
     	Factory factory = spoon.getFactory();
     	ClassFactory classFactory = factory.Class();
     	MethodFactory methodFactory = factory.Method(); 
+    	InterfaceFactory interfaceFactory = factory.Interface(); 
     	int i=1; 
         /*********************************************************************************************************************************************************************************/	
         /*********************************************************************************************************************************************************************************/	
@@ -619,131 +621,184 @@ public class DBDemo3Gantt {
 ////////////////        /*********************************************************************************************************************************************************************************/	
 ////////////////        /*********************************************************************************************************************************************************************************/	  	
 ////////////////    	//BUILD METHODS TABLE 
-//    	List<methods> mymethodlist = new ArrayList<methods>(); 
-//    	for(CtType<?> clazz : classFactory.getAll(true)) {
-//    		
-//    	
-//    		String myclassid = null;
-//    		String myclassname = null;
-//    		
-//    		//ALTERNATIVE: Collection<CtMethod<?>> methods = clazz.getAllMethods(); 
-//			Collection<CtMethod<?>> methods = clazz.getMethods(); 
-//			System.out.println("CLASS SIMPLE NAME :    "+clazz.getSimpleName());
-//			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-//			
-//			int count = StringUtils.countMatches(clazz.getPackage().toString(), ".");
-//			//System.out.println("count:   "+count);
-//			//NEEDS TO BE CHANGED 
-//		//	if(count==2) {
-//			 List<CtConstructor> MyContructorlist = clazz.getElements(new TypeFilter<>(CtConstructor.class)); 
-//			 for(CtConstructor<?> constructor: MyContructorlist) {
-//				 
-//				 	
-//					String FullConstructorName=constructor.getSignature().toString(); 
-//					
-//					String methodabbreviation=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
-//					 methodabbreviation=FullClassName+".-init-"; 
-//
-//					System.out.println("FULL CONSTRUCTOR NAME BEFORE METHOD ABBREVIATION:"+methodabbreviation);
-//
-//					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-//					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
-//					int packagesize= "net.sourceforge.ganttproject.".length(); 
-//						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
-//						FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
-//						
-//							System.out.println("FULL CONSTRUCTOR NAME AFTER:"+FullConstructorName);
-//
-//						ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-//						while(classesreferenced.next()){
-//							myclassid= classesreferenced.getString("id"); 
-//					//		System.out.println("class referenced: "+myclass);	
-//				   		   }
-//						ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-//						while(classnames.next()){
-//							myclassname= classnames.getString("classname"); 
-//					//		System.out.println("class referenced: "+myclass);	
-//				   		   }
-//						
-//							System.out.println("FullClassName====="+ FullConstructorName);
-//					
-//							String FullMethodNameRefined=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
-//							//String FullMethodName=constructor.getSignature().toString(); 
-//							String fullmeth= myclassname+"."+FullConstructorName; 
-//							System.out.println(FullClassName);
-//							methods meth= new methods(fullmeth, myclassid, myclassname); 
-//							if(meth.contains(mymethodlist, meth)==false ) {
-//							
-//								
-//							
-//								FullConstructorName=ReplaceLnetLjava(FullConstructorName);
-//								FullMethodNameRefined=ReplaceLnetLjava(FullMethodNameRefined);
-//								methodabbreviation=ReplaceLnetLjava(methodabbreviation);
-//								fullmeth=ReplaceLnetLjava(fullmeth);
-//								myclassname=ReplaceLnetLjava(myclassname);
-//				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"')");
-//
-//								
-//				    			mymethodlist.add(meth); 
-//							}
-//						
-//
-//						}
-//			 
-//			 
-//			 
-//			for(CtMethod<?> method: methods) {
-//				 
-//				 
-//				String FullMethodName=method.getSignature().toString(); 
-//				System.out.println("==============>"+method.getShortRepresentation().toString());
-//				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-//			//	System.out.println(FullClassName);
-//				String FullMethodNameRefined=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
-//				String longmeth= clazz.getQualifiedName()+"."+FullMethodName; 
-//				String methodabbreviation=longmeth.substring(0, longmeth.indexOf("(")); 
-//					ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-//					while(classesreferenced.next()){
-//						myclassid= classesreferenced.getString("id"); 
-//				//		System.out.println("class referenced: "+myclass);	
-//			   		   }
-//					ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-//					while(classnames.next()){
-//						myclassname= classnames.getString("classname"); 
-//				//		System.out.println("class referenced: "+myclass);	
-//			   		   }
-//					
-//				
-//				
-//						String fullmeth= myclassname+"."+FullMethodName; 
-//						System.out.println(FullClassName);
-//						methods meth= new methods(FullMethodName, myclassid, myclassname); 
-//						if(meth.contains(mymethodlist, meth)==false ) {
-//							FullMethodName=ReplaceLnetLjava(FullMethodName);
-//							FullMethodNameRefined=ReplaceLnetLjava(FullMethodNameRefined);
-//							methodabbreviation=ReplaceLnetLjava(methodabbreviation);
-//							longmeth=ReplaceLnetLjava(longmeth);
-//							myclassname=ReplaceLnetLjava(myclassname);
-//			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"')");
-//
-//							
-//			    			mymethodlist.add(meth); 
-//						}
-//						
-//						
-//   	
-//					}
-//
-//					
-//				
-//				
-//			//}
-//			
-//			
-//		
-//			
-//		
-//    	}
+    	List<methods> mymethodlist = new ArrayList<methods>(); 
+    	for(CtType<?> clazz : classFactory.getAll(true)) {
+    		
+    	
+    		String myclassid = null;
+    		String myclassname = null;
+    		
+    		//ALTERNATIVE: Collection<CtMethod<?>> methods = clazz.getAllMethods(); 
+			Collection<CtMethod<?>> methods = clazz.getMethods(); 
+			System.out.println("CLASS SIMPLE NAME :    "+clazz.getSimpleName());
+			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+			
+			int count = StringUtils.countMatches(clazz.getPackage().toString(), ".");
+			//System.out.println("count:   "+count);
+			//NEEDS TO BE CHANGED 
+		//	if(count==2) {
+			 List<CtConstructor> MyContructorlist = clazz.getElements(new TypeFilter<>(CtConstructor.class)); 
+			 for(CtConstructor<?> constructor: MyContructorlist) {
+				 
+				 	
+					String FullConstructorName=constructor.getSignature().toString(); 
+					
+					String methodabbreviation=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
+					 methodabbreviation=FullClassName+".-init-"; 
+
+					System.out.println("FULL CONSTRUCTOR NAME BEFORE METHOD ABBREVIATION:"+methodabbreviation);
+
+					//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
+					//24 is the size of the string "net.sourceforge.ganttproject.javaChess."
+					int packagesize= "net.sourceforge.ganttproject.".length(); 
+						FullConstructorName=FullConstructorName.substring(packagesize, FullConstructorName.length()); 
+						FullConstructorName="-init-"+FullConstructorName.substring(FullConstructorName.lastIndexOf('('));  
+						
+							System.out.println("FULL CONSTRUCTOR NAME AFTER:"+FullConstructorName);
+
+						ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+						while(classesreferenced.next()){
+							myclassid= classesreferenced.getString("id"); 
+					//		System.out.println("class referenced: "+myclass);	
+				   		   }
+						ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+						while(classnames.next()){
+							myclassname= classnames.getString("classname"); 
+					//		System.out.println("class referenced: "+myclass);	
+				   		   }
+						
+							System.out.println("FullClassName====="+ FullConstructorName);
+					
+							String FullMethodNameRefined=FullConstructorName.substring(0, FullConstructorName.indexOf("(")); 
+							//String FullMethodName=constructor.getSignature().toString(); 
+							String fullmeth= myclassname+"."+FullConstructorName; 
+							System.out.println(FullClassName);
+							methods meth= new methods(fullmeth, myclassid, myclassname); 
+							if(meth.contains(mymethodlist, meth)==false ) {
+							
+								
+							
+								FullConstructorName=ReplaceLnetLjava(FullConstructorName);
+								FullMethodNameRefined=ReplaceLnetLjava(FullMethodNameRefined);
+								methodabbreviation=ReplaceLnetLjava(methodabbreviation);
+								fullmeth=ReplaceLnetLjava(fullmeth);
+								myclassname=ReplaceLnetLjava(myclassname);
+				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"')");
+
+								
+				    			mymethodlist.add(meth); 
+							}
+						
+
+						}
+			 
+			 
+			 
+			for(CtMethod<?> method: methods) {
+				 
+				 
+				String FullMethodName=method.getSignature().toString(); 
+				System.out.println("==============>"+method.getShortRepresentation().toString());
+				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
+			//	System.out.println(FullClassName);
+				String FullMethodNameRefined=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
+				String longmeth= clazz.getQualifiedName()+"."+FullMethodName; 
+				String methodabbreviation=longmeth.substring(0, longmeth.indexOf("(")); 
+					ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+					while(classesreferenced.next()){
+						myclassid= classesreferenced.getString("id"); 
+				//		System.out.println("class referenced: "+myclass);	
+			   		   }
+					ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+					while(classnames.next()){
+						myclassname= classnames.getString("classname"); 
+				//		System.out.println("class referenced: "+myclass);	
+			   		   }
+					
+				
+				
+						String fullmeth= myclassname+"."+FullMethodName; 
+						System.out.println(FullClassName);
+						methods meth= new methods(FullMethodName, myclassid, myclassname); 
+						if(meth.contains(mymethodlist, meth)==false ) {
+							FullMethodName=ReplaceLnetLjava(FullMethodName);
+							FullMethodNameRefined=ReplaceLnetLjava(FullMethodNameRefined);
+							methodabbreviation=ReplaceLnetLjava(methodabbreviation);
+							longmeth=ReplaceLnetLjava(longmeth);
+							myclassname=ReplaceLnetLjava(myclassname);
+			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"')");
+
+							
+			    			mymethodlist.add(meth); 
+						}
+						
+						
+   	
+					}
+
+					
+				
+				
+			//}
+			
+			
+		
+			
+		
+			
+			
+			
+    	}
+    	
+    	
+    	
+    	for(CtType<?> myinterface : interfaceFactory.getAll(true)) {
+    		Collection<CtMethod<?>> methods = myinterface.getMethods(); 
+
+    		for(CtMethod<?> method: methods) {
+				 
+    			String myinterfaceid=null; 
+    			String myinterfacename=null; 
+				String FullMethodName=method.getSignature().toString(); 
+				System.out.println("==============>"+method.getShortRepresentation().toString());
+				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
+			//	System.out.println(FullClassName);
+				String FullMethodNameRefined=FullMethodName.substring(0, FullMethodName.indexOf("(")); 
+				String longmeth= myinterface.getQualifiedName()+"."+FullMethodName; 
+				String methodabbreviation=longmeth.substring(0, longmeth.indexOf("(")); 
+				String inter=myinterface.getQualifiedName(); 
+				if(inter.contains("$")) {
+					inter= inter.substring(0, inter.indexOf("$")); 
+
+				}
+					ResultSet classesreferenced = st.executeQuery("SELECT classes.* from classes where classname='"+inter+"'"); 
+					System.out.println("INTER"+myinterface.getQualifiedName());
+					while(classesreferenced.next()){
+						myinterfaceid= classesreferenced.getString("id"); 
+						myinterfacename= classesreferenced.getString("classname"); 
+				//		System.out.println("class referenced: "+myclass);	
+			   		   }
+				
+					
+				
+				
+						String fullmeth= myinterfacename+"."+FullMethodName; 
+						System.out.println(fullmeth);
+						methods meth= new methods(FullMethodName, myinterfaceid, myinterfacename); 
+						if(meth.contains(mymethodlist, meth)==false ) {
+							
+			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myinterfaceid+"','" +myinterfacename+"')");
+
+							
+			    			mymethodlist.add(meth); 
+						}
+						
+						
+   	
+					}
+			
+		
+    	}
 ////////////////////////      	/*********************************************************************************************************************************************************************************/	
 ////////////////////////        /*********************************************************************************************************************************************************************************/	
 ////////////////////////        /*********************************************************************************************************************************************************************************/
@@ -1122,708 +1177,708 @@ public class DBDemo3Gantt {
 /////////////////*********************************************************************************************************************************************************************************/	
 /////////////////*********************************************************************************************************************************************************************************/   	
 //////////////////BUILD METHODSCALLED TABLE
-//    	int counter=0; 
-//    	
-//    	
-//    	String calleeDeclaringTypeName=null; 
-//    	
-//    List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
-//    for(CtType<?> clazz : classFactory.getAll(true)) {
-//    	List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
-//    	   for(CtConstructor<?> cons :constructorcallers) {
-//    	    	List<CtInvocation> MethodsInvokedByConstructors = cons.getElements(new TypeFilter<CtInvocation>(CtInvocation.class));
-//    	    	for(CtInvocation<?> consInvocation: MethodsInvokedByConstructors) {
-//    	    		String CalleeMethodID=null;  
-//    	    		String CALLEECLASSNAME=null;  
-//    	    		String CALLEECLASSID =null;  
-//    	    		String fullcalleeins=null;   
-//    	    		String CallerMethodIDcons=null; 
-//    	        	String CALLERCLASSNAMEcons=null; 
-//    	        	String CALLERCLASSIDcons=null; 
-//    	        	String fullcallerinscons=null; 
-//    	        	String fullcaller=null; 
-//    	        	String fullcallee=null; 
-//    	        	String InvokedMethodNamePackageFree=null;
-//    	        	String ConstructorNamePackageFree=null; 
-//    	        	
-//    	    		if(cons.getDeclaringType()!=null) {
-////      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
-////    	    		String constructorName=cons.getExecutable().getSignature(); 
-//    	    		String constructorClassName=cons.getType().getQualifiedName();
-//    	    		String constructorName=cons.getSignature(); 
-//    	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
-//    	    		System.out.println("BEFORE constructorName====>"+constructorName);
-//    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
-//    	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
-//    	    		constructorName=RemoveDollarConstructor(constructorName); 
-//    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
-//    	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
-//    	    		constructorName=TransformConstructorIntoInit(constructorName); 
-//    	    		System.out.println("AFTER constructorClassName====>"+constructorClassName);	    		
-//    	    		System.out.println("AFTER constructorName====>"+constructorName);
-//    	    		System.out.println("\n");
-//    	    		fullcaller=constructorName; 
-//    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
-//    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
-//    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
-//    	    		
-//    	    		
-//    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
-//    	    				+ "and methods.classname='"+constructorClassName+"'"); 
-//    	    		//while(callingmethodsrefined.next()){
-//    	    		if(callingmethodsrefined.next()) {
-//    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
-//    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-//    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
-//    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-//
-//    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    	    		}
-//    	    		}
-//    	    		
-//    	    		
-//    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
-//    	    			String InvokedClassNameBEFORE = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
-//        	    		String InvokedMethodNameBEFORE=consInvocation.getExecutable().getSignature(); 
-//        	    		fullcallee=InvokedMethodNameBEFORE; 
-//        	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassNameBEFORE);
-//        	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodNameBEFORE);
-//        	    		String InvokedClassName=RemoveDollarConstructor(InvokedClassNameBEFORE); 
-//        	    		String InvokedMethodName=RemoveDollarConstructor(InvokedMethodNameBEFORE); 
-//        	    	System.out.println("AFTER InvokedClassName====>"+InvokedClassName);
-//        	    		System.out.println("AFTER InvokedMethodName====>"+InvokedMethodName);
-//        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
-//        	    	//	System.out.println("FULLMETH====>"+fullmeth);
-//        	    		System.out.println("\n");
-//        	    		if(consInvocation instanceof CtConstructorCall) {
-//        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
-//        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
-//        	    		}
-//        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
-//        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
-//        	    		
-//        	    		
-//        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
-//        	    	//	System.out.println("FULLMETH====>"+fullmeth);
-//    	    					
-//        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
-//        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
-//        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
-//        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
-//        	  
-//        	    		//while(callingmethodsrefined.next()){
-//        	    		if(callingmethodsrefined.next()) {
-//        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
-//        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
-//        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
-//        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
-//
-//        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//        	    			 
-//        	    				
-//        	    		}
-//        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
-//        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNameBEFORE+"'"
-//            	    				+ "and methods.classname='"+InvokedClassNameBEFORE+"'"); 
-//            	  
-//            	    		//while(callingmethodsrefined.next()){
-//            	    		if(callingmethodsrefined2.next()) {
-//            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
-//            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
-//            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-//
-//            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//            	    			 
-//            	    				
-//            	    		}
-//        	    		}
-//        	    
-//        	    		
-//        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
-//        	    			String fullmethod=InvokedClassNameBEFORE+"."+InvokedMethodNameBEFORE; 
-//        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
-//            	  
-//            	    		//while(callingmethodsrefined.next()){
-//            	    		if(callingmethodsrefined2.next()) {
-//            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
-//            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
-//            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-//
-//            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//            	    			 
-//            	    				
-//            	    		}
-//        	    		}
-//        	    		
-//        	    		
-//        	    		
-//        	    		
-//    	    		}
-//    	    	
-//    	    		
-//    	    		
-//    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
-//    	    		//System.out.println(methodcall.toString()); 
-//    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
-//    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
-//    	    			
-//    	    			st.executeUpdate(statement);
-//    	    			methodcallsList.add(methodcall); 
-//    	    		}
-//    	    	}
-//    		   
-//    	    	
-//    	    	
-//    	    	
-//    	    	
-//    	    	
-//    	    	List<CtConstructorCall> ConstructorsCalledByConstructors = cons.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
-//    	    	for(CtConstructorCall<?> consInvocation: ConstructorsCalledByConstructors) {
-//    	    		String CalleeMethodID=null;  
-//    	    		String CALLEECLASSNAME=null;  
-//    	    		String CALLEECLASSID =null;  
-//    	    		String fullcalleeins=null;   
-//    	    		String CallerMethodIDcons=null; 
-//    	        	String CALLERCLASSNAMEcons=null; 
-//    	        	String CALLERCLASSIDcons=null; 
-//    	        	String fullcallerinscons=null; 
-//    	        	String fullcaller=null; 
-//    	        	String fullcallee=null; 
-//    	        	String InvokedMethodNamePackageFree=null;
-//    	        	String ConstructorNamePackageFree=null; 
-//    	        	
-//    	    		if(cons.getDeclaringType()!=null) {
-////      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
-////    	    		String constructorName=cons.getExecutable().getSignature(); 
-//    	    		String constructorClassName=cons.getType().getQualifiedName();
-//    	    		String constructorName=cons.getSignature(); 
-//    	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
-//    	    		System.out.println("BEFORE constructorName====>"+constructorName);
-//    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
-//    	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
-//    	    		constructorName=RemoveDollarConstructor(constructorName); 
-//    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
-//    	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
-//    	    		constructorName=TransformConstructorIntoInit(constructorName); 
-//    	    		//System.out.println("constructorClassName====>"+constructorClassName);	    		
-//    	    		//System.out.println("constructorName====>"+constructorName);
-//    	    		System.out.println("\n");
-//    	    		fullcaller=constructorName; 
-//    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
-//    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
-//    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
-//    	    		
-//    	    		
-//    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
-//    	    				+ "and methods.classname='"+constructorClassName+"'"); 
-//    	    		//while(callingmethodsrefined.next()){
-//    	    		if(callingmethodsrefined.next()) {
-//    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
-//    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-//    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
-//    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-//
-//    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    	    		}
-//    	    		}
-//    	    		
-//    	    		
-//    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
-//    	    			String InvokedClassNameBEFORE = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
-//        	    		String InvokedMethodNameBEFORE=consInvocation.getExecutable().getSignature(); 
-//        	    		fullcallee=InvokedMethodNameBEFORE; 
-//        	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassNameBEFORE);
-//        	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodNameBEFORE);
-//        	    		String InvokedClassName=RemoveDollarConstructor(InvokedClassNameBEFORE); 
-//        	    		String InvokedMethodName=RemoveDollarConstructor(InvokedMethodNameBEFORE); 
-//        	    	//	System.out.println("InvokedClassName====>"+InvokedClassName);
-//        	    	//	System.out.println("InvokedMethodName====>"+InvokedMethodName);
-//        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
-//        	    	//	System.out.println("FULLMETH====>"+fullmeth);
-//        	    		System.out.println("\n");
-//        	    		if(consInvocation instanceof CtConstructorCall) {
-//        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
-//        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
-//        	    		}
-//        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
-//        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
-//        	    		
-//        	    		
-//        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
-//        	    	//	System.out.println("FULLMETH====>"+fullmeth);
-//    	    					
-//        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
-//        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
-//        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
-//        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
-//        	  
-//        	    		//while(callingmethodsrefined.next()){
-//        	    		if(callingmethodsrefined.next()) {
-//        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
-//        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
-//        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
-//        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
-//
-//        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//        	    			 
-//        	    				
-//        	    		}
-//        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
-//        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNameBEFORE+"'"
-//            	    				+ "and methods.classname='"+InvokedClassNameBEFORE+"'"); 
-//            	  
-//            	    		//while(callingmethodsrefined.next()){
-//            	    		if(callingmethodsrefined2.next()) {
-//            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
-//            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
-//            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-//
-//            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//            	    			 
-//            	    				
-//            	    		}
-//        	    		}
-//        	    
-//        	    		
-//        	    		
-//    	    		}
-//    	    	
-//    	    		
-//    	    		
-//    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
-//    	    		//System.out.println(methodcall.toString()); 
-//    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
-//    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
-//    	    			
-//    	    			st.executeUpdate(statement);
-//    	    			methodcallsList.add(methodcall); 
-//    	    		}
-//    	    	}
-//    		   
-//    		   
-//    		   
-//    	   }
-//    	   
-//    	   
-//    	   
-//    for(CtMethod<?> method :clazz.getMethods()) {
-//    	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
-//    	
-//    	for( CtConstructorCall myclass: ctNewClasses) {
-//    		//CONSTRUCTOR 
-//    		
-//    		String CallerMethodIDcons=null; 
-//        	String CALLERCLASSNAMEcons=null; 
-//        	String CALLERCLASSIDcons=null; 
-//        	
-//        	String CalleeMethodIDcons=null; 
-//        	String CALLEECLASSNAMEcons=null; 
-//        	String CALLEECLASSIDcons=null; 
-//    		String fullcallerinscons=null; 
-//    		String fullcalleeinscons=null; 
-//    		String constructorClassName=null; 
-//    		String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-//    	
-//    			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-//    		
-//    			constructorClassName = RemoveDollarConstructor(constructorClassName);
-//    			
-//    		System.out.println("MYCLASS"+ clazz.getQualifiedName() +"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
-//    				"CLASSS    "+
-//    				myclass.getExecutable().getDeclaringType().getQualifiedName());
-//    		String classtype= myclass.getType().toString(); 
-//    		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
-//    		
-//    		String constructorName=myclass.getExecutable().getSignature(); 
-//    		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
-//    		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-//    		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
-//    		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
-//    		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
-//    		
-//    		
-//    	
-//    		
-//    		//System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
-//    		constructorClassName=RemoveDollar(constructorClassName); 
-//    		
-////    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
-////    				+ "and methods.classname='"+constructorClassName+"'"); 
-//    		
+    	int counter=0; 
+    	
+    	
+    	String calleeDeclaringTypeName=null; 
+    	
+    List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
+    for(CtType<?> clazz : classFactory.getAll(true)) {
+    	List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
+    	   for(CtConstructor<?> cons :constructorcallers) {
+    	    	List<CtInvocation> MethodsInvokedByConstructors = cons.getElements(new TypeFilter<CtInvocation>(CtInvocation.class));
+    	    	for(CtInvocation<?> consInvocation: MethodsInvokedByConstructors) {
+    	    		String CalleeMethodID=null;  
+    	    		String CALLEECLASSNAME=null;  
+    	    		String CALLEECLASSID =null;  
+    	    		String fullcalleeins=null;   
+    	    		String CallerMethodIDcons=null; 
+    	        	String CALLERCLASSNAMEcons=null; 
+    	        	String CALLERCLASSIDcons=null; 
+    	        	String fullcallerinscons=null; 
+    	        	String fullcaller=null; 
+    	        	String fullcallee=null; 
+    	        	String InvokedMethodNamePackageFree=null;
+    	        	String ConstructorNamePackageFree=null; 
+    	        	
+    	    		if(cons.getDeclaringType()!=null) {
+//      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
+//    	    		String constructorName=cons.getExecutable().getSignature(); 
+    	    		String constructorClassName=cons.getType().getQualifiedName();
+    	    		String constructorName=cons.getSignature(); 
+    	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
+    	    		System.out.println("BEFORE constructorName====>"+constructorName);
+    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
+    	    		constructorName=RemoveDollarConstructor(constructorName); 
+    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
+    	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorName=TransformConstructorIntoInit(constructorName); 
+    	    		System.out.println("AFTER constructorClassName====>"+constructorClassName);	    		
+    	    		System.out.println("AFTER constructorName====>"+constructorName);
+    	    		System.out.println("\n");
+    	    		fullcaller=constructorName; 
+    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
+    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
+    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
+    	    		
+    	    		
+    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
+    	    				+ "and methods.classname='"+constructorClassName+"'"); 
+    	    		//while(callingmethodsrefined.next()){
+    	    		if(callingmethodsrefined.next()) {
+    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	    		}
+    	    		}
+    	    		
+    	    		
+    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
+    	    			String InvokedClassNameBEFORE = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
+        	    		String InvokedMethodNameBEFORE=consInvocation.getExecutable().getSignature(); 
+        	    		fullcallee=InvokedMethodNameBEFORE; 
+        	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassNameBEFORE);
+        	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodNameBEFORE);
+        	    		String InvokedClassName=RemoveDollarConstructor(InvokedClassNameBEFORE); 
+        	    		String InvokedMethodName=RemoveDollarConstructor(InvokedMethodNameBEFORE); 
+        	    	System.out.println("AFTER InvokedClassName====>"+InvokedClassName);
+        	    		System.out.println("AFTER InvokedMethodName====>"+InvokedMethodName);
+        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+        	    		System.out.println("\n");
+        	    		if(consInvocation instanceof CtConstructorCall) {
+        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
+        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    		}
+        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
+        	    		
+        	    		
+        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+    	    					
+        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
+        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
+        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
+        	  
+        	    		//while(callingmethodsrefined.next()){
+        	    		if(callingmethodsrefined.next()) {
+        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
+        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
+        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
+        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
+
+        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+        	    			 
+        	    				
+        	    		}
+        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
+        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNameBEFORE+"'"
+            	    				+ "and methods.classname='"+InvokedClassNameBEFORE+"'"); 
+            	  
+            	    		//while(callingmethodsrefined.next()){
+            	    		if(callingmethodsrefined2.next()) {
+            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
+            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+
+            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+            	    			 
+            	    				
+            	    		}
+        	    		}
+        	    
+        	    		
+        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
+        	    			String fullmethod=InvokedClassNameBEFORE+"."+InvokedMethodNameBEFORE; 
+        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+fullmethod+"'"); 
+            	  
+            	    		//while(callingmethodsrefined.next()){
+            	    		if(callingmethodsrefined2.next()) {
+            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
+            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+
+            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+            	    			 
+            	    				
+            	    		}
+        	    		}
+        	    		
+        	    		
+        	    		
+        	    		
+    	    		}
+    	    	
+    	    		
+    	    		
+    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
+    	    		//System.out.println(methodcall.toString()); 
+    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
+    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    	    			
+    	    			st.executeUpdate(statement);
+    	    			methodcallsList.add(methodcall); 
+    	    		}
+    	    	}
+    		   
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	List<CtConstructorCall> ConstructorsCalledByConstructors = cons.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
+    	    	for(CtConstructorCall<?> consInvocation: ConstructorsCalledByConstructors) {
+    	    		String CalleeMethodID=null;  
+    	    		String CALLEECLASSNAME=null;  
+    	    		String CALLEECLASSID =null;  
+    	    		String fullcalleeins=null;   
+    	    		String CallerMethodIDcons=null; 
+    	        	String CALLERCLASSNAMEcons=null; 
+    	        	String CALLERCLASSIDcons=null; 
+    	        	String fullcallerinscons=null; 
+    	        	String fullcaller=null; 
+    	        	String fullcallee=null; 
+    	        	String InvokedMethodNamePackageFree=null;
+    	        	String ConstructorNamePackageFree=null; 
+    	        	
+    	    		if(cons.getDeclaringType()!=null) {
+//      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
+//    	    		String constructorName=cons.getExecutable().getSignature(); 
+    	    		String constructorClassName=cons.getType().getQualifiedName();
+    	    		String constructorName=cons.getSignature(); 
+    	    		System.out.println("BEFORE constructorClassName====>"+constructorClassName);
+    	    		System.out.println("BEFORE constructorName====>"+constructorName);
+    	    		//System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorClassName=RemoveDollarConstructor(constructorClassName); 
+    	    		constructorName=RemoveDollarConstructor(constructorName); 
+    	    		//System.out.println("CONS NAMEeeeeeee====>"+constructorName);	
+    	    		System.out.println("CONSTRUCTOR NAME BEFORE INIT "+ constructorName);
+    	    		constructorName=TransformConstructorIntoInit(constructorName); 
+    	    		//System.out.println("constructorClassName====>"+constructorClassName);	    		
+    	    		//System.out.println("constructorName====>"+constructorName);
+    	    		System.out.println("\n");
+    	    		fullcaller=constructorName; 
+    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
+    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
+    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
+    	    		
+    	    		
+    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
+    	    				+ "and methods.classname='"+constructorClassName+"'"); 
+    	    		//while(callingmethodsrefined.next()){
+    	    		if(callingmethodsrefined.next()) {
+    	    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	    		}
+    	    		}
+    	    		
+    	    		
+    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
+    	    			String InvokedClassNameBEFORE = consInvocation.getExecutable().getDeclaringType().getQualifiedName().toString();
+        	    		String InvokedMethodNameBEFORE=consInvocation.getExecutable().getSignature(); 
+        	    		fullcallee=InvokedMethodNameBEFORE; 
+        	    		System.out.println("BEFORE InvokedClassName====>"+InvokedClassNameBEFORE);
+        	    		System.out.println("BEFORE InvokedMethodName====>"+InvokedMethodNameBEFORE);
+        	    		String InvokedClassName=RemoveDollarConstructor(InvokedClassNameBEFORE); 
+        	    		String InvokedMethodName=RemoveDollarConstructor(InvokedMethodNameBEFORE); 
+        	    	//	System.out.println("InvokedClassName====>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName====>"+InvokedMethodName);
+        	    		String fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+        	    		System.out.println("\n");
+        	    		if(consInvocation instanceof CtConstructorCall) {
+        	    			InvokedMethodName=TransformConstructorIntoInit(InvokedMethodName); 
+        	    			 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    		}
+        	    		 InvokedMethodNamePackageFree=KeepOnlyMethodName(InvokedMethodName); 
+        	    	//	System.out.println("InvokedMethodNamePackageFree====>"+InvokedMethodNamePackageFree);
+        	    		
+        	    		
+        	    		 fullmeth= InvokedClassName+"."+InvokedMethodName; 
+        	    	//	System.out.println("FULLMETH====>"+fullmeth);
+    	    					
+        	    	//	System.out.println("InvokedClassName==oooooooooooooooooooooooo==>"+InvokedClassName);
+        	    	//	System.out.println("InvokedMethodName==ooooooooooooooooooooo==>"+InvokedMethodName);
+        	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNamePackageFree+"'"
+        	    				+ "and methods.classname='"+InvokedClassName+"'"); 
+        	  
+        	    		//while(callingmethodsrefined.next()){
+        	    		if(callingmethodsrefined.next()) {
+        	    			 CalleeMethodID = callingmethodsrefined.getString("id"); 
+        	    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
+        	    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
+        	    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
+
+        	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+        	    			 
+        	    				
+        	    		}
+        	    		if(CalleeMethodID==null && CALLEECLASSNAME==null && CALLEECLASSID==null ) {
+        	    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+InvokedMethodNameBEFORE+"'"
+            	    				+ "and methods.classname='"+InvokedClassNameBEFORE+"'"); 
+            	  
+            	    		//while(callingmethodsrefined.next()){
+            	    		if(callingmethodsrefined2.next()) {
+            	    			 CalleeMethodID = callingmethodsrefined2.getString("id"); 
+            	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+            	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+            	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+
+            	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+            	    			 
+            	    				
+            	    		}
+        	    		}
+        	    
+        	    		
+        	    		
+    	    		}
+    	    	
+    	    		
+    	    		
+    	    		methodcalls methodcall = new methodcalls(CalleeMethodID, fullcaller, CALLEECLASSNAME, CALLEECLASSID, CallerMethodIDcons, fullcallee, CALLERCLASSNAMEcons); 
+    	    		//System.out.println(methodcall.toString()); 
+    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodID!=null) {
+    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodID+"','" +InvokedMethodNamePackageFree+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    	    			
+    	    			st.executeUpdate(statement);
+    	    			methodcallsList.add(methodcall); 
+    	    		}
+    	    	}
+    		   
+    		   
+    		   
+    	   }
+    	   
+    	   
+    	   
+    for(CtMethod<?> method :clazz.getMethods()) {
+    	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
+    	
+    	for( CtConstructorCall myclass: ctNewClasses) {
+    		//CONSTRUCTOR 
+    		
+    		String CallerMethodIDcons=null; 
+        	String CALLERCLASSNAMEcons=null; 
+        	String CALLERCLASSIDcons=null; 
+        	
+        	String CalleeMethodIDcons=null; 
+        	String CALLEECLASSNAMEcons=null; 
+        	String CALLEECLASSIDcons=null; 
+    		String fullcallerinscons=null; 
+    		String fullcalleeinscons=null; 
+    		String constructorClassName=null; 
+    		String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+    	
+    			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+    		
+    			constructorClassName = RemoveDollarConstructor(constructorClassName);
+    			
+    		System.out.println("MYCLASS"+ clazz.getQualifiedName() +"."+method.getSignature()+"  METHOD"+ myclass.getExecutable().getSignature()+
+    				"CLASSS    "+
+    				myclass.getExecutable().getDeclaringType().getQualifiedName());
+    		String classtype= myclass.getType().toString(); 
+    		String FullCallerMeth=clazz.getQualifiedName()+"."+method.getSignature(); 
+    		
+    		String constructorName=myclass.getExecutable().getSignature(); 
+    		System.out.println("CONSTRUCTOR AS CALLEE NAME "+ constructorName);
+    		//String constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
+    		constructorName="-init-"+constructorName.substring(constructorName.indexOf("("), constructorName.length()); 
+    		//System.out.println("CONSTRUCTOR NAME "+ constructorName);
+    		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
+    		
+    		
+    	
+    		
+    		//System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
+    		constructorClassName=RemoveDollar(constructorClassName); 
+    		
 //    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
-//    				+ "and methods.classname='"+classtype+"'"); 
-//    		//while(callingmethodsrefined.next()){
-//    		if(callingmethodsrefined.next()) {
-//    			CalleeMethodIDcons = callingmethodsrefined.getString("id"); 
-//    			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-//    			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
-//    			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
-//
-//    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    		}
-//    		
-//    		
-//    	callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+FullCallerMeth+"'"); 
-//    		//while(callingmethodsrefined.next()){
-//    		if(callingmethodsrefined.next()) {
-//    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
-//    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
-//    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
-//    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-//
-//    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    		}
-//    		
-//    		
-//    		//System.out.println("FULL CALLER INS CONS"+fullcallerinscons);
-//			//System.out.println("FULL CALLEE INS CONS"+fullcalleeinscons);
-//    		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
-//    		//System.out.println(methodcall.toString()); 
-//    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
-//    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
-//    			
-//    			st.executeUpdate(statement);
-//    			methodcallsList.add(methodcall); 
-//    		}
-//    		
-//    		
-////    			List args = (myclass.getExecutable().getArguments()); 
-//    		
-////    		System.out.println("hEYYYYYY"+args.toString());
-//    		
-//    		
-//    		List list = myclass.getArguments();
-//    		
-//    		//System.out.println("LIST "+ list);
-//    		
-//    		for(Object elem: list) {
-//    			
-//    			if(elem instanceof CtInvocation) {
-//    				
-//    				 CtExecutableReference elemexec = ((CtInvocation) elem).getExecutable(); 
-////    				System.out.println("ELEM"+elem);
-////    				System.out.println("EXEC"+elemexec);
-//    				if(elemexec.getDeclaringType()!=null) {
-//    					String targetType=elemexec.getDeclaringType().getQualifiedName(); 	
+//    				+ "and methods.classname='"+constructorClassName+"'"); 
+    		
+    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+constructorName+"'"
+    				+ "and methods.classname='"+classtype+"'"); 
+    		//while(callingmethodsrefined.next()){
+    		if(callingmethodsrefined.next()) {
+    			CalleeMethodIDcons = callingmethodsrefined.getString("id"); 
+    			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
+    			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    		}
+    		
+    		
+    	callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.fullmethod='"+FullCallerMeth+"'"); 
+    		//while(callingmethodsrefined.next()){
+    		if(callingmethodsrefined.next()) {
+    			CallerMethodIDcons = callingmethodsrefined.getString("id"); 
+    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
+    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
+    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
+
+    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    		}
+    		
+    		
+    		//System.out.println("FULL CALLER INS CONS"+fullcallerinscons);
+			//System.out.println("FULL CALLEE INS CONS"+fullcalleeinscons);
+    		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcalleeinscons, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcallerinscons, CALLERCLASSNAMEcons); 
+    		//System.out.println(methodcall.toString()); 
+    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +method.getSignature()+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +constructorName+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+    			
+    			st.executeUpdate(statement);
+    			methodcallsList.add(methodcall); 
+    		}
+    		
+    		
+//    			List args = (myclass.getExecutable().getArguments()); 
+    		
+//    		System.out.println("hEYYYYYY"+args.toString());
+    		
+    		
+    		List list = myclass.getArguments();
+    		
+    		//System.out.println("LIST "+ list);
+    		
+    		for(Object elem: list) {
+    			
+    			if(elem instanceof CtInvocation) {
+    				
+    				 CtExecutableReference elemexec = ((CtInvocation) elem).getExecutable(); 
+//    				System.out.println("ELEM"+elem);
+//    				System.out.println("EXEC"+elemexec);
+    				if(elemexec.getDeclaringType()!=null) {
+    					String targetType=elemexec.getDeclaringType().getQualifiedName(); 	
+    				}
+    				
+    				
+    				
+    				
+    				
+    				  CtExpression targ = ((CtInvocation) elem).getTarget(); 
+    					if(targ instanceof CtInvocation) {
+    						CtExecutableReference targex = ((CtInvocation) targ).getExecutable(); 
+//    						System.out.println("TARG"+targex);
+    						if(targex.getDeclaringType()!=null) {
+        						String executableType=targex.getDeclaringType().getQualifiedName(); 
+
+    						}
+    						
+    						
+    						CtExpression targetoftarget = ((CtTargetedExpression) targ).getTarget(); 
+    						while(!targetoftarget.toString().equals("") && targetoftarget instanceof CtInvocation==true ) {
+    							
+    							
+//    							System.out.println("TARGET OF TARGET: "+targetoftarget);
+    							if(targetoftarget instanceof CtInvocation<?> ) {
+    								targetoftarget=((CtInvocation<?>) targetoftarget).getTarget(); 
+
+    							}
+    							else if(targetoftarget instanceof CtConstructorCall<?>) {
+    								targetoftarget=((CtConstructorCall<?>) targetoftarget).getTarget(); 
+    							}
+    							else if(targetoftarget instanceof CtFieldAccess<?>) {
+    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
+    							}else if(targetoftarget instanceof CtField<?>) {
+    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
+    							}
+    							
+    							String targetoftargetType=targex.getDeclaringType().getQualifiedName(); 
+    							
+    						}
+    					}
+//    				if(elemtarg==null) {
+//    					System.out.println("ELEM"+elem);
 //    				}
-//    				
-//    				
-//    				
-//    				
-//    				
-//    				  CtExpression targ = ((CtInvocation) elem).getTarget(); 
-//    					if(targ instanceof CtInvocation) {
-//    						CtExecutableReference targex = ((CtInvocation) targ).getExecutable(); 
-////    						System.out.println("TARG"+targex);
-//    						if(targex.getDeclaringType()!=null) {
-//        						String executableType=targex.getDeclaringType().getQualifiedName(); 
-//
-//    						}
-//    						
-//    						
-//    						CtExpression targetoftarget = ((CtTargetedExpression) targ).getTarget(); 
-//    						while(!targetoftarget.toString().equals("") && targetoftarget instanceof CtInvocation==true ) {
-//    							
-//    							
-////    							System.out.println("TARGET OF TARGET: "+targetoftarget);
-//    							if(targetoftarget instanceof CtInvocation<?> ) {
-//    								targetoftarget=((CtInvocation<?>) targetoftarget).getTarget(); 
-//
-//    							}
-//    							else if(targetoftarget instanceof CtConstructorCall<?>) {
-//    								targetoftarget=((CtConstructorCall<?>) targetoftarget).getTarget(); 
-//    							}
-//    							else if(targetoftarget instanceof CtFieldAccess<?>) {
-//    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
-//    							}else if(targetoftarget instanceof CtField<?>) {
-//    								targetoftarget=((CtFieldAccess<?>) targetoftarget).getTarget(); 
-//    							}
-//    							
-//    							String targetoftargetType=targex.getDeclaringType().getQualifiedName(); 
-//    							
-//    						}
-//    					}
-////    				if(elemtarg==null) {
-////    					System.out.println("ELEM"+elem);
-////    				}
-////    				while(elemtarg!=null) {
-////    					
-////    					elemtarg = ((CtInvocation<?>) elemtarg).getTarget(); 
-////    					System.out.println("ELEM TARG: "+elemtarg);
-////    				}
-//    				
-//    			}else if(elem instanceof CtFieldAccess) {
-//    				//System.out.println("ELEMFILEDACCESS"+elem);
-//    			}
-//    		}
-//    		
-//    	}
-//    	
-//    	
-//    	String methname=method.getSimpleName(); 
-//    	//System.out.println("CALLER METHOD=====>"+methname);
-//    	// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
-//    	 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
-//    	for( CtInvocation invocation: methodcalls) {
-//    		String callingmethodid=null; 
-//    		String callingmethodsrefinedid=null; 
-//    		String callingmethodsrefinedname=null; 
-//    		String callingmethodclass=null; 
-//    		String calledmethodid=null; 
-//    		String calledmethodname=null; 
-//    		String calledmethodclass=null; 
-//    		String paramclassid=null; 
-//    		String CALLEEID=null; 
-//    		String CALLEECLASSNAME=null; 
-//    		String CALLEECLASSID=null; 
-//    		String CALLERCLASSID=null; 
-//    		String CallerMethodID=null; 
-//    		//CALLING METHOD ID 
-//    		String CALLEENAME= invocation.getExecutable().getSignature().toString(); 
-//    		CtExecutableReference<?> executableRef = invocation.getExecutable();
-//    		CtTypeReference<?> typeRef = executableRef.getDeclaringType();
-//    			
-//    		String CALLERCLASSNAME=clazz.getQualifiedName() ; 
-//    		String CallerMethod= method.getSignature(); 
-//    		//System.out.println("CALLER METHOD NAME: "+ CallerMethod);
-//    		//System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
-//    		CALLERCLASSNAME=RemoveDollar(CALLERCLASSNAME); 
-//    		ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'and methods.classname='"+CALLERCLASSNAME+"'"); 
+//    				while(elemtarg!=null) {
+//    					
+//    					elemtarg = ((CtInvocation<?>) elemtarg).getTarget(); 
+//    					System.out.println("ELEM TARG: "+elemtarg);
+//    				}
+    				
+    			}else if(elem instanceof CtFieldAccess) {
+    				//System.out.println("ELEMFILEDACCESS"+elem);
+    			}
+    		}
+    		
+    	}
+    	
+    	
+    	String methname=method.getSimpleName(); 
+    	//System.out.println("CALLER METHOD=====>"+methname);
+    	// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
+    	 List<CtInvocation> methodcalls = method.getElements(new TypeFilter<>(CtInvocation.class)); 
+    	for( CtInvocation invocation: methodcalls) {
+    		String callingmethodid=null; 
+    		String callingmethodsrefinedid=null; 
+    		String callingmethodsrefinedname=null; 
+    		String callingmethodclass=null; 
+    		String calledmethodid=null; 
+    		String calledmethodname=null; 
+    		String calledmethodclass=null; 
+    		String paramclassid=null; 
+    		String CALLEEID=null; 
+    		String CALLEECLASSNAME=null; 
+    		String CALLEECLASSID=null; 
+    		String CALLERCLASSID=null; 
+    		String CallerMethodID=null; 
+    		//CALLING METHOD ID 
+    		String CALLEENAME= invocation.getExecutable().getSignature().toString(); 
+    		CtExecutableReference<?> executableRef = invocation.getExecutable();
+    		CtTypeReference<?> typeRef = executableRef.getDeclaringType();
+    			
+    		String CALLERCLASSNAME=clazz.getQualifiedName() ; 
+    		String CallerMethod= method.getSignature(); 
+    		//System.out.println("CALLER METHOD NAME: "+ CallerMethod);
+    		//System.out.println("CALLER CLASS  NAME : "+ CALLERCLASSNAME);
+    		CALLERCLASSNAME=RemoveDollar(CALLERCLASSNAME); 
+    		ResultSet callingmethodsrefined3 = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CallerMethod+"'and methods.classname='"+CALLERCLASSNAME+"'"); 
+    		//while(callingmethodsrefined.next()){
+    		if(callingmethodsrefined3.next()) {
+    			CallerMethodID = callingmethodsrefined3.getString("id"); 
+    		//	System.out.println("CALLER METHOD ID: "+ CallerMethodID);
+    		}
+    		String fullcallerins=null; 
+    		CALLERCLASSNAME=RemoveDollar(CALLERCLASSNAME); 
+    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+CallerMethod+"'and methods.classname='"+CALLERCLASSNAME+"'"); 
+    		//while(callingmethodsrefined.next()){
+    		if(callingmethodsrefined.next()) {
+    			CallerMethodID = callingmethodsrefined.getString("id"); 
+    			CALLERCLASSNAME = callingmethodsrefined.getString("classname"); 
+    			CALLERCLASSID = callingmethodsrefined.getString("classid"); 
+    			 fullcallerins = callingmethodsrefined.getString("fullmethod"); 
+
+    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    		}
+    		
+    		
+    		
+    		
+    		
+    	//	System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
+    		if(typeRef!=null) {
+    			String methodCalleeClassName=typeRef.getQualifiedName();
+    		//	System.out.println("METHOD CALLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: "+methodCalleeClassName);
+    			//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    		
+    			methodCalleeClassName=RemoveDollar(methodCalleeClassName); 
+    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+CALLEENAME+"'and methods.classname='"+methodCalleeClassName+"'"); 
+    			//while(callingmethodsrefined.next()){
+    			if(callingmethodsrefined2.next()) {
+    				CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+    				CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+    				CALLEEID = callingmethodsrefined2.getString("id"); 
+    				
+    	    		String fullcalleeins=null; 
+    				 fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+//    				System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    				//System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
+    				
+    				CALLEENAME= invocation.getExecutable().getSignature().toString(); 
+    				String fullcaller= CALLERCLASSNAME+"."+CallerMethod; 
+    				String fullcallee= CALLEECLASSNAME+"."+CALLEENAME; 
+    				methodcalls methodcall= new methodcalls(CALLEEID, fullcalleeins, CALLEECLASSNAME, CALLEECLASSID, CallerMethodID, fullcallerins, CALLERCLASSNAME); 
+    				//
+    				//System.out.println("======>"+methodcall.toString()); 
+    		//		System.out.println("FULL CALLER"+fullcallerins);
+        	//		System.out.println("FULL CALLEE"+fullcalleeins);
+    				if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
+    					
+    					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLERCLASSID+"','" +fullcallerins+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    					
+    					st.executeUpdate(statement);
+    					methodcallsList.add(methodcall); 
+    				}
+    			}
+    		}
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		CtExpression<?> invocationTarget = invocation.getTarget(); 
+    		
+    		boolean  fieldaccesssflag=false; 
+    		while(invocationTarget!=null ) {
+    		//	String CALLEENAMETARGET= invocationTarget.toString(); 
+    		//	System.out.println("TARGET: "+ CALLEENAMETARGET);
+    			String NameCallee=null; 
+    			if(invocationTarget instanceof CtInvocation<?>) {
+    				//System.out.println("Invocation");
+    				
+    				List args = ((CtInvocation) invocationTarget).getArguments(); 
+    				
+    			//	System.out.println("hEYYYYYY"+args.toString());
+    				for(Object elem: args) {
+    				//	System.out.println("hEYYYYYY"+elem.toString());
+    				}
+    				
+    				
+    				
+    				String calleeName = ((CtInvocation) invocationTarget).getExecutable().getSignature();
+    			//	System.out.println("CALLEE NAME"+calleeName);
+    			//	System.out.println(((CtInvocation) invocationTarget).getExecutable());
+    				if((((CtInvocation) invocationTarget).getExecutable().getDeclaringType())!=null) {
+    					 calleeDeclaringTypeName = ((CtInvocation) invocationTarget).getExecutable().getDeclaringType().getQualifiedName(); 
+        		//		System.out.println("CALLEE type"+calleeDeclaringTypeName);
+    				}
+    				
+    				List<CtParameter<?>> myparams = ((CtInvocation) invocationTarget).getExecutable().getParameters(); 
+    				calleeDeclaringTypeName=RemoveDollar(calleeDeclaringTypeName); 
+    				ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleeName+"'and methods.classname='"+calleeDeclaringTypeName+"'"); 
+    				//while(callingmethodsrefined.next()){
+    				 CALLEENAME= invocation.getExecutable().getSignature().toString(); 
+    					
+    					
+    				if(callingmethodsrefined2.next()) {
+    					NameCallee = callingmethodsrefined2.getString("methodname"); 
+    					CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
+    					CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
+    					CALLEEID = callingmethodsrefined2.getString("id"); 
+    					String fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
+    					String fullcallee= CALLEECLASSNAME+"."+calleeName; 
+    					String fullcaller= CALLERCLASSNAME+"."+CallerMethod; 
+    				
+    					System.out.println("CALLEE  NAME:  "+ NameCallee);
+    					System.out.println("CALLEE CLASS NAME:  "+ CALLEECLASSNAME);
+    					System.out.println("CALLEECLASSID:  "+ CALLEECLASSID);
+    					System.out.println("CALLEEID:  "+ CALLEEID);
+    					System.out.println("fullcalleeins:  "+ fullcalleeins);
+    					System.out.println("fullcallee:  "+ fullcallee);
+    					System.out.println("fullcaller:  "+ fullcaller);
+    					System.out.println("\n");
+    					methodcalls methodcall = new methodcalls(CALLEEID, fullcalleeins, CALLEECLASSNAME, CALLEECLASSID, CallerMethodID, fullcallerins, CALLERCLASSNAME); 
+    					//System.out.println(methodcall.toString()); 
+    					if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
+    						String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLERCLASSID+"','" +fullcallerins+"','" +CALLEEID+"','" +NameCallee+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
+    						
+    						st.executeUpdate(statement);
+    						methodcallsList.add(methodcall); 
+    					}
+    					
+    			}
+    			
+    				invocationTarget=((CtInvocation<?>) invocationTarget).getTarget(); 
+    		}	
+    			else if(invocationTarget instanceof CtFieldAccess<?>) {
+    			fieldaccesssflag=true; 
+    			//System.out.println("Field Access");
+    			invocationTarget=((CtFieldAccess<?>) invocationTarget).getTarget(); 
+    		}else  {
+    			
+    			invocationTarget=null; 
+    		}
+    	
+    		}
+    		
+    		
+    		
+    	
+    		
+    		
+    		//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    		
+    			
+
+
+    		
+    		
+//    		ResultSet callingclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLEECLASSNAME+"' "); 
 //    		//while(callingmethodsrefined.next()){
-//    		if(callingmethodsrefined3.next()) {
-//    			CallerMethodID = callingmethodsrefined3.getString("id"); 
-//    		//	System.out.println("CALLER METHOD ID: "+ CallerMethodID);
+//    		if(callingclasses.next()) {
+//    			CALLEECLASSID = callingclasses.getString("id"); 
+//    			System.out.println("CALLEE CLASS ID: "+ CALLEECLASSID);
 //    		}
-//    		String fullcallerins=null; 
-//    		CALLERCLASSNAME=RemoveDollar(CALLERCLASSNAME); 
-//    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+CallerMethod+"'and methods.classname='"+CALLERCLASSNAME+"'"); 
-//    		//while(callingmethodsrefined.next()){
-//    		if(callingmethodsrefined.next()) {
-//    			CallerMethodID = callingmethodsrefined.getString("id"); 
-//    			CALLERCLASSNAME = callingmethodsrefined.getString("classname"); 
-//    			CALLERCLASSID = callingmethodsrefined.getString("classid"); 
-//    			 fullcallerins = callingmethodsrefined.getString("fullmethod"); 
-//
-//    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    		}
-//    		
-//    		
-//    		
-//    		
-//    		
-//    	//	System.out.println("CALLEE METHOD NAME: "+ CALLEENAME);
-//    		if(typeRef!=null) {
-//    			String methodCalleeClassName=typeRef.getQualifiedName();
-//    		//	System.out.println("METHOD CALLEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE: "+methodCalleeClassName);
-//    			//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    		
-//    			methodCalleeClassName=RemoveDollar(methodCalleeClassName); 
-//    			ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+CALLEENAME+"'and methods.classname='"+methodCalleeClassName+"'"); 
+    		
+    		
+
+    		
+//    		if(CALLERCLASSID==null) {
+//    			ResultSet callerclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLERCLASSNAME+"' "); 
 //    			//while(callingmethodsrefined.next()){
-//    			if(callingmethodsrefined2.next()) {
-//    				CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//    				CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
-//    				CALLEEID = callingmethodsrefined2.getString("id"); 
-//    				
-//    	    		String fullcalleeins=null; 
-//    				 fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-////    				System.out.println("CALLEE METHOD ID: "+ CALLEEID);
-//    				//System.out.println("CALLEE CLASS NAME: "+ CALLEECLASSNAME);
-//    				
-//    				CALLEENAME= invocation.getExecutable().getSignature().toString(); 
-//    				String fullcaller= CALLERCLASSNAME+"."+CallerMethod; 
-//    				String fullcallee= CALLEECLASSNAME+"."+CALLEENAME; 
-//    				methodcalls methodcall= new methodcalls(CALLEEID, fullcalleeins, CALLEECLASSNAME, CALLEECLASSID, CallerMethodID, fullcallerins, CALLERCLASSNAME); 
-//    				//
-//    				//System.out.println("======>"+methodcall.toString()); 
-//    		//		System.out.println("FULL CALLER"+fullcallerins);
-//        	//		System.out.println("FULL CALLEE"+fullcalleeins);
-//    				if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
-//    					
-//    					String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLERCLASSID+"','" +fullcallerins+"','" +CALLEEID+"','" +CALLEENAME+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
-//    					
-//    					st.executeUpdate(statement);
-//    					methodcallsList.add(methodcall); 
-//    				}
+//    			if(callerclasses.next()) {
+//    				CALLERCLASSID = callerclasses.getString("id"); 
+//    				System.out.println("CALLEE CLASS ID: "+ CALLERCLASSID);
 //    			}
 //    		}
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		
-//    		CtExpression<?> invocationTarget = invocation.getTarget(); 
-//    		
-//    		boolean  fieldaccesssflag=false; 
-//    		while(invocationTarget!=null ) {
-//    		//	String CALLEENAMETARGET= invocationTarget.toString(); 
-//    		//	System.out.println("TARGET: "+ CALLEENAMETARGET);
-//    			String NameCallee=null; 
-//    			if(invocationTarget instanceof CtInvocation<?>) {
-//    				//System.out.println("Invocation");
-//    				
-//    				List args = ((CtInvocation) invocationTarget).getArguments(); 
-//    				
-//    			//	System.out.println("hEYYYYYY"+args.toString());
-//    				for(Object elem: args) {
-//    				//	System.out.println("hEYYYYYY"+elem.toString());
-//    				}
-//    				
-//    				
-//    				
-//    				String calleeName = ((CtInvocation) invocationTarget).getExecutable().getSignature();
-//    			//	System.out.println("CALLEE NAME"+calleeName);
-//    			//	System.out.println(((CtInvocation) invocationTarget).getExecutable());
-//    				if((((CtInvocation) invocationTarget).getExecutable().getDeclaringType())!=null) {
-//    					 calleeDeclaringTypeName = ((CtInvocation) invocationTarget).getExecutable().getDeclaringType().getQualifiedName(); 
-//        		//		System.out.println("CALLEE type"+calleeDeclaringTypeName);
-//    				}
-//    				
-//    				List<CtParameter<?>> myparams = ((CtInvocation) invocationTarget).getExecutable().getParameters(); 
-//    				calleeDeclaringTypeName=RemoveDollar(calleeDeclaringTypeName); 
-//    				ResultSet callingmethodsrefined2 = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleeName+"'and methods.classname='"+calleeDeclaringTypeName+"'"); 
-//    				//while(callingmethodsrefined.next()){
-//    				 CALLEENAME= invocation.getExecutable().getSignature().toString(); 
-//    					
-//    					
-//    				if(callingmethodsrefined2.next()) {
-//    					NameCallee = callingmethodsrefined2.getString("methodname"); 
-//    					CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
-//    					CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
-//    					CALLEEID = callingmethodsrefined2.getString("id"); 
-//    					String fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-//    					String fullcallee= CALLEECLASSNAME+"."+calleeName; 
-//    					String fullcaller= CALLERCLASSNAME+"."+CallerMethod; 
-//    				
-//    					System.out.println("CALLEE  NAME:  "+ NameCallee);
-//    					System.out.println("CALLEE CLASS NAME:  "+ CALLEECLASSNAME);
-//    					System.out.println("CALLEECLASSID:  "+ CALLEECLASSID);
-//    					System.out.println("CALLEEID:  "+ CALLEEID);
-//    					System.out.println("fullcalleeins:  "+ fullcalleeins);
-//    					System.out.println("fullcallee:  "+ fullcallee);
-//    					System.out.println("fullcaller:  "+ fullcaller);
-//    					System.out.println("\n");
-//    					methodcalls methodcall = new methodcalls(CALLEEID, fullcalleeins, CALLEECLASSNAME, CALLEECLASSID, CallerMethodID, fullcallerins, CALLERCLASSNAME); 
-//    					//System.out.println(methodcall.toString()); 
-//    					if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodID!=null && CALLEEID!=null) {
-//    						String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodID +"','" +CallerMethod+"','" +CALLERCLASSNAME+"','" +CALLERCLASSID+"','" +fullcallerins+"','" +CALLEEID+"','" +NameCallee+"','" +CALLEECLASSNAME+"','" +CALLEECLASSID+"','" +fullcalleeins+"')";
-//    						
-//    						st.executeUpdate(statement);
-//    						methodcallsList.add(methodcall); 
-//    					}
-//    					
-//    			}
-//    			
-//    				invocationTarget=((CtInvocation<?>) invocationTarget).getTarget(); 
-//    		}	
-//    			else if(invocationTarget instanceof CtFieldAccess<?>) {
-//    			fieldaccesssflag=true; 
-//    			//System.out.println("Field Access");
-//    			invocationTarget=((CtFieldAccess<?>) invocationTarget).getTarget(); 
-//    		}else  {
-//    			
-//    			invocationTarget=null; 
-//    		}
-//    	
-//    		}
-//    		
-//    		
-//    		
-//    	
-//    		
-//    		
-//    		//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    		
-//    			
-//
-//
-//    		
-//    		
-////    		ResultSet callingclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLEECLASSNAME+"' "); 
-////    		//while(callingmethodsrefined.next()){
-////    		if(callingclasses.next()) {
-////    			CALLEECLASSID = callingclasses.getString("id"); 
-////    			System.out.println("CALLEE CLASS ID: "+ CALLEECLASSID);
-////    		}
-//    		
-//    		
-//
-//    		
-////    		if(CALLERCLASSID==null) {
-////    			ResultSet callerclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLERCLASSNAME+"' "); 
-////    			//while(callingmethodsrefined.next()){
-////    			if(callerclasses.next()) {
-////    				CALLERCLASSID = callerclasses.getString("id"); 
-////    				System.out.println("CALLEE CLASS ID: "+ CALLERCLASSID);
-////    			}
-////    		}
-//    	
-//    		
-//       		//   }
-//    		 
-//    		//CALLING METHOD NAME 
-//    		//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    	/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
-//    		while(callingmethodsrefinednames.next()){
-//    			callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
-//       		   }*/
-//    		
-//    		
-//    		//CALLING METHOD CLASS 
-//    		//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    	/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
-//    		while(callingmethodsclasses.next()){
-//    			callingmethodclass = callingmethodsclasses.getString("classname"); 
-//       		   }*/
-//    		
-//    		
-//    		//CALLED METHOD ID 
-//    		/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    		while(calledmethodsids.next()){
-//    			calledmethodid = calledmethodsids.getString("id"); 
-//       		   }
-//    		 
-//    		//CALLED METHOD NAME 
-//    		ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    		while(callemethodnames.next()){
-//    			calledmethodname = callemethodnames.getString("methodname"); 
-//       		   }
-//    		
-//    		
-//    		//CALLED METHOD CLASS 
-//    		ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
-//    		while(calledmethodclasses.next()){
-//    			calledmethodclass = calledmethodclasses.getString("classname"); 
-//       		   }
-//    		
-//    		*/
-//    		//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
-//
-//    	    
-//    		
-//
-//    	
-//    		
-//    	}
-//    }
-//
-//
-//
-//
-//
-//    }       		    		
+    	
+    		
+       		//   }
+    		 
+    		//CALLING METHOD NAME 
+    		//ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    	/*	ResultSet callingmethodsrefinednames = st.executeQuery("SELECT methods.id from methods where methods.methodname='"+CalledMethodExecutable+"'"); 
+    		while(callingmethodsrefinednames.next()){
+    			callingmethodsrefinedname = callingmethodsrefinednames.getString("methodname"); 
+       		   }*/
+    		
+    		
+    		//CALLING METHOD CLASS 
+    		//ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    	/*	ResultSet callingmethodsclasses = st.executeQuery("SELECT methods.classname from methods where methods.methodname='"+  ClassQualifiedName +"'"); 
+    		while(callingmethodsclasses.next()){
+    			callingmethodclass = callingmethodsclasses.getString("classname"); 
+       		   }*/
+    		
+    		
+    		//CALLED METHOD ID 
+    		/*ResultSet calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    		while(calledmethodsids.next()){
+    			calledmethodid = calledmethodsids.getString("id"); 
+       		   }
+    		 
+    		//CALLED METHOD NAME 
+    		ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    		while(callemethodnames.next()){
+    			calledmethodname = callemethodnames.getString("methodname"); 
+       		   }
+    		
+    		
+    		//CALLED METHOD CLASS 
+    		ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
+    		while(calledmethodclasses.next()){
+    			calledmethodclass = calledmethodclasses.getString("classname"); 
+       		   }
+    		
+    		*/
+    		//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
+
+    	    
+    		
+
+    	
+    		
+    	}
+    }
+
+
+
+
+
+    }       		    		
 /////////////////*********************************************************************************************************************************************************************************/	
 /////////////////*********************************************************************************************************************************************************************************/	
 /////////////////*********************************************************************************************************************************************************************************/   	
@@ -1834,492 +1889,492 @@ FileReader fileReader = new FileReader(file);
 BufferedReader bufferedReader = new BufferedReader(fileReader);
 StringBuffer stringBuffer = new StringBuffer();
 String line;
-//try {
-//	
-//	List<methodcallsexecuted> methodcallsexecutedlist= new ArrayList<methodcallsexecuted>(); 
-//
-//	while ((line = bufferedReader.readLine()) != null) {
-//		
-//		
-//		
-//		String methodsCalling= line.substring(1, line.indexOf("---")); 	
-//		String ClassFROM=methodsCalling.substring(0, methodsCalling.lastIndexOf("."));
-//		String MethodFROM=methodsCalling.substring(methodsCalling.lastIndexOf(".")+1, methodsCalling.indexOf(")")+1);
-//		String returnFROM= methodsCalling.substring(methodsCalling.lastIndexOf(")")+1, methodsCalling.length());
-//		MethodFROM=MethodFROM.replace("/", "."); 
-////		MethodFROM=MethodFROM.replace(";", ","); 
-////		  int endIndex = MethodFROM.lastIndexOf(",");
-////		    if (endIndex != -1)  
-////		    {
-////		    	MethodFROM = MethodFROM.substring(0, endIndex)+")"; // not forgot to put check if(endIndex != -1)
-////		    }
-//		//MethodFROM=MethodFROM.replace("Lde", "de"); 
-//		MethodFROM=MethodFROM.replace("Ljava", "java"); 
-//		//MethodFROM=MethodFROM.replace("-", ""); 
-//		String methodsCalled=line.substring(line.lastIndexOf("---")+5, line.length()-1); 			
-//		String ClassTO=methodsCalled.substring(0, methodsCalled.lastIndexOf("."));
-//		String MethodTO=methodsCalled.substring(methodsCalled.lastIndexOf(".")+1, methodsCalled.indexOf(")")+1); 
-//		String returnTO= methodsCalled.substring(methodsCalled.lastIndexOf(")")+1, methodsCalled.length());
-//		MethodTO=MethodTO.replace("/", "."); 
-//		MethodTO=MethodTO.replace(";", ","); 
-//		
-////		   endIndex = MethodTO.lastIndexOf(",");
-////		    if (endIndex != -1)  
-////		    {
-////		    	MethodTO = MethodTO.substring(0, endIndex)+")"; // not forgot to put check if(endIndex != -1)
-////		    }
-//		//MethodTO=MethodTO.substring(0, MethodTO.lastIndexOf(",")-2)+")"; 
-//		MethodTO=MethodTO.replace("Lde", "de"); 
-//		MethodTO=MethodTO.replace("Ljava", "java"); 
-//		//MethodTO=MethodTO.replace("-", "");
-//		stringBuffer.append("\n");
-//		/*stringBuffer2.append("(SELECT MethodsID from Methods \r\n" + 
-//				"INNER JOIN Classes \r\n" + 
-//				"ON Classes.ClassID=Methods.ClassID\r\n" + 
-//				"where Methods.MethodName='"+MethodTO+"'  AND Classes.ClassName='"+ClassTO+"')),"); 
-//		stringBuffer2.append("\n");*/
-//		// 
-//		//
-//		
-//		//System.out.println("CLASS FROM: "+ClassFROM+"        METHOD FROM       "+ MethodFROM+ "       CLASS TO       "+ ClassTO+"       Method To       "+MethodTO); 
-//		MethodFROM=RewriteFullMethod(MethodFROM); 
-//		MethodTO=RewriteFullMethod(MethodTO); 
-//		String callingmethodid=null; 
-//		String callingmethodsrefinedid=null; 
-//		String callingmethodsrefinedname=null; 
-//		String callingmethodclass=null; 
-//		String calledmethodid=null; 
-//		String calledmethodname=null; 
-//		String calledmethodclass=null; 
-//		String classFROMid=null; 
-//		String classTOid=null; 
-//		String ClassFROMName=null; 
-//		 String ClassTOName=null; 
-//		 String ParameterClassID=null; 
-//		 String ClassFROMidParamater=null; 
-//		 String ClassFROMNameParamater=null; 
-//		//get rid of everything that comes after the $ sign 
-//		
-//				
-//				
-////		String MethodFROMTransformed= MethodFROM.substring(0, MethodFROM.indexOf("(")); 
-////		String MethodTOTransformed= MethodTO.substring(0, MethodTO.indexOf("(")); 
-//		//CALLING METHOD ID 
-//		
-//		if(ClassFROM.contains("$")) {
-//			//ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
-//		//	System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
-//			ClassFROM=RewriteFullMethodCallExecutedRemoveDollars(ClassFROM); 
-//
-//			System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
-//
+try {
+	
+	List<methodcallsexecuted> methodcallsexecutedlist= new ArrayList<methodcallsexecuted>(); 
+
+	while ((line = bufferedReader.readLine()) != null) {
+		
+		
+		
+		String methodsCalling= line.substring(1, line.indexOf("---")); 	
+		String ClassFROM=methodsCalling.substring(0, methodsCalling.lastIndexOf("."));
+		String MethodFROM=methodsCalling.substring(methodsCalling.lastIndexOf(".")+1, methodsCalling.indexOf(")")+1);
+		String returnFROM= methodsCalling.substring(methodsCalling.lastIndexOf(")")+1, methodsCalling.length());
+		MethodFROM=MethodFROM.replace("/", "."); 
+//		MethodFROM=MethodFROM.replace(";", ","); 
+//		  int endIndex = MethodFROM.lastIndexOf(",");
+//		    if (endIndex != -1)  
+//		    {
+//		    	MethodFROM = MethodFROM.substring(0, endIndex)+")"; // not forgot to put check if(endIndex != -1)
+//		    }
+		//MethodFROM=MethodFROM.replace("Lde", "de"); 
+		MethodFROM=MethodFROM.replace("Ljava", "java"); 
+		//MethodFROM=MethodFROM.replace("-", ""); 
+		String methodsCalled=line.substring(line.lastIndexOf("---")+5, line.length()-1); 			
+		String ClassTO=methodsCalled.substring(0, methodsCalled.lastIndexOf("."));
+		String MethodTO=methodsCalled.substring(methodsCalled.lastIndexOf(".")+1, methodsCalled.indexOf(")")+1); 
+		String returnTO= methodsCalled.substring(methodsCalled.lastIndexOf(")")+1, methodsCalled.length());
+		MethodTO=MethodTO.replace("/", "."); 
+		MethodTO=MethodTO.replace(";", ","); 
+		
+//		   endIndex = MethodTO.lastIndexOf(",");
+//		    if (endIndex != -1)  
+//		    {
+//		    	MethodTO = MethodTO.substring(0, endIndex)+")"; // not forgot to put check if(endIndex != -1)
+//		    }
+		//MethodTO=MethodTO.substring(0, MethodTO.lastIndexOf(",")-2)+")"; 
+		MethodTO=MethodTO.replace("Lde", "de"); 
+		MethodTO=MethodTO.replace("Ljava", "java"); 
+		//MethodTO=MethodTO.replace("-", "");
+		stringBuffer.append("\n");
+		/*stringBuffer2.append("(SELECT MethodsID from Methods \r\n" + 
+				"INNER JOIN Classes \r\n" + 
+				"ON Classes.ClassID=Methods.ClassID\r\n" + 
+				"where Methods.MethodName='"+MethodTO+"'  AND Classes.ClassName='"+ClassTO+"')),"); 
+		stringBuffer2.append("\n");*/
+		// 
+		//
+		
+		//System.out.println("CLASS FROM: "+ClassFROM+"        METHOD FROM       "+ MethodFROM+ "       CLASS TO       "+ ClassTO+"       Method To       "+MethodTO); 
+		MethodFROM=RewriteFullMethod(MethodFROM); 
+		MethodTO=RewriteFullMethod(MethodTO); 
+		String callingmethodid=null; 
+		String callingmethodsrefinedid=null; 
+		String callingmethodsrefinedname=null; 
+		String callingmethodclass=null; 
+		String calledmethodid=null; 
+		String calledmethodname=null; 
+		String calledmethodclass=null; 
+		String classFROMid=null; 
+		String classTOid=null; 
+		String ClassFROMName=null; 
+		 String ClassTOName=null; 
+		 String ParameterClassID=null; 
+		 String ClassFROMidParamater=null; 
+		 String ClassFROMNameParamater=null; 
+		//get rid of everything that comes after the $ sign 
+		
+				
+				
+//		String MethodFROMTransformed= MethodFROM.substring(0, MethodFROM.indexOf("(")); 
+//		String MethodTOTransformed= MethodTO.substring(0, MethodTO.indexOf("(")); 
+		//CALLING METHOD ID 
+		
+		if(ClassFROM.contains("$")) {
+			//ClassFROM=ClassFROM.substring(0, ClassFROM.indexOf("$")); 
+		//	System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
+			ClassFROM=RewriteFullMethodCallExecutedRemoveDollars(ClassFROM); 
+
+			System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
+
+		}
+		if(ClassTO.contains("$")) {
+			//ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
+		//	System.out.println("ClassTO:::::::::::::::::::: "+ ClassTO);
+
+			ClassTO=RewriteFullMethodCallExecutedRemoveDollars(ClassTO); 
+
+
+			System.out.println("ClassTO:::::::::::::::::::: "+ ClassTO);
+		}
+//		if(MethodTOTransformed.equals("-clinit-")) {
+//			MethodTOTransformed="-init-"; 
 //		}
-//		if(ClassTO.contains("$")) {
-//			//ClassTO=ClassTO.substring(0, ClassTO.indexOf("$")); 
-//		//	System.out.println("ClassTO:::::::::::::::::::: "+ ClassTO);
-//
-//			ClassTO=RewriteFullMethodCallExecutedRemoveDollars(ClassTO); 
-//
-//
-//			System.out.println("ClassTO:::::::::::::::::::: "+ ClassTO);
+//		if(MethodFROMTransformed.equals("-clinit-")) {
+//			MethodFROMTransformed="-init-"; 
 //		}
-////		if(MethodTOTransformed.equals("-clinit-")) {
-////			MethodTOTransformed="-init-"; 
-////		}
-////		if(MethodFROMTransformed.equals("-clinit-")) {
-////			MethodFROMTransformed="-init-"; 
-////		}
-//		MethodTO= MethodTO.replaceAll("-clinit-", "-init"); 
-//		MethodFROM= MethodFROM.replaceAll("-clinit-", "-init"); 
-//		 String regEx = "[A-Z]";
-//	    Pattern pattern = Pattern.compile(regEx);
-//	 
-//	  
-//	    Matcher matcher = pattern.matcher(MethodFROM);
-//
-//		
-//
-//		ClassFROM=ReplaceLnetLjava(ClassFROM); 
-//		ClassFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassFROM);
-//
-//		ClassTO=ReplaceLnetLjava(ClassTO);
-//		ClassTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassTO);
-//		
-//		MethodFROM=ReplaceLnetLjava(MethodFROM);
-//		MethodTO=ReplaceLnetLjava(MethodTO);
-//		
-//	 
-//		MethodFROM=MethodFROM.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
-//		MethodFROM=MethodFROM.replaceAll("\\(I\\)", "\\(int\\)"); 
-//		MethodFROM=MethodFROM.replaceAll("\\$\\(", "\\("); 
-//		MethodFROM=MethodFROM.replaceAll("II", "int,int,"); 
-//		MethodFROM=MethodFROM.replaceAll("ZZ", "boolean,boolean,"); 
-//		MethodFROM=MethodFROM.replaceAll(",\\)", "\\)"); 
-//		MethodFROM=MethodFROM.replaceAll(",I\\)", ",int\\)"); 
-//		MethodFROM=MethodFROM.replaceAll("Cint", "char,int"); 
-//		MethodFROM=MethodFROM.replaceAll("Ijava", "int,java"); 
-//		MethodTO=MethodTO.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
-//		MethodTO=MethodTO.replaceAll("\\(I\\)", "\\(int\\)"); 
-//		MethodTO=MethodTO.replaceAll("\\$\\(", "\\("); 
-//		MethodTO=MethodTO.replaceAll("II", "int,int,"); 
-//		MethodTO=MethodTO.replaceAll("ZZ", "boolean,boolean,"); 
-//		MethodTO=MethodTO.replaceAll(",\\)", "\\)"); 
-//		MethodTO=MethodTO.replaceAll(",I\\)", ",int\\)"); 
-//		MethodTO=MethodTO.replaceAll("Cint", "char,int"); 
-//		MethodTO=MethodTO.replaceAll("Ijava", "int,java"); 
-//		MethodFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(MethodFROM);
-//		MethodTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(MethodTO);
-//		
-//		
-//		   System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
-//			System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassTO);
-//			System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodFROM);
-//			System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodTO);
-//			
-//	//	counter ++; 
-//		//CALLING METHOD ID 
-//		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+MethodFROM+"' and methods.classname='"+ClassFROM+"'"); 
-//		while(callingmethodsrefined.next()){
-//			callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
-//			callingmethodsrefinedname = callingmethodsrefined.getString("methodname"); 
-//		}
-//		 
-//		
-//		
-//		
-//		//CALLING METHOD CLASS 
-//		ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassFROM+"'"); 
-//		while(callingmethodsclasses.next()){
-//			callingmethodclass = callingmethodsclasses.getString("classname"); 
+		MethodTO= MethodTO.replaceAll("-clinit-", "-init"); 
+		MethodFROM= MethodFROM.replaceAll("-clinit-", "-init"); 
+		 String regEx = "[A-Z]";
+	    Pattern pattern = Pattern.compile(regEx);
+	 
+	  
+	    Matcher matcher = pattern.matcher(MethodFROM);
+
+		
+
+		ClassFROM=ReplaceLnetLjava(ClassFROM); 
+		ClassFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassFROM);
+
+		ClassTO=ReplaceLnetLjava(ClassTO);
+		ClassTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassTO);
+		
+		MethodFROM=ReplaceLnetLjava(MethodFROM);
+		MethodTO=ReplaceLnetLjava(MethodTO);
+		
+	 
+		MethodFROM=MethodFROM.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
+		MethodFROM=MethodFROM.replaceAll("\\(I\\)", "\\(int\\)"); 
+		MethodFROM=MethodFROM.replaceAll("\\$\\(", "\\("); 
+		MethodFROM=MethodFROM.replaceAll("II", "int,int,"); 
+		MethodFROM=MethodFROM.replaceAll("ZZ", "boolean,boolean,"); 
+		MethodFROM=MethodFROM.replaceAll(",\\)", "\\)"); 
+		MethodFROM=MethodFROM.replaceAll(",I\\)", ",int\\)"); 
+		MethodFROM=MethodFROM.replaceAll("Cint", "char,int"); 
+		MethodFROM=MethodFROM.replaceAll("Ijava", "int,java"); 
+		MethodTO=MethodTO.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
+		MethodTO=MethodTO.replaceAll("\\(I\\)", "\\(int\\)"); 
+		MethodTO=MethodTO.replaceAll("\\$\\(", "\\("); 
+		MethodTO=MethodTO.replaceAll("II", "int,int,"); 
+		MethodTO=MethodTO.replaceAll("ZZ", "boolean,boolean,"); 
+		MethodTO=MethodTO.replaceAll(",\\)", "\\)"); 
+		MethodTO=MethodTO.replaceAll(",I\\)", ",int\\)"); 
+		MethodTO=MethodTO.replaceAll("Cint", "char,int"); 
+		MethodTO=MethodTO.replaceAll("Ijava", "int,java"); 
+		MethodFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(MethodFROM);
+		MethodTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(MethodTO);
+		
+		
+		   System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
+			System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassTO);
+			System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodFROM);
+			System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodTO);
+			
+	//	counter ++; 
+		//CALLING METHOD ID 
+		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+MethodFROM+"' and methods.classname='"+ClassFROM+"'"); 
+		while(callingmethodsrefined.next()){
+			callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
+			callingmethodsrefinedname = callingmethodsrefined.getString("methodname"); 
+		}
+		 
+		
+		
+		
+		//CALLING METHOD CLASS 
+		ResultSet callingmethodsclasses = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassFROM+"'"); 
+		while(callingmethodsclasses.next()){
+			callingmethodclass = callingmethodsclasses.getString("classname"); 
+			   }
+		
+		MethodTO=MethodTO.replaceAll("Lantlr", "antlr"); 
+		MethodFROM=MethodFROM.replaceAll("Lantlr", "antlr"); 
+		//CALLED METHOD ID 
+		ResultSet calledmethodsids= st.executeQuery("SELECT methods.* from methods  where methods.methodname='"+MethodTO+"'and methods.classname='"+ClassTO+"'"); 
+		while(calledmethodsids.next()){
+			calledmethodid = calledmethodsids.getString("id"); 
+			calledmethodname = calledmethodsids.getString("methodname"); 
+			   }
+		 
+		//CALLED METHOD NAME 
+//		ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodTOTransformed+"'"); 
+//		while(callemethodnames.next()){
+//			calledmethodname = callemethodnames.getString("methodname"); 
 //			   }
-//		
-//		MethodTO=MethodTO.replaceAll("Lantlr", "antlr"); 
-//		MethodFROM=MethodFROM.replaceAll("Lantlr", "antlr"); 
-//		//CALLED METHOD ID 
-//		ResultSet calledmethodsids= st.executeQuery("SELECT methods.* from methods  where methods.methodname='"+MethodTO+"'and methods.classname='"+ClassTO+"'"); 
-//		while(calledmethodsids.next()){
-//			calledmethodid = calledmethodsids.getString("id"); 
-//			calledmethodname = calledmethodsids.getString("methodname"); 
-//			   }
-//		 
-//		//CALLED METHOD NAME 
-////		ResultSet callemethodnames = st.executeQuery("SELECT methods.methodname from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodTOTransformed+"'"); 
-////		while(callemethodnames.next()){
-////			calledmethodname = callemethodnames.getString("methodname"); 
-////			   }
-//		
-//		
-//		//CALLED METHOD CLASS 
-//		ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassTO+"'"); 
-//		while(calledmethodclasses.next()){
-//			calledmethodclass = calledmethodclasses.getString("classname"); 
-//			   }
-//		
-//		
-//		
-//		
-//
-//		
-//		
-//		
-//		
-//				
-//				
-//				
-//				
-//		
-//		//System.out.println("CLASS FROM: "+ClassFROM+"        METHOD FROM       "+ MethodFROM+ "       CLASS TO       "+ ClassTO+"       Method To       "+MethodTO+"calling merthod refined id    "+ callingmethodsrefinedid+ "called method id    "+ calledmethodid); 
-//
-//		methodcallsexecuted mce= new methodcallsexecuted(callingmethodsrefinedid, MethodFROM, ClassFROM, calledmethodid, MethodTO, ClassTO); 
-//		System.out.println(mce.toString()); 	
-//		if(mce.contains(methodcallsexecutedlist, mce)==false) {
-//			if(callingmethodsrefinedid!=null && calledmethodid!=null ) {
-//				String fullcaller= ClassFROM+"."+MethodFROM; 
-//				String fullcallee= ClassTO+"."+MethodTO; 
-//				String FullMethodFROM= ClassFROM+"."+MethodFROM; 
-//			    String FullMethodTO= ClassTO+"."+MethodTO; 
-//			    fullcaller=RewriteFullMethod(FullMethodFROM); 
-//			    fullcallee=RewriteFullMethod(FullMethodTO); 
-//				String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`, `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+fullcaller+"','"+calledmethodid +"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
-//				st.executeUpdate(statement);
-//				methodcallsexecutedlist.add(mce); 
-//				
-//				System.out.println("LINE INSERTED=======>"+ line);
-//			}
-//			else {
-//				System.out.println("LINE THAT COULD NOT BE INSERTED=======>"+ line);
-//				//if the methods table does not contain a method call that is obtained from parsing the log file, then I am inserting this row within the methods table
-//				   //This is for METHOD FROM 
-//				ClassFROM=ReplaceLnetLjava(ClassFROM); 
-//				ClassFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassFROM);
-//
-//				ClassTO=ReplaceLnetLjava(ClassTO);
-//				ClassTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassTO);
-//				MethodFROM=ReplaceLnetLjava(MethodFROM);
-//				MethodTO=ReplaceLnetLjava(MethodTO);
-//				
-//			  
-//				MethodFROM=MethodFROM.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
-//				MethodFROM=MethodFROM.replaceAll("\\(I\\)", "\\(int\\)"); 
-//				MethodFROM=MethodFROM.replaceAll("$\\(", "\\("); 
-//				MethodFROM=MethodFROM.replaceAll("II", "int,int,"); 
-//				MethodFROM=MethodFROM.replaceAll("ZZ", "boolean,boolean,"); 
-//				MethodFROM=MethodFROM.replaceAll(",\\)", "\\)"); 
-//				MethodFROM=MethodFROM.replaceAll(",I\\)", ",int\\)"); 
-//				MethodFROM=MethodFROM.replaceAll("IZ", "int,boolean"); 
-//				MethodFROM=MethodFROM.replaceAll("\\(J\\)", "\\(long\\)"); 
-//				MethodFROM=MethodFROM.replaceAll(",J\\)", ",long\\)"); 
-//				
-//				
-//				MethodTO=MethodTO.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
-//				MethodTO=MethodTO.replaceAll("\\(I\\)", "\\(int\\)"); 
-//				MethodTO=MethodTO.replaceAll("$\\(", "\\("); 
-//				MethodTO=MethodTO.replaceAll("II", "int,int,"); 
-//				MethodTO=MethodTO.replaceAll("ZZ", "boolean,boolean,"); 
-//				MethodTO=MethodTO.replaceAll(",\\)", "\\)"); 
-//				MethodTO=MethodTO.replaceAll(",I\\)", ",int\\)"); 
-//				MethodTO=MethodTO.replaceAll("IZ", "int,boolean"); 
-//				MethodTO=MethodTO.replaceAll("\\(J\\)", "\\(long\\)"); 
-//				MethodTO=MethodTO.replaceAll(",J\\)", ",long\\)"); 
-//				
-//				
-//				  System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
-//					System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassTO);
-//					System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodFROM);
-//					System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodTO);
-//				//calculate class id FROM 
-//					ResultSet classidsFROM = st.executeQuery("SELECT classes.id from classes where classes.classname ='"+ClassFROM+"'"); 
-//					while(classidsFROM.next()){
-//						classFROMid = classidsFROM.getString("id"); 
-//						   }
-//					
-//					//calculate class classname FROM 
-//					ResultSet classnamesFROM = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassFROM+"'"); 
-//					while(classnamesFROM.next()){
-//						ClassFROMName = classnamesFROM.getString("classname"); 
-//						   }
-//					
-//					
-//					//calculate class classname FROM 
-//					ResultSet paramclassids = st.executeQuery("SELECT classes.* from classes where classes.id ='"+returnFROM+"'"); 
-//					while(paramclassids.next()){
-//						ClassFROMidParamater = paramclassids.getString("id"); 
-//						ClassFROMNameParamater = paramclassids.getString("classname"); 
-//						   }
-//					
-//					
-//				//	String MethodFROMRefined= MethodFROMTransformed.substring(0, MethodFROMTransformed.indexOf("(")); 
-//					String MethodFROMRefined= MethodFROM; 
-//					String MethodFROMAbbreviation = ClassFROM+"."+MethodFROM; 
-//					if(callingmethodsrefinedid==null && classFROMid!=null) {
-//						String fullmeth=ClassFROM+"."+MethodFROM; 
-//						fullmeth=RewriteFullMethod(fullmeth); 
-//						MethodFROM=ReplaceLnetLjava(MethodFROM);
-//						MethodFROMRefined=ReplaceLnetLjava(MethodFROMRefined);
-//						MethodFROMAbbreviation=	ReplaceLnetLjava(MethodFROMAbbreviation);
-//						fullmeth=ReplaceLnetLjava(fullmeth);
-//						ClassFROM=ReplaceLnetLjava(ClassFROM);
-//						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`, `classid`, `classname`) VALUES ('"+MethodFROM +"','" +MethodFROMRefined+"','" +MethodFROMAbbreviation+"','" +fullmeth+"','" +classFROMid+"','" +ClassFROM+"')");
-//		    		
-//						//RECALCULATION PHASE: CALLING METHOD ID 
-//						 callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodFROM+"' and classes.classname='"+ClassFROM+"'"); 
-//						while(callingmethodsrefined.next()){
-//							callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
-//					
-//						}
-//						
-//						String par= transformstring(returnFROM); 
-//						 regEx = "\\(([A-Z])\\)";
-//					     pattern = Pattern.compile(regEx);
-//					     matcher = pattern.matcher(par);
-//					    while (matcher.find()) {
-//					    	par=par.replaceAll("Z", "boolean"); 
-//					    	par=par.replaceAll("B", "byte"); 
-//					    	par=par.replaceAll("I", "int"); 
-//					    	par=par.replaceAll("J", "long"); 
-//					    	par=par.replaceAll("S", "short"); 
-//					    }
-//						regEx = "\\(([A-Z][A-Z]+)\\)";
-//					     pattern = Pattern.compile(regEx);
-//					     matcher = pattern.matcher(par);
-//					    while (matcher.find()) {
-//					    
-//					    	par=par.replaceAll("Z", "boolean,"); 
-//					    	par=par.replaceAll("B", "byte,"); 
-//					    	par=par.replaceAll("I", "int,"); 
-//					    	par=par.replaceAll("J", "long,"); 
-//					    	par=par.replaceAll("S", "short,"); 
-//					    	par=par.substring(0, par.lastIndexOf(",")); 
-//					    	par=par+")"; 
-//					    }
-//					System.out.println("PARAM"+par);
-//						 if(par.contains("net.sourceforge.ganttproject")) {//ignore the basic data types, only insert the parameters thaht have classes as data types 
-//							 
-//							 ResultSet ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+par+"'"); 
-//								while(ParameterClassIDs.next()){
-//									 ParameterClassID = ParameterClassIDs.getString("id"); 
-//									   }
-//							 
-//					//	System.out.println("COUNYER========> "+counter);	
-//						if(ParameterClassID!=null)
-//						st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+par +"','" +par +"','"+ParameterClassID+"','"+ClassFROMidParamater +"','"+ClassFROMNameParamater+"','" +callingmethodsrefinedid+"','" +MethodFROM+"','" +1+"')");
-//						 }
-//						String[] params = ExtractParams(MethodFROM); 
-//						 //insert parameters that were retrieved from the log file 
-//					//	counter++; 
-//						//System.out.println("HERE IS THE LINE =======>"+line+ counter);
-//						for(String p: params) {
-//							 regEx = "\\(([A-Z])\\)";
-//						     pattern = Pattern.compile(regEx);
-//						     matcher = pattern.matcher(par);
-//						    while (matcher.find()) {
-//						    	p=p.replaceAll("Z", "boolean"); 
-//						    	p=p.replaceAll("B", "byte"); 
-//						    	p=p.replaceAll("I", "int"); 
-//						    	p=p.replaceAll("J", "long"); 
-//						    	p=p.replaceAll("S", "short"); 
-//						    }
-//							regEx = "\\(([A-Z][A-Z]+)\\)";
-//						     pattern = Pattern.compile(regEx);
-//						     matcher = pattern.matcher(par);
-//						    while (matcher.find()) {
-//						    
-//						    	p=p.replaceAll("Z", "boolean,"); 
-//						    	p=p.replaceAll("B", "byte,"); 
-//						    	p=p.replaceAll("I", "int,"); 
-//						    	p=p.replaceAll("J", "long,"); 
-//						    	p=p.replaceAll("S", "short,"); 
-//						    	p=p.substring(0, p.lastIndexOf(",")); 
-//						    	p=p+")"; 
-//						    }
-//						
-//							System.out.println("HERE IS A PARAM==================================================================>"+p); 
-//							ResultSet ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+p+"'"); 
-//							while(ParameterClassIDs.next()){
-//								 ParameterClassID = ParameterClassIDs.getString("id"); 
-//								   }
-//							
-//							
-//							if(p.contains("net.sourceforge.ganttproject") && p!=null && p.equals("")==false && classFROMid!=null && ParameterClassID!=null) {
-//								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+p +"','" +p +"','"+ParameterClassID+"','"+classFROMid +"','"+ClassFROMName+"','" +callingmethodsrefinedid+"','" +MethodFROM+"','" +0+"')");
-//
-//							}
-//					}
-//				
-//				//		counter++; 
-//					
-//					
-//					//METHOD TO 
-//					//calculate class id TO 
-//					ResultSet classidsTO = st.executeQuery("SELECT classes.id from classes where classes.classname ='"+ClassTO+"'"); 
-//					while(classidsTO.next()){
-//						classTOid = classidsTO.getString("id"); 
-//						   }
-//					
-//					//String MethodTORefined= MethodTOTransformed.substring(0, MethodTOTransformed.indexOf("(")); 
-//					String MethodTORefined= MethodTO;
-//					String MethodTOAbbreviation = ClassTO+"."+MethodTORefined; 
-//					String FullMethTO= RewriteFullMethod(MethodTOAbbreviation); 
-//					if(calledmethodid==null  && classTOid!=null) {
-//						MethodTO=ReplaceLnetLjava(MethodTO);
-//						MethodTORefined=ReplaceLnetLjava(MethodTORefined);
-//						MethodTOAbbreviation=ReplaceLnetLjava(MethodTOAbbreviation);
-//						FullMethTO=ReplaceLnetLjava(FullMethTO);
-//						ClassTO=ReplaceLnetLjava(ClassTO);
-//						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
-//
-//						//RECALCULATION PHASE: CALLED METHOD ID 
-//						 calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodTO+"'and classes.classname='"+ClassTO+"'"); 
-//						while(calledmethodsids.next()){
-//							calledmethodid = calledmethodsids.getString("id"); 
-//							   }
-//						
-//						
-//						
-//						//calculate class classname FROM 
-//						ResultSet classnamesTO = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassTO+"'"); 
-//						
-//						while(classnamesTO.next()){
-//							ClassTOName = classnamesTO.getString("classname"); 
-//							   }
-//						 par= transformstring(returnTO); 
-//						 //insert return value within the parameters table 
-//						  ResultSet ParameterClassIDs = st.executeQuery("SELECT classes.id from classes where classes.classname='"+par+"'"); 
-//							while(ParameterClassIDs.next()){
-//								 ParameterClassID = ParameterClassIDs.getString("id"); 
-//								   }
-//						 if(par.contains("net.sourceforge.ganttproject") && ParameterClassID!=null) {//ignore the basic data types, only insert the parameters thaht have classes as data types 
-//								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+par +"','" +par +"','"+ParameterClassID+"','"+classTOid +"','"+ClassTOName+"','" +calledmethodid+"','" +MethodTO+"','" +1+"')");
-//
-//						 }
-//						 
-//						 //insert parameters that were retrieved from the log file 
-//						 params = ExtractParams(MethodTO); 
-//						for(String p: params) {
-//							System.out.println("HERE IS A PARAM==================================================================>"+p); 
-//							 ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+p+"'"); 
-//							while(ParameterClassIDs.next()){
-//								 ParameterClassID = ParameterClassIDs.getString("id"); 
-//								   }
-//							
-//							if(p.contains("net.sourceforge.ganttproject")&& p!=null && p.equals("")==false && classTOid!=null && ParameterClassID!=null) {
-//								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+p +"','" +p +"','"+ParameterClassID+"','"+classTOid +"','"+ClassTOName+"','" +calledmethodid+"','" +MethodTO+"','" +0+"')");
-//
-//							}
-//						}
-//					
-//					}
-//				
-//					
-//					
-//					
-//					/*
-//					//RECALCULATION PHASE: CALLING METHOD ID 
-//					 callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodnamerefined='"+MethodFROMTransformed+"' and classes.classname='"+ClassFROM+"'"); 
-//					while(callingmethodsrefined.next()){
-//						callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
-//				
-//					}
-//					//RECALCULATION PHASE: CALLED METHOD ID 
-//					 calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodnamerefined='"+MethodTOTransformed+"'and classes.classname='"+ClassTO+"'"); 
-//					while(calledmethodsids.next()){
-//						calledmethodid = calledmethodsids.getString("id"); 
-//						   }*/
-//					
-//					//insert into methodcallsexecuted table 
-//					String fullcaller= ClassFROM+"."+MethodFROM; 
-//					String fullcallee= ClassTO+"."+MethodTO; 
-//					String FullMethodFROM= ClassFROM+"."+MethodFROM; 
-//				    String FullMethodTO= ClassTO+"."+MethodTO; 
-//				    fullcaller=RewriteFullMethod(FullMethodFROM); 
-//				    fullcallee=RewriteFullMethod(FullMethodTO); 
-//					String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+fullcaller+"','" +calledmethodid +"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
-//					st.executeUpdate(statement);
-//					methodcallsexecutedlist.add(mce); 	
-//					
-//					
-//				//insert into methodcalls table as well 
-////					String statement2 = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+calledmethodid +"','" +MethodTO+"','" +ClassTO +"')";		
-////					st.executeUpdate(statement2);
-//				
-//					
-//					
-//					
-//			}
-//		}
-//			
-//		
-//		
-//		
-//		
-//		
-//		}	
-//		
-//	}
-//} catch (IOException e) {
-//	// TODO Auto-generated catch block
-//	e.printStackTrace();
-//}
+		
+		
+		//CALLED METHOD CLASS 
+		ResultSet calledmethodclasses = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassTO+"'"); 
+		while(calledmethodclasses.next()){
+			calledmethodclass = calledmethodclasses.getString("classname"); 
+			   }
+		
+		
+		
+		
+
+		
+		
+		
+		
+				
+				
+				
+				
+		
+		//System.out.println("CLASS FROM: "+ClassFROM+"        METHOD FROM       "+ MethodFROM+ "       CLASS TO       "+ ClassTO+"       Method To       "+MethodTO+"calling merthod refined id    "+ callingmethodsrefinedid+ "called method id    "+ calledmethodid); 
+
+		methodcallsexecuted mce= new methodcallsexecuted(callingmethodsrefinedid, MethodFROM, ClassFROM, calledmethodid, MethodTO, ClassTO); 
+		System.out.println(mce.toString()); 	
+		if(mce.contains(methodcallsexecutedlist, mce)==false) {
+			if(callingmethodsrefinedid!=null && calledmethodid!=null ) {
+				String fullcaller= ClassFROM+"."+MethodFROM; 
+				String fullcallee= ClassTO+"."+MethodTO; 
+				String FullMethodFROM= ClassFROM+"."+MethodFROM; 
+			    String FullMethodTO= ClassTO+"."+MethodTO; 
+			    fullcaller=RewriteFullMethod(FullMethodFROM); 
+			    fullcallee=RewriteFullMethod(FullMethodTO); 
+				String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`, `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+fullcaller+"','"+calledmethodid +"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
+				st.executeUpdate(statement);
+				methodcallsexecutedlist.add(mce); 
+				
+				System.out.println("LINE INSERTED=======>"+ line);
+			}
+			else {
+				System.out.println("LINE THAT COULD NOT BE INSERTED=======>"+ line);
+				//if the methods table does not contain a method call that is obtained from parsing the log file, then I am inserting this row within the methods table
+				   //This is for METHOD FROM 
+				ClassFROM=ReplaceLnetLjava(ClassFROM); 
+				ClassFROM=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassFROM);
+
+				ClassTO=ReplaceLnetLjava(ClassTO);
+				ClassTO=RewriteFullMethodCallExecutedRemoveDollarsPushDollar(ClassTO);
+				MethodFROM=ReplaceLnetLjava(MethodFROM);
+				MethodTO=ReplaceLnetLjava(MethodTO);
+				
+			  
+				MethodFROM=MethodFROM.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
+				MethodFROM=MethodFROM.replaceAll("\\(I\\)", "\\(int\\)"); 
+				MethodFROM=MethodFROM.replaceAll("$\\(", "\\("); 
+				MethodFROM=MethodFROM.replaceAll("II", "int,int,"); 
+				MethodFROM=MethodFROM.replaceAll("ZZ", "boolean,boolean,"); 
+				MethodFROM=MethodFROM.replaceAll(",\\)", "\\)"); 
+				MethodFROM=MethodFROM.replaceAll(",I\\)", ",int\\)"); 
+				MethodFROM=MethodFROM.replaceAll("IZ", "int,boolean"); 
+				MethodFROM=MethodFROM.replaceAll("\\(J\\)", "\\(long\\)"); 
+				MethodFROM=MethodFROM.replaceAll(",J\\)", ",long\\)"); 
+				
+				
+				MethodTO=MethodTO.replaceAll("\\(Z\\)", "\\(boolean\\)"); 
+				MethodTO=MethodTO.replaceAll("\\(I\\)", "\\(int\\)"); 
+				MethodTO=MethodTO.replaceAll("$\\(", "\\("); 
+				MethodTO=MethodTO.replaceAll("II", "int,int,"); 
+				MethodTO=MethodTO.replaceAll("ZZ", "boolean,boolean,"); 
+				MethodTO=MethodTO.replaceAll(",\\)", "\\)"); 
+				MethodTO=MethodTO.replaceAll(",I\\)", ",int\\)"); 
+				MethodTO=MethodTO.replaceAll("IZ", "int,boolean"); 
+				MethodTO=MethodTO.replaceAll("\\(J\\)", "\\(long\\)"); 
+				MethodTO=MethodTO.replaceAll(",J\\)", ",long\\)"); 
+				
+				
+				  System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassFROM);
+					System.out.println("CLASS FROM:::::::::::::::::::: "+ ClassTO);
+					System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodFROM);
+					System.out.println("CLASS FROM:::::::::::::::::::: "+ MethodTO);
+				//calculate class id FROM 
+					ResultSet classidsFROM = st.executeQuery("SELECT classes.id from classes where classes.classname ='"+ClassFROM+"'"); 
+					while(classidsFROM.next()){
+						classFROMid = classidsFROM.getString("id"); 
+						   }
+					
+					//calculate class classname FROM 
+					ResultSet classnamesFROM = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassFROM+"'"); 
+					while(classnamesFROM.next()){
+						ClassFROMName = classnamesFROM.getString("classname"); 
+						   }
+					
+					
+					//calculate class classname FROM 
+					ResultSet paramclassids = st.executeQuery("SELECT classes.* from classes where classes.id ='"+returnFROM+"'"); 
+					while(paramclassids.next()){
+						ClassFROMidParamater = paramclassids.getString("id"); 
+						ClassFROMNameParamater = paramclassids.getString("classname"); 
+						   }
+					
+					
+				//	String MethodFROMRefined= MethodFROMTransformed.substring(0, MethodFROMTransformed.indexOf("(")); 
+					String MethodFROMRefined= MethodFROM; 
+					String MethodFROMAbbreviation = ClassFROM+"."+MethodFROM; 
+					if(callingmethodsrefinedid==null && classFROMid!=null) {
+						String fullmeth=ClassFROM+"."+MethodFROM; 
+						fullmeth=RewriteFullMethod(fullmeth); 
+						MethodFROM=ReplaceLnetLjava(MethodFROM);
+						MethodFROMRefined=ReplaceLnetLjava(MethodFROMRefined);
+						MethodFROMAbbreviation=	ReplaceLnetLjava(MethodFROMAbbreviation);
+						fullmeth=ReplaceLnetLjava(fullmeth);
+						ClassFROM=ReplaceLnetLjava(ClassFROM);
+						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`, `classid`, `classname`) VALUES ('"+MethodFROM +"','" +MethodFROMRefined+"','" +MethodFROMAbbreviation+"','" +fullmeth+"','" +classFROMid+"','" +ClassFROM+"')");
+		    		
+						//RECALCULATION PHASE: CALLING METHOD ID 
+						 callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodFROM+"' and classes.classname='"+ClassFROM+"'"); 
+						while(callingmethodsrefined.next()){
+							callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
+					
+						}
+						
+						String par= transformstring(returnFROM); 
+						 regEx = "\\(([A-Z])\\)";
+					     pattern = Pattern.compile(regEx);
+					     matcher = pattern.matcher(par);
+					    while (matcher.find()) {
+					    	par=par.replaceAll("Z", "boolean"); 
+					    	par=par.replaceAll("B", "byte"); 
+					    	par=par.replaceAll("I", "int"); 
+					    	par=par.replaceAll("J", "long"); 
+					    	par=par.replaceAll("S", "short"); 
+					    }
+						regEx = "\\(([A-Z][A-Z]+)\\)";
+					     pattern = Pattern.compile(regEx);
+					     matcher = pattern.matcher(par);
+					    while (matcher.find()) {
+					    
+					    	par=par.replaceAll("Z", "boolean,"); 
+					    	par=par.replaceAll("B", "byte,"); 
+					    	par=par.replaceAll("I", "int,"); 
+					    	par=par.replaceAll("J", "long,"); 
+					    	par=par.replaceAll("S", "short,"); 
+					    	par=par.substring(0, par.lastIndexOf(",")); 
+					    	par=par+")"; 
+					    }
+					System.out.println("PARAM"+par);
+						 if(par.contains("net.sourceforge.ganttproject")) {//ignore the basic data types, only insert the parameters thaht have classes as data types 
+							 
+							 ResultSet ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+par+"'"); 
+								while(ParameterClassIDs.next()){
+									 ParameterClassID = ParameterClassIDs.getString("id"); 
+									   }
+							 
+					//	System.out.println("COUNYER========> "+counter);	
+						if(ParameterClassID!=null)
+						st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+par +"','" +par +"','"+ParameterClassID+"','"+ClassFROMidParamater +"','"+ClassFROMNameParamater+"','" +callingmethodsrefinedid+"','" +MethodFROM+"','" +1+"')");
+						 }
+						String[] params = ExtractParams(MethodFROM); 
+						 //insert parameters that were retrieved from the log file 
+					//	counter++; 
+						//System.out.println("HERE IS THE LINE =======>"+line+ counter);
+						for(String p: params) {
+							 regEx = "\\(([A-Z])\\)";
+						     pattern = Pattern.compile(regEx);
+						     matcher = pattern.matcher(par);
+						    while (matcher.find()) {
+						    	p=p.replaceAll("Z", "boolean"); 
+						    	p=p.replaceAll("B", "byte"); 
+						    	p=p.replaceAll("I", "int"); 
+						    	p=p.replaceAll("J", "long"); 
+						    	p=p.replaceAll("S", "short"); 
+						    }
+							regEx = "\\(([A-Z][A-Z]+)\\)";
+						     pattern = Pattern.compile(regEx);
+						     matcher = pattern.matcher(par);
+						    while (matcher.find()) {
+						    
+						    	p=p.replaceAll("Z", "boolean,"); 
+						    	p=p.replaceAll("B", "byte,"); 
+						    	p=p.replaceAll("I", "int,"); 
+						    	p=p.replaceAll("J", "long,"); 
+						    	p=p.replaceAll("S", "short,"); 
+						    	p=p.substring(0, p.lastIndexOf(",")); 
+						    	p=p+")"; 
+						    }
+						
+							System.out.println("HERE IS A PARAM==================================================================>"+p); 
+							ResultSet ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+p+"'"); 
+							while(ParameterClassIDs.next()){
+								 ParameterClassID = ParameterClassIDs.getString("id"); 
+								   }
+							
+							
+							if(p.contains("net.sourceforge.ganttproject") && p!=null && p.equals("")==false && classFROMid!=null && ParameterClassID!=null) {
+								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+p +"','" +p +"','"+ParameterClassID+"','"+classFROMid +"','"+ClassFROMName+"','" +callingmethodsrefinedid+"','" +MethodFROM+"','" +0+"')");
+
+							}
+					}
+				
+				//		counter++; 
+					
+					
+					//METHOD TO 
+					//calculate class id TO 
+					ResultSet classidsTO = st.executeQuery("SELECT classes.id from classes where classes.classname ='"+ClassTO+"'"); 
+					while(classidsTO.next()){
+						classTOid = classidsTO.getString("id"); 
+						   }
+					
+					//String MethodTORefined= MethodTOTransformed.substring(0, MethodTOTransformed.indexOf("(")); 
+					String MethodTORefined= MethodTO;
+					String MethodTOAbbreviation = ClassTO+"."+MethodTORefined; 
+					String FullMethTO= RewriteFullMethod(MethodTOAbbreviation); 
+					if(calledmethodid==null  && classTOid!=null) {
+						MethodTO=ReplaceLnetLjava(MethodTO);
+						MethodTORefined=ReplaceLnetLjava(MethodTORefined);
+						MethodTOAbbreviation=ReplaceLnetLjava(MethodTOAbbreviation);
+						FullMethTO=ReplaceLnetLjava(FullMethTO);
+						ClassTO=ReplaceLnetLjava(ClassTO);
+						st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
+
+						//RECALCULATION PHASE: CALLED METHOD ID 
+						 calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodTO+"'and classes.classname='"+ClassTO+"'"); 
+						while(calledmethodsids.next()){
+							calledmethodid = calledmethodsids.getString("id"); 
+							   }
+						
+						
+						
+						//calculate class classname FROM 
+						ResultSet classnamesTO = st.executeQuery("SELECT classes.classname from classes where classes.classname ='"+ClassTO+"'"); 
+						
+						while(classnamesTO.next()){
+							ClassTOName = classnamesTO.getString("classname"); 
+							   }
+						 par= transformstring(returnTO); 
+						 //insert return value within the parameters table 
+						  ResultSet ParameterClassIDs = st.executeQuery("SELECT classes.id from classes where classes.classname='"+par+"'"); 
+							while(ParameterClassIDs.next()){
+								 ParameterClassID = ParameterClassIDs.getString("id"); 
+								   }
+						 if(par.contains("net.sourceforge.ganttproject") && ParameterClassID!=null) {//ignore the basic data types, only insert the parameters thaht have classes as data types 
+								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+par +"','" +par +"','"+ParameterClassID+"','"+classTOid +"','"+ClassTOName+"','" +calledmethodid+"','" +MethodTO+"','" +1+"')");
+
+						 }
+						 
+						 //insert parameters that were retrieved from the log file 
+						 params = ExtractParams(MethodTO); 
+						for(String p: params) {
+							System.out.println("HERE IS A PARAM==================================================================>"+p); 
+							 ParameterClassIDs= st.executeQuery("SELECT classes.id from classes where classes.classname='"+p+"'"); 
+							while(ParameterClassIDs.next()){
+								 ParameterClassID = ParameterClassIDs.getString("id"); 
+								   }
+							
+							if(p.contains("net.sourceforge.ganttproject")&& p!=null && p.equals("")==false && classTOid!=null && ParameterClassID!=null) {
+								st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+p +"','" +p +"','"+ParameterClassID+"','"+classTOid +"','"+ClassTOName+"','" +calledmethodid+"','" +MethodTO+"','" +0+"')");
+
+							}
+						}
+					
+					}
+				
+					
+					
+					
+					/*
+					//RECALCULATION PHASE: CALLING METHOD ID 
+					 callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodnamerefined='"+MethodFROMTransformed+"' and classes.classname='"+ClassFROM+"'"); 
+					while(callingmethodsrefined.next()){
+						callingmethodsrefinedid = callingmethodsrefined.getString("id"); 
+				
+					}
+					//RECALCULATION PHASE: CALLED METHOD ID 
+					 calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodnamerefined='"+MethodTOTransformed+"'and classes.classname='"+ClassTO+"'"); 
+					while(calledmethodsids.next()){
+						calledmethodid = calledmethodsids.getString("id"); 
+						   }*/
+					
+					//insert into methodcallsexecuted table 
+					String fullcaller= ClassFROM+"."+MethodFROM; 
+					String fullcallee= ClassTO+"."+MethodTO; 
+					String FullMethodFROM= ClassFROM+"."+MethodFROM; 
+				    String FullMethodTO= ClassTO+"."+MethodTO; 
+				    fullcaller=RewriteFullMethod(FullMethodFROM); 
+				    fullcallee=RewriteFullMethod(FullMethodTO); 
+					String statement = "INSERT INTO `methodcallsexecuted`(`callermethodid`,  `callername`,  `callerclass`,  `fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `fullcallee`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+fullcaller+"','" +calledmethodid +"','" +MethodTO+"','" +ClassTO+"','" +fullcallee +"')";		
+					st.executeUpdate(statement);
+					methodcallsexecutedlist.add(mce); 	
+					
+					
+				//insert into methodcalls table as well 
+//					String statement2 = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`,`calleemethodid`,  `calleename`, `calleeclass`) VALUES ('"+callingmethodsrefinedid+"','" +MethodFROM+"','" +ClassFROM+"','"+calledmethodid +"','" +MethodTO+"','" +ClassTO +"')";		
+//					st.executeUpdate(statement2);
+				
+					
+					
+					
+			}
+		}
+			
+		
+		
+		
+		
+		
+		}	
+		
+	}
+} catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 ////////////
 ////////////
 ////////////
@@ -2384,7 +2439,8 @@ try {
 	
 	line = bufferedReader.readLine(); 
 	while ((line = bufferedReader.readLine()) != null) {
-		
+		String interfaces_info[][] = new String[8][8];
+		String[] inter_item= new String[4]; 
 		String requirement=null; 
 		 String method=null; 
 		 String gold=null; 
@@ -2425,7 +2481,7 @@ try {
 		System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
 		String params=ReturnParams(method); 
 		String mymethodname=KeepMethodName(method); 
-		
+		String shortmethodname=null; 
 		
 		params=RewriteFullMethodRemoveDollarTraces(params); 
 		
@@ -2442,28 +2498,52 @@ try {
 		method=method.trim(); 
 		String shortmethod=method.substring(0, method.indexOf("("));
 		System.out.println(method);
-			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
-			while(methodids.next()){
-				methodid = methodids.getString("id"); 
-				classname = methodids.getString("classname"); 
-				classid = methodids.getString("classid"); 
-				   }
+		
+		
+					ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
+					while(methodids.next()){
+						methodid = methodids.getString("id"); 
+						shortmethodname = methodids.getString("methodname"); 
+						classname = methodids.getString("classname"); 
+						classid = methodids.getString("classid"); 
+						   }
+			
+
+			//////////////////////////////////////////////////////////////////
 
 			
-			
-			
-			List<String> InterfaceNameIds= new ArrayList<String>(); 
+			//COMPUTING INTERFACE CLASS IDS AND INTERFACE NAMES 
 			String interfacename=null; 
 			String interfaceid=null; 
-			ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname LIKE'%"+classname+"%'");
-			while(interfaces.next()){
+				ResultSet interfaces = st.executeQuery("SELECT interfaces.* from interfaces where interfaces.classname ='"+classname+"'"); 
+				int co=0; 
+				while(interfaces.next()){
+					interfacename = interfaces.getString("interfacename");
+					
+					interfaceid = interfaces.getString("interfaceclassid"); 
+					
+					interfaces_info[co][0]=interfacename; 
+					interfaces_info[co][1]=interfaceid; 
+					co++; 
+					   }
+			
+				String interfacemethodid=null; 
+				String interfacefullmethodname=null; 
+				co=0; 
+				ResultSet meths = st.executeQuery("SELECT methods.* from methods where methods.methodname ='"+shortmethodname+"'and methods.classname='"+interfacename+"'"); 
+				while(meths.next()){
+					interfacefullmethodname = meths.getString("fullmethod");
+					inter_item[2]=interfacefullmethodname; 
+					interfacemethodid = meths.getString("id"); 
+					inter_item[3]=interfacemethodid; 
+					interfaces_info[co][2]=interfacefullmethodname; 
+					interfaces_info[co][3]=interfacemethodid; 
+					co++; 
+					   }
+			
 				
-				interfacename = interfaces.getString("interfacename"); 
-				 interfaceid = interfaces.getString("interfaceclassid"); 
-				String combination=interfaceid+"-"+interfacename; 
-				InterfaceNameIds.add(combination); 
-				   }			
-			//////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////
+				
 			
 			
 //		classid=null; 
@@ -2542,33 +2622,30 @@ if(mycond==false) {
 			
 		}
 		//ADDING INTERFACES TO THE TRACES TABLE 
-		 for(String interfacenameid: InterfaceNameIds) {
-			 interfaceid= interfacenameid.substring(0, interfacenameid.indexOf("-")); 
-			 interfacename= interfacenameid.substring(interfacenameid.indexOf("-")+1, interfacenameid.length()); 
-		 if(methodid!=null && requirementid!=null && interfacename!=null) {
-			 System.out.println("SHORT METHOD: " +shortmethod);
-			 System.out.println(" METHOD ID: " +methodid);
-			tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
-			boolean mycond=tr.contains(TraceListMethods, tracesmethods);
-			if(mycond==false) {
-			method=RewriteFullMethod(method);   
-			method=method.replaceAll("Lde", "de"); 
-			String methodnameAndParams= GetMethodNameAndParams(method); 
-			methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-				st.executeUpdate(statement);
-				TraceListMethods.add(tracesmethods); 
-				
-				
-			}
-		}
-		else {
-			System.out.println(shortmethod);
-			System.out.println("I am here");
-		}
-			
-			
-		 }	
+		//ADDING INTERFACES TO THE TRACES TABLE 
+				for(String[] item: interfaces_info) {
+					if(methodid!=null && requirementid!=null && interfacename!=null  && interfacemethodid!=null) {
+						 System.out.println("SHORT METHOD: " +shortmethod);
+						 System.out.println(" METHOD ID: " +methodid);
+						String methodnameAndParams= GetMethodNameAndParams(method); 
+						tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
+						boolean mycond=tr.contains(TraceListMethods, tracesmethods);
+						if(mycond==false) {
+							//	method=RewriteFullMethod(method);   
+							method=method.replaceAll("Lde", "de"); 
+							methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+							String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +interfacefullmethodname+"','" +interfacemethodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+							st.executeUpdate(statement);
+							TraceListMethods.add(tracesmethods); 
+							
+							
+						}
+					}
+					else {
+						System.out.println(shortmethod);
+						System.out.println("I am here");
+					}
+				}
 		
 		
 	//	 counter++; 

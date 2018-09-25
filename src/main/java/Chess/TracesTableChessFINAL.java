@@ -753,6 +753,12 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CLASSTRACEMethodLevelPureGold2ACROSS] = "null";
 			data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS] = "null";
 			data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS] = "null";
+			data[j][OwnerClassT] = "0";
+			data[j][OwnerClassN] = "0";
+			data[j][OwnerClassE] = "1";
+			data[j][OwnerClassTGOLD2] = "0";
+			data[j][OwnerClassNGOLD2] = "0";
+			data[j][OwnerClassEGOLD2] = "1";
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 			String trace = myclasstraceHashMap.gettrace().trim().trim();
@@ -808,13 +814,13 @@ public class TracesTableChessFINAL extends JFrame {
 				for(Interface2 myinter: InterfacesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.classid,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace2()!=null) {
-					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
 						InterfacesTMethodLevelGold2++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
 						InterfacesNMethodLevelGold2++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
 						InterfacesEMethodLevelGold2++; 
 					}
 					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) ) {
@@ -842,13 +848,13 @@ public class TracesTableChessFINAL extends JFrame {
 			for(SuperClass2 superclass: SuperclassesList) {
 				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.classid,	methodtrace.Requirement.getID().trim());
 				if(myinfo!=null&& myinfo.getTrace2()!=null) {
-				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
 					SuperclassesTMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
 					SuperclassesNMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
 					SuperclassesEMethodLevelGold2++; 
 				}
 				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid)) {
@@ -873,22 +879,20 @@ public class TracesTableChessFINAL extends JFrame {
 				for(MethodField2 fieldmethod: FieldMethodsList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace2()!=null) {
-					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
 						FieldMethodsTMethodLevelGold2++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
 						FieldMethodsNMethodLevelGold2++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
 						FieldMethodsEMethodLevelGold2++; 
 					}
 					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
 						FieldMethodsEMethodLevelGold2++; 
 					}
 				}
-					else  {
-						FieldMethodsEMethodLevelGold2++; 
-					}
+					
 				}
 			}
 			
@@ -908,13 +912,13 @@ public class TracesTableChessFINAL extends JFrame {
 				for(ClassField2 fieldmethod: FieldClassesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim()); 
 					if(myinfo!=null && myinfo.getTrace2()!=null) {
-						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
+						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
 							FieldClassesTMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
 							FieldClassesNMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
 							FieldClassesEMethodLevelGold2++; 
 						}
 						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
@@ -1046,99 +1050,99 @@ public class TracesTableChessFINAL extends JFrame {
 
 			}
 
-			int CountCallersExecuted = 0;
-			items2 = new String[methodtrace.getCallersListExecuted().size()];
-			callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
-
-				boolean equalbool = false;
-				if (items1.length == 0) {
-					items2[CountCallersExecuted] = caller.toString2();
-					callersex[CountCallersExecuted] = caller;
-				
-						
-					
-					CountCallersExecuted++;
-					OnlyinExecutedCallers++; 
-
-				} else {
-					for (String item : items1) {
-						item = item.replaceAll("\\(.*\\)", "");
-
-						if (item.equals(caller.toString2()) == true) {
-							BothParsedAndExecutedCallers++; 
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						items2[CountCallersExecuted] = caller.toString2();
-						callersex[CountCallersExecuted] = caller;
-						CountCallersExecuted++;
-						OnlyinExecutedCallers++; 
-					}
-				}
-
-			}
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			int CountCallerExecuted=0; 
-			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
-				
-				itemsExecuted[CountCallerExecuted] = caller.toString2();	
-				System.out.println(caller.toString2());
-				CountCallerExecuted++;
-			}
-			
-			int Count=0; 
-			for (Method2Representation caller : methodtrace.getCallersList()) {
-
-				boolean equalbool = false;
-				if (itemsExecuted.length == 0) {
-					items5[Count] = caller.toString2();
-				
-						
-					
-					Count++; 
-					OnlyinParsedCallers++; 
-
-				} else {
-					for (String item : itemsExecuted) {
-					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(callerString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyinParsedCallers++; 
-					}
-				}
-
-			}
+//			int CountCallersExecuted = 0;
+//			items2 = new String[methodtrace.getCallersListExecuted().size()];
+//			callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+//
+//				boolean equalbool = false;
+//				if (items1.length == 0) {
+//					items2[CountCallersExecuted] = caller.toString2();
+//					callersex[CountCallersExecuted] = caller;
+//				
+//						
+//					
+//					CountCallersExecuted++;
+//					OnlyinExecutedCallers++; 
+//
+//				} else {
+//					for (String item : items1) {
+//						item = item.replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(caller.toString2()) == true) {
+//							BothParsedAndExecutedCallers++; 
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						items2[CountCallersExecuted] = caller.toString2();
+//						callersex[CountCallersExecuted] = caller;
+//						CountCallersExecuted++;
+//						OnlyinExecutedCallers++; 
+//					}
+//				}
+//
+//			}
+//		
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			int CountCallerExecuted=0; 
+//			String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+//				
+//				itemsExecuted[CountCallerExecuted] = caller.toString2();	
+//				System.out.println(caller.toString2());
+//				CountCallerExecuted++;
+//			}
+//			
+//			int Count=0; 
+//			for (Method2Representation caller : methodtrace.getCallersList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecuted.length == 0) {
+//					items5[Count] = caller.toString2();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyinParsedCallers++; 
+//
+//				} else {
+//					for (String item : itemsExecuted) {
+//					String	callerString = caller.toString2().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(callerString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyinParsedCallers++; 
+//					}
+//				}
+//
+//			}
 
 			String[] items1And2 = new String[items1.length + items2.length];
 			items1And2 = (String[]) ArrayUtils.addAll(items1, items2);
@@ -1163,80 +1167,80 @@ public class TracesTableChessFINAL extends JFrame {
 			
 			}
 
-			int CountCalleesExecuted = 0;
-			items4 = new String[methodtrace.getCalleesListExecuted().size()];
-			calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
-			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
-				boolean equalbool = false;
-				if (items3.length == 0) {
-					items4[CountCalleesExecuted] = caller.toString2();
-					calleesex[CountCalleesExecuted] = caller;
-					CountCalleesExecuted++;
-					OnlyInExecutedCallees++; 
-					
-				} else {
-					for (String item : items3) {
-						item = item.replaceAll("\\(.*\\).*", "");
-						item = item.replaceAll(":", ",");
-						String mycaller=caller.toString(); 
-						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
-						if (item.equals(mycaller) == true) {
-							equalbool = true;
-							BothInParsedAndExecutedCallees++; 
-						}
-					}
-					if (equalbool == false) {
-						items4[CountCalleesExecuted] = caller.toString2();
-						calleesex[CountCalleesExecuted] = caller;
-						OnlyInExecutedCallees++; 
-
-						CountCalleesExecuted++;
-				
-					}
-				}
-
-			}
-
-			int CountCalleeExecuted=0; 
-			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
-			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
-				
-				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
-				System.out.println(callee.toString2());
-				CountCalleeExecuted++;
-			}
-			
-			 Count=0; 
-			for (Method2Representation callee : methodtrace.getCalleesList()) {
-
-				boolean equalbool = false;
-				if (itemsExecutedCallees.length == 0) {
-					items6[Count] = callee.toString2();
-				
-						
-					
-					Count++; 
-					OnlyInParsedCallees++; 
-
-				} else {
-					for (String item : itemsExecutedCallees) {
-					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
-
-						if (item.equals(calleeString) == true) {
-						
-							equalbool = true;
-						}
-					}
-					if (equalbool == false) {
-						
-							
-						
-						Count++; 
-						OnlyInParsedCallees++; 
-					}
-				}
-
-			}
+//			int CountCalleesExecuted = 0;
+//			items4 = new String[methodtrace.getCalleesListExecuted().size()];
+//			calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
+//			for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
+//				boolean equalbool = false;
+//				if (items3.length == 0) {
+//					items4[CountCalleesExecuted] = caller.toString2();
+//					calleesex[CountCalleesExecuted] = caller;
+//					CountCalleesExecuted++;
+//					OnlyInExecutedCallees++; 
+//					
+//				} else {
+//					for (String item : items3) {
+//						item = item.replaceAll("\\(.*\\).*", "");
+//						item = item.replaceAll(":", ",");
+//						String mycaller=caller.toString(); 
+//						 mycaller=mycaller.substring(0, mycaller.indexOf("[")); 
+//						if (item.equals(mycaller) == true) {
+//							equalbool = true;
+//							BothInParsedAndExecutedCallees++; 
+//						}
+//					}
+//					if (equalbool == false) {
+//						items4[CountCalleesExecuted] = caller.toString2();
+//						calleesex[CountCalleesExecuted] = caller;
+//						OnlyInExecutedCallees++; 
+//
+//						CountCalleesExecuted++;
+//				
+//					}
+//				}
+//
+//			}
+//
+//			int CountCalleeExecuted=0; 
+//			String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
+//			for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
+//				
+//				itemsExecutedCallees[CountCalleeExecuted] = callee.toString2();	
+//				System.out.println(callee.toString2());
+//				CountCalleeExecuted++;
+//			}
+//			
+//			 Count=0; 
+//			for (Method2Representation callee : methodtrace.getCalleesList()) {
+//
+//				boolean equalbool = false;
+//				if (itemsExecutedCallees.length == 0) {
+//					items6[Count] = callee.toString2();
+//				
+//						
+//					
+//					Count++; 
+//					OnlyInParsedCallees++; 
+//
+//				} else {
+//					for (String item : itemsExecutedCallees) {
+//					String	calleeString = callee.toString2().replaceAll("\\(.*\\)", "");
+//
+//						if (item.equals(calleeString) == true) {
+//						
+//							equalbool = true;
+//						}
+//					}
+//					if (equalbool == false) {
+//						
+//							
+//						
+//						Count++; 
+//						OnlyInParsedCallees++; 
+//					}
+//				}
+//
+//			}
 			
 			String[] items3And4 = new String[items3.length + items4.length];
 			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);
@@ -1657,11 +1661,11 @@ public class TracesTableChessFINAL extends JFrame {
 					CountMethodE++;
 				}
 				if(mycallerclass.getTrace2()!=null) {
-					if (mycallerclass.getTrace2().trim().equals("T")) {
+					if (mycallerclass.getTrace2().trim().trim().equals("T")) {
 						CountMethodTGOLD2++;
-					} else if (mycallerclass.getTrace2().trim().equals("N")) {
+					} else if (mycallerclass.getTrace2().trim().trim().equals("N")) {
 						CountMethodNGOLD2++;
-					}else if (mycallerclass.getTrace2().trim().equals("E")) {
+					}else if (mycallerclass.getTrace2().trim().trim().equals("E")) {
 						CountMethodEGOLD2++;
 					}  
 					else  {
@@ -1671,8 +1675,7 @@ public class TracesTableChessFINAL extends JFrame {
 				
 			}
 			
-			
-			
+	
 			int CountMethodTACROSS = 0; 
 			int CountMethodNACROSS = 0; 
 			int CountMethodEACROSS = 0; 
@@ -1692,14 +1695,16 @@ public class TracesTableChessFINAL extends JFrame {
 					CountMethodEACROSS++;
 				}
 				if(mycallerclass.getTrace2()!=null) {
-					if (mycallerclass.getTrace2().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycallerclass.getTrace2().trim().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodTGOLD2ACROSS++;
-					} else if (mycallerclass.getTrace2().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace2().trim().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodNGOLD2ACROSS++;
-					} else if (mycallerclass.getTrace2().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace2().trim().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodEGOLD2ACROSS++;
 					}
-					
+					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEGOLD2ACROSS++;
+					}
 				}
 				else  {
 					CountMethodEGOLD2ACROSS++;
@@ -1729,20 +1734,18 @@ public class TracesTableChessFINAL extends JFrame {
 					CountMethodEACROSSCallee++;
 				}
 				if(mycalleeclass.getTrace2()!=null) {
-					if (mycalleeclass.getTrace2().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycalleeclass.getTrace2().trim().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodTGOLD2ACROSSCallee++;
-					} else if (mycalleeclass.getTrace2().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycalleeclass.getTrace2().trim().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodNGOLD2ACROSSCallee++;
-					} else if (mycalleeclass.getTrace2().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycalleeclass.getTrace2().trim().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodEGOLD2ACROSSCallee++;
 					}
 					else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodEGOLD2ACROSSCallee++;
 					}
 				}
-				else  {
-					CountMethodEGOLD2ACROSSCallee++;
-				}
+				
 				
 			}
 			
@@ -1779,18 +1782,19 @@ public class TracesTableChessFINAL extends JFrame {
 				}
 				
 				if(mycalleeclass.getTrace2()!=null) {
-					if (mycalleeclass.getTrace2().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycalleeclass.getTrace2().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCalleeTGOLD2ACROSS++;
-					} else if (mycalleeclass.getTrace2().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycalleeclass.getTrace2().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCalleeNGOLD2ACROSS++;
-					} else if (mycalleeclass.getTrace2().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycalleeclass.getTrace2().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeEGOLD2ACROSS++;
+					}
+					else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCalleeEGOLD2ACROSS++;
 					}
 					
 				}
-				else  {
-					CounterTraceClassCalleeEGOLD2ACROSS++;
-				}
+				
 			
 			}
 		
@@ -1808,17 +1812,18 @@ public class TracesTableChessFINAL extends JFrame {
 					CounterTraceClassCallerEACROSS++;
 				}
 				if (mycallerclass.getTrace2()!=null) {
-					if (mycallerclass.getTrace2().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycallerclass.getTrace2().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerTGOLD2ACROSS++;
-					} else if (mycallerclass.getTrace2().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace2().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerNGOLD2ACROSS++;
-					} else if (mycallerclass.getTrace2().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace2().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCallerEGOLD2ACROSS++;
+					}
+					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerEGOLD2ACROSS++;
 					}
 				}
-				else  {
-					CounterTraceClassCallerEGOLD2ACROSS++;
-				}
+				
 				
 			}
 			CounterTraceClassCallerEGOLD2ACROSS=CounterTraceClassCallerEGOLD2ACROSS+mymapACROSSCallerGOLD2.size(); 
@@ -1853,11 +1858,11 @@ public class TracesTableChessFINAL extends JFrame {
 				}
 				
 				if(mycalleeclass.getTrace2()!=null) {
-					if (mycalleeclass.getTrace2().equals("T")) {
+					if (mycalleeclass.getTrace2().trim().equals("T")) {
 						CounterTraceClassCalleeTGOLD2++;
-					} else if (mycalleeclass.getTrace2().equals("N")) {
+					} else if (mycalleeclass.getTrace2().trim().equals("N")) {
 						CounterTraceClassCalleeNGOLD2++;
-					} else if (mycalleeclass.getTrace2().equals("E")) {
+					} else if (mycalleeclass.getTrace2().trim().equals("E")) {
 						CounterTraceClassCalleeEGOLD2++;
 					}
 				}else {
@@ -1886,11 +1891,11 @@ public class TracesTableChessFINAL extends JFrame {
 					CounterTraceClassCallerE++;
 				}
 				if (mycallerclass.getTrace2()!=null) {
-					if (mycallerclass.getTrace2().equals("T")) {
+					if (mycallerclass.getTrace2().trim().equals("T")) {
 						CounterTraceClassCallerTGOLD2++;
-					} else if (mycallerclass.getTrace2().equals("N")) {
+					} else if (mycallerclass.getTrace2().trim().equals("N")) {
 						CounterTraceClassCallerNGOLD2++;
-					} else if (mycallerclass.getTrace2().equals("E")) {
+					} else if (mycallerclass.getTrace2().trim().equals("E")) {
 						CounterTraceClassCallerEGOLD2++;
 					}
 					
@@ -1933,11 +1938,11 @@ public class TracesTableChessFINAL extends JFrame {
 				
 				
 				if(mycalleeclass.getTrace2()!=null) {
-					if (mycalleeclass.getTrace2().trim().equals("T")) {
+					if (mycalleeclass.getTrace2().trim().trim().equals("T")) {
 						CountMethodTCalleeGOLD2++;
-					} else if (mycalleeclass.getTrace2().trim().equals("N")) {
+					} else if (mycalleeclass.getTrace2().trim().trim().equals("N")) {
 						CountMethodNCalleeGOLD2++;
-					} else if (mycalleeclass.getTrace2().trim().equals("E")) {
+					} else if (mycalleeclass.getTrace2().trim().trim().equals("E")) {
 						CountMethodECalleeGOLD2++;
 					}
 					
