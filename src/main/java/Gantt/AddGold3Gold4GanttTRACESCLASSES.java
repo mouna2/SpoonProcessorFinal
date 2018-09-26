@@ -122,10 +122,12 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD subject LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
@@ -139,11 +141,16 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		String gold3=""; 
 		String gold4=""; 
 		String gold=""; 
+		String subject=""; 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGOLD4=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2GOLD4=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapGOLD=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2GOLD=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapSubject=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMap2Subject=new Hashtable<String,List<String>>(); 
+		
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
 		while(TracesCount.next()) {
@@ -173,24 +180,45 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		     List<String> List= new ArrayList<String>(); 
 		     List<String> ListGold4= new ArrayList<String>(); 
 		     List<String> ListGold= new ArrayList<String>(); 
+		     List<String> ListSubject= new ArrayList<String>(); 
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
 				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid"); 
-				 classid=traces.getString("classid"); 
-				
-				 gold3=traces.getString("gold3"); 
-				 gold4=traces.getString("gold4");
-				 gold=traces.getString("gold"); 
-				 if(gold3!=null && gold3.equals("null")==false) {
-					 List.add(gold3);  
-				 }
-				
-				if(gold4!=null && gold4.equals("null")==false) {
-					 ListGold4.add(gold4); 
+				if(traces.getString("requirementid")!=null) {
+				 requirementid=traces.getString("requirementid").trim(); 
 				}
-				if(gold!=null && gold.equals("null")==false) {
+				if(traces.getString("classid")!=null) {
+				 classid=traces.getString("classid").trim(); 
+				}
+				if(traces.getString("gold3")!=null) {
+					gold3=traces.getString("gold3").trim(); 
+				}
+				 
+				if(traces.getString("gold4")!=null) {
+					gold4=traces.getString("gold4").trim(); 
+				}
+				 
+				if(traces.getString("gold")!=null) {
+				 gold=traces.getString("gold").trim();
+				}
+				if(traces.getString("subject")!=null) {
+					 subject=traces.getString("subject").trim(); 
+				}
+				
+				 if(gold3!=null && gold3.equals("null")==false) {
+					 List.add(gold3); 
+
+				 }
+				if(gold4!=null && gold4.trim().equals("null")==false) {
+					 ListGold4.add(gold4); 
+
+				}
+				if(gold!=null && gold.trim().equals("null")==false) { 
 					 ListGold.add(gold); 
+
+				}
+				if(subject!=null && subject.trim().equals("null")==false) {
+					 ListSubject.add(subject); 
 
 				}
 	   		   }
@@ -199,6 +227,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 			RequirementClassHashMap2.put(ReqClass, List); 
 			RequirementClassHashMap2GOLD4.put(ReqClass, ListGold4); 
 			RequirementClassHashMap2GOLD.put(ReqClass, ListGold); 
+			RequirementClassHashMap2Subject.put(ReqClass, ListSubject); 
 		}
 		
 		
@@ -280,6 +309,32 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 			     }
 		}
 		
+		
+		
+		
+		for (Entry<String, List<String>> entry : RequirementClassHashMap2Subject.entrySet()) {
+			   System.out.println(entry.getKey() + " = " );
+			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			     
+			     List<String> MyValues = entry.getValue(); 
+			     
+			     if(MyValues.contains("T")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }else if(MyValues.contains("E")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			    	 
+			     }else if(MyValues.isEmpty()) {
+			    	 //DO NOTHING 
+			     }
+			     
+			     else {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }
+		}
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	}

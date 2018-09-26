@@ -124,10 +124,13 @@ public class AddGold2ColumnTTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
-
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD subject LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
@@ -138,9 +141,14 @@ public class AddGold2ColumnTTRACESCLASSES {
 		String classid=""; 
 		String requirementid= ""; 
 		String gold2=""; 
-		
+		String gold=""; 
+		String subject=""; 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapSubject=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMap2Subject=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapGOLD=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMap2GOLD=new Hashtable<String,List<String>>(); 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
 		while(TracesCount.next()) {
@@ -154,6 +162,8 @@ public class AddGold2ColumnTTRACESCLASSES {
 				//THIS IS GOLD 2
 				 requirementid=traces.getString("requirementid"); 
 				 classid=traces.getString("classid"); 
+				 gold=traces.getString("gold"); 
+				 subject=traces.getString("subject"); 
 				String ReqClass=requirementid+"-"+classid;
 				RequirementClassHashMap.put(ReqClass, mylist); 
 
@@ -168,23 +178,43 @@ public class AddGold2ColumnTTRACESCLASSES {
 		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 		     List<String> List= new ArrayList<String>(); 
+		     List<String> SubjectList= new ArrayList<String>(); 
+		     List<String> GoldList= new ArrayList<String>(); 
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
 				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid"); 
-				 classid=traces.getString("classid"); 
-				
-				 gold2=traces.getString("gold2"); 
+				 requirementid=traces.getString("requirementid").trim(); 
+				 classid=traces.getString("classid").trim(); 
+				 if(traces.getString("gold")!=null) {
+					 gold=traces.getString("gold").trim(); 
+				 }
+				 if(traces.getString("subject")!=null) {
+				 subject=traces.getString("subject").trim(); 
+				 }
+				 if(traces.getString("gold2")!=null) {
+				 gold2=traces.getString("gold2").trim(); 
+				 }
 				 if(gold2!=null && gold2.equals("null")==false) {
 					 List.add(gold2); 
 
 				 }
+				 if(subject!=null && subject.equals("null")==false) {
+					 SubjectList.add(subject); 
+
+				 }
+				 if(gold!=null && gold.equals("null")==false) {
+					 GoldList.add(gold); 
+
+				 }
+				
 				
 			
 	   		   }
 			String ReqClass=requirementid+"-"+classid;
 			System.out.println(ReqClass);
 			RequirementClassHashMap2.put(ReqClass, List); 
+			RequirementClassHashMap2Subject.put(ReqClass, SubjectList); 
+			RequirementClassHashMap2GOLD.put(ReqClass, GoldList); 
 		}
 		
 		
@@ -214,6 +244,57 @@ public class AddGold2ColumnTTRACESCLASSES {
 			     }
 		}
 	
+		
+		
+		
+		for (Entry<String, List<String>> entry : RequirementClassHashMap2GOLD.entrySet()) {
+			   System.out.println(entry.getKey() + " = " );
+			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			     
+			     List<String> MyValues = entry.getValue(); 
+			     
+			     if(MyValues.contains("T")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }else if(MyValues.contains("E")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			    	 
+			     }else if(MyValues.isEmpty()) {
+			    	 //DO NOTHING 
+			     }
+			     
+			     else {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }
+		}
+		
+		
+		for (Entry<String, List<String>> entry : RequirementClassHashMap2Subject.entrySet()) {
+			   System.out.println(entry.getKey() + " = " );
+			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			     
+			     List<String> MyValues = entry.getValue(); 
+			     
+			     if(MyValues.contains("T")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }else if(MyValues.contains("E")) {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			    	 
+			     }else if(MyValues.isEmpty()) {
+			    	 //DO NOTHING 
+			     }
+			     
+			     else {
+						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			     }
+		}
 		
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 

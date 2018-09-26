@@ -949,24 +949,28 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			data[j][CLASSNOTRACEMethodLevelPureGold4] = "null";
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-			String trace = myclasstraceHashMap.gettrace().trim();
-			trace=trace.trim(); 
-			if (trace.equals("T")) {
-				data[j][OwnerClassT] = "1";
-				data[j][OwnerClassN] = "0";
-				data[j][OwnerClassE] = "0";
-				System.out.println("OWNERCLASS T  "+j +" set to 1");
-			} else if (trace.equals("N")) {
-				data[j][OwnerClassT] = "0";
-				data[j][OwnerClassN] = "1";
-				data[j][OwnerClassE] = "0";
-				System.out.println("OWNERCLASS N  "+j +" set to 1");
-			} else if (trace.equals("E")) {
-				data[j][OwnerClassT] = "0";
-				data[j][OwnerClassN] = "0";
-				data[j][OwnerClassE] = "1";
-				System.out.println("OWNERCLASS E  "+j +" set to 1");
+			if(myclasstraceHashMap.gettrace()!=null) {
+				
+				String trace = myclasstraceHashMap.gettrace().trim();
+				trace=trace.trim(); 
+				if (trace.equals("T")) {
+					data[j][OwnerClassT] = "1";
+					data[j][OwnerClassN] = "0";
+					data[j][OwnerClassE] = "0";
+					System.out.println("OWNERCLASS T  "+j +" set to 1");
+				} else if (trace.equals("N")) {
+					data[j][OwnerClassT] = "0";
+					data[j][OwnerClassN] = "1";
+					data[j][OwnerClassE] = "0";
+					System.out.println("OWNERCLASS N  "+j +" set to 1");
+				} else if (trace.equals("E")) {
+					data[j][OwnerClassT] = "0";
+					data[j][OwnerClassN] = "0";
+					data[j][OwnerClassE] = "1";
+					System.out.println("OWNERCLASS E  "+j +" set to 1");
+				}
 			}
+			
 			
 			
 			if(myclasstraceHashMap.getTrace3()!=null) {
@@ -1044,21 +1048,24 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
-					String mytrace=mycallerclass.gettrace().trim(); 
-					if(mytrace.trim().equals("T")) {
-						counterParameterT++; 
-					}else if (mytrace.trim().equals("N")) {
-						counterParameterN++; 
-					}else if (mytrace.trim().equals("E")){
-						counterParameterE++; 
+					if(mycallerclass.gettrace()!=null) {
+						String mytrace=mycallerclass.gettrace().trim(); 
+						if(mytrace.trim().equals("T")) {
+							counterParameterT++; 
+						}else if (mytrace.trim().equals("N")) {
+							counterParameterN++; 
+						}else if (mytrace.trim().equals("E")){
+							counterParameterE++; 
+						}
+						else {
+							counterParameterE++; 
+						}
 					}
 					else {
 						counterParameterE++; 
 					}
-				}
-				else {
-					counterParameterE++; 
-				}
+					}
+					
 					if(mycallerclass!=null) {	
 					String mytrace2=mycallerclass.getTrace3(); 
 					if(mytrace2!=null) {
@@ -1708,16 +1715,19 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 		//	data[j][CallerClassesNumber] = myclasstracesCallers.size();
 //NO DUPLICATE CLASSES 
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-				if (mycallerclass.gettrace().equals("T")) {
-					CounterTraceClassCallerT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
-					CounterTraceClassCallerN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
-					CounterTraceClassCallerE++;
+				if(mycallerclass.gettrace()!=null) {
+					if (mycallerclass.gettrace().equals("T")) {
+						CounterTraceClassCallerT++;
+					} else if (mycallerclass.gettrace().equals("N")) {
+						CounterTraceClassCallerN++;
+					} else if (mycallerclass.gettrace().equals("E")) {
+						CounterTraceClassCallerE++;
+					}
+					else  {
+						CounterTraceClassCallerE++;
+					}
 				}
-				else  {
-					CounterTraceClassCallerE++;
-				}
+			
 			}
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.getTrace3()!=null) {
@@ -1782,15 +1792,18 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			int CountMethodNGOLD4 = 0; 
 			int CountMethodEGOLD4 = 0; 
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
-				if (mycallerclass.gettrace().equals("T")) {
-					CountMethodT++;
-				} else if (mycallerclass.gettrace().equals("N")) {
-					CountMethodN++;
-				} else if (mycallerclass.gettrace().equals("E")) {
-					CountMethodE++;
-				}else {
-					CountMethodE++;
+				if(mycallerclass.gettrace()!=null) {
+					if (mycallerclass.gettrace().equals("T")) {
+						CountMethodT++;
+					} else if (mycallerclass.gettrace().equals("N")) {
+						CountMethodN++;
+					} else if (mycallerclass.gettrace().equals("E")) {
+						CountMethodE++;
+					}else {
+						CountMethodE++;
+					}
 				}
+			
 				
 			}
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
@@ -1841,25 +1854,28 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
-				if (methtrace.gold.trim().equals("T")) {
-					CountMethodTACHRAF++;
-				} else if (methtrace.gold.trim().equals("N")) {
-					CountMethodNACHRAF++;
-				} else if (methtrace.gold.trim().equals("E")) {
-					CountMethodEACHRAF++;
-				}else {
-					CountMethodEACHRAF++;
-				}
-				
-				
+					if (methtrace.gold!=null) {
+						if (methtrace.gold.trim().equals("T")) {
+							CountMethodTACHRAF++;
+						} else if (methtrace.gold.trim().equals("N")) {
+							CountMethodNACHRAF++;
+						} else if (methtrace.gold.trim().equals("E")) {
+							CountMethodEACHRAF++;
+						}else {
+							CountMethodEACHRAF++;
+						}
+						
+						
+					
+						
+					
+						
+					}
+					}else {
+						CountMethodEACHRAF++;
+					}
+					}
 			
-				
-			
-				
-			}
-			}else {
-				CountMethodEACHRAF++;
-			}
 			}
 			
 			int CountMethodTACHRAFCallee = 0; 
@@ -1872,18 +1888,21 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
-							if (methtrace.gold.trim().equals("T")) {
-								CountMethodTACHRAFCallee++;
-							} else if (methtrace.gold.trim().equals("N")) {
-								CountMethodNACHRAFCallee++;
-							} else if (methtrace.gold.trim().equals("E")) {
-								CountMethodEACHRAFCallee++;
+							if (methtrace.gold!=null) {
+								if (methtrace.gold.trim().equals("T")) {
+									CountMethodTACHRAFCallee++;
+								} else if (methtrace.gold.trim().equals("N")) {
+									CountMethodNACHRAFCallee++;
+								} else if (methtrace.gold.trim().equals("E")) {
+									CountMethodEACHRAFCallee++;
+								}else {
+									CountMethodEACHRAFCallee++;
+								}
 							}else {
 								CountMethodEACHRAFCallee++;
 							}
-						}else {
-							CountMethodEACHRAFCallee++;
-						}
+							}
+						
 				 }
 		
 			
@@ -2046,6 +2065,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			//data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 			System.out.println("FUINAL COIUNTER ===============>"+ myfinalcounter);
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
+				if (mycalleeclass.gettrace()!=null) {
 				if (mycalleeclass.gettrace().equals("T")) {
 					CounterTraceClassCalleeT++;
 				} else if (mycalleeclass.gettrace().equals("N")) {
@@ -2055,6 +2075,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				}else {
 					CounterTraceClassCalleeE++;
 				}
+			}
 			}
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 				if(mycalleeclass.getTrace3()!=null) {
@@ -2176,19 +2197,22 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			int CountMethodEGOLD4ACROSS = 0; 
 			
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
-				if (mycallerclass.gettrace().trim().equals("T") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodTACROSS++;
-				} else if (mycallerclass.gettrace().trim().equals("N") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodNACROSS++;
-				} else if (mycallerclass.gettrace().trim().equals("E") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodEACROSS++;
+				if(mycallerclass.gettrace()!=null) {
+					if (mycallerclass.gettrace().trim().equals("T") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodTACROSS++;
+					} else if (mycallerclass.gettrace().trim().equals("N") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodNACROSS++;
+					} else if (mycallerclass.gettrace().trim().equals("E") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEACROSS++;
+					}
+					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false){
+						CountMethodEACROSS++;
+					}
+					else {
+						CountMethodEACROSS++;
 				}
-				else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false){
-					CountMethodEACROSS++;
 				}
-				else {
-					CountMethodEACROSS++;
-			}
+				
 			}
 				for (ClassTrace2 mycallerclass : mycallerclasses) {
 				if(mycallerclass.getTrace4()!=null) {
@@ -2219,19 +2243,22 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			int CountMethodEGOLD4ACROSSCallee = 0; 
 			
 			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-				if (mycalleeclass.gettrace().trim().equals("T") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodTACROSSCallee++;
-				} else if (mycalleeclass.gettrace().trim().equals("N") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodNACROSSCallee++;
-				} else if (mycalleeclass.gettrace().trim().equals("E") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodEACROSSCallee++;
+				if(mycalleeclass.gettrace()!=null) {
+					if (mycalleeclass.gettrace().trim().equals("T") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodTACROSSCallee++;
+					} else if (mycalleeclass.gettrace().trim().equals("N") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodNACROSSCallee++;
+					} else if (mycalleeclass.gettrace().trim().equals("E") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEACROSSCallee++;
+					}
+					else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CountMethodEACROSSCallee++;
+					}
+					else {
+						CountMethodEACROSSCallee++;
+					}
 				}
-				else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CountMethodEACROSSCallee++;
-				}
-				else {
-					CountMethodEACROSSCallee++;
-				}
+				
 			}
 			for (ClassTrace2 mycalleeclass : mycalleeclasses) {
 				if(mycalleeclass.getTrace4()!=null) {
@@ -2275,18 +2302,21 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			int CounterTraceClassCallerEGOLD4ACROSS = 0;
 			
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-				if (mycalleeclass.gettrace().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CounterTraceClassCalleeTACROSS++;
-				} else if (mycalleeclass.gettrace().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CounterTraceClassCalleeNACROSS++;
-				} else if (mycalleeclass.gettrace().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CounterTraceClassCalleeEACROSS++;
-				}else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-					CounterTraceClassCalleeEACROSS++;
+				if(mycalleeclass.gettrace()!=null) {
+					if (mycalleeclass.gettrace().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeTACROSS++;
+					} else if (mycalleeclass.gettrace().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeNACROSS++;
+					} else if (mycalleeclass.gettrace().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeEACROSS++;
+					}else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						CounterTraceClassCalleeEACROSS++;
+					}
+					else {
+						CounterTraceClassCalleeEACROSS++;
+					}
 				}
-				else {
-					CounterTraceClassCalleeEACROSS++;
-				}
+				
 			}
 			for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
 				if(mycalleeclass.getTrace4()!=null) {
@@ -2310,6 +2340,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			
 			//NO DUPLICATE CLASSES 
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
+				if (mycallerclass.gettrace()!=null) {
 				if (mycallerclass.gettrace().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 					CounterTraceClassCallerTACROSS++;
 				} else if (mycallerclass.gettrace().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
@@ -2323,6 +2354,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				else {
 					CounterTraceClassCallerEACROSS++;
 				}
+			}
 			}
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.getTrace4()!=null) {
