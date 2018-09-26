@@ -768,45 +768,51 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				data[j][OwnerClassEGOLD2] = "1";
 				String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				String trace = myclasstraceHashMap.gettrace().trim().trim();
-				trace=trace.trim(); 
-				if (trace.equals("T")) {
-					data[j][OwnerClassT] = "1";
-					data[j][OwnerClassN] = "0";
-					data[j][OwnerClassE] = "0";
-					System.out.println("OWNERCLASS T  "+j +" set to 1");
-				} else if (trace.equals("N")) {
-					data[j][OwnerClassT] = "0";
-					data[j][OwnerClassN] = "1";
-					data[j][OwnerClassE] = "0";
-					System.out.println("OWNERCLASS N  "+j +" set to 1");
-				} else if (trace.equals("E")) {
-					data[j][OwnerClassT] = "0";
-					data[j][OwnerClassN] = "0";
-					data[j][OwnerClassE] = "1";
-					System.out.println("OWNERCLASS E  "+j +" set to 1");
+				String trace = myclasstraceHashMap.gettrace();
+				if(trace!=null) {
+					trace=trace.trim(); 
+					if (trace.equals("T")) {
+						data[j][OwnerClassT] = "1";
+						data[j][OwnerClassN] = "0";
+						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS T  "+j +" set to 1");
+					} else if (trace.equals("N")) {
+						data[j][OwnerClassT] = "0";
+						data[j][OwnerClassN] = "1";
+						data[j][OwnerClassE] = "0";
+						System.out.println("OWNERCLASS N  "+j +" set to 1");
+					} else if (trace.equals("E")) {
+						data[j][OwnerClassT] = "0";
+						data[j][OwnerClassN] = "0";
+						data[j][OwnerClassE] = "1";
+						System.out.println("OWNERCLASS E  "+j +" set to 1");
+					}
 				}
+				
 				
 				
 				if(myclasstraceHashMap.getTrace2()!=null) {
 					String traceGOLD2 = myclasstraceHashMap.getTrace2();
-					traceGOLD2=traceGOLD2.trim(); 
-					if (traceGOLD2.equals("T")) {
-						data[j][OwnerClassTGOLD2] = "1";
-						data[j][OwnerClassNGOLD2] = "0";
-						data[j][OwnerClassEGOLD2] = "0";
-						System.out.println("OWNERCLASS T  "+j +" set to 1");
-					} else if (traceGOLD2.equals("N")) {
-						data[j][OwnerClassTGOLD2] = "0";
-						data[j][OwnerClassNGOLD2] = "1";
-						data[j][OwnerClassEGOLD2] = "0";
-						System.out.println("OWNERCLASS N  "+j +" set to 1");
-					} else if (traceGOLD2.equals("E")) {
-						data[j][OwnerClassTGOLD2] = "0";
-						data[j][OwnerClassNGOLD2] = "0";
-						data[j][OwnerClassEGOLD2] = "1";
-						System.out.println("OWNERCLASS E  "+j +" set to 1");
+					if(traceGOLD2!=null) {
+						traceGOLD2=traceGOLD2.trim(); 
+						if (traceGOLD2.equals("T")) {
+							data[j][OwnerClassTGOLD2] = "1";
+							data[j][OwnerClassNGOLD2] = "0";
+							data[j][OwnerClassEGOLD2] = "0";
+							System.out.println("OWNERCLASS T  "+j +" set to 1");
+						} else if (traceGOLD2.equals("N")) {
+							data[j][OwnerClassTGOLD2] = "0";
+							data[j][OwnerClassNGOLD2] = "1";
+							data[j][OwnerClassEGOLD2] = "0";
+							System.out.println("OWNERCLASS N  "+j +" set to 1");
+						} else if (traceGOLD2.equals("E")) {
+							data[j][OwnerClassTGOLD2] = "0";
+							data[j][OwnerClassNGOLD2] = "0";
+							data[j][OwnerClassEGOLD2] = "1";
+							System.out.println("OWNERCLASS E  "+j +" set to 1");
+						}
 					}
+		
 					
 				}
 				
@@ -821,13 +827,13 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					for(Interface2 myinter: InterfacesList) {
 						ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.classid,	methodtrace.Requirement.getID().trim());
 						if(myinfo!=null && myinfo.getTrace2()!=null) {
-						if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
+						if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
 							InterfacesTMethodLevelGold2++; 
 						}
-						else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
+						else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
 							InterfacesNMethodLevelGold2++; 
 						}
-						else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
+						else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
 							InterfacesEMethodLevelGold2++; 
 						}
 						else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) ) {
@@ -855,13 +861,13 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				for(SuperClass2 superclass: SuperclassesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.classid,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null&& myinfo.getTrace2()!=null) {
-					if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
+					if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
 						SuperclassesTMethodLevelGold2++; 
 					}
-					else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
+					else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
 						SuperclassesNMethodLevelGold2++; 
 					}
-					else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
+					else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
 						SuperclassesEMethodLevelGold2++; 
 					}
 					else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid)) {
@@ -886,13 +892,13 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					for(MethodField2 fieldmethod: FieldMethodsList) {
 						ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim());
 						if(myinfo!=null && myinfo.getTrace2()!=null) {
-						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
+						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
 							FieldMethodsTMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
 							FieldMethodsNMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
+						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
 							FieldMethodsEMethodLevelGold2++; 
 						}
 						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
@@ -919,13 +925,13 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					for(ClassField2 fieldmethod: FieldClassesList) {
 						ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim()); 
 						if(myinfo!=null && myinfo.getTrace2()!=null) {
-							if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("T")) {
+							if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("T")) {
 								FieldClassesTMethodLevelGold2++; 
 							}
-							else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("N")) {
+							else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("N")) {
 								FieldClassesNMethodLevelGold2++; 
 							}
-							else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().trim().equals("E")) {
+							else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace2().trim().equals("E")) {
 								FieldClassesEMethodLevelGold2++; 
 							}
 							else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
@@ -976,14 +982,17 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					
 					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 					if(mycallerclass!=null) {
-						String mytrace=mycallerclass.gettrace().trim().trim(); 
-						if(mytrace.trim().equals("T")) {
-							counterParameterT++; 
-						}else if (mytrace.trim().equals("N")) {
-							counterParameterN++; 
-						} else {
-							counterParameterE++; 
+						String mytrace=mycallerclass.gettrace(); 
+						if(mytrace!=null) {
+							if(mytrace.trim().equals("T")) {
+								counterParameterT++; 
+							}else if (mytrace.trim().equals("N")) {
+								counterParameterN++; 
+							} else {
+								counterParameterE++; 
+							}
 						}
+						
 						
 						String mytrace2=mycallerclass.getTrace2(); 
 						if(mytrace2!=null) {
@@ -1503,6 +1512,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 							Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 							MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 							if(methtrace!=null) {
+								if(methtrace.gold!=null) {
 							if (methtrace.gold.trim().equals("T")) {
 								CountMethodTACHRAF++;
 							} else if (methtrace.gold.trim().equals("N")) {
@@ -1513,7 +1523,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					 }else {
 						 CountMethodEACHRAF++;
 					 }
-					
+							}
 				}
 				}
 				
@@ -1527,17 +1537,20 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 							Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 							MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 							if(methtrace!=null) {
-								if (methtrace.gold.trim().equals("T")) {
-									CountMethodTACHRAFCallee++;
-								} else if (methtrace.gold.trim().equals("N")) {
-									CountMethodNACHRAFCallee++;
-								}else if (methtrace.gold.trim().equals("E")) {
+								if(methtrace.gold!=null) {
+									if (methtrace.gold.trim().equals("T")) {
+										CountMethodTACHRAFCallee++;
+									} else if (methtrace.gold.trim().equals("N")) {
+										CountMethodNACHRAFCallee++;
+									}else if (methtrace.gold.trim().equals("E")) {
+										CountMethodEACHRAFCallee++;
+									} 
+								}
+								else {
 									CountMethodEACHRAFCallee++;
-								} 
-							}
-							else {
-								CountMethodEACHRAFCallee++;
-							}
+								}
+								}
+							
 					 }
 					
 				
@@ -1559,12 +1572,12 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 					if(methtrace!=null) {
 						if(methtrace.gold2!=null) {
-							if (methtrace.gold2.equals("T")) {
+							if (methtrace.gold2.trim().equals("T")) {
 								CountMethodTACHRAFGold2++;
-							} else if (methtrace.gold2.equals("N")) {
+							} else if (methtrace.gold2.trim().equals("N")) {
 								CountMethodNACHRAFGold2++;
 							}
-							else if (methtrace.gold2.equals("E")) {
+							else if (methtrace.gold2.trim().equals("E")) {
 								CountMethodEACHRAFGold2++;
 							}
 						}else  {
@@ -1587,12 +1600,12 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 					MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 					if(methtrace!=null && methtrace.gold2!=null) {
-						if (methtrace.gold2.equals("T")) {
+						if (methtrace.gold2.trim().equals("T")) {
 							CountMethodTACHRAFCalleeGold2++;
-						} else if (methtrace.gold2.equals("N")) {
+						} else if (methtrace.gold2.trim().equals("N")) {
 							CountMethodNACHRAFCalleeGold2++;
 						} 
-						else if (methtrace.gold2.equals("E")) {
+						else if (methtrace.gold2.trim().equals("E")) {
 							CountMethodEACHRAFCalleeGold2++;
 						} 
 					}else  {
@@ -1660,19 +1673,25 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				int CountMethodNGOLD2 = 0; 
 				int CountMethodEGOLD2 = 0; 
 				for (ClassTrace2 mycallerclass : mycallerclasses) {
-					if (mycallerclass.gettrace().trim().equals("T")) {
-						CountMethodT++;
-					} else if (mycallerclass.gettrace().trim().equals("N")) {
-						CountMethodN++;
-					} else  {
-						CountMethodE++;
+					if(mycallerclass!=null) {
+						if(mycallerclass.gettrace()!=null) {
+							if (mycallerclass.gettrace().trim().equals("T")) {
+								CountMethodT++;
+							} else if (mycallerclass.gettrace().trim().equals("N")) {
+								CountMethodN++;
+							} else  {
+								CountMethodE++;
+							}
+						}
+					
 					}
+					
 					if(mycallerclass.getTrace2()!=null) {
-						if (mycallerclass.getTrace2().trim().trim().equals("T")) {
+						if (mycallerclass.getTrace2().trim().equals("T")) {
 							CountMethodTGOLD2++;
-						} else if (mycallerclass.getTrace2().trim().trim().equals("N")) {
+						} else if (mycallerclass.getTrace2().trim().equals("N")) {
 							CountMethodNGOLD2++;
-						}else if (mycallerclass.getTrace2().trim().trim().equals("E")) {
+						}else if (mycallerclass.getTrace2().trim().equals("E")) {
 							CountMethodEGOLD2++;
 						}  
 						else  {
@@ -1691,22 +1710,25 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				int CountMethodNGOLD2ACROSS = 0; 
 				int CountMethodEGOLD2ACROSS = 0; 
 				for (ClassTrace2 mycallerclass : mycallerclasses) {
-					if (mycallerclass.gettrace().trim().equals("T") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodTACROSS++;
-					} else if (mycallerclass.gettrace().trim().equals("N") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodNACROSS++;
-					} else if (mycallerclass.gettrace().trim().equals("E") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodEACROSS++;
+					if(mycallerclass.gettrace()!=null) {
+						if (mycallerclass.gettrace().trim().equals("T") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodTACROSS++;
+						} else if (mycallerclass.gettrace().trim().equals("N") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodNACROSS++;
+						} else if (mycallerclass.gettrace().trim().equals("E") && mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodEACROSS++;
+						}
+						else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodEACROSS++;
+						}
 					}
-					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodEACROSS++;
-					}
+					
 					if(mycallerclass.getTrace2()!=null) {
-						if (mycallerclass.getTrace2().trim().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						if (mycallerclass.getTrace2().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodTGOLD2ACROSS++;
-						} else if (mycallerclass.getTrace2().trim().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						} else if (mycallerclass.getTrace2().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodNGOLD2ACROSS++;
-						} else if (mycallerclass.getTrace2().trim().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						} else if (mycallerclass.getTrace2().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodEGOLD2ACROSS++;
 						}
 						else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
@@ -1730,22 +1752,25 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				int CountMethodEGOLD2ACROSSCallee = 0; 
 				
 				for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-					if (mycalleeclass.gettrace().trim().equals("T") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodTACROSSCallee++;
-					} else if (mycalleeclass.gettrace().trim().equals("N") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodNACROSSCallee++;
-					} else if (mycalleeclass.gettrace().trim().equals("E") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodEACROSSCallee++;
+					if(mycalleeclass.gettrace()!=null) {
+						if (mycalleeclass.gettrace().trim().equals("T") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodTACROSSCallee++;
+						} else if (mycalleeclass.gettrace().trim().equals("N") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodNACROSSCallee++;
+						} else if (mycalleeclass.gettrace().trim().equals("E") && mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodEACROSSCallee++;
+						}
+						else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CountMethodEACROSSCallee++;
+						}
 					}
-					else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CountMethodEACROSSCallee++;
-					}
+				
 					if(mycalleeclass.getTrace2()!=null) {
-						if (mycalleeclass.getTrace2().trim().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						if (mycalleeclass.getTrace2().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodTGOLD2ACROSSCallee++;
-						} else if (mycalleeclass.getTrace2().trim().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						} else if (mycalleeclass.getTrace2().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodNGOLD2ACROSSCallee++;
-						} else if (mycalleeclass.getTrace2().trim().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+						} else if (mycalleeclass.getTrace2().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CountMethodEGOLD2ACROSSCallee++;
 						}
 						else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
@@ -1777,16 +1802,19 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				int CounterTraceClassCallerEGOLD2ACROSS = 0;
 				
 				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-					if (mycalleeclass.gettrace().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCalleeTACROSS++;
-					} else if (mycalleeclass.gettrace().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCalleeNACROSS++;
-					} else if (mycalleeclass.gettrace().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCalleeEACROSS++;
+					if(mycalleeclass.gettrace()!=null) {
+						if (mycalleeclass.gettrace().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCalleeTACROSS++;
+						} else if (mycalleeclass.gettrace().trim().equals("N")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCalleeNACROSS++;
+						} else if (mycalleeclass.gettrace().trim().equals("E")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCalleeEACROSS++;
+						}
+						else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCalleeEACROSS++;
+						}
 					}
-					else if ( mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCalleeEACROSS++;
-					}
+					
 					
 					if(mycalleeclass.getTrace2()!=null) {
 						if (mycalleeclass.getTrace2().trim().equals("T")&& mycalleeclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
@@ -1809,15 +1837,18 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				CounterTraceClassCalleeEGOLD2ACROSS=CounterTraceClassCalleeEGOLD2ACROSS+mymapACROSSCalleeGOLD2.size(); 
 				//NO DUPLICATE CLASSES 
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-					if (mycallerclass.gettrace().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCallerTACROSS++;
-					} else if (mycallerclass.gettrace().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCallerNACROSS++;
-					} else if (mycallerclass.gettrace().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCallerEACROSS++;
-					}else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
-						CounterTraceClassCallerEACROSS++;
+					if(mycallerclass.gettrace()!=null) {
+						if (mycallerclass.gettrace().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCallerTACROSS++;
+						} else if (mycallerclass.gettrace().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCallerNACROSS++;
+						} else if (mycallerclass.gettrace().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCallerEACROSS++;
+						}else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+							CounterTraceClassCallerEACROSS++;
+						}
 					}
+				
 					if (mycallerclass.getTrace2()!=null) {
 						if (mycallerclass.getTrace2().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 							CounterTraceClassCallerTGOLD2ACROSS++;
@@ -1853,15 +1884,18 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				//data[j][CalleeClassesNumber] = myclasstracesCallees.size();
 				System.out.println("FUINAL COIUNTER ===============>"+ myfinalcounter);
 				for (ClassTrace2 mycalleeclass : myclasstracesCallees) {
-					if (mycalleeclass.gettrace().trim().equals("T")) {
-						CounterTraceClassCalleeT++;
-					} else if (mycalleeclass.gettrace().trim().equals("N")) {
-						CounterTraceClassCalleeN++;
-					} else if (mycalleeclass.gettrace().trim().equals("E")) {
-						CounterTraceClassCalleeE++;
-					}
-					else {
-						CounterTraceClassCalleeE++;
+					if(mycalleeclass.gettrace()!=null) {
+						if (mycalleeclass.gettrace().trim().equals("T")) {
+							CounterTraceClassCalleeT++;
+						} else if (mycalleeclass.gettrace().trim().equals("N")) {
+							CounterTraceClassCalleeN++;
+						} else if (mycalleeclass.gettrace().trim().equals("E")) {
+							CounterTraceClassCalleeE++;
+						}
+						else {
+							CounterTraceClassCalleeE++;
+						}
+						
 					}
 					
 					if(mycalleeclass.getTrace2()!=null) {
@@ -1887,16 +1921,19 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				
 				//NO DUPLICATE CLASSES 
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
-					if (mycallerclass.gettrace().trim().equals("T")) {
-						CounterTraceClassCallerT++;
-					} else if (mycallerclass.gettrace().trim().equals("N")) {
-						CounterTraceClassCallerN++;
-					} 
-					else if (mycallerclass.gettrace().trim().equals("E")) {
-						CounterTraceClassCallerE++;
-					}else  {
-						CounterTraceClassCallerE++;
+					if(mycallerclass.gettrace()!=null) {
+						if (mycallerclass.gettrace().trim().equals("T")) {
+							CounterTraceClassCallerT++;
+						} else if (mycallerclass.gettrace().trim().equals("N")) {
+							CounterTraceClassCallerN++;
+						} 
+						else if (mycallerclass.gettrace().trim().equals("E")) {
+							CounterTraceClassCallerE++;
+						}else  {
+							CounterTraceClassCallerE++;
+						}
 					}
+					
 					if (mycallerclass.getTrace2()!=null) {
 						if (mycallerclass.getTrace2().trim().equals("T")) {
 							CounterTraceClassCallerTGOLD2++;
@@ -1930,7 +1967,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 				int CountMethodECalleeGOLD2 = 0; 
 				 diff =CalleeMethodListFinal.size()-mycalleeclasses.size(); 
 				for (ClassTrace2 mycalleeclass : mycalleeclasses) {
-					if(mycalleeclass.gettrace().trim()!=null) {
+					if(mycalleeclass.gettrace()!=null) {
 						if (mycalleeclass.gettrace().trim().equals("T")) {
 							CountMethodTCallee++;
 						} else if (mycalleeclass.gettrace().trim().equals("N")) {
@@ -1945,11 +1982,11 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 					
 					
 					if(mycalleeclass.getTrace2()!=null) {
-						if (mycalleeclass.getTrace2().trim().trim().equals("T")) {
+						if (mycalleeclass.getTrace2().trim().equals("T")) {
 							CountMethodTCalleeGOLD2++;
-						} else if (mycalleeclass.getTrace2().trim().trim().equals("N")) {
+						} else if (mycalleeclass.getTrace2().trim().equals("N")) {
 							CountMethodNCalleeGOLD2++;
-						} else if (mycalleeclass.getTrace2().trim().trim().equals("E")) {
+						} else if (mycalleeclass.getTrace2().trim().equals("E")) {
 							CountMethodECalleeGOLD2++;
 						}
 						

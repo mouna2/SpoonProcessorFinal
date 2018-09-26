@@ -177,7 +177,6 @@ public class DatabaseReading2Gantt {
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
 		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
-		Method2Details methoddet2 = new Method2Details();
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		MethodTraceSubjectTSubjectNOriginal methodtrace2 = new MethodTraceSubjectTSubjectNOriginal();
@@ -191,6 +190,8 @@ public class DatabaseReading2Gantt {
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
 		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
+		Method2Details methoddet2 = new Method2Details();
+
 		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
 		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
 		setLinkedmethodhashmap(linkedmethodhashmap);

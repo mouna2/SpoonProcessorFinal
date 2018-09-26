@@ -1731,11 +1731,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.getTrace3()!=null) {
-					if (mycallerclass.getTrace3().equals("T")) {
+					if (mycallerclass.getTrace3().trim().equals("T")) {
 						CounterTraceClassCallerTGOLD3++;
-					} else if (mycallerclass.getTrace3().equals("N")) {
+					} else if (mycallerclass.getTrace3().trim().equals("N")) {
 						CounterTraceClassCallerNGOLD3++;
-					} else if (mycallerclass.getTrace3().equals("E")) {
+					} else if (mycallerclass.getTrace3().trim().equals("E")) {
 						CounterTraceClassCallerEGOLD3++;
 					}
 					else  {
@@ -1748,11 +1748,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.getTrace4()!=null) {
-					if (mycallerclass.getTrace4().equals("T")) {
+					if (mycallerclass.getTrace4().trim().equals("T")) {
 						CounterTraceClassCallerTGOLD4++;
-					} else if (mycallerclass.getTrace4().equals("N")) {
+					} else if (mycallerclass.getTrace4().trim().equals("N")) {
 						CounterTraceClassCallerNGOLD4++;
-					} else if (mycallerclass.getTrace4().equals("E")) {
+					} else if (mycallerclass.getTrace4().trim().equals("E")) {
 						CounterTraceClassCallerEGOLD4++;
 					}
 					else  {
@@ -1808,11 +1808,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
 				if(mycallerclass.getTrace3()!=null) {
-					if (mycallerclass.getTrace3().equals("T")) {
+					if (mycallerclass.getTrace3().trim().equals("T")) {
 						CountMethodTGOLD3++;
-					} else if (mycallerclass.getTrace3().equals("N")) {
+					} else if (mycallerclass.getTrace3().trim().equals("N")) {
 						CountMethodNGOLD3++;
-					} else if (mycallerclass.getTrace3().equals("E")) {
+					} else if (mycallerclass.getTrace3().trim().equals("E")) {
 						CountMethodEGOLD3++;
 					}else {
 						CountMethodEGOLD3++;
@@ -1823,11 +1823,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 			for (ClassTrace2 mycallerclass : mycallerclasses) {
 				if(mycallerclass.getTrace4()!=null) {
-					if (mycallerclass.getTrace4().equals("T")) {
+					if (mycallerclass.getTrace4().trim().equals("T")) {
 						CountMethodTGOLD4++;
-					} else if (mycallerclass.getTrace4().equals("N")) {
+					} else if (mycallerclass.getTrace4().trim().equals("N")) {
 						CountMethodNGOLD4++;
-					} else if (mycallerclass.getTrace4().equals("E")) {
+					} else if (mycallerclass.getTrace4().trim().equals("E")) {
 						CountMethodEGOLD4++;
 					}
 					else {
@@ -1922,11 +1922,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold3!=null) {
-						if (methtrace.gold3.equals("T")) {
+						if (methtrace.gold3.trim().equals("T")) {
 							CountMethodTACHRAFGold3++;
-						} else if (methtrace.gold3.equals("N")) {
+						} else if (methtrace.gold3.trim().equals("N")) {
 							CountMethodNACHRAFGold3++;
-						} else if (methtrace.gold3.equals("E")) {
+						} else if (methtrace.gold3.trim().equals("E")) {
 							CountMethodEACHRAFGold3++;
 						}else {
 							CountMethodEACHRAFGold3++;
@@ -1952,11 +1952,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold3!=null) {
-						if (methtrace.gold3.equals("T")) {
+						if (methtrace.gold3.trim().equals("T")) {
 							CountMethodTACHRAFCalleeGold3++;
-						} else if (methtrace.gold3.equals("N")) {
+						} else if (methtrace.gold3.trim().equals("N")) {
 							CountMethodNACHRAFCalleeGold3++;
-						} else if (methtrace.gold3.equals("E")) {
+						} else if (methtrace.gold3.trim().equals("E")) {
 							CountMethodEACHRAFCalleeGold3++;
 						}else {
 							CountMethodEACHRAFCalleeGold3++;
@@ -1979,11 +1979,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null ) {
 						
-						if (methtrace.gold4.equals("T")) {
+						if (methtrace.gold4.trim().equals("T")) {
 							CountMethodTACHRAFGold4++;
-						} else if (methtrace.gold4.equals("N")) {
+						} else if (methtrace.gold4.trim().equals("N")) {
 							CountMethodNACHRAFGold4++;
-						} else if (methtrace.gold4.equals("E")) {
+						} else if (methtrace.gold4.trim().equals("E")) {
 							CountMethodEACHRAFGold4++;
 						}else {
 							CountMethodEACHRAFGold4++;
@@ -2009,11 +2009,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold4!=null ) {
-					if (methtrace.gold4.equals("T")) {
+					if (methtrace.gold4.trim().equals("T")) {
 						CountMethodTACHRAFCalleeGold4++;
-					} else if (methtrace.gold4.equals("N")) {
+					} else if (methtrace.gold4.trim().equals("N")) {
 						CountMethodNACHRAFCalleeGold4++;
-					} else if (methtrace.gold4.equals("E")) {
+					} else if (methtrace.gold4.trim().equals("E")) {
 						CountMethodEACHRAFCalleeGold4++;
 					}else {
 						CountMethodEACHRAFCalleeGold4++;
@@ -2216,11 +2216,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 				for (ClassTrace2 mycallerclass : mycallerclasses) {
 				if(mycallerclass.getTrace4()!=null) {
-					if (mycallerclass.getTrace4().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycallerclass.getTrace4().trim().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodTGOLD4ACROSS++;
-					} else if (mycallerclass.getTrace4().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace4().trim().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodNGOLD4ACROSS++;
-					} else if (mycallerclass.getTrace4().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace4().trim().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CountMethodEGOLD4ACROSS++;
 					}
 					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false){
@@ -2358,11 +2358,11 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			}
 				for (ClassTrace2 mycallerclass : myclasstracesCallers) {
 				if (mycallerclass.getTrace4()!=null) {
-					if (mycallerclass.getTrace4().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					if (mycallerclass.getTrace4().trim().equals("T")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerTGOLD4ACROSS++;
-					} else if (mycallerclass.getTrace4().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace4().trim().equals("N")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerNGOLD4ACROSS++;
-					} else if (mycallerclass.getTrace4().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
+					} else if (mycallerclass.getTrace4().trim().equals("E")&& mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {
 						CounterTraceClassCallerEGOLD4ACROSS++;
 					}
 					else if ( mycallerclass.getMyclass().getClassid().equals(methodtrace.ClassRepresentation.classid)==false) {

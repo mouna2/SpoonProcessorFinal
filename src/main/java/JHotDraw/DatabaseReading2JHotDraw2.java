@@ -219,119 +219,119 @@ public class DatabaseReading2JHotDraw2 {
 		
 		
 		
-		
-		String goldprediction=""; 
-		String GoldVal=""; 
-		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) { 
-			
-			for (Method2Details method : methodlist) {
-				List<Method2Representation> Callees = method.calleesList;
-				for (Method2Representation Callee : Callees) {
-					if (Callee.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
-						
-							for(RequirementGold reqgoldCallee: Callee.getRequirementsGold()) {
-								if(reqgoldCallee.Requirement.ID.equals(tracemeth.Requirement.ID)) {
-									goldprediction="goldpredictionCaller"; 
-									GoldVal= reqgoldCallee.gold; 
-									methodtraces2 = tracemeth.getElement(methodtraces, method.methodrep.methodid,
-											GoldVal, goldprediction, tracemeth.getRequirement().ID);
-								}
-							}
-						
-						
-						
-				
-
-					}
-
-				}
-			}
-		}
-				 GoldVal=""; 
-				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
-					
-					for (Method2Details method2 : methodlist) {
-						List<Method2Representation> Callers = method2.callersList;
-						for (Method2Representation Caller : Callers) {
-							if (Caller.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
-								
-									for(RequirementGold reqgoldCaller: Caller.getRequirementsGold()) {
-										if(reqgoldCaller.Requirement.ID.equals(tracemeth2.Requirement.ID)) {
-											goldprediction="goldpredictionCallee"; 
-											GoldVal= reqgoldCaller.gold; 
-											methodtraces2 = tracemeth2.getElement(methodtraces, method2.methodrep.methodid,
-													GoldVal, goldprediction, tracemeth2.getRequirement().ID);
-										}
-									}
-								
-								
-								
-						
-
-							}
-
-						}
-
-			}
-
-		}
-		/***********************************************************************************************************************/
-		/***********************************************************************************************************************/
-		/***********************************************************************************************************************/
-		 GoldVal=""; 
-		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) {
-			
-			for (Method2Details method : methodlist) {
-				List<Method2Representation> CalleesExecuted = method.calleesListExecuted;
-				for (Method2Representation CalleeExecuted : CalleesExecuted) {
-					if (CalleeExecuted.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
-						
-							for(RequirementGold reqgoldCallee: CalleeExecuted.getRequirementsGold()) {
-								if(reqgoldCallee.Requirement.ID.equals(tracemeth.Requirement.ID)) {
-									goldprediction="goldpredictionCaller"; 
-									GoldVal= reqgoldCallee.gold; 
-									methodtraces2 = tracemeth.getElement(methodtraces, method.methodrep.methodid,
-											GoldVal, goldprediction, tracemeth.getRequirement().ID);
-								}
-							}
-						
-						
-						
-				
-
-					}
-
-				}
-			}
-		}
-				 GoldVal=""; 
-				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
-					
-					for (Method2Details method2 : methodlist) {
-						List<Method2Representation> CallersExecuted = method2.callersListExecuted;
-						for (Method2Representation CallerExecuted : CallersExecuted) {
-							if (CallerExecuted.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
-								
-									for(RequirementGold reqgoldCaller: CallerExecuted.getRequirementsGold()) {
-										if(reqgoldCaller.Requirement.ID.equals(tracemeth2.Requirement.ID)) {
-											goldprediction="goldpredictionCallee"; 
-											GoldVal= reqgoldCaller.gold; 
-											methodtraces2 = tracemeth2.getElement(methodtraces, method2.methodrep.methodid,
-													GoldVal, goldprediction, tracemeth2.getRequirement().ID);
-										}
-									}
-								
-								
-								
-						
-
-							}
-
-						}
-
-			}
-
-		}
+//		
+//		String goldprediction=""; 
+//		String GoldVal=""; 
+//		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) { 
+//			
+//			for (Method2Details method : methodlist) {
+//				List<Method2Representation> Callees = method.calleesList;
+//				for (Method2Representation Callee : Callees) {
+//					if (Callee.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
+//						
+//							for(RequirementGold reqgoldCallee: Callee.getRequirementsGold()) {
+//								if(reqgoldCallee.Requirement.ID.equals(tracemeth.Requirement.ID)) {
+//									goldprediction="goldpredictionCaller"; 
+//									GoldVal= reqgoldCallee.gold; 
+//									methodtraces2 = tracemeth.getElement(methodtraces, method.methodrep.methodid,
+//											GoldVal, goldprediction, tracemeth.getRequirement().ID);
+//								}
+//							}
+//						
+//						
+//						
+//				
+//
+//					}
+//
+//				}
+//			}
+//		}
+//				 GoldVal=""; 
+//				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
+//					
+//					for (Method2Details method2 : methodlist) {
+//						List<Method2Representation> Callers = method2.callersList;
+//						for (Method2Representation Caller : Callers) {
+//							if (Caller.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
+//								
+//									for(RequirementGold reqgoldCaller: Caller.getRequirementsGold()) {
+//										if(reqgoldCaller.Requirement.ID.equals(tracemeth2.Requirement.ID)) {
+//											goldprediction="goldpredictionCallee"; 
+//											GoldVal= reqgoldCaller.gold; 
+//											methodtraces2 = tracemeth2.getElement(methodtraces, method2.methodrep.methodid,
+//													GoldVal, goldprediction, tracemeth2.getRequirement().ID);
+//										}
+//									}
+//								
+//								
+//								
+//						
+//
+//							}
+//
+//						}
+//
+//			}
+//
+//		}
+//		/***********************************************************************************************************************/
+//		/***********************************************************************************************************************/
+//		/***********************************************************************************************************************/
+//		 GoldVal=""; 
+//		for (MethodTraceSubjectTSubjectN tracemeth : methodtraces) {
+//			
+//			for (Method2Details method : methodlist) {
+//				List<Method2Representation> CalleesExecuted = method.calleesListExecuted;
+//				for (Method2Representation CalleeExecuted : CalleesExecuted) {
+//					if (CalleeExecuted.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
+//						
+//							for(RequirementGold reqgoldCallee: CalleeExecuted.getRequirementsGold()) {
+//								if(reqgoldCallee.Requirement.ID.equals(tracemeth.Requirement.ID)) {
+//									goldprediction="goldpredictionCaller"; 
+//									GoldVal= reqgoldCallee.gold; 
+//									methodtraces2 = tracemeth.getElement(methodtraces, method.methodrep.methodid,
+//											GoldVal, goldprediction, tracemeth.getRequirement().ID);
+//								}
+//							}
+//						
+//						
+//						
+//				
+//
+//					}
+//
+//				}
+//			}
+//		}
+//				 GoldVal=""; 
+//				for (MethodTraceSubjectTSubjectN tracemeth2 : methodtraces) {
+//					
+//					for (Method2Details method2 : methodlist) {
+//						List<Method2Representation> CallersExecuted = method2.callersListExecuted;
+//						for (Method2Representation CallerExecuted : CallersExecuted) {
+//							if (CallerExecuted.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
+//								
+//									for(RequirementGold reqgoldCaller: CallerExecuted.getRequirementsGold()) {
+//										if(reqgoldCaller.Requirement.ID.equals(tracemeth2.Requirement.ID)) {
+//											goldprediction="goldpredictionCallee"; 
+//											GoldVal= reqgoldCaller.gold; 
+//											methodtraces2 = tracemeth2.getElement(methodtraces, method2.methodrep.methodid,
+//													GoldVal, goldprediction, tracemeth2.getRequirement().ID);
+//										}
+//									}
+//								
+//								
+//								
+//						
+//
+//							}
+//
+//						}
+//
+//			}
+//
+//		}
 
 		for (MethodTraceSubjectTSubjectN methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));

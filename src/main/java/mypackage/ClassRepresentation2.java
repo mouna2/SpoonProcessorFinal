@@ -45,6 +45,8 @@ public class ClassRepresentation2 {
 	}
 
 
+	
+
 	public void setClassname(String classname) {
 		this.classname = classname;
 	} 
