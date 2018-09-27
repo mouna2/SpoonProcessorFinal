@@ -872,6 +872,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
 			data[j][Gold3] = methodtrace.gold3;
+			data[j][Gold4] = methodtrace.gold4;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;

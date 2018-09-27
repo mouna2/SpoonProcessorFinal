@@ -224,6 +224,7 @@ public class DatabaseReading2JHotDraw {
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
+//		setClassesRequirementtraceshashmap(classesRequirementtraceshashmap); 
 		///////////////////////////////////////////////////////////////////////////////////////
 		Interface2 myinterface2= new Interface2(); 
 		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);

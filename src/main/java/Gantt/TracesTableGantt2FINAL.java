@@ -948,6 +948,15 @@ public class TracesTableGantt2FINAL extends JFrame {
 			data[j][CLASSTRACEMethodLevelPureGold4] = "null";
 			data[j][CLASSNOTRACEMethodLevelMixedGold4] = "null";
 			data[j][CLASSNOTRACEMethodLevelPureGold4] = "null";
+			data[j][OwnerClassT] = "0";
+			data[j][OwnerClassN] = "0";
+			data[j][OwnerClassE] = "1";
+			data[j][OwnerClassTGOLD3] = "0";
+			data[j][OwnerClassNGOLD3] = "0";
+			data[j][OwnerClassEGOLD3] = "1";
+			data[j][OwnerClassTGOLD4] = "0";
+			data[j][OwnerClassNGOLD4] = "0";
+			data[j][OwnerClassEGOLD4] = "1";
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 			String trace = myclasstraceHashMap.gettrace().trim().trim();
@@ -2486,7 +2495,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				
 				
 			}
-		if(methodtrace.gold4!=null ) {
+		if(methodtrace.gold4!=null && methodtrace.gold4.trim().equals("null")==false) {
 			
 			if(OwnerClassNVarGOLD4!=null) {
 				if(((OwnerClassNVarGOLD4.toString().equals("1") || data[j][OwnerClassEGOLD4].toString().equals("1"))&& methodtrace.getGold4()!=null)
