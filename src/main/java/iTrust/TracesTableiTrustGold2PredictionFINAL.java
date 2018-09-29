@@ -1511,8 +1511,10 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 						 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 							Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 							MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
+							
 							if(methtrace!=null) {
 								if(methtrace.gold!=null) {
+									System.out.println("GOLDDDD: "+methtrace.gold);
 							if (methtrace.gold.trim().equals("T")) {
 								CountMethodTACHRAF++;
 							} else if (methtrace.gold.trim().equals("N")) {
@@ -1536,6 +1538,7 @@ public class TracesTableiTrustGold2PredictionFINAL extends JFrame {
 						 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 							Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 							MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
+							
 							if(methtrace!=null) {
 								if(methtrace.gold!=null) {
 									if (methtrace.gold.trim().equals("T")) {

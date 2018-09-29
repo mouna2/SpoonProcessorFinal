@@ -143,7 +143,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		String gold=""; 
 		String subject=""; 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMap2Gold3=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGOLD4=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2GOLD4=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGOLD=new Hashtable<String,List<String>>(); 
@@ -176,7 +176,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		    System.out.println(entry.getKey() + " = " );
 		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-		     List<String> List= new ArrayList<String>(); 
+		     List<String> ListGold3= new ArrayList<String>(); 
 		     List<String> ListGold4= new ArrayList<String>(); 
 		     List<String> ListGold= new ArrayList<String>(); 
 		     List<String> ListSubject= new ArrayList<String>(); 
@@ -186,19 +186,19 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 				 requirementid=traces.getString("requirementid"); 
 				 classid=traces.getString("classid"); 
 				 if(traces.getString("gold3")!=null) {
-				 gold3=traces.getString("gold3"); 
+				 gold3=traces.getString("gold3").trim(); 
 				 }
 				 if(traces.getString("gold4")!=null) {
-				 gold4=traces.getString("gold4"); 
+				 gold4=traces.getString("gold4").trim(); 
 				 }
 				 if(traces.getString("gold")!=null) {
-				 gold=traces.getString("gold"); 
+				 gold=traces.getString("gold").trim(); 
 				 }
 				 if(traces.getString("subject")!=null) {
-				 subject=traces.getString("subject"); 
+				 subject=traces.getString("subject").trim(); 
 				 }
 				 if(gold3!=null && gold3.equals("null")==false) {
-					 List.add(gold3); 
+					 ListGold3.add(gold3); 
 
 				 }
 				if(gold4!=null && gold4.equals("null")==false) {
@@ -216,7 +216,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 	   		   }
 			String ReqClass=requirementid+"-"+classid;
 			System.out.println(ReqClass);
-			RequirementClassHashMap2.put(ReqClass, List); 
+			RequirementClassHashMap2Gold3.put(ReqClass, ListGold3); 
 			RequirementClassHashMap2GOLD4.put(ReqClass, ListGold4); 
 			RequirementClassHashMap2GOLD.put(ReqClass, ListGold); 
 			RequirementClassHashMap2Subject.put(ReqClass, ListSubject); 
@@ -225,7 +225,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		
 		
 		
-		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
+		for (Entry<String, List<String>> entry : RequirementClassHashMap2Gold3.entrySet()) {
 			   System.out.println(entry.getKey() + " = " );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 

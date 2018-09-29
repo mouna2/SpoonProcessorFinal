@@ -147,6 +147,8 @@ public class Method2Details {
 		MethodCallsEXECHashMapCallee=methodtraceold.CreateMethodCallsHashMapCalleeEXEC(conn); 
 		ParameterHashMap=methodtraceold.CreateParametersHashMap(conn); 
 		MethodFieldsHashMap=methodtraceold.CreateFieldtypeHashMap(conn); 
+		MethodTrace2HashMap=methodtraceold.CreateClassTraceHashMap(conn); 
+
 		MethodCallsEXECHashMapCaller=methodtraceold.CreateMethodCallsHashMapCallerEXEC(conn); 
 		HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
 
@@ -155,6 +157,7 @@ public class Method2Details {
 		MethodCallsHashMapCallee=methodtraceold.CreateMethodCallsHashMapCallee(conn); 
 		DatabaseReading2 db = new DatabaseReading2(); 
 		Method2Details methoddet2= new Method2Details(); 
+		HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
 		//CLASSESHASHMAP
 		String rowcount = null; 
 		Statement st = conn.createStatement();
@@ -333,7 +336,7 @@ public class Method2Details {
 							
 						
 							MethodTrace.setGold(methodtrace.getGold());
-						
+							System.out.println("GOLD: "+methodtrace.getGold());
 							MethodTrace.setGold2(methodtrace.getGold2());
 							MethodTrace.setGold4(methodtrace.getGold4());
 							MethodTrace.setGold3(methodtrace.getGold3());
@@ -395,6 +398,7 @@ public class Method2Details {
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
 		Method2Details methoddet2= new Method2Details(); 
+		HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
 		//CLASSESHASHMAP
 		String rowcount = null; 
 		Statement st = conn.createStatement();

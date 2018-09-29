@@ -153,8 +153,8 @@ public class AddGold2ColumnTTRACESCLASSES {
 			ResultSet traces = st.executeQuery("SELECT traces.* from traces where id='"+counter+"'"); 
 			while(traces.next()){		
 				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid"); 
-				 classid=traces.getString("classid"); 
+				 requirementid=traces.getString("requirementid").trim(); 
+				 classid=traces.getString("classid").trim(); 
 				String ReqClass=requirementid+"-"+classid;
 				RequirementClassHashMap.put(ReqClass, mylist); 
 
@@ -172,10 +172,10 @@ public class AddGold2ColumnTTRACESCLASSES {
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
 				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid"); 
-				 classid=traces.getString("classid"); 
+				 requirementid=traces.getString("requirementid").trim(); 
+				 classid=traces.getString("classid").trim(); 
 				
-				 gold2=traces.getString("gold2"); 
+				 gold2=traces.getString("gold2").trim(); 
 				 if(gold2!=null) {
 					 List.add(gold2); 
 				 }
