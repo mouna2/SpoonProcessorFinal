@@ -421,32 +421,32 @@ public class DBDemo3JHotDraw3 {
 //			 		"  PRIMARY KEY (`id`),\r\n" + 
 //			 		"  UNIQUE INDEX `idtracesclasses_UNIQUE` (`id` ASC));\r\n" + 
 //			 		""); 
-//			st.executeUpdate("CREATE TABLE `databasejhotdraw`.`methodsinterfaces` (\r\n" + 
-//					"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
-//					"  `methodid` VARCHAR(45) NULL,\r\n" + 
-//					"  `fullmethodname` LONGTEXT NULL,\r\n" + 
-//					"  `classid` VARCHAR(45) NULL,\r\n" + 
-//					"  `classname` LONGTEXT NULL,\r\n" + 
-//					"  `interfacemethodid` VARCHAR(45) NULL,\r\n" + 
-//					"  `fullinterfacename` LONGTEXT NULL,\r\n" + 
-//					"  `interfaceid` VARCHAR(45) NULL,\r\n" + 
-//					"  `interfacename` LONGTEXT NULL,\r\n" + 
-//					"  PRIMARY KEY (`id`));\r\n" + 
-//					""); 
-//			
-//			
-//			st.executeUpdate("CREATE TABLE `databasejhotdraw`.`methodssuperclasses` (\r\n" + 
-//					"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
-//					"  `methodid` VARCHAR(45) NULL,\r\n" + 
-//					"  `fullmethodname` LONGTEXT NULL,\r\n" + 
-//					"  `classid` VARCHAR(45) NULL,\r\n" + 
-//					"  `classname` LONGTEXT NULL,\r\n" + 
-//					"  `superclassmethodid` VARCHAR(45) NULL,\r\n" + 
-//					"  `fullsuperclassname` LONGTEXT NULL,\r\n" + 
-//					"  `superclassid` VARCHAR(45) NULL,\r\n" + 
-//					"  `superclassname` LONGTEXT NULL,\r\n" + 
-//					"  PRIMARY KEY (`id`));\r\n" + 
-//					""); 
+			st.executeUpdate("CREATE TABLE `databasejhotdraw`.`methodsinterfaces` (\r\n" + 
+					"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
+					"  `methodid` VARCHAR(45) NULL,\r\n" + 
+					"  `fullmethodname` LONGTEXT NULL,\r\n" + 
+					"  `classid` VARCHAR(45) NULL,\r\n" + 
+					"  `classname` LONGTEXT NULL,\r\n" + 
+					"  `interfacemethodid` VARCHAR(45) NULL,\r\n" + 
+					"  `fullinterfacename` LONGTEXT NULL,\r\n" + 
+					"  `interfaceid` VARCHAR(45) NULL,\r\n" + 
+					"  `interfacename` LONGTEXT NULL,\r\n" + 
+					"  PRIMARY KEY (`id`));\r\n" + 
+					""); 
+			
+			
+			st.executeUpdate("CREATE TABLE `databasejhotdraw`.`methodssuperclasses` (\r\n" + 
+					"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
+					"  `methodid` VARCHAR(45) NULL,\r\n" + 
+					"  `fullmethodname` LONGTEXT NULL,\r\n" + 
+					"  `classid` VARCHAR(45) NULL,\r\n" + 
+					"  `classname` LONGTEXT NULL,\r\n" + 
+					"  `superclassmethodid` VARCHAR(45) NULL,\r\n" + 
+					"  `fullsuperclassname` LONGTEXT NULL,\r\n" + 
+					"  `superclassid` VARCHAR(45) NULL,\r\n" + 
+					"  `superclassname` LONGTEXT NULL,\r\n" + 
+					"  PRIMARY KEY (`id`));\r\n" + 
+					""); 
 		   
 		   try {
 			Spoon();
@@ -579,111 +579,111 @@ public class DBDemo3JHotDraw3 {
 ////////        /*********************************************************************************************************************************************************************************/	
 ////////        /*********************************************************************************************************************************************************************************/
 ////    //	BUILD SUPERCLASSES TABLE 
-    	for(CtType<?> clazz : classFactory.getAll(true)) {
-    		String childclassQuery = null; 
-    		String superclassQuery = null;
-    		String superclassQueryName=null; 
-    		String childclassQueryName=null; 
-    		
-    		String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-    		//String superclass= clazz.getSuperclass().toString();
-    		
-			
-			//System.out.println("SUPERCLASS"+superclass +"SUBCLASS "+FullClassName);
-//if(clazz.getSuperclass()!=null && clazz.getSuperclass().toString().contains(clazz.getPackage().toString()) ) {
-	if(clazz.getSuperclass()!=null) {	
-    			String superclass= clazz.getSuperclass().toString();
-    		//	System.out.println(i+"    HERE IS MY SUPERCLASS"+superclass+"AND HERE IS MY SUBCLASS  "+FullClassName);
-    		i++; 
-    
-    					ResultSet sClass = st.executeQuery("SELECT id from classes where classname='"+superclass+"'"); 
-    					while(sClass.next()){
-    						 superclassQuery= sClass.getString("id"); 
-    			//			System.out.println("superclass: "+superclassQuery);	
-    			   		   }
-
-    					ResultSet sClassName = st.executeQuery("SELECT classname from classes where classname='"+superclass+"'"); 
-    					while(sClassName.next()){
-    						 superclassQueryName= sClassName.getString("classname"); 
-    			//			System.out.println("superclass: "+superclassQuery);	
-    			   		   }		
-    					
-    					ResultSet cClass = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-    					while(cClass.next()){
-    						 childclassQuery= cClass.getString("id"); 
-    			//			System.out.println("subclass: "+childclassQuery);	
-    			   		   }
-    					ResultSet cClassName = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-    					while(cClassName.next()){
-    						 childclassQueryName= cClassName.getString("classname"); 
-    			//			System.out.println("subclass: "+childclassQuery);	
-    			   		   }
-    					
-    			String result= "SELECT classname from classes where classname='"+FullClassName+"'"; 
-    			if(superclassQuery!=null)
-    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+superclassQuery +"','" +superclassQueryName+"','" +childclassQuery+"','" +childclassQueryName+"')");
-    			
-    		
-    		
-    		/*	st.executeUpdate("INSERT INTO `superclasses`(`superclass`, `childclass`) VALUES( "
-    					+"(("+ superclassQuery+")"
-    					+ ", ("+childclassQuery+")));" ); */
-        		//clazz.getSuperInterfaces();
-        		
-    		}
-    	}
-//////////////    	/*********************************************************************************************************************************************************************************/	
-//////////////        /*********************************************************************************************************************************************************************************/	
-//////////////        /*********************************************************************************************************************************************************************************/	
-////////////    	  	
-//////////     	//BUILD INTERFACES TABLE 
-for(CtType<?> clazz : classFactory.getAll(true)) {
-    		
-    		
-    		String myinterfaceclassid = null;
-    		String myinterfacename = null;
-    		String myclassid = null;
-    		String myclassname = null;
-    		
-			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
-			
-			for(CtTypeReference<?> inter: interfaces) {
-				System.out.println("my interface   "+inter);
-				//if(inter.toString().contains(clazz.getPackage().toString())) {
-					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
-					while(interfacesnames.next()){
-						myinterfacename= interfacesnames.getString("classname"); 
-						System.out.println("myinterfacename: "+myinterfacename);	
-			   		   }
-					
-					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
-					while(interfacesclasses.next()){
-						myinterfaceclassid= interfacesclasses.getString("id"); 
-						System.out.println("myinterfaceclassid: "+myinterfaceclassid);	
-			   		   }
-					
-					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-					while(classesnames.next()){
-						myclassname= classesnames.getString("classname"); 
-						System.out.println("class referenced: "+myclassname);	
-			   		   }
-					
-					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-					while(interfacesname.next()){
-						myclassid= interfacesname.getString("id"); 
-						System.out.println("class id: "+myclassid);	
-			   		   }
-					if(myinterfaceclassid!=null) {
-		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
-
-					}
-				//}
-				
-			}
-			
-
-    	}
+//    	for(CtType<?> clazz : classFactory.getAll(true)) {
+//    		String childclassQuery = null; 
+//    		String superclassQuery = null;
+//    		String superclassQueryName=null; 
+//    		String childclassQueryName=null; 
+//    		
+//    		String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//    		//String superclass= clazz.getSuperclass().toString();
+//    		
+//			
+//			//System.out.println("SUPERCLASS"+superclass +"SUBCLASS "+FullClassName);
+////if(clazz.getSuperclass()!=null && clazz.getSuperclass().toString().contains(clazz.getPackage().toString()) ) {
+//	if(clazz.getSuperclass()!=null) {	
+//    			String superclass= clazz.getSuperclass().toString();
+//    		//	System.out.println(i+"    HERE IS MY SUPERCLASS"+superclass+"AND HERE IS MY SUBCLASS  "+FullClassName);
+//    		i++; 
+//    
+//    					ResultSet sClass = st.executeQuery("SELECT id from classes where classname='"+superclass+"'"); 
+//    					while(sClass.next()){
+//    						 superclassQuery= sClass.getString("id"); 
+//    			//			System.out.println("superclass: "+superclassQuery);	
+//    			   		   }
+//
+//    					ResultSet sClassName = st.executeQuery("SELECT classname from classes where classname='"+superclass+"'"); 
+//    					while(sClassName.next()){
+//    						 superclassQueryName= sClassName.getString("classname"); 
+//    			//			System.out.println("superclass: "+superclassQuery);	
+//    			   		   }		
+//    					
+//    					ResultSet cClass = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//    					while(cClass.next()){
+//    						 childclassQuery= cClass.getString("id"); 
+//    			//			System.out.println("subclass: "+childclassQuery);	
+//    			   		   }
+//    					ResultSet cClassName = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//    					while(cClassName.next()){
+//    						 childclassQueryName= cClassName.getString("classname"); 
+//    			//			System.out.println("subclass: "+childclassQuery);	
+//    			   		   }
+//    					
+//    			String result= "SELECT classname from classes where classname='"+FullClassName+"'"; 
+//    			if(superclassQuery!=null)
+//    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+superclassQuery +"','" +superclassQueryName+"','" +childclassQuery+"','" +childclassQueryName+"')");
+//    			
+//    		
+//    		
+//    		/*	st.executeUpdate("INSERT INTO `superclasses`(`superclass`, `childclass`) VALUES( "
+//    					+"(("+ superclassQuery+")"
+//    					+ ", ("+childclassQuery+")));" ); */
+//        		//clazz.getSuperInterfaces();
+//        		
+//    		}
+//    	}
+////////////////    	/*********************************************************************************************************************************************************************************/	
+////////////////        /*********************************************************************************************************************************************************************************/	
+////////////////        /*********************************************************************************************************************************************************************************/	
+//////////////    	  	
+////////////     	//BUILD INTERFACES TABLE 
+//for(CtType<?> clazz : classFactory.getAll(true)) {
+//    		
+//    		
+//    		String myinterfaceclassid = null;
+//    		String myinterfacename = null;
+//    		String myclassid = null;
+//    		String myclassname = null;
+//    		
+//			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//			
+//			for(CtTypeReference<?> inter: interfaces) {
+//				System.out.println("my interface   "+inter);
+//				//if(inter.toString().contains(clazz.getPackage().toString())) {
+//					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//					while(interfacesnames.next()){
+//						myinterfacename= interfacesnames.getString("classname"); 
+//						System.out.println("myinterfacename: "+myinterfacename);	
+//			   		   }
+//					
+//					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
+//					while(interfacesclasses.next()){
+//						myinterfaceclassid= interfacesclasses.getString("id"); 
+//						System.out.println("myinterfaceclassid: "+myinterfaceclassid);	
+//			   		   }
+//					
+//					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//					while(classesnames.next()){
+//						myclassname= classesnames.getString("classname"); 
+//						System.out.println("class referenced: "+myclassname);	
+//			   		   }
+//					
+//					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//					while(interfacesname.next()){
+//						myclassid= interfacesname.getString("id"); 
+//						System.out.println("class id: "+myclassid);	
+//			   		   }
+//					if(myinterfaceclassid!=null) {
+//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//
+//					}
+//				//}
+//				
+//			}
+//			
+//
+//    	}
 ////////////////    	
 ////////////////    
 ////////////////    	
