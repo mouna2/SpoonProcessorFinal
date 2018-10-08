@@ -1313,11 +1313,11 @@ public class DBDemo3JHotDraw3 {
 /////////////////*********************************************************************************************************************************************************************************/	
 /////////////////*********************************************************************************************************************************************************************************/   	
 //////////////////BUILD METHODSCALLED TABLE
-    	       	int counter=0; 
-
-
+    	    	int counter=0; 
+    	    	
+    	    	
     	    	String calleeDeclaringTypeName=null; 
-
+    	    	
     	    	List<methodcalls> methodcallsList = new ArrayList<methodcalls>(); 
     	    	for(CtType<?> clazz : classFactory.getAll(true)) {
     	    	List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
@@ -1357,7 +1357,12 @@ public class DBDemo3JHotDraw3 {
     	    	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
     	    	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
     	    	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
-    	    	    		
+    	    	    		if(constructorClassName.contains("$")) {
+    	    	    			String constructorClassNameFirstPart= constructorClassName.substring(0, constructorClassName.lastIndexOf(".")+1); 
+    	    	        		String constructorClassNameSecondPart= constructorClassName.substring(constructorClassName.lastIndexOf("$")+1, constructorClassName.length()); 
+    	    	        		constructorClassName=constructorClassNameFirstPart+constructorClassNameSecondPart; 
+    	    	    		}
+    	    	    	
     	    	    		
     	    	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
     	    	    				+ "and methods.classname='"+constructorClassName+"'"); 
@@ -1367,21 +1372,18 @@ public class DBDemo3JHotDraw3 {
     	    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
     	    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
     	    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    	    		}
+    	    	    		System.out.println("CALLER CLASS NAME =======>>>>"+ CALLERCLASSNAMEcons);
     	    	    		if(consInvocation.toString().contains("super")) {
     	    	    		
     	    	    		
     	    	    		System.out.println("");
     	    	    		String constructormethod = TransformConstructorIntoInit(consInvocation.getExecutable().getSignature()); 
-    	    	    		String calleeclass=""; 
-    	    	    		String calleepackagefree=""; 
-    	    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
-    	    	    			 calleeclass=consInvocation.getExecutable().getDeclaringType().toString(); 
-    	        	    		 calleepackagefree=KeepOnlyMethodName(constructormethod);
-    	    	    		}
     	    	    		
+    	    	    		String calleeclass=consInvocation.getExecutable().getDeclaringType().toString(); 
+    	    	    		String calleepackagefree=KeepOnlyMethodName(constructormethod);
     	    	    		
     	    	    		ResultSet res = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleepackagefree+"'"
     	    	    				+ "and methods.classname='"+calleeclass+"'"); 
@@ -1412,6 +1414,9 @@ public class DBDemo3JHotDraw3 {
     	    	    	
     	    	    	System.out.println("");
     	    	    	String constructormethod = TransformConstructorIntoInit(consInvocation.getExecutable().getSignature()); 
+    	    	    	constructormethod=RemoveDollar(constructormethod); 
+    	    	    	String onlymethodname=KeepOnlyMethodName(constructormethod); 
+    	    	    	String classname= constructormethod.substring(0, constructormethod.indexOf(onlymethodname)-1); 
     	    	    	
     	    	    	String calleeclass=consInvocation.getExecutable().getDeclaringType().toString(); 
     	    	    	String calleepackagefree=KeepOnlyMethodName(constructormethod);
@@ -1436,6 +1441,28 @@ public class DBDemo3JHotDraw3 {
     	    	    			st.executeUpdate(statement);
     	    	    			methodcallsList.add(methodcall); 
     	    	    		}
+    	    	    	}else {
+    	    	    		 res = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleepackagefree+"'"
+    	    	        			+ "and methods.classname='"+classname+"'"); 
+    	    	        	//while(callingmethodsrefined.next()){
+    	    	        	if(res.next()) {
+    	    	        		String CalleeMethodIDcons = res.getString("id"); 
+    	    	        		String		CALLEECLASSNAMEcons = res.getString("classname"); 
+    	    	        		String	CALLEECLASSIDcons = res.getString("classid"); 
+    	    	        		String	 fullcalleeinscons = res.getString("fullmethod"); 
+    	    	        
+    	    	        		//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+    	    	        		
+    	    	        		
+    	    	        		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcaller, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcalleeinscons, CALLERCLASSNAMEcons); 
+    	    	        		//System.out.println(methodcall.toString()); 
+    	    	        		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+    	    	        			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +calleepackagefree+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+    	    	        			
+    	    	        			st.executeUpdate(statement);
+    	    	        			methodcallsList.add(methodcall); 
+    	    	        		}
+    	    	        	}
     	    	    	}
     	    	    	
     	    	    }
@@ -1591,7 +1618,7 @@ public class DBDemo3JHotDraw3 {
     	    		    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
     	    		    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
     	    		    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    		    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		    			 
     	    		    				
@@ -1606,7 +1633,7 @@ public class DBDemo3JHotDraw3 {
     	    	    	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
     	    	    	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
     	    	    	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-
+    	    	
     	    	    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    	    	    			 
     	    	    	    				
@@ -1624,7 +1651,7 @@ public class DBDemo3JHotDraw3 {
     	    	    	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
     	    	    	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
     	    	    	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-
+    	    	
     	    	    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    	    	    			 
     	    	    	    				
@@ -1774,7 +1801,7 @@ public class DBDemo3JHotDraw3 {
     	    	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
     	    	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
     	    	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    	    		}
     	    	    		}
@@ -1815,7 +1842,7 @@ public class DBDemo3JHotDraw3 {
     	    		    			 CALLEECLASSNAME = callingmethodsrefined.getString("classname"); 
     	    		    			 CALLEECLASSID = callingmethodsrefined.getString("classid"); 
     	    		    			  fullcalleeins = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    		    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		    			 
     	    		    				
@@ -1830,7 +1857,7 @@ public class DBDemo3JHotDraw3 {
     	    	    	    			 CALLEECLASSNAME = callingmethodsrefined2.getString("classname"); 
     	    	    	    			 CALLEECLASSID = callingmethodsrefined2.getString("classid"); 
     	    	    	    			  fullcalleeins = callingmethodsrefined2.getString("fullmethod"); 
-
+    	    	
     	    	    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    	    	    			 
     	    	    	    				
@@ -1904,7 +1931,7 @@ public class DBDemo3JHotDraw3 {
     	    	   
     	    	for(CtMethod<?> method :clazz.getMethods()) {
     	    	List<CtConstructorCall> ctNewClasses = method.getElements(new TypeFilter<CtConstructorCall>(CtConstructorCall.class));
-
+    	    	
     	    	for( CtConstructorCall myclass: ctNewClasses) {
     	    		//CONSTRUCTOR 
     	    		
@@ -1919,7 +1946,7 @@ public class DBDemo3JHotDraw3 {
     	    		String fullcalleeinscons=null; 
     	    		String constructorClassName=null; 
     	    		String callerclass=myclass.getExecutable().getDeclaringType().getQualifiedName(); 
-
+    	    	
     	    			constructorClassName= myclass.getExecutable().getDeclaringType().getQualifiedName(); 
     	    		
     	    			constructorClassName = RemoveDollarConstructor(constructorClassName);
@@ -1938,7 +1965,7 @@ public class DBDemo3JHotDraw3 {
     	    		System.out.println("CONSTRUCTOR AS CALLEE CLASS NAME"+ constructorClassName);
     	    		
     	    		
-
+    	    	
     	    		
     	    		//System.out.println("CONSTRUCTOR CLASS NAME"+ constructorClassName);
     	    		constructorClassName=RemoveDollar(constructorClassName); 
@@ -1954,7 +1981,7 @@ public class DBDemo3JHotDraw3 {
     	    			CALLEECLASSNAMEcons = callingmethodsrefined.getString("classname"); 
     	    			CALLEECLASSIDcons = callingmethodsrefined.getString("classid"); 
     	    			 fullcalleeinscons = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		}
     	    		
@@ -1966,7 +1993,7 @@ public class DBDemo3JHotDraw3 {
     	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
     	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
     	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		}
     	    		
@@ -2013,7 +2040,7 @@ public class DBDemo3JHotDraw3 {
 //    	    						System.out.println("TARG"+targex);
     	    						if(targex.getDeclaringType()!=null) {
     	    							String executableType=targex.getDeclaringType().getQualifiedName(); 
-
+    	    	
     	    						}
     	    						
     	    						
@@ -2024,7 +2051,7 @@ public class DBDemo3JHotDraw3 {
 //    	    							System.out.println("TARGET OF TARGET: "+targetoftarget);
     	    							if(targetoftarget instanceof CtInvocation<?> ) {
     	    								targetoftarget=((CtInvocation<?>) targetoftarget).getTarget(); 
-
+    	    	
     	    							}
     	    							else if(targetoftarget instanceof CtConstructorCall<?>) {
     	    								targetoftarget=((CtConstructorCall<?>) targetoftarget).getTarget(); 
@@ -2054,8 +2081,8 @@ public class DBDemo3JHotDraw3 {
     	    		}
     	    		
     	    	}
-
-
+    	    	
+    	    	
     	    	String methname=method.getSimpleName(); 
     	    	//System.out.println("CALLER METHOD=====>"+methname);
     	    	// List<CtInvocation> methodcalls = Query.getElements(method, new TypeFilter<>(CtInvocation.class)); 
@@ -2081,7 +2108,7 @@ public class DBDemo3JHotDraw3 {
     	    		CtExecutableReference<?> executableRef = invocation.getExecutable();
     	    		CtTypeReference<?> typeRef = executableRef.getDeclaringType();
     	    		
-
+    	    	
     	    		
     	    		
     	    		String CALLERCLASSNAME=clazz.getQualifiedName() ; 
@@ -2104,7 +2131,7 @@ public class DBDemo3JHotDraw3 {
     	    			CALLERCLASSNAME = callingmethodsrefined.getString("classname"); 
     	    			CALLERCLASSID = callingmethodsrefined.getString("classid"); 
     	    			 fullcallerins = callingmethodsrefined.getString("fullmethod"); 
-
+    	    	
     	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		}
     	    		
@@ -2196,7 +2223,7 @@ public class DBDemo3JHotDraw3 {
     	    				CALLEECLASSNAME = res.getString("classname"); 
     	    				CALLEECLASSID = res.getString("ownerclassid"); 
     	    			
-
+    	    	
     	    			 callingmethodsrefined3 = st5.executeQuery("SELECT methods.* from methods where methods.methodname='"+CALLEENAME+"'and methods.classname='"+CALLEECLASSNAME+"'"); 
     	    				//while(callingmethodsrefined.next()){
     	    				if(callingmethodsrefined3.next()) {
@@ -2234,7 +2261,7 @@ public class DBDemo3JHotDraw3 {
     	    		}
     	    		
     	    		
-
+    	    	
     	    		
     	    		
     	    		
@@ -2315,19 +2342,19 @@ public class DBDemo3JHotDraw3 {
     	    			
     	    			invocationTarget=null; 
     	    		}
-
+    	    	
     	    		}
     	    		
     	    		
     	    		
-
+    	    	
     	    		
     	    		
     	    		//ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+CalledMethodExecutable+"' and classes.classname='"+  ClassQualifiedName +"'"); 
     	    		
     	    			
-
-
+    	    	
+    	    	
     	    		
     	    		
 //    	    		ResultSet callingclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLEECLASSNAME+"' "); 
@@ -2338,7 +2365,7 @@ public class DBDemo3JHotDraw3 {
 //    	    		}
     	    		
     	    		
-
+    	    	
     	    		
 //    	    		if(CALLERCLASSID==null) {
 //    	    			ResultSet callerclasses= st.executeQuery("SELECT classes.id from classes where classes.classname='"+CALLERCLASSNAME+"' "); 
@@ -2348,7 +2375,7 @@ public class DBDemo3JHotDraw3 {
 //    	    				System.out.println("CALLEE CLASS ID: "+ CALLERCLASSID);
 //    	    			}
 //    	    		}
-
+    	    	
     	    		
     	    			//   }
     	    		 
@@ -2389,20 +2416,26 @@ public class DBDemo3JHotDraw3 {
     	    		
     	    		*/
     	    		//System.out.println("CALLED METHOD "+calledmethodname+ "\tCLASS2: "+calledmethodclass+"\tCALLINGMETHOD: "+callingmethodsrefinedname+"CALLING MENTHOD CLASS"+callingmethodclass);
-
+    	    	
     	    	    
     	    		
-
-
+    	    	
+    	    	
     	    		}
     	    	}
     	    	}
-
-
-
-
-
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	
     	    	}  
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	
+    	    	
     	    	
     	    	
     	    	

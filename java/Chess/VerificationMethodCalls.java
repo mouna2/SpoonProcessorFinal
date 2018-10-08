@@ -22,10 +22,10 @@ import spoon.reflect.factory.MethodFactory;
 
 public class VerificationMethodCalls {
 	/** The name of the MySQL account to use (or empty for anonymous) */
-	private final String userName = "root";
+	private static final String userName = "root";
 
 	/** The password for the MySQL account (or empty for anonymous) */
-	private final String password = "root";
+	private static final String password = "root";
 
 	/** The name of the computer running MySQL */  
 	
@@ -39,17 +39,17 @@ public class VerificationMethodCalls {
 	
 	/** The name of the table we are testing with */
 	private final String tableName = "classes";
-	public List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
-	public List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
-	public HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
-	public HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
-	public HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
-	public HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
+	public static List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
+	public static List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
+	public static HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
+	public static HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
+	public static HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
+	public static HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
 	
-	public HashMap <String, List<String>> methodcallsinexecnotparsedcallercallee = new HashMap <String, List<String>>(); 
-	public HashMap <String, List<String>> methodcallsinexecnotparsedcalleecaller = new HashMap <String, List<String>>(); 
-	public HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
-	public HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
+	public static HashMap <String, List<String>> methodcallsinexecnotparsedcallercallee = new HashMap <String, List<String>>(); 
+	public static HashMap <String, List<String>> methodcallsinexecnotparsedcalleecaller = new HashMap <String, List<String>>(); 
+	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
+	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	
 	public VerificationMethodCalls(List<tracesmethodscallees> tracesCalleesList) {
 		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
@@ -74,11 +74,11 @@ public class VerificationMethodCalls {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Connection getConnection() throws SQLException {
+	public static Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
-		connectionProps.put("root", this.userName);
-		connectionProps.put("123456", this.password);
+		connectionProps.put("root", userName);
+		connectionProps.put("123456", password);
 		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
 
 		return conn;
@@ -105,14 +105,16 @@ public class VerificationMethodCalls {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
+	 * @throws FileNotFoundException 
 	 */
-	public void run() {
+	public void run() throws FileNotFoundException {
 		ResultSet rs = null; 
 		// Connect to MySQL
 		Connection conn = null;
 		try {
-			conn = this.getConnection();
+			conn = getConnection();
 			System.out.println("Connected to database");
+			
 		} catch (SQLException e) {
 			System.out.println("ERROR: Could not connect to the database");
 			e.printStackTrace();
@@ -122,7 +124,7 @@ public class VerificationMethodCalls {
 		// Create a table
 		try {
 			Statement st= conn.createStatement();
-			st.executeUpdate("CREATE TABLE methodcallsInParsedNotExec"
+			st.executeUpdate("CREATE TABLE methodcallsinparsednotexec"
 					+  " SELECT methodcalls.*" + 
 					" FROM databasechess.methodcalls" + 
 					" LEFT OUTER JOIN databasechess.methodcallsexecuted" + 
@@ -131,7 +133,7 @@ public class VerificationMethodCalls {
 
 			
 			
-			st.executeUpdate("CREATE TABLE methodcallsInExecNotParsed"
+			st.executeUpdate("CREATE TABLE methodcallsinexecnotparsed"
 					+" SELECT methodcallsexecuted.*\r\n" + 
 					" FROM databasechess.methodcallsexecuted\r\n" + 
 					" LEFT OUTER JOIN databasechess.methodcalls\r\n" + 
@@ -139,18 +141,18 @@ public class VerificationMethodCalls {
 					" WHERE  methodcalls.callermethodid IS NULL and methodcalls.callermethodid IS NULL"); 
 			
 			
-			st.executeUpdate("CREATE TABLE IntersectionParsedExecuted"
+			st.executeUpdate("CREATE TABLE intersectionparsedexecuted"
 					+" SELECT  databasechess.methodcallsexecuted.*\r\n" + 
 					"   FROM databasechess.methodcalls\r\n" + 
 					"   inner join databasechess.methodcallsexecuted \r\n" + 
 					"   ON methodcalls.callermethodid=methodcallsexecuted.callermethodid and methodcalls.calleemethodid=methodcallsexecuted.calleemethodid"); 
-//		   try {
-//			Spoon();
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} 
-//		  
+		   try {
+			Spoon();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		  
 		   
 		   
 		
@@ -165,13 +167,16 @@ public class VerificationMethodCalls {
 	
 	/**
 	 * Connect to the DB and do some stuff
+	 * @throws SQLException 
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, SQLException {
 		VerificationMethodCalls app = new VerificationMethodCalls();
 		app.run();
+		Spoon(); 
 	}
 	
-	public void Spoon() throws SQLException, FileNotFoundException {
+	public static void Spoon() throws SQLException, FileNotFoundException {
 		DBDemo3Chess dao = new DBDemo3Chess();
 	Connection conn=getConnection();
 	Statement st= conn.createStatement();
@@ -183,6 +188,7 @@ public class VerificationMethodCalls {
     	spoon.getEnvironment().setAutoImports(true);
     	spoon.getEnvironment().setNoClasspath(true);
     	CtModel model = spoon.buildModel();
+
     	//List<String> classnames= new ArrayList<String>(); 
   
     	// Interact with model
@@ -199,6 +205,7 @@ public class VerificationMethodCalls {
     	int count2=1; 
     	int count3=1; 
     	int count4=1; 
+
         /*********************************************************************************************************************************************************************************/	
         /*********************************************************************************************************************************************************************************/	
         /*********************************************************************************************************************************************************************************/	  	
@@ -249,7 +256,7 @@ public class VerificationMethodCalls {
 	    	}
 	    	count2++; 
 		}
-		
+
 			ResultSet myresults2=st.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec "); 
 	    	while(myresults2.next()) {
 	    		List<String> mylist1= new ArrayList<String>(); 
@@ -330,11 +337,12 @@ public class VerificationMethodCalls {
 	    				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
 	    				if(fullcaller!=null)
 	    				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
+	    				
 	    			List<String> list = methodcallsinparsednotexecallercallee.get(fullcaller); 
 	    			List<String> list2 = methodcallsinparsednotexecalleecaller.get(fullcallee); 
 	    			if(list!=null)
 	    			for(String mycallee: list) {
-	    				//System.out.println(mycallee);
+	    				System.out.println("====>"+mycallee);
 	    				String mycallee1=MethodInterfaces.get(mycallee); 
 	    				String mycallee2=InterfacesMethods.get(mycallee); 
 	    				String mycallee3=SuperclassesMethods.get(mycallee); 
@@ -516,6 +524,9 @@ public class VerificationMethodCalls {
 	    	
 	    	
 	    			mynewcounter++; 
+	    			
+	    	    	System.out.println("zes");
+
 	    	}
 	    	
 	    	
@@ -551,8 +562,9 @@ public class VerificationMethodCalls {
     				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
     				if(fullcaller!=null)
     				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-    			List<String> list = methodcallsinparsednotexecallercallee.get(fullcaller); 
-    			List<String> list2 = methodcallsinparsednotexecalleecaller.get(fullcallee); 
+    				System.out.println("FULL CALLER   "+fullcaller);
+    			List<String> list = methodcallsinexecnotparsedcallercallee.get(fullcaller); 
+    			List<String> list2 = methodcallsinexecnotparsedcalleecaller.get(fullcallee); 
     			if(list!=null)
     			for(String mycallee: list) {
     				//System.out.println(mycallee);
@@ -564,23 +576,23 @@ public class VerificationMethodCalls {
     				
     		
     				if(mycallee1!=null) {
-    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-    							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 	
+    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+    							+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 	
     				}
     				
     				if(mycallee2!=null) {
-    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-    							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'");  	
+    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+    							+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'");  	
     				}
     				
     				if(mycallee3!=null) {
-    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-						+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+						+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
     				}
     				
     				if(mycallee4!=null) {
-    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-						+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+						+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
     				}
     				
     				
@@ -614,23 +626,23 @@ public class VerificationMethodCalls {
         				
         				
         				if(mycaller1!=null) {
-	    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-        							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 	
+	    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+        							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 	
 	    				}
 	    				
 	    				if(mycaller2!=null) {
-	    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-        							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'");  	
+	    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+        							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'");  	
 	    				}
 	    				
 	    				if(mycaller3!=null) {
-        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 
+        					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 
 	    				}
 	    				
 	    				if(mycaller4!=null) {
-        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 
+        					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 
 	    				}
         				
         				
@@ -656,6 +668,6 @@ public class VerificationMethodCalls {
 		
 		
 		
-		
+		System.out.println("djsdjh");
 }
 }

@@ -2326,7 +2326,7 @@ public class DBDemo3Gantt {
     	        	String ConstructorNamePackageFree=null; 
     	        	
     	    		if(cons.getDeclaringType()!=null) {
-//      	    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
+//    		    		String constructorClassName = cons.getExecutable().getDeclaringType().getQualifiedName().toString();
 //    	    		String constructorName=cons.getExecutable().getSignature(); 
     	    		String constructorClassName=cons.getType().getQualifiedName();
     	    		String constructorName=cons.getSignature(); 
@@ -2345,7 +2345,12 @@ public class DBDemo3Gantt {
     	    		 ConstructorNamePackageFree=KeepOnlyMethodName(constructorName);
     	    		System.out.println("ConstructorNamePackageFree==ooooooooooooooooooooo==>"+ConstructorNamePackageFree);
     	    		System.out.println("constructorClassName==oooooooooooooooooooooooooo==>"+constructorClassName);	   
-    	    		
+    	    		if(constructorClassName.contains("$")) {
+    	    			String constructorClassNameFirstPart= constructorClassName.substring(0, constructorClassName.lastIndexOf(".")+1); 
+    	        		String constructorClassNameSecondPart= constructorClassName.substring(constructorClassName.lastIndexOf("$")+1, constructorClassName.length()); 
+    	        		constructorClassName=constructorClassNameFirstPart+constructorClassNameSecondPart; 
+    	    		}
+    	    	
     	    		
     	    		ResultSet callingmethodsrefined = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+ConstructorNamePackageFree+"'"
     	    				+ "and methods.classname='"+constructorClassName+"'"); 
@@ -2355,10 +2360,105 @@ public class DBDemo3Gantt {
     	    			CALLERCLASSNAMEcons = callingmethodsrefined.getString("classname"); 
     	    			CALLERCLASSIDcons = callingmethodsrefined.getString("classid"); 
     	    			 fullcallerinscons = callingmethodsrefined.getString("fullmethod"); 
-
+    	
     	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
     	    		}
-    	    		}
+    	    		System.out.println("CALLER CLASS NAME =======>>>>"+ CALLERCLASSNAMEcons);
+//    	    		if(consInvocation.toString().contains("super")) {
+//    	    		
+//    	    		
+//    	    		System.out.println("");
+//    	    		String constructormethod = TransformConstructorIntoInit(consInvocation.getExecutable().getSignature());
+//    	    		String calleeclass=""; 
+//    	    		String calleepackagefree=""; 
+//    	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
+//    	    			 calleeclass=consInvocation.getExecutable().getDeclaringType().toString(); 
+//        	    		 calleepackagefree=KeepOnlyMethodName(constructormethod);
+//    	    		}
+//    	    	
+//    	    		
+//    	    		ResultSet res = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleepackagefree+"'"
+//    	    				+ "and methods.classname='"+calleeclass+"'"); 
+//    	    		//while(callingmethodsrefined.next()){
+//    	    		if(res.next()) {
+//    	    			String CalleeMethodIDcons = res.getString("id"); 
+//    	    			String		CALLEECLASSNAMEcons = res.getString("classname"); 
+//    	    			String	CALLEECLASSIDcons = res.getString("classid"); 
+//    	    			String	 fullcalleeinscons = res.getString("fullmethod"); 
+//    	    
+//    	    			//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+//    	    			
+//    	    			
+//    	    			methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcaller, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcalleeinscons, CALLERCLASSNAMEcons); 
+//    	    			//System.out.println(methodcall.toString()); 
+//    	    			if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+//    	    				String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +calleepackagefree+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+//    	    				
+//    	    				st.executeUpdate(statement);
+//    	    				methodcallsList.add(methodcall); 
+//    	    			}
+//    	    		}
+//    	    		
+//    	    	}
+//    	    	
+//    	    if(consInvocation.toString().contains("this")) {
+//    	    	
+//    	    	
+//    	    	System.out.println("");
+//    	    	String constructormethod = TransformConstructorIntoInit(consInvocation.getExecutable().getSignature()); 
+//    	    	constructormethod=RemoveDollar(constructormethod); 
+//    	    	String onlymethodname=KeepOnlyMethodName(constructormethod); 
+//    	    	String classname= constructormethod.substring(0, constructormethod.indexOf(onlymethodname)-1); 
+//    	    	
+//    	    	String calleeclass=consInvocation.getExecutable().getDeclaringType().toString(); 
+//    	    	String calleepackagefree=KeepOnlyMethodName(constructormethod);
+//    	    	
+//    	    	ResultSet res = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleepackagefree+"'"
+//    	    			+ "and methods.classname='"+calleeclass+"'"); 
+//    	    	//while(callingmethodsrefined.next()){
+//    	    	if(res.next()) {
+//    	    		String CalleeMethodIDcons = res.getString("id"); 
+//    	    		String		CALLEECLASSNAMEcons = res.getString("classname"); 
+//    	    		String	CALLEECLASSIDcons = res.getString("classid"); 
+//    	    		String	 fullcalleeinscons = res.getString("fullmethod"); 
+//    	    
+//    	    		//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+//    	    		
+//    	    		
+//    	    		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcaller, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcalleeinscons, CALLERCLASSNAMEcons); 
+//    	    		//System.out.println(methodcall.toString()); 
+//    	    		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+//    	    			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +calleepackagefree+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+//    	    			
+//    	    			st.executeUpdate(statement);
+//    	    			methodcallsList.add(methodcall); 
+//   	    		}
+//    	    	}else {
+//    	    		ResultSet res = st.executeQuery("SELECT methods.* from methods where methods.methodname='"+calleepackagefree+"'"
+//    	        			+ "and methods.classname='"+classname+"'"); 
+//    	        	//while(callingmethodsrefined.next()){
+//    	        	if(res.next()) {
+//    	        		String CalleeMethodIDcons = res.getString("id"); 
+//    	        		String		CALLEECLASSNAMEcons = res.getString("classname"); 
+//    	        		String	CALLEECLASSIDcons = res.getString("classid"); 
+//    	        		String	 fullcalleeinscons = res.getString("fullmethod"); 
+//    	        
+//    	        		//System.out.println("CALLEE METHOD ID: "+ CALLEEID);
+//    	        		
+//    	        		
+//    	        		methodcalls methodcall = new methodcalls(CalleeMethodIDcons, fullcaller, CALLEECLASSNAMEcons, CALLEECLASSIDcons, CallerMethodIDcons, fullcalleeinscons, CALLERCLASSNAMEcons); 
+//    	        		//System.out.println(methodcall.toString()); 
+//    	        		if( methodcall.contains(methodcallsList, methodcall)==false && CallerMethodIDcons!=null && CalleeMethodIDcons!=null) {
+//    	        			String statement = "INSERT INTO `methodcalls`(`callermethodid`,  `callername`,  `callerclass`, `callerclassid`,`fullcaller`,`calleemethodid`,  `calleename`, `calleeclass`,  `calleeclassid`,  `fullcallee`) VALUES ('"+CallerMethodIDcons +"','" +ConstructorNamePackageFree+"','" +CALLERCLASSNAMEcons+"','" +CALLERCLASSIDcons+"','" +fullcallerinscons+"','" +CalleeMethodIDcons+"','" +calleepackagefree+"','" +CALLEECLASSNAMEcons+"','" +CALLEECLASSIDcons+"','" +fullcalleeinscons+"')";
+//    	        			
+//    	        			st.executeUpdate(statement);
+//    	        			methodcallsList.add(methodcall); 
+//    	        		}
+//    	        	}
+//    	    	}
+//    	    	
+//    	    }
+    	    	}
     	    		
     	    		
     	    		if(consInvocation.getExecutable().getDeclaringType()!=null) {
