@@ -1,6 +1,11 @@
 package Chess;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -51,6 +56,13 @@ public class VerificationMethodCalls {
 	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
 	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	
+	static File fout = null; 
+	static FileOutputStream fos = null; 
+	static BufferedWriter bwGold = null; 
+	
+	static File foutIntersection = null; 
+	static FileOutputStream fosIntersection = null; 
+	static BufferedWriter bwGoldIntersection = null; 
 	public VerificationMethodCalls(List<tracesmethodscallees> tracesCalleesList) {
 		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
 
@@ -124,13 +136,28 @@ public class VerificationMethodCalls {
 		// Create a table
 		try {
 			Statement st= conn.createStatement();
+		
+			ResultSet methodcallsinparsednotexecexists=st.executeQuery("SELECT count(*)" + 
+					"			FROM databasechess.methodcallsinparsednotexec" ); 
+			if(methodcallsinparsednotexecexists.next()) {
+				st.execute("DROP TABLE methodcallsinparsednotexec");
+			}
+			
+		
+			
 			st.executeUpdate("CREATE TABLE methodcallsinparsednotexec"
 					+  " SELECT methodcalls.*" + 
 					" FROM databasechess.methodcalls" + 
 					" LEFT OUTER JOIN databasechess.methodcallsexecuted" + 
 					" ON methodcalls.calleemethodid = methodcallsexecuted.calleemethodid and methodcalls.callermethodid = methodcallsexecuted.callermethodid" + 
 					" WHERE  methodcallsexecuted.callermethodid IS NULL and methodcallsexecuted.callermethodid IS NULL"); 
-
+			
+			
+			ResultSet methodcallsinexecnotparsedexists=st.executeQuery("SELECT count(*)" + 
+					"			FROM databasechess.methodcallsinexecnotparsed" ); 
+			if(methodcallsinexecnotparsedexists.next()) {
+				st.execute("DROP TABLE methodcallsinexecnotparsed");
+			}
 			
 			
 			st.executeUpdate("CREATE TABLE methodcallsinexecnotparsed"
@@ -141,17 +168,19 @@ public class VerificationMethodCalls {
 					" WHERE  methodcalls.callermethodid IS NULL and methodcalls.callermethodid IS NULL"); 
 			
 			
+			ResultSet intersectionparsedexecuted=st.executeQuery("SELECT count(*)" + 
+					"			FROM databasechess.intersectionparsedexecuted" ); 
+			if(intersectionparsedexecuted.next()) {
+				st.execute("DROP TABLE intersectionparsedexecuted");
+			}
+			
+			
 			st.executeUpdate("CREATE TABLE intersectionparsedexecuted"
 					+" SELECT  databasechess.methodcallsexecuted.*\r\n" + 
 					"   FROM databasechess.methodcalls\r\n" + 
 					"   inner join databasechess.methodcallsexecuted \r\n" + 
 					"   ON methodcalls.callermethodid=methodcallsexecuted.callermethodid and methodcalls.calleemethodid=methodcallsexecuted.calleemethodid"); 
-		   try {
-			Spoon();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		 
 		  
 		   
 		   
@@ -168,19 +197,26 @@ public class VerificationMethodCalls {
 	/**
 	 * Connect to the DB and do some stuff
 	 * @throws SQLException 
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException, SQLException {
+	public static void main(String[] args) throws SQLException, IOException {
 		VerificationMethodCalls app = new VerificationMethodCalls();
 		app.run();
 		Spoon(); 
+		
 	}
 	
-	public static void Spoon() throws SQLException, FileNotFoundException {
-		DBDemo3Chess dao = new DBDemo3Chess();
+	
+
+	public static void Spoon() throws SQLException, IOException {
 	Connection conn=getConnection();
 	Statement st= conn.createStatement();
-	
+	 fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\CallsNotFoundLog.txt");
+	 fos = new FileOutputStream(fout);
+	 bwGold = new BufferedWriter(new OutputStreamWriter(fos));
+
+	bwGold.write("description/ id/ callermethodid/ callername/ callerclass/ calleemethodid/ calleename/ calleeclass");
+	bwGold.newLine();
 	Statement st2= conn.createStatement();
 	Statement st3= conn.createStatement();
 		SpoonAPI spoon = new Launcher();
@@ -286,6 +322,7 @@ public class VerificationMethodCalls {
 	    	
 	    	ResultSet myresults3=st.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed "); 
 	    	while(myresults3.next()) {
+	    	
 	    		List<String> mylist1= new ArrayList<String>(); 
 	    		List<String> mylist2= new ArrayList<String>(); 
 	    		String id= myresults3.getString("id"); 
@@ -326,97 +363,104 @@ public class VerificationMethodCalls {
 	    	
 	    	
 	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
 	    	String storefullcallee=""; 
 	    	int mynewcounter=1; 
 			ResultSet myresults4=st.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec "); 
-	    	while(myresults4.next()) {
+	    	
+			while(myresults4.next()) {
+	    		
 	    			String fullcaller =myresults4.getString("fullcaller"); 
 	    			String fullcallee =myresults4.getString("fullcallee"); 
 	    			storefullcallee=fullcallee; 
-	    			if(fullcallee!=null)
-	    				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-	    				if(fullcaller!=null)
-	    				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
+	    			
 	    				
 	    			List<String> list = methodcallsinparsednotexecallercallee.get(fullcaller); 
 	    			List<String> list2 = methodcallsinparsednotexecalleecaller.get(fullcallee); 
-	    			if(list!=null)
+	    			boolean entered1=false; 
+    				boolean entered2=false; 
+    				boolean entered3=false; 
+    				boolean entered4=false; 
+    				boolean entered5=false; 
+    				boolean entered6=false; 
+    				boolean entered7=false; 
+    				boolean entered8=false; 
+    				boolean entered9=false; 
+    				boolean entered10=false; 
+    				boolean entered11=false; 
+    				boolean entered12=false; 
+	    			if(list!=null) {
 	    			for(String mycallee: list) {
-	    				System.out.println("====>"+mycallee);
+	    				//System.out.println("====>"+mycallee);
 	    				String mycallee1=MethodInterfaces.get(mycallee); 
 	    				String mycallee2=InterfacesMethods.get(mycallee); 
 	    				String mycallee3=SuperclassesMethods.get(mycallee); 
 	    				String mycallee4=MethodSuperclasses.get(mycallee); 
-	    				
+	    			
 	    				if(mycallee1!=null) {
-	    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 	
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="INTERFACE EQUIVALENCE CALLEE IN PARSED NOT EXEC"; 
+	    					//if(entered1!=true) {
+	    						entered1=WriteInDoc(fullcaller, mycallee, mycallee1, EquivalenceType, st3); 
+	    					//}
+	    					 
+	    				
+	    				
+	    					
+	    					
 	    				}
 	    				
 	    				if(mycallee2!=null) {
-	    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'");  	
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="IMPLEMENTATION EQUIVALENCE CALLEE IN PARSED NOT EXEC";
+	    					//if(entered2!=true) {
+		    					entered2=WriteInDoc(fullcaller, mycallee, mycallee2, EquivalenceType, st3); 
+
+	    					//}
+	    					 
+	    					
+	    				
 	    				}
 	    				
 	    				if(mycallee3!=null) {
-        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="SUPERCLASS EQUIVALENCE CALLEE IN PARSED NOT EXEC"; 
+	    					//if(entered3!=true) {
+		    					entered3=WriteInDoc(fullcaller, mycallee, mycallee3, EquivalenceType, st3); 
+
+	    					//}
+	    					
 	    				}
 	    				
 	    				if(mycallee4!=null) {
-        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="CHILDCLASS EQUIVALENCE CALLEE IN PARSED NOT EXEC"; 
+	    					//if(entered4!=true) {
+		    					entered4=WriteInDoc(fullcaller, mycallee, mycallee4, EquivalenceType, st3); 
+
+	    					//}
+	    					               
+	    					
 	    				}
-//	    		
-//	    				if(fullcallee!=null && mycallee1!=null) {
-//	    					if(mycallee1.equals(fullcallee) ) {
-//	    					
-//	        					System.out.println("yes1");
-//	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee1+"'"); 
-//	        				}
-//	    				}
-//	    				
-//	    				if(fullcallee!=null && mycallee2!=null) {
-//	    					if( mycallee2.equals(fullcallee)) {
-//	        					System.out.println("yes  "+mynewcounter);
-//	        					
-//	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee2+"'"); 
-//	        					
-//	        					
-//	        				}
-//	    				}
-//	    				
-//	    				
-//	    				
-//	    				
-//	    				
-//	    				if(fullcallee!=null && mycallee3!=null) {
-//	    					if(mycallee3.equals(fullcallee) ) {
-//	        					System.out.println("superclass1");
-//	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee3+"'"); 
-//	        				}
-//	    				}
-//	    				if(fullcallee!=null && mycallee4!=null) {
-//	    					if( mycallee4.equals(fullcallee)) {
-//	        					System.out.println("superclass2");
-//	        					
-//	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee4+"'"); 
-//	        					//mynewcounter++; 
-//	        					
-//	        				}
-//	    				}
-	    				
+
 	    				
 	    				
 	    			}
+	    		
+	    			}
 	    			
-	    			
-	    			if(list2!=null)
-	        			for(String mycaller: list2) {
+	    			if(list2!=null) {
+	    				for(String mycaller: list2) {
 	        				//System.out.println(mycallee);
 	        				String mycaller1=MethodInterfaces.get(mycaller); 
 	        				String mycaller2=InterfacesMethods.get(mycaller); 
@@ -424,115 +468,164 @@ public class VerificationMethodCalls {
 	        				String mycaller4=MethodSuperclasses.get(mycaller); 
 	        			
 	        				if(mycaller1!=null) {
-		    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-	        							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 	
+	        					System.out.println("COUNTER ====="+mynewcounter);
+	        					System.out.println("WROTE");
+		    					String EquivalenceType="INTERFACE EQUIVALENCE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered5!=true) {
+			    					entered5=WriteInDoc2(fullcallee, mycaller, mycaller1, EquivalenceType, st3); 
+
+		    					//}
+		    					
+		    				
+		    					
+		    				
 		    				}
 		    				
 		    				if(mycaller2!=null) {
-		    					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-	        							+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'");  	
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					String EquivalenceType="IMPLEMENTATION EQUIVALENCE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered6!=true) {
+			    					entered6=WriteInDoc2(fullcallee, mycaller, mycaller2, EquivalenceType, st3); 
+
+		    					//}
+		    					
+		    					
+		    						  	
 		    				}
 		    				
 		    				if(mycaller3!=null) {
-	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-								+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					
+		    					String EquivalenceType="SUPERCLASS EQUIVALENCE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered7!=true){
+			    					entered7=WriteInDoc2(fullcallee, mycaller, mycaller3, EquivalenceType, st3); 
+
+		    					//}
+		    					
 		    				}
 		    				
 		    				if(mycaller4!=null) {
-	        					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-								+ "methodcallsinparsednotexec.fullcallee='"+fullcallee+"' and methodcallsinparsednotexec.fullcaller='"+mycaller+"'"); 
-		    				}
-	        			
-	        			}
-	    			
-	    			
-//	    			if(list2!=null)
-//	        			for(String mycaller: list2) {
-//	        				//System.out.println(mycallee);
-//	        				String mycaller1=MethodInterfaces.get(mycaller); 
-//	        				String mycaller2=InterfacesMethods.get(mycaller); 
-//	        				String mycaller3=SuperclassesMethods.get(mycaller); 
-//	        				String mycaller4=MethodSuperclasses.get(mycaller); 
-//	        				if(fullcallee!=null)
-//	        				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(fullcaller!=null)
-//	        				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(mycaller1!=null)
-//	        				mycaller1=mycaller1.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(mycaller2!=null)
-//	        				mycaller2=mycaller2.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(mycaller3!=null)
-//	        				mycaller3=mycaller3.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(mycaller4!=null)
-//	        				mycaller4=mycaller4.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-//	        				if(fullcaller!=null && mycaller1!=null) {
-//	        					if(mycaller1.equals(fullcaller) ) {
-//	            					System.out.println("yes2");
-//	            					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	            							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycaller1+"'"); 
-//	            				}
-//	        				}
-//	        				
-//	        				if(fullcaller!=null && mycaller2!=null) {
-//	        					if( mycaller2.equals(fullcaller)) {
-//	            					System.out.println("YESSS  "+mynewcounter);
-//	            					mynewcounter++; 
-//	            					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycaller2+"'"); 
-//	            					
-//	            				}
-//	        				}
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				if(fullcaller!=null && mycaller3!=null) {
-//	        					if(mycaller3.equals(fullcaller) ) {
-//	            					System.out.println("superclass1");
-//	            					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//        							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycaller3+"'"); 
-//	            				}
-//	        				}
-//	        				if(fullcaller!=null && mycaller4!=null) {
-//	        					if( mycaller4.equals(fullcaller)) {
-//	            					System.out.println("superclass2");
-//	            					
-//	            					st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-//	            							+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycaller4+"'"); 
-//	            					mynewcounter++; 
-//	            					
-//	            				}
-//	        				}
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        				
-//	        			}
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-	    			mynewcounter++; 
-	    			
-	    	    	System.out.println("zes");
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    				
+			    	    		
+		    					String EquivalenceType="CHILDCLASS EQUIVALENCE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered8!=true){
+			    					entered8=WriteInDoc2(fullcallee, mycaller, mycaller4, EquivalenceType, st3); 
 
+		    					//}
+		    					
+		    				}
+	        			}
+	    			}
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			
+	    			if(list!=null && list2!=null) {
+	    				for(String mycaller: list2) {
+	        				//System.out.println(mycallee);
+	        				String mycaller1=MethodInterfaces.get(mycaller); 
+	        				String mycaller2=InterfacesMethods.get(mycaller); 
+	        				String mycaller3=SuperclassesMethods.get(mycaller); 
+	        				String mycaller4=MethodSuperclasses.get(mycaller); 
+	        				
+	        				
+	    	 			for(String mycallee: list) {
+		    				//System.out.println("====>"+mycallee);
+		    				String mycallee1=MethodInterfaces.get(mycallee); 
+		    				String mycallee2=InterfacesMethods.get(mycallee); 
+		    				String mycallee3=SuperclassesMethods.get(mycallee); 
+		    				String mycallee4=MethodSuperclasses.get(mycallee); 
+		    				
+		    				if(mycallee1!=null && mycaller1!=null) {
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					String EquivalenceType="INTERFACE EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC";
+		    					//if(entered9!=true) {
+			    					entered9=WriteInDocBothCallerCallee(fullcaller, mycallee, mycallee1, mycaller1, EquivalenceType, st3); 
+
+		    					//}
+		    				
+		    					
+		    					
+		    				}
+		    				
+		    				if(mycallee2!=null && mycaller2!=null) {
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					String EquivalenceType="IMPLEMENTATION EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered10!=true) {
+			    					entered10=WriteInDocBothCallerCallee(fullcaller, mycallee, mycallee2, mycaller2, EquivalenceType, st3); 
+
+		    					//}
+		    					
+		    				
+		    				}
+		    				
+		    				if(mycallee3!=null && mycaller3!=null) {
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					String EquivalenceType="SUPERCLASS EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered11!=true) {
+			    					entered11=WriteInDocBothCallerCallee(fullcaller, mycallee, mycallee3, mycaller3, EquivalenceType, st3); 
+
+		    					//}
+		    				}
+		    				
+		    				if(mycallee4!=null && mycaller4!=null) {
+		    					System.out.println("COUNTER ====="+mynewcounter);
+		    					System.out.println("WROTE");
+		    					String EquivalenceType="CHILDCLASS EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+		    					//if(entered12!=true) {
+			    					entered12=WriteInDocBothCallerCallee(fullcaller, mycallee, mycallee4, mycaller4, EquivalenceType, st3); 
+
+		    					//}
+		    				}
+
+		    				
+		    				
+		    			}
+
+	    				}
+	    				
+	    			
+	    			}
+	    			
+	    			
+	    			
+	    			
+
+	    	
+	    	
+	    	
+	    			
+	    		
+//	    			if(entered1==false && entered2==false && entered3==false && 
+//	    					entered4==false && entered5==false && entered6==false && 
+//	    					entered7==false && entered8==false && entered9==false && 
+//	    					entered10==false && entered11==false && entered12==false ) {
+//	    	    		System.out.println("COUNTER ====="+mynewcounter);
+//	    	    		System.out.println("WROTE");
+//	    	    		
+//	    	    	
+//	    				String EquivalenceType="NOT MAPPED IN PARSED NOT EXEC"; 
+//	    				WriteInDocNotMapped(fullcaller, fullcallee, EquivalenceType, st3); 
+//	    			}
+	    	    	
+
+	    	
+	    	
+	    	    	mynewcounter++; 
 	    	}
+	    
 	    	
-	    	
-	    	
-	    	
-	    	
+	    
 	    	
 	    	
 	    	
@@ -555,94 +648,144 @@ public class VerificationMethodCalls {
 		int counteryes=1; 
 		 myresults4=st.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed "); 
     	while(myresults4.next()) {
+    		
     			String fullcaller =myresults4.getString("fullcaller"); 
     			String fullcallee =myresults4.getString("fullcallee"); 
+    			boolean entered1exec=false; 
+				boolean entered2exec=false; 
+				boolean entered3exec=false; 
+				boolean entered4exec=false; 
+				boolean entered5exec=false; 
+				boolean entered6exec=false; 
+				boolean entered7exec=false; 
+				boolean entered8exec=false; 
+				boolean entered9exec=false; 
+				boolean entered10exec=false; 
+				boolean entered11exec=false; 
+				boolean entered12exec=false; 
     			
-    			if(fullcallee!=null)
-    				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-    				if(fullcaller!=null)
-    				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-    				System.out.println("FULL CALLER   "+fullcaller);
+    			
     			List<String> list = methodcallsinexecnotparsedcallercallee.get(fullcaller); 
     			List<String> list2 = methodcallsinexecnotparsedcalleecaller.get(fullcallee); 
-    			if(list!=null)
-    			for(String mycallee: list) {
-    				//System.out.println(mycallee);
-    				String mycallee1=MethodInterfaces.get(mycallee); 
-    				String mycallee2=InterfacesMethods.get(mycallee); 
-    				String mycallee3=SuperclassesMethods.get(mycallee); 
-    				String mycallee4=MethodSuperclasses.get(mycallee); 
-    				
-    				
-    		
-    				if(mycallee1!=null) {
-    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-    							+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 	
-    				}
-    				
-    				if(mycallee2!=null) {
-    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-    							+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'");  	
-    				}
-    				
-    				if(mycallee3!=null) {
-    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-						+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
-    				}
-    				
-    				if(mycallee4!=null) {
-    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-						+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
-    				}
-    				
-    				
-    				counteryes++; 
+    			if(list!=null) {
+    				for(String mycallee: list) {
+        				//System.out.println(mycallee);
+        				String mycallee1=MethodInterfaces.get(mycallee); 
+        				String mycallee2=InterfacesMethods.get(mycallee); 
+        				String mycallee3=SuperclassesMethods.get(mycallee); 
+        				String mycallee4=MethodSuperclasses.get(mycallee); 
+        				
+        				
+        		
+        				if(mycallee1!=null) {
+        					System.out.println("COUNTER YES====="+counteryes);
+        					System.out.println("WROTE");
+        					String EquivalenceType="INTERFACE EQUIVALENCE CALLEE IN EXEC NOT PARSED "; 
+        					//if(entered1exec!=true){
+            					entered1exec=WriteInDocExec(fullcaller, mycallee, mycallee1, EquivalenceType, st3); 
+
+        					//}
+        					
+        				
+        					
+        					
+        				}
+        				
+        				if(mycallee2!=null) {
+        					System.out.println("COUNTER YES====="+counteryes);
+        					System.out.println("WROTE");
+        					String EquivalenceType="IMPLEMENTATION EQUIVALENCE CALLEE IN EXEC NOT PARSED "; 
+        					//if(entered2exec!=true) {
+            					entered2exec=WriteInDocExec(fullcaller, mycallee, mycallee2, EquivalenceType, st3); 
+
+        					//}
+        				
+        					
+        				
+        				}
+        				
+        				if(mycallee3!=null) {
+        					System.out.println("COUNTER YES====="+counteryes);
+        					System.out.println("WROTE");
+        					String EquivalenceType="SUPERCLASS EQUIVALENCE CALLEE IN EXEC NOT PARSED "; 
+        					//if(entered3exec!=true) {
+            					entered3exec=WriteInDocExec(fullcaller, mycallee, mycallee3, EquivalenceType, st3); 
+
+        					//}
+        					
+        				}
+        				
+        				if(mycallee4!=null) {
+        					System.out.println("COUNTER YES====="+counteryes);
+        					System.out.println("WROTE");
+        					String EquivalenceType="CHILDCLASS EQUIVALENCE CALLEE IN EXEC NOT PARSED "; 
+        					//if(entered4exec!=true) {
+            					entered4exec=WriteInDocExec(fullcaller, mycallee, mycallee4, EquivalenceType, st3); 
+
+        					//}
+        					
+        				}
+        				
+        				
+        				
+        			}
+        			
     			}
+    	
     			
-    			
-    			if(list2!=null)
-        			for(String mycaller: list2) {
+    			if(list2!=null) {
+    				for(String mycaller: list2) {
         				//System.out.println(mycallee);
         				String mycaller1=MethodInterfaces.get(mycaller); 
         				String mycaller2=InterfacesMethods.get(mycaller); 
         				String mycaller3=SuperclassesMethods.get(mycaller); 
         				String mycaller4=MethodSuperclasses.get(mycaller); 
-        				if(fullcallee!=null)
-        				fullcallee=fullcallee.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				if(fullcaller!=null)
-        				fullcaller=fullcaller.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				if(mycaller1!=null)
-        				mycaller1=mycaller1.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				if(mycaller2!=null)
-        				mycaller2=mycaller2.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				if(mycaller3!=null)
-        				mycaller3=mycaller3.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				if(mycaller4!=null)
-        				
-        					
-        					
-        					mycaller4=mycaller4.replaceAll("\\[java.lang.String", "java.lang.String[]"); 
-        				
+        			
         				
         				
         				if(mycaller1!=null) {
-	    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-        							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 	
+	    					String EquivalenceType="INTERFACE EQUIVALENCE CALLER IN EXEC NOT PARSED "; 
+	    					System.out.println("COUNTER YES====="+counteryes);
+	    					System.out.println("WROTE");
+	    					//if(entered5exec!=true) {
+		    					entered5exec=WriteInDocExec2(fullcallee, mycaller, mycaller1, EquivalenceType, st3); 
+
+	    					//}
+	    				
+	    					
+	    				
 	    				}
 	    				
 	    				if(mycaller2!=null) {
-	    					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-        							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'");  	
+	    					System.out.println("COUNTER YES====="+counteryes);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="IMPLEMENTATION EQUIVALENCE CALLER IN EXEC NOT PARSED "; 
+	    					//if(entered6exec!=true) {
+		    					entered6exec=WriteInDocExec2(fullcallee, mycaller, mycaller2, EquivalenceType, st3); 
+
+	    					//}
+	    					
+	    						  	
 	    				}
 	    				
 	    				if(mycaller3!=null) {
-        					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 
+	    					System.out.println("COUNTER YES====="+counteryes);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="SUPERCLASS EQUIVALENCE CALLER IN EXEC NOT PARSED "; 
+	    					//if(entered7exec!=true) {
+		    					entered7exec=WriteInDocExec2(fullcallee, mycaller, mycaller3, EquivalenceType, st3); 
+
+	    					//}
 	    				}
 	    				
 	    				if(mycaller4!=null) {
-        					st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-							+ "methodcallsinexecnotparsed.fullcallee='"+fullcallee+"' and methodcallsinexecnotparsed.fullcaller='"+mycaller+"'"); 
+	    					System.out.println("COUNTER YES====="+counteryes);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="CHILDCLASS EQUIVALENCE CALLER IN EXEC NOT PARSED "; 
+	    					//if(entered8exec!=true) {
+		    					entered8exec=WriteInDocExec2(fullcallee, mycaller, mycaller4, EquivalenceType, st3); 
+
+	    					//}
 	    				}
         				
         				
@@ -651,23 +794,334 @@ public class VerificationMethodCalls {
         				
         				
         				
+        			}	
+    			}
+        
+    	
+    	
+    	
+    			
+    			if(list!=null && list2!=null) {
+    				for(String mycaller: list2) {
+        				//System.out.println(mycallee);
+        				String mycaller1=MethodInterfaces.get(mycaller); 
+        				String mycaller2=InterfacesMethods.get(mycaller); 
+        				String mycaller3=SuperclassesMethods.get(mycaller); 
+        				String mycaller4=MethodSuperclasses.get(mycaller); 
         				
-        			}
+        				
+    	 			for(String mycallee: list) {
+	    				//System.out.println("====>"+mycallee);
+	    				String mycallee1=MethodInterfaces.get(mycallee); 
+	    				String mycallee2=InterfacesMethods.get(mycallee); 
+	    				String mycallee3=SuperclassesMethods.get(mycallee); 
+	    				String mycallee4=MethodSuperclasses.get(mycallee); 
+	    				
+	    				if(mycallee1!=null && mycaller1!=null) {
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="INTERFACE EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+	    					//if(entered9exec!=true) {
+		    					entered9exec=WriteInDocBothCallerCalleeExec(fullcaller, mycallee, mycallee1, mycaller1, EquivalenceType, st3); 
+
+	    					//}
+	    				
+	    					
+	    					
+	    				}
+	    				
+	    				if(mycallee2!=null && mycaller2!=null) {
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="IMPLEMENTATION EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+	    					//if(entered10exec!=true) {
+		    					entered10exec=WriteInDocBothCallerCalleeExec(fullcaller, mycallee, mycallee2, mycaller2, EquivalenceType, st3); 
+
+	    					//}
+	    					
+	    				
+	    				}
+	    				
+	    				if(mycallee3!=null && mycaller3!=null) {
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="SUPERCLASS EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+	    					//if(entered11exec!=true) {
+		    					entered11exec=WriteInDocBothCallerCalleeExec(fullcaller, mycallee, mycallee3, mycaller3, EquivalenceType, st3); 
+
+	    					//}
+	    				}
+	    				
+	    				if(mycallee4!=null && mycaller4!=null) {
+	    					System.out.println("COUNTER ====="+mynewcounter);
+	    					System.out.println("WROTE");
+	    					String EquivalenceType="CHILDCLASS EQUIVALENCE BOTH CALLEE CALLER IN PARSED NOT EXEC"; 
+	    					//if(entered12exec!=true) {
+		    					entered12exec=WriteInDocBothCallerCalleeExec(fullcaller, mycallee, mycallee4, mycaller4, EquivalenceType, st3); 
+
+	    					//}
+	    				}
+
+	    				
+	    				
+	    			}
+
+    				}
+    				
+    			
+    			}
     	
     	
+//    			if(entered1exec==false && entered2exec==false && entered3exec==false && 
+//    					entered4exec==false && entered5exec==false && entered6exec==false && 
+//    					entered7exec==false && entered8exec==false && entered9exec==false && 
+//    					entered10exec==false && entered11exec==false && entered12exec==false ) {
+//    				System.out.println("COUNTER YES====="+counteryes);
+//    				System.out.println("WROTE");
+//    				String EquivalenceType="NOT MAPPED IN EXEC NOT PARSED"; 
+//    				WriteInDocExecNotMapped(fullcaller, fullcallee, EquivalenceType, st3); 
+//    			}
+//    	
     	
     	
-    	
-    	
-    	
-    	
-    	
+    	counteryes++; 
     	}
     	
 		
-		
-		
+    	ResultSet myresultsleft=st.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec "); 
+    	while(myresultsleft.next()) {
+    	
+    		bwGold.write("NOT MAPPED PARSED  NOT EXEC"+"/"+myresultsleft.getString("id")+"/"+myresultsleft.getString("callermethodid")+"/"+myresultsleft.getString("callername")
+    			+"/"+myresultsleft.getString("callerclass")+"/"+myresultsleft.getString("calleemethodid")+"/"+myresultsleft.getString("calleename")
+    			+"/"+myresultsleft.getString("calleeclass"));
+    		bwGold.newLine(); 
+    		
+    	
+    	}
+    	
+    	ResultSet myresultsleftexecnotparsed=st.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed "); 
+    	while(myresultsleftexecnotparsed.next()) {
+    	
+    		bwGold.write("NOT MAPPED PARSED  NOT EXEC"+"/"+myresultsleftexecnotparsed.getString("id")+"/"+myresultsleftexecnotparsed.getString("callermethodid")+"/"+myresultsleftexecnotparsed.getString("callername")
+    			+"/"+myresultsleftexecnotparsed.getString("callerclass")+"/"+myresultsleftexecnotparsed.getString("calleemethodid")+"/"+myresultsleftexecnotparsed.getString("calleename")
+    			+"/"+myresultsleftexecnotparsed.getString("calleeclass"));
+    		bwGold.newLine(); 
+    		
+    	
+    	}
+    	
+    	
+		bwGold.close();
 		
 		System.out.println("djsdjh");
+		
+		
+		
+		
+	
+		 foutIntersection = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\IntersectionExecParsed.txt");
+		 fosIntersection = new FileOutputStream(foutIntersection);
+		 bwGoldIntersection = new BufferedWriter(new OutputStreamWriter(fosIntersection));
+
+			bwGoldIntersection.write("description/ id/ callermethodid/ callername/ callerclass/ calleemethodid/ calleename/ calleeclass");		
+			bwGoldIntersection.newLine(); 
+   
+	    	ResultSet myresults=st.executeQuery("select intersectionparsedexecuted.* from intersectionparsedexecuted "); 
+	    	while(myresults.next()) {
+	    	
+	    		bwGoldIntersection.write("INTERSECTION"+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+	    			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+	    			+"/"+myresults.getString("calleeclass"));
+	    		bwGoldIntersection.newLine(); 
+	    		
+	    	
+	    	}
+	    	
+	    	bwGoldIntersection.close();
+	    
+	    	
+	    	
+	    	
+	    	
+	    	
 }
+
+	private static boolean WriteInDocBothCallerCalleeExec(String fullcaller, String mycallee, String mycallee1,
+			String mycaller1, String equivalenceType, Statement st3) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+	boolean	entered=false; 
+		ResultSet myresults=st3.executeQuery("select methodcalls.* from methodcalls where "
+				+ "methodcalls.fullcaller='"+mycaller1+"' and methodcalls.fullcallee='"+mycallee1+"'"); 
+		System.out.println(mycaller1+"   "+mycallee1);
+
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+			
+		
+	
+			st3.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+					+ "methodcallsinexecnotparsed.fullcaller='"+mycaller1+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee1+"'"); 
+			entered=true; 
+		}
+		return entered;
+	}
+
+	private static boolean WriteInDocBothCallerCallee(String fullcaller, String mycallee, String mycallee1,
+			String mycaller1, String equivalenceType, Statement st3) throws SQLException, IOException {
+		boolean entered=false; 
+		ResultSet myresults=st3.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
+				+ "methodcallsexecuted.fullcaller='"+mycaller1+"' and methodcallsexecuted.fullcallee='"+mycallee1+"'"); 
+		System.out.println(mycaller1+"   "+mycallee1);
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		
+		st3.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+				+ "methodcallsinparsednotexec.fullcaller='"+mycaller1+"' and methodcallsinparsednotexec.fullcallee='"+mycallee1+"'"); 
+		entered=true; 
+		}
+		return entered; 
+		
+	
+	}
+
+	private static boolean WriteInDocExecNotMapped(String fullcaller, String fullcallee, String equivalenceType,
+			Statement st3) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		boolean entered=false; 
+		ResultSet myresults=st3.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		
+		st3.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
+		entered=true; 
+		}
+		return entered; }
+
+	private static boolean WriteInDocNotMapped(String fullcaller, String fullcallee, String equivalenceType,
+			Statement st3) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		boolean entered=false; 
+		ResultSet myresults=st3.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+				+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		
+		st3.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+				+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
+		entered=true; 
+		}
+	return entered; 
+	}
+
+	private static boolean WriteInDoc(String fullcaller, String mycallee, String mycalleemapped, String equivalenceType, Statement st2) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		boolean entered=false; 
+		ResultSet check= st2.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
+				+ "methodcallsexecuted.fullcaller='"+fullcaller+"' and methodcallsexecuted.fullcallee='"+mycalleemapped+"'"); 
+		if(check.next()==true) {
+			ResultSet myresults=st2.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+					+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+			if(myresults.next()) {
+				bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+				+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+				+"/"+myresults.getString("calleeclass"));
+				bwGold.newLine(); 
+			}
+			st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+					+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
+		entered=true; 
+		}
+		return entered; 
+		}
+		
+		
+		
+	
+	
+	
+	
+	
+	private static boolean WriteInDoc2(String fullcallee, String mycaller, String mycallermapped, String equivalenceType, Statement st2) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		boolean entered=false; 
+		ResultSet check= st2.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
+				+ "methodcallsexecuted.fullcaller='"+mycallermapped+"' and methodcallsexecuted.fullcallee='"+fullcallee+"'"); 
+		if(check.next()==true) {
+		ResultSet myresults=st2.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+				+ "methodcallsinparsednotexec.fullcaller='"+mycaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		}
+		
+		st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
+				+ "methodcallsinparsednotexec.fullcaller='"+mycaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 	
+		entered=true; 
+		}
+	return entered; 
+	}
+
+	
+	private static boolean  WriteInDocExec(String fullcaller, String mycallee, String mycalleemapped, String equivalenceType, Statement st2) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+		boolean entered=false; 
+		ResultSet check= st2.executeQuery("select methodcalls.* from methodcalls where "
+				+ "methodcalls.fullcaller='"+fullcaller+"' and methodcalls.fullcallee='"+mycalleemapped+"'"); 
+		if(check.next()==true) {
+		ResultSet myresults=st2.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		}
+		st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
+	
+		entered=true; 
+		}
+		return entered; 
+		}
+	
+	
+	private static boolean WriteInDocExec2(String fullcallee, String mycaller, String mycallermapped, String equivalenceType, Statement st2) throws SQLException, IOException {
+		// TODO Auto-generated method stub
+	boolean entered=false; 
+		ResultSet check= st2.executeQuery("select methodcalls.* from methodcalls where "
+				+ "methodcalls.fullcaller='"+mycallermapped+"' and methodcalls.fullcallee='"+fullcallee+"'"); 
+		if(check.next()==true) {
+		ResultSet myresults=st2.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+mycaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
+		if(myresults.next()) {
+			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
+			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
+			+"/"+myresults.getString("calleeclass"));
+			bwGold.newLine(); 
+		}
+		
+		st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
+				+ "methodcallsinexecnotparsed.fullcaller='"+mycaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 	
+		
+	entered=true; 
+		}
+		
+		return entered; 
+	}
 }
