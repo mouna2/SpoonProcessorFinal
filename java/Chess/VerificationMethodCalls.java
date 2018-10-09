@@ -137,20 +137,43 @@ public class VerificationMethodCalls {
 		try {
 			Statement st= conn.createStatement();
 		
+			
+			ResultSet intersectionparsedexecuted=st.executeQuery("SELECT count(*)" + 
+					"			FROM databasechess.intersectionparsedexecuted" ); 
+			if(intersectionparsedexecuted.next()) {
+				st.execute("DROP TABLE intersectionparsedexecuted");
+			}		st.executeUpdate("CREATE TABLE intersectionparsedexecuted"
+					+" SELECT  databasechess.methodcallsexecuted.*\r\n" + 
+					"   FROM databasechess.methodcalls\r\n" + 
+					"   inner join databasechess.methodcallsexecuted \r\n" + 
+					"   ON methodcalls.callermethodid=methodcallsexecuted.callermethodid and methodcalls.calleemethodid=methodcallsexecuted.calleemethodid"); 
+			
+		
+			
+			
+			
+
 			ResultSet methodcallsinparsednotexecexists=st.executeQuery("SELECT count(*)" + 
 					"			FROM databasechess.methodcallsinparsednotexec" ); 
 			if(methodcallsinparsednotexecexists.next()) {
 				st.execute("DROP TABLE methodcallsinparsednotexec");
 			}
 			
-		
+//			st.executeUpdate("CREATE TABLE methodcallsinparsednotexec"
+//					+  " SELECT methodcalls.*" + 
+//					" FROM databasechess.methodcalls" + 
+//					" LEFT OUTER JOIN databasechess.methodcallsexecuted" + 
+//					" ON methodcalls.calleemethodid = methodcallsexecuted.calleemethodid and methodcalls.callermethodid = methodcallsexecuted.callermethodid" + 
+//					" WHERE  methodcallsexecuted.callermethodid IS NULL and methodcallsexecuted.callermethodid IS NULL"); 
 			
 			st.executeUpdate("CREATE TABLE methodcallsinparsednotexec"
 					+  " SELECT methodcalls.*" + 
 					" FROM databasechess.methodcalls" + 
-					" LEFT OUTER JOIN databasechess.methodcallsexecuted" + 
-					" ON methodcalls.calleemethodid = methodcallsexecuted.calleemethodid and methodcalls.callermethodid = methodcallsexecuted.callermethodid" + 
-					" WHERE  methodcallsexecuted.callermethodid IS NULL and methodcallsexecuted.callermethodid IS NULL"); 
+					" WHERE NOT EXISTS (SELECT intersectionparsedexecuted.*"+
+			                  " FROM intersectionparsedexecuted"+
+			                 " WHERE intersectionparsedexecuted.callermethodid = methodcalls.callermethodid AND"
+			                 + " intersectionparsedexecuted.calleemethodid = methodcalls.calleemethodid)");
+			
 			
 			
 			ResultSet methodcallsinexecnotparsedexists=st.executeQuery("SELECT count(*)" + 
@@ -159,27 +182,25 @@ public class VerificationMethodCalls {
 				st.execute("DROP TABLE methodcallsinexecnotparsed");
 			}
 			
-			
 			st.executeUpdate("CREATE TABLE methodcallsinexecnotparsed"
-					+" SELECT methodcallsexecuted.*\r\n" + 
-					" FROM databasechess.methodcallsexecuted\r\n" + 
-					" LEFT OUTER JOIN databasechess.methodcalls\r\n" + 
-					" ON methodcalls.calleemethodid = methodcallsexecuted.calleemethodid and methodcalls.callermethodid = methodcallsexecuted.callermethodid\r\n" + 
-					" WHERE  methodcalls.callermethodid IS NULL and methodcalls.callermethodid IS NULL"); 
+					+  " SELECT methodcallsexecuted.*" + 
+					" FROM databasechess.methodcallsexecuted" + 
+					" WHERE NOT EXISTS (SELECT intersectionparsedexecuted.*"+
+			                " FROM intersectionparsedexecuted"+
+			                 " WHERE intersectionparsedexecuted.callermethodid = methodcallsexecuted.callermethodid AND "
+			                 + " intersectionparsedexecuted.calleemethodid = methodcallsexecuted.calleemethodid)");
 			
 			
-			ResultSet intersectionparsedexecuted=st.executeQuery("SELECT count(*)" + 
-					"			FROM databasechess.intersectionparsedexecuted" ); 
-			if(intersectionparsedexecuted.next()) {
-				st.execute("DROP TABLE intersectionparsedexecuted");
-			}
+//			st.executeUpdate("CREATE TABLE methodcallsinexecnotparsed"
+//					+" SELECT methodcallsexecuted.*\r\n" + 
+//					" FROM databasechess.methodcallsexecuted\r\n" + 
+//					" LEFT OUTER JOIN databasechess.methodcalls\r\n" + 
+//					" ON methodcalls.calleemethodid = methodcallsexecuted.calleemethodid and methodcalls.callermethodid = methodcallsexecuted.callermethodid\r\n" + 
+//					" WHERE  methodcalls.callermethodid IS NULL and methodcalls.callermethodid IS NULL"); 
 			
 			
-			st.executeUpdate("CREATE TABLE intersectionparsedexecuted"
-					+" SELECT  databasechess.methodcallsexecuted.*\r\n" + 
-					"   FROM databasechess.methodcalls\r\n" + 
-					"   inner join databasechess.methodcallsexecuted \r\n" + 
-					"   ON methodcalls.callermethodid=methodcallsexecuted.callermethodid and methodcalls.calleemethodid=methodcallsexecuted.calleemethodid"); 
+			
+			
 		 
 		  
 		   
@@ -902,7 +923,7 @@ public class VerificationMethodCalls {
     	ResultSet myresultsleftexecnotparsed=st.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed "); 
     	while(myresultsleftexecnotparsed.next()) {
     	
-    		bwGold.write("NOT MAPPED PARSED  NOT EXEC"+"/"+myresultsleftexecnotparsed.getString("id")+"/"+myresultsleftexecnotparsed.getString("callermethodid")+"/"+myresultsleftexecnotparsed.getString("callername")
+    		bwGold.write("NOT MAPPED EXEC  NOT PARSED"+"/"+myresultsleftexecnotparsed.getString("id")+"/"+myresultsleftexecnotparsed.getString("callermethodid")+"/"+myresultsleftexecnotparsed.getString("callername")
     			+"/"+myresultsleftexecnotparsed.getString("callerclass")+"/"+myresultsleftexecnotparsed.getString("calleemethodid")+"/"+myresultsleftexecnotparsed.getString("calleename")
     			+"/"+myresultsleftexecnotparsed.getString("calleeclass"));
     		bwGold.newLine(); 
