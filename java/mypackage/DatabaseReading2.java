@@ -31,6 +31,7 @@ import spoon.reflect.factory.ClassFactory;
 public class DatabaseReading2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace2> methodtraces2 = null;
+	public static List<MethodTraceSubjectTSubjectN> methodtraces2SubjectTSubjectN = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Interface2> interfaces2 = null;
 	public static List<Method2Details> methodlist = null;
@@ -41,8 +42,11 @@ public class DatabaseReading2 {
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
+	static HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
+
+	
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
@@ -164,11 +168,21 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());
 
 		///////////////////////////////////////////////////////////////////////////////////////
-
-		MethodTrace2 methodtrace2 = new MethodTrace2();
-		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
-		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
-		setMethodtraces2(methodtraces);
+//COMMENTED OUT CODE OLD CODE USED WHEN IT WAS SLOW 
+//		MethodTrace2 methodtrace2 = new MethodTrace2();
+//		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
+//		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
+//		setMethodtraces2(methodtraces);
+		
+		//SWITCHED TO MethodTraceSubjectTSubjectN
+		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
+		HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
+		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
+		setMethodtraces2SubjectTSubjectN(methodtraces);
+		setMethodtracehashmap(methodtracehashmap); 
+		///////////////////////////////////////////////////////////////////////////////////////
+		
+		
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		/*ClassTrace2 classtrace2= new ClassTrace2(); 
@@ -420,6 +434,14 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 
 	
 
+	public static HashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
+		return methodtracehashmap;
+	}
+
+	public  static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap2) {
+		methodtracehashmap = methodtracehashmap2;
+	}
+
 	public static void setInterfaces(HashMap ínterfacehashmap) {
 		// TODO Auto-generated method stub
 		DatabaseReading2.interfacehashmapAlreadyImpl=ínterfacehashmap;
@@ -444,6 +466,15 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 
 	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
 		DatabaseReading2.methodtraces2 = methodtraces2;
+	}
+	
+	
+	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2SubjectTSubjectN() {
+		return methodtraces2SubjectTSubjectN;
+	}
+
+	public static void setMethodtraces2SubjectTSubjectN(List<MethodTraceSubjectTSubjectN> methodtraces) {
+		DatabaseReading2.methodtraces2SubjectTSubjectN = methodtraces;
 	}
 
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {

@@ -121,10 +121,13 @@ public class AddGold2Column {
 		Statement st2 = conn.createStatement();
 		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
-		
+		st.executeUpdate("ALTER TABLE `traces` ADD gold3 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD gold4 LONGTEXT"); 
 		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\Chess\\ChessFiles\\TracesChess.txt");
+			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\Chess\\ChessFiles\\TracesChess.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
@@ -169,6 +172,9 @@ public class AddGold2Column {
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
+			
+			st.executeUpdate("UPDATE `traces` SET `gold2` ='"+ "E" +"'WHERE gold2 IS NULL"); 
+
 			
 		} catch (IOException e) {
 			e.printStackTrace();

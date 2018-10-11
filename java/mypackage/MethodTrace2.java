@@ -23,12 +23,38 @@ public class MethodTrace2 {
 	public String gold4; 
 	public String SubjectT; 
 	public String SubjectN; 
+	String prediction; 
+	String likelihood; 
+	String why; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
-	
+	public String getPrediction() {
+		return prediction;
+	}
+
+	public void setPrediction(String prediction) {
+		this.prediction = prediction;
+	}
+
+	public String getLikelihood() {
+		return likelihood;
+	}
+
+	public void setLikelihood(String likelihood) {
+		this.likelihood = likelihood;
+	}
+
+	public String getWhy() {
+		return why;
+	}
+
+	public void setWhy(String why) {
+		this.why = why;
+	}
+
 	public String getGold2() {
 		return gold2;
 	}

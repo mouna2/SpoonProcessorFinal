@@ -23,6 +23,9 @@ public class MethodTraceSubjectTSubjectN {
 	public String SubjectN; 
 	public String gold3; 
 	public String gold4; 
+	String prediction; 
+	String likelihood; 
+	String why; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
@@ -41,6 +44,30 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
 	
+	public String getPrediction() {
+		return prediction;
+	}
+
+	public void setPrediction(String prediction) {
+		this.prediction = prediction;
+	}
+
+	public String getLikelihood() {
+		return likelihood;
+	}
+
+	public void setLikelihood(String likelihood) {
+		this.likelihood = likelihood;
+	}
+
+	public String getWhy() {
+		return why;
+	}
+
+	public void setWhy(String why) {
+		this.why = why;
+	}
+
 	public String getGold3() {
 		return gold3;
 	}
@@ -156,7 +183,8 @@ public class MethodTraceSubjectTSubjectN {
 	}
 
 	HashMap<Integer, MethodTraceSubjectTSubjectN> methodtraceHashMap= new HashMap<Integer, MethodTraceSubjectTSubjectN> (); 
-	
+	HashMap<String, MethodTraceSubjectTSubjectN> methodtraceHashMap2= new HashMap<String, MethodTraceSubjectTSubjectN> (); 
+
 	public MethodTraceSubjectTSubjectN() {
 		super();
 	}
@@ -784,7 +812,209 @@ public class MethodTraceSubjectTSubjectN {
 	
 	
 	
+	public  HashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn) throws SQLException {
+		DatabaseReading2 db = new DatabaseReading2(); 
+		ClassDetails2 classdet= new ClassDetails2(); 
+		//CLASSESHASHMAP
+		
+		Statement st = conn.createStatement();
+		Statement st2 = conn.createStatement();
+		//ResultSet var = st.executeQuery("select count(*) from classes"); 
+		
 	
+		int index=1; 
+	
+		//END OF TEST 
+			ClassHashMap=CreateClassHashMap(conn); 
+			InterfaceHashMapOwner = CreateOwnerHashMapInterface(conn);
+			InterfaceHashMapInterface = CreateInterfaceHashMapInterface(conn); 
+			MethodCallsEXECHashMapCallee=CreateMethodCallsHashMapCalleeEXEC(conn); 
+			MethodCallsEXECHashMapCaller=CreateMethodCallsHashMapCallerEXEC(conn); 
+
+			MethodHashMap=CreateMethodHashMap(conn); 
+			MethodCallsHashMapCaller=CreateMethodCallsHashMapCaller(conn); 
+			MethodCallsHashMapCallee=CreateMethodCallsHashMapCallee(conn); 
+
+			
+			 ResultSet myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
+			
+			 while(myresults.next() ) {
+				 MethodTraceSubjectTSubjectN mytrace= new MethodTraceSubjectTSubjectN(); 
+				 RequirementGold RequirementGold = new RequirementGold(); 
+				 Requirement2 requirement = new Requirement2(); 
+				 requirement.setID(myresults.getString("requirementid"));
+				 requirement.setRequirementName(myresults.getString("requirement"));
+				 mytrace.setRequirement(requirement);
+				 
+				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 classrep.setClassid(myresults.getString("classid"));
+				 classrep.setClassname(myresults.getString("classname"));
+				 String fullmethodname= myresults.getString("fullmethod"); 
+
+				 Method2Representation methodrep= new Method2Representation(); 
+				 methodrep.setMethodid(myresults.getString("methodid"));
+				 methodrep.setMethodname(myresults.getString("method"));
+				 methodrep.setMethodname(myresults.getString("methodname"));
+				 methodrep.setFullmethodname(myresults.getString("fullmethod"));
+
+				 mytrace.setMethodRepresentation(methodrep);
+				 
+				 mytrace.setClassRepresentation(classrep);
+				 
+				 
+				 List<Interface2> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().classid);
+				 
+				 List<Interface2> myinterfacelist = InterfaceHashMapInterface.get(mytrace.getClassRepresentation().classid);
+				 List<ClassRepresentation2> interfaceclassreps= new ArrayList<ClassRepresentation2>(); 
+if(myinterfacelist!=null) {
+	 for(Interface2 myinterface: myinterfacelist) {
+		 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
+		 myclassrepinterface.setClassid(myinterface.getInterfaceClass().classid);
+		 myclassrepinterface.setClassname(myinterface.getInterfaceClass().classname);
+		 interfaceclassreps.add(myclassrepinterface); 
+	 }
+	
+}
+				
+				 
+				 List<ClassRepresentation2> interfaceclassrepsOwner= new ArrayList<ClassRepresentation2>(); 
+
+				 	if(myownerinterfaceList!=null) {
+				 		 for(Interface2 myinterface: myownerinterfaceList) {
+							 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
+							 myclassrepinterface.setClassid(myinterface.getOwnerClass().classid);
+							 myclassrepinterface.setClassname(myinterface.getOwnerClass().classname);
+							 interfaceclassrepsOwner.add(myclassrepinterface); 
+						 }
+				 	}
+				
+				 
+				 
+				 
+				 
+				 
+				
+				 
+				 
+				 mytrace.setGold(myresults.getString("gold"));
+
+				 mytrace.setGold2(myresults.getString("gold2"));
+				 
+				 
+				 mytrace.setSubject(myresults.getString("subject"));
+				 
+				
+				 String id= mytrace.getMethodRepresentation().methodid; 
+				 
+				 
+				 
+				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
+				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
+				 if(mycalleelist!=null) {
+				 for(MethodCalls mycallee: mycalleelist) {
+					 
+						 
+					 
+					 Method2Representation meth= new Method2Representation(); 	
+					 meth.setMethodid(mycallee.Callee.methodid);
+					 meth.setMethodname(mycallee.Callee.methodname);
+					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+					 meth.setClassrep(val.OwnerClass);
+					 mycalleelistrep.add(meth); 
+				 }
+				 
+				 mytrace.setCalleesList(mycalleelistrep);
+				 }
+				 
+				 List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id); 
+				 List<Method2Representation> mycallerlistrep = new ArrayList<Method2Representation>(); 
+				 if(mycallerlist!=null) {
+					 for(MethodCalls mycaller: mycallerlist) {
+						 Method2Representation meth= new Method2Representation(); 	
+						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodname(mycaller.Caller.methodname);
+						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						 meth.setClassrep(val.OwnerClass);
+						 mycallerlistrep.add(meth); 
+					 }
+					 mytrace.setCallersList(mycallerlistrep);
+				 }
+				
+				 
+				 
+				 
+				 
+				 List<MethodCalls> mycallerlistexecuted = MethodCallsEXECHashMapCaller.get(id); 
+				 List<Method2Representation> mycallerlistrepexecuted = new ArrayList<Method2Representation>(); 
+				 if(mycallerlistexecuted!=null) {
+					 for(MethodCalls mycaller: mycallerlistexecuted) {
+						 Method2Representation meth= new Method2Representation(); 	
+						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodname(mycaller.Caller.methodname);
+						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						 meth.setClassrep(val.OwnerClass);
+						 mycallerlistrepexecuted.add(meth); 
+					 }
+					 mytrace.setCallersList(mycallerlistrepexecuted);
+				 }
+				
+				 
+				 
+				 
+				 List<MethodCalls> mycalleelistexecuted = MethodCallsEXECHashMapCallee.get(id); 
+				 List<Method2Representation> mycalleelistrepexecuted = new ArrayList<Method2Representation>(); 
+				 if(mycalleelistexecuted!=null) {
+					 for(MethodCalls mycallee: mycalleelistexecuted) {
+						 Method2Representation meth= new Method2Representation(); 	
+						 meth.setMethodid(mycallee.Callee.methodid);
+						 meth.setMethodname(mycallee.Callee.methodname);
+						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						 meth.setClassrep(val.OwnerClass);
+						 mycalleelistrepexecuted.add(meth); 
+					 }
+					 mytrace.setCalleesList(mycalleelistrepexecuted);
+					 
+				 }
+				
+				 
+				 
+			
+
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				
+				String methodid= mytrace.MethodRepresentation.methodid; 
+				String RequirementID= mytrace.Requirement.getID(); 
+				String key=methodid+"-"+RequirementID; 
+			//	 System.out.println("HEY");
+				 methodtraceHashMap2.put(key, mytrace); 
+				 index++; 
+			//	 MethodTraceSubjectTSubjectN33 methtrace= new MethodTraceSubjectTSubjectN33(); 
+				// System.out.println("my trace tostring: "+mytrace.toString());
+				
+				 myresults = st.executeQuery("SELECT traces.* from traces where id='"+ index +"'"); 
+				 System.out.println("index 1 "+index);
+			
+			 }
+		
+
+		 
+		return methodtraceHashMap2;
+	}
 ///////////////////////////////////////////
 	public  HashMap<Integer, MethodTraceSubjectTSubjectN> ReadClassesRepresentations(Connection conn) throws SQLException {
 		DatabaseReading2 db = new DatabaseReading2(); 

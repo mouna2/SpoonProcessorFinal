@@ -236,7 +236,7 @@ public class VerificationMethodCallsOmittedArgs {
 	 fos = new FileOutputStream(fout);
 	 bwGold = new BufferedWriter(new OutputStreamWriter(fos));
 
-	bwGold.write("description/ id/ callermethodid/ callername/ callerclass/ calleemethodid/ calleename/ calleeclass");
+	bwGold.write("description/ id/ callermethodid/ callername/ callerclass/ calleemethodid/ calleename/ calleeclass/sourcecode");
 	bwGold.newLine();
 	Statement st2= conn.createStatement();
 	Statement st3= conn.createStatement();
@@ -916,8 +916,8 @@ public class VerificationMethodCallsOmittedArgs {
     			+"/"+myresultsleft.getString("callerclass")+"/"+myresultsleft.getString("calleemethodid")+"/"+myresultsleft.getString("calleename")
     			+"/"+myresultsleft.getString("calleeclass"));
     		bwGold.newLine(); 
-    		
-    	
+    		bwGold.write(myresultsleft.getString("fullmethod")); 
+    		bwGold.newLine(); 
     	}
     	
     	ResultSet myresultsleftexecnotparsed=st.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed "); 
