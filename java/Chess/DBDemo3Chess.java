@@ -40,6 +40,7 @@ import Tables.tracesmethodscallees;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
+import spoon.reflect.code.CtAssignment;
 import spoon.reflect.code.CtBlock;
 import spoon.reflect.code.CtComment;
 import spoon.reflect.code.CtConstructorCall;
@@ -63,6 +64,7 @@ import spoon.reflect.factory.MethodFactory;
 import spoon.reflect.path.CtPath;
 import spoon.reflect.reference.CtExecutableReference;
 import spoon.reflect.reference.CtTypeReference;
+import spoon.reflect.reference.CtVariableReference;
 import spoon.reflect.visitor.Query;
 import spoon.reflect.visitor.filter.FieldAccessFilter;
 import spoon.reflect.visitor.filter.TypeFilter;
@@ -303,19 +305,7 @@ public class DBDemo3Chess {
 		   		"  `fieldtype` LONGTEXT NULL,\r\n" + 
 		   		"  `ownerclassid` INT NULL,\r\n" + 
 		   		"  `classname` LONGTEXT NULL,\r\n" + 
-		   		"  PRIMARY KEY (`id`),\r\n" + 
-		   		"  INDEX `classid_idx` (`ownerclassid` ASC),\r\n" + 
-		   		"  INDEX `classid_idx2` (`ownerclassid` ASC),\r\n" + 	
-		   		"  CONSTRAINT `classid4`\r\n" + 
-		   		"    FOREIGN KEY (`ownerclassid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,"+ 
-		   		"  CONSTRAINT `classid6`\r\n" + 
-		   		"    FOREIGN KEY (`fieldtypeclassid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION);"); 
+		   		"  PRIMARY KEY (`id`));"); 
 		   
 
 		   
@@ -323,30 +313,13 @@ public class DBDemo3Chess {
 		   		"  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,\r\n" + 
 		   		"  `fieldaccess` VARCHAR(200) NULL,\r\n" + 
 		   		"  `fieldtypeclassid` INT NULL,\r\n" + 
-		   		"  `fieldtype` LONGTEXT NULL,\r\n" + 
-		   		"  `classname` VARCHAR(200) NULL,\r\n" + 
+		   		"  `fieldtypeclassname` LONGTEXT NULL,\r\n" + 
+		   		"  `ownerclassname` VARCHAR(200) NULL,\r\n" + 
 		   		"  `ownerclassid` INT NULL,\r\n" + 
-		   		"  `methodname` VARCHAR(400) NULL,\r\n" + 
+		   		"  `ownermethodname` VARCHAR(400) NULL,\r\n" + 
 		   		"  `ownermethodid` INT NULL,\r\n" + 
-		   		"  PRIMARY KEY (`id`),\r\n" + 
-		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
-		   		"  INDEX `classid_idx` (`fieldtypeclassid` ASC),\r\n" + 
-		   		"  INDEX `methodid_idx` (`ownermethodid` ASC),\r\n" + 		
-		   		"  CONSTRAINT `classid5`\r\n" + 
-		   		"    FOREIGN KEY (`fieldtypeclassid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,\r\n" + 
-		   		"  CONSTRAINT `classid7`\r\n" + 
-		   		"    FOREIGN KEY (`fieldtypeclassid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`classes` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,\r\n" + 
-		   		"  CONSTRAINT `methodid2`\r\n" + 
-		   		"    FOREIGN KEY (`ownermethodid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION);"); 
+		   		"  `fieldclassownerclassid` LONGTEXT NULL,\r\n" + 
+		   		"  PRIMARY KEY (`id`));"); 
 		   
 
 		   st.executeUpdate("CREATE TABLE `databasechess`.`methodcalls` (\r\n" + 
@@ -364,20 +337,7 @@ public class DBDemo3Chess {
 		   		"  `fullcallee` LONGTEXT NULL,\r\n" + 
 		   		"  `fullcalleeshort` LONGTEXT NULL,\r\n" + 
 				"  `fullmethod` LONGTEXT NULL,\r\n" + 
-		   		"  PRIMARY KEY (`id`),\r\n" + 
-		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
-		   		"  INDEX `caller_idx` (`callermethodid` ASC),\r\n" + 
-		   		"  INDEX `callee_idx` (`calleemethodid` ASC),\r\n" + 
-		   		"  CONSTRAINT `methodcalledid`\r\n" + 
-		   		"    FOREIGN KEY (`callermethodid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION,\r\n" + 
-		   		"  CONSTRAINT `callingmethodid`\r\n" + 
-		   		"    FOREIGN KEY (`calleemethodid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION);"); 
+		   		"  PRIMARY KEY (`id`));"); 
 		   st.executeUpdate("CREATE TABLE `databasechess`.`methodcallsexecuted` (\r\n" + 
 			   		"  `id` INT NOT NULL AUTO_INCREMENT,\r\n" + 
 			   		"  `callermethodid` LONGTEXT NULL,\r\n" + 
@@ -407,13 +367,7 @@ public class DBDemo3Chess {
 		   		"  `prediction` LONGTEXT NULL,\r\n" + 
 		   		"  `likelihood` LONGTEXT NULL,\r\n" + 
 		   		"  `why` LONGTEXT NULL,\r\n" + 
-		   		"  PRIMARY KEY (`id`),\r\n" + 
-		   		"  INDEX `methodid_idx8` (`methodid` ASC),\r\n" + 
-		   		"  CONSTRAINT `methodid8`\r\n" + 
-		   		"    FOREIGN KEY (`methodid`)\r\n" + 
-		   		"    REFERENCES `databasechess`.`methods` (`id`)\r\n" + 
-		   		"    ON DELETE NO ACTION\r\n" + 
-		   		"    ON UPDATE NO ACTION);\r\n" + 	
+		   		"  PRIMARY KEY (`id`));\r\n" + 	
 		   		""); 
 		 
 		   
@@ -524,12 +478,7 @@ public class DBDemo3Chess {
 		
 		
 		
-//		System.out.println("INTER"+myinterface.getQualifiedName());
-//		while(classesreferenced.next()){
-//			myinterfaceid= classesreferenced.getString("id"); 
-//			myinterfacename= classesreferenced.getString("classname"); 
-//	//		System.out.println("class referenced: "+myclass);	
-//   		   }
+
     	
     	
   //  	BUILD CLASSES TABLE 
@@ -1101,41 +1050,45 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
   	       		 //}
   	       	}
   	   }
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/	
-///////////////*********************************************************************************************************************************************************************************/
-//////////////	
-////////////////BUILD FIELDS TABLE -- CLASSES
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/	
+/////////////////*********************************************************************************************************************************************************************************/
+////////////////	
+//////////////////BUILD FIELDS TABLE -- CLASSES
 for(CtType<?> clazz : classFactory.getAll(true)) {
 	
 	
 	
-	String myclass = null;
-	String myclassname=null; 
-	String fieldid=null; 
+	
 //ALTERNATIVE: Collection<CtFieldReference<?>> fields = clazz.getAllFields(); 
 	Collection<CtField<?>> fields = clazz.getFields(); 
 	String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
 	
 //ALTERNATIVE: 	for(CtFieldReference<?> field: fields) {	
 	for(CtField<?> field: fields) {
+		String myclassid = null;
+		String myclassname=null; 
+		String fieldid=null; 
 		boolean flag=false; 
-		//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
-	//	System.out.println("my field   "+field);
+	
+		
+		if(clazz.getQualifiedName().contains("$")) {
+			String classnamedollarfree=RemoveDollar(clazz.getQualifiedName()); 
+			System.out.println(classnamedollarfree);
+		}
+		String classnamedollarfree=RemoveDollar(clazz.getQualifiedName()); 
+		
+		
+		 FullClassName= classnamedollarfree; 
+		 System.out.println(FullClassName);
+			ResultSet classesreferenced = st.executeQuery("SELECT * from classes where classname='"+FullClassName+"'"); 
+			while(classesreferenced.next()){
+				myclassid= classesreferenced.getString("id"); 
+				myclassname= classesreferenced.getString("classname"); 
+	   		   }
 		
 			
-			ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-			while(classesreferenced.next()){
-				myclass= classesreferenced.getString("id"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
-			ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-			while(classnames.next()){
-				myclassname= classnames.getString("classname"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
-			
-			ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+field.getType()+"'"); 
+			ResultSet fieldids = st.executeQuery("SELECT * from classes where classname='"+field.getType()+"'"); 
 			while(fieldids.next()){
 				flag=true; 
 				fieldid= fieldids.getString("id"); 
@@ -1144,7 +1097,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 			
 		//	if(field.toString().contains("java.awt")==false && field.toString().contains("javax")==false) {
 			if(fieldid!=null && flag==true) {
-    			st.executeUpdate("INSERT INTO `fieldclasses`(`fieldname`, `fieldtypeclassid`, `fieldtype`, `ownerclassid`,  `classname`) VALUES ('"+field.getSimpleName() +"','"+fieldid +"','"+field.getType() +"','" +myclass+"','" +myclassname+"')");
+    			st.executeUpdate("INSERT INTO `fieldclasses`(`fieldname`, `fieldtypeclassid`, `fieldtype`, `ownerclassid`,  `classname`) VALUES ('"+field.getSimpleName() +"','"+fieldid +"','"+field.getType() +"','" +myclassid+"','" +myclassname+"')");
 
 			}
 
@@ -1161,64 +1114,372 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 //////////////////BUILD FIELDS TABLE -- METHODS
 //////////////
 for(CtType<?> clazz : classFactory.getAll(true)) {
-	String fieldname=null; 
-	String Fieldid=null; 
-	String Methodid=null; 
-	String myclassname=null; 
-	String MethodName=null; 
-	String FieldName=null; 
-	String myclass=null; 
-	String fieldid=null; 
+	
 	String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName();
 	List<fieldmethod> FieldMethodsList= new ArrayList<fieldmethod>(); 
 	
 	
 	for(CtMethod<?> method :clazz.getMethods()) {
-		List<CtFieldAccess> list = method.getElements(new TypeFilter<>(CtFieldAccess.class)); 
+		List<CtFieldAccess> list = method.getElements(new TypeFilter<CtFieldAccess>(CtFieldAccess.class)); 
 		for(CtFieldAccess fieldaccess: list) {
-			boolean flag=false; 
-			ResultSet classesreferenced = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
-			while(classesreferenced.next()){
-				 myclass = classesreferenced.getString("id"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
 			
-			
-			ResultSet fieldnames = st.executeQuery("SELECT fieldname from fieldclasses where fieldclasses.fieldname='"+fieldaccess.toString()+"'"); 
-			while(fieldnames.next()){
-				 FieldName = fieldnames.getString("fieldname"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
-			ResultSet classnames = st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
-			while(classnames.next()){
-				 myclassname = classnames.getString("classname"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
-			String fullmeth=FullClassName+"."+method.getSignature().toString(); 
-			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where fullmethod='"+fullmeth+"'"); 
-			
-			while(methodids.next()){
-				  Methodid = methodids.getString("id"); 
-				  MethodName = methodids.getString("methodname"); 
-	   		   }
+			String fieldname=null; 
+			String Fieldid=null; 
+			String Methodid=null; 
+			String myclassname=null; 
+			String MethodName=null; 
+			String FieldName=null; 
+			String myclassid=null; 
+			String myclass=null; 
+			String fieldid=null; 
+			String fieldclassid=null; 
+			String fieldaccessTargetType=null;
+			System.out.println("FIELD ACCESS===============================  "+fieldaccess);
+			System.out.println("METHOD===============================  "+clazz.getQualifiedName()+"."+method.getSignature());
 
+			boolean flag=false; 
 			
-			ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldaccess.getType()+"'"); 
-			while(fieldids.next()){
-				flag=true; 
-				fieldid= fieldids.getString("id"); 
-	//			System.out.println("class referenced: "+myclass);	
-	   		   }
-			
-			
-			
-			
-			
-			fieldmethod myfield= new fieldmethod(FieldName, myclassname, myclass, MethodName, Methodid); 
 		
 			
-				if(myfield.contains(FieldMethodsList, myfield)==false && FieldName!=null && flag==true && Methodid!=null) {
-					st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`, `fieldtypeclassid`, `fieldtype`,  `classname`,  `ownerclassid`,  `methodname`, `ownermethodid`) VALUES ('"+FieldName +"','" +fieldid+"','" +fieldaccess.getType()+"','" +myclassname+"','" +myclass+"','" +MethodName+"','" +Methodid+"')");
+			if(clazz.getQualifiedName().contains("$")) {
+				String classnamedollarfree=RemoveDollar(clazz.getQualifiedName()); 
+				System.out.println(classnamedollarfree);
+			}
+    		String classnamedollarfree=RemoveDollar(clazz.getQualifiedName()); 
+
+
+			ResultSet classesreferenced = st.executeQuery("SELECT methods.* from methods where classname='"+classnamedollarfree
+			+ "'and methodname='"+method.getSignature()+"'"); 
+	while(classesreferenced.next()){
+		 myclass = classesreferenced.getString("classname"); 
+		 myclassid = classesreferenced.getString("classid"); 
+		  Methodid = classesreferenced.getString("id"); 
+		  MethodName = classesreferenced.getString("methodname"); 
+//			System.out.println("class referenced: "+myclass);	
+		   }
+	if(fieldaccess.getType()!=null) {
+		fieldaccessTargetType= fieldaccess.getType().toString(); 
+		fieldaccessTargetType= fieldaccessTargetType.replaceAll("(\\[])", ""); 
+	}
+	
+	
+	
+	System.out.println("FIELD ACCESS TYPE  ================================================================  "+ fieldaccessTargetType);
+
+			ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldaccessTargetType+"'"); 
+			while(fieldids.next()){
+				
+				fieldid= fieldids.getString("id"); 
+	   		   }
+			
+
+
+			
+			//////////////////////////////////////////////////////////////////////////////
+			ResultSet myres = st.executeQuery("SELECT * from fieldclasses where fieldname='"+fieldaccess.toString()+"' and fieldtypeclassid='"+fieldid+"' and "
+					+ "fieldtype='"+fieldaccessTargetType+"' and ownerclassid='"+myclassid+"' and classname='"+myclass+"'"); 
+			while(myres.next()){
+				
+				fieldclassid= myres.getString("id"); 
+				System.out.println("FIELD TYPE CLASS ID ::::::::::::::::::::::::::::::::::::::::::"+fieldclassid);
+	   		   }	
+			
+			if(fieldclassid==null) {
+				fieldclassid="null"; 
+			}
+			////////////////////////////////////////////////////////////////////
+			
+			
+			
+			ResultSet	 myres2=null; 
+			if(fieldid!=null) {
+					 String query= "SELECT * from fieldmethods where fieldaccess='"+fieldaccess+"' and fieldtypeclassid='"+fieldid+"' and "
+						+ "fieldtypeclassname='"+fieldaccessTargetType+"' and ownerclassid='"+myclassid+"' and ownerclassname='"+myclass+"' and "
+								+ "fieldclassownerclassid='"+fieldclassid+"'"; 
+					 
+					 
+					myres2= st.executeQuery(query); 
+				
+			}
+			if(myres2!=null) {
+				if(!myres2.next()) {
+					if(fieldid!=null) {
+						st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`, `fieldtypeclassid`, `fieldtypeclassname`,  `ownerclassname`,  `ownerclassid`,  `ownermethodname`, `ownermethodid`, `fieldclassownerclassid`) VALUES ('"+fieldaccess.toString() +"','" +fieldid+"','" +fieldaccessTargetType+"','" +myclass+"','" +myclassid+"','" +MethodName+"','" +Methodid+"','" +fieldclassid+"')");
+
+					}
+				}
+			}
+		
+			
+			
+			
+		
+		}
+		
+		List<CtAssignment> asslist = method.getElements(new TypeFilter<CtAssignment>(CtAssignment.class)); 
+		
+		for(CtAssignment ass: asslist) {
+
+			String fieldtypeclassid=null; 
+			String fieldaccess=null; 
+			
+			String fieldtypeclassname=null; 
+			 fieldaccess= ass.getAssigned().toString(); 
+			
+			 fieldtypeclassname= ass.getAssigned().getType().toString(); 
+			 fieldtypeclassname= fieldtypeclassname.replaceAll("(\\[])", ""); 
+
+			String ownermethodid=null; 
+			String ownerclassid=null; 
+			String fieldclassownerclassid="null"; 
+			 String ownerclassname=RemoveDollar(clazz.getQualifiedName()); 
+			 
+			String ownermethodname= method.getSignature(); 
+			System.out.println("yes");
+			
+			ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldtypeclassname+"'"); 
+			while(fieldids.next()){
+				
+				fieldtypeclassid= fieldids.getString("id"); 
+	   		   }
+			
+			
+			ResultSet assinfo = st.executeQuery("SELECT * from methods where methodname='"+ownermethodname+"' and classname='"+ownerclassname+"'"); 
+			while(assinfo.next()){
+				
+				ownermethodid= assinfo.getString("id"); 
+				ownerclassid= assinfo.getString("classid"); 
+				ownerclassname=assinfo.getString("classname");
+				ownermethodname=assinfo.getString("methodname");
+	   		   }
+			
+			
+			ResultSet myres = st.executeQuery("SELECT * from fieldclasses where fieldname='"+fieldaccess+"' and fieldtypeclassid='"+fieldtypeclassid+"' and "
+					+ "fieldtype='"+fieldtypeclassname+"' and ownerclassid='"+ownerclassid+"' and classname='"+ownerclassname+"'"); 
+			while(myres.next()){
+				
+				fieldclassownerclassid= myres.getString("id"); 
+				System.out.println("FIELD TYPE CLASS ID ::::::::::::::::::::::::::::::::::::::::::"+fieldclassownerclassid);
+	   		   }	
+			
+			if(fieldclassownerclassid==null) {
+				fieldclassownerclassid="null"; 
+			}
+			
+			
+			
+			System.out.println("fieldtypeclassname "+fieldtypeclassname);
+		System.out.println("fieldaccess  "+fieldaccess+"  fieldtypeclassid  "+fieldtypeclassid+"  fieldtypeclassname "+fieldtypeclassname+" ownerclassid "+ownerclassid+
+				" ownerclassname "+ownerclassname+"   fieldclassownerclassid "+fieldclassownerclassid);	
+		ResultSet	 myres2=null; 
+		if(fieldtypeclassid!=null) {
+				 String query= "SELECT * from fieldmethods where fieldaccess='"+fieldaccess+"' and fieldtypeclassid='"+fieldtypeclassid+"' and "
+					+ "fieldtypeclassname='"+fieldtypeclassname+"' and ownerclassid='"+ownerclassid+"' and ownerclassname='"+ownerclassname+"' and "
+							+ "fieldclassownerclassid='"+fieldclassownerclassid+"'"; 
+				 
+				 
+				myres2= st.executeQuery(query); 
+			
+		}
+		
+			
+			
+			
+		if(myres2!=null) {
+			if(!myres2.next()) {
+				if(fieldtypeclassid!=null) {
+					st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`, `fieldtypeclassid`, `fieldtypeclassname`,  `ownerclassname`,  `ownerclassid`,  `ownermethodname`, `ownermethodid`, `fieldclassownerclassid`) VALUES ('"+fieldaccess.toString() +"','" +fieldtypeclassid+"','" +fieldtypeclassname+"','" +ownerclassname+"','" +ownerclassid+"','" +ownermethodname+"','" +ownermethodid+"','" +fieldclassownerclassid+"')");
+
+				}
+			}
+		}
+		
+			
+			
+			
+			
+		}
+		
+		
+		
+List<CtVariableReference> varlist = method.getElements(new TypeFilter<CtVariableReference>(CtVariableReference.class)); 
+		
+		for(CtVariableReference ass: varlist) {
+
+			String fieldtypeclassid=null; 
+			String fieldaccess=null; 
+			
+			String fieldtypeclassname=null; 
+			 fieldaccess= ass.getSimpleName().toString(); 
+			if(ass.getType()!=null) {
+				 fieldtypeclassname= ass.getType().toString(); 
+				 fieldtypeclassname= fieldtypeclassname.replaceAll("(\\[])", ""); 
+
+			}
+			
+			String ownermethodid=null; 
+			String ownerclassid=null; 
+			String fieldclassownerclassid="null"; 
+			
+			 String ownerclassname=RemoveDollar(clazz.getQualifiedName()); 
+			 
+			String ownermethodname= method.getSignature(); 
+			System.out.println("yes");
+			
+			ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldtypeclassname+"'"); 
+			while(fieldids.next()){
+				
+				fieldtypeclassid= fieldids.getString("id"); 
+	   		   }
+			
+			
+			ResultSet assinfo = st.executeQuery("SELECT * from methods where methodname='"+ownermethodname+"' and classname='"+ownerclassname+"'"); 
+			while(assinfo.next()){
+				
+				ownermethodid= assinfo.getString("id"); 
+				ownerclassid= assinfo.getString("classid"); 
+				ownerclassname=assinfo.getString("classname");
+				ownermethodname=assinfo.getString("methodname");
+	   		   }
+			
+			
+			ResultSet myres = st.executeQuery("SELECT * from fieldclasses where fieldname='"+fieldaccess+"' and fieldtypeclassid='"+fieldtypeclassid+"' and "
+					+ "fieldtype='"+fieldtypeclassname+"' and ownerclassid='"+ownerclassid+"' and classname='"+ownerclassname+"'"); 
+			while(myres.next()){
+				
+				fieldclassownerclassid= myres.getString("id"); 
+				System.out.println("FIELD TYPE CLASS ID ::::::::::::::::::::::::::::::::::::::::::"+fieldclassownerclassid);
+	   		   }	
+			
+			if(fieldclassownerclassid==null) {
+				fieldclassownerclassid="null"; 
+			}
+			
+			
+			
+			System.out.println("fieldtypeclassname "+fieldtypeclassname);
+		System.out.println("fieldaccess  "+fieldaccess+"  fieldtypeclassid  "+fieldtypeclassid+"  fieldtypeclassname "+fieldtypeclassname+" ownerclassid "+ownerclassid+
+				" ownerclassname "+ownerclassname+"   fieldclassownerclassid "+fieldclassownerclassid);	
+		ResultSet	 myres2=null; 
+		if(fieldtypeclassid!=null) {
+				 String query= "SELECT * from fieldmethods where fieldaccess='"+fieldaccess+"' and fieldtypeclassid='"+fieldtypeclassid+"' and "
+					+ "fieldtypeclassname='"+fieldtypeclassname+"' and ownerclassid='"+ownerclassid+"' and ownerclassname='"+ownerclassname+"' and "
+							+ "fieldclassownerclassid='"+fieldclassownerclassid+"'"; 
+				 
+				 
+				myres2= st.executeQuery(query); 
+			
+		}
+		
+			
+			
+			
+		if(myres2!=null) {
+			if(!myres2.next()) {
+				if(fieldtypeclassid!=null) {
+					st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`, `fieldtypeclassid`, `fieldtypeclassname`,  `ownerclassname`,  `ownerclassid`,  `ownermethodname`, `ownermethodid`, `fieldclassownerclassid`) VALUES ('"+fieldaccess.toString() +"','" +fieldtypeclassid+"','" +fieldtypeclassname+"','" +ownerclassname+"','" +ownerclassid+"','" +ownermethodname+"','" +ownermethodid+"','" +fieldclassownerclassid+"')");
+
+				}
+			}
+		}
+		
+			
+			
+			
+			
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
+	//-----------------------------------------------------------------------------------------------------------------
+	List<CtConstructor> constructorlist = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class)); 
+
+	for(CtConstructor cons: constructorlist) {
+
+		List<CtFieldAccess> list = cons.getElements(new TypeFilter<CtFieldAccess>(CtFieldAccess.class)); 
+		for(CtFieldAccess fieldaccess: list) {
+			
+			String fieldname=null; 
+			String Fieldid=null; 
+			String Methodid=null; 
+			String myclassname=null; 
+			String MethodName=null; 
+			String FieldName=null; 
+			String myclassid=null; 
+			String myclass=null; 
+			String fieldid=null; 
+			String fieldaccessTargetType=null;
+
+			System.out.println("FIELD ACCESS===============================  "+fieldaccess);
+			System.out.println("METHOD===============================  "+clazz.getQualifiedName()+"."+cons.getSignature());
+			
+			boolean flag=false; 
+			String consignature= TransformConstructorIntoInit(cons.getSignature()); 
+			if(clazz.getQualifiedName().contains("$")){
+				String constructorClassName=RemoveDollar(clazz.getQualifiedName()); 
+				System.out.println(constructorClassName);
+			}
+    	
+			String constructorClassName=RemoveDollar(clazz.getQualifiedName()); 
+
+		
+			
+
+
+			ResultSet classesreferenced = st.executeQuery("SELECT methods.* from methods where classname='"+constructorClassName
+			+ "'and methodname='"+consignature+"'"); 
+	while(classesreferenced.next()){
+		 myclass = classesreferenced.getString("classname"); 
+		 myclassid = classesreferenced.getString("classid"); 
+		  Methodid = classesreferenced.getString("id"); 
+		  MethodName = classesreferenced.getString("methodname"); 
+//			System.out.println("class referenced: "+myclass);	
+		   }
+	if(fieldaccess.getType()!=null) {
+		fieldaccessTargetType= fieldaccess.getType().toString(); 
+		fieldaccessTargetType= fieldaccessTargetType.replaceAll("(\\[])", ""); 
+	}
+	
+	System.out.println("FIELD ACCESS TYPE  ================================================================  "+ fieldaccessTargetType);
+
+	ResultSet fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldaccessTargetType+"'"); 
+	while(fieldids.next()){
+		
+		fieldid= fieldids.getString("id"); 
+		   }
+	
+
+	
+	////////////////////////////////////////////////////////////////////////////
+//	if(fieldid==null) {
+//		if(fieldaccess.getTarget()!=null) {
+//			 fieldaccessTargetType= fieldaccess.getTarget().getType().toString(); 
+//			fieldaccessTargetType= fieldaccessTargetType.replaceAll("(\\[])", ""); 
+//		}else if(fieldaccess.getType()!=null){
+//			fieldaccessTargetType= fieldaccess.getType().toString(); 
+//		}
+//
+//		 fieldids = st.executeQuery("SELECT id from classes where classname='"+fieldaccessTargetType+"'"); 
+//		while(fieldids.next()){
+//			
+//			fieldid= fieldids.getString("id"); 
+//   		   }
+//	}
+	
+	//////////////////////////////////////////////////////////////////////////////
+			
+			
+			fieldmethod myfield= new fieldmethod( myclassid, myclass, MethodName, Methodid); 
+		
+			
+			//	if(myfield.contains(FieldMethodsList, myfield)==false  && Methodid!=null && fieldid!=null) {
+					if( Methodid!=null && fieldid!=null) {
+					st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`, `fieldtypeclassid`, `fieldtype`,  `classname`,  `ownerclassid`,  `methodname`, `ownermethodid`) VALUES ('"+fieldaccess.toString() +"','" +fieldaccessTargetType+"','" +fieldaccess.getType()+"','" +myclass+"','" +myclassid+"','" +MethodName+"','" +Methodid+"')");
 					FieldMethodsList.add(myfield); 
 				}
 			
@@ -1227,9 +1488,9 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 			//ALTERNATIVE: 
 			//st.executeUpdate("INSERT INTO `fieldmethods`(`fieldaccess`,  `classname`,  `classid`,  `methodname`, `methodid`) VALUES ('"+fieldaccess.toString() +"','" +myclassname+"','" +myclass+"','" +MethodName+"','" +Methodid+"')");
 		}
+	
+		
 	}
-
-
 	
 
 }   	
