@@ -278,6 +278,7 @@ public class DBDemo3Chess {
 		   		"  `methodid` INT NULL,\r\n" + 
 		   		"  `methodname`  VARCHAR(300) NULL,\r\n" + 
 		   		"  `isreturn` TINYINT NOT NULL,\r\n"+
+		   		"  `sourcecode` LONGTEXT NOT NULL,\r\n"+
 		   		"  PRIMARY KEY (`id`),\r\n" + 
 		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
 		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
@@ -843,7 +844,32 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
   	       	    			
   	       	    			
   	       	    		
-  	       	    	
+  	       	    		List<CtComment> CommentList = method.getElements(new TypeFilter<CtComment>(CtComment.class));
+  	       	    	List<CtComment> NewCommentList= CommentList; 
+  	       	    	NewCommentList = method.getElements(new TypeFilter<CtComment>(CtComment.class));
+  	       	    	int size=NewCommentList.size(); 
+  	       	    	System.out.println(method);
+  	       	    	int  j=0; 
+  	       	    	if(CommentList!=null) {
+  	       	    		CtMethod newmethod=method; 
+  	       	    		
+  	       	    		
+  	       	    		while(j<size) {
+  	       	    			
+  	       	    			CtComment newcomment = NewCommentList.get(j); 
+  	       	    			newmethod=newmethod.removeComment(newcomment); 
+  	       	    			 size=NewCommentList.size(); 
+  	       	    			 j++; 
+  	       	    		}
+  	       	    		
+  	       	    		method=newmethod; 
+  	       	    	}
+  	       	    	 String methodString = method.toString().replaceAll("\\/\\/.*", ""); 
+  	       	    	 methodString = methodString.toString().replaceAll("\'", ""); 
+  	       	    	 
+  	       	    	 
+  	       	    	 
+  	       	    	 
   	       	    			for( CtParameter<?> myparam :params) {
   	       	    				String paramInfo=""; 
   	       	    				boolean flag2=false; 
@@ -890,7 +916,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
   	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
   	       	    						}
   	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
-  	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +0+"')");
+  	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`, `sourcecode`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +0+"','" +methodString+"')");
   	           	    		    			paramlist.add(paramInfo); 
   	       	    						}
 
@@ -963,7 +989,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
   	       		    			String paramInfo= MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +method.getSignature().toString()+"','" +1; 
   	       		    			System.out.println("paramInfo  "+paramInfo);
   	       	    			if(MethodReferenced!=null && flag==true && paramlist.contains(paramInfo)==false) {
-  	       		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +1+"')");
+  	       		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`, `sourcecode`) VALUES ('"+MethodType +"','" +MethodType+"','" +parameterclass +"','" +classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+method.getSignature().toString()+"','" +1+"','" +methodString+"')");
   	       		    			paramlist.add(paramInfo);
   	       	    			}
 
@@ -980,7 +1006,28 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
   	       			List<CtConstructor> constructorcallers = clazz.getElements(new TypeFilter<CtConstructor>(CtConstructor.class));
   	       	   for(CtConstructor<?> cons :constructorcallers) {	
 	       	    			List<CtParameter<?>> params = cons.getParameters(); 
-	       				
+	       	    			List<CtComment> CommentList = cons.getElements(new TypeFilter<CtComment>(CtComment.class));
+	       	    	    	List<CtComment> NewCommentList= CommentList; 
+	       	    	    	NewCommentList = cons.getElements(new TypeFilter<CtComment>(CtComment.class));
+	       	    	    	int size=NewCommentList.size(); 
+	       	    	    	System.out.println(cons);
+	       	    	    	int  j=0; 
+	       	    	    	if(CommentList!=null) {
+	       	    	    		CtConstructor newcons=cons; 
+	       	    	    		
+	       	    	    		
+	       	    	    		while(j<size) {
+	       	    	    			
+	       	    	    			CtComment newcomment = NewCommentList.get(j); 
+	       	    	    			newcons=newcons.removeComment(newcomment); 
+	       	    	    			 size=NewCommentList.size(); 
+	       	    	    			 j++; 
+	       	    	    		}
+	       	    	    		
+	       	    	    		cons=newcons; 
+	       	    	    	}
+	       	    	    	 String consString = cons.toString().replaceAll("\\/\\/.*", ""); 
+	       	    	    	 consString = consString.toString().replaceAll("\'", ""); 
 	       	    			
 	       	    			
 	       	    		
@@ -1021,7 +1068,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 	       	    							System.out.println("HERE IS NULL PARAMETER: "+myparam+"method referenced======>"+MethodReferenced);
 	       	    						}
 	       	    						if(MethodReferenced!=null && flag2==true && paramlist.contains(paramInfo)==false) {
-	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+fullmethod+"','" +0+"')");
+	           	    		    			st.executeUpdate("INSERT INTO `parameters`(`parametername`, `parametertype`, `parameterclass`,`classid`, `classname`, `methodid`, `methodname`, `isreturn`, `sourcecode`) VALUES ('"+myparam +"','" +myparam.getType() +"','"+paramclassid+"','"+classid +"','"+ClassName+"','" +MethodReferenced+"','" +clazz.getQualifiedName()+"."+fullmethod+"','" +0+"','" +consString+"')");
 	           	    		    			paramlist.add(paramInfo); 
 	       	    						}
 

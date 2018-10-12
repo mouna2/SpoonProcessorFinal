@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -44,7 +44,7 @@ import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
 import spoon.reflect.factory.ClassFactory;
 
-public class DatabaseReading2Gantt {
+public class DatabaseReading2JHotDraw3 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
@@ -68,7 +68,7 @@ public class DatabaseReading2Gantt {
 
 
 	public static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap) {
-		DatabaseReading2Gantt.methodtracehashmap = methodtracehashmap;
+		DatabaseReading2JHotDraw3.methodtracehashmap = methodtracehashmap;
 	}
 
 
@@ -80,7 +80,7 @@ public class DatabaseReading2Gantt {
 
 
 	public static void setClassesHashMap(HashMap<Integer, String> classesHashMap) {
-		DatabaseReading2Gantt.classesHashMap = classesHashMap;
+		DatabaseReading2JHotDraw3.classesHashMap = classesHashMap;
 	}
 
 
@@ -92,7 +92,7 @@ public class DatabaseReading2Gantt {
 
 
 	public static void setInterfacehashmap(HashMap<String, Interface2> interfacehashmap) {
-		DatabaseReading2Gantt.interfacehashmap = interfacehashmap;
+		DatabaseReading2JHotDraw3.interfacehashmap = interfacehashmap;
 	}
 
 
@@ -117,13 +117,13 @@ public class DatabaseReading2Gantt {
 
 
 	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
-		DatabaseReading2Gantt.linkedmethodhashmap = linkedmethodhashmap;
+		DatabaseReading2JHotDraw3.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
 
 
 	public static void setMethodlist(List<Method2Details> methodlist) {
-		DatabaseReading2Gantt.methodlist = methodlist;
+		DatabaseReading2JHotDraw3.methodlist = methodlist;
 	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
@@ -141,7 +141,7 @@ public class DatabaseReading2Gantt {
 	}
 
 	public static void setClassestraces2(List<ClassTrace2> classestraces2) {
-		DatabaseReading2Gantt.classestraces2 = classestraces2;
+		DatabaseReading2JHotDraw3.classestraces2 = classestraces2;
 	}
 
 	/**
@@ -155,9 +155,9 @@ public class DatabaseReading2Gantt {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt", "root", "123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw", "root", "123456");
 		SpoonAPI spoon = new Launcher();
-		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\ganttproject\\ganttprojectCopy");
+		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\jHotDraw_sources\\src_jhotdraw");
 		spoon.getEnvironment().setAutoImports(true);
 		spoon.getEnvironment().setNoClasspath(true);
 
@@ -175,7 +175,7 @@ public class DatabaseReading2Gantt {
 	 * @throws IOException ***********************************************************************************************************************/
 	public static void MakePredictions() throws SQLException, IOException {
 		Connection conn = null;
-		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
+		DatabaseReading2JHotDraw3 DatabaseReading = new DatabaseReading2JHotDraw3();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
@@ -495,7 +495,7 @@ System.out.println("MOUNA");
 	
 	private static void setMethodtraces2SubjectTSubjectN(List<MethodTraceSubjectTSubjectN> methodtraces) {
 		// TODO Auto-generated method stub
-		DatabaseReading2Gantt.methodtraces2SubjectTSubjectN = methodtraces;
+		DatabaseReading2JHotDraw3.methodtraces2SubjectTSubjectN = methodtraces;
 		
 	}
 
@@ -508,7 +508,7 @@ System.out.println("MOUNA");
 
 
 	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
-		DatabaseReading2Gantt.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
+		DatabaseReading2JHotDraw3.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
 	}
 
 
@@ -561,7 +561,7 @@ System.out.println("MOUNA");
 
 	public static void setClassesRequirementtraceshashmap(
 			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
-		DatabaseReading2Gantt.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
+		DatabaseReading2JHotDraw3.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
 	}
 
 	public static List<MethodTraceSubjectTSubjectNOriginal> getMethodtraces2() {
@@ -569,7 +569,7 @@ System.out.println("MOUNA");
 	}
 
 	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces) {
-		DatabaseReading2Gantt.methodtraces2 = methodtraces;
+		DatabaseReading2JHotDraw3.methodtraces2 = methodtraces;
 	}
 	
 

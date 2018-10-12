@@ -1,4 +1,4 @@
-package Gantt;
+package iTrust;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -26,104 +26,52 @@ import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassField2;
 import mypackage.ClassTrace2;
-import mypackage.DatabaseReading2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
-import mypackage.MethodTraceSubjectTSubjectNOriginal;
-import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Requirement2;
-import mypackage.RequirementClass;
-import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
 import spoon.reflect.factory.ClassFactory;
 
-public class DatabaseReading2Gantt {
+public class DatabaseReading2itrustfinal {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
-	public static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = null;
+	public static List<MethodTrace2> methodtraces2 = null;
+	public static List<MethodTraceSubjectTSubjectN> methodtraces2SubjectTSubjectN = null;
 	public static List<ClassTrace2> classestraces2 = null;
+	public static List<Interface2> interfaces2 = null;
 	public static List<Method2Details> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmap=null; 
 	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
-	public static HashMap<String, List<Interface2>> interfacehashmapAlreadyImpl=null; 
-
+	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
-	public static List<MethodTraceSubjectTSubjectN> methodtraces2SubjectTSubjectN = null;
 	static HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
-
-	public static HashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
-		return methodtracehashmap;
-	}
-
-
-
-	public static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap) {
-		DatabaseReading2Gantt.methodtracehashmap = methodtracehashmap;
-	}
-
-
-
-	public static HashMap<Integer, String> getClassesHashMap() {
-		return classesHashMap;
-	}
-
-
-
-	public static void setClassesHashMap(HashMap<Integer, String> classesHashMap) {
-		DatabaseReading2Gantt.classesHashMap = classesHashMap;
-	}
-
-
-
-	public static HashMap<String, Interface2> getInterfacehashmap() {
-		return interfacehashmap;
-	}
-
-
-
-	public static void setInterfacehashmap(HashMap<String, Interface2> interfacehashmap) {
-		DatabaseReading2Gantt.interfacehashmap = interfacehashmap;
-	}
-
-
-
-	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2SubjectTSubjectN() {
-		return methodtraces2SubjectTSubjectN;
-	}
-
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
+
+	
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
 	}
 
-
-
 	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
 		return linkedmethodhashmap;
 	}
 
-
-
 	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
-		DatabaseReading2Gantt.linkedmethodhashmap = linkedmethodhashmap;
+		DatabaseReading2itrustfinal.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
-
-
 	public static void setMethodlist(List<Method2Details> methodlist) {
-		DatabaseReading2Gantt.methodlist = methodlist;
+		DatabaseReading2itrustfinal.methodlist = methodlist;
 	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
@@ -141,23 +89,23 @@ public class DatabaseReading2Gantt {
 	}
 
 	public static void setClassestraces2(List<ClassTrace2> classestraces2) {
-		DatabaseReading2Gantt.classestraces2 = classestraces2;
+		DatabaseReading2itrustfinal.classestraces2 = classestraces2;
 	}
 
 	/**
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasechess";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt", "root", "123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust", "root", "123456");
 		SpoonAPI spoon = new Launcher();
-		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\ganttproject\\ganttprojectCopy");
+		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\iTrust_v16");
 		spoon.getEnvironment().setAutoImports(true);
 		spoon.getEnvironment().setNoClasspath(true);
 
@@ -175,7 +123,7 @@ public class DatabaseReading2Gantt {
 	 * @throws IOException ***********************************************************************************************************************/
 	public static void MakePredictions() throws SQLException, IOException {
 		Connection conn = null;
-		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
+		DatabaseReading2itrustfinal DatabaseReading = new DatabaseReading2itrustfinal();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
@@ -210,34 +158,41 @@ public class DatabaseReading2Gantt {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		/*Method2Details methoddet2 = new Method2Details();
-		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
+		Method2Details methoddet2 = new Method2Details();
+		HashMap<String, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations2(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
-		setMethodlist(methodlist);*/
+		setMethodlist(methodlist);
+		
+///////////////////////////////////////////////////////////////////////////////////////
+ LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
-	/*	ClassDetails2 classdet2 = new ClassDetails2();
+		ClassDetails2 classdet2 = new ClassDetails2();
 		HashMap<Integer, ClassDetails2> classhashmap = classdet2.ReadClassesRepresentations(conn);
 		List<ClassDetails2> classlist = new ArrayList<ClassDetails2>(classhashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		ClassTrace2 myclasstrace2 = new ClassTrace2();
 		HashMap<Integer, ClassTrace2> classtracehashmap = myclasstrace2.ReadClassesRepresentations(conn);
-		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
-		///////////////////////////////////////////////////////////////////////////////////////
+		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());
 
-//		MethodTraceSubjectTSubjectNOriginal methodtrace2 = new MethodTraceSubjectTSubjectNOriginal();
-//		HashMap<Integer, MethodTraceSubjectTSubjectNOriginal> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
-//		List<MethodTraceSubjectTSubjectNOriginal> methodtraces = new ArrayList<MethodTraceSubjectTSubjectNOriginal>(methodtracehashmap.values());
+		///////////////////////////////////////////////////////////////////////////////////////
+//COMMENTED OUT CODE OLD CODE USED WHEN IT WAS SLOW 
+//		MethodTrace2 methodtrace2 = new MethodTrace2();
+//		HashMap<Integer, MethodTrace2> methodtracehashmap = methodtrace2.ReadClassesRepresentations(conn);
+//		List<MethodTrace2> methodtraces = new ArrayList<MethodTrace2>(methodtracehashmap.values());
 //		setMethodtraces2(methodtraces);
 		
-		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
-				MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-				HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
-				List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
-				setMethodtraces2SubjectTSubjectN(methodtraces);
-				setMethodtracehashmap(methodtracehashmap); 
-				///////////////////////////////////////////////////////////////////////////////////////
+		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
+		HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
+		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
+		setMethodtraces2SubjectTSubjectN(methodtraces);
+		setMethodtracehashmap(methodtracehashmap); 
+		///////////////////////////////////////////////////////////////////////////////////////
+		
+		
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		/*ClassTrace2 classtrace2= new ClassTrace2(); 
@@ -245,41 +200,36 @@ public class DatabaseReading2Gantt {
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
 		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
-		Method2Details methoddet2 = new Method2Details();
-
-		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
-		setLinkedmethodhashmap(linkedmethodhashmap);
-		///////////////////////////////////////////////////////////////////////////////////////
 		ClassTrace2 classtrace2= new ClassTrace2(); 
 		classesRequirementtraceshashmap = classtrace2.ReadClassesRepresentationsRequirementClass(conn); 
 		List<ClassTrace2> classestracesRequirementClass = new ArrayList<ClassTrace2>(classesRequirementtraceshashmap.values());
 		setClassestraces2(classestracesRequirementClass);
-	
+		///////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////
+		Interface2 myinterface2= new Interface2(); 
+		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
+//		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
+		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
+		///////////////////////////////////////////////////////////////////////////////////////
 				
-///////////////////////////////////////////////////////////////////////////////////////
-ClassField2 classfield= new ClassField2(); 
-HashMap<String, List<ClassField2>> myclassfields = classfield.ReadClassFields(conn); 
-setClassFieldHashMap(myclassfields);
-///////////////////////////////////////////////////////////////////////////////////////
-MethodField2 methodfield= new MethodField2(); 
-HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
-setMethodFieldHashMap(mymethodfields);
-
-///////////////////////////////////////////////////////////////////////////////////////
-SuperClass2 superclass= new SuperClass2(); 
-HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
-setSuperclassesHashMap(mysuperclasses);
-/////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////
-Interface2 myinterface2= new Interface2(); 
-interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
-//List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
-setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
-///////////////////////////////////////////////////////////////////////////////////////
-System.out.println("MOUNA");
+		///////////////////////////////////////////////////////////////////////////////////////
+		interfacehashmapAlreadyImpl = myinterface2.ReadInterfacesRepresentationsAlreadyImpl(conn);
+		setInterfaces(interfacehashmapAlreadyImpl);
+		///////////////////////////////////////////////////////////////////////////////////////
+		ClassField2 classfield= new ClassField2(); 
+		 HashMap<String, List<ClassField2>> myclassfields = classfield.ReadClassFields(conn); 
+		setClassFieldHashMap(myclassfields);
+		///////////////////////////////////////////////////////////////////////////////////////
+		MethodField2 methodfield= new MethodField2(); 
+		 HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
+		setMethodFieldHashMap(mymethodfields);
 		
-		
+///////////////////////////////////////////////////////////////////////////////////////
+		SuperClass2 superclass= new SuperClass2(); 
+		 HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
+		setSuperclassesHashMap(mysuperclasses);
+		/////////////////////////////////////////////
+		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
 			Requirement2 requirement = tracemeth.getRequirement();
@@ -334,8 +284,8 @@ System.out.println("MOUNA");
 		
 		
 		
+		/*
 		
-	/*	
 		String goldprediction=""; 
 		String GoldVal=""; 
 		for (MethodTrace2 tracemeth : methodtraces) { 
@@ -448,8 +398,8 @@ System.out.println("MOUNA");
 			}
 
 		}
-
-		for (MethodTrace2 methtr : methodtraces2) {
+*/
+		/*for (MethodTrace2 methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));
 		}
 
@@ -488,107 +438,102 @@ System.out.println("MOUNA");
 		}
 		System.out.println("GOLDMATCHINGCALLER/TOTAL NOT NULL: =====> " + GoldMatchingCaller + " / " + MethodTracesSizeNotNullCaller);
 		System.out.println("GOLDMATCHINGCALLEE/TOTAL NOT NULL: =====> " + GoldMatchingCallee + " / " + MethodTracesSizeNotNullCallee);
-
-	*/
+*/
+	
 	}
+
 	
-	
-	private static void setMethodtraces2SubjectTSubjectN(List<MethodTraceSubjectTSubjectN> methodtraces) {
+
+	public static HashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
+		return methodtracehashmap;
+	}
+
+	public  static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap2) {
+		methodtracehashmap = methodtracehashmap2;
+	}
+
+	public static void setInterfaces(HashMap ínterfacehashmap) {
 		// TODO Auto-generated method stub
-		DatabaseReading2Gantt.methodtraces2SubjectTSubjectN = methodtraces;
+		DatabaseReading2itrustfinal.interfacehashmapAlreadyImpl=ínterfacehashmap;
 		
 	}
-
-
-
-	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
-		return interfacehashmapOwnerClass;
-	}
-
-
-
-	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
-		DatabaseReading2Gantt.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
-	}
-
-
-
-	public static HashMap<String, List<ClassField2>> getClassFieldHashMap() {
-		return ClassFieldHashMap;
-	}
-
-
-
-	public static void setClassFieldHashMap(HashMap<String, List<ClassField2>> classFieldHashMap) {
-		ClassFieldHashMap = classFieldHashMap;
-	}
-
-
-
-	public static HashMap<String, List<MethodField2>> getMethodFieldHashMap() {
-		return MethodFieldHashMap;
-	}
-
-
-
-	public static void setMethodFieldHashMap(HashMap<String, List<MethodField2>> methodFieldHashMap) {
-		MethodFieldHashMap = methodFieldHashMap;
-	}
-
-
-
-	public static HashMap<String, List<SuperClass2>> getSuperclassesHashMap() {
-		return SuperclassesHashMap;
-	}
-
-
-
-	public static void setSuperclassesHashMap(HashMap<String, List<SuperClass2>> superclassesHashMap) {
-		SuperclassesHashMap = superclassesHashMap;
-	}
-
-
+	
 
 	public static HashMap  getInterfaces() {
 		// TODO Auto-generated method stub
-		return interfacehashmap;
+		return interfacehashmapAlreadyImpl;
 		
+	}
+
+	public static void setClassesRequirementtraceshashmap(
+			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
+		DatabaseReading2itrustfinal.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
+	}
+
+	public static List<MethodTrace2> getMethodtraces2() {
+		return methodtraces2;
+	}
+
+	public static void setMethodtraces2(List<MethodTrace2> methodtraces2) {
+		DatabaseReading2itrustfinal.methodtraces2 = methodtraces2;
+	}
+	
+	
+	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2SubjectTSubjectN() {
+		return methodtraces2SubjectTSubjectN;
+	}
+
+	public static void setMethodtraces2SubjectTSubjectN(List<MethodTraceSubjectTSubjectN> methodtraces) {
+		DatabaseReading2itrustfinal.methodtraces2SubjectTSubjectN = methodtraces;
 	}
 
 	public static LinkedHashMap<String, ClassTrace2> getClassesRequirementtraceshashmap() {
 		return classesRequirementtraceshashmap;
 	}
 
-	public static void setClassesRequirementtraceshashmap(
-			LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap) {
-		DatabaseReading2Gantt.classesRequirementtraceshashmap = classesRequirementtraceshashmap;
-	}
-
-	public static List<MethodTraceSubjectTSubjectNOriginal> getMethodtraces2() {
-		return methodtraces2;
-	}
-
-	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectNOriginal> methodtraces) {
-		DatabaseReading2Gantt.methodtraces2 = methodtraces;
-	}
-	
-
-	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
-		DatabaseReading2.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
-	}
-
-	public static HashMap<String, List<Interface2>> setInterfacehashmapAlreadyImpl() {
+	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
 		return interfacehashmapAlreadyImpl;
 	}
 
+	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
+		DatabaseReading2itrustfinal.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
+	}
+
+	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+		return interfacehashmapOwnerClass;
+	}
+
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+		DatabaseReading2itrustfinal.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
+	}
+
+	public static HashMap<String, List<ClassField2>> getClassFieldHashMap() {
+		return ClassFieldHashMap;
+	}
+
+	public static void setClassFieldHashMap(HashMap<String, List<ClassField2>> classFieldHashMap) {
+		ClassFieldHashMap = classFieldHashMap;
+	}
+
+	public static HashMap<String, List<MethodField2>> getMethodFieldHashMap() {
+		return MethodFieldHashMap;
+	}
+
+	public static void setMethodFieldHashMap(HashMap<String, List<MethodField2>> methodFieldHashMap) {
+		MethodFieldHashMap = methodFieldHashMap;
+	}
+
+	public static HashMap<String, List<SuperClass2>> getSuperclassesHashMap() {
+		return SuperclassesHashMap;
+	}
+
+	public static void setSuperclassesHashMap(HashMap<String, List<SuperClass2>> superclassesHashMap) {
+		SuperclassesHashMap = superclassesHashMap;
+	}
 
 	
 
-
-
-
 	
-
 	
 	
 	

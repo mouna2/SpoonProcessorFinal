@@ -82,12 +82,15 @@ public class MethodField2 {
 			 
 			 	ClassRepresentation2 FieldType= new ClassRepresentation2();
 			     String fieldtypeclassid = myresults.getString("fieldtypeclassid"); 			
+//				 String fieldtype = myresults.getString("fieldtypeclassname"); 
 				 String fieldtype = myresults.getString("fieldtype"); 
+
 				 FieldType.setClassid(fieldtypeclassid);
 				 FieldType.setClassname(fieldtype);
 				 
 				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
+//				 String classname = myresults.getString("ownerclassname"); 
 				 String classname = myresults.getString("classname"); 
 				 OwnerClass.setClassid(ownerclassid);
 				 OwnerClass.setClassname(classname);
