@@ -235,8 +235,11 @@ public class Method2Details {
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
-						 meth.setClassrep(val.OwnerClass);
-						 mycallerlistrepexecuted.add(meth); 
+						if(val!=null) {
+							meth.setClassrep(val.OwnerClass);
+							 mycallerlistrepexecuted.add(meth); 
+						}
+						 
 					 }
 					 methoddet2.setCallersListExecuted(mycallerlistrepexecuted);
 				 }
@@ -510,12 +513,12 @@ public class Method2Details {
 					 
 					 ClassRepresentation2 FieldType= new ClassRepresentation2(); 
 					 FieldType.setClassid(methodFields.getString("fieldtypeclassid"));
-					 FieldType.setClassname(methodFields.getString("fieldtype"));
+					 FieldType.setClassname(methodFields.getString("fieldtypeclassname"));
 					 methfield.setMethodFieldType(FieldType);
 					 
 					 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
 					 OwnerType.setClassid(methodFields.getString("ownerclassid"));
-					 OwnerType.setClassname(methodFields.getString("classname"));
+					 OwnerType.setClassname(methodFields.getString("ownerclassname"));
 					 methfield.setOwnerClass(OwnerType);
 					 
 					
@@ -536,7 +539,9 @@ public class Method2Details {
 						
 						MethodTrace.setGold2(methodtracesres.getString("gold2"));
 						
-						
+						MethodTrace.setGold3(methodtracesres.getString("gold3")); 
+						 
+						MethodTrace.setGold4(methodtracesres.getString("gold4")); 
 						MethodTrace.setSubject(methodtracesres.getString("subject"));
 						
 						Requirement2 requirement= new Requirement2();

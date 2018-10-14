@@ -528,7 +528,7 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new HashMap<String, MethodTraceSubjectTSubjectN>();
-
+	static HashMap<String, List<Parameter2>> parameterHashMap  = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
@@ -677,7 +677,9 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 		  FieldClassesHashMap= db.getClassFieldHashMap(); 
 		  //SUPERCLASSES
 		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+		  //PARAMETERS 
 		  
+		  parameterHashMap= db.getParameterhashMap(); 
 		LinkedHashMap<String, String> PredictionsOldHashMap= new LinkedHashMap<String, String>(); 
 		LinkedHashMap<String, String> PredictionsNewHashMap= new LinkedHashMap<String, String>(); 
 
@@ -706,292 +708,10 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 		int ClassTraceCount=0; 
 		int MethodTraceCountGold2=0; 
 		// Create the editors to be used for each row
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			data[j][Row] = j; 
-			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
-			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
-			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
-			data[j][RequirementID] = methodtrace.Requirement.getID();
-			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
-			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
-			data[j][Gold] = methodtrace.gold;
-			data[j][Subject] = methodtrace.subject;
-			data[j][Gold2] = methodtrace.gold2;
-			data[j][CallerClassesT] = 0;
-			data[j][CallerClassesN] = 0;
-			data[j][CallerClassesE] = 0;
-			data[j][CallerMethodsT] = 0;
-			data[j][CallerMethodsN] = 0;
-			data[j][CallerMethodsE] = 0;
-			data[j][CalleeClassesT] = 0;
-			data[j][CalleeClassesN] = 0;
-			data[j][CalleeClassesE] = 0;
-			data[j][CalleeMethodsT] = 0;
-			data[j][CalleeMethodsN] = 0;
-			data[j][CalleeMethodsE] = 0;
-			data[j][CalleeMethodsNumber] = 0;
-			data[j][CallerMethodsNumber] = 0;
-			data[j][CallerClassesNumber] = 0;
-			data[j][CalleeClassesNumber] = 0;
-			
-			data[j][CallerClassesTGOLD2] = 0;
-			data[j][CallerClassesNGOLD2] = 0;
-			data[j][CallerClassesEGOLD2] = 0;
-			data[j][CallerMethodsTGOLD2] = 0;
-			data[j][CallerMethodsNGOLD2] = 0;
-			data[j][CallerMethodsEGOLD2] = 0;
-			data[j][CalleeClassesTGOLD2] = 0;
-			data[j][CalleeClassesNGOLD2] = 0;
-			data[j][CalleeClassesEGOLD2] = 0;
-			data[j][CalleeMethodsTGOLD2] = 0;
-			data[j][CalleeMethodsNGOLD2] = 0;
-			data[j][CalleeMethodsEGOLD2] = 0;
-			data[j][CalleeMethodsNumberGOLD2] = 0;
-			data[j][CallerMethodsNumberGOLD2] = 0;
-			data[j][CallerClassesNumberGOLD2] = 0;
-			data[j][CalleeClassesNumberGOLD2] = 0;
-			data[j][CLASSTRACEClassLevelMixedGold] = "null";
-			data[j][CLASSTRACEClassLevelPureGold] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
-			data[j][CLASSTRACEClassLevelMixedGold2] = "null";
-			data[j][CLASSTRACEClassLevelPureGold2] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGold2] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGold2] = "null";
-			
-			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
-			data[j][CLASSTRACEMethodLevelPureGold] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
-			data[j][CLASSTRACEMethodLevelMixedGold2] = "null";
-			data[j][CLASSTRACEMethodLevelPureGold2] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGold2] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGold2] = "null";
-			
-			
-			data[j][CLASSTRACEClassLevelMixedGoldACROSS] = "null";
-			data[j][CLASSTRACEClassLevelPureGoldACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGoldACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGoldACROSS] = "null";
-			data[j][CLASSTRACEClassLevelMixedGold2ACROSS] = "null";
-			data[j][CLASSTRACEClassLevelPureGold2ACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGold2ACROSS] = "null";
-			
-			data[j][CLASSTRACEMethodLevelMixedGoldACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelPureGoldACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGoldACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGoldACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelMixedGold2ACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelPureGold2ACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS] = "null";
-			data[j][OwnerClassT] = "0";
-			data[j][OwnerClassN] = "0";
-			data[j][OwnerClassE] = "1";
-			data[j][OwnerClassTGOLD2] = "0";
-			data[j][OwnerClassNGOLD2] = "0";
-			data[j][OwnerClassEGOLD2] = "1";
-			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
-			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-	
-			
-			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2()!=null) {
-				String traceGOLD2 = myclasstraceHashMap.getTrace2();
-				traceGOLD2=traceGOLD2.trim(); 
-				if (traceGOLD2.equals("T")) {
-					data[j][OwnerClassTGOLD2] = "1";
-					data[j][OwnerClassNGOLD2] = "0";
-					data[j][OwnerClassEGOLD2] = "0";
-					
-					PatternSetVariables("E",methodtrace,"100%","P1"); 
-					
-					System.out.println("OWNERCLASS T  "+j +" set to 1");
-				} else if (traceGOLD2.equals("N")) {
-					data[j][OwnerClassTGOLD2] = "0";
-					data[j][OwnerClassNGOLD2] = "1";
-					data[j][OwnerClassEGOLD2] = "0";
-					
-					PatternSetVariables("N",methodtrace,"100%","P1"); 
-				
-					System.out.println("OWNERCLASS N  "+j +" set to 1");
-				} else if (traceGOLD2.equals("E")) {
-					data[j][OwnerClassTGOLD2] = "0";
-					data[j][OwnerClassNGOLD2] = "0";
-					data[j][OwnerClassEGOLD2] = "1";
-					System.out.println("OWNERCLASS E  "+j +" set to 1");
-					
-					PatternSetVariables("E", methodtrace,"100%","P1"); 
-				
-				}
-				
-			}
-			
-			
-		
-			
-			
-			
-			
-			
-
-			j++;
-			
-		}
 		
 		
-		
-		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
-		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
-			
-			PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2); 
-
-			
-//			methodtracesOld=methodtraces2; 
-			System.out.println("11111111111111111111111111111");
-
-//			for(MethodTraceSubjectTSubjectN meth: methodtracesOld) {
-//				System.out.println(meth.getPrediction());
-//				bwfile1.write(meth.getPrediction());
-//				bwfile1.newLine();
-//			}
-			
-			
-		
-			
-			
-			
-			
-			int k=0; 
-			//PATTERN 3 AND PATTERN 5
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-				//PATTERN 3 AND PATTERN 5
-				
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
-				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
-				
-				List<String> PredictionCalleeList=new ArrayList<String>();
-				for(Method2Representation callee: CalleesList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCalleeList.add(predictionvalue); 
-					}
-				}
-				
-				
-				
-				List<String> PredictionCallerList=new ArrayList<String>();
-				for(Method2Representation caller: CallersList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCallerList.add(predictionvalue); 
-					}
-				}
-				
-				//PATTERN 3
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true ) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "80%", "P3");
-
-					//System.out.println("yes");
-				}
-				
-				//PATTERN 5
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true) {
-					//methodtrace.setPrediction("N");
-					//System.out.println("yes");
-					PatternSetVariables("N", methodtrace, "80%", "P5");
-				}
-				k++; 
-			}
-			
-			
-			
-			
-			
-			
-			//////////////////////////////////////////////////////////////////////////////////////////
-			 k=0; 
-			//PATTERN 2 AND PATTERN 4
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-				
-
-				//PATTERN 2 AND PATTERN 4
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
-				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
-				
-				List<String> PredictionCalleeList=new ArrayList<String>();
-				for(Method2Representation callee: CalleesList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCalleeList.add(predictionvalue); 
-					}
-					
-				}
-				
-				
-				
-				List<String> PredictionCallerList=new ArrayList<String>();
-				for(Method2Representation caller: CallersList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCallerList.add(predictionvalue); 
-					}
-				}
-				
-				//PATTERN 2
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
-						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P2");
-					//System.out.println("yes");
-				}
-				
-				//PATTERN 4
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
-						&& PredictionCallerList.contains("T")==false && PredictionCallerList.contains("E")==false) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P4");
-
-					//System.out.println("yes");
-				}
-				k++; 
-			
-
-			}
-			System.out.println("HEEEEEEY");
-			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
-			
-		
-		}
-		
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
-		st.executeUpdate("ALTER TABLE `traces` ADD prediction LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `traces` ADD likelihood LONGTEXT");
-		st.executeUpdate("ALTER TABLE `traces` ADD why LONGTEXT");
-		
-		
-		
-		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap); 
-
+	//	function1(data, j, PredictionsOldHashMap, PredictionsNewHashMap); 
+		function2(data, j, PredictionsOldHashMap, PredictionsNewHashMap); 
 		
 		bwfile1.close();
 		bwfile2.close();
@@ -1611,6 +1331,514 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 
 
 
+	private void function2(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap,
+			LinkedHashMap<String, String> PredictionsNewHashMap) throws SQLException {
+		// TODO Auto-generated method stub
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			data[j][Row] = j; 
+			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
+			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
+			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
+			data[j][RequirementID] = methodtrace.Requirement.getID();
+			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
+			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
+			data[j][Gold] = methodtrace.gold;
+			data[j][Subject] = methodtrace.subject;
+			data[j][Gold2] = methodtrace.gold2;
+			data[j][CallerClassesT] = 0;
+			data[j][CallerClassesN] = 0;
+			data[j][CallerClassesE] = 0;
+			data[j][CallerMethodsT] = 0;
+			data[j][CallerMethodsN] = 0;
+			data[j][CallerMethodsE] = 0;
+			data[j][CalleeClassesT] = 0;
+			data[j][CalleeClassesN] = 0;
+			data[j][CalleeClassesE] = 0;
+			data[j][CalleeMethodsT] = 0;
+			data[j][CalleeMethodsN] = 0;
+			data[j][CalleeMethodsE] = 0;
+			data[j][CalleeMethodsNumber] = 0;
+			data[j][CallerMethodsNumber] = 0;
+			data[j][CallerClassesNumber] = 0;
+			data[j][CalleeClassesNumber] = 0;
+			
+			data[j][CallerClassesTGOLD2] = 0;
+			data[j][CallerClassesNGOLD2] = 0;
+			data[j][CallerClassesEGOLD2] = 0;
+			data[j][CallerMethodsTGOLD2] = 0;
+			data[j][CallerMethodsNGOLD2] = 0;
+			data[j][CallerMethodsEGOLD2] = 0;
+			data[j][CalleeClassesTGOLD2] = 0;
+			data[j][CalleeClassesNGOLD2] = 0;
+			data[j][CalleeClassesEGOLD2] = 0;
+			data[j][CalleeMethodsTGOLD2] = 0;
+			data[j][CalleeMethodsNGOLD2] = 0;
+			data[j][CalleeMethodsEGOLD2] = 0;
+			data[j][CalleeMethodsNumberGOLD2] = 0;
+			data[j][CallerMethodsNumberGOLD2] = 0;
+			data[j][CallerClassesNumberGOLD2] = 0;
+			data[j][CalleeClassesNumberGOLD2] = 0;
+			data[j][CLASSTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSTRACEClassLevelPureGold] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSTRACEClassLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold2] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold2] = "null";
+			
+			
+			data[j][CLASSTRACEClassLevelMixedGoldACROSS] = "null";
+			data[j][CLASSTRACEClassLevelPureGoldACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGoldACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGoldACROSS] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSTRACEClassLevelPureGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold2ACROSS] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGoldACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelPureGoldACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGoldACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGoldACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS] = "null";
+			data[j][OwnerClassT] = "0";
+			data[j][OwnerClassN] = "0";
+			data[j][OwnerClassE] = "1";
+			data[j][OwnerClassTGOLD2] = "0";
+			data[j][OwnerClassNGOLD2] = "0";
+			data[j][OwnerClassEGOLD2] = "1";
+			
+			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.MethodRepresentation.methodid); 
+			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.MethodRepresentation.methodid); 
+			List<MethodField2> methodfieldlistT= new ArrayList<MethodField2>(); 
+			List<MethodField2> methodfieldlistN= new ArrayList<MethodField2>(); 
+			List<MethodField2> methodfieldlistE= new ArrayList<MethodField2>(); 
+			
+			List<Parameter2> parameterListT= new ArrayList<Parameter2>(); 
+			List<Parameter2> parameterListN= new ArrayList<Parameter2>(); 
+			List<Parameter2> parameterListE= new ArrayList<Parameter2>(); 
+			if(mymethodfields!=null) {
+				for(MethodField2 mymethod: mymethodfields) {
+					String classid=mymethod.getMethodFieldType().getClassid(); 
+					String reqclass= data[j][RequirementID].toString()+"-"+ classid; 
+					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+					if(myclasstraceHashMap!=null)
+					if(myclasstraceHashMap.getTrace2()!=null) {
+						String traceGOLD2 = myclasstraceHashMap.getTrace2();
+						if(traceGOLD2.trim().equals("T")) {
+							methodfieldlistT.add(mymethod); 
+						}
+						else if(traceGOLD2.trim().equals("N")) {
+							methodfieldlistN.add(mymethod); 
+						}else if(traceGOLD2.trim().equals("E")) {
+							methodfieldlistE.add(mymethod); 
+						}
+					}
+				}
+			}
+			
+			
+			if(paramlist!=null) {
+				for(Parameter2 mymethod: paramlist) {
+					String classid=mymethod.getParameterType().classid; 
+					String reqclass= data[j][RequirementID].toString()+"-"+ classid; 
+					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+					if(myclasstraceHashMap!=null)
+					if(myclasstraceHashMap.getTrace2()!=null) {
+						String traceGOLD2 = myclasstraceHashMap.getTrace2();
+						if(traceGOLD2.trim().equals("T")) {
+							parameterListT.add(mymethod); 
+						}
+						else if(traceGOLD2.trim().equals("N")) {
+							parameterListN.add(mymethod); 
+						}else if(traceGOLD2.trim().equals("E")) {
+							parameterListE.add(mymethod); 
+						}
+					}
+				}
+			}
+			
+			methodtrace.setMethodFieldT(methodfieldlistT);
+			methodtrace.setMethodFieldN(methodfieldlistN);
+			methodtrace.setMethodFieldE(methodfieldlistE);
+			
+			methodtrace.setParameterListT(parameterListT);
+			methodtrace.setParameterListN(parameterListN);
+			methodtrace.setParameterListE(parameterListE);
+		}
+		
+		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
+			
+			PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2); 
+		//PATTERN 1
+			 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				List<MethodField2> methodfieldlistE = methodtrace.getMethodFieldE(); 
+				List<MethodField2> methodfieldlistN = methodtrace.getMethodFieldN(); 
+				List<MethodField2> methodfieldlistT = methodtrace.getMethodFieldT(); 
+				
+				List<Parameter2> parameterlistT =methodtrace.getParameterListT(); 
+				List<Parameter2> parameterlistN=methodtrace.getParameterListN(); 
+				List<Parameter2> parameterlistE=methodtrace.getParameterListE(); 
+		if((methodfieldlistT.size()>=1 && methodfieldlistN.isEmpty() && methodfieldlistE.isEmpty())
+			||(parameterlistT.size()>=1 && parameterlistN.isEmpty() && parameterlistE.isEmpty())) {
+			PatternSetVariables("T", methodtrace,"100%","P1"); 
+		}
+		
+			
+		//PATTERN 2	
+			
+		if(methodfieldlistT.size()>=1 || parameterlistT.size()>=1) {
+			PatternSetVariables("T", methodtrace,"100%","P2"); 
+		}
+			
+		
+		
+		//PATTERN 3
+		
+				if((methodfieldlistN.size()>=1 && methodfieldlistT.isEmpty() && methodfieldlistE.isEmpty())
+						|| (parameterlistN.size()>=1 && parameterlistT.isEmpty() && parameterlistE.isEmpty())) {
+					PatternSetVariables("N", methodtrace,"100%","P3"); 
+				}
+				
+					
+				//PATTERN 4
+					
+				if(methodfieldlistN.size()>=1 || parameterlistN.size()>=1) {
+					PatternSetVariables("N", methodtrace,"100%","P4"); 
+				}
+			}
+		}
+		
+		
+		
+		
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
+		st.executeUpdate("ALTER TABLE `traces` ADD prediction LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD likelihood LONGTEXT");
+		st.executeUpdate("ALTER TABLE `traces` ADD why LONGTEXT");
+		
+		
+		
+		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap); 
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	private void function1(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap) throws SQLException {
+		// TODO Auto-generated method stub
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			data[j][Row] = j; 
+			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
+			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
+			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
+			data[j][RequirementID] = methodtrace.Requirement.getID();
+			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
+			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
+			data[j][Gold] = methodtrace.gold;
+			data[j][Subject] = methodtrace.subject;
+			data[j][Gold2] = methodtrace.gold2;
+			data[j][CallerClassesT] = 0;
+			data[j][CallerClassesN] = 0;
+			data[j][CallerClassesE] = 0;
+			data[j][CallerMethodsT] = 0;
+			data[j][CallerMethodsN] = 0;
+			data[j][CallerMethodsE] = 0;
+			data[j][CalleeClassesT] = 0;
+			data[j][CalleeClassesN] = 0;
+			data[j][CalleeClassesE] = 0;
+			data[j][CalleeMethodsT] = 0;
+			data[j][CalleeMethodsN] = 0;
+			data[j][CalleeMethodsE] = 0;
+			data[j][CalleeMethodsNumber] = 0;
+			data[j][CallerMethodsNumber] = 0;
+			data[j][CallerClassesNumber] = 0;
+			data[j][CalleeClassesNumber] = 0;
+			
+			data[j][CallerClassesTGOLD2] = 0;
+			data[j][CallerClassesNGOLD2] = 0;
+			data[j][CallerClassesEGOLD2] = 0;
+			data[j][CallerMethodsTGOLD2] = 0;
+			data[j][CallerMethodsNGOLD2] = 0;
+			data[j][CallerMethodsEGOLD2] = 0;
+			data[j][CalleeClassesTGOLD2] = 0;
+			data[j][CalleeClassesNGOLD2] = 0;
+			data[j][CalleeClassesEGOLD2] = 0;
+			data[j][CalleeMethodsTGOLD2] = 0;
+			data[j][CalleeMethodsNGOLD2] = 0;
+			data[j][CalleeMethodsEGOLD2] = 0;
+			data[j][CalleeMethodsNumberGOLD2] = 0;
+			data[j][CallerMethodsNumberGOLD2] = 0;
+			data[j][CallerClassesNumberGOLD2] = 0;
+			data[j][CalleeClassesNumberGOLD2] = 0;
+			data[j][CLASSTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSTRACEClassLevelPureGold] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSTRACEClassLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold2] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold2] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold2] = "null";
+			
+			
+			data[j][CLASSTRACEClassLevelMixedGoldACROSS] = "null";
+			data[j][CLASSTRACEClassLevelPureGoldACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGoldACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGoldACROSS] = "null";
+			data[j][CLASSTRACEClassLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSTRACEClassLevelPureGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEClassLevelPureGold2ACROSS] = "null";
+			
+			data[j][CLASSTRACEMethodLevelMixedGoldACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelPureGoldACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGoldACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGoldACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSTRACEMethodLevelPureGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS] = "null";
+			data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS] = "null";
+			data[j][OwnerClassT] = "0";
+			data[j][OwnerClassN] = "0";
+			data[j][OwnerClassE] = "1";
+			data[j][OwnerClassTGOLD2] = "0";
+			data[j][OwnerClassNGOLD2] = "0";
+			data[j][OwnerClassEGOLD2] = "1";
+			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
+			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+	
+			
+			//PATTERN 1
+			if(myclasstraceHashMap.getTrace2()!=null) {
+				String traceGOLD2 = myclasstraceHashMap.getTrace2();
+				traceGOLD2=traceGOLD2.trim(); 
+				if (traceGOLD2.equals("T")) {
+					data[j][OwnerClassTGOLD2] = "1";
+					data[j][OwnerClassNGOLD2] = "0";
+					data[j][OwnerClassEGOLD2] = "0";
+					
+					PatternSetVariables("E",methodtrace,"100%","P1"); 
+					
+					System.out.println("OWNERCLASS T  "+j +" set to 1");
+				} else if (traceGOLD2.equals("N")) {
+					data[j][OwnerClassTGOLD2] = "0";
+					data[j][OwnerClassNGOLD2] = "1";
+					data[j][OwnerClassEGOLD2] = "0";
+					
+					PatternSetVariables("N",methodtrace,"100%","P1"); 
+				
+					System.out.println("OWNERCLASS N  "+j +" set to 1");
+				} else if (traceGOLD2.equals("E")) {
+					data[j][OwnerClassTGOLD2] = "0";
+					data[j][OwnerClassNGOLD2] = "0";
+					data[j][OwnerClassEGOLD2] = "1";
+					System.out.println("OWNERCLASS E  "+j +" set to 1");
+					
+					PatternSetVariables("E", methodtrace,"100%","P1"); 
+				
+				}
+				
+			}
+			
+			
+		
+			
+			
+			
+			
+			
+
+			j++;
+			
+		}
+		
+		
+		
+		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
+			
+			PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2); 
+
+			
+//			methodtracesOld=methodtraces2; 
+			System.out.println("11111111111111111111111111111");
+
+//			for(MethodTraceSubjectTSubjectN meth: methodtracesOld) {
+//				System.out.println(meth.getPrediction());
+//				bwfile1.write(meth.getPrediction());
+//				bwfile1.newLine();
+//			}
+			
+			
+		
+			
+			
+			
+			
+			int k=0; 
+			//PATTERN 3 AND PATTERN 5
+			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+				//PATTERN 3 AND PATTERN 5
+				
+				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
+				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
+				
+				List<String> PredictionCalleeList=new ArrayList<String>();
+				for(Method2Representation callee: CalleesList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= callee.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+						PredictionCalleeList.add(predictionvalue); 
+					}
+				}
+				
+				
+				
+				List<String> PredictionCallerList=new ArrayList<String>();
+				for(Method2Representation caller: CallersList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= caller.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+						PredictionCallerList.add(predictionvalue); 
+					}
+				}
+				
+				//PATTERN 3
+				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true ) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("N", methodtrace, "80%", "P3");
+
+					//System.out.println("yes");
+				}
+				
+				//PATTERN 5
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true) {
+					//methodtrace.setPrediction("N");
+					//System.out.println("yes");
+					PatternSetVariables("N", methodtrace, "80%", "P5");
+				}
+				k++; 
+			}
+			
+			
+			
+			
+			
+			
+			//////////////////////////////////////////////////////////////////////////////////////////
+			 k=0; 
+			//PATTERN 2 AND PATTERN 4
+			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+				
+
+				//PATTERN 2 AND PATTERN 4
+				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
+				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
+				
+				List<String> PredictionCalleeList=new ArrayList<String>();
+				for(Method2Representation callee: CalleesList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= callee.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+						PredictionCalleeList.add(predictionvalue); 
+					}
+					
+				}
+				
+				
+				
+				List<String> PredictionCallerList=new ArrayList<String>();
+				for(Method2Representation caller: CallersList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= caller.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+						PredictionCallerList.add(predictionvalue); 
+					}
+				}
+				
+				//PATTERN 2
+				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
+						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("N", methodtrace, "90%", "P2");
+					//System.out.println("yes");
+				}
+				
+				//PATTERN 4
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
+						&& PredictionCallerList.contains("T")==false && PredictionCallerList.contains("E")==false) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("N", methodtrace, "90%", "P4");
+
+					//System.out.println("yes");
+				}
+				k++; 
+			
+
+			}
+			System.out.println("HEEEEEEY");
+			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+			
+		
+		}
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+				if(methodtrace.getPrediction().trim().equals("E")){
+					methodtrace.setPrediction("T");
+				}
+		}
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
+		st.executeUpdate("ALTER TABLE `traces` ADD prediction LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD likelihood LONGTEXT");
+		st.executeUpdate("ALTER TABLE `traces` ADD why LONGTEXT");
+		
+		
+		
+		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap); 
+	}
+
 	private void WriteInDatabaseAndComputePrecisionAndRecall(
 			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap) throws SQLException {
 		// TODO Auto-generated method stub
@@ -1624,17 +1852,19 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 			String likelihood= myvalue.getLikelihood(); 
 			String why= myvalue.getWhy(); 
 			
-			String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() 
-			+"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
-			+"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND methodid='"+myvalue.MethodRepresentation.methodid+"'"; 
-			
-			st.executeUpdate(query); 
+//			String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() 
+//			+"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
+//			+"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND methodid='"+myvalue.MethodRepresentation.methodid+"'"; 
+//			
+//			st.executeUpdate(query); 
 
-			
+			System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-				
-			String Result=NEWPATTERNMethodCalls.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
-			NEWPATTERNMethodCalls.UpdateCounters(Result, NEWPATTERNMethodCalls);
+			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
+				String Result=NEWPATTERNMethodCalls.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
+				NEWPATTERNMethodCalls.UpdateCounters(Result, NEWPATTERNMethodCalls);
+			}
+		
 			
 		}
 		
@@ -1727,20 +1957,23 @@ public class TracesTableChessFINALROUND2 extends JFrame {
 		frame.setVisible(true);
 	}
 	 public boolean Equals(LinkedHashMap<String, String> OldHashMap, LinkedHashMap<String, String> newHashMap) {
-			if(!OldHashMap.isEmpty()) {
-	        for(String s: newHashMap.keySet()) {
-	            //HANDLE NULLS if any
-	        
-	        		if( OldHashMap.get(s).equals(newHashMap.get(s))==false) {
-		            	return false; 
-		            }	
-	        	}
-	            
-	           
-	        }
-			else {
-	        	return false; 
-	        }
+		if(OldHashMap!=null && newHashMap!=null) {
+			 if(!OldHashMap.isEmpty()) {
+			        for(String s: newHashMap.keySet()) {
+			            //HANDLE NULLS if any
+			        if( OldHashMap.get(s)!=null && newHashMap.get(s)!=null)
+			        		if( OldHashMap.get(s).equals(newHashMap.get(s))==false) {
+				            	return false; 
+				            }	
+			        	}
+			            
+			           
+			        }
+					else {
+			        	return false; 
+			        }
+		}
+		
 	        return true;
 	    }
 	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {

@@ -41,6 +41,8 @@ public class DatabaseReading2 {
 	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
+	public static HashMap<String, List<Parameter2>>  ParameterhashMap=null; 
+
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -62,6 +64,14 @@ public class DatabaseReading2 {
 
 	public static void setMethodlist(List<Method2Details> methodlist) {
 		DatabaseReading2.methodlist = methodlist;
+	}
+
+	public static HashMap<String, List<Parameter2>> getParameterhashMap() {
+		return ParameterhashMap;
+	}
+
+	public static void setParameterhashMap(HashMap<String, List<Parameter2>> parameterhashMap) {
+		ParameterhashMap = parameterhashMap;
 	}
 
 	/** The password for the MySQL account (or empty for anonymous) */
@@ -214,6 +224,11 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		 HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
 		setMethodFieldHashMap(mymethodfields);
 		
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		Parameter2 parameter= new Parameter2(); 
+		 HashMap<String, List<Parameter2>> myparams = parameter.ReadParams(conn) ; 
+		setParameterhashMap(myparams);
 ///////////////////////////////////////////////////////////////////////////////////////
 		SuperClass2 superclass= new SuperClass2(); 
 		 HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  

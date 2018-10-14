@@ -13,11 +13,20 @@ public class MethodField2 {
 	 String FieldName;
 	 ClassRepresentation2 MethodFieldType; 
 	 ClassRepresentation2 OwnerClass;
+	 Method2Representation Method;
 		List<MethodField2> myfieldmethods= new ArrayList<MethodField2>(); 
+	
 		HashMap<String, List<MethodField2>> ClassRepresentationHashMapMethodField= new HashMap<String, List<MethodField2>>(); 
 		
 		
 	
+	
+	public Method2Representation getMethod() {
+			return Method;
+		}
+		public void setMethod(Method2Representation method) {
+			Method = method;
+		}
 	public List<MethodField2> getMyfieldmethods() {
 			return myfieldmethods;
 		}
@@ -82,23 +91,35 @@ public class MethodField2 {
 			 
 			 	ClassRepresentation2 FieldType= new ClassRepresentation2();
 			     String fieldtypeclassid = myresults.getString("fieldtypeclassid"); 			
-//				 String fieldtype = myresults.getString("fieldtypeclassname"); 
-				 String fieldtype = myresults.getString("fieldtype"); 
+				 String fieldtype = myresults.getString("fieldtypeclassname"); 
+//				 String fieldtype = myresults.getString("fieldtype"); 
 
 				 FieldType.setClassid(fieldtypeclassid);
 				 FieldType.setClassname(fieldtype);
 				 
 				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
-//				 String classname = myresults.getString("ownerclassname"); 
-				 String classname = myresults.getString("classname"); 
+				 String classname = myresults.getString("ownerclassname"); 
+//				 String classname = myresults.getString("classname"); 
 				 OwnerClass.setClassid(ownerclassid);
 				 OwnerClass.setClassname(classname);
 				 
+				 
+				 Method2Representation methodrep= new Method2Representation();
+				 String ownermethodid = myresults.getString("ownermethodid"); 			
+				 String ownermethodname = myresults.getString("ownermethodname"); 
+//				 String classname = myresults.getString("classname"); 
+				 methodrep.setMethodid(ownermethodid);
+				 methodrep.setMethodname(ownermethodname);
+				 
+				 
 				 mymethodfield.setMethodFieldType(FieldType);
 				 mymethodfield.setOwnerClass(OwnerClass);
+				 mymethodfield.setMethod(methodrep);
 				 
-				 String key=ownerclassid;
+				 
+				 
+				 String key=ownermethodid;
 				 if(ClassRepresentationHashMapMethodField.get(key)!=null) {
 					 List<MethodField2> mymethodfields= ClassRepresentationHashMapMethodField.get(key); 
 					 mymethodfields.add(mymethodfield); 

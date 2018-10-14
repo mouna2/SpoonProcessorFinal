@@ -260,6 +260,7 @@ public class DBDemo3Chess {
 		   		"  `fullmethod` LONGTEXT NULL,\r\n" + 
 		   		"  `classid` INT NULL,\r\n" + 
 		   		"  `classname` LONGTEXT NULL,\r\n" + 
+		   		"  `method` LONGTEXT NULL,\r\n" + 
 		   		"  PRIMARY KEY (`id`),\r\n" + 
 		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\r\n" + 
 		   		"  INDEX `classid_idx` (`classid` ASC),\r\n" + 
@@ -619,32 +620,32 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 			
 
     	}
-//
-//
 
+
+
+    	
+    	
+    	
+    
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+  	
+//   
 //    	
-//    	
-//    	
-//    
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//  	
-////   
-////    	
 ////   	/*********************************************************************************************************************************************************************************/	
 ////        /*********************************************************************************************************************************************************************************/	
 ////        /*********************************************************************************************************************************************************************************/	  	
@@ -667,7 +668,10 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 		//	if(count==2) {
 			 List<CtConstructor> MyContructorlist = clazz.getElements(new TypeFilter<>(CtConstructor.class)); 
 			 for(CtConstructor<?> constructor: MyContructorlist) {
+				
 				 
+				 
+			String	constructorString=WriteConstructorIntoDatabase(constructor); 
 				 	
 					String FullConstructorName=constructor.getSignature().toString(); 
 					
@@ -708,7 +712,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 							
 								fullmeth=myclassname+"."+FullConstructorName; 
 								 methodabbreviation=fullmeth.substring(0, fullmeth.indexOf("("));
-				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"')");
+				    			st.executeUpdate("INSERT INTO `methods`(`methodname`, `methodnamerefined`, `methodabbreviation`, `fullmethod`,`classid`, `classname`, `method`) VALUES ('"+FullConstructorName+"','" +FullMethodNameRefined +"','" +methodabbreviation+"','" +fullmeth+"','" +myclassid+"','" +myclassname+"','" +constructorString+"')");
 
 								
 				    			mymethodlist.add(meth); 
@@ -721,7 +725,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 			 
 			for(CtMethod<?> method: methods) {
 				 
-				 
+				 String NewMethodString = WriteMethodIntoDatabase(method); 
 				String FullMethodName=method.getSignature().toString(); 
 				System.out.println("==============>"+method.getShortRepresentation().toString());
 				//st.executeUpdate("INSERT INTO `fields`(`fieldname`) VALUES ('"+field+"');");
@@ -748,7 +752,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 						if(meth.contains(mymethodlist, meth)==false ) {
 							longmeth=myclassname+"."+FullMethodName; 
 							 methodabbreviation=longmeth.substring(0, fullmeth.indexOf("("));
-			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"')");
+			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`, `method`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myclassid+"','" +myclassname+"','" +NewMethodString+"')");
 
 							
 			    			mymethodlist.add(meth); 
@@ -773,7 +777,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
     		Collection<CtMethod<?>> methods = myinterface.getMethods(); 
 
     		for(CtMethod<?> method: methods) {
-				 
+    			 String NewMethodString = WriteMethodIntoDatabase(method); 
     			String myinterfaceid=null; 
     			String myinterfacename=null; 
 				String FullMethodName=method.getSignature().toString(); 
@@ -805,7 +809,7 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 						if(meth.contains(mymethodlist, meth)==false ) {
 							longmeth=myinterfacename+"."+FullMethodName; 
 							 methodabbreviation=longmeth.substring(0, fullmeth.indexOf("("));
-			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myinterfaceid+"','" +myinterfacename+"')");
+			    			st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`,`classid`, `classname`, `method`) VALUES ('"+FullMethodName +"','" +FullMethodNameRefined+"','" +methodabbreviation+"','" +longmeth+"','" +myinterfaceid+"','" +myinterfacename+"','" +NewMethodString+"')");
 
 							
 			    			mymethodlist.add(meth); 
@@ -3048,8 +3052,18 @@ System.out.println("LINE THAT COULD NOT BE INSERTED=======>"+ line);
 	if(callingmethodsrefinedid==null && classFROMid!=null) {
 		String fullmeth=ClassFROM+"."+MethodFROM; 
 		fullmeth=RewriteFullMethod(fullmeth); 
-		st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`, `classid`, `classname`) VALUES ('"+MethodFROM +"','" +MethodFROMRefined+"','" +MethodFROMAbbreviation+"','" +fullmeth+"','" +classFROMid+"','" +ClassFROM+"')");
+		
+		
+		
+		
+		
+	//	st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`, `fullmethod`, `classid`, `classname`) VALUES ('"+MethodFROM +"','" +MethodFROMRefined+"','" +MethodFROMAbbreviation+"','" +fullmeth+"','" +classFROMid+"','" +ClassFROM+"')");
 	
+		
+		
+		
+		
+		
 		//RECALCULATION PHASE: CALLING METHOD ID 
 		 callingmethodsrefined = st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodFROM+"' and classes.classname='"+ClassFROM+"'"); 
 		 if(callingmethodsrefined.next()){
@@ -3150,8 +3164,15 @@ System.out.println("LINE THAT COULD NOT BE INSERTED=======>"+ line);
 	String MethodTOAbbreviation = ClassTO+"."+MethodTORefined; 
 	String FullMethTO= RewriteFullMethod(MethodTOAbbreviation); 
 	if(calledmethodid==null && classTOid!=null) {
-		st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
+		
+		
+		
+		
+		//st.executeUpdate("INSERT INTO `methods`(`methodname`,  `methodnamerefined`,`methodabbreviation`,`fullmethod`, `classid`, `classname`) VALUES ('"+MethodTO +"','" +MethodTORefined+"','" +MethodTOAbbreviation+"','"+FullMethTO+"','" +classTOid+"','" +ClassTO+"')");
 
+		
+		
+		
 		//RECALCULATION PHASE: CALLED METHOD ID 
 		 calledmethodsids= st.executeQuery("SELECT methods.id from methods INNER JOIN classes on methods.classname=classes.classname where methods.methodname='"+MethodTO+"'and classes.classname='"+ClassTO+"'"); 
 		 if(calledmethodsids.next()){
@@ -4115,6 +4136,68 @@ counter2++;
 		e.printStackTrace();
 	}
 	}
+	private String WriteMethodIntoDatabase(CtMethod<?> constructor) {
+		// TODO Auto-generated method stub
+		List<CtComment> CommentList = constructor.getElements(new TypeFilter<CtComment>(CtComment.class));
+    	List<CtComment> NewCommentList= CommentList; 
+    	NewCommentList = constructor.getElements(new TypeFilter<CtComment>(CtComment.class));
+    	int size=NewCommentList.size(); 
+    	System.out.println(constructor);
+    	int  j=0; 
+    	if(CommentList!=null) {
+    		CtMethod newmethod=constructor; 
+    		
+    		
+    		while(j<size) {
+    			
+    			CtComment newcomment = NewCommentList.get(j); 
+    			newmethod=newmethod.removeComment(newcomment); 
+    			 size=NewCommentList.size(); 
+    			 j++; 
+    		}
+    		
+    		constructor=newmethod; 
+    	}
+    	 String methodString = constructor.toString().replaceAll("\\/\\/.*", ""); 
+    	 methodString = methodString.toString().replaceAll("\'", ""); 
+	 	
+		String FullConstructorName=constructor.getSignature().toString(); 
+		
+		
+		return methodString; 
+	}
+
+	public String WriteConstructorIntoDatabase(CtConstructor constructor) {
+		// TODO Auto-generated method stub
+		 List<CtComment> CommentList = constructor.getElements(new TypeFilter<CtComment>(CtComment.class));
+	    	List<CtComment> NewCommentList= CommentList; 
+	    	NewCommentList = constructor.getElements(new TypeFilter<CtComment>(CtComment.class));
+	    	int size=NewCommentList.size(); 
+	    	System.out.println(constructor);
+	    	int  j=0; 
+	    	if(CommentList!=null) {
+	    		CtConstructor newmethod=constructor; 
+	    		
+	    		
+	    		while(j<size) {
+	    			
+	    			CtComment newcomment = NewCommentList.get(j); 
+	    			newmethod=newmethod.removeComment(newcomment); 
+	    			 size=NewCommentList.size(); 
+	    			 j++; 
+	    		}
+	    		
+	    		constructor=newmethod; 
+	    	}
+	    	 String methodString = constructor.toString().replaceAll("\\/\\/.*", ""); 
+	    	 methodString = methodString.toString().replaceAll("\'", ""); 
+		 	
+			String FullConstructorName=constructor.getSignature().toString(); 
+			
+			
+			return methodString; 
+	}
+
 	private String GetMethodNameAndParams(String method) {
 		// TODO Auto-generated method stub
 		System.out.println("METH BEFORE TRUNCATION"+method);

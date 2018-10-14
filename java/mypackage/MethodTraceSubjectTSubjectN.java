@@ -24,8 +24,18 @@ public class MethodTraceSubjectTSubjectN {
 	public String gold3; 
 	public String gold4; 
 	String prediction; 
+	String prediction2; 
 	String likelihood; 
 	String why; 
+	
+	List<MethodField2> MethodFieldT; 
+	List<MethodField2> MethodFieldN; 
+	List<MethodField2> MethodFieldE; 
+	
+	
+	List<Parameter2> ParameterListT; 
+	List<Parameter2> ParameterListN; 
+	List<Parameter2> ParameterListE; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
@@ -44,12 +54,68 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
 	
+	public List<Parameter2> getParameterListT() {
+		return ParameterListT;
+	}
+
+	public void setParameterListT(List<Parameter2> parameterListT) {
+		ParameterListT = parameterListT;
+	}
+
+	public List<Parameter2> getParameterListN() {
+		return ParameterListN;
+	}
+
+	public void setParameterListN(List<Parameter2> parameterListN) {
+		ParameterListN = parameterListN;
+	}
+
+	public List<Parameter2> getParameterListE() {
+		return ParameterListE;
+	}
+
+	public void setParameterListE(List<Parameter2> parameterListE) {
+		ParameterListE = parameterListE;
+	}
+
+	public List<MethodField2> getMethodFieldT() {
+		return MethodFieldT;
+	}
+
+	public void setMethodFieldT(List<MethodField2> methodFieldT) {
+		MethodFieldT = methodFieldT;
+	}
+
+	public List<MethodField2> getMethodFieldN() {
+		return MethodFieldN;
+	}
+
+	public void setMethodFieldN(List<MethodField2> methodFieldN) {
+		MethodFieldN = methodFieldN;
+	}
+
+	public List<MethodField2> getMethodFieldE() {
+		return MethodFieldE;
+	}
+
+	public void setMethodFieldE(List<MethodField2> methodFieldE) {
+		MethodFieldE = methodFieldE;
+	}
+
 	public String getPrediction() {
 		return prediction;
 	}
 
 	public void setPrediction(String prediction) {
 		this.prediction = prediction;
+	}
+
+	public String getPrediction2() {
+		return prediction2;
+	}
+
+	public void setPrediction2(String prediction2) {
+		this.prediction2 = prediction2;
 	}
 
 	public String getLikelihood() {
@@ -954,8 +1020,11 @@ if(myinterfacelist!=null) {
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
-						 meth.setClassrep(val.OwnerClass);
-						 mycallerlistrepexecuted.add(meth); 
+						if(val!=null) {
+							 meth.setClassrep(val.OwnerClass);
+							 mycallerlistrepexecuted.add(meth); 
+						}
+						
 					 }
 					 mytrace.setCallersList(mycallerlistrepexecuted);
 				 }

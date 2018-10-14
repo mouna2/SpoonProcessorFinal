@@ -441,14 +441,14 @@ public class MethodTraceOld {
 			 
 			 ClassRepresentation2 FieldType= new ClassRepresentation2(); 
 			 FieldType.setClassid(methodFields.getString("fieldtypeclassid"));
-			 FieldType.setClassname(methodFields.getString("fieldtype"));
+			 FieldType.setClassname(methodFields.getString("fieldtypeclassname"));
 			// FieldType.setClassname(methodFields.getString("fieldtype"));
 			 methfield.setMethodFieldType(FieldType);
 			 
 			 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
 			 OwnerType.setClassid(methodFields.getString("ownerclassid"));
-			// OwnerType.setClassname(methodFields.getString("ownerclassname"));
-			 OwnerType.setClassname(methodFields.getString("classname"));
+			 OwnerType.setClassname(methodFields.getString("ownerclassname"));
+			// OwnerType.setClassname(methodFields.getString("classname"));
 			 methfield.setOwnerClass(OwnerType);
 			 
 			
