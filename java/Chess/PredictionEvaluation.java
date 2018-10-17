@@ -70,8 +70,17 @@ public class PredictionEvaluation {
 				predictionEvaluation.FalsePositive++; 
 
 			}
-		System.out.println(predictionEvaluation.toString());
+	//	System.out.println(predictionEvaluation.toString());
 		}
+		
+	}
+	
+	
+	public void ResetCounters(PredictionEvaluation predictionEvaluation) {
+		predictionEvaluation.setFalseNegative(0);
+		predictionEvaluation.setTruePositive(0);
+		predictionEvaluation.setTrueNegative(0);
+		predictionEvaluation.setFalsePositive(0);
 		
 	}
 	@Override

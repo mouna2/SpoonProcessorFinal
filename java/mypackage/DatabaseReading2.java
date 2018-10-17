@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTableChessFINAL;
+import Chess.TracesTableChessFINALGeneticAlgorithm;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
@@ -44,7 +44,7 @@ public class DatabaseReading2 {
 	public static HashMap<String, List<Parameter2>>  ParameterhashMap=null; 
 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
-	static HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
+	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
@@ -186,7 +186,7 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
 		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-		HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
 		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
 		setMethodtraces2SubjectTSubjectN(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 
@@ -449,11 +449,11 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 
 	
 
-	public static HashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
+	public static LinkedHashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
 		return methodtracehashmap;
 	}
 
-	public  static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap2) {
+	public  static void setMethodtracehashmap(LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap2) {
 		methodtracehashmap = methodtracehashmap2;
 	}
 

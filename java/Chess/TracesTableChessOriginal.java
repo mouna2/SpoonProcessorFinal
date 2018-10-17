@@ -2389,7 +2389,7 @@ public class TracesTableChessOriginal extends JFrame {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINAL frame = new TracesTableChessFINAL();
+		TracesTableChessFINALGeneticAlgorithm frame = new TracesTableChessFINALGeneticAlgorithm();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

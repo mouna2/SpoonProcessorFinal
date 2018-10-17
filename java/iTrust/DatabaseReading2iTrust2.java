@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import Chess.TracesTableChessFINAL;
+import Chess.TracesTableChessFINALGeneticAlgorithm;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;

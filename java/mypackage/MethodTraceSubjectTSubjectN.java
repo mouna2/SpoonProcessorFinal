@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class MethodTraceSubjectTSubjectN {
@@ -36,6 +37,9 @@ public class MethodTraceSubjectTSubjectN {
 	List<Parameter2> ParameterListT; 
 	List<Parameter2> ParameterListN; 
 	List<Parameter2> ParameterListE; 
+	
+	List<String> PredictionParams; 
+	List<String> PredictionFields; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
@@ -80,6 +84,22 @@ public class MethodTraceSubjectTSubjectN {
 
 	public List<MethodField2> getMethodFieldT() {
 		return MethodFieldT;
+	}
+
+	public List<String> getPredictionParams() {
+		return PredictionParams;
+	}
+
+	public void setPredictionParams(List<String> predictionParams) {
+		PredictionParams = predictionParams;
+	}
+
+	public List<String> getPredictionFields() {
+		return PredictionFields;
+	}
+
+	public void setPredictionFields(List<String> predictionFields) {
+		PredictionFields = predictionFields;
 	}
 
 	public void setMethodFieldT(List<MethodField2> methodFieldT) {
@@ -249,7 +269,7 @@ public class MethodTraceSubjectTSubjectN {
 	}
 
 	HashMap<Integer, MethodTraceSubjectTSubjectN> methodtraceHashMap= new HashMap<Integer, MethodTraceSubjectTSubjectN> (); 
-	HashMap<String, MethodTraceSubjectTSubjectN> methodtraceHashMap2= new HashMap<String, MethodTraceSubjectTSubjectN> (); 
+	LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtraceHashMap2= new LinkedHashMap<String, MethodTraceSubjectTSubjectN> (); 
 
 	public MethodTraceSubjectTSubjectN() {
 		super();
@@ -878,7 +898,7 @@ public class MethodTraceSubjectTSubjectN {
 	
 	
 	
-	public  HashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn) throws SQLException {
+	public  LinkedHashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn) throws SQLException {
 		DatabaseReading2 db = new DatabaseReading2(); 
 		ClassDetails2 classdet= new ClassDetails2(); 
 		//CLASSESHASHMAP
