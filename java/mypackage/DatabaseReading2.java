@@ -42,13 +42,22 @@ public class DatabaseReading2 {
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
 	public static HashMap<String, List<Parameter2>>  ParameterhashMap=null; 
-
+	public static HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINAL=null; 
+	public static HashMap<String, List<Children2>> childrenHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
 	
+
+	public static HashMap<String, List<Implementation2>> getINTERFACEHASHMAPFINAL() {
+		return INTERFACEHASHMAPFINAL;
+	}
+
+	public static void setINTERFACEHASHMAPFINAL(HashMap<String, List<Implementation2>> iNTERFACEHASHMAPFINAL) {
+		INTERFACEHASHMAPFINAL = iNTERFACEHASHMAPFINAL;
+	}
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
@@ -234,6 +243,22 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		 HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
 		setSuperclassesHashMap(mysuperclasses);
 		/////////////////////////////////////////////
+		
+		
+///////////////////////////////////////////////////////////////////////////////////////
+Implementation2 myimplementation= new Implementation2(); 
+HashMap<String, List<Implementation2>> myimplementations = myimplementation.ReadImplementationsRepresentations(conn); 
+setINTERFACEHASHMAPFINAL(myimplementations);
+
+///////////////////////////////////////////////////////////////////////////////////////
+Children2 children2= new Children2(); 
+HashMap<String, List<Children2>> mychildren = children2.ReadChildren(conn); 
+setChildrenHashMap(mychildren);
+/////////////////////////////////////////////
+
+
+
+
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
@@ -448,6 +473,19 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 	}
 
 	
+
+	public static HashMap<String, List<Implementation2>> getINTERFACESHASHMAP() {
+		return INTERFACEHASHMAPFINAL;
+	}
+
+	
+	public static HashMap<String, List<Children2>> getChildrenHashMap() {
+		return childrenHashMap;
+	}
+
+	public static void setChildrenHashMap(HashMap<String, List<Children2>> childrenHashMap) {
+		DatabaseReading2.childrenHashMap = childrenHashMap;
+	}
 
 	public static LinkedHashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
 		return methodtracehashmap;

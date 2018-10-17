@@ -40,6 +40,11 @@ public class MethodTraceSubjectTSubjectN {
 	
 	List<String> PredictionParams; 
 	List<String> PredictionFields; 
+	
+	List<String> SuperClassesList; 
+	List<String> InterfaceList; 
+	List<String> ChildrenList; 
+	List<String> ImplementationList; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
@@ -58,6 +63,38 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
 	
+	public List<String> getSuperClassesList() {
+		return SuperClassesList;
+	}
+
+	public void setSuperClassesList(List<String> superClassesList) {
+		SuperClassesList = superClassesList;
+	}
+
+	public List<String> getInterfaceList() {
+		return InterfaceList;
+	}
+
+	public void setInterfaceList(List<String> interfaceList) {
+		InterfaceList = interfaceList;
+	}
+
+	public List<String> getChildrenList() {
+		return ChildrenList;
+	}
+
+	public void setChildrenList(List<String> childrenList) {
+		ChildrenList = childrenList;
+	}
+
+	public List<String> getImplementationList() {
+		return ImplementationList;
+	}
+
+	public void setImplementationList(List<String> implementationList) {
+		ImplementationList = implementationList;
+	}
+
 	public List<Parameter2> getParameterListT() {
 		return ParameterListT;
 	}

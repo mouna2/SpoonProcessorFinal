@@ -1261,7 +1261,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			System.out.println("-------------------------------------------");
 
 			int k=0; 
-			//PATTERN 3 AND PATTERN 5
+			//PATTERN 3 AND PATTERN 5 MIXED 
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 				//PATTERN 3 AND PATTERN 5
 				
@@ -1330,7 +1330,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			//////////////////////////////////////////////////////////////////////////////////////////
 			 k=0; 
-			//PATTERN 2 AND PATTERN 4
+			//PATTERN 2 AND PATTERN 4 PURE 
 			// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 				

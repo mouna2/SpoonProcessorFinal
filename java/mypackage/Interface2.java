@@ -18,6 +18,7 @@ public class Interface2 {
 	public ClassRepresentation2 InterfaceClass; 
 	public ClassRepresentation2 OwnerClass;
 	 HashMap<String, List<Interface2>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface2>>(); 
+
 	 HashMap<String, Interface2> ClassRepresentationHashMap= new HashMap<String, Interface2>(); 
 	
 	public Interface2(String iD, ClassRepresentation2 interfaceClass, ClassRepresentation2 ownerClass) {
@@ -111,6 +112,9 @@ public class Interface2 {
 	}
 	
 	
+
+	
+	
 	
 	public  HashMap<String, Interface2> ReadInterfacesRepresentationsAlreadyImpl(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
@@ -161,5 +165,30 @@ public class Interface2 {
 		
 		 return ClassRepresentationHashMap; 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
 	
 }

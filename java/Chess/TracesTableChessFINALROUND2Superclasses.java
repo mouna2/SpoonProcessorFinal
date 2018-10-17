@@ -43,12 +43,14 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
+import mypackage.Children2;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
+import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
@@ -60,7 +62,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableChessFINALROUND2Fields extends JFrame {
+public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -526,8 +528,8 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 
 	PredictionEvaluation NEWPATTERNMethodCalls=new PredictionEvaluation();  
 
-	PredictionEvaluation NEWPATTERNMethodFieldsPure=new PredictionEvaluation();  
-	PredictionEvaluation NEWPATTERNMethodFieldsMixed=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNSuperclassesPure=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNSuperclassesMixed=new PredictionEvaluation();  
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
@@ -544,6 +546,9 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
+	 HashMap<String, List< Children2>> ChildrenHashMap=  new HashMap<String, List< Children2>>(); 
+	 HashMap<String, List< Implementation2>> INTERFACEHASHMAPFINAL=  new HashMap<String, List< Implementation2>>(); 
+
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
@@ -617,7 +622,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableChessFINALROUND2Fields() throws SQLException, IOException {
+	public TracesTableChessFINALROUND2Superclasses() throws SQLException, IOException {
 	
 		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
@@ -682,9 +687,15 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		  FieldClassesHashMap= db.getClassFieldHashMap(); 
 		  //SUPERCLASSES
 		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+		  //CHILDREN 
+		  ChildrenHashMap= db.getChildrenHashMap(); 
+		  //IMPLEMENTATIONS 
+		  INTERFACEHASHMAPFINAL= db.getINTERFACEHASHMAPFINAL(); 
 		  //PARAMETERS 
 		  
 		  parameterHashMap= db.getParameterhashMap(); 
+		  
+		  
 		LinkedHashMap<String, String> PredictionsOldHashMap= new LinkedHashMap<String, String>(); 
 		LinkedHashMap<String, String> PredictionsNewHashMap= new LinkedHashMap<String, String>(); 
 
@@ -726,9 +737,9 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		bwfile2.close();
 		bwfile3.close();
 		br.newLine(); 
-		br.write("NEW PATTERN METHOD FIELDS PURE: "+NEWPATTERNMethodFieldsPure.toString());
+		br.write("NEW PATTERN SUPERCLASSES PURE : "+NEWPATTERNSuperclassesPure.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN METHOD FIELDS MIXED: "+NEWPATTERNMethodFieldsMixed.toString());
+		br.write("NEW PATTERN SUPERCLASSES MIXED : "+NEWPATTERNSuperclassesMixed.toString());
 
 		br.close();
 		bwlog2.close();
@@ -771,9 +782,8 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		System.out.println("AT LEAST 2N PARAMETER CLASS: "+AtLeast2NParameterClass.toString()); 
 		System.out.println("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
 		System.out.println("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
-		System.out.println("NEW PATTERN METHOD CALLS: "+NEWPATTERNMethodCalls.toString()); 
-		System.out.println("NEW PATTERN METHOD FIELDS PURE : "+NEWPATTERNMethodFieldsPure.toString()); 
-		System.out.println("NEW PATTERN METHOD FIELDS MIXED: "+NEWPATTERNMethodFieldsMixed.toString()); 
+		System.out.println("NEW PATTERN SUPERCLASSES PURE : "+NEWPATTERNSuperclassesPure.toString()); 
+		System.out.println("NEW PATTERN SUPERCLASSES MIXED: "+NEWPATTERNSuperclassesMixed.toString()); 
 		
 		bw2.close();
 		
@@ -1055,57 +1065,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtracesNew) throws SQLException {
 		
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-//		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-//			
-//			String reqclass= methodtrace.Requirement.ID+"-"+ methodtrace.ClassRepresentation.classid; 
-//			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-//	
-//		int ITERATION1=0; 
-//			//PATTERN 1
-//			if(myclasstraceHashMap.getTrace2()!=null) {
-//				String traceGOLD2 = myclasstraceHashMap.getTrace2();
-//				traceGOLD2=traceGOLD2.trim(); 
-//				if (traceGOLD2.equals("T")) {
-//					data[j][OwnerClassTGOLD2] = "1";
-//					data[j][OwnerClassNGOLD2] = "0";
-//					data[j][OwnerClassEGOLD2] = "0";
-//					
-//					PatternSetVariables("T",methodtrace,"100%","P1"); 
-//					
-//				//	System.out.println("OWNERCLASS T  "+j +" set to 1");
-//				} else if (traceGOLD2.equals("N")) {
-//					data[j][OwnerClassTGOLD2] = "0";
-//					data[j][OwnerClassNGOLD2] = "1";
-//					data[j][OwnerClassEGOLD2] = "0";
-//					
-//					PatternSetVariables("N",methodtrace,"100%","P1"); 
-//				
-//				//	System.out.println("OWNERCLASS N  "+j +" set to 1");
-//				} else if (traceGOLD2.equals("E")) {
-//					data[j][OwnerClassTGOLD2] = "0";
-//					data[j][OwnerClassNGOLD2] = "0";
-//					data[j][OwnerClassEGOLD2] = "1";
-//				//	System.out.println("OWNERCLASS E  "+j +" set to 1");
-//					
-//					PatternSetVariables("E", methodtrace,"100%","P1"); 
-//				
-//				}
-//				ITERATION1++; 
-//			}
-//			
-//			
-//		
-//			
-//			
-//			
-//			
-//			
-//			 System.out.println("===============>PATTERNS 1 SET TO T   ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
-//			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-//			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
-//			j++;
-//			
-//		}
+
 		
 		
 		
@@ -1114,39 +1074,64 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			List<String> PredictionParams= new ArrayList<String>(); 
-			List<String> PredictionFields= new ArrayList<String>(); 
+			List<String> SuperClassesList= new ArrayList<String>(); 
+			List<String> InterfaceList= new ArrayList<String>(); 
+			List<String> ChildrenList= new ArrayList<String>(); 
+			List<String> ImplementationList= new ArrayList<String>(); 
 			System.out.println(methodtraces2.size());
 			System.out.println(j);
 			System.out.println(Row);
 			System.out.println(methodtraces2HashMap.size());
 
 			
-			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.MethodRepresentation.methodid); 
-			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.MethodRepresentation.methodid); 
-		if(mymethodfields!=null)
-			for(MethodField2 mymeth: mymethodfields) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
+			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid); 
+			 List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid); 
+		if(myinterfaces!=null)
+			for(Interface2 myinterface: myinterfaces) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
 					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionFields.add(traceGOLD2); 
+					InterfaceList.add(traceGOLD2); 
 				}
 			}
-		if( paramlist!=null)
-			for(Parameter2 mymeth: paramlist) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
+		if( mysuperclasses!=null)
+			for(SuperClass2 mysuperclass: mysuperclasses) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
 					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionParams.add(traceGOLD2); 
+					SuperClassesList.add(traceGOLD2); 
 				}
 			}
-			
-			methodtrace.setPredictionParams(PredictionParams);
-			methodtrace.setPredictionFields(PredictionFields);
+		if(mychildren!=null)
+			for(Children2 mychild: mychildren) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTrace2()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
+					ChildrenList.add(traceGOLD2); 
+				}
+			}
+		if( myimplementations!=null)
+			for(Implementation2 myimplementation: myimplementations) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTrace2()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
+					ImplementationList.add(traceGOLD2); 
+				}
+			}
+			methodtrace.setSuperClassesList(SuperClassesList);
+			methodtrace.setInterfaceList(InterfaceList);
+			methodtrace.setImplementationList(ImplementationList);
+			methodtrace.setChildrenList(ChildrenList);
 			j++; 
 		}
 		
@@ -1161,21 +1146,28 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 			
-				List<String> methodfields = methodtrace.getPredictionFields(); 
-				List<String> methodparams = methodtrace.getPredictionParams(); 
+				List<String> childrenList = methodtrace.getChildrenList(); 
+				List<String> ImplementationList = methodtrace.getImplementationList(); 
+				List<String> InterfaceList = methodtrace.getInterfaceList(); 
+				List<String> SuperclassList = methodtrace.getSuperClassesList(); 
 				//MY MIXED PATTERNS 
 				
 				//PATTERN 1	MIXED T
-				//MIXED 
-				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>3)
-				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>1) )
+				CountTNE childrenListCount = GenerateCounts(childrenList); 
+				CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
+				CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
+				CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
+				if((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=3)
+					||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=3)
+					|| (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=3)
+					|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=3))
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>3)
-					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>1))
+				else if((SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=1)
+						|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=1)
+						|| (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=1)
+						||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=1))
 				{
 					PatternSetVariables("N", methodtrace,"100%","P2"); 
 				}
@@ -1188,8 +1180,8 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 		
 		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixed);
-	//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesMixed);
+		 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSESMIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesMixed.toString());
 
 		 ITERATION1++; }
 			
@@ -1200,19 +1192,29 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			//PURE PATTERN 
 	
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			//	methodtrace.setPrediction("");
-				List<String> methodfields = methodtrace.getPredictionFields(); 
-				List<String> methodparams = methodtrace.getPredictionParams(); 
-				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-				CountTNE methodparamsCount=GenerateCounts(methodparams); 
+				methodtrace.setPrediction("");
+				List<String> superclassesList = methodtrace.getSuperClassesList(); 
+				List<String> childrenList = methodtrace.getChildrenList(); 
+				List<String> implementationList = methodtrace.getImplementationList(); 
+				List<String> interfaceList = methodtrace.getInterfaceList(); 
+				CountTNE SuperclassCount = GenerateCounts(superclassesList); 
+				CountTNE ChildrenCount = GenerateCounts(childrenList); 
+				CountTNE ImplementationCount = GenerateCounts(implementationList); 
+				CountTNE InterfaceCount = GenerateCounts(interfaceList); 
 				
-				//PURE 
-				if((methodfieldsCount.CountT>3 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountT>1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
+				//	PURE 
+				if(			(SuperclassCount.CountT>3 && SuperclassCount.CountN==0 && SuperclassCount.CountE==0) 
+						|| (ChildrenCount.CountT>3 && ChildrenCount.CountN==0 && ChildrenCount.CountE==0) 
+						|| (ImplementationCount.CountT>3 && ImplementationCount.CountN==0 && ImplementationCount.CountE==0) 
+						|| (InterfaceCount.CountT>3 && InterfaceCount.CountN==0 && InterfaceCount.CountE==0) 
+						
+						) {
 					PatternSetVariables("T", methodtrace,"100%","P4"); 
 				}
-				if((methodfieldsCount.CountN>3 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountN>1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
+				if(		(SuperclassCount.CountN>1 && SuperclassCount.CountT==0) 
+						|| (ChildrenCount.CountN>1 && ChildrenCount.CountT==0)
+						||(ImplementationCount.CountN>1 && ImplementationCount.CountT==0) 
+						|| (InterfaceCount.CountN>1 && InterfaceCount.CountT==0)) {
 					PatternSetVariables("N", methodtrace,"100%","P4"); 
 				}
 				
@@ -1220,22 +1222,20 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 		
 		
-		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPure);
-	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+	//	 System.out.println("===============>PATTERNS 3 AND  4 SUPERCLASSESMIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
 			}
-//			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//					if(methodtrace.getPrediction().trim().equals("E")){
-//						methodtrace.setPrediction("T");
-//					}
-//			}
+			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+					if(methodtrace.getPrediction().trim().equals("E")){
+						methodtrace.setPrediction("T");
+					}
+			}
 
 			//PRINT 
 			
-//			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-//			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
-			System.out.println("===============>PATTERNS METHOD FIELDS  ITERATION  "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFieldsPure.toString());
+			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesPure);
+			System.out.println("===============>PATTERNS SUPERCLASSES ITERATION  "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesPure.toString());
 
 			 //END  PRINT 
 			ITERATION1++; 
@@ -1247,7 +1247,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 		
 		
-//		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtracesNew); 
+		 MyfinalHashMap = RetrievePredictionsHashMap( methodtracesNew); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
@@ -1257,7 +1257,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 		
 		
-//		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
+		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesPure);
 		return PredictionsNewHashMap; 
 	
 	}
@@ -1470,7 +1470,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINALROUND2Fields frame = new TracesTableChessFINALROUND2Fields();
+		TracesTableChessFINALROUND2Superclasses frame = new TracesTableChessFINALROUND2Superclasses();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
