@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MethodTrace2 {
-	
+	public String ID; 
 	public Method2Representation MethodRepresentation; 
 	public Requirement2 Requirement; 
 	public ClassRepresentation2 ClassRepresentation; 
@@ -26,11 +26,28 @@ public class MethodTrace2 {
 	String prediction; 
 	String likelihood; 
 	String why; 
+	String CLASSTYPE; 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
+	public String getCLASSTYPE() {
+		return CLASSTYPE;
+	}
+
+	public void setCLASSTYPE(String cLASSTYPE) {
+		CLASSTYPE = cLASSTYPE;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
 	public String getPrediction() {
 		return prediction;
 	}
