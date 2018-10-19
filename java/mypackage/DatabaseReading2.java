@@ -168,7 +168,7 @@ public class DatabaseReading2 {
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
 		Method2Details methoddet2 = new Method2Details();
-		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
+		HashMap<String, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations2(conn);
 		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
 		setMethodlist(methodlist);
 		

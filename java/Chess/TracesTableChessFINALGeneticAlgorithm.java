@@ -3311,13 +3311,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											 key= methodtrace.getMethodRepresentation().methodid+"-"+methodtrace.getRequirement().ID; 
 											OwnerClassPredictionClassGold2HashMap.put(key, data[j][OwnerClassPredictionGOLD2].toString()); 
 											flagGold2=true; 
-											}else {
-												OwnerClassPredictionClassGold2HashMap.put(key, null); 
-
 											}
 									}
 									
-									
+									else {
+										OwnerClassPredictionClassGold2HashMap.put(key, "null"); 
+
+									}
 									
 									
 									
@@ -3374,14 +3374,14 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												String Result=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityParametersGOLD2].toString()); 
 												MajorityParametersClassGold2.UpdateCounters(Result, MajorityParametersClassGold2);
 												MajorityParametersClassGold2HashMap.put(key, data[j][MajorityParametersGOLD2].toString()); 
-											}else {
-												MajorityParametersClassGold2HashMap.put(key, null); 
-
 											}
 											
 										
 											
 										
+										}else {
+											MajorityParametersClassGold2HashMap.put(key, "null"); 
+
 										}
 									
 									/**************************************************************************************************************/
@@ -3400,12 +3400,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										String Result=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NParameterGOLD2].toString()); 
 										AtLeast1NParameterClassGold2.UpdateCounters(Result, AtLeast1NParameterClassGold2);
 										AtLeast1NParameterClassGold2HashMap.put(key, data[j][AtLeast1NParameterGOLD2].toString()); 
-										}else {
-											AtLeast1NParameterClassGold2HashMap.put(key, null); 
-
 										}
 										
-									} 
+									} else {
+										AtLeast1NParameterClassGold2HashMap.put(key, "null"); 
+
+									}
 								
 									
 									/**************************************************************************************************************/
@@ -3425,12 +3425,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											String Result=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NParameterGOLD2].toString()); 
 										AtLeast2NParameterClassGold2.UpdateCounters(Result, AtLeast2NParameterClassGold2);
 										AtLeast2NParameterClassGold2HashMap.put(key, data[j][AtLeast2NParameterGOLD2].toString()); 
-										}else {
-											AtLeast2NParameterClassGold2HashMap.put(key, null); 
-
 										}
 										
-									} 
+									} else {
+										AtLeast2NParameterClassGold2HashMap.put(key, "null"); 
+
+									}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -3448,11 +3448,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										String Result=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TParameterGOLD2].toString()); 
 										AtLeast1TParameterClassGold2.UpdateCounters(Result, AtLeast1TParameterClassGold2);
 										AtLeast1TParameterClassGold2HashMap.put(key, data[j][AtLeast1TParameterGOLD2].toString()); 
-										}else {
-											AtLeast1TParameterClassGold2HashMap.put(key, null); 
-
 										}
-									} 
+									} else {
+										AtLeast1TParameterClassGold2HashMap.put(key, "null"); 
+
+									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3470,11 +3470,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											String Result=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TParameterGOLD2].toString()); 
 											AtLeast2TParameterClassGold2.UpdateCounters(Result, AtLeast2TParameterClassGold2);
 											AtLeast2TParameterClassGold2HashMap.put(key, data[j][AtLeast2TParameterGOLD2].toString()); 
-											}else {
-												AtLeast2TParameterClassGold2HashMap.put(key, null); 
-
 											}
-										} 
+										} else {
+											AtLeast2TParameterClassGold2HashMap.put(key, "null"); 
+
+										}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 								    /**************************************************************************************************************/	
@@ -3494,12 +3494,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											String Result=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTParametersGOLD2].toString()); 
 											AllTParameterClassGold2.UpdateCounters(Result, AllTParameterClassGold2);
 											AllTParameterClassGold2HashMap.put(key, data[j][AllTParametersGOLD2].toString()); 
-											}else {
-												AllTParameterClassGold2HashMap.put(key, null); 
-
 											}
 											
 											
+									}else {
+										AllTParameterClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3522,10 +3522,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 								
 											
 											
-											}else {
-												AllNParameterClassGold2HashMap.put(key, null); 
-
 											}
+									}else {
+										AllNParameterClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3565,12 +3565,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										String Result=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCalleesGOLD2].toString()); 
 										MajorityClassLevelCalleesClassGold2.UpdateCounters(Result, MajorityClassLevelCalleesClassGold2);
 										MajorityClassLevelCalleesClassGold2HashMap.put(key, data[j][MajorityClassLevelCalleesGOLD2].toString()); 
-										}else {
-											MajorityClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 										}
 									}
-								
+									else {
+										MajorityClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3605,10 +3605,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										String Result=MajorityClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallersGOLD2].toString()); 
 										MajorityClassLevelCallersClassGold2.UpdateCounters(Result, MajorityClassLevelCallersClassGold2);
 										MajorityClassLevelCallersClassGold2HashMap.put(key, data[j][MajorityClassLevelCallersGOLD2].toString()); 
-										}else {
-											MajorityClassLevelCallersClassGold2HashMap.put(key, null); 
-
 										}
+									}else {
+										MajorityClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3644,10 +3644,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										MajorityMethodLevelCalleesClassGold2.UpdateCounters(Result, MajorityMethodLevelCalleesClassGold2);
 										MajorityMethodLevelCalleesClassGold2HashMap.put(key, data[j][MajorityMethodLevelCalleesGOLD2].toString()); 
 
-										}else {
-											MajorityMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
 										}
+									}else {
+										MajorityMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3682,10 +3682,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										MajorityMethodLevelCallersClassGold2.UpdateCounters(Result, MajorityMethodLevelCallersClassGold2);
 										MajorityMethodLevelCallersClassGold2HashMap.put(key, data[j][MajorityMethodLevelCallersGOLD2].toString()); 
 
-										}else {
-											MajorityMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 										}
+									}else {
+										MajorityMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
 									}
 									
 									/**************************************************************************************************************/
@@ -3708,12 +3708,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastNPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClassGold2);
 											AtLeastNPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1NPredictionClassLevelCallersGOLD2].toString()); 
 
-											}else {
-												AtLeastNPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-									
+										else {
+											AtLeastNPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
+										}
 										
 									
 									/**************************************************************************************************************/
@@ -3734,13 +3734,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastTPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClassGold2);
 											AtLeastTPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1TPredictionClassLevelCallersGOLD2].toString()); 
 
-											}else {
-												AtLeastTPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										} 
 										
-											
+										else {
+											AtLeastTPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
+										}
 										
 									
 									
@@ -3763,12 +3763,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastNPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClassGold2);
 											AtLeastNPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1NPredictionClassLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AtLeastNPredictionClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-										
+										else {
+											AtLeastNPredictionClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+										}
 									
 									
 									
@@ -3790,13 +3790,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastTPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClassGold2);
 											AtLeastTPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1TPredictionClassLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AtLeastTPredictionClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 										} 
 										
-										
+										else {
+											AtLeastTPredictionClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+										}
 									
 									
 									/**************************************************************************************************************/
@@ -3815,12 +3815,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastNPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClassGold2);
 											AtLeastNPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1NPredictionMethodLevelCallersGOLD2].toString()); 
 
-											}else {
-												AtLeastNPredictionMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-										
+										else {
+											AtLeastNPredictionMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
+										}
 										
 									
 									/**************************************************************************************************************/
@@ -3840,12 +3840,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastTPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClassGold2);
 											AtLeastTPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1TPredictionMethodLevelCallersGOLD2].toString()); 
 
-											}else {
-												AtLeastTPredictionMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-										
+										else {
+											AtLeastTPredictionMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
+										}
 									
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -3865,12 +3865,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastNPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClassGold2);
 											AtLeastNPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1NPredictionMethodLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AtLeastNPredictionMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-										
+										else {
+											AtLeastNPredictionMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+										}
 									
 							
 									
@@ -3892,12 +3892,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeastTPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClassGold2);
 											AtLeastTPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1TPredictionMethodLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AtLeastTPredictionMethodLevelCalleesClassGold2HashMap.put(key, null); 
+											}
+											}
+										else {
+											AtLeastTPredictionMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
 
-											}
-											}
-										 
+										}
 										
 									
 									/**************************************************************************************************************/
@@ -3923,12 +3923,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 													AtLeast2NPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionClassLevelCalleesClassGold2);
 													AtLeast2NPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2NPredictionClassLevelCalleesGOLD2].toString()); 
 
-												}else {
-													AtLeast2NPredictionClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 												}
 											} 
-										
+											else {
+												AtLeast2NPredictionClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+											}
 											
 										
 											
@@ -3956,13 +3956,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AtLeast2TPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCalleesClassGold2);
 										AtLeast2TPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCalleesGOLD2].toString()); 
 
-										}else {
-											AtLeast2TPredictionClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 										}
 									} 
 												
-											
+											else {
+												AtLeast2TPredictionClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+											}	
 										
 										
 								
@@ -3985,12 +3985,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												AtLeast2NPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCallersClassGold2);
 												AtLeast2NPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2NPredictionMethodLevelCallersGOLD2].toString()); 
 
-												}else {
-													AtLeast2NPredictionMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 												}
 											} 
-											
+											else {
+												AtLeast2NPredictionMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
+											}
 											
 										
 											/**************************************************************************************************************/
@@ -4011,12 +4011,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
 											AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 
-											}else {
-												AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										} 
-										
+												else {
+													AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
+												}
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
@@ -4035,12 +4035,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AtLeast2TPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
 										AtLeast2TPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionMethodLevelCallersGOLD2].toString()); 
 
-										}else {
-											AtLeast2TPredictionMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 										}
 									} 
-											
+											else {
+												AtLeast2TPredictionMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
+											}
 											
 										
 										
@@ -4077,13 +4077,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AtLeast2NPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCalleesClassGold2);
 										AtLeast2NPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2NPredictionMethodLevelCalleesGOLD2].toString()); 
 
-										}	else {
-											AtLeast2NPredictionMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
 										}
 									} 
 											
-											
+											else {
+												AtLeast2NPredictionMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+											}	
 										
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
@@ -4103,13 +4103,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeast2TPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2].toString()); 
 
 										}
-										else {
-											AtLeast2TPredictionMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
-										}
+										
 										
 									} 
-											
+											else {
+												AtLeast2TPredictionMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+											}	
 										
 										/**************************************************************************************************************/
 										/**************************************************************************************************************/
@@ -4130,12 +4130,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2NPredictionClassLevelCallersGOLD2].toString()); 
 
 										}
-										else {
-											AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
-
-										}
+										
 									} 
-									
+											else {
+												AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
+											}
 										
 								
 										
@@ -4173,9 +4173,6 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCallersClassGold2);
 											AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 
-										}else {
-											AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
-
 										}
 										
 										}
@@ -4183,7 +4180,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											
 											
 											
-											
+											else {
+												AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
+											}
 											
 											
 											
@@ -4208,12 +4208,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllTMethodLevelCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCalleesClassGold2);
 											AllTMethodLevelCalleesClassGold2HashMap.put(key, data[j][AllTMethodLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AllTMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 									}
-									
+									else {
+										AllTMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
+									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4231,11 +4231,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllTMethodLevelCallersClassGold2.UpdateCounters(Result, AllTMethodLevelCallersClassGold2);
 											AllTMethodLevelCallersClassGold2HashMap.put(key, data[j][AllTMethodLevelCallersGOLD2].toString()); 
 
-											}else {
-												AllTMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 										
+									}else {
+										AllTMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4255,12 +4255,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											System.out.println(methodtrace.toString());
 											AllTClassLevelCallersClassGold2HashMap.put(key, data[j][AllTClassLevelCallersGOLD2].toString()); 
 
-											}else {
-												AllTClassLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 											
 											
+											}else {
+												AllTClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
 											}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4281,10 +4281,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllTClassLevelCalleesClassGold2HashMap.put(key, data[j][AllTClassLevelCalleesGOLD2].toString()); 
 
 											
-											}else {
-												AllTClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
+									}else {
+										AllTClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4304,12 +4304,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllNClassLevelCallersClassGold2.UpdateCounters(Result, AllNClassLevelCallersClassGold2);
 											AllNClassLevelCallersClassGold2HashMap.put(key, data[j][AllNClassLevelCallersGOLD2].toString()); 
 
-											}else {
-												AllNClassLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
 											
 											
+									}else {
+										AllNClassLevelCallersClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4329,11 +4329,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllNClassLevelCalleesClassGold2.UpdateCounters(Result, AllNClassLevelCalleesClassGold2);
 											AllNClassLevelCalleesClassGold2HashMap.put(key, data[j][AllNClassLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AllNClassLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 										
+									}else {
+										AllNClassLevelCalleesClassGold2HashMap.put(key, "null"); 
+
 									}
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4353,10 +4353,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllNMethodLevelCallersClassGold2.UpdateCounters(Result, AllNMethodLevelCallersClassGold2);
 											AllNMethodLevelCallersClassGold2HashMap.put(key, data[j][AllNMethodLevelCallersGOLD2].toString()); 
 
-											}else {
-												AllNMethodLevelCallersClassGold2HashMap.put(key, null); 
-
 											}
+									}else {
+										AllNMethodLevelCallersClassGold2HashMap.put(key, "null"); 
+
 									}
 									
 									/**************************************************************************************************************/
@@ -4377,12 +4377,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												AllNMethodLevelCalleesClassGold2.UpdateCounters(Result, AllNMethodLevelCalleesClassGold2);
 												AllNMethodLevelCalleesClassGold2HashMap.put(key, data[j][AllNMethodLevelCalleesGOLD2].toString()); 
 
-											}else {
-												AllNMethodLevelCalleesClassGold2HashMap.put(key, null); 
-
 											}
 										
 											
+									}else {
+										AllNMethodLevelCalleesClassGold2HashMap.put(key, "null"); 
+
 									}
 								//}
 										
@@ -4407,12 +4407,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllTMethodLevelCalleesClassAtLeast2TGold2.UpdateCounters(Result, AllTMethodLevelCalleesClassAtLeast2TGold2);
 										AllTMethodLevelCalleesClassAtLeast2TGold2HashMap.put(key, data[j][AllTMethodLevelCalleesAtLeast2TGOLD2].toString()); 
 
-										}else {
-											AllTMethodLevelCalleesClassAtLeast2TGold2HashMap.put(key, null); 
-
 										}
 								}
-								
+								else {
+									AllTMethodLevelCalleesClassAtLeast2TGold2HashMap.put(key, "null"); 
+
+								}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4430,11 +4430,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllTMethodLevelCallersClassAtLeast2TGold2.UpdateCounters(Result, AllTMethodLevelCallersClassAtLeast2TGold2);
 										AllTMethodLevelCallersClassAtLeast2TGold2HashMap.put(key, data[j][AllTMethodLevelCallersAtLeast2TGOLD2].toString()); 
 
-										}else {
-											AllTMethodLevelCallersClassAtLeast2TGold2HashMap.put(key, null); 
-
 										}
 									
+								}else {
+									AllTMethodLevelCallersClassAtLeast2TGold2HashMap.put(key, "null"); 
+
 								}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4454,12 +4454,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										System.out.println(methodtrace.toString());
 										AllTClassLevelCallersClassAtLeast2TGold2HashMap.put(key, data[j][AllTClassLevelCallersAtLeast2TGOLD2].toString()); 
 
-										}else {
-											AllTClassLevelCallersClassAtLeast2TGold2HashMap.put(key, null); 
-
 										}
 										
 										
+										}else {
+											AllTClassLevelCallersClassAtLeast2TGold2HashMap.put(key, "null"); 
+
 										}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4480,10 +4480,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllTClassLevelCalleesClassAtLeast2TGold2HashMap.put(key, data[j][AllTClassLevelCalleesAtLeast2TGOLD2].toString()); 
 
 										
-										}else {
-											AllTClassLevelCalleesClassAtLeast2TGold2HashMap.put(key, null); 
-
 										}
+								}else {
+									AllTClassLevelCalleesClassAtLeast2TGold2HashMap.put(key, "null"); 
+
 								}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4503,12 +4503,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllNClassLevelCallersClassAtLeast2NGold2.UpdateCounters(Result, AllNClassLevelCallersClassAtLeast2NGold2);
 										AllNClassLevelCallersClassAtLeast2NGold2HashMap.put(key, data[j][AllNClassLevelCallersAtLeast2NGOLD2].toString()); 
 
-										}else {
-											AllNClassLevelCallersClassAtLeast2NGold2HashMap.put(key, null); 
-
 										}
 										
 										
+								}else {
+									AllNClassLevelCallersClassAtLeast2NGold2HashMap.put(key, "null"); 
+
 								}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4528,11 +4528,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllNClassLevelCalleesClassAtLeast2NGold2.UpdateCounters(Result, AllNClassLevelCalleesClassAtLeast2NGold2);
 										AllNClassLevelCalleesClassAtLeast2NGold2HashMap.put(key, data[j][AllNClassLevelCalleesAtLeast2NGOLD2].toString()); 
 
-										}else {
-											AllNClassLevelCalleesClassAtLeast2NGold2HashMap.put(key, null); 
-
 										}
 									
+								}else {
+									AllNClassLevelCalleesClassAtLeast2NGold2HashMap.put(key, "null"); 
+
 								}
 								/**************************************************************************************************************/
 								/**************************************************************************************************************/
@@ -4552,10 +4552,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										AllNMethodLevelCallersClassAtLeast2NGold2.UpdateCounters(Result, AllNMethodLevelCallersClassAtLeast2NGold2);
 										AllNMethodLevelCallersClassAtLeast2NGold2HashMap.put(key, data[j][AllNMethodLevelCallersAtLeast2NGOLD2].toString()); 
 
-										}else {
-											AllNMethodLevelCallersClassAtLeast2NGold2HashMap.put(key, null); 
-
 										}
+								}else {
+									AllNMethodLevelCallersClassAtLeast2NGold2HashMap.put(key, "null"); 
+
 								}
 								
 								/**************************************************************************************************************/
@@ -4576,15 +4576,15 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											AllNMethodLevelCalleesClassAtLeast2NGold2.UpdateCounters(Result, AllNMethodLevelCalleesClassAtLeast2NGold2);
 											AllNMethodLevelCalleesClassAtLeast2NGold2HashMap.put(key, data[j][AllNMethodLevelCalleesAtLeast2NGOLD2].toString()); 
 
-										}else {
-											AllNMethodLevelCalleesClassAtLeast2NGold2HashMap.put(key, null); 
-
 										}
 									
 										
 								}
 							//}
-									
+									else {
+										AllNMethodLevelCalleesClassAtLeast2NGold2HashMap.put(key, "null"); 
+
+									}	
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
 									/**************************************************************************************************************/
@@ -4607,12 +4607,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 													AllNMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllNMethodLevelCallersCalleesClassGold2);
 													AllNMethodLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllNMethodLevelCallersCalleesGOLD2].toString()); 
 
-												}else {
-													AllNMethodLevelCallersCalleesClassGold2HashMap.put(key, null); 
-
 												}
 											
 												
+										}else {
+											AllNMethodLevelCallersCalleesClassGold2HashMap.put(key, "null"); 
+
 										}
 									//}
 											
@@ -4635,12 +4635,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 														AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
 														AllTMethodLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllTMethodLevelCallersCalleesGOLD2].toString()); 
 
-													}else {
-														AllTMethodLevelCallersCalleesClassGold2HashMap.put(key, null); 
-
 													}
 												
 													
+											}else {
+												AllTMethodLevelCallersCalleesClassGold2HashMap.put(key, "null"); 
+
 											}
 												
 												/**************************************************************************************************************/
@@ -4661,13 +4661,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 															AllNClassLevelCallersCalleesClassGold2.UpdateCounters(Result, AllNClassLevelCallersCalleesClassGold2);
 															AllNClassLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllNClassLevelCallersCalleesGOLD2].toString()); 
 
-														}else {
-															AllNClassLevelCallersCalleesClassGold2HashMap.put(key, null); 
-
 														}
-													
 														
+												}else {
+													AllNClassLevelCallersCalleesClassGold2HashMap.put(key, "null"); 
+
 												}
+											
 											//}
 													
 													
@@ -4689,12 +4689,12 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 																AllTClassLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTClassLevelCallersCalleesClassGold2);
 																AllTClassLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllTClassLevelCallersCalleesGOLD2].toString()); 
 
-															}else {
-																AllTClassLevelCallersCalleesClassGold2HashMap.put(key, null); 
-
 															}
 														
 															
+													}else {
+														AllTClassLevelCallersCalleesClassGold2HashMap.put(key, "null"); 
+
 													}
 									
 														
@@ -5055,7 +5055,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, data[j][CLASSTRACEMethodLevelPureGold2].toString()); 
 
 		}else {
-			PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, null); 
+			PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
 
 		}
 		
@@ -5066,7 +5066,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, data[j][CLASSTRACEMethodLevelMixedGold2].toString()); 
 	
 		}else {
-			PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, null); 
+			PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
 
 		}
 		}
@@ -5103,7 +5103,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2].toString()); 
 	
 	}else {
-		AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, null); 
+		AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
 
 	}
 		
@@ -5113,7 +5113,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2].toString()); 
 	
 		}else {
-			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, null); 
+			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
 
 		}
 	}
@@ -5286,7 +5286,7 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 	PredictionCLASSTRACEClassLevelPureGold2.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold2);
 	PredictionCLASSTRACEClassLevelPureGold2HashMap.put(key, data[j][CLASSTRACEClassLevelPureGold2].toString()); 
 	}else {
-		PredictionCLASSTRACEClassLevelPureGold2HashMap.put(key, null); 
+		PredictionCLASSTRACEClassLevelPureGold2HashMap.put(key, "null"); 
 
 	}
 	
@@ -5297,7 +5297,7 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 		PredictionCLASSTRACEClassLevelMixedGold2HashMap.put(key, data[j][CLASSTRACEClassLevelMixedGold2].toString()); 
 	
 	}else {
-		PredictionCLASSTRACEClassLevelMixedGold2HashMap.put(key, null); 
+		PredictionCLASSTRACEClassLevelMixedGold2HashMap.put(key, "null"); 
 
 	}
 	}
@@ -5334,7 +5334,7 @@ if(methodtrace.getGold2()!=null ) {
 	PredictionCLASSNOTRACEClassLevelPureGold2HashMap.put(key, data[j][CLASSNOTRACEClassLevelPureGold2].toString()); 
 	
 }else {
-	PredictionCLASSNOTRACEClassLevelPureGold2HashMap.put(key, null); 
+	PredictionCLASSNOTRACEClassLevelPureGold2HashMap.put(key, "null"); 
 
 }
 	
@@ -5344,7 +5344,7 @@ if(methodtrace.getGold2()!=null ) {
 		PredictionCLASSNOTRACEClassLevelMixedGold2HashMap.put(key, data[j][CLASSNOTRACEClassLevelMixedGold2].toString()); 
 	
 	}else {
-		PredictionCLASSNOTRACEClassLevelMixedGold2HashMap.put(key, null); 
+		PredictionCLASSNOTRACEClassLevelMixedGold2HashMap.put(key, "null"); 
 
 	}
 }
@@ -5516,7 +5516,7 @@ entered=true;
 PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, "null"); 
 
 }
 
@@ -5534,7 +5534,7 @@ PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS.UpdateCounters(Result, Predicti
 PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key, "null"); 
 
 }
 
@@ -5544,7 +5544,7 @@ PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS.UpdateCounters(Result, Predict
 PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, "null"); 
 
 }
 }
@@ -5672,7 +5672,7 @@ PredictionCLASSTRACEClassLevelPureGold2ACROSS.UpdateCounters(Result, PredictionC
 PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSTRACEClassLevelPureGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key, "null"); 
 
 }
 
@@ -5683,7 +5683,7 @@ PredictionCLASSTRACEClassLevelMixedGold2ACROSS.UpdateCounters(Result, Prediction
 PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSTRACEClassLevelMixedGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key, "null"); 
 
 }
 }
@@ -5720,7 +5720,7 @@ PredictionCLASSNOTRACEClassLevelPureGold2ACROSS.UpdateCounters(Result, Predictio
 PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEClassLevelPureGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key, "null"); 
 
 }
 
@@ -5730,7 +5730,7 @@ PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS.UpdateCounters(Result, Predicti
 PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS].toString()); 
 
 }else {
-	PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS.put(key, null); 
+	PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS.put(key, "null"); 
 
 }
 }
@@ -6175,32 +6175,73 @@ data[j][CLASSTRACEClassLevelPureGold2ACROSS]+","+data[j][CLASSTRACEClassLevelMix
 		}
 		 
 		LinkedHashMap<Integer, LinkedHashMap<String, String>> OrderedNameHashMap = new LinkedHashMap<Integer, LinkedHashMap<String, String>>(); 
-
+		int myval=1000; 
+		int ITERATION=0; 
+		while(myval>20) {
 		
-		SortedFitnesses = BubbleSort(FitnessHashMap, NameHashMap, OrderedNameHashMap); 
-		System.out.println(SortedFitnesses.size());
-		System.out.println(OrderedNameHashMap.size());
-		int NewSize=OrderedNameHashMap.size()/2; 
-		int k=0; 
-		Iterator<Integer> it = OrderedNameHashMap.keySet().iterator();
-		Iterator<Integer> itFitness = SortedFitnesses.keySet().iterator();
-		while (it.hasNext()) {
-			 if (k<OrderedNameHashMap.size()/2) {
-			    	k++; 
-			    	break; 
-			    }
-			      
-			while (it.hasNext()) {
-			    it.next();
-			    it.remove();
-			    itFitness.next(); 
-			    itFitness.remove();
-			}
-		}
-		   
-		System.out.println(SortedFitnesses.size());
-		System.out.println(OrderedNameHashMap.size());
+		System.out.println("ITERATION  "+ITERATION);
+//		 OrderedNameHashMap = new LinkedHashMap<Integer, LinkedHashMap<String, String>>(); 
+//		SortedFitnesses = BubbleSort(FitnessHashMap, NameHashMap, OrderedNameHashMap); 
+		System.out.println("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
+		  for (Integer orderedkey : OrderedNameHashMap.keySet()) {
+			  System.out.println(orderedkey+ "  "+OrderedNameHashMap.get(orderedkey));
+		    }
+		
 
+		SelectFittestHalf(OrderedNameHashMap, SortedFitnesses); 
+		   
+		
+		TestPurposes(); 
+		 
+		
+		DoublePopulationCrossover(OrderedNameHashMap); 
+		System.out.println("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER2");
+		  for (Integer orderedkey : OrderedNameHashMap.keySet()) {
+			  System.out.println(orderedkey+ "  "+OrderedNameHashMap.get(orderedkey));
+		    }
+		
+		System.out.println("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
+
+		  for (Integer key : SortedFitnesses.keySet()) {
+			  System.out.println(key+ "  "+SortedFitnesses.get(key));
+		    }
+			System.out.println("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
+		LinkedHashMap<Integer, Integer> NewFitnesses = new LinkedHashMap<Integer, Integer>(); 
+		LinkedHashMap<Integer, LinkedHashMap<String, String>> NewOrderedHashMap = new LinkedHashMap<Integer, LinkedHashMap<String, String>>(); 
+		ComputeFitnesses(OrderedNameHashMap, NewFitnesses, NewOrderedHashMap); 
+		FitnessHashMap=NewFitnesses; 
+		NameHashMap=NewOrderedHashMap;
+		OrderedNameHashMap = new LinkedHashMap<Integer, LinkedHashMap<String, String>>(); 
+		  SortedFitnesses = BubbleSort(FitnessHashMap, NameHashMap, OrderedNameHashMap); 
+		Collection<Integer> mykeys = SortedFitnesses.values();
+		Integer[] arr = new Integer[mykeys.size()]; 
+		 arr = mykeys.toArray(arr); 
+		 myval=arr[0]; 
+		
+		ITERATION++; 
+		System.out.println("ITERATIOOOOOOON "+ITERATION +" MYVAL "+ myval);
+		}
+		 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		System.out.println(SortedFitnesses.size());
+//		System.out.println(OrderedNameHashMap.size());
+for(Integer name: OrderedNameHashMap.keySet()){
+	    System.out.println("name hashmap "+name);
+	    System.out.println("linked list size "+  OrderedNameHashMap.get(name).size());
+	} 
+
+for(Integer name: SortedFitnesses.keySet()){
+    System.out.println("FITNESS "+ name);
+} 
 		System.out.println("**************START22**************");		
 		
 //		for ( Integer  HashMapName : SortedFitnesses.keySet()) { 
@@ -6511,7 +6552,6 @@ bwGold2.close();
 		table.getColumnModel().getColumn(33).setPreferredWidth(200);
 		table.getColumnModel().getColumn(34).setPreferredWidth(200);
 		table.getColumnModel().getColumn(35).setPreferredWidth(200);
-		table.getColumnModel().getColumn(36).setPreferredWidth(200);
 		table.getColumnModel().getColumn(37).setPreferredWidth(200);
 		table.getColumnModel().getColumn(38).setPreferredWidth(200);
 		table.getColumnModel().getColumn(39).setPreferredWidth(200);
@@ -6523,11 +6563,11 @@ bwGold2.close();
 		table.getColumnModel().getColumn(45).setPreferredWidth(150);
 		table.getColumnModel().getColumn(46).setPreferredWidth(150);
 		table.getColumnModel().getColumn(47).setPreferredWidth(150);*/
-		table.getColumnModel().getColumn(48).setPreferredWidth(150);
-		table.getColumnModel().getColumn(49).setPreferredWidth(150);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-		table.setRowSelectionAllowed(true);
+//		table.getColumnModel().getColumn(48).setPreferredWidth(150);
+//		table.getColumnModel().getColumn(49).setPreferredWidth(150);
+//		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//
+//		table.setRowSelectionAllowed(true);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		getContentPane().add(scrollPane);
@@ -6553,6 +6593,300 @@ bwGold2.close();
 
 
 
+	public void ComputeFitnesses(LinkedHashMap<Integer, LinkedHashMap<String, String>> orderedNameHashMap,
+			LinkedHashMap<Integer, Integer> newFitnesses, LinkedHashMap<Integer, LinkedHashMap<String, String>> newOrderedHashMap) {
+		// TODO Auto-generated method stub
+		int OwnerValFitness=0; 
+		int MajorityClassLevelCallersClassGold2ValFitness=0;
+		int MajorityClassLevelCalleesClassGold2ValFitness=0;
+		int MajorityMethodLevelCallersClassGold2ValFitness=0;
+		int MajorityMethodLevelCalleesClassGold2ValFitness=0;
+		int AtLeastNPredictionClassLevelCallersClassGold2ValFitness=0;
+		int AtLeastNPredictionClassLevelCalleesClassGold2ValFitness=0;
+		int AtLeastNPredictionMethodLevelCallersClassGold2ValFitness= 0;
+		int AtLeastNPredictionMethodLevelCalleesClassGold2ValFitness=0;
+		int AtLeastTPredictionClassLevelCallersClassGold2ValFitness=0;
+		int AtLeastTPredictionClassLevelCalleesClassGold2ValFitness=0;
+		for(String key: PredictionStandardHashMap.keySet()) {
+			
+			String OwnerVal = OwnerClassPredictionClassGold2HashMap.get(key);
+			String MajorityClassLevelCallersClassGold2Val=MajorityClassLevelCallersClassGold2HashMap.get(key);
+			String MajorityClassLevelCalleesClassGold2Val=MajorityClassLevelCalleesClassGold2HashMap.get(key);
+			String MajorityMethodLevelCallersClassGold2Val=MajorityMethodLevelCallersClassGold2HashMap.get(key);
+			String MajorityMethodLevelCalleesClassGold2Val=MajorityMethodLevelCalleesClassGold2HashMap.get(key);
+			String AtLeastNPredictionClassLevelCallersClassGold2Val=AtLeastNPredictionClassLevelCallersClassGold2HashMap.get(key);
+			String AtLeastNPredictionClassLevelCalleesClassGold2Val=AtLeastNPredictionClassLevelCalleesClassGold2HashMap.get(key);
+			String AtLeastNPredictionMethodLevelCallersClassGold2Val= AtLeastNPredictionMethodLevelCallersClassGold2HashMap.get(key);
+			String AtLeastNPredictionMethodLevelCalleesClassGold2Val=AtLeastNPredictionMethodLevelCalleesClassGold2HashMap.get(key);
+			String AtLeastTPredictionClassLevelCallersClassGold2Val=AtLeastTPredictionClassLevelCallersClassGold2HashMap.get(key);
+			String AtLeastTPredictionClassLevelCalleesClassGold2Val=AtLeastTPredictionClassLevelCalleesClassGold2HashMap.get(key);
+  
+			String StandardVal= PredictionStandardHashMap.get(key); 
+		if(OwnerVal!=null)
+			if(!OwnerVal.equals(StandardVal)) {
+			
+				OwnerValFitness++; 
+			
+				
+				newFitnesses.put(0,OwnerValFitness ); 
+				newOrderedHashMap.put(0,OwnerClassPredictionClassGold2HashMap ); 
+
+			}
+		if(MajorityClassLevelCallersClassGold2Val!=null)
+			if(!MajorityClassLevelCallersClassGold2Val.equals(StandardVal)) {
+				MajorityClassLevelCallersClassGold2ValFitness++; 
+				
+				newFitnesses.put(1,MajorityClassLevelCallersClassGold2ValFitness ); 
+				newOrderedHashMap.put(1,MajorityClassLevelCallersClassGold2HashMap ); 
+			}
+		
+		
+		
+		
+		
+		
+		
+		if(MajorityClassLevelCalleesClassGold2Val!=null)
+			if(!MajorityClassLevelCalleesClassGold2Val.equals(StandardVal)) {
+				MajorityClassLevelCalleesClassGold2ValFitness++; 
+				
+				
+				newFitnesses.put(2,MajorityClassLevelCalleesClassGold2ValFitness ); 
+				newOrderedHashMap.put(2,MajorityClassLevelCalleesClassGold2HashMap ); 
+			}
+		if(MajorityMethodLevelCallersClassGold2Val!=null)
+			if(!MajorityMethodLevelCallersClassGold2Val.equals(StandardVal)) {
+				MajorityMethodLevelCallersClassGold2ValFitness++; 	
+			
+				
+				
+				newFitnesses.put(3,MajorityMethodLevelCallersClassGold2ValFitness ); 
+				newOrderedHashMap.put(3,MajorityMethodLevelCallersClassGold2HashMap ); 	
+			
+			
+			}
+		if(MajorityMethodLevelCalleesClassGold2Val!=null)
+			if(!MajorityMethodLevelCalleesClassGold2Val.equals(StandardVal)) {
+				MajorityMethodLevelCalleesClassGold2ValFitness++; 
+				
+				
+				newFitnesses.put(4,MajorityMethodLevelCalleesClassGold2ValFitness ); 
+				newOrderedHashMap.put(4,MajorityMethodLevelCalleesClassGold2HashMap ); 	
+			}
+		if(AtLeastNPredictionClassLevelCallersClassGold2Val!=null)
+			if(!AtLeastNPredictionClassLevelCallersClassGold2Val.equals(StandardVal)) {
+				AtLeastNPredictionClassLevelCallersClassGold2ValFitness++; 
+				
+				
+				newFitnesses.put(5,AtLeastNPredictionClassLevelCallersClassGold2ValFitness ); 
+				newOrderedHashMap.put(5,AtLeastNPredictionClassLevelCallersClassGold2HashMap ); 	
+			}
+//			System.out.println(AtLeastNPredictionClassLevelCalleesClassGold2Val);
+			if(AtLeastNPredictionClassLevelCalleesClassGold2Val!=null)
+			if(!AtLeastNPredictionClassLevelCalleesClassGold2Val.equals(StandardVal)) {
+				AtLeastNPredictionClassLevelCalleesClassGold2ValFitness++; 
+				
+			
+				newFitnesses.put(6,AtLeastNPredictionClassLevelCalleesClassGold2ValFitness ); 
+				newOrderedHashMap.put(6,AtLeastNPredictionClassLevelCalleesClassGold2HashMap ); 	
+			}
+			if(AtLeastNPredictionMethodLevelCallersClassGold2Val!=null)
+			if(!AtLeastNPredictionMethodLevelCallersClassGold2Val.equals(StandardVal)) {
+				AtLeastNPredictionMethodLevelCallersClassGold2ValFitness++; 
+			
+				
+				newFitnesses.put(7,AtLeastNPredictionMethodLevelCallersClassGold2ValFitness ); 
+				newOrderedHashMap.put(7,AtLeastNPredictionMethodLevelCallersClassGold2HashMap ); 	
+				}
+			if(AtLeastNPredictionMethodLevelCalleesClassGold2Val!=null)
+			if(!AtLeastNPredictionMethodLevelCalleesClassGold2Val.equals(StandardVal)) {
+				AtLeastNPredictionMethodLevelCalleesClassGold2ValFitness++; 
+				
+			
+				newFitnesses.put(8,AtLeastNPredictionMethodLevelCalleesClassGold2ValFitness ); 
+				newOrderedHashMap.put(8,AtLeastNPredictionMethodLevelCalleesClassGold2HashMap ); 	
+			
+			}
+			if(AtLeastTPredictionClassLevelCallersClassGold2Val!=null)
+			if(!AtLeastTPredictionClassLevelCallersClassGold2Val.equals(StandardVal)) {
+				AtLeastTPredictionClassLevelCallersClassGold2ValFitness++; 
+			
+				
+				newFitnesses.put(9,AtLeastTPredictionClassLevelCallersClassGold2ValFitness ); 
+				newOrderedHashMap.put(9,AtLeastTPredictionClassLevelCallersClassGold2HashMap ); 	
+			}
+			if(AtLeastTPredictionClassLevelCalleesClassGold2Val!=null)
+			if(!AtLeastTPredictionClassLevelCalleesClassGold2Val.equals(StandardVal)) {
+				AtLeastTPredictionClassLevelCalleesClassGold2ValFitness++; 
+			
+			
+				newFitnesses.put(10,AtLeastTPredictionClassLevelCalleesClassGold2ValFitness ); 
+				newOrderedHashMap.put(10,AtLeastTPredictionClassLevelCalleesClassGold2HashMap ); 	
+			}
+	        
+		}
+	}
+
+	public void TestPurposes() {
+		// TODO Auto-generated method stub
+		LinkedHashMap<Integer, LinkedHashMap<String, String>> linkedhashmap = new LinkedHashMap<Integer, LinkedHashMap<String, String>>(); 
+		LinkedHashMap<String, String> mylist1 = new LinkedHashMap<String, String>(); 
+		mylist1.put("0", "1"); 
+		mylist1.put("2", "8"); 
+		mylist1.put("4", "7"); 
+		mylist1.put("3", "9"); 
+		
+		LinkedHashMap<String, String> mylist2 = new LinkedHashMap<String, String>(); 
+		mylist2.put("hey", "hi"); 
+		mylist2.put("ll", "kk"); 
+		mylist2.put("pp", "sdjh"); 
+		mylist2.put("adsj", "asdjhasd"); 
+		LinkedHashMap<String, String> mylist3 = new LinkedHashMap<String, String>(); 
+		mylist3.put("}}}", "dhjhmf"); 
+		mylist3.put("fsdjhsdfjsdfjkl", "8"); 
+		mylist3.put("sfsdf", "7"); 
+		mylist3.put("3sdfs", "9"); 
+		LinkedHashMap<String, String> mylist4 = new LinkedHashMap<String, String>(); 
+		mylist4.put("-------", "dhjhmf"); 
+		mylist4.put("||||", "8"); 
+		mylist4.put("???", "7"); 
+		mylist4.put("rrrrrrrr", "9"); 
+		linkedhashmap.put(0, mylist1); 
+		linkedhashmap.put(1, mylist2); 
+		linkedhashmap.put(2, mylist3); 
+		linkedhashmap.put(3, mylist4); 
+	}
+
+	public void DoublePopulationCrossover(LinkedHashMap<Integer, LinkedHashMap<String, String>> linkedhashmap) {
+		// TODO Auto-generated method stub
+		int InitialPopSize = linkedhashmap.size(); 
+		Set<Integer> keys = linkedhashmap.keySet(); 
+		Integer[] myarr= new Integer[keys.size()]; 
+		 myarr = keys.toArray(myarr); 
+for(int i=0; i<InitialPopSize; i+=2) {
+	LinkedHashMap<String, String> DuplicatedHashMap1 = new LinkedHashMap<String, String>(); 
+	LinkedHashMap<String, String> DuplicatedHashMap2 = new LinkedHashMap<String, String>(); 
+//	System.out.println("myarr[i] "+myarr[i]);
+//	System.out.println("myarr[i+1] "+myarr[i+1]);
+
+	LinkedHashMap<String, String> HashMap1 = linkedhashmap.get(myarr[i]); 
+	LinkedHashMap<String, String> HashMap2 = linkedhashmap.get(myarr[i+1]); 
+	//System.out.println(HashMap1);
+	//System.out.println(HashMap2);
+	int size1=HashMap1.size()/2; 
+	int size2=HashMap2.size()/2; 
+	int   k = 0; 
+	   Iterator<Entry<String, String>> it = HashMap1.entrySet().iterator();
+	   Iterator<Entry<String, String>> it2 = HashMap2.entrySet().iterator();
+	   Iterator<Entry<String, String>> itSecondChromosome = HashMap1.entrySet().iterator();
+	   Iterator<Entry<String, String>> itSecondChromosome2 = HashMap2.entrySet().iterator();
+			while(k<size1 && it.hasNext()) {
+				Map.Entry pair = (Map.Entry)it.next();
+				DuplicatedHashMap1.put(pair.getKey().toString(), pair.getValue().toString()); 
+				k++; 
+			}
+			k=0; 
+			
+			
+			while(k<size1 && it2.hasNext()) {
+				Map.Entry pair = (Map.Entry)it2.next();
+				k++; 
+			}
+			while(k<HashMap2.size() && it2.hasNext()) {
+				Map.Entry pair = (Map.Entry)it2.next();
+				DuplicatedHashMap1.put(pair.getKey().toString(), pair.getValue().toString()); 
+				k++; 
+			}
+			
+			
+			//System.out.println(DuplicatedHashMap1);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			k=0; 
+			while(k<size2 && itSecondChromosome2.hasNext()) {
+				Map.Entry pair = (Map.Entry)itSecondChromosome2.next();
+				DuplicatedHashMap2.put(pair.getKey().toString(), pair.getValue().toString()); 
+				k++; 
+			}
+			k=0; 
+			
+			
+			while(k<size2 && itSecondChromosome.hasNext()) {
+				Map.Entry pair = (Map.Entry)itSecondChromosome.next();
+				k++; 
+			}
+			while(k<HashMap2.size() && itSecondChromosome.hasNext()) {
+				Map.Entry pair = (Map.Entry)itSecondChromosome.next();
+				DuplicatedHashMap2.put(pair.getKey().toString(), pair.getValue().toString()); 
+				k++; 
+			}
+			
+			
+			
+			
+		
+			
+			//System.out.println(DuplicatedHashMap2);
+			int index =linkedhashmap.size(); 
+			linkedhashmap.put(index, DuplicatedHashMap1); 
+			linkedhashmap.put(index+1, DuplicatedHashMap2); 
+}
+	}
+
+	public void SelectFittestHalf(LinkedHashMap<Integer, LinkedHashMap<String, String>> orderedNameHashMap,
+			LinkedHashMap<Integer, Integer> sortedFitnesses) {
+		// TODO Auto-generated method stub
+		int NewSize=orderedNameHashMap.size()/2; 
+		int k=0; 
+		Iterator<Integer> it = orderedNameHashMap.keySet().iterator();
+		Iterator<Integer> itFitness = sortedFitnesses.keySet().iterator();
+//		  for (Integer orderedkey : orderedNameHashMap.keySet()) {
+//			  System.out.println(orderedkey+ "  "+orderedNameHashMap.get(orderedkey));
+//		    }
+//		  for (Integer key : sortedFitnesses.keySet()) {
+//			  System.out.println(key+ "  "+sortedFitnesses.get(key));
+//		    }
+//		  System.out.println("SDFSDFSDFSDFSDFSDFSDFSDFSDFSDFSDFSDFSDF");
+boolean entered=false; 
+	int ITERATION=0; 
+		while (it.hasNext()) {
+			 if (k<NewSize) {
+			    	k++; 
+			    	it.next();
+			    	itFitness.next(); 
+			    }
+			      
+			 else{
+			
+				 entered=true; 
+				 it.remove();
+				   
+				  itFitness.remove();
+				it.next();
+				
+			    itFitness.next(); 
+//			    for (Integer orderedkey : orderedNameHashMap.keySet()) {
+//					  System.out.println(orderedkey+ "  "+orderedNameHashMap.get(orderedkey));
+//				    }
+//			    for (Integer key : sortedFitnesses.keySet()) {
+//					  System.out.println(key+ "  "+sortedFitnesses.get(key));
+//				    }
+			}
+//			 System.out.println("ITERATION "+ITERATION);
+			 ITERATION++; 
+		}
+	}
+
 	private LinkedHashMap<Integer, Integer> BubbleSort(HashMap<Integer, Integer> fitnesshashmaps,
 			HashMap<Integer, LinkedHashMap<String, String>> correspondingHashMapsList, LinkedHashMap<Integer, LinkedHashMap<String, String>> orderedNameHashMap) {
 		// TODO Auto-generated method stub
@@ -6573,7 +6907,7 @@ bwGold2.close();
 		 
 		 for(int i=0; i<fitnessIntList.size();i++ )
 	        {
-	     //       System.out.println(fitnessIntList.get(i));
+//	            System.out.println(fitnessIntList.get(i));
 	            mymappingOdered.put(mymapping.get(fitnessIntList.get(i)), fitnessIntList.get(i)); 
 				 orderedNameHashMap.put(mymapping.get(fitnessIntList.get(i)), correspondingHashMapsList.get(mymapping.get(fitnessIntList.get(i)))); 
 
@@ -6590,41 +6924,7 @@ bwGold2.close();
 	return mymappingOdered; 
 	}
 
-	private LinkedHashMap<Integer, Integer>  BubbleSort(
-			LinkedHashMap<Integer, Integer> fitnessHashMap,
-			LinkedHashMap<String, LinkedHashMap<String, String>> nameHashMap) {
-		// TODO Auto-generated method stub
-		LinkedHashMap<String, LinkedHashMap<String, String>> fitnessListFinal = new LinkedHashMap<String, LinkedHashMap<String, String>>(); 
-		 int n = fitnessHashMap.size(); 
-		 boolean swapped=false; 
-		 LinkedHashMap<Integer, Integer > mymapping = new  LinkedHashMap<Integer, Integer >(); 
-		 LinkedHashMap<Integer, Integer > mymappingOdered = new  LinkedHashMap<Integer, Integer >(); 
 
-		 List<Integer> valueList = new ArrayList<Integer>(fitnessHashMap.keySet());
-		 List<Integer> fitnessIntList = new ArrayList<Integer>(); 
-		 for(Integer myvalint: valueList) {
-			 fitnessIntList.add(fitnessHashMap.get(myvalint)); 
-			 mymapping.put(fitnessHashMap.get(myvalint), myvalint); 
-		 }
-
-		 Collections.sort(fitnessIntList);
-		 
-		 for(int i=0; i<fitnessIntList.size();i++ )
-	        {
-	     //       System.out.println(fitnessIntList.get(i));
-	            mymappingOdered.put(mymapping.get(fitnessIntList.get(i)), fitnessIntList.get(i)); 
-	        }
-		 
-		 
-		 
-		 for(Integer key: mymappingOdered.keySet() )
-	        {
-	     //       System.out.println(mymappingOdered.get(key)+"    "+key );
-	            
-	        }
-	
-	return mymappingOdered; 
-	}
 
 	private LinkedHashMap<String, LinkedHashMap<String, String>> BubbleSort(LinkedHashMap<HashMapValue, LinkedHashMap<String, String>> fitnessList) {
 		// TODO Auto-generated method stub
