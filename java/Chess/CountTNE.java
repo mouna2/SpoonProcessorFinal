@@ -1,9 +1,9 @@
 package Chess;
 
 public class CountTNE {
-		int CountT; 
-		int CountN; 
-		int CountE;
+		public int CountT; 
+		public int CountN; 
+		public int CountE;
 		public int getCountT() {
 			return CountT;
 		}
@@ -24,6 +24,10 @@ public class CountTNE {
 		}
 		public CountTNE() {
 			super();
+		}
+		@Override
+		public String toString() {
+			return "CountTNE [CountT=" + CountT + ", CountN=" + CountN + ", CountE=" + CountE + "]";
 		} 
 		
 		

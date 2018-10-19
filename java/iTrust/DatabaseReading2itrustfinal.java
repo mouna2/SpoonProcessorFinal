@@ -23,14 +23,17 @@ import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
+import mypackage.Children2;
 import mypackage.ClassDetails2;
 import mypackage.ClassField2;
 import mypackage.ClassTrace2;
+import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.SuperClass2;
 import spoon.Launcher;
@@ -51,12 +54,63 @@ public class DatabaseReading2itrustfinal {
 	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
+	public static HashMap<String, List<Parameter2>>  ParameterhashMap=null; 
+	public static HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINAL=null; 
+	public static HashMap<String, List<Children2>> childrenHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
-	static HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
+	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	/** The name of the MySQL account to use (or empty for anonymous) */
+	
+	
+	
+	
 	private final String userName = "root";
 
 	
+
+	public static HashMap<Integer, String> getClassesHashMap() {
+		return classesHashMap;
+	}
+
+	public static void setClassesHashMap(HashMap<Integer, String> classesHashMap) {
+		DatabaseReading2itrustfinal.classesHashMap = classesHashMap;
+	}
+
+	public static List<Interface2> getInterfaces2() {
+		return interfaces2;
+	}
+
+	public static void setInterfaces2(List<Interface2> interfaces2) {
+		DatabaseReading2itrustfinal.interfaces2 = interfaces2;
+	}
+
+	public static HashMap<String, List<Parameter2>> getParameterhashMap() {
+		return ParameterhashMap;
+	}
+
+	public static void setParameterhashMap(HashMap<String, List<Parameter2>> parameterhashMap) {
+		ParameterhashMap = parameterhashMap;
+	}
+
+	public static HashMap<String, List<Implementation2>> getINTERFACEHASHMAPFINAL() {
+		return INTERFACEHASHMAPFINAL;
+	}
+
+	public static void setINTERFACEHASHMAPFINAL(HashMap<String, List<Implementation2>> iNTERFACEHASHMAPFINAL) {
+		INTERFACEHASHMAPFINAL = iNTERFACEHASHMAPFINAL;
+	}
+
+	public static HashMap<String, List<Children2>> getChildrenHashMap() {
+		return childrenHashMap;
+	}
+
+	public static void setChildrenHashMap(HashMap<String, List<Children2>> childrenHashMap) {
+		DatabaseReading2itrustfinal.childrenHashMap = childrenHashMap;
+	}
+
+	public static void setMethodtracehashmap(LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap) {
+		DatabaseReading2itrustfinal.methodtracehashmap = methodtracehashmap;
+	}
 
 	public static List<Method2Details> getMethodlist() {
 		return methodlist;
@@ -96,7 +150,7 @@ public class DatabaseReading2itrustfinal {
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasechess";
+	private final String dbName = "databaseitrust";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -186,7 +240,7 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
 		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-		HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
 		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
 		setMethodtraces2SubjectTSubjectN(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 
@@ -224,11 +278,33 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		 HashMap<String, List<MethodField2>> mymethodfields = methodfield.ReadMethodFields(conn); 
 		setMethodFieldHashMap(mymethodfields);
 		
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		Parameter2 parameter= new Parameter2(); 
+		 HashMap<String, List<Parameter2>> myparams = parameter.ReadParams(conn) ; 
+		setParameterhashMap(myparams);
 ///////////////////////////////////////////////////////////////////////////////////////
 		SuperClass2 superclass= new SuperClass2(); 
 		 HashMap<String, List<SuperClass2>> mysuperclasses = superclass.ReadSuperClasses(conn);  
 		setSuperclassesHashMap(mysuperclasses);
 		/////////////////////////////////////////////
+		
+		
+///////////////////////////////////////////////////////////////////////////////////////
+Implementation2 myimplementation= new Implementation2(); 
+HashMap<String, List<Implementation2>> myimplementations = myimplementation.ReadImplementationsRepresentations(conn); 
+setINTERFACEHASHMAPFINAL(myimplementations);
+
+///////////////////////////////////////////////////////////////////////////////////////
+Children2 children2= new Children2(); 
+HashMap<String, List<Children2>> mychildren = children2.ReadChildren(conn); 
+setChildrenHashMap(mychildren);
+/////////////////////////////////////////////
+
+
+
+
+		System.out.println("MOUNA");
 		System.out.println("MOUNA");
 		/*String goldprediction=""; 
 		for (MethodTrace2 tracemeth : methodtraces) {
@@ -444,13 +520,11 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 
 	
 
-	public static HashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
+	public static LinkedHashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
 		return methodtracehashmap;
 	}
 
-	public  static void setMethodtracehashmap(HashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap2) {
-		methodtracehashmap = methodtracehashmap2;
-	}
+	
 
 	public static void setInterfaces(HashMap ínterfacehashmap) {
 		// TODO Auto-generated method stub

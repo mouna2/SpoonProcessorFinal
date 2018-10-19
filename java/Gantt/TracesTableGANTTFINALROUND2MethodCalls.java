@@ -1,4 +1,4 @@
-package Chess;
+package Gantt;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -43,6 +43,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
+import Chess.PredictionEvaluation;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
@@ -59,15 +60,17 @@ import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
+import spoon.Launcher;
+import spoon.SpoonAPI;
 
-public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
+public class TracesTableGANTTFINALROUND2MethodCalls extends JFrame {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
-		connectionProps.put("root", this.userName);
-		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust", "root", "123456");
+		SpoonAPI spoon = new Launcher();
+		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\iTrust_v16");
 
 		return conn;
 	}
@@ -620,7 +623,7 @@ public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableChessFINALROUND2MethodCalls() throws SQLException, IOException {
+	public TracesTableGANTTFINALROUND2MethodCalls() throws SQLException, IOException {
 	
 		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
@@ -667,12 +670,12 @@ public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
 		
 		bw.newLine();
 		bwGold2TableLog.newLine();
-		DatabaseReading2 db = new DatabaseReading2();
-		DatabaseReading2.MakePredictions();
+		DatabaseReading2Gantt db = new DatabaseReading2Gantt();
+		db.MakePredictions();
 		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
 		methodtraces2HashMap=db.getMethodtracehashmap(); 
 		classtraces2 = db.getClassestraces2();
-	//	methodlist = db.getMethodlist();
+		methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 InterfacesHashMap = db.getInterfaces();
 		  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
@@ -1112,8 +1115,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) throws SQLException {
 		// TODO Auto-generated method stub
-		int ITERATION1=0; 
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		int ITERATION1=0; 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
@@ -1204,37 +1207,29 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 	
-		 ITERATION1=0; 
+	
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2()!=null) {
-				String traceGOLD2 = myclasstraceHashMap.getTrace2();
-				traceGOLD2=traceGOLD2.trim(); 
-				if (traceGOLD2.equals("T")) {
-					data[j][OwnerClassTGOLD2] = "1";
-					data[j][OwnerClassNGOLD2] = "0";
-					data[j][OwnerClassEGOLD2] = "0";
+			if(myclasstraceHashMap.getTrace4()!=null) {
+				String traceGOLD4 = myclasstraceHashMap.getTrace4();
+				traceGOLD4=traceGOLD4.trim(); 
+				if (traceGOLD4.equals("T")) {
+					
 					
 					PatternSetVariables("T",methodtrace,"100%","P1"); 
 					
 				//	System.out.println("OWNERCLASS T  "+j +" set to 1");
-				} else if (traceGOLD2.equals("N")) {
-					data[j][OwnerClassTGOLD2] = "0";
-					data[j][OwnerClassNGOLD2] = "1";
-					data[j][OwnerClassEGOLD2] = "0";
+				} else if (traceGOLD4.equals("N")) {
+					
 					
 					PatternSetVariables("N",methodtrace,"100%","P1"); 
 				
 				//	System.out.println("OWNERCLASS N  "+j +" set to 1");
-				} else if (traceGOLD2.equals("E")) {
-					data[j][OwnerClassTGOLD2] = "0";
-					data[j][OwnerClassNGOLD2] = "0";
-					data[j][OwnerClassEGOLD2] = "1";
-				//	System.out.println("OWNERCLASS E  "+j +" set to 1");
+				} else if (traceGOLD4.equals("E")) {
 					
 					PatternSetVariables("E", methodtrace,"100%","P1"); 
 				
 				}
-				ITERATION1++; 
+				
 			}
 			
 			
@@ -1245,14 +1240,16 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			
-			j++;
+			 ITERATION1++; 
+			 j++;
 			
 		}
+		
 		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
 		 System.out.println("===============>PATTERNS 1 SET TO T   ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
-
-		 int ITERATION=0; 
+		
+		int ITERATION=0; 
 		
 		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
 		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
@@ -1269,7 +1266,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
 				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
-				
+				methodtrace.setPrediction("");
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method2Representation callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
@@ -1295,18 +1292,12 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				}
 //				methodtrace.setPrediction("");
 				//PATTERN 3
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true 	
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
+				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true ) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
-				}else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true 	
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
+				}else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true ) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("T", methodtrace, "80%", "P3");
 
@@ -1314,17 +1305,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				}
 				
 				//PATTERN 5
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true 
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")) {
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true) {
 					//methodtrace.setPrediction("N");
 					//System.out.println("yes");
 					PatternSetVariables("N", methodtrace, "80%", "P5");
-				}else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true && 
-						!methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N") && 
-						!methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
+				}else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true) {
 					//methodtrace.setPrediction("N");
 					//System.out.println("yes");
 					PatternSetVariables("T", methodtrace, "80%", "P5");
@@ -1335,7 +1320,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			//PRINT 
 			  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
-			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
+			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T MIXED  ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
 
 			 //END  PRINT 
 			
@@ -1348,7 +1333,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 				
-//				methodtrace.setPrediction("");
+				methodtrace.setPrediction("");
 				//PATTERN 2 AND PATTERN 4
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
 				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
@@ -1380,20 +1365,12 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //				methodtrace.setPrediction("");
 				//PATTERN 2
 				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
-						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false
-								&& !methodtrace.getPrediction().equals("T") 
-								&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null")
-						&& !methodtrace.getPrediction().equals("")) {
+						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}else 	if(PredictionCalleeList.contains("N")==false && PredictionCallerList.contains("N")==false && PredictionCalleeList.contains("T")==true 
-						&&  PredictionCallerList.contains("T")==true 
-								&& !methodtrace.getPrediction().equals("T") 
-								&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null") 
-						&& !methodtrace.getPrediction().equals("")) {
+						&&  PredictionCallerList.contains("T")==true  ) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 					//System.out.println("yes");
@@ -1421,7 +1398,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
-			System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
+			System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T PURE   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
 
 			 //END  PRINT 
 			ITERATION++; 
@@ -1435,7 +1412,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //					methodtrace.setPrediction("T");
 //				}
 //		}
-	 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
@@ -1455,7 +1432,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		// TODO Auto-generated method stub
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		int ITERATION=0; 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -1547,10 +1524,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 			
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2()!=null) {
-				String traceGOLD2 = myclasstraceHashMap.getTrace2();
-				traceGOLD2=traceGOLD2.trim(); 
-				if (traceGOLD2.equals("T")) {
+			if(myclasstraceHashMap.getTrace4()!=null) {
+				String traceGOLD4 = myclasstraceHashMap.getTrace4();
+				traceGOLD4=traceGOLD4.trim(); 
+				if (traceGOLD4.equals("T")) {
 					data[j][OwnerClassTGOLD2] = "1";
 					data[j][OwnerClassNGOLD2] = "0";
 					data[j][OwnerClassEGOLD2] = "0";
@@ -1558,7 +1535,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 					PatternSetVariables("E",methodtrace,"100%","P1"); 
 					
 //					System.out.println("OWNERCLASS T  "+j +" set to 1");
-				} else if (traceGOLD2.equals("N")) {
+				} else if (traceGOLD4.equals("N")) {
 					data[j][OwnerClassTGOLD2] = "0";
 					data[j][OwnerClassNGOLD2] = "1";
 					data[j][OwnerClassEGOLD2] = "0";
@@ -1566,7 +1543,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 					PatternSetVariables("N",methodtrace,"100%","P1"); 
 				
 //					System.out.println("OWNERCLASS N  "+j +" set to 1");
-				} else if (traceGOLD2.equals("E")) {
+				} else if (traceGOLD4.equals("E")) {
 					data[j][OwnerClassTGOLD2] = "0";
 					data[j][OwnerClassNGOLD2] = "0";
 					data[j][OwnerClassEGOLD2] = "1";
@@ -1587,10 +1564,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			j++;
-			ITERATION++; 
+			
 			
 			
 		}
+		ITERATION++; 
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
 		System.out.println("===============>PATTERN 1 ITERATION "+ITERATION+	"   PREDICTION VALUES "+NEWPATTERNMethodCalls.toString());
@@ -1614,7 +1592,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			
-			
+			ITERATION=0; 
 			int k=0; 
 			//PATTERN 3 AND PATTERN 5
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
@@ -1667,13 +1645,14 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
 			
 			
-			
 			//PRINT 
 			System.out.println("===============>PATTERNS 3 AND 5 ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCalls.toString());
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
+			 
 			 //END  PRINT 
-			
+
+				ITERATION++; 
 			//////////////////////////////////////////////////////////////////////////////////////////
 			 k=0; 
 			//PATTERN 2 AND PATTERN 4
@@ -1784,10 +1763,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold4()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGold4()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold4().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		
@@ -1897,7 +1876,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINALROUND2MethodCalls frame = new TracesTableChessFINALROUND2MethodCalls();
+		TracesTableGANTTFINALROUND2MethodCalls frame = new TracesTableGANTTFINALROUND2MethodCalls();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

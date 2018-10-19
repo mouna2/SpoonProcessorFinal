@@ -1,4 +1,4 @@
-package Chess;
+package iTrust;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -43,6 +43,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
+import Chess.PredictionEvaluation;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
@@ -59,15 +60,17 @@ import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
+import spoon.Launcher;
+import spoon.SpoonAPI;
 
-public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
+public class TracesTableiTrustFINALROUND2MethodCalls extends JFrame {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
-		connectionProps.put("root", this.userName);
-		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust", "root", "123456");
+		SpoonAPI spoon = new Launcher();
+		spoon.addInputResource("C:\\Users\\mouna\\ownCloud\\Share\\iTrust_v16");
 
 		return conn;
 	}
@@ -620,7 +623,7 @@ public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableChessFINALROUND2MethodCalls() throws SQLException, IOException {
+	public TracesTableiTrustFINALROUND2MethodCalls() throws SQLException, IOException {
 	
 		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
@@ -667,8 +670,8 @@ public class TracesTableChessFINALROUND2MethodCalls extends JFrame {
 		
 		bw.newLine();
 		bwGold2TableLog.newLine();
-		DatabaseReading2 db = new DatabaseReading2();
-		DatabaseReading2.MakePredictions();
+		 DatabaseReading2itrustfinal db = new DatabaseReading2itrustfinal();
+		db.MakePredictions();
 		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
 		methodtraces2HashMap=db.getMethodtracehashmap(); 
 		classtraces2 = db.getClassestraces2();
@@ -1398,7 +1401,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
-				
+			
 				//PATTERN 4
 				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
 						&& PredictionCallerList.contains("T")==false && PredictionCallerList.contains("E")==false) {
@@ -1455,7 +1458,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		// TODO Auto-generated method stub
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		int ITERATION=0; 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -1587,10 +1590,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			j++;
-			ITERATION++; 
+			
 			
 			
 		}
+		ITERATION++; 
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
 		System.out.println("===============>PATTERN 1 ITERATION "+ITERATION+	"   PREDICTION VALUES "+NEWPATTERNMethodCalls.toString());
@@ -1614,7 +1618,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			
-			
+			ITERATION=0; 
 			int k=0; 
 			//PATTERN 3 AND PATTERN 5
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
@@ -1667,13 +1671,14 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
 			
 			
-			
 			//PRINT 
 			System.out.println("===============>PATTERNS 3 AND 5 ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCalls.toString());
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
+			 
 			 //END  PRINT 
-			
+
+				ITERATION++; 
 			//////////////////////////////////////////////////////////////////////////////////////////
 			 k=0; 
 			//PATTERN 2 AND PATTERN 4
@@ -1897,7 +1902,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableChessFINALROUND2MethodCalls frame = new TracesTableChessFINALROUND2MethodCalls();
+		TracesTableiTrustFINALROUND2MethodCalls frame = new TracesTableiTrustFINALROUND2MethodCalls();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

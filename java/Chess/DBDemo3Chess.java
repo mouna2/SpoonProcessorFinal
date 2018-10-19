@@ -37,6 +37,8 @@ import Tables.methodcallsexecuted;
 import Tables.methods;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
+import mypackage.ClassRepresentation2;
+import mypackage.Interface2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
@@ -560,6 +562,7 @@ public class DBDemo3Chess {
 ////////////        /*********************************************************************************************************************************************************************************/	
 //////////    	  	
 ////////     	//BUILD INTERFACES TABLE 
+    	List<String> mylist = new ArrayList<String>(); 
 for(CtType<?> clazz : classFactory.getAll(true)) {
     		
     		
@@ -597,9 +600,13 @@ for(CtType<?> clazz : classFactory.getAll(true)) {
 					while(interfacesname.next()){
 						myclassid= interfacesname.getString("id"); 
 			   		   }
-					if(myinterfaceclassid!=null) {
+					Interface2 myinterface1= new Interface2(); 
+					String interface1= myinterfaceclassid+ myinterfacename;  
+					String implementation1= myclassid+ myclassname; 
+					
+					if(myinterfaceclassid!=null && !mylist.contains(interface1+implementation1) ) {
 		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
-
+		    			mylist.add(interface1+implementation1); 
 					}
 				
 				System.out.println(inter);
@@ -3642,29 +3649,29 @@ System.out.println(method);
 			
 		}
 		//ADDING INTERFACES TO THE TRACES TABLE 
-		for(String[] item: interfaces_info) {
-			if(methodid!=null && requirementid!=null && interfacename!=null  && interfacemethodid!=null) {
-				 System.out.println("SHORT METHOD: " +shortmethod);
-				 System.out.println(" METHOD ID: " +methodid);
-				String methodnameAndParams= GetMethodNameAndParams(method); 
-				tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
-				boolean mycond=tr.contains(TraceListMethods, tracesmethods);
-				if(mycond==false) {
-					//	method=RewriteFullMethod(method);   
-					method=method.replaceAll("Lde", "de"); 
-					methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-					String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +interfacefullmethodname+"','" +interfacemethodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject +"')";		
-					st.executeUpdate(statement);
-					TraceListMethods.add(tracesmethods); 
-					
-					
-				}
-			}
-			else {
-				System.out.println(shortmethod);
-				System.out.println("I am here");
-			}
-		}
+//		for(String[] item: interfaces_info) {
+//			if(methodid!=null && requirementid!=null && interfacename!=null  && interfacemethodid!=null) {
+//				 System.out.println("SHORT METHOD: " +shortmethod);
+//				 System.out.println(" METHOD ID: " +methodid);
+//				String methodnameAndParams= GetMethodNameAndParams(method); 
+//				tracesmethods tracesmethods= new tracesmethods(requirement, requirementid, method, methodid, interfacename, interfaceid, gold, subject); 
+//				boolean mycond=tr.contains(TraceListMethods, tracesmethods);
+//				if(mycond==false) {
+//					//	method=RewriteFullMethod(method);   
+//					method=method.replaceAll("Lde", "de"); 
+//					methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+//					String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`, `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +interfacefullmethodname+"','" +interfacemethodid+"','"+interfacename +"','" +interfaceid+"','"+gold +"','" +subject +"')";		
+//					st.executeUpdate(statement);
+//					TraceListMethods.add(tracesmethods); 
+//					
+//					
+//				}
+//			}
+//			else {
+//				System.out.println(shortmethod);
+//				System.out.println("I am here");
+//			}
+//		}
 		 
 		
 		
@@ -4041,83 +4048,83 @@ try {
 
 	 }
 		}
-		for(List<String> myinterface: myinterfacesList) {
-			interfaceid=myinterface.get(0); 
-			interfacename= myinterface.get(1); 
-		
-		 ReqClass=requirementid+"-"+interfaceid;
-		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
-		if(interfaceid!=null && interfacename!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
-			
-			 //1 TT
-				if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TT");
-
-			 }
-			 //2 ET
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "ET");
-
-			 }
-			 //3 TE
-			 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TE");
-
-			 }
-			 //4 NN
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NN");
-
-
-			 }
-			 //5 NT
-			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NT");
-
-			 }
-			 //6 EN
-			 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "EN");
-
-			 }
-				//7 NE
-			 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "NE");
-
-			 }
-				 //8 TN
-			 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "TN");
-			 }			
-
-				 // 9 EE
-			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
-					st.executeUpdate(statement8);
-					RequirementClassHashMap.put(ReqClass, "EE");
-			 }
-				
-		
-		}
-	 
-	
-		}
+//		for(List<String> myinterface: myinterfacesList) {
+//			interfaceid=myinterface.get(0); 
+//			interfacename= myinterface.get(1); 
+//		
+//		 ReqClass=requirementid+"-"+interfaceid;
+//		//ADDING INTERFACES TO THE TRACES CLASSES TABLE 
+//		if(interfaceid!=null && interfacename!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//			
+//			 //1 TT
+//				if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TT");
+//
+//			 }
+//			 //2 ET
+//			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "ET");
+//
+//			 }
+//			 //3 TE
+//			 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TE");
+//
+//			 }
+//			 //4 NN
+//			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NN");
+//
+//
+//			 }
+//			 //5 NT
+//			 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"T"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NT");
+//
+//			 }
+//			 //6 EN
+//			 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "EN");
+//
+//			 }
+//				//7 NE
+//			 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"N" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "NE");
+//
+//			 }
+//				 //8 TN
+//			 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"T" +"','" +"N"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "TN");
+//			 }			
+//
+//				 // 9 EE
+//			 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//					String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +interfacename+"','" +interfaceid+"','"+"E" +"','" +"E"+"')";	
+//					st.executeUpdate(statement8);
+//					RequirementClassHashMap.put(ReqClass, "EE");
+//			 }
+//				
+//		
+//		}
+//	 
+//	
+//		}
 	
 
 		
