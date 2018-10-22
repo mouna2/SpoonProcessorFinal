@@ -559,6 +559,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 	LinkedHashMap<String, String> PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS=new LinkedHashMap<String, String>();  
 	LinkedHashMap<String, String> PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS=new LinkedHashMap<String, String>();   
 	LinkedHashMap<String, String> PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS=new LinkedHashMap<String, String>();  
+	
+	
+	
+	
 	LinkedHashMap<String, String> PredictionStandardHashMap=new LinkedHashMap<String, String>();  
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
@@ -762,6 +766,10 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 		// Create the editors to be used for each row
 		Collection<MethodTraceSubjectTSubjectN> methodtracesvalues = methodtraces2.values(); 
 		for ( MethodTraceSubjectTSubjectN methodtrace : methodtracesvalues) {
+			
+		
+			
+			
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -3301,6 +3309,23 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 									
 									
+									PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key,"");
+									PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key,""); 
+									PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.put(key,""); 
+									PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key,""); 
+									PredictionCLASSTRACEClassLevelPureGold2HashMap.put(key,"");  
+									PredictionCLASSTRACEClassLevelMixedGold2HashMap.put(key,""); 
+									PredictionCLASSNOTRACEClassLevelPureGold2HashMap.put(key,"");  
+									PredictionCLASSNOTRACEClassLevelMixedGold2HashMap.put(key,""); 
+									PredictionCLASSTRACEMethodLevelPureGold2HashMapACROSS.put(key,"");
+									PredictionCLASSTRACEMethodLevelMixedGold2HashMapACROSS.put(key,""); 
+									PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key,""); 
+									PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key,""); 
+									PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key,"");  
+									PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key,""); 
+									PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key,"");  
+									PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS.put(key,"");
+									
 									
 									
 									flagGold2=false; 
@@ -4958,7 +4983,7 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 		entered=true; 
 	}
 	
-	if(entered==true) {
+	if(true) {
 	
 	
 	
@@ -5031,7 +5056,7 @@ failGold++;
 	}	
 	
 /********************************************************************************************************************/				
-	if(flagGold2==false) {
+	if(true) {
 if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		
 		boolean entered=false; 
@@ -5047,7 +5072,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			entered=true; 
 		}
 	
-		if(entered==true) {
+//		if(true) {
 		
 		if(methodtrace.getGold2()!=null ) {
 		data[j][CLASSTRACEMethodLevelPureGold2]=TracePureGold2ValueMethodLevel; 
@@ -5070,7 +5095,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
 
 		}
-		}
+//		}
 		
 }else if(CountMethodNGOLD2>0 && CountMethodNCalleeGOLD2>0) {
 	
@@ -5090,7 +5115,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		entered=true; 
 	}
 	
-	if(entered==true) {
+	if(true) {
 	
 	
 	
@@ -5104,7 +5129,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2].toString()); 
 	
 	}else {
-		AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, "null"); 
+		PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
 
 	}
 		
@@ -5112,15 +5137,22 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2ValueMethodLevel); 
 			PredictionCLASSNOTRACEMethodLevelMixedGold2.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold2);
 			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2].toString()); 
-	
+			PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
+
 		}else {
 			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
+			PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
+
 
 		}
 	}
 	
 }else {
 failGold2++; 
+PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
+PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, "null"); 
+PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
+
 }
 
 	}
@@ -5237,7 +5269,7 @@ if(CounterTraceClassCallerT+CounterTraceClassCalleeT==0 && methodtrace.getGold()
 	entered=true; 
 }
 
-if(entered==true) {
+if(true) {
 
 
 
@@ -5263,7 +5295,7 @@ failGold++;
 
 }
 /********************************************************************************************************************/				
-if(flagGold2==false) {
+if(true) {
 if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 	
 	boolean entered=false; 
@@ -5467,7 +5499,7 @@ failGold++;
 }	
 
 /********************************************************************************************************************/				
-if(flagGold2==false) {
+if(true) {
 if(CountMethodTGOLD2ACROSS>0 && CountMethodTGOLD2ACROSSCallee>0) {
 
 boolean entered=false; 
@@ -5590,7 +5622,7 @@ TraceMixedGoldValueClassLevelACROSS="T";
 entered=true; 
 }
 
-if(entered==true) {
+if(true) {
 if(methodtrace.getGold()!=null ) {
 data[j][CLASSTRACEClassLevelPureGoldACROSS]=TracePureGoldValueClassLevelACROSS; 
 String Result=PredictionCLASSTRACEClassLevelPureGoldACROSS.ComparePredictionToGold(methodtrace.getGold().trim(), TracePureGoldValueClassLevelACROSS); 
@@ -5648,7 +5680,7 @@ failGold++;
 
 }
 /********************************************************************************************************************/				
-if(flagGold2==false) {
+if(true) {
 if(CounterTraceClassCallerTGOLD2ACROSS>0 && CounterTraceClassCalleeTGOLD2ACROSS>0) {
 
 boolean entered=false; 
@@ -6110,6 +6142,8 @@ data[j][CLASSTRACEClassLevelPureGold2ACROSS]+","+data[j][CLASSTRACEClassLevelMix
 			String AllTMethodLevelCalleesClassAtLeast2TGold2Val=AllTMethodLevelCalleesClassAtLeast2TGold2HashMap.get(key);  
 			String AllTMethodLevelCallersClassAtLeast2TGold2Val=AllTMethodLevelCallersClassAtLeast2TGold2HashMap.get(key); 
 			String PredictionCLASSTRACEMethodLevelPureGold2Val=PredictionCLASSTRACEMethodLevelPureGold2HashMap.get(key); 
+			System.out.println("==========>VALUIEE"+PredictionCLASSTRACEMethodLevelPureGold2Val);
+
 			String PredictionCLASSTRACEMethodLevelMixedGold2Val=PredictionCLASSTRACEMethodLevelMixedGold2HashMap.get(key);  
 			String PredictionCLASSNOTRACEMethodLevelPureGold2Val=PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.get(key);  
 			String PredictionCLASSNOTRACEMethodLevelMixedGold2Val=PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.get(key);  
@@ -7105,6 +7139,137 @@ for(Integer name: SortedFitnesses.keySet()){
 		bwlog.newLine();
 		bwlog.close(); 
 
+		bwGold2.write("OWNER CLASS PREDICTION: "+OwnerClassPredictionClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("MAJORITY CLASS LEVEL CALLERS PREDICTION: "+MajorityClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("MAJORITY CLASS LEVEL CALLEES PREDICTION: "+MajorityClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("MAJORITY METHOD LEVEL CALLERS PREDICTION: "+MajorityMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("MAJORITY METHOD LEVEL CALLEES PREDICTION: "+MajorityMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 N PREDICTION CLASS LEVEL CALLERS: "+AtLeastNPredictionClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 N PREDICTION CLASS LEVEL CALLEES: "+AtLeastNPredictionClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 N PREDICTION METHOD LEVEL CALLERS: "+AtLeastNPredictionMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 N PREDICTION METHOD LEVEL CALLEES: "+AtLeastNPredictionMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 T PREDICTION CLASS LEVEL CALLERS: "+AtLeastTPredictionClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 T PREDICTION CLASS LEVEL CALLEES: "+AtLeastTPredictionClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 T PREDICTION METHOD LEVEL CALLERS: "+AtLeastTPredictionMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1 T PREDICTION METHOD LEVEL CALLEES: "+AtLeastTPredictionMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 N PREDICTION CLASS LEVEL CALLERS: "+AtLeast2NPredictionClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 N PREDICTION CLASS LEVEL CALLEES: "+AtLeast2NPredictionClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 N PREDICTION METHOD LEVEL CALLERS: "+AtLeast2NPredictionMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 N PREDICTION METHOD LEVEL CALLEES: "+AtLeast2NPredictionMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 T PREDICTION CLASS LEVEL CALLERS: "+AtLeast2TPredictionClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 T PREDICTION CLASS LEVEL CALLEES: "+AtLeast2TPredictionClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 T PREDICTION METHOD LEVEL CALLERS: "+AtLeast2TPredictionMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2 T PREDICTION METHOD LEVEL CALLEES: "+AtLeast2TPredictionMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N CLASS LEVEL CALLERS: "+AllNClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N CLASS LEVEL CALLEES: "+AllNClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N METHOD LEVEL CALLERS: "+AllNMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N METHOD LEVEL CALLEES: "+AllNMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T CLASS LEVEL CALLERS: "+AllTClassLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N CLASS LEVEL CALLERS AT LEAST 2N : "+AllNClassLevelCallersClassAtLeast2NGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N CLASS LEVEL CALLEES AT LEAST 2N : "+AllNClassLevelCalleesClassAtLeast2NGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N METHOD LEVEL CALLERS AT LEAST 2N: "+AllNMethodLevelCallersClassAtLeast2NGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N METHOD LEVEL CALLEES AT LEAST 2N: "+AllNMethodLevelCalleesClassAtLeast2NGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T CLASS LEVEL CALLERS AT LEAST 2T : "+AllTClassLevelCallersClassAtLeast2TGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T CLASS LEVEL CALLEES AT LEAST 2T : "+AllTClassLevelCalleesClassAtLeast2TGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLERS AT LEAST 2T: "+AllTMethodLevelCallersClassAtLeast2TGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLEES AT LEAST 2T: "+AllTMethodLevelCalleesClassAtLeast2TGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("MAJORITY PARAMETERS CLASS: "+MajorityParametersClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2T PARAMETER CLASS: "+AtLeast2TParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("AT LEAST 2N PARAMETER CLASS: "+AtLeast2NParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N PARAMETERS: "+AllNParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T PARAMETERS: "+AllTParameterClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T METHOD LEVEL CALLERS CALLEES: "+AllTMethodLevelCallersCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N METHOD LEVEL CALLERS CALLEES: "+AllNMethodLevelCallersCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL T CLASS LEVEL CALLERS CALLEES: "+AllTClassLevelCallersCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("ALL N CLASS LEVEL CALLERS CALLEES: "+AllNClassLevelCallersCalleesClassGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE PURE METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelPureGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE MIXED METHOD LEVEL: "+PredictionCLASSTRACEMethodLevelMixedGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE PURE METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelPureGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE MIXED METHOD LEVEL: "+PredictionCLASSNOTRACEMethodLevelMixedGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE PURE CLASS LEVEL: "+PredictionCLASSTRACEClassLevelPureGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE MIXED CLASS LEVEL: "+PredictionCLASSTRACEClassLevelMixedGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE PURE CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelPureGold2.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE MIXED CLASS LEVEL: "+PredictionCLASSNOTRACEClassLevelMixedGold2.toString()); 
+		bwGold2.newLine();
+
+
+		bwGold2.write("TRACE PURE METHOD LEVEL ACROSS: "+PredictionCLASSTRACEMethodLevelPureGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE MIXED METHOD LEVEL ACROSS: "+PredictionCLASSTRACEMethodLevelMixedGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE PURE METHOD LEVEL ACROSS: "+PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE MIXED METHOD LEVEL ACROSS: "+PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE PURE CLASS LEVEL ACROSS: "+PredictionCLASSTRACEClassLevelPureGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("TRACE MIXED CLASS LEVEL ACROSS: "+PredictionCLASSTRACEClassLevelMixedGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE PURE CLASS LEVEL ACROSS: "+PredictionCLASSNOTRACEClassLevelPureGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.write("NO TRACE MIXED CLASS LEVEL ACROSS: "+PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS.toString()); 
+		bwGold2.newLine();
+		bwGold2.close();
 		
 bw2.close();
 bwGold2.close();
@@ -7318,9 +7483,10 @@ bwGold2.close();
 			LinkedHashMap<String, String> mychromosome = orderedNameHashMap.get(key); 
 			fitnessscore=0; 
 //			for(String chromosomekey: mychromosome.keySet()) {
-				 
+//				System.out.println(key);
 				for(String key2: PredictionStandardHashMap.keySet()) {
-				
+//					System.out.println(key2);
+
 					if(!(mychromosome.get(key2).equals(PredictionStandardHashMap.get(key2)))
 //						&&	 !mychromosome.get(key2).equals("null")
 							&& (PredictionStandardHashMap.get(key2).equals("T") || PredictionStandardHashMap.get(key2).equals("N"))
