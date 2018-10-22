@@ -122,11 +122,11 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD subject LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
