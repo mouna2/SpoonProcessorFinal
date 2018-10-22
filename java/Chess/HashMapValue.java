@@ -3,8 +3,8 @@ package Chess;
 import java.util.LinkedHashMap;
 
 public class HashMapValue {
-	String HashMapName; 
-	Integer Fitness ;
+	public String HashMapName; 
+	public Integer Fitness ;
 	LinkedHashMap<String, String>  mylinkedHashMap= new LinkedHashMap<String, String>() ;
 	public String getHashMapName() {
 		return HashMapName;
