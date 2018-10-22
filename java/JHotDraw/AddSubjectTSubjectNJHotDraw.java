@@ -119,13 +119,13 @@ public class AddSubjectTSubjectNJHotDraw {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
 		List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
 		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\jhotdrawnew_meth_votes.txt");
+			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\JHotDrawFiles\\jhotdrawnew_meth_votes.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
