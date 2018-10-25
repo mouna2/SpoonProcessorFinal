@@ -96,7 +96,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 
 		   
 		  
-			   AddColumns();
+			  
 		
 		  
 		   
@@ -112,8 +112,8 @@ public class AddGold2ColumnTTRACESCLASSES {
 	}
 	
 	public static void main(String[] args) throws SQLException, IOException {
-		AddColumns();
-
+		//AddColumns();
+		AddColumns2(); 
 	}
 
 	public static void AddColumns() throws SQLException {
@@ -183,6 +183,12 @@ public class AddGold2ColumnTTRACESCLASSES {
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
 				//THIS IS GOLD 2
+				
+				gold=null; 
+				subject=null; 
+				gold2=null; 
+				
+				
 				 requirementid=traces.getString("requirementid").trim(); 
 				 classid=traces.getString("classid").trim(); 
 				 if(traces.getString("gold")!=null) {
@@ -298,5 +304,144 @@ public class AddGold2ColumnTTRACESCLASSES {
 		
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
+	}
+	
+	/***********************************************************************/
+	public static void AddColumns2() throws SQLException {
+
+		// TODO Auto-generated method stub
+		Connection conn = null;
+		DBDemo2iTrust DatabaseReading = new DBDemo2iTrust();
+		conn = DatabaseReading.getConnection();
+		Statement st = conn.createStatement();
+		Statement st2 = conn.createStatement();
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
+
+		int  TracesNumber=0; 
+		int counter=0; 
+		String mytraceclass=""; 
+		String classid=""; 
+		String requirementid= ""; 
+		String gold2=""; 
+		
+		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
+		List<String> mylist= new ArrayList<String>(); 
+		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
+		while(TracesCount.next()) {
+			 TracesNumber= TracesCount.getInt(1); 
+			System.out.println(TracesNumber);
+		}
+		
+		while(counter<TracesNumber) {
+			ResultSet traces = st.executeQuery("SELECT traces.* from traces where id='"+counter+"'"); 
+			while(traces.next()){		
+				//THIS IS GOLD 2
+				 requirementid=traces.getString("requirementid").trim(); 
+				 classid=traces.getString("classid").trim(); 
+				String ReqClass=requirementid+"-"+classid;
+				RequirementClassHashMap.put(ReqClass, mylist); 
+
+			
+	   		   }
+			counter++; 
+		}
+		
+		
+		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
+		    System.out.println(entry.getKey() + " = " );
+		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+		     List<String> List= new ArrayList<String>(); 
+		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
+			while(traces.next()){		
+				//THIS IS GOLD 2
+				gold2=null; 
+			
+				 requirementid=traces.getString("requirementid").trim(); 
+				 classid=traces.getString("classid").trim(); 
+				if(traces.getString("gold2")!=null) {
+					 gold2=traces.getString("gold2").trim(); 
+					 if(gold2!=null) {
+						 List.add(gold2); 
+					 }
+				}
+				
+				
+				
+			
+	   		   }
+			String ReqClass=requirementid+"-"+classid;
+			System.out.println(ReqClass);
+			RequirementClassHashMap2.put(ReqClass, List); 
+		}
+		
+		
+		
+		
+		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
+			   System.out.println(entry.getKey() + " = " );
+			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			     
+			     List<String> MyValues = entry.getValue(); 
+			     java.util.Collections.sort(MyValues); 
+			    
+//				for(String val: MyValues) {
+//			    	 System.out.println("VAL  "+val);
+//			    	 
+//			     }
+			     if(MyValues.size()>0) {
+				     System.out.println(MyValues.size());
+					    int newsize = MyValues.size()/2; 
+					    System.out.println(newsize);
+					    	   String charac = MyValues.get(newsize); 
+					    
+					  
+					     if(charac.trim().equals("T")) {
+					    		for(String val: MyValues) {
+							    	 System.out.println("VAL  "+val);
+							    	 
+							     }
+					     
+								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+					     }else if(MyValues.contains("E")) {
+								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+					    	 
+					     }else if(MyValues.isEmpty()) {
+					    	 //DO NOTHING 
+					     }
+					     else  if(charac.trim().equals("N")) {
+					    
+//					    	 boolean allEqual = MyValues.isEmpty() || MyValues.stream().allMatch(MyValues.get(0)::equals);
+		//if(allEqual && MyValues.get(0).equals("N")) {
+			for(String val: MyValues) {
+		   	 System.out.println("NNNNNNN  "+val);
+		   	 
+		    }
+			 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+		//}
+
+					     }
+			     }
+
+		}
+	
+		
+		
+		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
+	
 	}
 }

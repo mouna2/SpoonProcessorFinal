@@ -794,9 +794,9 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 //				"# callee methods T", "#callee methods N", "#callee methods E", "# callee classes",
 //				"# callee classes T", "#callee classes N", "#callee classes E",  "OwnerClassPrediction",
 //				"MajorityClassLevelCallers","MajorityClassLevelCallees", "MajorityMethodLevelCallers","MajorityMethodLevelCallees",
-//				">1NPredictionClassLevelCallers", ">1NPredictionClassLevelCallees", ">1NPredictionMethodLevelCallers", 
-//				">1NPredictionMethodLevelCallees", ">1TPredictionClassLevelCallers", ">1TPredictionClassLevelCallees", 
-//				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
+//				">0NPredictionClassLevelCallers", ">0NPredictionClassLevelCallees", ">0NPredictionMethodLevelCallers", 
+//				">0NPredictionMethodLevelCallees", ">0TPredictionClassLevelCallers", ">0TPredictionClassLevelCallees", 
+//				">0TPredictionMethodLevelCallers", ">0TPredictionMethodLevelCallees", 
 //				">2NPredictionClassLevelCallers", ">2NPredictionClassLevelCallees", ">2NPredictionMethodLevelCallers", 
 //				">2NPredictionMethodLevelCallees", ">2TPredictionClassLevelCallers", ">2TPredictionClassLevelCallees", 
 //				">2TPredictionMethodLevelCallers", ">2TPredictionMethodLevelCallees", 
@@ -816,9 +816,9 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				"21-# callee methods T", "22-#callee methods N", "23-#callee methods E", "24-# callee classes",
 				"25-# callee classes T", "26-#callee classes N", "27-#callee classes E",  "28-OwnerClassPrediction",
 				"29-MajorityClassLevelCallees","30-MajorityClassLevelCallers", "31-MajorityMethodLevelCallees","32-MajorityMethodLevelCallers",
-				"33->1NPredictionClassLevelCallees", "34->1NPredictionClassLevelCallers", "35->1NPredictionMethodLevelCallees", 
-				"36->1NPredictionMethodLevelCallers", "37->1TPredictionClassLevelCallees", "38->1TPredictionClassLevelCallers", 
-				"39->1TPredictionMethodLevelCallees", "40->1TPredictionMethodLevelCallers", 
+				"33->0NPredictionClassLevelCallees", "34->0NPredictionClassLevelCallers", "35->0NPredictionMethodLevelCallees", 
+				"36->0NPredictionMethodLevelCallers", "37->0TPredictionClassLevelCallees", "38->0TPredictionClassLevelCallers", 
+				"39->0TPredictionMethodLevelCallees", "40->0TPredictionMethodLevelCallers", 
 				"41->2NPredictionClassLevelCallees", "42->2NPredictionClassLevelCallers", "43->2NPredictionMethodLevelCallees", 
 				"44->2NPredictionMethodLevelCallers", "45->2TPredictionClassLevelCallees", "46->2TPredictionClassLevelCallers", 
 				"47->2TPredictionMethodLevelCallees", "48->2TPredictionMethodLevelCallers", 
@@ -843,9 +843,9 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				"108-# callee methods T GOLD4", "109-#callee methods N GOLD4", "110-#callee methods E GOLD4", "111-# callee classes GOLD4",
 				"112-# callee classes T GOLD4", "113-#callee classes N GOLD4", "114-#callee classes E GOLD4",  "115-OwnerClassPrediction GOLD4",
 				"116-MajorityClassLevelCallees GOLD4","117-MajorityClassLevelCallers GOLD4", "118-MajorityMethodLevelCallees GOLD4","119-MajorityMethodLevelCallers GOLD4",
-				"120->1NPredictionClassLevelCallees GOLD4", "121->1NPredictionClassLevelCallers GOLD4", "122->1NPredictionMethodLevelCallees GOLD4", 
-				"123->1NPredictionMethodLevelCallers GOLD4", "124->1TPredictionClassLevelCallees GOLD4", "125->1TPredictionClassLevelCallers GOLD4", 
-				"126->1TPredictionMethodLevelCallees GOLD4", "127->1TPredictionMethodLevelCallers GOLD4", 
+				"120->0NPredictionClassLevelCallees GOLD4", "121->0NPredictionClassLevelCallers GOLD4", "122->0NPredictionMethodLevelCallees GOLD4", 
+				"123->0NPredictionMethodLevelCallers GOLD4", "124->0TPredictionClassLevelCallees GOLD4", "125->0TPredictionClassLevelCallers GOLD4", 
+				"126->0TPredictionMethodLevelCallees GOLD4", "127->0TPredictionMethodLevelCallers GOLD4", 
 				"128->2NPredictionClassLevelCallees GOLD4", "129->2NPredictionClassLevelCallers GOLD4", "130->2NPredictionMethodLevelCallees GOLD4", 
 				"131->2NPredictionMethodLevelCallers GOLD4", "132->2TPredictionClassLevelCallees GOLD4", "133->2TPredictionClassLevelCallers GOLD4", 
 				"134->2TPredictionMethodLevelCallees GOLD4", "135->2TPredictionMethodLevelCallers GOLD4", 
@@ -1171,13 +1171,13 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				//MIXED 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>3)
-				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>1) )
+				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>3)
-					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>1))
+				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
 				{
 					PatternSetVariables("N", methodtrace,"100%","P2"); 
 				}
@@ -1209,12 +1209,12 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
 				
 				//PURE 
-				if((methodfieldsCount.CountT>3 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountT>1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
+				if((methodfieldsCount.CountT>0 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
+				|| (methodparamsCount.CountT>0 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
 					PatternSetVariables("T", methodtrace,"100%","P4"); 
 				}
-				if((methodfieldsCount.CountN>3 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountN>1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
+				if((methodfieldsCount.CountN>0 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
+				|| (methodparamsCount.CountN>0 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
 					PatternSetVariables("N", methodtrace,"100%","P4"); 
 				}
 				

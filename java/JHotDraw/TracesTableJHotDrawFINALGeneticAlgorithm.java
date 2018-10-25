@@ -818,6 +818,13 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			data[j][CallerMethodsNumberGOLD2] = 0;
 			data[j][CallerClassesNumberGOLD2] = 0;
 			data[j][CalleeClassesNumberGOLD2] = 0;
+			data[j][CalleeClassesEACROSS] =0; 
+			data[j][CalleeClassesTACROSS] =0; 
+
+			data[j][CalleeClassesNACROSS] =0; 
+
+			data[j][CalleeClassesNumberACROSS] =0; 
+
 			data[j][CLASSTRACEClassLevelMixedGold] = "null";
 			data[j][CLASSTRACEClassLevelPureGold] = "null";
 			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";

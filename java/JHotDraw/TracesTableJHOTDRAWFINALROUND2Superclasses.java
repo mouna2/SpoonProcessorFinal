@@ -1090,6 +1090,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 			 List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
 			 List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid); 
 			 List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 System.out.println("Methodtrace class id "+methodtrace.ClassRepresentation.classid);
 		if(myinterfaces!=null)
 			for(Interface2 myinterface: myinterfaces) {
 				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
@@ -1159,17 +1160,17 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
 				CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
 				CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-				if((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=3)
-					||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=3)
-					|| (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=3)
-					|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=3))
+				if((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>0)
+					||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>0)
+					|| (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>0)
+					|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>0))
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=1)
-						|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=1)
-						|| (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=1)
-						||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=1))
+				else if((SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>0)
+						|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>0)
+						|| (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>0)
+						||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>0))
 				{
 					PatternSetVariables("N", methodtrace,"100%","P2"); 
 				}

@@ -491,9 +491,11 @@ public class TracesTableChessFINAL extends JFrame {
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessPython.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
-	
+	FileOutputStream fos3 = new FileOutputStream(fout3);
+
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
 	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChess.txt");
 
@@ -509,7 +511,7 @@ public class TracesTableChessFINAL extends JFrame {
 	BufferedWriter bwGold2TableLog = new BufferedWriter(new OutputStreamWriter(fosGold2));
 
 	
-	
+	BufferedWriter bw3 = new BufferedWriter(new OutputStreamWriter(fos3));
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
@@ -549,45 +551,76 @@ public class TracesTableChessFINAL extends JFrame {
 
 	public TracesTableChessFINAL() throws SQLException, IOException {
 	
-		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
-				+ "OwnerClassE, #callermethods, callers, "
-				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-				+ "#calleeclassesE, "
-				
-				+"#callermethodsACROSS, #callermethodsTACROSS, #callermethodsNACROSS, #callermethodsEACROSS, #callerclassesACROSS, #callerclassesTACROSS, #callerclassesNACROSS, "
-				+ "#callerclassesEACROSS, #calleemethodsACROSS,#calleemethodsTACROSS, #calleemethodsNACROSS, #calleemethodsEACROSS, #calleeclassesACROSS, #calleeclassesTACROSS, #calleeclassesNACROSS, "
-				+ "#calleeclassesEACROSS, "
-				
-				+ "OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
-				+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
-				+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
-				+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
-				+"AtLeast2TPredictionClassLevelCallees, AtLeast2TPredictionClassLevelCallers, AtLeast2TPredictionMethodLevelCallees, AtLeast2TPredictionMethodLevelCallers,"
-				+"AllNClassLevelCallees, AllNClassLevelCallers, AllNMethodLevelCallees, AllNMethodLevelCallers,"
-				+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
-				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
-				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
-				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
-				
-				
-				
-				+ " #parametersMethodLevel, parametersMethodLevel, # Parameter TMethodLevel, # Parameter NMethodLevel, # Parameter EMethodLevel," 
-				+ " #interfacesMethodLevel,  # InterfaceTMethodLevel, # InterfaceNMethodLevel, # InterfaceEMethodLevel," 
-				+ " #superclassesMethodLevel,  # SuperclassTMethodLevel, # SuperclassNMethodLevel, # SuperclassEMethodLevel," 
-				+ " #FieldMethodsMethodLevel,  # FieldMethodsTMethodLevel, # FieldMethodsNMethodLevel, # FieldMethodsEMethodLevel," 
-				+ " #FieldClassesMethodLevel,  # FieldClassesTMethodLevel, # FieldClassesNMethodLevel, # FieldClassesEMethodLevel," 
-				
-				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
-				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
-				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
-				+"ClassTraceMethodLevelPure, ClassTraceMethodLevelMixed, ClassNoTraceMethodLevelPure, ClassNoTraceMethodLevelMixed,"
-				+"ClassTraceClassLevelPure, ClassTraceClassLevelMixed, ClassNoTraceClassLevelPure, ClassNoTraceClassLevelMixed,"
-				+"ClassTraceMethodLevelPureACROSS, ClassTraceMethodLevelMixedACROSS, ClassNoTraceMethodLevelPureACROSS, ClassNoTraceMethodLevelMixedACROSS,"
-				+"ClassTraceClassLevelPureACROSS, ClassTraceClassLevelMixedACROSS, ClassNoTraceClassLevelPureACROSS, ClassNoTraceClassLevelMixedACROSS"
+		bwGold2TableLog.write("Row ,MethodID , MethodName , RequirementID , RequirementName , ClassID , ClassName , Gold2 , Subject , OwnerClassTGOLD2 , OwnerClassNGOLD2 , OwnerClassEGOLD2, CallerMethodsNumberGOLD2, AppendedCallers , CallerMethodsTGOLD2 ," + 
+				"					CallerMethodsNGOLD2 , CallerMethodsEGOLD2 , CallerClassesNumberGOLD2 , CallerClassesTGOLD2 , CallerClassesNGOLD2 , CallerClassesEGOLD2 ,CalleeMethodsNumberGOLD2, AppendedCallees ,CalleeMethodsTGOLD2 , CalleeMethodsNGOLD2 , CalleeMethodsEGOLD2 , CalleeClassesNumberGOLD2 ,CalleeClassesTGOLD2 , CalleeClassesNGOLD2 , CalleeClassesEGOLD2 ," + 
+				"							" + 
+				"							" + 
+				"							" + 
+				"							, CallerMethodsNumberGOLD2ACROSS, CallerMethodsTGOLD2ACROSS ," + 
+				"							CallerMethodsNGOLD2ACROSS , CallerMethodsEGOLD2ACROSS , " + 
+				"							CallerClassesNumberGOLD2ACROSS , CallerClassesTGOLD2ACROSS , CallerClassesNGOLD2ACROSS , CallerClassesEGOLD2ACROSS ," + 
+				"							  CalleeMethodsNumberGOLD2ACROSS,  " + 
+				"							 CalleeMethodsTGOLD2ACROSS , CalleeMethodsNGOLD2ACROSS , CalleeMethodsEGOLD2ACROSS , CalleeClassesNumberGOLD2ACROSS , " + 
+				"							  CalleeClassesTGOLD2ACROSS ," + 
+				"							 CalleeClassesNGOLD2ACROSS , CalleeClassesEGOLD2ACROSS " + 
+				"							" + 
+				"							" + 
+				"							" + 
+				"							" + 
+				"							, OwnerClassPredictionGOLD2 , MajorityClassLevelCallersGOLD2," + 
+				"					MajorityClassLevelCalleesGOLD2, MajorityMethodLevelCallersGOLD2, MajorityMethodLevelCalleesGOLD2" + 
+				"							, " + 
+				"					AtLeast1NPredictionClassLevelCallersGOLD2, AtLeast1NPredictionClassLevelCalleesGOLD2 " + 
+				"					, AtLeast1NPredictionMethodLevelCallersGOLD2, AtLeast1NPredictionMethodLevelCalleesGOLD2" + 
+				"					,AtLeast1TPredictionClassLevelCallersGOLD2, AtLeast1TPredictionClassLevelCalleesGOLD2" + 
+				"					, AtLeast1TPredictionMethodLevelCallersGOLD2" + 
+				"					, AtLeast1TPredictionMethodLevelCalleesGOLD2" + 
+				"							, " + 
+				"							AtLeast2NPredictionClassLevelCallersGOLD2, AtLeast2NPredictionClassLevelCalleesGOLD2 " + 
+				"							, AtLeast2NPredictionMethodLevelCallersGOLD2, AtLeast2NPredictionMethodLevelCalleesGOLD2" + 
+				"							,AtLeast2TPredictionClassLevelCallersGOLD2, AtLeast2TPredictionClassLevelCalleesGOLD2" + 
+				"							, AtLeast2TPredictionMethodLevelCallersGOLD2" + 
+				"							, AtLeast2TPredictionMethodLevelCalleesGOLD2	" + 
+				"									, AllNClassLevelCallersGOLD2" + 
+				"											,AllNClassLevelCalleesGOLD2, AllNMethodLevelCallersGOLD2, AllNMethodLevelCalleesGOLD2," + 
+				"											AllTClassLevelCallersGOLD2,		AllTClassLevelCalleesGOLD2,		AllTMethodLevelCallersGOLD2," + 
+				"													AllTMethodLevelCalleesGOLD2," + 
+				"											" + 
+				"						AllNClassLevelCallersAtLeast2NGOLD2" + 
+				"								,AllNClassLevelCallersAtLeast2NGOLD2, AllNMethodLevelCallersAtLeast2NGOLD2, AllNMethodLevelCalleesAtLeast2NGOLD2," + 
+				"								AllTClassLevelCallersAtLeast2TGOLD2,		AllTClassLevelCalleesAtLeast2TGOLD2,		AllTMethodLevelCallersAtLeast2TGOLD2," + 
+				"											" + 
+				"											OnlyinParsedCallers	, OnlyinExecutedCallers,BothParsedAndExecutedCallers,OnlyInParsedCallees,OnlyInExecutedCallees" + 
+				"											,BothInParsedAndExecutedCallees" + 
+				"											,paramatersNumberGOLD2,ParametersAppended,CountParamaterTGOLD2,CountParamaterNGOLD2,CountParamaterEGOLD2" + 
+				"													" + 
+				"													" + 
+				"						" + 
+				"													" + 
+				"													" + 
+				"													" + 
+				"													" + 
+				"						,interfacesNumberGOLD2,CountInterfaceTGOLD2,CountInterfaceNGOLD2,CountInterfaceEGOLD2	,	" + 
+				"						SuperClassesNumberGOLD2,CountFieldSuperClassTGOLD2,CountFieldSuperClassNGOLD2,CountFieldSuperClassEGOLD2	" + 
+				"						,FieldMethodsNumberGOLD2,CountFieldMethodTGOLD2,CountFieldMethodNGOLD2,CountFieldMethodEGOLD2" + 
+				"						,FieldClassesNumberGOLD2,CountFieldClassTGOLD2,CountFieldClassNGOLD2,CountFieldClassEGOLD2" + 
+				"													" + 
+				"													" + 
+				"													,MajorityParametersGOLD2,AtLeast1NParameterGOLD2," + 
+				"													" + 
+				"													" + 
+				"													AtLeast1TParameter,AtLeast2TParameter,AtLeast2NParameter,AllNParameters,AllTParameters," + 
+				"													ACHRAFTRACEPureGOLD2,ACHRAFTRACEMixedGOLD2,ACHRAFNOTRACEPureGOLD2,ACHRAFNOTRACEMixedGOLD2,	" + 
+				"													AllNMethodLevelCallersCalleesGOLD2,AllTMethodLevelCallersCalleesGOLD2,AllTClassLevelCallersCalleesGOLD2,AllNClassLevelCallersCalleesGOLD2,	" + 
+				"													CLASSTRACEMethodLevelPureGold2,CLASSTRACEMethodLevelMixedGold2,CLASSNOTRACEMethodLevelPureGold2,CLASSNOTRACEMethodLevelMixedGold2,	" + 
+				"													CLASSTRACEClassLevelPureGold2,CLASSTRACEClassLevelMixedGold2,CLASSNOTRACEClassLevelPureGold2,CLASSNOTRACEClassLevelMixedGold2," + 
+				"														" + 
+				"													" + 
+				"CLASSTRACEMethodLevelPureGold2ACROSS,CLASSTRACEMethodLevelMixedGold2ACROSS,CLASSNOTRACEMethodLevelPureGold2ACROSS,CLASSNOTRACEMethodLevelMixedGold2ACROSS,	" + 
+				"CLASSTRACEClassLevelPureGold2ACROSS,CLASSTRACEClassLevelMixedGold2ACROSS,CLASSNOTRACEClassLevelPureGold2ACROSS,CLASSNOTRACEClassLevelMixedGold2ACROSS" + 
+				"					"
 				 );
+		
 
 		bw.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, Gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
@@ -623,9 +656,27 @@ public class TracesTableChessFINAL extends JFrame {
 				);
 
 
+		
 
 
-
+		bw3.write("MethodID, RequirementID,ClassID,Gold2,  OwnerClassT, OwnerClassN, "
+				+ "OwnerClassE, #callermethods,  #callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
+				+ "#callerclassesE, #calleemethods, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
+				+ "#calleeclassesE, "
+				
+				+"#callermethodsACROSS, #callermethodsTACROSS, #callermethodsNACROSS, #callermethodsEACROSS, #callerclassesACROSS, "
+				+ "#callerclassesTACROSS, #callerclassesNACROSS, "
+				+ "#callerclassesEACROSS, #calleemethodsACROSS,#calleemethodsTACROSS, #calleemethodsNACROSS, #calleemethodsEACROSS,"
+				+ " #calleeclassesACROSS, #calleeclassesTACROSS, #calleeclassesNACROSS, "
+				+ "#calleeclassesEACROSS, "
+				
+			
+				+ " #parametersMethodLevel, "
+				+ "# Parameter TMethodLevel, # Parameter NMethodLevel, # Parameter E MethodLevel, interfaces, interfaceT, interfaceN, interfaceE, "
+				+ "Superclasses, SuperclassT, SuperclassN, SuperclassE, FieldMethods, FieldsMethodsT, FieldMethodsN, FieldMethodsE, "
+				+ "FieldClasses, FieldClassesT, FieldClassesN, FieldClassesE" 
+				);
+		
 		
 		bw.newLine();
 		bwGold2TableLog.newLine();
@@ -718,6 +769,85 @@ public class TracesTableChessFINAL extends JFrame {
 			data[j][CallerMethodsNumberGOLD2] = 0;
 			data[j][CallerClassesNumberGOLD2] = 0;
 			data[j][CalleeClassesNumberGOLD2] = 0;
+			data[j][CalleeClassesEACROSS] =0; 
+			data[j][CalleeClassesNACROSS] =0; 
+			data[j][CalleeClassesTACROSS] =0; 
+
+			
+		
+
+			myfinalcounter++; 
+		
+			
+			data[j][CalleeClassesT] =0; 
+			data[j][CalleeClassesN] =0; 
+			data[j][CalleeClassesE] =0; 
+			data[j][CalleeClassesNumber] =0; 
+			
+			data[j][CalleeClassesTGOLD2] =0; 
+			data[j][CalleeClassesNGOLD2] =0; 
+			data[j][CalleeClassesEGOLD2] =0; 
+			data[j][CalleeClassesNumberGOLD2] =0; 
+			
+			data[j][CallerClassesT] =0; 
+			data[j][CallerClassesN] =0; 
+			data[j][CallerClassesE] =0; 
+			data[j][CallerClassesNumber] =0; 
+			
+			data[j][CallerClassesTGOLD2] =0; 
+			data[j][CallerClassesNGOLD2] =0; 
+			data[j][CallerClassesEGOLD2] =0; 
+			data[j][CallerClassesNumberGOLD2] =0; 
+			
+			
+			data[j][CalleeMethodsTGOLD2] =0; 
+			data[j][CalleeMethodsNGOLD2] =0; 
+			data[j][CalleeMethodsEGOLD2] =0; 
+			data[j][CalleeMethodsNumberGOLD2] =0; 
+			
+			data[j][CalleeMethodsTACROSS] =0; 
+			data[j][CalleeMethodsNACROSS] =0; 
+			data[j][CalleeMethodsEACROSS] =0; 
+			data[j][CalleeMethodsNumberACROSS] =0; 
+			
+			data[j][CallerMethodsTACROSS] =0; 
+			data[j][CallerMethodsNACROSS] =0; 
+			data[j][CallerMethodsEACROSS] =0; 
+			data[j][CallerMethodsNumberACROSS] =0; 
+			
+			data[j][CalleeMethodsTGOLD2ACROSS] =0; 
+			data[j][CalleeMethodsNGOLD2ACROSS] =0; 
+			data[j][CalleeMethodsEGOLD2ACROSS] =0; 
+			data[j][CalleeMethodsNumberGOLD2ACROSS] =0; 
+			
+			data[j][CallerMethodsTGOLD2ACROSS] =0; 
+			data[j][CallerMethodsNGOLD2ACROSS] =0; 
+			data[j][CallerMethodsEGOLD2ACROSS] =0; 
+			data[j][CallerMethodsNumberGOLD2ACROSS] =0; 
+			
+			data[j][CallerClassesTACROSS] =0; 
+			data[j][CallerClassesNACROSS] =0; 
+			data[j][CallerClassesEACROSS] =0; 
+			data[j][CallerClassesNumberACROSS] =0; 
+			
+			data[j][CallerClassesTGOLD2ACROSS] =0; 
+			data[j][CallerClassesNGOLD2ACROSS] =0; 
+			data[j][CallerClassesEGOLD2ACROSS] =0; 
+			data[j][CallerClassesNumberGOLD2ACROSS] =0; 
+
+			
+			
+			data[j][CalleeClassesTACROSS] =0; 
+			data[j][CalleeClassesNACROSS] =0; 
+			data[j][CalleeClassesEACROSS] =0; 
+			data[j][CalleeClassesNumberACROSS] =0; 
+			
+			data[j][CalleeClassesTGOLD2ACROSS] =0; 
+			data[j][CalleeClassesNGOLD2ACROSS] =0; 
+			data[j][CalleeClassesEGOLD2ACROSS] =0; 
+			data[j][CalleeClassesNumberGOLD2ACROSS] =0;  
+			
+			
 			data[j][CLASSTRACEClassLevelMixedGold] = "null";
 			data[j][CLASSTRACEClassLevelPureGold] = "null";
 			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
@@ -5392,8 +5522,39 @@ failGold2++;
 					methrep.setMethodname(methodname);
 				}
 			}
-
+			bw3.newLine();
 			
+			
+
+			bw3.write(data[j][MethodID] + "," + data[j][RequirementID] + "," +data[j][ClassID] + "," +data[j][Gold2]
+					+ "," +data[j][OwnerClassTGOLD2]+ "," +data[j][OwnerClassNGOLD2]+ "," +data[j][OwnerClassEGOLD2]
+						+ "," +data[j][CallerMethodsNumberGOLD2]+ "," + data[j][CallerMethodsTGOLD2] + "," +
+						data[j][CallerMethodsNGOLD2] + "," + data[j][CallerMethodsEGOLD2] + ","
+						+ data[j][CallerClassesNumberGOLD2] + "," + data[j][CallerClassesTGOLD2] + "," + data[j][CallerClassesNGOLD2] + "," + data[j][CallerClassesEGOLD2] + 
+									
+						"," + data[j][CalleeMethodsNumberGOLD2]+ "," 
+						+ data[j][CalleeMethodsTGOLD2] + "," + data[j][CalleeMethodsNGOLD2] + "," + data[j][CalleeMethodsEGOLD2] + "," + data[j][CalleeClassesNumberGOLD2] + 
+						"," + data[j][CalleeClassesTGOLD2] + ","
+						+ data[j][CalleeClassesNGOLD2] + "," + data[j][CalleeClassesEGOLD2] + ","+ data[j][CallerMethodsNumberGOLD2ACROSS]+  "," + data[j][CallerMethodsTGOLD2ACROSS] + "," +
+						data[j][CallerMethodsNGOLD2ACROSS] + "," + data[j][CallerMethodsEGOLD2ACROSS] + ","
+						+ data[j][CallerClassesNumberGOLD2ACROSS] + "," + data[j][CallerClassesTGOLD2ACROSS] + "," + data[j][CallerClassesNGOLD2ACROSS] + "," + data[j][CallerClassesEGOLD2ACROSS] + 
+						"," + data[j][CalleeMethodsNumberGOLD2ACROSS]+ "," 
+						+ data[j][CalleeMethodsTGOLD2ACROSS] + "," + data[j][CalleeMethodsNGOLD2ACROSS] + "," + data[j][CalleeMethodsEGOLD2ACROSS] + "," + data[j][CalleeClassesNumberGOLD2ACROSS] + 
+							"," + data[j][CalleeClassesTGOLD2ACROSS] + ","
+						+ data[j][CalleeClassesNGOLD2ACROSS] + "," + data[j][CalleeClassesEGOLD2ACROSS] 				
+						+","+data[j][paramatersNumberGOLD2]+","+data [j][CountParamaterTGOLD2]+","+data [j][CountParamaterNGOLD2]+","+data [j][CountParamaterEGOLD2]+","
+							
+							
+							
+							
+							
+							
+							
++data[j][interfacesNumberGOLD2]+","+data [j][CountInterfaceTGOLD2]+","+data [j][CountInterfaceNGOLD2]+","+data [j][CountInterfaceEGOLD2]	+","	
++data[j][SuperClassesNumberGOLD2]+","+data [j][CountFieldSuperClassTGOLD2]+","+data [j][CountFieldSuperClassNGOLD2]+","+data [j][CountFieldSuperClassEGOLD2]	+","	
++data[j][FieldMethodsNumberGOLD2]+","+data [j][CountFieldMethodTGOLD2]+","+data [j][CountFieldMethodNGOLD2]+","+data [j][CountFieldMethodEGOLD2]+","
++data[j][FieldClassesNumberGOLD2]+","+data [j][CountFieldClassTGOLD2]+","+data [j][CountFieldClassNGOLD2]+","+data [j][CountFieldClassEGOLD2]); 
+					
 			
 			bwGold2TableLog.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold2] + "," + data[j][Subject] + "," + data[j][OwnerClassTGOLD2] + "," + data[j][OwnerClassNGOLD2] + ","

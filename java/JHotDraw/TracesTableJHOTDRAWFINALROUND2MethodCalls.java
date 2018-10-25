@@ -1115,8 +1115,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) throws SQLException {
 		// TODO Auto-generated method stub
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		int ITERATION1=0; 
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
@@ -1128,7 +1128,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold4] = methodtrace.gold2;
+			data[j][Gold4] = methodtrace.gold4;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1207,29 +1207,37 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 	
-	
+		 ITERATION1=0; 
 			//PATTERN 1
 			if(myclasstraceHashMap.getTrace4()!=null) {
 				String traceGOLD2 = myclasstraceHashMap.getTrace4();
 				traceGOLD2=traceGOLD2.trim(); 
 				if (traceGOLD2.equals("T")) {
-					
+					data[j][OwnerClassTGOLD2] = "1";
+					data[j][OwnerClassNGOLD2] = "0";
+					data[j][OwnerClassEGOLD2] = "0";
 					
 					PatternSetVariables("T",methodtrace,"100%","P1"); 
 					
 				//	System.out.println("OWNERCLASS T  "+j +" set to 1");
 				} else if (traceGOLD2.equals("N")) {
-					
+					data[j][OwnerClassTGOLD2] = "0";
+					data[j][OwnerClassNGOLD2] = "1";
+					data[j][OwnerClassEGOLD2] = "0";
 					
 					PatternSetVariables("N",methodtrace,"100%","P1"); 
 				
 				//	System.out.println("OWNERCLASS N  "+j +" set to 1");
 				} else if (traceGOLD2.equals("E")) {
+					data[j][OwnerClassTGOLD2] = "0";
+					data[j][OwnerClassNGOLD2] = "0";
+					data[j][OwnerClassEGOLD2] = "1";
+				//	System.out.println("OWNERCLASS E  "+j +" set to 1");
 					
-					PatternSetVariables("E", methodtrace,"100%","P1"); 
+//					PatternSetVariables("E", methodtrace,"100%","P1"); 
 				
 				}
-				
+				ITERATION1++; 
 			}
 			
 			
@@ -1239,17 +1247,15 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 			
-			System.out.println(ITERATION1);
-			 ITERATION1++; 
-			 j++;
+			
+			j++;
 			
 		}
-		
 		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
 		 System.out.println("===============>PATTERNS 1 SET TO T   ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
-		
-		int ITERATION=0; 
+
+		 int ITERATION=0; 
 		
 		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
 		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
@@ -1266,7 +1272,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
 				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
-				methodtrace.setPrediction("");
+				
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method2Representation callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
@@ -1290,37 +1296,51 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						PredictionCallerList.add(predictionvalue); 
 					}
 				}
-				methodtrace.setPrediction("");
+//				methodtrace.setPrediction("");
 				//PATTERN 3
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true ) {
+				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true 	
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")
+						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
-				}else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true ) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "80%", "P3");
-
-					//System.out.println("yes");
 				}
+//				else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true 	
+//						&& !methodtrace.getPrediction().equals("T") 
+//						&& !methodtrace.getPrediction().equals("N")
+//						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
+//					//methodtrace.setPrediction("N");
+//					PatternSetVariables("T", methodtrace, "80%", "P3");
+//
+//					//System.out.println("yes");
+//				}
 				
 				//PATTERN 5
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true) {
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true 
+						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")) {
 					//methodtrace.setPrediction("N");
 					//System.out.println("yes");
 					PatternSetVariables("N", methodtrace, "80%", "P5");
-				}else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true) {
-					//methodtrace.setPrediction("N");
-					//System.out.println("yes");
-					PatternSetVariables("T", methodtrace, "80%", "P5");
 				}
+//				else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true && 
+//						!methodtrace.getPrediction().equals("T") 
+//						&& !methodtrace.getPrediction().equals("N") && 
+//						!methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
+//					//methodtrace.setPrediction("N");
+//					//System.out.println("yes");
+//					PatternSetVariables("T", methodtrace, "80%", "P5");
+//				}
 				k++; 
 			}
 			//InitializePredictionsHashMapBlankValues(PredictionsNewHashMap, methodtraces2); 
 			//PRINT 
 			  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
-			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T MIXED  ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
+			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
 
 			 //END  PRINT 
 			
@@ -1362,19 +1382,28 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						PredictionCallerList.add(predictionvalue); 
 					}
 				}
-				methodtrace.setPrediction("");
+//				methodtrace.setPrediction("");
 				//PATTERN 2
 				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
-						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false) {
+						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false
+								&& !methodtrace.getPrediction().equals("T") 
+								&& !methodtrace.getPrediction().equals("N")
+						&& !methodtrace.getPrediction().equals("null")
+						&& !methodtrace.getPrediction().equals("")) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 					//System.out.println("yes");
-				}else 	if(PredictionCalleeList.contains("N")==false && PredictionCallerList.contains("N")==false && PredictionCalleeList.contains("T")==true 
-						&&  PredictionCallerList.contains("T")==true  ) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
-					//System.out.println("yes");
 				}
+//				else 	if(PredictionCalleeList.contains("N")==false && PredictionCallerList.contains("N")==false && PredictionCalleeList.contains("T")==true 
+//						&&  PredictionCallerList.contains("T")==true 
+//								&& !methodtrace.getPrediction().equals("T") 
+//								&& !methodtrace.getPrediction().equals("N")
+//						&& !methodtrace.getPrediction().equals("null") 
+//						&& !methodtrace.getPrediction().equals("")) {
+//					//methodtrace.setPrediction("N");
+//					PatternSetVariables("T", methodtrace, "90%", "P2");
+//					//System.out.println("yes");
+//				}
 				
 				//PATTERN 4
 				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
@@ -1383,12 +1412,13 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 					PatternSetVariables("N", methodtrace, "90%", "P4");
 
 					//System.out.println("yes");
-				}else 	if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")==false && PredictionCalleeList.isEmpty()
-						&&  PredictionCallerList.contains("T")==true  ) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
-					//System.out.println("yes");
 				}
+//				else 	if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")==false && PredictionCalleeList.isEmpty()
+//						&&  PredictionCallerList.contains("T")==true  ) {
+//					//methodtrace.setPrediction("N");
+//					PatternSetVariables("T", methodtrace, "90%", "P2");
+//					//System.out.println("yes");
+//				}
 				k++; 
 			
 
@@ -1396,9 +1426,21 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			//PRINT 
 			
+			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   GOLD2  "+methodtrace.gold2);
+//				if(methodtrace.getPrediction().equals("T")){
+//					methodtrace.setPrediction("");
+//				}
+//				if(methodtrace.getPrediction().equals("")){
+//					methodtrace.setPrediction("T");
+//					
+//				}
+			}
+			
+			
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
-			System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T PURE   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
+			System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
 
 			 //END  PRINT 
 			ITERATION++; 
@@ -1412,7 +1454,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //					methodtrace.setPrediction("T");
 //				}
 //		}
-		MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+	 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");

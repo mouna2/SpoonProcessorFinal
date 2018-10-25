@@ -1169,13 +1169,13 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 				//MIXED 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>3)
-				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>1) )
+				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>3)
-					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>1))
+				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
 				{
 					PatternSetVariables("N", methodtrace,"100%","P2"); 
 				}
@@ -1207,11 +1207,11 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
 				
 				//PURE 
-				if((methodfieldsCount.CountT>3 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
+				if((methodfieldsCount.CountT>1 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
 				|| (methodparamsCount.CountT>1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
 					PatternSetVariables("T", methodtrace,"100%","P4"); 
 				}
-				if((methodfieldsCount.CountN>3 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
+				if((methodfieldsCount.CountN>1 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
 				|| (methodparamsCount.CountN>1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
 					PatternSetVariables("N", methodtrace,"100%","P4"); 
 				}
