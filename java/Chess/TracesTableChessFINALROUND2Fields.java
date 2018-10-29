@@ -528,7 +528,10 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 
 	PredictionEvaluation NEWPATTERNMethodFieldsPure=new PredictionEvaluation();  
 	PredictionEvaluation NEWPATTERNMethodFieldsMixed=new PredictionEvaluation();  
-
+	PredictionEvaluation NEWPATTERNMethodFieldsMixedOWNER=new PredictionEvaluation();
+	PredictionEvaluation NEWPATTERNMethodFieldsPureOWNER=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNMethodFieldsMixedOWNERType=new PredictionEvaluation();
+	PredictionEvaluation NEWPATTERNMethodFieldsPureOWNERType=new PredictionEvaluation();  
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
@@ -729,7 +732,14 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		br.write("NEW PATTERN METHOD FIELDS PURE: "+NEWPATTERNMethodFieldsPure.toString());
 		br.newLine(); 
 		br.write("NEW PATTERN METHOD FIELDS MIXED: "+NEWPATTERNMethodFieldsMixed.toString());
-
+		br.newLine(); 
+		br.write("NEW PATTERN METHOD FIELDS PURE OWNER: "+NEWPATTERNMethodFieldsPureOWNER.toString());
+		br.newLine(); 
+		br.write("NEW PATTERN METHOD FIELDS MIXED OWNER: "+NEWPATTERNMethodFieldsMixedOWNER.toString());
+		br.newLine(); 
+		br.write("NEW PATTERN METHOD FIELDS MIXED OWNERTYPE: "+NEWPATTERNMethodFieldsMixedOWNERType.toString());
+		br.newLine(); 
+		br.write("NEW PATTERN METHOD FIELDS PURE OWNERTYPE: "+NEWPATTERNMethodFieldsPureOWNERType.toString());
 		br.close();
 		bwlog2.close();
 		bwlog.write(AllTClassLevelCallersClass.toString()); 
@@ -1115,7 +1125,9 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			List<String> PredictionParams= new ArrayList<String>(); 
+			List<String> PredictionParamsOwnerClass= new ArrayList<String>(); 
 			List<String> PredictionFields= new ArrayList<String>(); 
+			List<String> PredictionFieldsOwnerClass= new ArrayList<String>(); 
 			System.out.println(methodtraces2.size());
 			System.out.println(j);
 			System.out.println(Row);
@@ -1134,7 +1146,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 					PredictionFields.add(traceGOLD2); 
 				}
 			}
-		if( paramlist!=null)
+		if( paramlist!=null) {
 			for(Parameter2 mymeth: paramlist) {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
@@ -1144,9 +1156,34 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 					PredictionParams.add(traceGOLD2); 
 				}
 			}
-			
+		}
+		
+		if( paramlist!=null) {
+			for(Parameter2 mymeth: paramlist) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTrace2()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionParamsOwnerClass.add(traceGOLD2); 
+				}
+			}
+		}
+		
+		if(mymethodfields!=null)
+			for(MethodField2 mymeth: mymethodfields) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTrace2()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionFieldsOwnerClass.add(traceGOLD2); 
+				}
+			}
 			methodtrace.setPredictionParams(PredictionParams);
 			methodtrace.setPredictionFields(PredictionFields);
+			methodtrace.setPredictionFieldsOwnerClass(PredictionFieldsOwnerClass);
+			methodtrace.setPredictionParamsOwnerClass(PredictionParamsOwnerClass);
 			j++; 
 		}
 		
@@ -1197,26 +1234,130 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			
 			
 			
+			
+			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
+			 ITERATION1=0; 
+			//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
+				
+				PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
+		
+				
+				 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+					methodtrace.setPrediction("");
+				
+					List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
+					List<String> methodparams = methodtrace.getPredictionParamsOwnerClass(); 
+					//MY MIXED PATTERNS 
+					
+					//PATTERN 1	MIXED T
+					//MIXED 
+					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+					CountTNE methodparamsCount=GenerateCounts(methodparams); 
+					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
+					{
+						PatternSetVariables("T", methodtrace,"100%","P2"); 
+					}
+					else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+					{
+						PatternSetVariables("N", methodtrace,"100%","P2"); 
+					}
+					
+					
+				
+						
+					
+						
+			
+			
+			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNER);
+		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			 ITERATION1++; }
+			
+			
+				
+				
+				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+					methodtrace.setPrediction("");
+				
+					List<String> methodfields = methodtrace.getPredictionFields(); 
+					List<String> methodparams = methodtrace.getPredictionParams(); 
+					List<String> methodfieldsOWNER = methodtrace.getPredictionFieldsOwnerClass(); 
+					List<String> methodparamsOWNER = methodtrace.getPredictionParamsOwnerClass(); 
+					//MY MIXED PATTERNS 
+					
+					//PATTERN 1	MIXED T
+					//MIXED 
+					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+					CountTNE methodparamsCount=GenerateCounts(methodparams); 
+					CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOWNER); 
+					CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOWNER); 
+					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
+					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
+					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
+					{
+						PatternSetVariables("T", methodtrace,"100%","P2"); 
+					}
+					else if(
+							(methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0)
+						||	(methodfieldsCountOWNER.CountN>methodfieldsCountOWNER.CountT && methodfieldsCountOWNER.CountT>=0)
+						|| (methodparamsCountOWNER.CountN>methodparamsCountOWNER.CountT && methodparamsCountOWNER.CountT>=0)
+							
+							)
+					{
+						PatternSetVariables("N", methodtrace,"100%","P2"); 
+					}
+					
+					
+				
+						
+					
+						
+			
+			
+			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNERType);
+		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			 ITERATION1++; }
+				
+				
+			
 			//PURE PATTERN 
 	
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			//	methodtrace.setPrediction("");
+				methodtrace.setPrediction("");
 				List<String> methodfields = methodtrace.getPredictionFields(); 
 				List<String> methodparams = methodtrace.getPredictionParams(); 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
 				
 				//PURE 
-				if((methodfieldsCount.CountT>1 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountT>1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
-					PatternSetVariables("T", methodtrace,"100%","P4"); 
-				}
-				if((methodfieldsCount.CountN>1 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
-				|| (methodparamsCount.CountN>1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
-					PatternSetVariables("N", methodtrace,"100%","P4"); 
-				}
+//				if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
+//				|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
+//					PatternSetVariables("T", methodtrace,"100%","P4"); 
+//				}
+//				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
+//				|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
+//					PatternSetVariables("N", methodtrace,"100%","P4"); 
+//				}
 				
 				
+				
+				if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
 		
 		
 		
@@ -1225,6 +1366,98 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
 			}
+			
+			
+			
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				methodtrace.setPrediction("");
+				List<String> methodfields = methodtrace.getPredictionFields(); 
+				List<String> methodparams = methodtrace.getPredictionParams(); 
+				List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
+				List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
+				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+				CountTNE methodparamsCount=GenerateCounts(methodparams); 
+				CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOwner); 
+				CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOwner); 
+				//PURE 
+
+				
+				
+				
+				if(
+						(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 )
+						||(methodfieldsCountOWNER.CountT>=1 && methodfieldsCountOWNER.CountN==0 ) 
+						|| (methodparamsCountOWNER.CountT>=1 && methodparamsCountOWNER.CountN==0 )
+						
+						) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
+						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
+						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
+								) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
+		
+		
+		
+	
+	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			}
+			
+			
+			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPureOWNERType);
+			
+			
+			
+			//PURE PATTERN 
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				methodtrace.setPrediction("");
+				List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
+				List<String> methodparams = methodtrace.getPredictionParamsOwnerClass(); 
+				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+				CountTNE methodparamsCount=GenerateCounts(methodparams); 
+				
+				//PURE 
+
+				
+				
+				
+				if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
+		
+		
+		
+		
+
+			}
+			
+			MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPureOWNER);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 //			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 //					if(methodtrace.getPrediction().trim().equals("E")){
 //						methodtrace.setPrediction("T");

@@ -39,8 +39,9 @@ public class MethodTraceSubjectTSubjectN {
 	List<Parameter2> ParameterListE; 
 	
 	List<String> PredictionParams; 
+	List<String> PredictionParamsOwnerClass; 
 	List<String> PredictionFields; 
-	
+	List<String> PredictionFieldsOwnerClass; 
 	List<String> SuperClassesList; 
 	List<String> InterfaceList; 
 	List<String> ChildrenList; 
@@ -63,6 +64,14 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
 	
+	public List<String> getPredictionParamsOwnerClass() {
+		return PredictionParamsOwnerClass;
+	}
+
+	public void setPredictionParamsOwnerClass(List<String> predictionParamsOwnerClass) {
+		PredictionParamsOwnerClass = predictionParamsOwnerClass;
+	}
+
 	public List<String> getSuperClassesList() {
 		return SuperClassesList;
 	}
@@ -97,6 +106,14 @@ public class MethodTraceSubjectTSubjectN {
 
 	public List<Parameter2> getParameterListT() {
 		return ParameterListT;
+	}
+
+	public List<String> getPredictionFieldsOwnerClass() {
+		return PredictionFieldsOwnerClass;
+	}
+
+	public void setPredictionFieldsOwnerClass(List<String> predictionFieldsOwnerClass) {
+		PredictionFieldsOwnerClass = predictionFieldsOwnerClass;
 	}
 
 	public void setParameterListT(List<Parameter2> parameterListT) {
