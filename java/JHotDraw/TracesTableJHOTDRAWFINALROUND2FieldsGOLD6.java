@@ -45,14 +45,12 @@ import org.eclipse.swt.widgets.Table;
 
 import Chess.CountTNE;
 import Chess.PredictionEvaluation;
-import mypackage.Children2;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
 import mypackage.Method2Representation;
@@ -64,7 +62,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
+public class TracesTableJHOTDRAWFINALROUND2FieldsGOLD6 extends JFrame {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -218,7 +216,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 	int CLASSNOTRACEClassLevelMixedGoldACROSS=94;
 	
 	
-	int Gold5=95; 
+	int Gold6=95; 
 	int OwnerClassTGOLD2=96; 
 	int OwnerClassNGOLD2=97; 
 	int OwnerClassEGOLD2=98; 
@@ -530,15 +528,13 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 
 	PredictionEvaluation NEWPATTERNMethodCalls=new PredictionEvaluation();  
 
-	PredictionEvaluation NEWPATTERNSuperclassesInterfacesPure=new PredictionEvaluation();  
-	PredictionEvaluation NEWPATTERNSuperclassesInterfacesMixed=new PredictionEvaluation();  
-	PredictionEvaluation NEWPATTERNSuperClassFieldsComboMixed=new PredictionEvaluation();  
-
+	PredictionEvaluation NEWPATTERNMethodFieldsPure=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNMethodFieldsMixed=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNMethodFieldsPureOWNER=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNMethodFieldsMixedOWNER=new PredictionEvaluation();  
 	
-	PredictionEvaluation NEWPATTERNInterfacesPure=new PredictionEvaluation();  
-	PredictionEvaluation NEWPATTERNInterfacesMixed=new PredictionEvaluation(); 
-	PredictionEvaluation NEWPATTERNSuperclassesPure=new PredictionEvaluation();  
-	PredictionEvaluation NEWPATTERNSuperclassesMixed=new PredictionEvaluation();  
+	PredictionEvaluation NEWPATTERNMethodFieldsPureOWNERType=new PredictionEvaluation();
+	PredictionEvaluation NEWPATTERNMethodFieldsMixedOWNERType=new PredictionEvaluation();
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
@@ -554,9 +550,6 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
-	 HashMap<String, List< Children2>> ChildrenHashMap=  new HashMap<String, List< Children2>>(); 
-	 HashMap<String, List< Implementation2>> INTERFACEHASHMAPFINAL=  new HashMap<String, List< Implementation2>>(); 
-
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
@@ -630,9 +623,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableJHOTDRAWFINALROUND2Superclasses() throws SQLException, IOException {
+	public TracesTableJHOTDRAWFINALROUND2FieldsGOLD6() throws SQLException, IOException {
 	
-		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold5, Subject, OwnerClassT, OwnerClassN, "
+		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold6, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
 				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -677,7 +670,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		
 		bw.newLine();
 		bwGold2TableLog.newLine();
-		DatabaseReading2JHotDraw3 db = new DatabaseReading2JHotDraw3();
+		 DatabaseReading2JHotDraw3 db = new DatabaseReading2JHotDraw3();
 		db.MakePredictions();
 		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
 		methodtraces2HashMap=db.getMethodtracehashmap(); 
@@ -695,15 +688,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		  FieldClassesHashMap= db.getClassFieldHashMap(); 
 		  //SUPERCLASSES
 		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
-		  //CHILDREN 
-		  ChildrenHashMap= db.getChildrenHashMap(); 
-		  //IMPLEMENTATIONS 
-		  INTERFACEHASHMAPFINAL= db.getINTERFACEHASHMAPFINAL(); 
 		  //PARAMETERS 
 		  
 		  parameterHashMap= db.getParameterhashMap(); 
-		  
-		  
 		LinkedHashMap<String, String> PredictionsOldHashMap= new LinkedHashMap<String, String>(); 
 		LinkedHashMap<String, String> PredictionsNewHashMap= new LinkedHashMap<String, String>(); 
 
@@ -745,19 +732,17 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		bwfile2.close();
 		bwfile3.close();
 		br.newLine(); 
-		br.write("NEW PATTERN SUPERCLASSES INTERFACES PURE : "+NEWPATTERNSuperclassesInterfacesPure.toString());
+		br.write("NEW PATTERN METHOD FIELDS PURE: "+NEWPATTERNMethodFieldsPure.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN SUPERCLASSES INTERFACES MIXED : "+NEWPATTERNSuperclassesInterfacesMixed.toString());
+		br.write("NEW PATTERN METHOD FIELDS MIXED: "+NEWPATTERNMethodFieldsMixed.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN  INTERFACES PURE : "+NEWPATTERNInterfacesPure.toString());
+		br.write("NEW PATTERN METHOD FIELDS PURE OWNER: "+NEWPATTERNMethodFieldsPureOWNER.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN  INTERFACES MIXED : "+NEWPATTERNInterfacesMixed.toString());
+		br.write("NEW PATTERN METHOD FIELDS MIXED OWNER: "+NEWPATTERNMethodFieldsMixedOWNER.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN SUPERCLASSES MIXED : "+NEWPATTERNSuperclassesMixed.toString());
+		br.write("NEW PATTERN METHOD FIELDS MIXED OWNERTYPE: "+NEWPATTERNMethodFieldsMixedOWNERType.toString());
 		br.newLine(); 
-		br.write("NEW PATTERN SUPERCLASSES PURE : "+NEWPATTERNSuperclassesPure.toString());
-		br.newLine(); 
-		br.write("NEW PATTERN SUPERCLASSES COMBO MIXED : "+NEWPATTERNSuperClassFieldsComboMixed.toString());
+		br.write("NEW PATTERN METHOD FIELDS PURE OWNERTYPE: "+NEWPATTERNMethodFieldsPureOWNERType.toString());
 		br.close();
 		bwlog2.close();
 		bwlog.write(AllTClassLevelCallersClass.toString()); 
@@ -799,8 +784,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		System.out.println("AT LEAST 2N PARAMETER CLASS: "+AtLeast2NParameterClass.toString()); 
 		System.out.println("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
 		System.out.println("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
-		System.out.println("NEW PATTERN SUPERCLASSES PURE : "+NEWPATTERNSuperclassesInterfacesPure.toString()); 
-		System.out.println("NEW PATTERN SUPERCLASSES MIXED: "+NEWPATTERNSuperclassesInterfacesMixed.toString()); 
+		System.out.println("NEW PATTERN METHOD CALLS: "+NEWPATTERNMethodCalls.toString()); 
+		System.out.println("NEW PATTERN METHOD FIELDS PURE : "+NEWPATTERNMethodFieldsPure.toString()); 
+		System.out.println("NEW PATTERN METHOD FIELDS MIXED: "+NEWPATTERNMethodFieldsMixed.toString()); 
 		
 		bw2.close();
 		
@@ -819,9 +805,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 //				"# callee methods T", "#callee methods N", "#callee methods E", "# callee classes",
 //				"# callee classes T", "#callee classes N", "#callee classes E",  "OwnerClassPrediction",
 //				"MajorityClassLevelCallers","MajorityClassLevelCallees", "MajorityMethodLevelCallers","MajorityMethodLevelCallees",
-//				">1NPredictionClassLevelCallers", ">1NPredictionClassLevelCallees", ">1NPredictionMethodLevelCallers", 
-//				">1NPredictionMethodLevelCallees", ">1TPredictionClassLevelCallers", ">1TPredictionClassLevelCallees", 
-//				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
+//				">=0NPredictionClassLevelCallers", ">=0NPredictionClassLevelCallees", ">=0NPredictionMethodLevelCallers", 
+//				">=0NPredictionMethodLevelCallees", ">=0TPredictionClassLevelCallers", ">=0TPredictionClassLevelCallees", 
+//				">=0TPredictionMethodLevelCallers", ">=0TPredictionMethodLevelCallees", 
 //				">2NPredictionClassLevelCallers", ">2NPredictionClassLevelCallees", ">2NPredictionMethodLevelCallers", 
 //				">2NPredictionMethodLevelCallees", ">2TPredictionClassLevelCallers", ">2TPredictionClassLevelCallees", 
 //				">2TPredictionMethodLevelCallers", ">2TPredictionMethodLevelCallees", 
@@ -841,9 +827,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				"21-# callee methods T", "22-#callee methods N", "23-#callee methods E", "24-# callee classes",
 				"25-# callee classes T", "26-#callee classes N", "27-#callee classes E",  "28-OwnerClassPrediction",
 				"29-MajorityClassLevelCallees","30-MajorityClassLevelCallers", "31-MajorityMethodLevelCallees","32-MajorityMethodLevelCallers",
-				"33->1NPredictionClassLevelCallees", "34->1NPredictionClassLevelCallers", "35->1NPredictionMethodLevelCallees", 
-				"36->1NPredictionMethodLevelCallers", "37->1TPredictionClassLevelCallees", "38->1TPredictionClassLevelCallers", 
-				"39->1TPredictionMethodLevelCallees", "40->1TPredictionMethodLevelCallers", 
+				"33->=0NPredictionClassLevelCallees", "34->=0NPredictionClassLevelCallers", "35->=0NPredictionMethodLevelCallees", 
+				"36->=0NPredictionMethodLevelCallers", "37->=0TPredictionClassLevelCallees", "38->=0TPredictionClassLevelCallers", 
+				"39->=0TPredictionMethodLevelCallees", "40->=0TPredictionMethodLevelCallers", 
 				"41->2NPredictionClassLevelCallees", "42->2NPredictionClassLevelCallers", "43->2NPredictionMethodLevelCallees", 
 				"44->2NPredictionMethodLevelCallers", "45->2TPredictionClassLevelCallees", "46->2TPredictionClassLevelCallers", 
 				"47->2TPredictionMethodLevelCallees", "48->2TPredictionMethodLevelCallers", 
@@ -862,30 +848,30 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"95-Gold5", "96-OwnerClass T Gold5", "97-Owner Class N Gold5", "98-Owner Class E Gold5", "99-# caller methods Gold5",
-				"100-# caller methods T Gold5", "101-#caller methods N Gold5", "102-#caller methods E Gold5", "103-# caller classes Gold5",
-				"104-# caller classes T Gold5", "105-#caller classes N Gold5", "106-#caller classes E Gold5", "107-# callee methods Gold5",
-				"108-# callee methods T Gold5", "109-#callee methods N Gold5", "110-#callee methods E Gold5", "111-# callee classes Gold5",
-				"112-# callee classes T Gold5", "113-#callee classes N Gold5", "114-#callee classes E Gold5",  "115-OwnerClassPrediction Gold5",
-				"116-MajorityClassLevelCallees Gold5","117-MajorityClassLevelCallers Gold5", "118-MajorityMethodLevelCallees Gold5","119-MajorityMethodLevelCallers Gold5",
-				"120->1NPredictionClassLevelCallees Gold5", "121->1NPredictionClassLevelCallers Gold5", "122->1NPredictionMethodLevelCallees Gold5", 
-				"123->1NPredictionMethodLevelCallers Gold5", "124->1TPredictionClassLevelCallees Gold5", "125->1TPredictionClassLevelCallers Gold5", 
-				"126->1TPredictionMethodLevelCallees Gold5", "127->1TPredictionMethodLevelCallers Gold5", 
-				"128->2NPredictionClassLevelCallees Gold5", "129->2NPredictionClassLevelCallers Gold5", "130->2NPredictionMethodLevelCallees Gold5", 
-				"131->2NPredictionMethodLevelCallers Gold5", "132->2TPredictionClassLevelCallees Gold5", "133->2TPredictionClassLevelCallers Gold5", 
-				"134->2TPredictionMethodLevelCallees Gold5", "135->2TPredictionMethodLevelCallers Gold5", 
-				"136-AllNClassLevelCallees Gold5", "137-AllNClassLevelCallers Gold5","138-AllNMethodLevelCallees Gold5","139-AllNMethodLevelCallers Gold5",
-				"140-AllTClassLevelCallees Gold5", "141-AllTClassLevelCallers Gold5", "142-AllTMethodLevelCallees Gold5", "143-AllTMethodLevelCallers  Gold5"
-				,"144-AllNAtLeast2NClassLevelCallees Gold5", "145-AllNAtLeast2NClassLevelCallers Gold5","146-AllNAtLeast2NMethodLevelCallees Gold5","147-AllNAtLeast2NMethodLevelCallers Gold5",
-				"148-AllTAtLeast2TClassLevelCallees Gold5", "149-AllTAtLeast2TClassLevelCallers Gold5", "150-AllTAtLeast2TMethodLevelCallees Gold5", "151-AllTAtLeast2TMethodLevelCallers Gold5"
+				"95-Gold6", "96-OwnerClass T Gold6", "97-Owner Class N Gold6", "98-Owner Class E Gold6", "99-# caller methods Gold6",
+				"100-# caller methods T Gold6", "101-#caller methods N Gold6", "102-#caller methods E Gold6", "103-# caller classes Gold6",
+				"104-# caller classes T Gold6", "105-#caller classes N Gold6", "106-#caller classes E Gold6", "107-# callee methods Gold6",
+				"108-# callee methods T Gold6", "109-#callee methods N Gold6", "110-#callee methods E Gold6", "111-# callee classes Gold6",
+				"112-# callee classes T Gold6", "113-#callee classes N Gold6", "114-#callee classes E Gold6",  "115-OwnerClassPrediction Gold6",
+				"116-MajorityClassLevelCallees Gold6","117-MajorityClassLevelCallers Gold6", "118-MajorityMethodLevelCallees Gold6","119-MajorityMethodLevelCallers Gold6",
+				"120->=0NPredictionClassLevelCallees Gold6", "121->=0NPredictionClassLevelCallers Gold6", "122->=0NPredictionMethodLevelCallees Gold6", 
+				"123->=0NPredictionMethodLevelCallers Gold6", "124->=0TPredictionClassLevelCallees Gold6", "125->=0TPredictionClassLevelCallers Gold6", 
+				"126->=0TPredictionMethodLevelCallees Gold6", "127->=0TPredictionMethodLevelCallers Gold6", 
+				"128->2NPredictionClassLevelCallees Gold6", "129->2NPredictionClassLevelCallers Gold6", "130->2NPredictionMethodLevelCallees Gold6", 
+				"131->2NPredictionMethodLevelCallers Gold6", "132->2TPredictionClassLevelCallees Gold6", "133->2TPredictionClassLevelCallers Gold6", 
+				"134->2TPredictionMethodLevelCallees Gold6", "135->2TPredictionMethodLevelCallers Gold6", 
+				"136-AllNClassLevelCallees Gold6", "137-AllNClassLevelCallers Gold6","138-AllNMethodLevelCallees Gold6","139-AllNMethodLevelCallers Gold6",
+				"140-AllTClassLevelCallees Gold6", "141-AllTClassLevelCallers Gold6", "142-AllTMethodLevelCallees Gold6", "143-AllTMethodLevelCallers  Gold6"
+				,"144-AllNAtLeast2NClassLevelCallees Gold6", "145-AllNAtLeast2NClassLevelCallers Gold6","146-AllNAtLeast2NMethodLevelCallees Gold6","147-AllNAtLeast2NMethodLevelCallers Gold6",
+				"148-AllTAtLeast2TClassLevelCallees Gold6", "149-AllTAtLeast2TClassLevelCallers Gold6", "150-AllTAtLeast2TMethodLevelCallees Gold6", "151-AllTAtLeast2TMethodLevelCallers Gold6"
 				
-				,"152-Callers Gold5", "153-Callees Gold5", "154-#parameters Gold5","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction Gold5", "159-AtLeast1NParameterPrediction Gold5", 
-				"160-AtLeast1TParameterPrediction Gold5", "161-AtLeast2TParameterPrediction Gold5", 
-				"162-AtLeast2NParameterPrediction Gold5", "163-AllNParameterPrediction Gold5", "164-AllTParameterPrediction Gold5",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold5", 
-				"169-AllTMethodLevelCallersCalleesClass Gold5", "170-AllNMethodLevelCallersCalleesClass Gold5",
-				"171-AllTClassLevelCallersCalleesClass Gold5", "172-AllNClassLevelCallersCalleesClass Gold5", 
+				,"152-Callers Gold6", "153-Callees Gold6", "154-#parameters Gold6","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction Gold6", "159-AtLeast1NParameterPrediction Gold6", 
+				"160-AtLeast1TParameterPrediction Gold6", "161-AtLeast2TParameterPrediction Gold6", 
+				"162-AtLeast2NParameterPrediction Gold6", "163-AllNParameterPrediction Gold6", "164-AllTParameterPrediction Gold6",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold6", 
+				"169-AllTMethodLevelCallersCalleesClass Gold6", "170-AllNMethodLevelCallersCalleesClass Gold6",
+				"171-AllTClassLevelCallersCalleesClass Gold6", "172-AllNClassLevelCallersCalleesClass Gold6", 
 				"173-CLASSTRACEMethodLevelPureGold2","174-CLASSTRACEMethodLevelMixedGold2","175-CLASSNOTRACEMethodLevelPureGold2","176-CLASSNOTRACEMethodLevelMixedGold2]",
 				"177-CLASSTRACEClassLevelPureGold2","178-CLASSTRACEClassLevelMixedGold2","179-CLASSNOTRACEClassLevelPureGold2","180-CLASSNOTRACEClassLevelMixedGold2"
 				};
@@ -1082,18 +1068,64 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 			LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtracesNew) throws SQLException {
 		
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-
+//		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+//			
+//			String reqclass= methodtrace.Requirement.ID+"-"+ methodtrace.ClassRepresentation.classid; 
+//			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+//	
+//		int ITERATION1=0; 
+//			//PATTERN 1
+//			if(myclasstraceHashMap.getTrace6()!=null) {
+//				String traceGOLD2 = myclasstraceHashMap.getTrace6();
+//				traceGOLD2=traceGOLD2.trim(); 
+//				if (traceGOLD2.equals("T")) {
+//					data[j][OwnerClassTGOLD2] = "1";
+//					data[j][OwnerClassNGOLD2] = "0";
+//					data[j][OwnerClassEGOLD2] = "0";
+//					
+//					PatternSetVariables("T",methodtrace,"100%","P1"); 
+//					
+//				//	System.out.println("OWNERCLASS T  "+j +" set to 1");
+//				} else if (traceGOLD2.equals("N")) {
+//					data[j][OwnerClassTGOLD2] = "0";
+//					data[j][OwnerClassNGOLD2] = "1";
+//					data[j][OwnerClassEGOLD2] = "0";
+//					
+//					PatternSetVariables("N",methodtrace,"100%","P1"); 
+//				
+//				//	System.out.println("OWNERCLASS N  "+j +" set to 1");
+//				} else if (traceGOLD2.equals("E")) {
+//					data[j][OwnerClassTGOLD2] = "0";
+//					data[j][OwnerClassNGOLD2] = "0";
+//					data[j][OwnerClassEGOLD2] = "1";
+//				//	System.out.println("OWNERCLASS E  "+j +" set to 1");
+//					
+//					PatternSetVariables("E", methodtrace,"100%","P1"); 
+//				
+//				}
+//				ITERATION1++; 
+//			}
+//			
+//			
+//		
+//			
+//			
+//			
+//			
+//			
+//			 System.out.println("===============>PATTERNS 1 SET TO T   ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+//			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+//			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
+//			j++;
+//			
+//		}
 		
 		
 		
 		
 		// TODO Auto-generated method stub
 		MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
-
+		
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			List<String> PredictionParams= new ArrayList<String>(); 
 			List<String> PredictionParamsOwnerClass= new ArrayList<String>(); 
@@ -1112,8 +1144,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
+					System.out.println("trace GOLD2 "+traceGOLD2);
 					PredictionFields.add(traceGOLD2); 
 				}
 			}
@@ -1122,8 +1155,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
+					System.out.println("trace GOLD2 "+traceGOLD2);
 					PredictionParams.add(traceGOLD2); 
 				}
 			}
@@ -1134,8 +1168,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
+					System.out.println("trace GOLD2 "+traceGOLD2);
 					PredictionParamsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1146,8 +1181,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
+					System.out.println("trace GOLD2 "+traceGOLD2);
 					PredictionFieldsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1155,74 +1191,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 			methodtrace.setPredictionFields(PredictionFields);
 			methodtrace.setPredictionFieldsOwnerClass(PredictionFieldsOwnerClass);
 			methodtrace.setPredictionParamsOwnerClass(PredictionParamsOwnerClass);
-			
-			List<String> SuperClassesList= new ArrayList<String>(); 
-			List<String> InterfaceList= new ArrayList<String>(); 
-			List<String> ChildrenList= new ArrayList<String>(); 
-			List<String> ImplementationList= new ArrayList<String>(); 
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(Row);
-			System.out.println(methodtraces2HashMap.size());
-
-			
-			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid); 
-			 List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 System.out.println("Methodtrace class id "+methodtrace.ClassRepresentation.classid);
-		if(myinterfaces!=null)
-			for(Interface2 myinterface: myinterfaces) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
-					InterfaceList.add(traceGOLD2); 
-				}
-			}
-		if( mysuperclasses!=null)
-			for(SuperClass2 mysuperclass: mysuperclasses) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
-					SuperClassesList.add(traceGOLD2); 
-				}
-			}
-		if(mychildren!=null)
-			for(Children2 mychild: mychildren) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
-					ChildrenList.add(traceGOLD2); 
-				}
-			}
-		if( myimplementations!=null)
-			for(Implementation2 myimplementation: myimplementations) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
-					ImplementationList.add(traceGOLD2); 
-				}
-			}
-			methodtrace.setSuperClassesList(SuperClassesList);
-			methodtrace.setInterfaceList(InterfaceList);
-			methodtrace.setImplementationList(ImplementationList);
-			methodtrace.setChildrenList(ChildrenList);
 			j++; 
 		}
 		
-		
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
-		/*******************************************************************************************************************************************/
 		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
 		int ITERATION1=0; 
 		//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
@@ -1234,501 +1205,280 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 			
-				List<String> childrenList = methodtrace.getChildrenList(); 
-				List<String> ImplementationList = methodtrace.getImplementationList(); 
-				List<String> InterfaceList = methodtrace.getInterfaceList(); 
-				List<String> SuperclassList = methodtrace.getSuperClassesList(); 
 				List<String> methodfields = methodtrace.getPredictionFields(); 
 				List<String> methodparams = methodtrace.getPredictionParams(); 
-				List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-				List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-			
 				//MY MIXED PATTERNS 
 				
 				//PATTERN 1	MIXED T
-				CountTNE childrenListCount = GenerateCounts(childrenList); 
-				CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-				CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-				CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
+				//MIXED 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				CountTNE methodfieldsOwnerCount = GenerateCounts(methodfieldsOwner); 
-				CountTNE methodparamsOwnerCount=GenerateCounts(methodparamsOwner); 
+				 if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+							|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+						{
+							PatternSetVariables("N", methodtrace,"100%","P2"); 
+						}
+				 else	if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
+				{
+					PatternSetVariables("T", methodtrace,"100%","P2"); 
+				}
 				
-				if(
-					((	(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-						||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-						||(ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-						|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-						) )
+				
+				
+			
 					
-||
+				
 					
-					((	
+		
+		
+		
+	//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+		 ITERATION1++; }
+			
+			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixed);
+			
+			
+			
+			
+			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
+			 ITERATION1=0; 
+			//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
+				
+				PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
+		
+				
+				 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+					methodtrace.setPrediction("");
+				
+					List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
+					List<String> methodparams = methodtrace.getPredictionParamsOwnerClass(); 
+					//MY MIXED PATTERNS 
+					
+					//PATTERN 1	MIXED T
+					//MIXED 
+					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+					CountTNE methodparamsCount=GenerateCounts(methodparams); 
+					 if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+								|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+							{
+								PatternSetVariables("N", methodtrace,"100%","P2"); 
+							}
 							
-							(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-							||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-							||
-							(ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-							|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-							) )
-					
-||
-					
-					((	
-//							(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-//							||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-//							||
-							
-							(ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-							|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-							) )
-					
-||
-					
-					((	
-							
-//							(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-//							||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-//							||
-							
-							(ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-							|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-							) )
-					
-			)
+					 else	if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 					{
 						PatternSetVariables("T", methodtrace,"100%","P2"); 
 					}
-					else if(
-//							(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
-//							|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
-//							||
-							
-							(InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
-							||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
-							)
+					
+					
+				
+						
+					
+						
+			
+			
+			
+		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			 ITERATION1++; }
+			
+				 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+				 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNER);
+				
+				
+				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+					methodtrace.setPrediction("");
+				
+					List<String> methodfields = methodtrace.getPredictionFields(); 
+					List<String> methodparams = methodtrace.getPredictionParams(); 
+					List<String> methodfieldsOWNER = methodtrace.getPredictionFieldsOwnerClass(); 
+					List<String> methodparamsOWNER = methodtrace.getPredictionParamsOwnerClass(); 
+					//MY MIXED PATTERNS 
+					
+					//PATTERN 1	MIXED T
+					//MIXED 
+					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+					CountTNE methodparamsCount=GenerateCounts(methodparams); 
+					CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOWNER); 
+					CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOWNER); 
+					if(
+							(methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+							|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0)
+							||	(methodfieldsCountOWNER.CountN>methodfieldsCountOWNER.CountT && methodfieldsCountOWNER.CountT>=0)
+							|| (methodparamsCountOWNER.CountN>methodparamsCountOWNER.CountT && methodparamsCountOWNER.CountT>=0)
+								
+								)
+						{
+							PatternSetVariables("N", methodtrace,"100%","P2"); 
+						}
+					else	if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
+					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
+					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
 					{
-						PatternSetVariables("N", methodtrace,"100%","P2"); 
+						PatternSetVariables("T", methodtrace,"100%","P2"); 
 					}
-			
-					
-				
-					
-		
-		
-		
-		 ITERATION1++; }
-			
-			
-			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperClassFieldsComboMixed);
-			 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperClassFieldsComboMixed.toString());
-
-			
-			
-			 
-			 
-				/*******************************************************************************************************************************************/
-				/*******************************************************************************************************************************************/
-				/*******************************************************************************************************************************************/
-				/*******************************************************************************************************************************************/
-				PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
-				 ITERATION1=0; 
-				//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
-					
-					PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
-			
-					
-					 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-					for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-						methodtrace.setPrediction("");
-					
-						List<String> childrenList = methodtrace.getChildrenList(); 
-						List<String> ImplementationList = methodtrace.getImplementationList(); 
-						List<String> InterfaceList = methodtrace.getInterfaceList(); 
-						List<String> SuperclassList = methodtrace.getSuperClassesList(); 
-						List<String> methodfields = methodtrace.getPredictionFields(); 
-						List<String> methodparams = methodtrace.getPredictionParams(); 
-						List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-						List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-					
-						//MY MIXED PATTERNS 
-						
-						//PATTERN 1	MIXED T
-						CountTNE childrenListCount = GenerateCounts(childrenList); 
-						CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-						CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-						CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-						CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-						CountTNE methodparamsCount=GenerateCounts(methodparams); 
-						CountTNE methodfieldsOwnerCount = GenerateCounts(methodfieldsOwner); 
-						CountTNE methodparamsOwnerCount=GenerateCounts(methodparamsOwner); 
-						if(
-								(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
-								|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
-							
-								)
-						{
-							PatternSetVariables("N", methodtrace,"100%","P2"); 
-						}
-						else	if(
-							((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-								||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-							
-							
-		
-							
-					))
-							{
-								PatternSetVariables("T", methodtrace,"100%","P2"); 
-							}
-							 
-					
-							
-						
-							
-				
-				
-				
-				 ITERATION1++; }
-					
-					
-					 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-					 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesMixed);
-					 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesMixed.toString());
-
-					
-					
 					 
-					 
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-						PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
-						 ITERATION1=0; 
-						//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
-							
-							PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
 					
-							
-							 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-							for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-								methodtrace.setPrediction("");
-							
-								List<String> childrenList = methodtrace.getChildrenList(); 
-								List<String> ImplementationList = methodtrace.getImplementationList(); 
-								List<String> InterfaceList = methodtrace.getInterfaceList(); 
-								List<String> SuperclassList = methodtrace.getSuperClassesList(); 
-								List<String> methodfields = methodtrace.getPredictionFields(); 
-								List<String> methodparams = methodtrace.getPredictionParams(); 
-								List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-								List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-							
-								//MY MIXED PATTERNS 
-								
-								//PATTERN 1	MIXED T
-								CountTNE childrenListCount = GenerateCounts(childrenList); 
-								CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-								CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-								CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-								CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-								CountTNE methodparamsCount=GenerateCounts(methodparams); 
-								CountTNE methodfieldsOwnerCount = GenerateCounts(methodfieldsOwner); 
-								CountTNE methodparamsOwnerCount=GenerateCounts(methodparamsOwner); 
-								if(
-										(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT==0)
-										|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT==0)
-									
-										)
-								{
-									PatternSetVariables("N", methodtrace,"100%","P2"); 
-								}
-								else	if(
-									((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN==0)
-										||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN==0)
-									
-									
-				
-									
-							))
-									{
-										PatternSetVariables("T", methodtrace,"100%","P2"); 
-									}
-									 
-							
-									
-								
-									
-						
-						
-						
-						 ITERATION1++; }
-							
-							
-							 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-							 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesPure);
-							 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesPure.toString());
-
-							
-							
-							 
-							 
-								/*******************************************************************************************************************************************/
-								/*******************************************************************************************************************************************/
-								/*******************************************************************************************************************************************/	  
-				
-								PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
-								 ITERATION1=0; 
-								//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
-									
-									PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
-							
-									
-									 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-									for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-										methodtrace.setPrediction("");
-									
-										List<String> childrenList = methodtrace.getChildrenList(); 
-										List<String> ImplementationList = methodtrace.getImplementationList(); 
-										List<String> InterfaceList = methodtrace.getInterfaceList(); 
-										List<String> SuperclassList = methodtrace.getSuperClassesList(); 
-										List<String> methodfields = methodtrace.getPredictionFields(); 
-										List<String> methodparams = methodtrace.getPredictionParams(); 
-										List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-										List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-									
-										//MY MIXED PATTERNS 
-										
-										//PATTERN 1	MIXED T
-										CountTNE childrenListCount = GenerateCounts(childrenList); 
-										CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-										CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-										CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-										CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-										CountTNE methodparamsCount=GenerateCounts(methodparams); 
-										 if(
-													
-												 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
-												||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
-												)
-										{
-											PatternSetVariables("N", methodtrace,"100%","P2"); 
-										}
-										 else if(
-												
-												 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-												|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-												)
-											{
-												PatternSetVariables("T", methodtrace,"100%","P2"); 
-											}
-											
-									
-											
-										
-											
-								
-								
-								
-								 ITERATION1++; }
-									
-									
-									  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-									 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNInterfacesMixed);
-									 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNInterfacesMixed.toString());
-							 
-									 
-										/*******************************************************************************************************************************************/
-										/*******************************************************************************************************************************************/
-										/*******************************************************************************************************************************************/	  
-						
-										PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
-										 ITERATION1=0; 
-										//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
-											
-											PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
-									
-											
-											 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-											for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-												methodtrace.setPrediction("");
-											
-												List<String> childrenList = methodtrace.getChildrenList(); 
-												List<String> ImplementationList = methodtrace.getImplementationList(); 
-												List<String> InterfaceList = methodtrace.getInterfaceList(); 
-												List<String> SuperclassList = methodtrace.getSuperClassesList(); 
-												List<String> methodfields = methodtrace.getPredictionFields(); 
-												List<String> methodparams = methodtrace.getPredictionParams(); 
-												List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-												List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-											
-												//MY MIXED PATTERNS 
-												
-												//PATTERN 1	MIXED T
-												CountTNE childrenListCount = GenerateCounts(childrenList); 
-												CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-												CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-												CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-												CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-												CountTNE methodparamsCount=GenerateCounts(methodparams); 
-												if(
-														
-														 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT==0)
-														||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT==0)
-														)
-												{
-													PatternSetVariables("N", methodtrace,"100%","P2"); 
-												}
-												else	if(
-														
-														 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN==0)
-														|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN==0)
-														)
-													{
-														PatternSetVariables("T", methodtrace,"100%","P2"); 
-													}
-													 
-											
-													
-												
-													
-										
-										
-										
-										 ITERATION1++; }
-											
-											
-											  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-											 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNInterfacesPure);
-											 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNInterfacesPure.toString());
-									 
-									 
-										/*******************************************************************************************************************************************/
-										/*******************************************************************************************************************************************/
-										/*******************************************************************************************************************************************/
-										/*******************************************************************************************************************************************/
-							 
-							 
-							 
-							 PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2HashMap); 
-				 ITERATION1=0; 
-				//while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
 					
-					PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2HashMap); 
+				
+						
+					
+						
 			
-					
-					 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-					for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-						methodtrace.setPrediction("");
-					
-						List<String> childrenList = methodtrace.getChildrenList(); 
-						List<String> ImplementationList = methodtrace.getImplementationList(); 
-						List<String> InterfaceList = methodtrace.getInterfaceList(); 
-						List<String> SuperclassList = methodtrace.getSuperClassesList(); 
-						List<String> methodfields = methodtrace.getPredictionFields(); 
-						List<String> methodparams = methodtrace.getPredictionParams(); 
-						List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
-						List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
-					
-						//MY MIXED PATTERNS 
-						
-						//PATTERN 1	MIXED T
-						CountTNE childrenListCount = GenerateCounts(childrenList); 
-						CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
-						CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
-						CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
-						CountTNE methodfieldsCount = GenerateCounts(methodfields); 
-						CountTNE methodparamsCount=GenerateCounts(methodparams); 
-						if(
-								(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
-								|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
-								||
-								 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
-								||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
-								)
-						{
-							PatternSetVariables("N", methodtrace,"100%","P2"); 
-						}
+			
+			
+		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			 ITERATION1++; }
 				
-						else	if(
-								(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-								||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-								||
-								 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
-								|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
-								)
-							{
-								PatternSetVariables("T", methodtrace,"100%","P2"); 
-							}
-							 
-							
-						
-							
-				
-				
-				
-				 ITERATION1++; }
-					
-					
-					  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
-					 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesInterfacesMixed);
-					 System.out.println("===============>PATTERNS 1 AND 2 SUPERCLASSES MIXED  ITERATION MIXED"+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesInterfacesMixed.toString());
-			 
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-						/*******************************************************************************************************************************************/
-			 
+				 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+				 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNERType);
+			
 			//PURE PATTERN 
 	
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
-				List<String> superclassesList = methodtrace.getSuperClassesList(); 
-				List<String> childrenList = methodtrace.getChildrenList(); 
-				List<String> implementationList = methodtrace.getImplementationList(); 
-				List<String> interfaceList = methodtrace.getInterfaceList(); 
-				CountTNE SuperclassCount = GenerateCounts(superclassesList); 
-				CountTNE ChildrenCount = GenerateCounts(childrenList); 
-				CountTNE ImplementationCount = GenerateCounts(implementationList); 
-				CountTNE InterfaceCount = GenerateCounts(interfaceList); 
+				List<String> methodfields = methodtrace.getPredictionFields(); 
+				List<String> methodparams = methodtrace.getPredictionParams(); 
+				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+				CountTNE methodparamsCount=GenerateCounts(methodparams); 
 				
-				//	PURE 
+				//PURE 
+//				if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 && methodfieldsCount.CountE==0) 
+//				|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 && methodparamsCount.CountE==0) ) {
+//					PatternSetVariables("T", methodtrace,"100%","P4"); 
+//				}
+//				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 && methodfieldsCount.CountE==0) 
+//				|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 && methodparamsCount.CountE==0) ) {
+//					PatternSetVariables("N", methodtrace,"100%","P4"); 
+//				}
 				
-				if(		
-						(SuperclassCount.CountN>=1 && SuperclassCount.CountT==0) 
-						|| (ChildrenCount.CountN>=1 && ChildrenCount.CountT==0)
-						||
-						(ImplementationCount.CountN>=1 && ImplementationCount.CountT==0) 
-						|| (InterfaceCount.CountN>=1 && InterfaceCount.CountT==0)
-						
-						) {
-					PatternSetVariables("N", methodtrace,"100%","P4"); 
-				}
 				
-				else if(			
-						(SuperclassCount.CountT>=1 && SuperclassCount.CountN==0 ) 
-								|| (ChildrenCount.CountT>=1 && ChildrenCount.CountN==0 ) 
-								|| 
-								(ImplementationCount.CountT>=1 && ImplementationCount.CountN==0 ) 
-								|| (InterfaceCount.CountT>=1 && InterfaceCount.CountN==0 ) 
-								
-								) {
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
+				else	if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
 							PatternSetVariables("T", methodtrace,"100%","P4"); 
 						}
+					
+		
+		
+		
+		
+	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			}
+			
+			MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPure);
+			
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				methodtrace.setPrediction("");
+				List<String> methodfields = methodtrace.getPredictionFields(); 
+				List<String> methodparams = methodtrace.getPredictionParams(); 
+				List<String> methodfieldsOwner = methodtrace.getPredictionFieldsOwnerClass(); 
+				List<String> methodparamsOwner = methodtrace.getPredictionParamsOwnerClass(); 
+				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+				CountTNE methodparamsCount=GenerateCounts(methodparams); 
+				CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOwner); 
+				CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOwner); 
+				//PURE 
+
+				
+				
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
+						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
+						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
+								) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
+		
+				else	if(
+						(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 )
+						||(methodfieldsCountOWNER.CountT>=1 && methodfieldsCountOWNER.CountN==0 ) 
+						|| (methodparamsCountOWNER.CountT>=1 && methodparamsCountOWNER.CountN==0 )
+						
+						) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+					
+		
+		
+	
+	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
+
+			}
+			
+			
+			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPureOWNERType);
+			
+			
+			
+			//PURE PATTERN 
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				methodtrace.setPrediction("");
+				List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
+				List<String> methodparams = methodtrace.getPredictionParamsOwnerClass(); 
+				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
+				CountTNE methodparamsCount=GenerateCounts(methodparams); 
+				
+				//PURE 
+
+				
+				
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
+				else	if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+				
+		
 		
 		
 		
 
 			}
 			
+			MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPureOWNER);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+//			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+//					if(methodtrace.getPrediction().trim().equals("E")){
+//						methodtrace.setPrediction("T");
+//					}
+//			}
 
 			//PRINT 
 			
-			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesInterfacesPure);
-			System.out.println("===============>PATTERNS SUPERCLASSES PURE ITERATION  "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNSuperclassesInterfacesPure.toString());
+//			 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+//			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
+			System.out.println("===============>PATTERNS METHOD FIELDS  ITERATION  "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFieldsPure.toString());
 
 			 //END  PRINT 
 			ITERATION1++; 
@@ -1740,7 +1490,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		
 		
 		
-		 MyfinalHashMap = RetrievePredictionsHashMap( methodtracesNew); 
+//		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtracesNew); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
@@ -1750,7 +1500,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		
 		
 		
-		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNSuperclassesPure);
+//		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFields);
 		return PredictionsNewHashMap; 
 	
 	}
@@ -1852,10 +1602,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold5()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold6()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold5()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold5().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGold6()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold6().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		
@@ -1963,7 +1713,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableJHOTDRAWFINALROUND2Superclasses frame = new TracesTableJHOTDRAWFINALROUND2Superclasses();
+		TracesTableJHOTDRAWFINALROUND2FieldsGOLD6 frame = new TracesTableJHOTDRAWFINALROUND2FieldsGOLD6();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

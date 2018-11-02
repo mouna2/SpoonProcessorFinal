@@ -1298,42 +1298,38 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				}
 //				methodtrace.setPrediction("");
 				//PATTERN 3
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true 	
+				if(PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")	
 						&& !methodtrace.getPrediction().equals("T") 
 						&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-					//methodtrace.setPrediction("N");
+						) {
 					PatternSetVariables("N", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
 				}
-//				else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true 	
-//						&& !methodtrace.getPrediction().equals("T") 
-//						&& !methodtrace.getPrediction().equals("N")
-//						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "80%", "P3");
-//
-//					//System.out.println("yes");
-//				}
+				else if(PredictionCalleeList.contains("T") && PredictionCallerList.contains("T") 	
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")
+						) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "80%", "P3");
+
+					//System.out.println("yes");
+				}
 				
 				//PATTERN 5
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true 
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") 
 						&& !methodtrace.getPrediction().equals("T") 
 						&& !methodtrace.getPrediction().equals("N")) {
 					//methodtrace.setPrediction("N");
 					//System.out.println("yes");
 					PatternSetVariables("N", methodtrace, "80%", "P5");
 				}
-//				else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true && 
-//						!methodtrace.getPrediction().equals("T") 
-//						&& !methodtrace.getPrediction().equals("N") && 
-//						!methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					//System.out.println("yes");
-//					PatternSetVariables("T", methodtrace, "80%", "P5");
-//				}
+				else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T")  && 
+						!methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N") ) {
+				
+					PatternSetVariables("T", methodtrace, "80%", "P5");
+				}
 				k++; 
 			}
 			//InitializePredictionsHashMapBlankValues(PredictionsNewHashMap, methodtraces2); 
@@ -1384,41 +1380,46 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				}
 //				methodtrace.setPrediction("");
 				//PATTERN 2
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
-						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false
+				if(PredictionCalleeList.contains("N") && PredictionCallerList.contains("N") && !PredictionCalleeList.contains("T") 
+						
+						&& !PredictionCallerList.contains("T")  
 								&& !methodtrace.getPrediction().equals("T") 
 								&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null")
-						&& !methodtrace.getPrediction().equals("")) {
+
+						) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
-//				else 	if(PredictionCalleeList.contains("N")==false && PredictionCallerList.contains("N")==false && PredictionCalleeList.contains("T")==true 
-//						&&  PredictionCallerList.contains("T")==true 
-//								&& !methodtrace.getPrediction().equals("T") 
-//								&& !methodtrace.getPrediction().equals("N")
-//						&& !methodtrace.getPrediction().equals("null") 
-//						&& !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "90%", "P2");
-//					//System.out.println("yes");
-//				}
+				else 	if(!PredictionCalleeList.contains("N") && !PredictionCallerList.contains("N") && PredictionCalleeList.contains("T") 
+						&&  PredictionCallerList.contains("T")
+								&& !methodtrace.getPrediction().equals("T") 
+								&& !methodtrace.getPrediction().equals("N")
+					) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					//System.out.println("yes");
+				}
 				
 				//PATTERN 4
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
-						&& PredictionCallerList.contains("T")==false && PredictionCallerList.contains("E")==false) {
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") 
+						&& !PredictionCallerList.contains("T") 
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")
+						) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P4");
 
 					//System.out.println("yes");
 				}
-//				else 	if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")==false && PredictionCalleeList.isEmpty()
-//						&&  PredictionCallerList.contains("T")==true  ) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "90%", "P2");
-//					//System.out.println("yes");
-//				}
+				else 	if(PredictionCalleeList.isEmpty() && !PredictionCallerList.contains("N") 
+						&&  PredictionCallerList.contains("T")  
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					//System.out.println("yes");
+				}
 				k++; 
 			
 

@@ -119,10 +119,15 @@ public class AddGold3Gold4JHotDraw {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold5");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold6");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold4 LONGTEXT");
+		st.executeUpdate("ALTER TABLE `traces` ADD gold5 LONGTEXT");
+		st.executeUpdate("ALTER TABLE `traces` ADD gold6 LONGTEXT");
+
 		int counter=1; 
 		
 //			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\gantt_meth_votes.txt");
@@ -134,15 +139,14 @@ public class AddGold3Gold4JHotDraw {
 		int TracesNumber=0; 
 		int SubjectT=0; 
 		int SubjectN=0; 
-		String gold3=null; 
-		String gold4=null;
-		 
+	
 			ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
 			while(TracesCount.next()) {
 				 TracesNumber= TracesCount.getInt(1); 
 				System.out.println(TracesNumber);
 			}
 			while(counter<=TracesNumber) {
+				
 				ResultSet TraceInformation= st.executeQuery("SELECT traces.* from traces where id ='"+counter+"'"); 
 				boolean subjectTflag=false; 
 				boolean subjectNflag=false; 
@@ -161,13 +165,16 @@ public class AddGold3Gold4JHotDraw {
 				}
 				
 				
-				
-				
+				String gold3=null; 
+				String gold4=null;
+				String gold5=null; 
+				String gold6=null; 
 				if(subjectNflag==true && subjectTflag==true) {
 					gold3=PredictGold3(SubjectT, SubjectN); 
 					gold4=PredictGold4(SubjectT, SubjectN); 
-					
-					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"'WHERE id='"+counter+"'"); 
+					gold5=PredictGold5(SubjectT, SubjectN); 
+					gold6=PredictGold6(SubjectT, SubjectN);
+					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"',"+"`gold5` ='"+ gold5 +"',"+"`gold6` ='"+ gold6 +"'WHERE id='"+counter+"'"); 
 				}
 				
 				
@@ -207,6 +214,8 @@ public class AddGold3Gold4JHotDraw {
 			
 			
 			
+		}else {
+			gold3="E"; 
 		}
 		
 		return gold3; 
@@ -229,7 +238,54 @@ public class AddGold3Gold4JHotDraw {
 			
 			
 			
+		}else {
+			gold4="E"; 
 		}
 		return gold4; 
+	}
+	
+	
+	static String PredictGold5(int SubjectT, int SubjectN) {
+		String gold3=null; 
+		if(SubjectT+SubjectN>=3) {
+			if(SubjectT>=3 && SubjectN==0) {
+				gold3="T"; 
+			}
+			else if(SubjectT==0 && SubjectN>=3) {
+				gold3="N"; 
+			}
+			else {
+				gold3="E"; 
+			}
+			
+			
+			
+		}else {
+			gold3="E"; 
+		}
+		
+		return gold3; 
+	}
+	
+static String PredictGold6(int SubjectT, int SubjectN) {
+		
+		String gold6=null; 
+		if(SubjectT+SubjectN>=3) {
+			if(SubjectT>SubjectN) {
+				gold6="T"; 
+			}
+			else if(SubjectN>SubjectT) {
+				gold6="N"; 
+			}
+			else {
+				gold6="E"; 
+			}
+			
+			
+			
+		}else {
+			gold6="E"; 
+		}
+		return gold6; 
 	}
 }

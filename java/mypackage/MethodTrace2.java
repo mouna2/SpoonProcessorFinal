@@ -21,6 +21,8 @@ public class MethodTrace2 {
 	public String gold2; 
 	public String gold3; 
 	public String gold4; 
+	public String gold5; 
+	public String gold6; 
 	public String SubjectT; 
 	public String SubjectN; 
 	String prediction; 
@@ -34,6 +36,14 @@ public class MethodTrace2 {
 	
 	public String getCLASSTYPE() {
 		return CLASSTYPE;
+	}
+
+	public String getGold6() {
+		return gold6;
+	}
+
+	public void setGold6(String gold6) {
+		this.gold6 = gold6;
 	}
 
 	public void setCLASSTYPE(String cLASSTYPE) {
@@ -54,6 +64,14 @@ public class MethodTrace2 {
 
 	public void setPrediction(String prediction) {
 		this.prediction = prediction;
+	}
+
+	public String getGold5() {
+		return gold5;
+	}
+
+	public void setGold5(String gold5) {
+		this.gold5 = gold5;
 	}
 
 	public String getLikelihood() {
@@ -307,6 +325,7 @@ public class MethodTrace2 {
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				 mytrace.setGold2(myresults.getString("gold2"));
+				
 				 String id= mytrace.getMethodRepresentation().methodid; 
 				 String tracename= mytrace.getMethodRepresentation().fullmethodname; 
 				 

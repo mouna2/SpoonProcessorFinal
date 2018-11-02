@@ -1210,16 +1210,17 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 				//MIXED 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+				if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+					{
+						PatternSetVariables("N", methodtrace,"100%","P2"); 
+					}
+				else	if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
 				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
-					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
-				{
-					PatternSetVariables("N", methodtrace,"100%","P2"); 
-				}
+				 
 				
 				
 			
@@ -1258,17 +1259,18 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 					//MIXED 
 					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 					CountTNE methodparamsCount=GenerateCounts(methodparams); 
-					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+							|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+						{
+							PatternSetVariables("N", methodtrace,"100%","P2"); 
+						}
+						
+					else if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
 					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 					{
 						PatternSetVariables("T", methodtrace,"100%","P2"); 
 					}
-					else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
-						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
-					{
-						PatternSetVariables("N", methodtrace,"100%","P2"); 
-					}
-					
+					 
 					
 				
 						
@@ -1300,14 +1302,7 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 					CountTNE methodparamsCount=GenerateCounts(methodparams); 
 					CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOWNER); 
 					CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOWNER); 
-					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
-					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
-					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
-					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
-					{
-						PatternSetVariables("T", methodtrace,"100%","P2"); 
-					}
-					else if(
+					if(
 							(methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
 						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0)
 						||	(methodfieldsCountOWNER.CountN>methodfieldsCountOWNER.CountT && methodfieldsCountOWNER.CountT>=0)
@@ -1317,6 +1312,15 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 					{
 						PatternSetVariables("N", methodtrace,"100%","P2"); 
 					}
+					
+					else if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
+					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
+					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
+					{
+						PatternSetVariables("T", methodtrace,"100%","P2"); 
+					}
+					 
 					
 					
 				
@@ -1353,15 +1357,15 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 //				}
 				
 				
-				
-				if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
-						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
-							PatternSetVariables("T", methodtrace,"100%","P4"); 
-						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
 						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
 							PatternSetVariables("N", methodtrace,"100%","P4"); 
 						}
+				else if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+				
 		
 		
 		
@@ -1387,9 +1391,15 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 				//PURE 
 
 				
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
+						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
+						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
+								) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
 				
-				
-				if(
+				else	if(
 						(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
 						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 )
 						||(methodfieldsCountOWNER.CountT>=1 && methodfieldsCountOWNER.CountN==0 ) 
@@ -1398,13 +1408,7 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 						) {
 							PatternSetVariables("T", methodtrace,"100%","P4"); 
 						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
-						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
-						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
-						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
-								) {
-							PatternSetVariables("N", methodtrace,"100%","P4"); 
-						}
+						
 		
 		
 		
@@ -1431,17 +1435,17 @@ public class TracesTableiTrustFINALROUND2Fields extends JFrame {
 				//PURE 
 
 				
-				
-				
-				if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
-						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
-							PatternSetVariables("T", methodtrace,"100%","P4"); 
-						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
 						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
 							PatternSetVariables("N", methodtrace,"100%","P4"); 
 						}
 		
+				
+				else	if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+					
 		
 		
 		

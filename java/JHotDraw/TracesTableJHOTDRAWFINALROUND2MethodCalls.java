@@ -217,7 +217,7 @@ public class TracesTableJHOTDRAWFINALROUND2MethodCalls extends JFrame {
 	int CLASSNOTRACEClassLevelMixedGoldACROSS=94;
 	
 	
-	int Gold4=95; 
+	int Gold5=95; 
 	int OwnerClassTGOLD2=96; 
 	int OwnerClassNGOLD2=97; 
 	int OwnerClassEGOLD2=98; 
@@ -625,7 +625,7 @@ public class TracesTableJHOTDRAWFINALROUND2MethodCalls extends JFrame {
 	
 	public TracesTableJHOTDRAWFINALROUND2MethodCalls() throws SQLException, IOException {
 	
-		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold4, Subject, OwnerClassT, OwnerClassN, "
+		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold5, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
 				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -841,30 +841,30 @@ public class TracesTableJHOTDRAWFINALROUND2MethodCalls extends JFrame {
 				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"95-GOLD4", "96-OwnerClass T GOLD4", "97-Owner Class N GOLD4", "98-Owner Class E GOLD4", "99-# caller methods GOLD4",
-				"100-# caller methods T GOLD4", "101-#caller methods N GOLD4", "102-#caller methods E GOLD4", "103-# caller classes GOLD4",
-				"104-# caller classes T GOLD4", "105-#caller classes N GOLD4", "106-#caller classes E GOLD4", "107-# callee methods GOLD4",
-				"108-# callee methods T GOLD4", "109-#callee methods N GOLD4", "110-#callee methods E GOLD4", "111-# callee classes GOLD4",
-				"112-# callee classes T GOLD4", "113-#callee classes N GOLD4", "114-#callee classes E GOLD4",  "115-OwnerClassPrediction GOLD4",
-				"116-MajorityClassLevelCallees GOLD4","117-MajorityClassLevelCallers GOLD4", "118-MajorityMethodLevelCallees GOLD4","119-MajorityMethodLevelCallers GOLD4",
-				"120->1NPredictionClassLevelCallees GOLD4", "121->1NPredictionClassLevelCallers GOLD4", "122->1NPredictionMethodLevelCallees GOLD4", 
-				"123->1NPredictionMethodLevelCallers GOLD4", "124->1TPredictionClassLevelCallees GOLD4", "125->1TPredictionClassLevelCallers GOLD4", 
-				"126->1TPredictionMethodLevelCallees GOLD4", "127->1TPredictionMethodLevelCallers GOLD4", 
-				"128->2NPredictionClassLevelCallees GOLD4", "129->2NPredictionClassLevelCallers GOLD4", "130->2NPredictionMethodLevelCallees GOLD4", 
-				"131->2NPredictionMethodLevelCallers GOLD4", "132->2TPredictionClassLevelCallees GOLD4", "133->2TPredictionClassLevelCallers GOLD4", 
-				"134->2TPredictionMethodLevelCallees GOLD4", "135->2TPredictionMethodLevelCallers GOLD4", 
-				"136-AllNClassLevelCallees GOLD4", "137-AllNClassLevelCallers GOLD4","138-AllNMethodLevelCallees GOLD4","139-AllNMethodLevelCallers GOLD4",
-				"140-AllTClassLevelCallees GOLD4", "141-AllTClassLevelCallers GOLD4", "142-AllTMethodLevelCallees GOLD4", "143-AllTMethodLevelCallers  GOLD4"
-				,"144-AllNAtLeast2NClassLevelCallees GOLD4", "145-AllNAtLeast2NClassLevelCallers GOLD4","146-AllNAtLeast2NMethodLevelCallees GOLD4","147-AllNAtLeast2NMethodLevelCallers GOLD4",
-				"148-AllTAtLeast2TClassLevelCallees GOLD4", "149-AllTAtLeast2TClassLevelCallers GOLD4", "150-AllTAtLeast2TMethodLevelCallees GOLD4", "151-AllTAtLeast2TMethodLevelCallers GOLD4"
+				"95-Gold5", "96-OwnerClass T Gold5", "97-Owner Class N Gold5", "98-Owner Class E Gold5", "99-# caller methods Gold5",
+				"100-# caller methods T Gold5", "101-#caller methods N Gold5", "102-#caller methods E Gold5", "103-# caller classes Gold5",
+				"104-# caller classes T Gold5", "105-#caller classes N Gold5", "106-#caller classes E Gold5", "107-# callee methods Gold5",
+				"108-# callee methods T Gold5", "109-#callee methods N Gold5", "110-#callee methods E Gold5", "111-# callee classes Gold5",
+				"112-# callee classes T Gold5", "113-#callee classes N Gold5", "114-#callee classes E Gold5",  "115-OwnerClassPrediction Gold5",
+				"116-MajorityClassLevelCallees Gold5","117-MajorityClassLevelCallers Gold5", "118-MajorityMethodLevelCallees Gold5","119-MajorityMethodLevelCallers Gold5",
+				"120->1NPredictionClassLevelCallees Gold5", "121->1NPredictionClassLevelCallers Gold5", "122->1NPredictionMethodLevelCallees Gold5", 
+				"123->1NPredictionMethodLevelCallers Gold5", "124->1TPredictionClassLevelCallees Gold5", "125->1TPredictionClassLevelCallers Gold5", 
+				"126->1TPredictionMethodLevelCallees Gold5", "127->1TPredictionMethodLevelCallers Gold5", 
+				"128->2NPredictionClassLevelCallees Gold5", "129->2NPredictionClassLevelCallers Gold5", "130->2NPredictionMethodLevelCallees Gold5", 
+				"131->2NPredictionMethodLevelCallers Gold5", "132->2TPredictionClassLevelCallees Gold5", "133->2TPredictionClassLevelCallers Gold5", 
+				"134->2TPredictionMethodLevelCallees Gold5", "135->2TPredictionMethodLevelCallers Gold5", 
+				"136-AllNClassLevelCallees Gold5", "137-AllNClassLevelCallers Gold5","138-AllNMethodLevelCallees Gold5","139-AllNMethodLevelCallers Gold5",
+				"140-AllTClassLevelCallees Gold5", "141-AllTClassLevelCallers Gold5", "142-AllTMethodLevelCallees Gold5", "143-AllTMethodLevelCallers  Gold5"
+				,"144-AllNAtLeast2NClassLevelCallees Gold5", "145-AllNAtLeast2NClassLevelCallers Gold5","146-AllNAtLeast2NMethodLevelCallees Gold5","147-AllNAtLeast2NMethodLevelCallers Gold5",
+				"148-AllTAtLeast2TClassLevelCallees Gold5", "149-AllTAtLeast2TClassLevelCallers Gold5", "150-AllTAtLeast2TMethodLevelCallees Gold5", "151-AllTAtLeast2TMethodLevelCallers Gold5"
 				
-				,"152-Callers GOLD4", "153-Callees GOLD4", "154-#parameters GOLD4","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction GOLD4", "159-AtLeast1NParameterPrediction GOLD4", 
-				"160-AtLeast1TParameterPrediction GOLD4", "161-AtLeast2TParameterPrediction GOLD4", 
-				"162-AtLeast2NParameterPrediction GOLD4", "163-AllNParameterPrediction GOLD4", "164-AllTParameterPrediction GOLD4",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed GOLD4", 
-				"169-AllTMethodLevelCallersCalleesClass GOLD4", "170-AllNMethodLevelCallersCalleesClass GOLD4",
-				"171-AllTClassLevelCallersCalleesClass GOLD4", "172-AllNClassLevelCallersCalleesClass GOLD4", 
+				,"152-Callers Gold5", "153-Callees Gold5", "154-#parameters Gold5","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction Gold5", "159-AtLeast1NParameterPrediction Gold5", 
+				"160-AtLeast1TParameterPrediction Gold5", "161-AtLeast2TParameterPrediction Gold5", 
+				"162-AtLeast2NParameterPrediction Gold5", "163-AllNParameterPrediction Gold5", "164-AllTParameterPrediction Gold5",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold5", 
+				"169-AllTMethodLevelCallersCalleesClass Gold5", "170-AllNMethodLevelCallersCalleesClass Gold5",
+				"171-AllTClassLevelCallersCalleesClass Gold5", "172-AllNClassLevelCallersCalleesClass Gold5", 
 				"173-CLASSTRACEMethodLevelPureGold2","174-CLASSTRACEMethodLevelMixedGold2","175-CLASSNOTRACEMethodLevelPureGold2","176-CLASSNOTRACEMethodLevelMixedGold2]",
 				"177-CLASSTRACEClassLevelPureGold2","178-CLASSTRACEClassLevelMixedGold2","179-CLASSNOTRACEClassLevelPureGold2","180-CLASSNOTRACEClassLevelMixedGold2"
 				};
@@ -1128,7 +1128,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold4] = methodtrace.gold4;
+			data[j][Gold5] = methodtrace.gold5;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1209,8 +1209,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 		 ITERATION1=0; 
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace4()!=null) {
-				String traceGOLD2 = myclasstraceHashMap.getTrace4();
+			if(myclasstraceHashMap.getTrace5()!=null) {
+				String traceGOLD2 = myclasstraceHashMap.getTrace5();
 				traceGOLD2=traceGOLD2.trim(); 
 				if (traceGOLD2.equals("T")) {
 					data[j][OwnerClassTGOLD2] = "1";
@@ -1301,39 +1301,36 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true 	
 						&& !methodtrace.getPrediction().equals("T") 
 						&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-					//methodtrace.setPrediction("N");
+						) {
 					PatternSetVariables("N", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
 				}
-//				else if(PredictionCalleeList.contains("T")==true && PredictionCallerList.contains("T")==true 	
-//						&& !methodtrace.getPrediction().equals("T") 
-//						&& !methodtrace.getPrediction().equals("N")
-//						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "80%", "P3");
-//
-//					//System.out.println("yes");
-//				}
+				else if(PredictionCalleeList.contains("T") && PredictionCallerList.contains("T") 	
+						&& !methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")
+						
+						) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "80%", "P3");
+
+					//System.out.println("yes");
+				}
 				
 				//PATTERN 5
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true 
-						&& !methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") 
 						&& !methodtrace.getPrediction().equals("T") 
 						&& !methodtrace.getPrediction().equals("N")) {
-					//methodtrace.setPrediction("N");
-					//System.out.println("yes");
+				
 					PatternSetVariables("N", methodtrace, "80%", "P5");
 				}
-//				else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T") ==true && 
-//						!methodtrace.getPrediction().equals("T") 
-//						&& !methodtrace.getPrediction().equals("N") && 
-//						!methodtrace.getPrediction().equals("null") && !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					//System.out.println("yes");
-//					PatternSetVariables("T", methodtrace, "80%", "P5");
-//				}
+				else if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("T")  && 
+						!methodtrace.getPrediction().equals("T") 
+						&& !methodtrace.getPrediction().equals("N")
+						) {
+				
+					PatternSetVariables("T", methodtrace, "80%", "P5");
+				}
 				k++; 
 			}
 			//InitializePredictionsHashMapBlankValues(PredictionsNewHashMap, methodtraces2); 
@@ -1384,41 +1381,47 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				}
 //				methodtrace.setPrediction("");
 				//PATTERN 2
-				if(PredictionCalleeList.contains("N")==true && PredictionCallerList.contains("N")==true && PredictionCalleeList.contains("T")==false 
-						&& PredictionCallerList.contains("E")==false && PredictionCallerList.contains("T")==false  && PredictionCalleeList.contains("E")==false
+				if(PredictionCalleeList.contains("N") && PredictionCallerList.contains("N") && !PredictionCalleeList.contains("T")
+
+						
+						&& !PredictionCallerList.contains("T")  
+						
+
+						
 								&& !methodtrace.getPrediction().equals("T") 
 								&& !methodtrace.getPrediction().equals("N")
-						&& !methodtrace.getPrediction().equals("null")
-						&& !methodtrace.getPrediction().equals("")) {
+
+						
+						) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
-//				else 	if(PredictionCalleeList.contains("N")==false && PredictionCallerList.contains("N")==false && PredictionCalleeList.contains("T")==true 
-//						&&  PredictionCallerList.contains("T")==true 
-//								&& !methodtrace.getPrediction().equals("T") 
-//								&& !methodtrace.getPrediction().equals("N")
-//						&& !methodtrace.getPrediction().equals("null") 
-//						&& !methodtrace.getPrediction().equals("")) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "90%", "P2");
-//					//System.out.println("yes");
-//				}
+				else 	if(!PredictionCalleeList.contains("N") && !PredictionCallerList.contains("N") && PredictionCalleeList.contains("T") 
+						&&  PredictionCallerList.contains("T") 
+								&& !methodtrace.getPrediction().equals("T") 
+								&& !methodtrace.getPrediction().equals("N")
+						) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					//System.out.println("yes");
+				}
 				
 				//PATTERN 4
-				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N") ==true
-						&& PredictionCallerList.contains("T")==false && PredictionCallerList.contains("E")==false) {
+				if(PredictionCalleeList.isEmpty() &&  PredictionCallerList.contains("N")
+						&& !PredictionCallerList.contains("T") 
+						) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("N", methodtrace, "90%", "P4");
 
 					//System.out.println("yes");
 				}
-//				else 	if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")==false && PredictionCalleeList.isEmpty()
-//						&&  PredictionCallerList.contains("T")==true  ) {
-//					//methodtrace.setPrediction("N");
-//					PatternSetVariables("T", methodtrace, "90%", "P2");
-//					//System.out.println("yes");
-//				}
+				else 	if(PredictionCalleeList.isEmpty() && !PredictionCallerList.contains("N") 
+						&&  PredictionCallerList.contains("T")  ) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					//System.out.println("yes");
+				}
 				k++; 
 			
 
@@ -1485,7 +1488,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold4] = methodtrace.gold2;
+			data[j][Gold5] = methodtrace.gold2;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1566,8 +1569,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 			
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace4()!=null) {
-				String traceGOLD2 = myclasstraceHashMap.getTrace4();
+			if(myclasstraceHashMap.getTrace5()!=null) {
+				String traceGOLD2 = myclasstraceHashMap.getTrace5();
 				traceGOLD2=traceGOLD2.trim(); 
 				if (traceGOLD2.equals("T")) {
 					data[j][OwnerClassTGOLD2] = "1";
@@ -1805,10 +1808,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold4()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold5()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold4()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold4().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGold5()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold5().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		

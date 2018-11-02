@@ -24,6 +24,8 @@ public class MethodTraceSubjectTSubjectN {
 	public String SubjectN; 
 	public String gold3; 
 	public String gold4; 
+	public String gold5; 
+	public String gold6; 
 	String prediction; 
 	String prediction2; 
 	String likelihood; 
@@ -90,6 +92,22 @@ public class MethodTraceSubjectTSubjectN {
 
 	public List<String> getChildrenList() {
 		return ChildrenList;
+	}
+
+	public String getGold5() {
+		return gold5;
+	}
+
+	public void setGold5(String gold5) {
+		this.gold5 = gold5;
+	}
+
+	public String getGold6() {
+		return gold6;
+	}
+
+	public void setGold6(String gold6) {
+		this.gold6 = gold6;
 	}
 
 	public void setChildrenList(List<String> childrenList) {
@@ -412,6 +430,8 @@ public class MethodTraceSubjectTSubjectN {
 					MethodTrace.setGold2(traces.getString("gold2"));
 					MethodTrace.setGold4(traces.getString("gold4"));
 					MethodTrace.setGold3(traces.getString("gold3"));
+					MethodTrace.setGold5(traces.getString("gold5"));
+					MethodTrace.setGold6(traces.getString("gold6"));
 					MethodTrace.setSubject(traces.getString("subject"));
 					
 					Requirement2 requirement= new Requirement2();
@@ -1040,9 +1060,9 @@ if(myinterfacelist!=null) {
 
 				 mytrace.setGold2(myresults.getString("gold2"));
 				 mytrace.setGold3(myresults.getString("gold3"));
-
+				 mytrace.setGold5(myresults.getString("gold5"));
 				 mytrace.setGold4(myresults.getString("gold4"));
-				 
+				 mytrace.setGold6(myresults.getString("gold6"));
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				

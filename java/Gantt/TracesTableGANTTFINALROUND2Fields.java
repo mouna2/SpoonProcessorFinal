@@ -216,116 +216,116 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	int CLASSNOTRACEClassLevelMixedGoldACROSS=94;
 	
 	
-	int Gold4=95; 
-	int OwnerClassTGOLD4=96; 
-	int OwnerClassNGOLD4=97; 
-	int OwnerClassEGOLD4=98; 
-	int CallerMethodsNumberGOLD4=99; 
-	int CallerMethodsTGOLD4=100; 
-	int CallerMethodsNGOLD4=101; 
-	int CallerMethodsEGOLD4=102; 
-	int CallerClassesNumberGOLD4=103; 
-	int CallerClassesTGOLD4=104; 
-	int CallerClassesNGOLD4=105; 
-	int CallerClassesEGOLD4=106; 
-	int CalleeMethodsNumberGOLD4=107; 
-	int CalleeMethodsTGOLD4=108; 
-	int CalleeMethodsNGOLD4=109; 
-	int CalleeMethodsEGOLD4=110; 
-	int CalleeClassesNumberGOLD4=111; 
-	int CalleeClassesTGOLD4=112; 
-	int CalleeClassesNGOLD4=113; 
-	int CalleeClassesEGOLD4=114; 
-	int OwnerClassPredictionGOLD4=115; 
-	int MajorityClassLevelCalleesGOLD4=116; 
-	int MajorityClassLevelCallersGOLD4=117; 
-	int MajorityMethodLevelCalleesGOLD4=118; 
-	int MajorityMethodLevelCallersGOLD4=119; 
-	int AtLeast1NPredictionClassLevelCalleesGOLD4=120; 
-	int AtLeast1NPredictionClassLevelCallersGOLD4=121; 
-	int AtLeast1NPredictionMethodLevelCalleesGOLD4=122; 
-	int AtLeast1NPredictionMethodLevelCallersGOLD4=123; 
-	int AtLeast1TPredictionClassLevelCalleesGOLD4=124; 
-	int AtLeast1TPredictionClassLevelCallersGOLD4=125; 
-	int AtLeast1TPredictionMethodLevelCalleesGOLD4=126; 
-	int AtLeast1TPredictionMethodLevelCallersGOLD4=127; 
-	int AtLeast2NPredictionClassLevelCalleesGOLD4=128; 
-	int AtLeast2NPredictionClassLevelCallersGOLD4=129; 
-	int AtLeast2NPredictionMethodLevelCalleesGOLD4=130; 
-	int AtLeast2NPredictionMethodLevelCallersGOLD4=131; 
-	int AtLeast2TPredictionClassLevelCalleesGOLD4=132; 
-	int AtLeast2TPredictionClassLevelCallersGOLD4=133; 
-	int AtLeast2TPredictionMethodLevelCalleesGOLD4=134; 
-	int AtLeast2TPredictionMethodLevelCallersGOLD4=135; 
-	int AllNClassLevelCalleesGOLD4=136; 
-	int AllNClassLevelCallersGOLD4=137; 
-	int AllNMethodLevelCalleesGOLD4=138; 
-	int AllNMethodLevelCallersGOLD4=139; 
-	int AllTClassLevelCalleesGOLD4=140; 
-	int AllTClassLevelCallersGOLD4=141; 
-	int AllTMethodLevelCalleesGOLD4=142; 
-	int AllTMethodLevelCallersGOLD4=143; 
-	int CallersGOLD4=144; 
-	int CalleesGOLD4=145; 
-	int paramatersNumberGOLD4=146; 
-	int CountParamaterTGOLD4=147; 
-	int CountParamaterNGOLD4=148; 
-	int CountParamaterEGOLD4=149; 
-	int MajorityParametersGOLD4=150; 
-	int AtLeast1NParameterGOLD4=151; 
-	int AtLeast1TParameterGOLD4=152; 
-	int AtLeast2TParameterGOLD4=153; 
-	int AtLeast2NParameterGOLD4=154; 
-	int AllNParametersGOLD4=155; 
-	int AllTParametersGOLD4=156; 
-	int ACHRAFTRACEPureGOLD4=157; 
-	int ACHRAFTRACEMixedGOLD4=158; 
-	int ACHRAFNOTRACEPureGOLD4=159; 
-	int ACHRAFNOTRACEMixedGOLD4=160; 
-	int AllNMethodLevelCallersCalleesGOLD4=161; 
-	int AllTMethodLevelCallersCalleesGOLD4=162; 
-	int AllTClassLevelCallersCalleesGOLD4=163; 
-	int AllNClassLevelCallersCalleesGOLD4=164; 
-	int AllNClassLevelCalleesAtLeast2NGOLD4=165; 
-	int AllNClassLevelCallersAtLeast2NGOLD4=166; 
-	int AllNMethodLevelCalleesAtLeast2NGOLD4=167; 
-	int AllNMethodLevelCallersAtLeast2NGOLD4=168; 
-	int AllTClassLevelCalleesAtLeast2TGOLD4=169; 
-	int AllTClassLevelCallersAtLeast2TGOLD4=170; 
-	int AllTMethodLevelCalleesAtLeast2TGOLD4=171; 
-	int AllTMethodLevelCallersAtLeast2TGOLD4=172; 
-	int CLASSTRACEMethodLevelPureGold4=173; 
-	int CLASSTRACEMethodLevelMixedGold4=174; 
-	int CLASSNOTRACEMethodLevelPureGold4=175; 
-	int CLASSNOTRACEMethodLevelMixedGold4=176;
-	int CLASSTRACEClassLevelPureGold4=177; 
-	int CLASSTRACEClassLevelMixedGold4=178; 
-	int CLASSNOTRACEClassLevelPureGold4=179; 
-	int CLASSNOTRACEClassLevelMixedGold4=180;
-	int CLASSTRACEMethodLevelPureGold4ACROSS=181; 
-	int CLASSTRACEMethodLevelMixedGold4ACROSS=182; 
-	int CLASSNOTRACEMethodLevelPureGold4ACROSS=183; 
-	int CLASSNOTRACEMethodLevelMixedGold4ACROSS=184;
-	int CLASSTRACEClassLevelPureGold4ACROSS=185; 
-	int CLASSTRACEClassLevelMixedGold4ACROSS=186; 
-	int CLASSNOTRACEClassLevelPureGold4ACROSS=187; 
-	int CLASSNOTRACEClassLevelMixedGold4ACROSS=188;
-	int CallerMethodsNumberGOLD4ACROSS=189; 
-	int CallerMethodsTGOLD4ACROSS=190; 
-	int CallerMethodsNGOLD4ACROSS=191; 
-	int CallerMethodsEGOLD4ACROSS=192; 
-	int CallerClassesNumberGOLD4ACROSS=193; 
-	int CallerClassesTGOLD4ACROSS=194; 
-	int CallerClassesNGOLD4ACROSS=195; 
-	int CallerClassesEGOLD4ACROSS=196; 
-	int CalleeMethodsNumberGOLD4ACROSS=197; 
-	int CalleeMethodsTGOLD4ACROSS=198; 
-	int CalleeMethodsNGOLD4ACROSS=199; 
-	int CalleeMethodsEGOLD4ACROSS=200; 
-	int CalleeClassesNumberGOLD4ACROSS=201; 
-	int CalleeClassesTGOLD4ACROSS=202; 
-	int CalleeClassesNGOLD4ACROSS=203; 
-	int CalleeClassesEGOLD4ACROSS=204; 
+	int Gold5=95; 
+	int OwnerClassTGold5=96; 
+	int OwnerClassNGold5=97; 
+	int OwnerClassEGold5=98; 
+	int CallerMethodsNumberGold5=99; 
+	int CallerMethodsTGold5=100; 
+	int CallerMethodsNGold5=101; 
+	int CallerMethodsEGold5=102; 
+	int CallerClassesNumberGold5=103; 
+	int CallerClassesTGold5=104; 
+	int CallerClassesNGold5=105; 
+	int CallerClassesEGold5=106; 
+	int CalleeMethodsNumberGold5=107; 
+	int CalleeMethodsTGold5=108; 
+	int CalleeMethodsNGold5=109; 
+	int CalleeMethodsEGold5=110; 
+	int CalleeClassesNumberGold5=111; 
+	int CalleeClassesTGold5=112; 
+	int CalleeClassesNGold5=113; 
+	int CalleeClassesEGold5=114; 
+	int OwnerClassPredictionGold5=115; 
+	int MajorityClassLevelCalleesGold5=116; 
+	int MajorityClassLevelCallersGold5=117; 
+	int MajorityMethodLevelCalleesGold5=118; 
+	int MajorityMethodLevelCallersGold5=119; 
+	int AtLeast1NPredictionClassLevelCalleesGold5=120; 
+	int AtLeast1NPredictionClassLevelCallersGold5=121; 
+	int AtLeast1NPredictionMethodLevelCalleesGold5=122; 
+	int AtLeast1NPredictionMethodLevelCallersGold5=123; 
+	int AtLeast1TPredictionClassLevelCalleesGold5=124; 
+	int AtLeast1TPredictionClassLevelCallersGold5=125; 
+	int AtLeast1TPredictionMethodLevelCalleesGold5=126; 
+	int AtLeast1TPredictionMethodLevelCallersGold5=127; 
+	int AtLeast2NPredictionClassLevelCalleesGold5=128; 
+	int AtLeast2NPredictionClassLevelCallersGold5=129; 
+	int AtLeast2NPredictionMethodLevelCalleesGold5=130; 
+	int AtLeast2NPredictionMethodLevelCallersGold5=131; 
+	int AtLeast2TPredictionClassLevelCalleesGold5=132; 
+	int AtLeast2TPredictionClassLevelCallersGold5=133; 
+	int AtLeast2TPredictionMethodLevelCalleesGold5=134; 
+	int AtLeast2TPredictionMethodLevelCallersGold5=135; 
+	int AllNClassLevelCalleesGold5=136; 
+	int AllNClassLevelCallersGold5=137; 
+	int AllNMethodLevelCalleesGold5=138; 
+	int AllNMethodLevelCallersGold5=139; 
+	int AllTClassLevelCalleesGold5=140; 
+	int AllTClassLevelCallersGold5=141; 
+	int AllTMethodLevelCalleesGold5=142; 
+	int AllTMethodLevelCallersGold5=143; 
+	int CallersGold5=144; 
+	int CalleesGold5=145; 
+	int paramatersNumberGold5=146; 
+	int CountParamaterTGold5=147; 
+	int CountParamaterNGold5=148; 
+	int CountParamaterEGold5=149; 
+	int MajorityParametersGold5=150; 
+	int AtLeast1NParameterGold5=151; 
+	int AtLeast1TParameterGold5=152; 
+	int AtLeast2TParameterGold5=153; 
+	int AtLeast2NParameterGold5=154; 
+	int AllNParametersGold5=155; 
+	int AllTParametersGold5=156; 
+	int ACHRAFTRACEPureGold5=157; 
+	int ACHRAFTRACEMixedGold5=158; 
+	int ACHRAFNOTRACEPureGold5=159; 
+	int ACHRAFNOTRACEMixedGold5=160; 
+	int AllNMethodLevelCallersCalleesGold5=161; 
+	int AllTMethodLevelCallersCalleesGold5=162; 
+	int AllTClassLevelCallersCalleesGold5=163; 
+	int AllNClassLevelCallersCalleesGold5=164; 
+	int AllNClassLevelCalleesAtLeast2NGold5=165; 
+	int AllNClassLevelCallersAtLeast2NGold5=166; 
+	int AllNMethodLevelCalleesAtLeast2NGold5=167; 
+	int AllNMethodLevelCallersAtLeast2NGold5=168; 
+	int AllTClassLevelCalleesAtLeast2TGold5=169; 
+	int AllTClassLevelCallersAtLeast2TGold5=170; 
+	int AllTMethodLevelCalleesAtLeast2TGold5=171; 
+	int AllTMethodLevelCallersAtLeast2TGold5=172; 
+	int CLASSTRACEMethodLevelPureGold5=173; 
+	int CLASSTRACEMethodLevelMixedGold5=174; 
+	int CLASSNOTRACEMethodLevelPureGold5=175; 
+	int CLASSNOTRACEMethodLevelMixedGold5=176;
+	int CLASSTRACEClassLevelPureGold5=177; 
+	int CLASSTRACEClassLevelMixedGold5=178; 
+	int CLASSNOTRACEClassLevelPureGold5=179; 
+	int CLASSNOTRACEClassLevelMixedGold5=180;
+	int CLASSTRACEMethodLevelPureGold5ACROSS=181; 
+	int CLASSTRACEMethodLevelMixedGold5ACROSS=182; 
+	int CLASSNOTRACEMethodLevelPureGold5ACROSS=183; 
+	int CLASSNOTRACEMethodLevelMixedGold5ACROSS=184;
+	int CLASSTRACEClassLevelPureGold5ACROSS=185; 
+	int CLASSTRACEClassLevelMixedGold5ACROSS=186; 
+	int CLASSNOTRACEClassLevelPureGold5ACROSS=187; 
+	int CLASSNOTRACEClassLevelMixedGold5ACROSS=188;
+	int CallerMethodsNumberGold5ACROSS=189; 
+	int CallerMethodsTGold5ACROSS=190; 
+	int CallerMethodsNGold5ACROSS=191; 
+	int CallerMethodsEGold5ACROSS=192; 
+	int CallerClassesNumberGold5ACROSS=193; 
+	int CallerClassesTGold5ACROSS=194; 
+	int CallerClassesNGold5ACROSS=195; 
+	int CallerClassesEGold5ACROSS=196; 
+	int CalleeMethodsNumberGold5ACROSS=197; 
+	int CalleeMethodsTGold5ACROSS=198; 
+	int CalleeMethodsNGold5ACROSS=199; 
+	int CalleeMethodsEGold5ACROSS=200; 
+	int CalleeClassesNumberGold5ACROSS=201; 
+	int CalleeClassesTGold5ACROSS=202; 
+	int CalleeClassesNGold5ACROSS=203; 
+	int CalleeClassesEGold5ACROSS=204; 
 	int CallerMethodsNumberACROSS=205; 
 	int CallerMethodsTACROSS=206; 
 	int CallerMethodsNACROSS=207; 
@@ -342,25 +342,25 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	int CalleeClassesTACROSS=218; 
 	int CalleeClassesNACROSS=219; 
 	int CalleeClassesEACROSS=220; 
-	int interfacesNumberGOLD4=221; 
-	int CountInterfaceTGOLD4=222; 
-	int CountInterfaceNGOLD4=223; 
-	int CountInterfaceEGOLD4=224; 
+	int interfacesNumberGold5=221; 
+	int CountInterfaceTGold5=222; 
+	int CountInterfaceNGold5=223; 
+	int CountInterfaceEGold5=224; 
 	
-	int FieldClassesNumberGOLD4=225; 
-	int CountFieldClassTGOLD4=226; 
-	int CountFieldClassNGOLD4=227; 
-	int CountFieldClassEGOLD4=228; 
+	int FieldClassesNumberGold5=225; 
+	int CountFieldClassTGold5=226; 
+	int CountFieldClassNGold5=227; 
+	int CountFieldClassEGold5=228; 
 	
-	int FieldMethodsNumberGOLD4=229; 
-	int CountFieldMethodTGOLD4=230; 
-	int CountFieldMethodNGOLD4=231; 
-	int CountFieldMethodEGOLD4=232; 
+	int FieldMethodsNumberGold5=229; 
+	int CountFieldMethodTGold5=230; 
+	int CountFieldMethodNGold5=231; 
+	int CountFieldMethodEGold5=232; 
 	
-	int SuperClassesNumberGOLD4=233; 
-	int CountFieldSuperClassTGOLD4=234; 
-	int CountFieldSuperClassNGOLD4=235; 
-	int CountFieldSuperClassEGOLD4=236; 
+	int SuperClassesNumberGold5=233; 
+	int CountFieldSuperClassTGold5=234; 
+	int CountFieldSuperClassNGold5=235; 
+	int CountFieldSuperClassEGold5=236; 
 	
 	int counterFN=0; 
 	double TracePureGold=0; 
@@ -373,17 +373,17 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	double TraceMixedGoldTotal=0; 
 	double NoTraceMixedGoldTotal=0; 
 	
-	double TracePureGold4=0; 
-	double NoTracePureGold4=0; 
-	double TraceMixedGold4=0; 
-	double NoTraceMixedGold4=0; 
+	double TracePureGold5=0; 
+	double NoTracePureGold5=0; 
+	double TraceMixedGold5=0; 
+	double NoTraceMixedGold5=0; 
 	
 	double failGold=0; 
-	double failGold4=0; 
+	double failGold5=0; 
 	double TraceCountTotal=0; 
 	double NoTraceCountTotal=0; 
-	double TraceCountTotalGold4=0; 
-	double NoTraceCountTotalGold4=0; 
+	double TraceCountTotalGold5=0; 
+	double NoTraceCountTotalGold5=0; 
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
@@ -452,79 +452,79 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
-	PredictionEvaluation OwnerClassPredictionClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCallersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityParametersClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast1NParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast1TParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
+	PredictionEvaluation OwnerClassPredictionClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NParameterClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TParameterClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClassGold5= new PredictionEvaluation(); 
 	PredictionEvaluation AllNClassLevelCallersCalleesClass= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTracePureGold4= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTraceMixedGold4= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFNOTracePureGold4= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFNOTraceMixedGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold4Trace= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold4NOTrace= new PredictionEvaluation(); 
-	PredictionEvaluation PureNCallersGold4= new PredictionEvaluation(); 
-	PredictionEvaluation PureTCallersGold4= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCalleesClassAtLeast2NGold4=new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersClassAtLeast2NGold4=new PredictionEvaluation();  
-	PredictionEvaluation AllNMethodLevelCalleesClassAtLeast2NGold4=new PredictionEvaluation();  
-	PredictionEvaluation AllNMethodLevelCallersClassAtLeast2NGold4=new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCalleesClassAtLeast2TGold4=new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold4=new PredictionEvaluation();  
-	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold4=new PredictionEvaluation();  
-	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold4=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold4=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold4=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold4=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold4=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold4=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold4=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold4=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold4=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold4ACROSS=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold4ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold4ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold4ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold4ACROSS=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold4ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold4ACROSS=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold4ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation ACHRAFTracePureGold5= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFTraceMixedGold5= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFNOTracePureGold5= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFNOTraceMixedGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersCalleesClassGold5= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFGold5Trace= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFGold5NOTrace= new PredictionEvaluation(); 
+	PredictionEvaluation PureNCallersGold5= new PredictionEvaluation(); 
+	PredictionEvaluation PureTCallersGold5= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassAtLeast2NGold5=new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassAtLeast2NGold5=new PredictionEvaluation();  
+	PredictionEvaluation AllNMethodLevelCalleesClassAtLeast2NGold5=new PredictionEvaluation();  
+	PredictionEvaluation AllNMethodLevelCallersClassAtLeast2NGold5=new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassAtLeast2TGold5=new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold5=new PredictionEvaluation();  
+	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold5=new PredictionEvaluation();  
+	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold5=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold5=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold5=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold5=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold5=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold5=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold5=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold5=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold5=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold5ACROSS=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold5ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold5ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold5ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold5ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold5ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold5ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold5ACROSS=new PredictionEvaluation();  
 
 	PredictionEvaluation NEWPATTERNMethodCalls=new PredictionEvaluation();  
 
@@ -541,7 +541,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	static HashMap<String, List<Parameter2>> parameterHashMap  = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
-	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD4 = new  LinkedHashMap<String, ClassTrace2>(); 
+	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGold5 = new  LinkedHashMap<String, ClassTrace2>(); 
 
 	 LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
 	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
@@ -562,14 +562,14 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
-	//File foutGold4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold4.txt");
-	File foutGold4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold4.txt");
+	//File foutGold5 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold5.txt");
+	File foutGold5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold5.txt");
 
-	FileOutputStream fileGold4 = new FileOutputStream(foutGold4);
+	FileOutputStream fileGold5 = new FileOutputStream(foutGold5);
 	
-	File foutGold4TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGOLD4.txt");
-	FileOutputStream fosGold4 = new FileOutputStream(foutGold4TableLog);
-	BufferedWriter bwGold4TableLog = new BufferedWriter(new OutputStreamWriter(fosGold4));
+	File foutGold5TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGold5.txt");
+	FileOutputStream fosGold5 = new FileOutputStream(foutGold5TableLog);
+	BufferedWriter bwGold5TableLog = new BufferedWriter(new OutputStreamWriter(fosGold5));
 
 	
 	File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\file1.txt");
@@ -587,7 +587,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
-	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fileGold4));
+	BufferedWriter bwGold5 = new BufferedWriter(new OutputStreamWriter(fileGold5));
 	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -625,7 +625,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	
 	public TracesTableGANTTFINALROUND2Fields() throws SQLException, IOException {
 	
-		bwGold4TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold4, Subject, OwnerClassT, OwnerClassN, "
+		bwGold5TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold5, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
 				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -669,7 +669,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 
 		
 		bw.newLine();
-		bwGold4TableLog.newLine();
+		bwGold5TableLog.newLine();
 		DatabaseReading2Gantt db = new DatabaseReading2Gantt();
 		db.MakePredictions();
 		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
@@ -717,7 +717,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
 		int ClassTraceCount=0; 
-		int MethodTraceCountGold4=0; 
+		int MethodTraceCountGold5=0; 
 		// Create the editors to be used for each row
 		
 		
@@ -795,7 +795,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 		
 		
 		
-		bwGold4.close();
+		bwGold5.close();
 		
 		
 //		String[] columnNames = {"Row",  "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
@@ -848,32 +848,32 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"95-GOLD4", "96-OwnerClass T GOLD4", "97-Owner Class N GOLD4", "98-Owner Class E GOLD4", "99-# caller methods GOLD4",
-				"100-# caller methods T GOLD4", "101-#caller methods N GOLD4", "102-#caller methods E GOLD4", "103-# caller classes GOLD4",
-				"104-# caller classes T GOLD4", "105-#caller classes N GOLD4", "106-#caller classes E GOLD4", "107-# callee methods GOLD4",
-				"108-# callee methods T GOLD4", "109-#callee methods N GOLD4", "110-#callee methods E GOLD4", "111-# callee classes GOLD4",
-				"112-# callee classes T GOLD4", "113-#callee classes N GOLD4", "114-#callee classes E GOLD4",  "115-OwnerClassPrediction GOLD4",
-				"116-MajorityClassLevelCallees GOLD4","117-MajorityClassLevelCallers GOLD4", "118-MajorityMethodLevelCallees GOLD4","119-MajorityMethodLevelCallers GOLD4",
-				"120->0NPredictionClassLevelCallees GOLD4", "121->0NPredictionClassLevelCallers GOLD4", "122->0NPredictionMethodLevelCallees GOLD4", 
-				"123->0NPredictionMethodLevelCallers GOLD4", "124->0TPredictionClassLevelCallees GOLD4", "125->0TPredictionClassLevelCallers GOLD4", 
-				"126->0TPredictionMethodLevelCallees GOLD4", "127->0TPredictionMethodLevelCallers GOLD4", 
-				"128->2NPredictionClassLevelCallees GOLD4", "129->2NPredictionClassLevelCallers GOLD4", "130->2NPredictionMethodLevelCallees GOLD4", 
-				"131->2NPredictionMethodLevelCallers GOLD4", "132->2TPredictionClassLevelCallees GOLD4", "133->2TPredictionClassLevelCallers GOLD4", 
-				"134->2TPredictionMethodLevelCallees GOLD4", "135->2TPredictionMethodLevelCallers GOLD4", 
-				"136-AllNClassLevelCallees GOLD4", "137-AllNClassLevelCallers GOLD4","138-AllNMethodLevelCallees GOLD4","139-AllNMethodLevelCallers GOLD4",
-				"140-AllTClassLevelCallees GOLD4", "141-AllTClassLevelCallers GOLD4", "142-AllTMethodLevelCallees GOLD4", "143-AllTMethodLevelCallers  GOLD4"
-				,"144-AllNAtLeast2NClassLevelCallees GOLD4", "145-AllNAtLeast2NClassLevelCallers GOLD4","146-AllNAtLeast2NMethodLevelCallees GOLD4","147-AllNAtLeast2NMethodLevelCallers GOLD4",
-				"148-AllTAtLeast2TClassLevelCallees GOLD4", "149-AllTAtLeast2TClassLevelCallers GOLD4", "150-AllTAtLeast2TMethodLevelCallees GOLD4", "151-AllTAtLeast2TMethodLevelCallers GOLD4"
+				"95-Gold5", "96-OwnerClass T Gold5", "97-Owner Class N Gold5", "98-Owner Class E Gold5", "99-# caller methods Gold5",
+				"100-# caller methods T Gold5", "101-#caller methods N Gold5", "102-#caller methods E Gold5", "103-# caller classes Gold5",
+				"104-# caller classes T Gold5", "105-#caller classes N Gold5", "106-#caller classes E Gold5", "107-# callee methods Gold5",
+				"108-# callee methods T Gold5", "109-#callee methods N Gold5", "110-#callee methods E Gold5", "111-# callee classes Gold5",
+				"112-# callee classes T Gold5", "113-#callee classes N Gold5", "114-#callee classes E Gold5",  "115-OwnerClassPrediction Gold5",
+				"116-MajorityClassLevelCallees Gold5","117-MajorityClassLevelCallers Gold5", "118-MajorityMethodLevelCallees Gold5","119-MajorityMethodLevelCallers Gold5",
+				"120->0NPredictionClassLevelCallees Gold5", "121->0NPredictionClassLevelCallers Gold5", "122->0NPredictionMethodLevelCallees Gold5", 
+				"123->0NPredictionMethodLevelCallers Gold5", "124->0TPredictionClassLevelCallees Gold5", "125->0TPredictionClassLevelCallers Gold5", 
+				"126->0TPredictionMethodLevelCallees Gold5", "127->0TPredictionMethodLevelCallers Gold5", 
+				"128->2NPredictionClassLevelCallees Gold5", "129->2NPredictionClassLevelCallers Gold5", "130->2NPredictionMethodLevelCallees Gold5", 
+				"131->2NPredictionMethodLevelCallers Gold5", "132->2TPredictionClassLevelCallees Gold5", "133->2TPredictionClassLevelCallers Gold5", 
+				"134->2TPredictionMethodLevelCallees Gold5", "135->2TPredictionMethodLevelCallers Gold5", 
+				"136-AllNClassLevelCallees Gold5", "137-AllNClassLevelCallers Gold5","138-AllNMethodLevelCallees Gold5","139-AllNMethodLevelCallers Gold5",
+				"140-AllTClassLevelCallees Gold5", "141-AllTClassLevelCallers Gold5", "142-AllTMethodLevelCallees Gold5", "143-AllTMethodLevelCallers  Gold5"
+				,"144-AllNAtLeast2NClassLevelCallees Gold5", "145-AllNAtLeast2NClassLevelCallers Gold5","146-AllNAtLeast2NMethodLevelCallees Gold5","147-AllNAtLeast2NMethodLevelCallers Gold5",
+				"148-AllTAtLeast2TClassLevelCallees Gold5", "149-AllTAtLeast2TClassLevelCallers Gold5", "150-AllTAtLeast2TMethodLevelCallees Gold5", "151-AllTAtLeast2TMethodLevelCallers Gold5"
 				
-				,"152-Callers GOLD4", "153-Callees GOLD4", "154-#parameters GOLD4","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction GOLD4", "159-AtLeast1NParameterPrediction GOLD4", 
-				"160-AtLeast1TParameterPrediction GOLD4", "161-AtLeast2TParameterPrediction GOLD4", 
-				"162-AtLeast2NParameterPrediction GOLD4", "163-AllNParameterPrediction GOLD4", "164-AllTParameterPrediction GOLD4",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD4", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed GOLD4", 
-				"169-AllTMethodLevelCallersCalleesClass GOLD4", "170-AllNMethodLevelCallersCalleesClass GOLD4",
-				"171-AllTClassLevelCallersCalleesClass GOLD4", "172-AllNClassLevelCallersCalleesClass GOLD4", 
-				"173-CLASSTRACEMethodLevelPureGold4","174-CLASSTRACEMethodLevelMixedGold4","175-CLASSNOTRACEMethodLevelPureGold4","176-CLASSNOTRACEMethodLevelMixedGold4]",
-				"177-CLASSTRACEClassLevelPureGold4","178-CLASSTRACEClassLevelMixedGold4","179-CLASSNOTRACEClassLevelPureGold4","180-CLASSNOTRACEClassLevelMixedGold4"
+				,"152-Callers Gold5", "153-Callees Gold5", "154-#parameters Gold5","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction Gold5", "159-AtLeast1NParameterPrediction Gold5", 
+				"160-AtLeast1TParameterPrediction Gold5", "161-AtLeast2TParameterPrediction Gold5", 
+				"162-AtLeast2NParameterPrediction Gold5", "163-AllNParameterPrediction Gold5", "164-AllTParameterPrediction Gold5",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGold5", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold5", 
+				"169-AllTMethodLevelCallersCalleesClass Gold5", "170-AllNMethodLevelCallersCalleesClass Gold5",
+				"171-AllTClassLevelCallersCalleesClass Gold5", "172-AllNClassLevelCallersCalleesClass Gold5", 
+				"173-CLASSTRACEMethodLevelPureGold5","174-CLASSTRACEMethodLevelMixedGold5","175-CLASSNOTRACEMethodLevelPureGold5","176-CLASSNOTRACEMethodLevelMixedGold5]",
+				"177-CLASSTRACEClassLevelPureGold5","178-CLASSTRACEClassLevelMixedGold5","179-CLASSNOTRACEClassLevelPureGold5","180-CLASSNOTRACEClassLevelMixedGold5"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		 
@@ -1075,8 +1075,8 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 //	
 //		int ITERATION1=0; 
 //			//PATTERN 1
-//			if(myclasstraceHashMap.getTrace4()!=null) {
-//				String traceGOLD2 = myclasstraceHashMap.getTrace4();
+//			if(myclasstraceHashMap.getTrace5()!=null) {
+//				String traceGOLD2 = myclasstraceHashMap.getTrace5();
 //				traceGOLD2=traceGOLD2.trim(); 
 //				if (traceGOLD2.equals("T")) {
 //					data[j][OwnerClassTGOLD2] = "1";
@@ -1144,8 +1144,8 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace4()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace4().trim();
+				if(myclasstraceHashMap.getTrace5()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
 					PredictionFields.add(traceGOLD2); 
 				}
 			}
@@ -1154,8 +1154,8 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace4()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace4().trim();
+				if(myclasstraceHashMap.getTrace5()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
 					PredictionParams.add(traceGOLD2); 
 				}
 			}
@@ -1166,8 +1166,8 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace4()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace4().trim();
+				if(myclasstraceHashMap.getTrace5()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
 					PredictionParamsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1178,8 +1178,8 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace4()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace4().trim();
+				if(myclasstraceHashMap.getTrace5()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
 					PredictionFieldsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1209,16 +1209,17 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				//MIXED 
 				CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 				CountTNE methodparamsCount=GenerateCounts(methodparams); 
-				if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+				if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+					{
+						PatternSetVariables("N", methodtrace,"100%","P2"); 
+					}
+				else if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
 				|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 				{
 					PatternSetVariables("T", methodtrace,"100%","P2"); 
 				}
-				else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
-					|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
-				{
-					PatternSetVariables("N", methodtrace,"100%","P2"); 
-				}
+				 
 				
 				
 			
@@ -1257,16 +1258,17 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 					//MIXED 
 					CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 					CountTNE methodparamsCount=GenerateCounts(methodparams); 
-					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					 if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
+								|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
+							{
+								PatternSetVariables("N", methodtrace,"100%","P2"); 
+							}
+					 else if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
 					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) )
 					{
 						PatternSetVariables("T", methodtrace,"100%","P2"); 
 					}
-					else if((methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
-						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0))
-					{
-						PatternSetVariables("N", methodtrace,"100%","P2"); 
-					}
+					
 					
 					
 				
@@ -1299,14 +1301,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 					CountTNE methodparamsCount=GenerateCounts(methodparams); 
 					CountTNE methodfieldsCountOWNER = GenerateCounts(methodfieldsOWNER); 
 					CountTNE methodparamsCountOWNER=GenerateCounts(methodparamsOWNER); 
-					if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
-					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
-					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
-					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
-					{
-						PatternSetVariables("T", methodtrace,"100%","P2"); 
-					}
-					else if(
+					if(
 							(methodfieldsCount.CountN>methodfieldsCount.CountT && methodfieldsCount.CountT>=0)
 						|| (methodparamsCount.CountN>methodparamsCount.CountT && methodparamsCount.CountT>=0)
 						||	(methodfieldsCountOWNER.CountN>methodfieldsCountOWNER.CountT && methodfieldsCountOWNER.CountT>=0)
@@ -1316,6 +1311,14 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 					{
 						PatternSetVariables("N", methodtrace,"100%","P2"); 
 					}
+					else if((methodfieldsCount.CountT>methodfieldsCount.CountN && methodfieldsCount.CountN>=0)
+					|| (methodparamsCount.CountT>methodparamsCount.CountN && methodparamsCount.CountN>=0) 
+					|| (methodfieldsCountOWNER.CountT>methodfieldsCountOWNER.CountN && methodfieldsCountOWNER.CountN>=0)
+					|| (methodparamsCountOWNER.CountT>methodparamsCountOWNER.CountN && methodparamsCountOWNER.CountN>=0) )
+					{
+						PatternSetVariables("T", methodtrace,"100%","P2"); 
+					}
+					 
 					
 					
 				
@@ -1352,16 +1355,16 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 //				}
 				
 				
-				
-				if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
-						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
-							PatternSetVariables("T", methodtrace,"100%","P4"); 
-						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
 						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
 							PatternSetVariables("N", methodtrace,"100%","P4"); 
 						}
 		
+				else if((methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+					
 		
 		
 		
@@ -1386,9 +1389,15 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 				//PURE 
 
 				
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
+						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
+						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
+								) {
+							PatternSetVariables("N", methodtrace,"100%","P4"); 
+						}
 				
-				
-				if(
+				else if(
 						(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
 						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 )
 						||(methodfieldsCountOWNER.CountT>=1 && methodfieldsCountOWNER.CountN==0 ) 
@@ -1397,13 +1406,7 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 						) {
 							PatternSetVariables("T", methodtrace,"100%","P4"); 
 						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
-						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) 
-						||(methodfieldsCountOWNER.CountN>=1 && methodfieldsCountOWNER.CountT==0 ) 
-						|| (methodparamsCountOWNER.CountN>=1 && methodparamsCountOWNER.CountT==0 )
-								) {
-							PatternSetVariables("N", methodtrace,"100%","P4"); 
-						}
+					
 		
 		
 		
@@ -1431,15 +1434,15 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 
 				
 				
-				
-				if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
-						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
-							PatternSetVariables("T", methodtrace,"100%","P4"); 
-						}
-						if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
+				if((methodfieldsCount.CountN>=1 && methodfieldsCount.CountT==0 ) 
 						|| (methodparamsCount.CountN>=1 && methodparamsCount.CountT==0 ) ) {
 							PatternSetVariables("N", methodtrace,"100%","P4"); 
 						}
+				else	if(		(methodfieldsCount.CountT>=1 && methodfieldsCount.CountN==0 ) 
+						|| (methodparamsCount.CountT>=1 && methodparamsCount.CountN==0 ) ) {
+							PatternSetVariables("T", methodtrace,"100%","P4"); 
+						}
+					
 		
 		
 		
@@ -1595,10 +1598,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold4()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold5()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold4()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold4().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGold5()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold5().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		

@@ -119,13 +119,15 @@ public class AddGold2Column {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		//st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3");
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold5"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold4 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD gold5 LONGTEXT"); 
+
 		try {
 			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\Chess\\ChessFiles\\TracesChess.txt");
 			FileReader fileReader = new FileReader(file);

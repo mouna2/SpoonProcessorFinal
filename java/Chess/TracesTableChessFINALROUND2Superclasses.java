@@ -1357,18 +1357,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 						CountTNE methodfieldsOwnerCount = GenerateCounts(methodfieldsOwner); 
 						CountTNE methodparamsOwnerCount=GenerateCounts(methodparamsOwner); 
 						
-						if(
-							((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
-								||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-							
-							
-		
-							
-					))
-							{
-								PatternSetVariables("T", methodtrace,"100%","P2"); 
-							}
-							else if(
+				if(
 									(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
 									|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
 								
@@ -1377,7 +1366,18 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 								PatternSetVariables("N", methodtrace,"100%","P2"); 
 							}
 					
-							
+				else 	if(
+						((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
+							||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
+						
+						
+	
+						
+				))
+						{
+							PatternSetVariables("T", methodtrace,"100%","P2"); 
+						}
+						
 						
 							
 				
@@ -1430,18 +1430,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 								CountTNE methodfieldsOwnerCount = GenerateCounts(methodfieldsOwner); 
 								CountTNE methodparamsOwnerCount=GenerateCounts(methodparamsOwner); 
 								
-								if(
-									((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN==0)
-										||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN==0)
-									
-									
-				
-									
-							))
-									{
-										PatternSetVariables("T", methodtrace,"100%","P2"); 
-									}
-									else if(
+							
+									 if(
 											(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT==0)
 											|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT==0)
 										
@@ -1450,7 +1440,17 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 										PatternSetVariables("N", methodtrace,"100%","P2"); 
 									}
 							
-									
+									 else	if(
+											((childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN==0)
+												||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN==0)
+											
+											
+						
+											
+									))
+											{
+												PatternSetVariables("T", methodtrace,"100%","P2"); 
+											}
 								
 									
 						
@@ -1500,8 +1500,15 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 										CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
 										CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 										CountTNE methodparamsCount=GenerateCounts(methodparams); 
-										
 										if(
+												
+												 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
+												||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
+												)
+										{
+											PatternSetVariables("N", methodtrace,"100%","P2"); 
+										}
+										else	if(
 												
 												 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
 												|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
@@ -1509,14 +1516,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 											{
 												PatternSetVariables("T", methodtrace,"100%","P2"); 
 											}
-											else if(
-													
-													 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
-													||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
-													)
-											{
-												PatternSetVariables("N", methodtrace,"100%","P2"); 
-											}
+											 
 									
 											
 										
@@ -1565,8 +1565,15 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 												CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
 												CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 												CountTNE methodparamsCount=GenerateCounts(methodparams); 
-												
 												if(
+														
+														 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT==0)
+														||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT==0)
+														)
+												{
+													PatternSetVariables("N", methodtrace,"100%","P2"); 
+												}	
+												else	if(
 														
 														 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN==0)
 														|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN==0)
@@ -1574,14 +1581,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 													{
 														PatternSetVariables("T", methodtrace,"100%","P2"); 
 													}
-													else if(
-															
-															 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT==0)
-															||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT==0)
-															)
-													{
-														PatternSetVariables("N", methodtrace,"100%","P2"); 
-													}
+													 
 											
 													
 												
@@ -1633,27 +1633,25 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 						CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
 						CountTNE methodfieldsCount = GenerateCounts(methodfields); 
 						CountTNE methodparamsCount=GenerateCounts(methodparams); 
-						
 						if(
+								(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
+								|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
+								|| (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
+								||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
+								)
+						{
+							PatternSetVariables("N", methodtrace,"100%","P2"); 
+						}
+						else	if(
 								(childrenListCount.CountT>childrenListCount.CountN && childrenListCount.CountN>=0)
 								||(SuperclassListCount.CountT>SuperclassListCount.CountN && SuperclassListCount.CountN>=0)
-								||
-								 (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
+								|| (ImplementationListCount.CountT>ImplementationListCount.CountN && ImplementationListCount.CountN>=0)
 								|| (InterfaceListCount.CountT>InterfaceListCount.CountN && InterfaceListCount.CountN>=0)
 								)
 							{
 								PatternSetVariables("T", methodtrace,"100%","P2"); 
 							}
-							else if(
-									(SuperclassListCount.CountN>SuperclassListCount.CountT && SuperclassListCount.CountT>=0)
-									|| (childrenListCount.CountN>childrenListCount.CountT && childrenListCount.CountT>=0)
-									||
-									 (InterfaceListCount.CountN>InterfaceListCount.CountT && InterfaceListCount.CountT>=0)
-									||(ImplementationListCount.CountN>ImplementationListCount.CountT && ImplementationListCount.CountT>=0)
-									)
-							{
-								PatternSetVariables("N", methodtrace,"100%","P2"); 
-							}
+							 
 					
 							
 						
@@ -1687,16 +1685,6 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				CountTNE InterfaceCount = GenerateCounts(interfaceList); 
 				
 				//	PURE 
-				if(			
-				(SuperclassCount.CountT>=1 && SuperclassCount.CountN==0 ) 
-						|| (ChildrenCount.CountT>=1 && ChildrenCount.CountN==0 ) 
-						|| 
-						(ImplementationCount.CountT>=1 && ImplementationCount.CountN==0 ) 
-						|| (InterfaceCount.CountT>=1 && InterfaceCount.CountN==0 ) 
-						
-						) {
-					PatternSetVariables("T", methodtrace,"100%","P4"); 
-				}
 				if(		
 						(SuperclassCount.CountN>=1 && SuperclassCount.CountT==0) 
 						|| (ChildrenCount.CountN>=1 && ChildrenCount.CountT==0)
@@ -1707,6 +1695,17 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 						) {
 					PatternSetVariables("N", methodtrace,"100%","P4"); 
 				}
+				else	if(			
+				(SuperclassCount.CountT>=1 && SuperclassCount.CountN==0 ) 
+						|| (ChildrenCount.CountT>=1 && ChildrenCount.CountN==0 ) 
+						|| 
+						(ImplementationCount.CountT>=1 && ImplementationCount.CountN==0 ) 
+						|| (InterfaceCount.CountT>=1 && InterfaceCount.CountN==0 ) 
+						
+						) {
+					PatternSetVariables("T", methodtrace,"100%","P4"); 
+				}
+				 
 				
 				
 		

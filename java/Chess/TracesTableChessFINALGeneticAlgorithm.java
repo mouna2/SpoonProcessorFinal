@@ -7411,7 +7411,25 @@ bwGold2.close();
 							mylinkedhashmap.put(key2, "T"); 
 							
 //							System.out.println(mylinkedhashmap.get(key2));
+						}				else if (
+								(mylinkedhashmap.get(key2).equals("null")&& k==y) ||
+								 (mylinkedhashmap.get(key2).equals("")&& k==y)||
+								 (mylinkedhashmap.get(key2).equals("E")&& k==y)) {
+
+//						System.out.println(mylinkedhashmap.get(key2));
+//						System.out.println("hey i am here T");
+						int num = random.nextInt(10) + 0;
+						System.out.println(num);
+						System.out.println("NUM=========  "+num);
+						if(num<5) {
+							mylinkedhashmap.put(key2, "T"); 
 						}
+						else if(num>=5) {
+							mylinkedhashmap.put(key2, "N"); 
+						}
+						
+//						System.out.println(mylinkedhashmap.get(key2));
+					}
 						k++;
 					}
 					orderedNameHashMap2.put(key, mylinkedhashmap); 
@@ -8052,6 +8070,5 @@ boolean entered=false;
 	
 	
 }
-
 
 

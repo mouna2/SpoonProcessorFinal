@@ -64,7 +64,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
+public class TracesTableJHOTDRAWFINALROUND2SuperclassesGOLD6 extends JFrame {
 	
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
@@ -218,7 +218,7 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 	int CLASSNOTRACEClassLevelMixedGoldACROSS=94;
 	
 	
-	int Gold5=95; 
+	int Gold6=95; 
 	int OwnerClassTGOLD2=96; 
 	int OwnerClassNGOLD2=97; 
 	int OwnerClassEGOLD2=98; 
@@ -630,9 +630,9 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableJHOTDRAWFINALROUND2Superclasses() throws SQLException, IOException {
+	public TracesTableJHOTDRAWFINALROUND2SuperclassesGOLD6() throws SQLException, IOException {
 	
-		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold5, Subject, OwnerClassT, OwnerClassN, "
+		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold6, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
 				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -862,30 +862,30 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"95-Gold5", "96-OwnerClass T Gold5", "97-Owner Class N Gold5", "98-Owner Class E Gold5", "99-# caller methods Gold5",
-				"100-# caller methods T Gold5", "101-#caller methods N Gold5", "102-#caller methods E Gold5", "103-# caller classes Gold5",
-				"104-# caller classes T Gold5", "105-#caller classes N Gold5", "106-#caller classes E Gold5", "107-# callee methods Gold5",
-				"108-# callee methods T Gold5", "109-#callee methods N Gold5", "110-#callee methods E Gold5", "111-# callee classes Gold5",
-				"112-# callee classes T Gold5", "113-#callee classes N Gold5", "114-#callee classes E Gold5",  "115-OwnerClassPrediction Gold5",
-				"116-MajorityClassLevelCallees Gold5","117-MajorityClassLevelCallers Gold5", "118-MajorityMethodLevelCallees Gold5","119-MajorityMethodLevelCallers Gold5",
-				"120->1NPredictionClassLevelCallees Gold5", "121->1NPredictionClassLevelCallers Gold5", "122->1NPredictionMethodLevelCallees Gold5", 
-				"123->1NPredictionMethodLevelCallers Gold5", "124->1TPredictionClassLevelCallees Gold5", "125->1TPredictionClassLevelCallers Gold5", 
-				"126->1TPredictionMethodLevelCallees Gold5", "127->1TPredictionMethodLevelCallers Gold5", 
-				"128->2NPredictionClassLevelCallees Gold5", "129->2NPredictionClassLevelCallers Gold5", "130->2NPredictionMethodLevelCallees Gold5", 
-				"131->2NPredictionMethodLevelCallers Gold5", "132->2TPredictionClassLevelCallees Gold5", "133->2TPredictionClassLevelCallers Gold5", 
-				"134->2TPredictionMethodLevelCallees Gold5", "135->2TPredictionMethodLevelCallers Gold5", 
-				"136-AllNClassLevelCallees Gold5", "137-AllNClassLevelCallers Gold5","138-AllNMethodLevelCallees Gold5","139-AllNMethodLevelCallers Gold5",
-				"140-AllTClassLevelCallees Gold5", "141-AllTClassLevelCallers Gold5", "142-AllTMethodLevelCallees Gold5", "143-AllTMethodLevelCallers  Gold5"
-				,"144-AllNAtLeast2NClassLevelCallees Gold5", "145-AllNAtLeast2NClassLevelCallers Gold5","146-AllNAtLeast2NMethodLevelCallees Gold5","147-AllNAtLeast2NMethodLevelCallers Gold5",
-				"148-AllTAtLeast2TClassLevelCallees Gold5", "149-AllTAtLeast2TClassLevelCallers Gold5", "150-AllTAtLeast2TMethodLevelCallees Gold5", "151-AllTAtLeast2TMethodLevelCallers Gold5"
+				"95-Gold6", "96-OwnerClass T Gold6", "97-Owner Class N Gold6", "98-Owner Class E Gold6", "99-# caller methods Gold6",
+				"100-# caller methods T Gold6", "101-#caller methods N Gold6", "102-#caller methods E Gold6", "103-# caller classes Gold6",
+				"104-# caller classes T Gold6", "105-#caller classes N Gold6", "106-#caller classes E Gold6", "107-# callee methods Gold6",
+				"108-# callee methods T Gold6", "109-#callee methods N Gold6", "110-#callee methods E Gold6", "111-# callee classes Gold6",
+				"112-# callee classes T Gold6", "113-#callee classes N Gold6", "114-#callee classes E Gold6",  "115-OwnerClassPrediction Gold6",
+				"116-MajorityClassLevelCallees Gold6","117-MajorityClassLevelCallers Gold6", "118-MajorityMethodLevelCallees Gold6","119-MajorityMethodLevelCallers Gold6",
+				"120->1NPredictionClassLevelCallees Gold6", "121->1NPredictionClassLevelCallers Gold6", "122->1NPredictionMethodLevelCallees Gold6", 
+				"123->1NPredictionMethodLevelCallers Gold6", "124->1TPredictionClassLevelCallees Gold6", "125->1TPredictionClassLevelCallers Gold6", 
+				"126->1TPredictionMethodLevelCallees Gold6", "127->1TPredictionMethodLevelCallers Gold6", 
+				"128->2NPredictionClassLevelCallees Gold6", "129->2NPredictionClassLevelCallers Gold6", "130->2NPredictionMethodLevelCallees Gold6", 
+				"131->2NPredictionMethodLevelCallers Gold6", "132->2TPredictionClassLevelCallees Gold6", "133->2TPredictionClassLevelCallers Gold6", 
+				"134->2TPredictionMethodLevelCallees Gold6", "135->2TPredictionMethodLevelCallers Gold6", 
+				"136-AllNClassLevelCallees Gold6", "137-AllNClassLevelCallers Gold6","138-AllNMethodLevelCallees Gold6","139-AllNMethodLevelCallers Gold6",
+				"140-AllTClassLevelCallees Gold6", "141-AllTClassLevelCallers Gold6", "142-AllTMethodLevelCallees Gold6", "143-AllTMethodLevelCallers  Gold6"
+				,"144-AllNAtLeast2NClassLevelCallees Gold6", "145-AllNAtLeast2NClassLevelCallers Gold6","146-AllNAtLeast2NMethodLevelCallees Gold6","147-AllNAtLeast2NMethodLevelCallers Gold6",
+				"148-AllTAtLeast2TClassLevelCallees Gold6", "149-AllTAtLeast2TClassLevelCallers Gold6", "150-AllTAtLeast2TMethodLevelCallees Gold6", "151-AllTAtLeast2TMethodLevelCallers Gold6"
 				
-				,"152-Callers Gold5", "153-Callees Gold5", "154-#parameters Gold5","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction Gold5", "159-AtLeast1NParameterPrediction Gold5", 
-				"160-AtLeast1TParameterPrediction Gold5", "161-AtLeast2TParameterPrediction Gold5", 
-				"162-AtLeast2NParameterPrediction Gold5", "163-AllNParameterPrediction Gold5", "164-AllTParameterPrediction Gold5",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold5", 
-				"169-AllTMethodLevelCallersCalleesClass Gold5", "170-AllNMethodLevelCallersCalleesClass Gold5",
-				"171-AllTClassLevelCallersCalleesClass Gold5", "172-AllNClassLevelCallersCalleesClass Gold5", 
+				,"152-Callers Gold6", "153-Callees Gold6", "154-#parameters Gold6","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction Gold6", "159-AtLeast1NParameterPrediction Gold6", 
+				"160-AtLeast1TParameterPrediction Gold6", "161-AtLeast2TParameterPrediction Gold6", 
+				"162-AtLeast2NParameterPrediction Gold6", "163-AllNParameterPrediction Gold6", "164-AllTParameterPrediction Gold6",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold6", 
+				"169-AllTMethodLevelCallersCalleesClass Gold6", "170-AllNMethodLevelCallersCalleesClass Gold6",
+				"171-AllTClassLevelCallersCalleesClass Gold6", "172-AllNClassLevelCallersCalleesClass Gold6", 
 				"173-CLASSTRACEMethodLevelPureGold2","174-CLASSTRACEMethodLevelMixedGold2","175-CLASSNOTRACEMethodLevelPureGold2","176-CLASSNOTRACEMethodLevelMixedGold2]",
 				"177-CLASSTRACEClassLevelPureGold2","178-CLASSTRACEClassLevelMixedGold2","179-CLASSNOTRACEClassLevelPureGold2","180-CLASSNOTRACEClassLevelMixedGold2"
 				};
@@ -1112,8 +1112,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					PredictionFields.add(traceGOLD2); 
 				}
 			}
@@ -1122,8 +1122,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					PredictionParams.add(traceGOLD2); 
 				}
 			}
@@ -1134,8 +1134,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					PredictionParamsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1146,8 +1146,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					PredictionFieldsOwnerClass.add(traceGOLD2); 
 				}
 			}
@@ -1176,8 +1176,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					InterfaceList.add(traceGOLD2); 
 				}
 			}
@@ -1186,8 +1186,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					SuperClassesList.add(traceGOLD2); 
 				}
 			}
@@ -1196,8 +1196,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					ChildrenList.add(traceGOLD2); 
 				}
 			}
@@ -1206,8 +1206,8 @@ public class TracesTableJHOTDRAWFINALROUND2Superclasses extends JFrame {
 				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace5()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace5().trim();
+				if(myclasstraceHashMap.getTrace6()!=null) {
+					String traceGOLD2 = myclasstraceHashMap.getTrace6().trim();
 					ImplementationList.add(traceGOLD2); 
 				}
 			}
@@ -1852,10 +1852,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold5()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold6()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold5()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold5().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGold6()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold6().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		
@@ -1963,7 +1963,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		TracesTableJHOTDRAWFINALROUND2Superclasses frame = new TracesTableJHOTDRAWFINALROUND2Superclasses();
+		TracesTableJHOTDRAWFINALROUND2SuperclassesGOLD6 frame = new TracesTableJHOTDRAWFINALROUND2SuperclassesGOLD6();
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

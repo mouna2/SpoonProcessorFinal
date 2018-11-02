@@ -172,9 +172,10 @@ public class AddGold2ColumnTTRACESCLASSES {
 			counter++; 
 		}
 		
-		
+		counter=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-		    System.out.println(entry.getKey() + " = " );
+			   System.out.println(counter + " COUNTER " );
+
 		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 		     List<String> List= new ArrayList<String>(); 
@@ -221,13 +222,15 @@ public class AddGold2ColumnTTRACESCLASSES {
 			RequirementClassHashMap2.put(ReqClass, List); 
 			RequirementClassHashMap2Subject.put(ReqClass, SubjectList); 
 			RequirementClassHashMap2GOLD.put(ReqClass, GoldList); 
+			counter++; 
 		}
 		
 		
 		
-		
+		counter=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
-			   System.out.println(entry.getKey() + " = " );
+			   System.out.println(counter + " COUNTER " );
+
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 			     
@@ -248,13 +251,14 @@ public class AddGold2ColumnTTRACESCLASSES {
 						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     }
+			     counter++; 
 		}
 	
 		
 		
-		
+		counter=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap2GOLD.entrySet()) {
-			   System.out.println(entry.getKey() + " = " );
+			   System.out.println(counter + " COUNTER " );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 			     
@@ -275,11 +279,12 @@ public class AddGold2ColumnTTRACESCLASSES {
 						st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     }
+			     counter++; 
 		}
 		
-		
+		counter=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap2Subject.entrySet()) {
-			   System.out.println(entry.getKey() + " = " );
+			   System.out.println(counter + " COUNTER " );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 			     
@@ -300,6 +305,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 						st.executeUpdate("UPDATE `tracesclasses` SET `subject` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     }
+			     counter++; 
 		}
 		
 		
@@ -356,9 +362,9 @@ public class AddGold2ColumnTTRACESCLASSES {
 			counter++; 
 		}
 		
-		
+		int counter2=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-		    System.out.println(entry.getKey() + " = " );
+//		    System.out.println(counter2 + " = " );
 		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 		     List<String> List= new ArrayList<String>(); 
@@ -381,15 +387,16 @@ public class AddGold2ColumnTTRACESCLASSES {
 			
 	   		   }
 			String ReqClass=requirementid+"-"+classid;
-			System.out.println(ReqClass);
+			
 			RequirementClassHashMap2.put(ReqClass, List); 
+			counter2++; 
 		}
 		
 		
 		
-		
+		 counter2=0; 
 		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
-			   System.out.println(entry.getKey() + " = " );
+			 System.out.println(" mmmmmmm "+counter2  );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 			     
@@ -401,9 +408,9 @@ public class AddGold2ColumnTTRACESCLASSES {
 //			    	 
 //			     }
 			     if(MyValues.size()>0) {
-				     System.out.println(MyValues.size());
+//				     System.out.println(MyValues.size());
 					    int newsize = MyValues.size()/2; 
-					    System.out.println(newsize);
+//					    System.out.println(newsize);
 					    	   String charac = MyValues.get(newsize); 
 					    
 					  
@@ -415,28 +422,24 @@ public class AddGold2ColumnTTRACESCLASSES {
 					     
 								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-					     }else if(MyValues.contains("E")) {
+					     }   else  if(charac.trim().equals("N")) {
+							    
+
+								
+							 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+						
+
+									     }else if(MyValues.contains("E")) {
 								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 					    	 
 					     }else if(MyValues.isEmpty()) {
 					    	 //DO NOTHING 
 					     }
-					     else  if(charac.trim().equals("N")) {
-					    
-//					    	 boolean allEqual = MyValues.isEmpty() || MyValues.stream().allMatch(MyValues.get(0)::equals);
-		//if(allEqual && MyValues.get(0).equals("N")) {
-			for(String val: MyValues) {
-		   	 System.out.println("NNNNNNN  "+val);
-		   	 
-		    }
-			 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-		//}
-
-					     }
+					  
 			     }
-
+counter2++; 
 		}
 	
 		
