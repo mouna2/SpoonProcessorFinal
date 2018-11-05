@@ -330,9 +330,12 @@ public class AddGold2ColumnTTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold6"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2V2"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2V2"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4"); 
+
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
 
 		
@@ -446,6 +449,11 @@ public class AddGold2ColumnTTRACESCLASSES {
 
 				    	 
 				     }}
+			     else  {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			    	 
+			     }
 			     
 			     if(MyValues.size()>0) {
 					    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
@@ -487,6 +495,10 @@ public class AddGold2ColumnTTRACESCLASSES {
 					    
 				
 			    	 
+			     } else  {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+				    	 
 			     }
 counter2++; 
 		}
