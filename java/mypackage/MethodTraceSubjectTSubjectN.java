@@ -1062,7 +1062,7 @@ if(myinterfacelist!=null) {
 				 mytrace.setGold3(myresults.getString("gold3"));
 				 mytrace.setGold5(myresults.getString("gold5"));
 				 mytrace.setGold4(myresults.getString("gold4"));
-				 mytrace.setGold6(myresults.getString("gold6"));
+				
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				

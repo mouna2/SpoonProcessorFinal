@@ -1,4 +1,4 @@
-package Chess;
+package Gantt;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import java.util.Properties;
+import java.util.Set;
 
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
@@ -52,7 +53,7 @@ public class ComparisonMethodInterfaces {
 	private final int portNumber = 3306;
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "databasechess";
+	private final String dbName = "databasegantt";
 	
 	/** The name of the table we are testing with */
 	private final String tableName = "classes";
@@ -106,7 +107,7 @@ public class ComparisonMethodInterfaces {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", userName);
 		connectionProps.put("123456", password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
 
 		return conn;
 	}
@@ -136,7 +137,7 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws FileNotFoundException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\console.txt");
+		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleGANTT.txt");
 
 		// Connect to MySQL
 		Connection conn = null;
@@ -174,7 +175,7 @@ public class ComparisonMethodInterfaces {
 			String childclassname=""; 
 			String rowID=""; 
 			ResultSet res2=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.interfaces" ); 
+					"			FROM databasegantt.interfaces" ); 
 			while(res2.next()) {
 				
 				interfaceclassid=res2.getString("interfaceclassid"); 
@@ -215,7 +216,7 @@ public class ComparisonMethodInterfaces {
 			
 			
 			ResultSet res3=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.superclasses" ); 
+					"			FROM databasegantt.superclasses" ); 
 			while(res3.next()) {
 				
 				superclassid=res3.getString("superclassid"); 
@@ -248,7 +249,7 @@ public class ComparisonMethodInterfaces {
 			
 			int	counter=0; 
 			ResultSet res=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.traces" ); 
+					"			FROM databasegantt.traces" ); 
 			while(res.next()) {
 				
 				rowID=res.getString("id"); 
@@ -259,7 +260,7 @@ public class ComparisonMethodInterfaces {
 				fullmethod=res.getString("fullmethod"); 
 				classname=res.getString("classname"); 
 				classid=res.getString("classid"); 
-				gold2=res.getString("gold2"); 
+				gold2=res.getString("gold"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
 				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
@@ -362,25 +363,36 @@ public class ComparisonMethodInterfaces {
 			 counter=0; 
 			for (Entry<String, List<MethodTrace2>> entry : ImplementationsTracesHashMap.entrySet()) {
 				 List<MethodTrace2> values = entry.getValue();
+					List<String> list = new ArrayList<String>();
+
 				for(MethodTrace2 value: values) {
 				String	gold2val=value.getGold2(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
 				String	methodID=value.getMethodRepresentation().methodid; 
-				String	myclassid=entry.getKey().substring(0, entry.getKey().indexOf("-")+1); 
+				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	classnameTrace=value.getClassRepresentation().classname; 
+				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 				System.out.println(counter);
-				String	myclassname=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-					List<String> list = new ArrayList<String>();
-					if(ImplementationsTracesHashMapFinal.get(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname)!=null) {
-						
-						list=ImplementationsTracesHashMapFinal.get(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname); 
-						list.add(value.gold2); 
-						ImplementationsTracesHashMapFinal.put(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname, list); 
-					}else {
-						list = new ArrayList<String>();
-						list.add(value.gold2); 
-						ImplementationsTracesHashMapFinal.put(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname, list); 
-					}
+				
+					
+				
+					
+						if(ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+							
+							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
+							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}else {
+							list = new ArrayList<String>();
+							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}
+					
+				
+	
+			
 					
 				counter++; 
 				}
@@ -389,7 +401,7 @@ public class ComparisonMethodInterfaces {
 				
 			}
 			System.setOut(fileOut);
-			  System.out.println("RequirementID, MethodID, MethodName, InterfaceID, InterfaceName, Values");
+			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
 
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
 			    String key = entry.getKey();
@@ -397,11 +409,10 @@ public class ComparisonMethodInterfaces {
 			    // now work with key and value...
 			    String[] keys = key.split("/"); 
 				 String RequirementID= keys[0]; 
-				 String MethodID= keys[1]; 
-				 String MethodName= keys[2]; 
-				 String myclassid= keys[3]; 
-				 String myclassname= keys[4]; 
-				 System.out.print(RequirementID+","+MethodID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 String MethodName= keys[1]; 
+				 String myclassid= keys[2]; 
+				 String myclassname= keys[3]; 
+				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
 				for(String value: values) {
 					
 			

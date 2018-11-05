@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import Chess.CountTNE;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
@@ -126,15 +127,15 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold6");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5V2");
 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold6 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5V2 LONGTEXT"); 
 
 		int  TracesNumber=0; 
 		int counter=0; 
@@ -149,7 +150,6 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGold3=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGold5=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMapGold6=new Hashtable<String,List<String>>(); 
 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
@@ -207,10 +207,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 						 ListGold5.add(gold5); 
 					 }
 					 
-					 gold6=traces.getString("gold6").trim(); 
-					 if(gold6!=null) {
-						 ListGold6.add(gold6); 
-					 }
+					
 				}
 				
 				
@@ -222,7 +219,6 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 			RequirementClassHashMap2.put(ReqClass, List); 
 			RequirementClassHashMapGold3.put(ReqClass, ListGold3); 
 			RequirementClassHashMapGold5.put(ReqClass, ListGold5); 
-			RequirementClassHashMapGold6.put(ReqClass, ListGold6); 
 
 
 		}
@@ -338,52 +334,13 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 //			    	 System.out.println("VAL  "+val);
 //			    	 
 //			     }
-			     if(MyValues.size()>0) {
-				     System.out.println(MyValues.size());
-					    int newsize = MyValues.size()/2; 
-					    System.out.println(newsize);
-					    	   String charac = MyValues.get(newsize); 
-					    
-					  
-					     if(charac.trim().equals("T")) {
-					    		
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-					     }		     else  if(charac.trim().equals("N")) {
-					    
-
-			 st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-		
-
-					     }else if(MyValues.contains("E")) {
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-					    	 
-					     }else if(MyValues.isEmpty()) {
-					    	 //DO NOTHING 
-					     }
+			     int CountT=0, CountN=0, CountE=0; 
+			     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
 			
-			     }
-
-		
-		}
-		
-		
-		
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold6.entrySet()) {
-
-			   System.out.println(entry.getKey() + " = " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			    System.out.println("CountT "+count.CountT);
+			    System.out.println("CountN "+count.CountN);
+			    System.out.println("CountE "+count.CountE);
 			     
-			     List<String> MyValues = entry.getValue(); 
-			     java.util.Collections.sort(MyValues); 
-			    
-//				for(String val: MyValues) {
-//			    	 System.out.println("VAL  "+val);
-//			    	 
-//			     }
 			     if(MyValues.size()>0) {
 				     System.out.println(MyValues.size());
 					    int newsize = MyValues.size()/2; 
@@ -391,32 +348,92 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 					    	   String charac = MyValues.get(newsize); 
 					    
 					  
-					     if(charac.trim().equals("T")) {
-					    		
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold6` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+					    	   if(count.CountT>count.CountN && count.CountT>count.CountE) {		
+									st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-					     }		     else  if(charac.trim().equals("N")) {
-					    
+						     } 
+//						    else  if(charac.trim().equals("N")) {
 
-			 st.executeUpdate("UPDATE `tracesclasses` SET `gold6` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						    else  if(count.CountN>count.CountE && count.CountN>count.CountT) {
+						    		
+						    		
+						    		
+						    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-		
 
-					     }else if(MyValues.contains("E")) {
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold6` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-					    	 
-					     }else if(MyValues.isEmpty()) {
+						    			     }
+						     else if(MyValues.contains("E")) {
+									st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+						    	 
+						     }else if(MyValues.isEmpty()) {
 					    	 //DO NOTHING 
 					     }
-			
+					     
 			     }
 
+			     
+			     if(MyValues.size()>0) {
+				     System.out.println(MyValues.size());
+					    int newsize = MyValues.size()/2; 
+					    System.out.println(newsize);
+					    	   String charac = MyValues.get(newsize); 
+					    
+					  
+					    	   if(count.CountT>0) {		
+									st.executeUpdate("UPDATE `tracesclasses` SET `gold5V2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+						     } 
+//						    else  if(charac.trim().equals("N")) {
+
+						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+						    		
+						    		
+						    		
+						    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold5V2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+
+
+						    			     }
+						     else {
+									st.executeUpdate("UPDATE `tracesclasses` SET `gold5V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+						    	 
+						     }
+					     
+			     }
 		
 		}
+		
+		
+		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	
 	
+	}
+
+	public static CountTNE ComputeProportions(List<String> myValues, int countT, int countN, int countE) {
+		// TODO Auto-generated method stub
+		
+		for(String s: myValues) {
+			System.out.println("=====>"+s);
+			if(s.trim().equals("T")) {
+				countT++; 
+			}
+			else if(s.trim().equals("N")) {
+				countN++; 
+			}
+			else if(s.trim().equals("E")) {
+				countE++; 
+			}
+		}
+		CountTNE count= new CountTNE(); 
+		count.setCountT(countT);
+		count.setCountN(countN);
+		count.setCountE(countE);
+		return count; 
+
 	}
 
 	public static void AddColumns() throws SQLException {

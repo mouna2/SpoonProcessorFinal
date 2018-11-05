@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import Chess.CountTNE;
 import Chess.DBDemo2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -129,11 +130,19 @@ public class AddGold2ColumnTTRACESCLASSES {
 //		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
 //		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
 //		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold6"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2V2"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
+
+		
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD subject LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2V2 LONGTEXT"); 
 
 		int  TracesNumber=0; 
 		int counter=0; 
@@ -321,16 +330,18 @@ public class AddGold2ColumnTTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold6"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2V2"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN subject"); 
 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
-
+		
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD subject LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
-
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2V2 LONGTEXT"); 
 
 		int  TracesNumber=0; 
 		int counter=0; 
@@ -390,6 +401,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 			
 			RequirementClassHashMap2.put(ReqClass, List); 
 			counter2++; 
+			System.out.println(counter2);
 		}
 		
 		
@@ -407,37 +419,74 @@ public class AddGold2ColumnTTRACESCLASSES {
 //			    	 System.out.println("VAL  "+val);
 //			    	 
 //			     }
+			     if(MyValues.size()>0) {  
+			    	  int CountT=0, CountN=0, CountE=0; 
+					   CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
+					   System.out.println("CountT "+count.CountT);
+				    System.out.println("CountN "+count.CountN);
+				    System.out.println("CountE "+count.CountE);
+//				     if(charac.trim().equals("T")) {
+				    if(count.CountT>count.CountN && count.CountT>count.CountE) {		
+							st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+				     } 
+//				    else  if(charac.trim().equals("N")) {
+
+				    else  if(count.CountN>count.CountE && count.CountN>count.CountT) {
+				    		
+				    		
+				    		
+				    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+
+
+				    			     }
+				     else  {
+							st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+				    	 
+				     }}
+			     
 			     if(MyValues.size()>0) {
-//				     System.out.println(MyValues.size());
-					    int newsize = MyValues.size()/2; 
-//					    System.out.println(newsize);
-					    	   String charac = MyValues.get(newsize); 
-					    
-					  
-					     if(charac.trim().equals("T")) {
-					    		for(String val: MyValues) {
-							    	 System.out.println("VAL  "+val);
-							    	 
-							     }
+					    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+					     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 					     
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+					   MyValues = entry.getValue(); 
+					     java.util.Collections.sort(MyValues); 
+					   int CountT=0, CountN=0, CountE=0; 
+					   CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
+					     System.out.println(MyValues.size());
+					    int newsize = MyValues.size()/2; 
+					    System.out.println(newsize);
+					    String charac = MyValues.get(newsize); 
+					    
+					    System.out.println("CountT "+count.CountT);
+					    System.out.println("CountN "+count.CountN);
+					    System.out.println("CountE "+count.CountE);
+//					     if(charac.trim().equals("T")) {
+					    if(count.CountT>0) {		
+								st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-					     }   else  if(charac.trim().equals("N")) {
-							    
+					     } 
+//					    else  if(charac.trim().equals("N")) {
 
-								
-							 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+					    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+					    		
+					    		
+					    		
+					    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
-						
 
-									     }else if(MyValues.contains("E")) {
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+					    			     }
+					     else  {
+								st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 					    	 
-					     }else if(MyValues.isEmpty()) {
-					    	 //DO NOTHING 
 					     }
-					  
+					    
+				
+			    	 
 			     }
 counter2++; 
 		}
@@ -446,5 +495,28 @@ counter2++;
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	
+	}
+
+	private static CountTNE ComputeProportions(List<String> myValues, int countT, int countN, int countE) {
+		// TODO Auto-generated method stub
+		
+		for(String s: myValues) {
+			System.out.println("=====>"+s);
+			if(s.trim().equals("T")) {
+				countT++; 
+			}
+			else if(s.trim().equals("N")) {
+				countN++; 
+			}
+			else if(s.trim().equals("E")) {
+				countE++; 
+			}
+		}
+		CountTNE count= new CountTNE(); 
+		count.setCountT(countT);
+		count.setCountN(countN);
+		count.setCountE(countE);
+		return count; 
+
 	}
 }
