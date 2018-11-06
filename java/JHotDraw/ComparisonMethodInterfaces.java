@@ -475,28 +475,28 @@ public class ComparisonMethodInterfaces {
 				
 				 bwfile2.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
 				 bwfile2.newLine();
-				 System.out.println(countImp.toString());
-				 if(countImp.CountT>0 && countImp.CountN>0 ) {
-					 System.out.println("T MIXED WITH N ");
-				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL T");
-				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
-					 System.out.println("ALL N");
-				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL E");
-				 } if(countImp.CountN>1 && countImp.CountE>0) {
-					 System.out.println("N MIXED WITH E with N greater than 1");
-				 } if(countImp.CountN>0 && countImp.CountE>1) {
-					 System.out.println("N MIXED WITH E with E greater than 1");
-				 } if(countImp.CountN>0 && countImp.CountE>0) {
-					 System.out.println("N MIXED WITH E");
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0) {
-					 System.out.println("T MIXED WITH E");
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-					 System.out.println("T MIXED WITH N AND E");
-				 }
+//				 System.out.println(countImp.toString());
+//				 if(countImp.CountT>0 && countImp.CountN>0 ) {
+//					 System.out.println("T MIXED WITH N ");
+//				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T");
+//				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N");
+//				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E");
+//				 } if(countImp.CountN>1 && countImp.CountE>0) {
+//					 System.out.println("N MIXED WITH E with N greater than 1");
+//				 } if(countImp.CountN>0 && countImp.CountE>1) {
+//					 System.out.println("N MIXED WITH E with E greater than 1");
+//				 } if(countImp.CountN>0 && countImp.CountE>0) {
+//					 System.out.println("N MIXED WITH E");
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0) {
+//					 System.out.println("T MIXED WITH E");
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+//					 System.out.println("T MIXED WITH N AND E");
+//				 }
 				
 				
 		    

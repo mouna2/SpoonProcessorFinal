@@ -229,7 +229,7 @@ public class GeneralizationComparison {
 				else if(gold5V2.trim().equals("N") && gold.trim().equals("T")) {
 					predAlex.FalseNegative++; 
 				}
-				else if(gold5V2.trim().equals("E") || gold5V2.trim().equals("E")) {
+				else if(gold5V2.trim().equals("E") || gold.trim().equals("E")) {
 					predAlex.E++; 
 				}
 				

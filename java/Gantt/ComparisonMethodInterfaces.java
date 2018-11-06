@@ -475,23 +475,23 @@ public class ComparisonMethodInterfaces {
 				
 				 bwfile2.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
 				 bwfile2.newLine();
-				 if(countImp.CountT>0 && countImp.CountN>0 ) {
-					 System.out.println("T MIXED WITH N ");
-				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL T");
-				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
-					 System.out.println("ALL N");
-				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL E");
-				 } if(countImp.CountN>0 && countImp.CountE>0) {
-					 System.out.println("N MIXED WITH E");
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0) {
-					 System.out.println("T MIXED WITH E");
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-					 System.out.println("T MIXED WITH N AND E");
-				 }
+//				 if(countImp.CountT>0 && countImp.CountN>0 ) {
+//					 System.out.println("T MIXED WITH N ");
+//				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T");
+//				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N");
+//				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E");
+//				 } if(countImp.CountN>0 && countImp.CountE>0) {
+//					 System.out.println("N MIXED WITH E");
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0) {
+//					 System.out.println("T MIXED WITH E");
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+//					 System.out.println("T MIXED WITH N AND E");
+//				 }
 				
 				
 		    
