@@ -21,6 +21,7 @@ import java.util.Map.Entry;
 import javax.swing.plaf.synth.SynthSplitPaneUI;
 
 import java.util.Properties;
+import java.util.Set;
 
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
@@ -70,6 +71,8 @@ public class ComparisonMethodInterfaces {
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
 	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
+	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
+
 
 	static File fout = null; 
 	static FileOutputStream fos = null; 
@@ -136,7 +139,7 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws FileNotFoundException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\console.txt");
+		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleChess.txt");
 
 		// Connect to MySQL
 		Connection conn = null;
@@ -276,6 +279,7 @@ public class ComparisonMethodInterfaces {
 				
 					if(classid.equals(mykey2)) {
 						System.out.println("=================THIS IS AN INTERFACE");
+						InterfacesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
 					}
 					
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
@@ -362,25 +366,36 @@ public class ComparisonMethodInterfaces {
 			 counter=0; 
 			for (Entry<String, List<MethodTrace2>> entry : ImplementationsTracesHashMap.entrySet()) {
 				 List<MethodTrace2> values = entry.getValue();
+					List<String> list = new ArrayList<String>();
+
 				for(MethodTrace2 value: values) {
 				String	gold2val=value.getGold2(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
 				String	methodID=value.getMethodRepresentation().methodid; 
-				String	myclassid=entry.getKey().substring(0, entry.getKey().indexOf("-")+1); 
+				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	classnameTrace=value.getClassRepresentation().classname; 
+				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
 				System.out.println(counter);
-				String	myclassname=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-					List<String> list = new ArrayList<String>();
-					if(ImplementationsTracesHashMapFinal.get(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname)!=null) {
-						
-						list=ImplementationsTracesHashMapFinal.get(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname); 
-						list.add(value.gold2); 
-						ImplementationsTracesHashMapFinal.put(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname, list); 
-					}else {
-						list = new ArrayList<String>();
-						list.add(value.gold2); 
-						ImplementationsTracesHashMapFinal.put(req+"/"+methodID+"/"+method+"/"+myclassid+"/"+myclassname, list); 
-					}
+				
+					
+				
+					
+						if(ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+							
+							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
+							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}else {
+							list = new ArrayList<String>();
+							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}
+					
+				
+	
+			
 					
 				counter++; 
 				}
@@ -389,7 +404,7 @@ public class ComparisonMethodInterfaces {
 				
 			}
 			System.setOut(fileOut);
-			  System.out.println("RequirementID, MethodID, MethodName, InterfaceID, InterfaceName, Values");
+			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
 
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
 			    String key = entry.getKey();
@@ -397,14 +412,19 @@ public class ComparisonMethodInterfaces {
 			    // now work with key and value...
 			    String[] keys = key.split("/"); 
 				 String RequirementID= keys[0]; 
-				 String MethodID= keys[1]; 
-				 String MethodName= keys[2]; 
-				 String myclassid= keys[3]; 
-				 String myclassname= keys[4]; 
-				 System.out.print(RequirementID+","+MethodID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 String MethodName= keys[1]; 
+				 String myclassid= keys[2]; 
+				 String myclassname= keys[3]; 
+				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
+					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
+				 }
 				for(String value: values) {
 					
-			
+
+					if(values.size()>1) {
+						 System.out.print("*************** ");
+					}
 
 			        System.out.print(value+" ");
 			    }

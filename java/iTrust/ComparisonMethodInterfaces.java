@@ -71,6 +71,8 @@ public class ComparisonMethodInterfaces {
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
 	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
+	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
+
 
 	static File fout = null; 
 	static FileOutputStream fos = null; 
@@ -137,7 +139,7 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws FileNotFoundException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleITRUST.txt");
+		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleiTrust.txt");
 
 		// Connect to MySQL
 		Connection conn = null;
@@ -277,6 +279,7 @@ public class ComparisonMethodInterfaces {
 				
 					if(classid.equals(mykey2)) {
 						System.out.println("=================THIS IS AN INTERFACE");
+						InterfacesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
 					}
 					
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
@@ -413,9 +416,15 @@ public class ComparisonMethodInterfaces {
 				 String myclassid= keys[2]; 
 				 String myclassname= keys[3]; 
 				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
+					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
+				 }
 				for(String value: values) {
 					
-			
+
+					if(values.size()>1) {
+						 System.out.print("*************** ");
+					}
 
 			        System.out.print(value+" ");
 			    }

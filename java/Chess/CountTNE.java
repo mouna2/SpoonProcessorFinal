@@ -1,9 +1,10 @@
 package Chess;
 
 public class CountTNE {
-		public int CountT; 
-		public int CountN; 
-		public int CountE;
+		public int CountT=0; 
+		public int CountN=0; 
+		public int CountE=0;
+		
 		public int getCountT() {
 			return CountT;
 		}

@@ -126,12 +126,13 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5V2");
-
+		
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5 LONGTEXT"); 
@@ -146,10 +147,12 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		String gold3=""; 
 		String gold5=""; 
 		String gold6=""; 
+		String gold=""; 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGold3=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGold5=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapGold=new Hashtable<String,List<String>>(); 
 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
@@ -181,6 +184,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		     List<String> ListGold3= new ArrayList<String>(); 
 		     List<String> ListGold5= new ArrayList<String>(); 
 		     List<String> ListGold6= new ArrayList<String>(); 
+		     List<String> ListGold= new ArrayList<String>(); 
 
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
@@ -189,6 +193,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 				gold3=null; 
 				gold5=null; 
 				gold6=null; 
+				gold=null; 
 				 requirementid=traces.getString("requirementid").trim(); 
 				 classid=traces.getString("classid").trim(); 
 				if(traces.getString("gold4")!=null) {
@@ -206,7 +211,12 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 					 if(gold5!=null) {
 						 ListGold5.add(gold5); 
 					 }
-					 
+					 if(traces.getString("gold")!=null) {
+						 gold=traces.getString("gold").trim(); 
+						 if(gold!=null) {
+							 ListGold.add(gold); 
+						 }
+					}	
 					
 				}
 				
@@ -219,6 +229,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 			RequirementClassHashMap2.put(ReqClass, List); 
 			RequirementClassHashMapGold3.put(ReqClass, ListGold3); 
 			RequirementClassHashMapGold5.put(ReqClass, ListGold5); 
+			RequirementClassHashMapGold.put(ReqClass, ListGold); 
 
 
 		}
@@ -320,7 +331,69 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		
 		
 		
+		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold.entrySet()) {
+
+			   System.out.println(entry.getKey() + " = " );
+			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+			     
+			     List<String> MyValues = entry.getValue(); 
+			     java.util.Collections.sort(MyValues); 
+			    
+//				for(String val: MyValues) {
+//			    	 System.out.println("VAL  "+val);
+//			    	 
+//			     }
+			     if(MyValues.size()>0) {
+			    	 
+			    	  int CountT=0, CountN=0, CountE=0; 
+					     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
+					
+					    System.out.println("hhCountT "+count.CountT);
+					    System.out.println("hhCountN "+count.CountN);
+					    System.out.println("hhCountE "+count.CountE);
+					     
+					     if(MyValues.size()>0) {
+						     System.out.println(MyValues.size());
+							    int newsize = MyValues.size()/2; 
+							    System.out.println(newsize);
+							    	   String charac = MyValues.get(newsize); 
+							    
+							  
+							    	   if(count.CountT>0) {		
+											st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+								     } 
+//								    else  if(charac.trim().equals("N")) {
+
+								    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+								    		
+								    		
+								    		
+								    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+
+
+								    			     }
+								     else {
+											st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+								    	 
+								     }
+							     
+					     }
+			    	 
+					     else {
+								st.executeUpdate("UPDATE `tracesclasses` SET `gold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+					    	 
+					     }
+			    	 
+			    	 
+			     }
+
 		
+		}
 		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold5.entrySet()) {
 
 			   System.out.println(entry.getKey() + " = " );
@@ -337,9 +410,9 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 			     int CountT=0, CountN=0, CountE=0; 
 			     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
 			
-			    System.out.println("CountT "+count.CountT);
-			    System.out.println("CountN "+count.CountN);
-			    System.out.println("CountE "+count.CountE);
+//			    System.out.println("CountT "+count.CountT);
+//			    System.out.println("CountN "+count.CountN);
+//			    System.out.println("CountE "+count.CountE);
 			     
 			     if(MyValues.size()>0) {
 				     System.out.println(MyValues.size());
@@ -371,6 +444,10 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 					    	 //DO NOTHING 
 					     }
 					     
+			     }  else{
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+				    	 
 			     }
 
 			     
@@ -403,7 +480,11 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 						     }
 					     
 			     }
-		
+			     else {
+						st.executeUpdate("UPDATE `tracesclasses` SET `gold5V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+
+			    	 
+			     }
 		}
 		
 		
@@ -417,7 +498,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		// TODO Auto-generated method stub
 		
 		for(String s: myValues) {
-			System.out.println("=====>"+s);
+//			System.out.println("=====>"+s);
 			if(s.trim().equals("T")) {
 				countT++; 
 			}

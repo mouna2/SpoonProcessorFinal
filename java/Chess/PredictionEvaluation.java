@@ -1,10 +1,19 @@
 package Chess;
 
 public class PredictionEvaluation {
-	int TruePositive=0; 
-	int TrueNegative=0; 
-	int FalsePositive=0; 
-	int FalseNegative=0;
+	public int TruePositive=0; 
+	public int TrueNegative=0; 
+	public int FalsePositive=0; 
+	public int FalseNegative=0;
+	public int E=0; 
+	
+	
+	public int getE() {
+		return E;
+	}
+	public void setE(int e) {
+		E = e;
+	}
 	public int getTruePositive() {
 		return TruePositive;
 	}
@@ -89,6 +98,9 @@ public class PredictionEvaluation {
 				+ ", FalsePositive=" + FalsePositive + ", FalseNegative=" + FalseNegative + "]";
 	}
 	
-	
+	public String toString2() {
+		return "PredictionEvaluation [TruePositive=" + TruePositive + ", TrueNegative=" + TrueNegative
+				+ ", FalsePositive=" + FalsePositive + ", FalseNegative=" + FalseNegative + ", E=" + E + "]";
+	}
 	
 }
