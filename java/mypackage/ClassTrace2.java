@@ -15,6 +15,7 @@ public class ClassTrace2 {
 		ClassRepresentation2 myclass; 
 		String trace; 
 		String trace2; 
+		String trace2V2; 
 		String trace3; 
 		String trace4; 
 		String trace5; 
@@ -23,6 +24,14 @@ public class ClassTrace2 {
 		
 		
 		
+		public String getTrace2V2() {
+			return trace2V2;
+		}
+
+		public void setTrace2V2(String trace2v2) {
+			trace2V2 = trace2v2;
+		}
+
 		public String getTrace6() {
 			return trace6;
 		}
@@ -179,6 +188,7 @@ public class ClassTrace2 {
 				 
 				 myclasstrace.settrace(myresults.getString("gold"));
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
+				 myclasstrace.setTrace2V2(myresults.getString("gold2V2"));
 				 myclasstrace.setTrace3(myresults.getString("gold3"));
 				 myclasstrace.setTrace4(myresults.getString("gold4"));
 				 myclasstrace.setTrace5(myresults.getString("gold5"));

@@ -24,6 +24,7 @@ import Chess.CountTNE;
 
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
 
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
@@ -72,9 +73,12 @@ public class ComparisonMethodInterfaces {
 	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
-	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
-
+	
+	
+	public static LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
+	public static LinkedHashMap <String, String> SuperclassesTracesHashMap = new LinkedHashMap <String, String>(); 
+	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 
 	static File fout = null; 
 	static FileOutputStream fos = null; 
@@ -141,11 +145,24 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws IOException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleGANTT.txt");
+		
+		
+		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleGANTT_INTERFACES.txt");
+		FileOutputStream fos1 = new FileOutputStream(fout1);
+		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
+		
 		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\ComparisonInterfacesImpGantt.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+		
+		File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenGantt.txt");
+		FileOutputStream fos3 = new FileOutputStream(fout3);
+		BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fos3));
 
+		
+		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenGantt_COUNTS.txt");
+		FileOutputStream fos4 = new FileOutputStream(fout4);
+		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL
 		Connection conn = null;
 		try {
@@ -323,7 +340,46 @@ public class ComparisonMethodInterfaces {
 				//SUPERCLASSES
 				/////////////////////////////////////////
 				
-				
+////////////////////////////////////////////
+//SUPERCLASSES
+/////////////////////////////////////////
+
+
+for(String mykey: SuperclassesChildrenHashMap.keySet()) {
+
+String mykey2=mykey.substring(0, mykey.indexOf("-")); 
+
+if(classid.equals(mykey2)) {
+System.out.println("=================THIS IS A SUPERCLASS");
+SuperclassesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
+}
+
+for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
+
+
+if(impl.getOwnerClass().getClassid().equals(classid)) {
+	if(SuperclassesChildrenHashMap.get(mykey)!=null) {
+	System.out.println(counter);
+			List<MethodTrace2> 	mysuperclasses= new ArrayList<MethodTrace2>(); 
+			
+			mysuperclasses=SuperclassesChildrenTracesHashMap.get(mykey); 
+			if(mysuperclasses!=null) {
+				mysuperclasses.add(methodtrace); 
+			}
+			else {
+				mysuperclasses= new ArrayList<MethodTrace2>(); 
+				mysuperclasses.add(methodtrace); 
+			}
+			SuperclassesChildrenTracesHashMap.put(mykey, mysuperclasses); 
+		
+		
+
+	}
+	
+}
+
+}
+}
 				
 				
 				
@@ -410,10 +466,149 @@ public class ComparisonMethodInterfaces {
 				
 				
 			}
-			System.setOut(fileOut);
+			
+			
+			LinkedHashMap <String, List<String>>	SuperclassesTracesHashMapFinal= new  LinkedHashMap <String, List<String>>(); 
+			 counter=0; 
+			for (Entry<String, List<MethodTrace2>> entry : SuperclassesChildrenTracesHashMap.entrySet()) {
+				 List<MethodTrace2> values = entry.getValue();
+					List<String> list = new ArrayList<String>();
+
+				for(MethodTrace2 value: values) {
+				String	gold2val=value.getGold2(); 
+				String	req=value.getRequirement().ID; 
+				String	method=value.getMethodRepresentation().methodname; 
+				String	methodID=value.getMethodRepresentation().methodid; 
+				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	classnameTrace=value.getClassRepresentation().classname; 
+				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+				System.out.println(counter);
+				
+					
+				
+					
+						if(SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+							
+							list=SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}else {
+							list = new ArrayList<String>();
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}
+					
+				
+	
+			
+					
+				counter++; 
+				}
+				
+				
+				
+			}
+			
+			 bwfile3.write("RequirementID, MethodName, SuperclassID, SuperclassName, Values");
+			 bwfile3.newLine(); 
+			 CountTNE countSuperclass= new CountTNE(); 
+			for (Entry<String, List<String>> entry : SuperclassesTracesHashMapFinal.entrySet()) {
+			    String key = entry.getKey();
+			    List<String> values = entry.getValue();
+			    // now work with key and value...
+			    String[] keys = key.split("/"); 
+				 String RequirementID= keys[0]; 
+				 String MethodName= keys[1]; 
+				 String myclassid= keys[2]; 
+				 String myclassname= keys[3]; 
+				 bwfile3.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 bwfile4.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
+				 countSuperclass= new CountTNE(); 
+				 if(SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
+					 bwfile3.write("------ "+SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
+					 String TraceVal=SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
+					 if(TraceVal.trim().equals("T")) {
+						 countSuperclass.CountT++; 
+						
+					 }else if(TraceVal.trim().equals("N")) {
+						 countSuperclass.CountN++; 
+						
+					 }else if(TraceVal.trim().equals("E")) {
+						 countSuperclass.CountE++; 
+						
+					 }
+				 } CountTNE countImp= new CountTNE(); 
+				for(String value: values) {
+					
+					
+					if(values.size()>1) {
+						 System.out.print("*************** ");
+						 bwfile3.write("*************** "); 
+					}
+
+			        System.out.print(value+" ");
+			        bwfile3.write(value+" "); 
+			    }
+				
+				for(String val: values) {
+					 if(val.trim().equals("T")) {
+						 countImp.CountT++; 
+					 }else  if(val.trim().equals("N")) {
+						 countImp.CountN++; 
+					 }
+					 else  if(val.trim().equals("E")) {
+						 countImp.CountE++; 
+					 }
+				 }
+				 System.out.println(); 
+				 bwfile3.newLine(); 
+				 if(countSuperclass.CountT>0|| countSuperclass.CountN>0|| countSuperclass.CountE>0) {
+					 bwfile4.write("COUNT SUPERCLASS "+countSuperclass.toString()+"  ,");
+				 }
+				
+				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
+				 bwfile4.newLine();
+				String countSuperclassVal=""; 
+				 if(countSuperclass.CountE==1) {
+					 countSuperclassVal="E"; 
+				 }
+				if(countSuperclass.CountN==1) {
+					 countSuperclassVal="N"; 		 
+								 }
+				if(countSuperclass.CountT==1) {
+					countSuperclassVal="T"; 	
+				}
+				 if(countImp.CountT>0 && countImp.CountN>0 ) {
+					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
+					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
+					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
+					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountN>0 && countImp.CountE>0) {
+					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0) {
+					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+				 }
+				
+				
+			
+			}
+			
+			
+//			System.setOut(fileOut);
 			 bwfile2.write("RequirementID, MethodName, InterfaceID, InterfaceName, COUNTTNE INTERFACE, COUNTTNE IMPLEMENTATION");
-			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			 bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
 			  bwfile2.newLine(); 
+			  bwfile1.newLine(); 
 			  CountTNE countInterface= new CountTNE(); 
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
 				
@@ -426,10 +621,11 @@ public class ComparisonMethodInterfaces {
 				 String myclassid= keys[2]; 
 				 String myclassname= keys[3]; 
 				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 bwfile1.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" ");
 				 countInterface= new CountTNE(); 
 				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
 					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
-					
+					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
 					 String TraceVal=InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
 					 if(TraceVal.trim().equals("T")) {
 						 countInterface.CountT++; 
@@ -460,12 +656,14 @@ public class ComparisonMethodInterfaces {
 
 					
 					 System.out.print("*************** ");
+					 bwfile1.write("*************** ");
 			        System.out.print(value+" ");
+			        bwfile1.write(value+" ");
 			    }
 				
 				 System.out.println(); 
 				
-				
+				 bwfile1.newLine();
 				
 				
 				 bwfile2.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
@@ -509,6 +707,9 @@ public class ComparisonMethodInterfaces {
 			
 			System.out.println("finished");
 			bwfile2.close(); 
+			bwfile1.close(); 
+			bwfile3.close(); 
+			bwfile4.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
 			e.printStackTrace();

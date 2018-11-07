@@ -70,10 +70,13 @@ public class ComparisonMethodInterfaces {
 	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
-	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
 
-
+	public static LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
+	public static LinkedHashMap <String, String> SuperclassesTracesHashMap = new LinkedHashMap <String, String>(); 
+	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
+	
+	
 	static File fout = null; 
 	static FileOutputStream fos = null; 
 	static BufferedWriter bwGold = null; 
@@ -135,12 +138,22 @@ public class ComparisonMethodInterfaces {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public void run() throws FileNotFoundException {
+	public void run() throws IOException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleChess.txt");
 
+		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess.txt");
+		FileOutputStream fos = new FileOutputStream(fout);
+		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+		
+		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleCHESS_INTERFACES.txt");
+		FileOutputStream fos1 = new FileOutputStream(fout1);
+		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
+		
+		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
+		FileOutputStream fos4 = new FileOutputStream(fout4);
+		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL
 		Connection conn = null;
 		try {
@@ -263,6 +276,7 @@ public class ComparisonMethodInterfaces {
 				classname=res.getString("classname"); 
 				classid=res.getString("classid"); 
 				gold2=res.getString("gold2"); 
+				SuperClass2 superclass= new SuperClass2(); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
 				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
@@ -319,7 +333,41 @@ public class ComparisonMethodInterfaces {
 				/////////////////////////////////////////
 				
 				
+				for(String mykey: SuperclassesChildrenHashMap.keySet()) {
+
+					String mykey2=mykey.substring(0, mykey.indexOf("-")); 
 				
+					if(classid.equals(mykey2)) {
+						System.out.println("=================THIS IS A SUPERCLASS");
+						SuperclassesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
+					}
+					
+					for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
+						
+
+						if(impl.getOwnerClass().getClassid().equals(classid)) {
+							if(SuperclassesChildrenHashMap.get(mykey)!=null) {
+							System.out.println(counter);
+									List<MethodTrace2> 	mysuperclasses= new ArrayList<MethodTrace2>(); 
+									
+									mysuperclasses=SuperclassesChildrenTracesHashMap.get(mykey); 
+									if(mysuperclasses!=null) {
+										mysuperclasses.add(methodtrace); 
+									}
+									else {
+										mysuperclasses= new ArrayList<MethodTrace2>(); 
+										mysuperclasses.add(methodtrace); 
+									}
+									SuperclassesChildrenTracesHashMap.put(mykey, mysuperclasses); 
+								
+								
+
+							}
+							
+						}
+						
+					}
+				}
 				
 				
 //				for(String mykey: SuperclassesChildrenHashMap.keySet()) {
@@ -403,9 +451,56 @@ public class ComparisonMethodInterfaces {
 				
 				
 			}
-			System.setOut(fileOut);
-			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			
+			LinkedHashMap <String, List<String>>	SuperclassesTracesHashMapFinal= new  LinkedHashMap <String, List<String>>(); 
+			 counter=0; 
+			for (Entry<String, List<MethodTrace2>> entry : SuperclassesChildrenTracesHashMap.entrySet()) {
+				 List<MethodTrace2> values = entry.getValue();
+					List<String> list = new ArrayList<String>();
 
+				for(MethodTrace2 value: values) {
+				String	gold2val=value.getGold2(); 
+				String	req=value.getRequirement().ID; 
+				String	method=value.getMethodRepresentation().methodname; 
+				String	methodID=value.getMethodRepresentation().methodid; 
+				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	classnameTrace=value.getClassRepresentation().classname; 
+				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+				System.out.println(counter);
+				
+					
+				
+					
+						if(SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+							
+							list=SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}else {
+							list = new ArrayList<String>();
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+						}
+					
+				
+	
+			
+					
+				counter++; 
+				}
+				
+				
+				
+			}
+			
+			
+//			System.setOut(fileOut);
+			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			  bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			  bwfile1.newLine();
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
 			    String key = entry.getKey();
 			    List<String> values = entry.getValue();
@@ -416,20 +511,24 @@ public class ComparisonMethodInterfaces {
 				 String myclassid= keys[2]; 
 				 String myclassname= keys[3]; 
 				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 bwfile1.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
 				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
 					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
+					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
 				 }
 				for(String value: values) {
 					
 
 					if(values.size()>1) {
 						 System.out.print("*************** ");
+						 bwfile1.write("*************** "); 
 					}
 
 			        System.out.print(value+" ");
+			        bwfile1.write(value+" "); 
 			    }
 				 System.out.println(); 
-				
+				 bwfile1.newLine();
 				
 				
 				
@@ -442,9 +541,105 @@ public class ComparisonMethodInterfaces {
 			
 	
 			
+//			System.setOut(fileOut);
+			 bwfile2.write("RequirementID, MethodName, SuperclassID, SuperclassName, Values");
+			 bwfile2.newLine(); 
+			 CountTNE countSuperclass= new CountTNE(); 
+			for (Entry<String, List<String>> entry : SuperclassesTracesHashMapFinal.entrySet()) {
+			    String key = entry.getKey();
+			    List<String> values = entry.getValue();
+			    // now work with key and value...
+			    String[] keys = key.split("/"); 
+				 String RequirementID= keys[0]; 
+				 String MethodName= keys[1]; 
+				 String myclassid= keys[2]; 
+				 String myclassname= keys[3]; 
+				 bwfile2.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 bwfile4.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
+				 countSuperclass= new CountTNE(); 
+				 if(SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
+					 bwfile2.write("------ "+SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
+					 String TraceVal=SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
+					 if(TraceVal.trim().equals("T")) {
+						 countSuperclass.CountT++; 
+						
+					 }else if(TraceVal.trim().equals("N")) {
+						 countSuperclass.CountN++; 
+						
+					 }else if(TraceVal.trim().equals("E")) {
+						 countSuperclass.CountE++; 
+						
+					 }
+				 } CountTNE countImp= new CountTNE(); 
+				for(String value: values) {
+					
+
+					if(values.size()>1) {
+						 System.out.print("*************** ");
+						 bwfile2.write("*************** "); 
+					}
+
+			        System.out.print(value+" ");
+			        bwfile2.write(value+" "); 
+			    }
+				
+				for(String val: values) {
+					 if(val.trim().equals("T")) {
+						 countImp.CountT++; 
+					 }else  if(val.trim().equals("N")) {
+						 countImp.CountN++; 
+					 }
+					 else  if(val.trim().equals("E")) {
+						 countImp.CountE++; 
+					 }
+				 }
+				 System.out.println(); 
+				 bwfile2.newLine(); 
+				
+				 if(countSuperclass.CountT>0|| countSuperclass.CountN>0|| countSuperclass.CountE>0) {
+					 bwfile4.write("COUNT SUPERCLASS "+countSuperclass.toString()+"  ,");
+				 }
+				
+				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
+				 bwfile4.newLine();
+				 String countSuperclassVal=""; 
+				 if(countSuperclass.CountE==1) {
+					 countSuperclassVal="E"; 
+				 }
+				if(countSuperclass.CountN==1) {
+					 countSuperclassVal="N"; 		 
+								 }
+				if(countSuperclass.CountT==1) {
+					countSuperclassVal="T"; 	
+				}
+				 if(countImp.CountT>0 && countImp.CountN>0 ) {
+					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
+					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
+					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
+					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+				 } if(countImp.CountN>0 && countImp.CountE>0) {
+					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0) {
+					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+				 }
+				
+			
+			}
+			
+			
+			
 			
 			System.out.println("finished");
-		
+			bwfile2.close();
+			bwfile1.close();
+			bwfile4.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
 			e.printStackTrace();
@@ -477,182 +672,5 @@ public class ComparisonMethodInterfaces {
 		
 	}
 
-	private static boolean WriteInDocBothCallerCalleeExec(String fullcaller, String mycallee, String mycallee1,
-			String mycaller1, String equivalenceType, Statement st3) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-	boolean	entered=false; 
-		ResultSet myresults=st3.executeQuery("select methodcalls.* from methodcalls where "
-				+ "methodcalls.fullcaller='"+mycaller1+"' and methodcalls.fullcallee='"+mycallee1+"'"); 
-		System.out.println(mycaller1+"   "+mycallee1);
-
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-			
-		
 	
-			st3.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-					+ "methodcallsinexecnotparsed.fullcaller='"+mycaller1+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee1+"'"); 
-			entered=true; 
-		}
-		return entered;
-	}
-
-	private static boolean WriteInDocBothCallerCallee(String fullcaller, String mycallee, String mycallee1,
-			String mycaller1, String equivalenceType, Statement st3) throws SQLException, IOException {
-		boolean entered=false; 
-		ResultSet myresults=st3.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
-				+ "methodcallsexecuted.fullcaller='"+mycaller1+"' and methodcallsexecuted.fullcallee='"+mycallee1+"'"); 
-		System.out.println(mycaller1+"   "+mycallee1);
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		
-		st3.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-				+ "methodcallsinparsednotexec.fullcaller='"+mycaller1+"' and methodcallsinparsednotexec.fullcallee='"+mycallee1+"'"); 
-		entered=true; 
-		}
-		return entered; 
-		
-	
-	}
-
-	private static boolean WriteInDocExecNotMapped(String fullcaller, String fullcallee, String equivalenceType,
-			Statement st3) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		boolean entered=false; 
-		ResultSet myresults=st3.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		
-		st3.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
-		entered=true; 
-		}
-		return entered; }
-
-	private static boolean WriteInDocNotMapped(String fullcaller, String fullcallee, String equivalenceType,
-			Statement st3) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		boolean entered=false; 
-		ResultSet myresults=st3.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-				+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		
-		st3.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-				+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
-		entered=true; 
-		}
-	return entered; 
-	}
-
-	private static boolean WriteInDoc(String fullcaller, String mycallee, String mycalleemapped, String equivalenceType, Statement st2) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		boolean entered=false; 
-		ResultSet check= st2.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
-				+ "methodcallsexecuted.fullcaller='"+fullcaller+"' and methodcallsexecuted.fullcallee='"+mycalleemapped+"'"); 
-		if(check.next()==true) {
-			ResultSet myresults=st2.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-					+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
-			if(myresults.next()) {
-				bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-				+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-				+"/"+myresults.getString("calleeclass"));
-				bwGold.newLine(); 
-			}
-			st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-					+ "methodcallsinparsednotexec.fullcaller='"+fullcaller+"' and methodcallsinparsednotexec.fullcallee='"+mycallee+"'"); 
-		entered=true; 
-		}
-		return entered; 
-		}
-		
-		
-		
-	
-	
-	
-	
-	
-	private static boolean WriteInDoc2(String fullcallee, String mycaller, String mycallermapped, String equivalenceType, Statement st2) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		boolean entered=false; 
-		ResultSet check= st2.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where "
-				+ "methodcallsexecuted.fullcaller='"+mycallermapped+"' and methodcallsexecuted.fullcallee='"+fullcallee+"'"); 
-		if(check.next()==true) {
-		ResultSet myresults=st2.executeQuery("select methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-				+ "methodcallsinparsednotexec.fullcaller='"+mycaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		}
-		
-		st2.executeUpdate("delete methodcallsinparsednotexec.* from methodcallsinparsednotexec where "
-				+ "methodcallsinparsednotexec.fullcaller='"+mycaller+"' and methodcallsinparsednotexec.fullcallee='"+fullcallee+"'"); 	
-		entered=true; 
-		}
-	return entered; 
-	}
-
-	
-	private static boolean  WriteInDocExec(String fullcaller, String mycallee, String mycalleemapped, String equivalenceType, Statement st2) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		boolean entered=false; 
-		ResultSet check= st2.executeQuery("select methodcalls.* from methodcalls where "
-				+ "methodcalls.fullcaller='"+fullcaller+"' and methodcalls.fullcallee='"+mycalleemapped+"'"); 
-		if(check.next()==true) {
-		ResultSet myresults=st2.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		}
-		st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+fullcaller+"' and methodcallsinexecnotparsed.fullcallee='"+mycallee+"'"); 
-	
-		entered=true; 
-		}
-		return entered; 
-		}
-	
-	
-	private static boolean WriteInDocExec2(String fullcallee, String mycaller, String mycallermapped, String equivalenceType, Statement st2) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-	boolean entered=false; 
-		ResultSet check= st2.executeQuery("select methodcalls.* from methodcalls where "
-				+ "methodcalls.fullcaller='"+mycallermapped+"' and methodcalls.fullcallee='"+fullcallee+"'"); 
-		if(check.next()==true) {
-		ResultSet myresults=st2.executeQuery("select methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+mycaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 
-		if(myresults.next()) {
-			bwGold.write(equivalenceType+"/"+myresults.getString("id")+"/"+myresults.getString("callermethodid")+"/"+myresults.getString("callername")
-			+"/"+myresults.getString("callerclass")+"/"+myresults.getString("calleemethodid")+"/"+myresults.getString("calleename")
-			+"/"+myresults.getString("calleeclass"));
-			bwGold.newLine(); 
-		}
-		
-		st2.executeUpdate("delete methodcallsinexecnotparsed.* from methodcallsinexecnotparsed where "
-				+ "methodcallsinexecnotparsed.fullcaller='"+mycaller+"' and methodcallsinexecnotparsed.fullcallee='"+fullcallee+"'"); 	
-		
-	entered=true; 
-		}
-		
-		return entered; 
-	}
 }
