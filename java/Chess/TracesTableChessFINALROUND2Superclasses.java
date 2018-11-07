@@ -216,116 +216,116 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	int CLASSNOTRACEClassLevelMixedGoldACROSS=94;
 	
 	
-	int Gold2=95; 
-	int OwnerClassTGOLD2=96; 
-	int OwnerClassNGOLD2=97; 
-	int OwnerClassEGOLD2=98; 
-	int CallerMethodsNumberGOLD2=99; 
-	int CallerMethodsTGOLD2=100; 
-	int CallerMethodsNGOLD2=101; 
-	int CallerMethodsEGOLD2=102; 
-	int CallerClassesNumberGOLD2=103; 
-	int CallerClassesTGOLD2=104; 
-	int CallerClassesNGOLD2=105; 
-	int CallerClassesEGOLD2=106; 
-	int CalleeMethodsNumberGOLD2=107; 
-	int CalleeMethodsTGOLD2=108; 
-	int CalleeMethodsNGOLD2=109; 
-	int CalleeMethodsEGOLD2=110; 
-	int CalleeClassesNumberGOLD2=111; 
-	int CalleeClassesTGOLD2=112; 
-	int CalleeClassesNGOLD2=113; 
-	int CalleeClassesEGOLD2=114; 
-	int OwnerClassPredictionGOLD2=115; 
-	int MajorityClassLevelCalleesGOLD2=116; 
-	int MajorityClassLevelCallersGOLD2=117; 
-	int MajorityMethodLevelCalleesGOLD2=118; 
-	int MajorityMethodLevelCallersGOLD2=119; 
-	int AtLeast1NPredictionClassLevelCalleesGOLD2=120; 
-	int AtLeast1NPredictionClassLevelCallersGOLD2=121; 
-	int AtLeast1NPredictionMethodLevelCalleesGOLD2=122; 
-	int AtLeast1NPredictionMethodLevelCallersGOLD2=123; 
-	int AtLeast1TPredictionClassLevelCalleesGOLD2=124; 
-	int AtLeast1TPredictionClassLevelCallersGOLD2=125; 
-	int AtLeast1TPredictionMethodLevelCalleesGOLD2=126; 
-	int AtLeast1TPredictionMethodLevelCallersGOLD2=127; 
-	int AtLeast2NPredictionClassLevelCalleesGOLD2=128; 
-	int AtLeast2NPredictionClassLevelCallersGOLD2=129; 
-	int AtLeast2NPredictionMethodLevelCalleesGOLD2=130; 
-	int AtLeast2NPredictionMethodLevelCallersGOLD2=131; 
-	int AtLeast2TPredictionClassLevelCalleesGOLD2=132; 
-	int AtLeast2TPredictionClassLevelCallersGOLD2=133; 
-	int AtLeast2TPredictionMethodLevelCalleesGOLD2=134; 
-	int AtLeast2TPredictionMethodLevelCallersGOLD2=135; 
-	int AllNClassLevelCalleesGOLD2=136; 
-	int AllNClassLevelCallersGOLD2=137; 
-	int AllNMethodLevelCalleesGOLD2=138; 
-	int AllNMethodLevelCallersGOLD2=139; 
-	int AllTClassLevelCalleesGOLD2=140; 
-	int AllTClassLevelCallersGOLD2=141; 
-	int AllTMethodLevelCalleesGOLD2=142; 
-	int AllTMethodLevelCallersGOLD2=143; 
-	int CallersGOLD2=144; 
-	int CalleesGOLD2=145; 
-	int paramatersNumberGOLD2=146; 
-	int CountParamaterTGOLD2=147; 
-	int CountParamaterNGOLD2=148; 
-	int CountParamaterEGOLD2=149; 
-	int MajorityParametersGOLD2=150; 
-	int AtLeast1NParameterGOLD2=151; 
-	int AtLeast1TParameterGOLD2=152; 
-	int AtLeast2TParameterGOLD2=153; 
-	int AtLeast2NParameterGOLD2=154; 
-	int AllNParametersGOLD2=155; 
-	int AllTParametersGOLD2=156; 
-	int ACHRAFTRACEPureGOLD2=157; 
-	int ACHRAFTRACEMixedGOLD2=158; 
-	int ACHRAFNOTRACEPureGOLD2=159; 
-	int ACHRAFNOTRACEMixedGOLD2=160; 
-	int AllNMethodLevelCallersCalleesGOLD2=161; 
-	int AllTMethodLevelCallersCalleesGOLD2=162; 
-	int AllTClassLevelCallersCalleesGOLD2=163; 
-	int AllNClassLevelCallersCalleesGOLD2=164; 
-	int AllNClassLevelCalleesAtLeast2NGOLD2=165; 
-	int AllNClassLevelCallersAtLeast2NGOLD2=166; 
-	int AllNMethodLevelCalleesAtLeast2NGOLD2=167; 
-	int AllNMethodLevelCallersAtLeast2NGOLD2=168; 
-	int AllTClassLevelCalleesAtLeast2TGOLD2=169; 
-	int AllTClassLevelCallersAtLeast2TGOLD2=170; 
-	int AllTMethodLevelCalleesAtLeast2TGOLD2=171; 
-	int AllTMethodLevelCallersAtLeast2TGOLD2=172; 
-	int CLASSTRACEMethodLevelPureGold2=173; 
-	int CLASSTRACEMethodLevelMixedGold2=174; 
-	int CLASSNOTRACEMethodLevelPureGold2=175; 
-	int CLASSNOTRACEMethodLevelMixedGold2=176;
-	int CLASSTRACEClassLevelPureGold2=177; 
-	int CLASSTRACEClassLevelMixedGold2=178; 
-	int CLASSNOTRACEClassLevelPureGold2=179; 
-	int CLASSNOTRACEClassLevelMixedGold2=180;
-	int CLASSTRACEMethodLevelPureGold2ACROSS=181; 
-	int CLASSTRACEMethodLevelMixedGold2ACROSS=182; 
-	int CLASSNOTRACEMethodLevelPureGold2ACROSS=183; 
-	int CLASSNOTRACEMethodLevelMixedGold2ACROSS=184;
-	int CLASSTRACEClassLevelPureGold2ACROSS=185; 
-	int CLASSTRACEClassLevelMixedGold2ACROSS=186; 
-	int CLASSNOTRACEClassLevelPureGold2ACROSS=187; 
-	int CLASSNOTRACEClassLevelMixedGold2ACROSS=188;
-	int CallerMethodsNumberGOLD2ACROSS=189; 
-	int CallerMethodsTGOLD2ACROSS=190; 
-	int CallerMethodsNGOLD2ACROSS=191; 
-	int CallerMethodsEGOLD2ACROSS=192; 
-	int CallerClassesNumberGOLD2ACROSS=193; 
-	int CallerClassesTGOLD2ACROSS=194; 
-	int CallerClassesNGOLD2ACROSS=195; 
-	int CallerClassesEGOLD2ACROSS=196; 
-	int CalleeMethodsNumberGOLD2ACROSS=197; 
-	int CalleeMethodsTGOLD2ACROSS=198; 
-	int CalleeMethodsNGOLD2ACROSS=199; 
-	int CalleeMethodsEGOLD2ACROSS=200; 
-	int CalleeClassesNumberGOLD2ACROSS=201; 
-	int CalleeClassesTGOLD2ACROSS=202; 
-	int CalleeClassesNGOLD2ACROSS=203; 
-	int CalleeClassesEGOLD2ACROSS=204; 
+	int Gold2V2=95; 
+	int OwnerClassTGold2V2=96; 
+	int OwnerClassNGold2V2=97; 
+	int OwnerClassEGold2V2=98; 
+	int CallerMethodsNumberGold2V2=99; 
+	int CallerMethodsTGold2V2=100; 
+	int CallerMethodsNGold2V2=101; 
+	int CallerMethodsEGold2V2=102; 
+	int CallerClassesNumberGold2V2=103; 
+	int CallerClassesTGold2V2=104; 
+	int CallerClassesNGold2V2=105; 
+	int CallerClassesEGold2V2=106; 
+	int CalleeMethodsNumberGold2V2=107; 
+	int CalleeMethodsTGold2V2=108; 
+	int CalleeMethodsNGold2V2=109; 
+	int CalleeMethodsEGold2V2=110; 
+	int CalleeClassesNumberGold2V2=111; 
+	int CalleeClassesTGold2V2=112; 
+	int CalleeClassesNGold2V2=113; 
+	int CalleeClassesEGold2V2=114; 
+	int OwnerClassPredictionGold2V2=115; 
+	int MajorityClassLevelCalleesGold2V2=116; 
+	int MajorityClassLevelCallersGold2V2=117; 
+	int MajorityMethodLevelCalleesGold2V2=118; 
+	int MajorityMethodLevelCallersGold2V2=119; 
+	int AtLeast1NPredictionClassLevelCalleesGold2V2=120; 
+	int AtLeast1NPredictionClassLevelCallersGold2V2=121; 
+	int AtLeast1NPredictionMethodLevelCalleesGold2V2=122; 
+	int AtLeast1NPredictionMethodLevelCallersGold2V2=123; 
+	int AtLeast1TPredictionClassLevelCalleesGold2V2=124; 
+	int AtLeast1TPredictionClassLevelCallersGold2V2=125; 
+	int AtLeast1TPredictionMethodLevelCalleesGold2V2=126; 
+	int AtLeast1TPredictionMethodLevelCallersGold2V2=127; 
+	int AtLeast2NPredictionClassLevelCalleesGold2V2=128; 
+	int AtLeast2NPredictionClassLevelCallersGold2V2=129; 
+	int AtLeast2NPredictionMethodLevelCalleesGold2V2=130; 
+	int AtLeast2NPredictionMethodLevelCallersGold2V2=131; 
+	int AtLeast2TPredictionClassLevelCalleesGold2V2=132; 
+	int AtLeast2TPredictionClassLevelCallersGold2V2=133; 
+	int AtLeast2TPredictionMethodLevelCalleesGold2V2=134; 
+	int AtLeast2TPredictionMethodLevelCallersGold2V2=135; 
+	int AllNClassLevelCalleesGold2V2=136; 
+	int AllNClassLevelCallersGold2V2=137; 
+	int AllNMethodLevelCalleesGold2V2=138; 
+	int AllNMethodLevelCallersGold2V2=139; 
+	int AllTClassLevelCalleesGold2V2=140; 
+	int AllTClassLevelCallersGold2V2=141; 
+	int AllTMethodLevelCalleesGold2V2=142; 
+	int AllTMethodLevelCallersGold2V2=143; 
+	int CallersGold2V2=144; 
+	int CalleesGold2V2=145; 
+	int paramatersNumberGold2V2=146; 
+	int CountParamaterTGold2V2=147; 
+	int CountParamaterNGold2V2=148; 
+	int CountParamaterEGold2V2=149; 
+	int MajorityParametersGold2V2=150; 
+	int AtLeast1NParameterGold2V2=151; 
+	int AtLeast1TParameterGold2V2=152; 
+	int AtLeast2TParameterGold2V2=153; 
+	int AtLeast2NParameterGold2V2=154; 
+	int AllNParametersGold2V2=155; 
+	int AllTParametersGold2V2=156; 
+	int ACHRAFTRACEPureGold2V2=157; 
+	int ACHRAFTRACEMixedGold2V2=158; 
+	int ACHRAFNOTRACEPureGold2V2=159; 
+	int ACHRAFNOTRACEMixedGold2V2=160; 
+	int AllNMethodLevelCallersCalleesGold2V2=161; 
+	int AllTMethodLevelCallersCalleesGold2V2=162; 
+	int AllTClassLevelCallersCalleesGold2V2=163; 
+	int AllNClassLevelCallersCalleesGold2V2=164; 
+	int AllNClassLevelCalleesAtLeast2NGold2V2=165; 
+	int AllNClassLevelCallersAtLeast2NGold2V2=166; 
+	int AllNMethodLevelCalleesAtLeast2NGold2V2=167; 
+	int AllNMethodLevelCallersAtLeast2NGold2V2=168; 
+	int AllTClassLevelCalleesAtLeast2TGold2V2=169; 
+	int AllTClassLevelCallersAtLeast2TGold2V2=170; 
+	int AllTMethodLevelCalleesAtLeast2TGold2V2=171; 
+	int AllTMethodLevelCallersAtLeast2TGold2V2=172; 
+	int CLASSTRACEMethodLevelPureGold2V2=173; 
+	int CLASSTRACEMethodLevelMixedGold2V2=174; 
+	int CLASSNOTRACEMethodLevelPureGold2V2=175; 
+	int CLASSNOTRACEMethodLevelMixedGold2V2=176;
+	int CLASSTRACEClassLevelPureGold2V2=177; 
+	int CLASSTRACEClassLevelMixedGold2V2=178; 
+	int CLASSNOTRACEClassLevelPureGold2V2=179; 
+	int CLASSNOTRACEClassLevelMixedGold2V2=180;
+	int CLASSTRACEMethodLevelPureGold2V2ACROSS=181; 
+	int CLASSTRACEMethodLevelMixedGold2V2ACROSS=182; 
+	int CLASSNOTRACEMethodLevelPureGold2V2ACROSS=183; 
+	int CLASSNOTRACEMethodLevelMixedGold2V2ACROSS=184;
+	int CLASSTRACEClassLevelPureGold2V2ACROSS=185; 
+	int CLASSTRACEClassLevelMixedGold2V2ACROSS=186; 
+	int CLASSNOTRACEClassLevelPureGold2V2ACROSS=187; 
+	int CLASSNOTRACEClassLevelMixedGold2V2ACROSS=188;
+	int CallerMethodsNumberGold2V2ACROSS=189; 
+	int CallerMethodsTGold2V2ACROSS=190; 
+	int CallerMethodsNGold2V2ACROSS=191; 
+	int CallerMethodsEGold2V2ACROSS=192; 
+	int CallerClassesNumberGold2V2ACROSS=193; 
+	int CallerClassesTGold2V2ACROSS=194; 
+	int CallerClassesNGold2V2ACROSS=195; 
+	int CallerClassesEGold2V2ACROSS=196; 
+	int CalleeMethodsNumberGold2V2ACROSS=197; 
+	int CalleeMethodsTGold2V2ACROSS=198; 
+	int CalleeMethodsNGold2V2ACROSS=199; 
+	int CalleeMethodsEGold2V2ACROSS=200; 
+	int CalleeClassesNumberGold2V2ACROSS=201; 
+	int CalleeClassesTGold2V2ACROSS=202; 
+	int CalleeClassesNGold2V2ACROSS=203; 
+	int CalleeClassesEGold2V2ACROSS=204; 
 	int CallerMethodsNumberACROSS=205; 
 	int CallerMethodsTACROSS=206; 
 	int CallerMethodsNACROSS=207; 
@@ -342,25 +342,25 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	int CalleeClassesTACROSS=218; 
 	int CalleeClassesNACROSS=219; 
 	int CalleeClassesEACROSS=220; 
-	int interfacesNumberGOLD2=221; 
-	int CountInterfaceTGOLD2=222; 
-	int CountInterfaceNGOLD2=223; 
-	int CountInterfaceEGOLD2=224; 
+	int interfacesNumberGold2V2=221; 
+	int CountInterfaceTGold2V2=222; 
+	int CountInterfaceNGold2V2=223; 
+	int CountInterfaceEGold2V2=224; 
 	
-	int FieldClassesNumberGOLD2=225; 
-	int CountFieldClassTGOLD2=226; 
-	int CountFieldClassNGOLD2=227; 
-	int CountFieldClassEGOLD2=228; 
+	int FieldClassesNumberGold2V2=225; 
+	int CountFieldClassTGold2V2=226; 
+	int CountFieldClassNGold2V2=227; 
+	int CountFieldClassEGold2V2=228; 
 	
-	int FieldMethodsNumberGOLD2=229; 
-	int CountFieldMethodTGOLD2=230; 
-	int CountFieldMethodNGOLD2=231; 
-	int CountFieldMethodEGOLD2=232; 
+	int FieldMethodsNumberGold2V2=229; 
+	int CountFieldMethodTGold2V2=230; 
+	int CountFieldMethodNGold2V2=231; 
+	int CountFieldMethodEGold2V2=232; 
 	
-	int SuperClassesNumberGOLD2=233; 
-	int CountFieldSuperClassTGOLD2=234; 
-	int CountFieldSuperClassNGOLD2=235; 
-	int CountFieldSuperClassEGOLD2=236; 
+	int SuperClassesNumberGold2V2=233; 
+	int CountFieldSuperClassTGold2V2=234; 
+	int CountFieldSuperClassNGold2V2=235; 
+	int CountFieldSuperClassEGold2V2=236; 
 	
 	int counterFN=0; 
 	double TracePureGold=0; 
@@ -373,17 +373,17 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	double TraceMixedGoldTotal=0; 
 	double NoTraceMixedGoldTotal=0; 
 	
-	double TracePureGold2=0; 
-	double NoTracePureGold2=0; 
-	double TraceMixedGold2=0; 
-	double NoTraceMixedGold2=0; 
+	double TracePureGold2V2=0; 
+	double NoTracePureGold2V2=0; 
+	double TraceMixedGold2V2=0; 
+	double NoTraceMixedGold2V2=0; 
 	
 	double failGold=0; 
-	double failGold2=0; 
+	double failGold2V2=0; 
 	double TraceCountTotal=0; 
 	double NoTraceCountTotal=0; 
-	double TraceCountTotalGold2=0; 
-	double NoTraceCountTotalGold2=0; 
+	double TraceCountTotalGold2V2=0; 
+	double NoTraceCountTotalGold2V2=0; 
 	PredictionEvaluation OwnerClassPredictionClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation MajorityClassLevelCalleesClass= new PredictionEvaluation(); 
@@ -452,79 +452,79 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
-	PredictionEvaluation OwnerClassPredictionClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCallersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation MajorityParametersClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast1NParameterClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2NParameterClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast1TParameterClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AtLeast2TParameterClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNParameterClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTParameterClassGold2= new PredictionEvaluation(); 
+	PredictionEvaluation OwnerClassPredictionClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastNPredictionMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeastTPredictionMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NPredictionMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TPredictionMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation MajorityParametersClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1NParameterClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2NParameterClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast1TParameterClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AtLeast2TParameterClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNParameterClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTParameterClassGold2V2= new PredictionEvaluation(); 
 	PredictionEvaluation AllNClassLevelCallersCalleesClass= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTracePureGold2= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFTraceMixedGold2= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFNOTracePureGold2= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFNOTraceMixedGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNMethodLevelCallersCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTMethodLevelCallersCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersCalleesClassGold2= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold2Trace= new PredictionEvaluation(); 
-	PredictionEvaluation ACHRAFGold2NOTrace= new PredictionEvaluation(); 
-	PredictionEvaluation PureNCallersGold2= new PredictionEvaluation(); 
-	PredictionEvaluation PureTCallersGold2= new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCalleesClassAtLeast2NGold2=new PredictionEvaluation(); 
-	PredictionEvaluation AllNClassLevelCallersClassAtLeast2NGold2=new PredictionEvaluation();  
-	PredictionEvaluation AllNMethodLevelCalleesClassAtLeast2NGold2=new PredictionEvaluation();  
-	PredictionEvaluation AllNMethodLevelCallersClassAtLeast2NGold2=new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCalleesClassAtLeast2TGold2=new PredictionEvaluation(); 
-	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold2=new PredictionEvaluation();  
-	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold2=new PredictionEvaluation();  
-	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold2=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold2=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold2=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold2=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold2=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold2=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold2=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold2=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold2=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold2ACROSS=new PredictionEvaluation(); 
-	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold2ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold2ACROSS=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold2ACROSS=new PredictionEvaluation();  
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold2ACROSS=new PredictionEvaluation();   
-	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation ACHRAFTracePureGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFTraceMixedGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFNOTracePureGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFNOTraceMixedGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNMethodLevelCallersCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTMethodLevelCallersCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersCalleesClassGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFGold2V2Trace= new PredictionEvaluation(); 
+	PredictionEvaluation ACHRAFGold2V2NOTrace= new PredictionEvaluation(); 
+	PredictionEvaluation PureNCallersGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation PureTCallersGold2V2= new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCalleesClassAtLeast2NGold2V2=new PredictionEvaluation(); 
+	PredictionEvaluation AllNClassLevelCallersClassAtLeast2NGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation AllNMethodLevelCalleesClassAtLeast2NGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation AllNMethodLevelCallersClassAtLeast2NGold2V2=new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCalleesClassAtLeast2TGold2V2=new PredictionEvaluation(); 
+	PredictionEvaluation AllTClassLevelCallersClassAtLeast2TGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation AllTMethodLevelCalleesClassAtLeast2TGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation AllTMethodLevelCallersClassAtLeast2TGold2V2=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold2V2=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold2V2=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold2V2=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold2V2=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelPureGold2V2ACROSS=new PredictionEvaluation(); 
+	PredictionEvaluation PredictionCLASSTRACEMethodLevelMixedGold2V2ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelPureGold2V2ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEMethodLevelMixedGold2V2ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSTRACEClassLevelPureGold2V2ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSTRACEClassLevelMixedGold2V2ACROSS=new PredictionEvaluation();  
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGold2V2ACROSS=new PredictionEvaluation();   
+	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGold2V2ACROSS=new PredictionEvaluation();  
 
 	PredictionEvaluation NEWPATTERNMethodCalls=new PredictionEvaluation();  
 
@@ -546,7 +546,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	static HashMap<String, List<Parameter2>> parameterHashMap  = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
-	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
+	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGold2V2 = new  LinkedHashMap<String, ClassTrace2>(); 
 
 	 LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
 	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
@@ -570,14 +570,14 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
-	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2.txt");
+	//File foutGold2V2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2V2.txt");
+	File foutGold2V2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold2V2.txt");
 
-	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
+	FileOutputStream fileGold2V2 = new FileOutputStream(foutGold2V2);
 	
-	File foutGold2TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGOLD2.txt");
-	FileOutputStream fosGold2 = new FileOutputStream(foutGold2TableLog);
-	BufferedWriter bwGold2TableLog = new BufferedWriter(new OutputStreamWriter(fosGold2));
+	File foutGold2V2TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGold2V2.txt");
+	FileOutputStream fosGold2V2 = new FileOutputStream(foutGold2V2TableLog);
+	BufferedWriter bwGold2V2TableLog = new BufferedWriter(new OutputStreamWriter(fosGold2V2));
 
 	
 	File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\file1.txt");
@@ -595,7 +595,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
-	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
+	BufferedWriter bwGold2V2 = new BufferedWriter(new OutputStreamWriter(fileGold2V2));
 	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
@@ -633,7 +633,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 	
 	public TracesTableChessFINALROUND2Superclasses() throws SQLException, IOException {
 	
-		bwGold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2, Subject, OwnerClassT, OwnerClassN, "
+		bwGold2V2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold2V2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
 				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
 				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
@@ -677,7 +677,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 
 		
 		bw.newLine();
-		bwGold2TableLog.newLine();
+		bwGold2V2TableLog.newLine();
 		DatabaseReading2 db = new DatabaseReading2();
 		DatabaseReading2.MakePredictions();
 		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
@@ -731,7 +731,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
 		int ClassTraceCount=0; 
-		int MethodTraceCountGold2=0; 
+		int MethodTraceCountGold2V2=0; 
 		// Create the editors to be used for each row
 		
 		
@@ -813,7 +813,7 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 		
 		
 		
-		bwGold2.close();
+		bwGold2V2.close();
 		
 		
 //		String[] columnNames = {"Row",  "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
@@ -866,32 +866,32 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
 				
 				
-				"95-GOLD2", "96-OwnerClass T GOLD2", "97-Owner Class N GOLD2", "98-Owner Class E GOLD2", "99-# caller methods GOLD2",
-				"100-# caller methods T GOLD2", "101-#caller methods N GOLD2", "102-#caller methods E GOLD2", "103-# caller classes GOLD2",
-				"104-# caller classes T GOLD2", "105-#caller classes N GOLD2", "106-#caller classes E GOLD2", "107-# callee methods GOLD2",
-				"108-# callee methods T GOLD2", "109-#callee methods N GOLD2", "110-#callee methods E GOLD2", "111-# callee classes GOLD2",
-				"112-# callee classes T GOLD2", "113-#callee classes N GOLD2", "114-#callee classes E GOLD2",  "115-OwnerClassPrediction GOLD2",
-				"116-MajorityClassLevelCallees GOLD2","117-MajorityClassLevelCallers GOLD2", "118-MajorityMethodLevelCallees GOLD2","119-MajorityMethodLevelCallers GOLD2",
-				"120->0NPredictionClassLevelCallees GOLD2", "121->0NPredictionClassLevelCallers GOLD2", "122->0NPredictionMethodLevelCallees GOLD2", 
-				"123->0NPredictionMethodLevelCallers GOLD2", "124->0TPredictionClassLevelCallees GOLD2", "125->0TPredictionClassLevelCallers GOLD2", 
-				"126->0TPredictionMethodLevelCallees GOLD2", "127->0TPredictionMethodLevelCallers GOLD2", 
-				"128->2NPredictionClassLevelCallees GOLD2", "129->2NPredictionClassLevelCallers GOLD2", "130->2NPredictionMethodLevelCallees GOLD2", 
-				"131->2NPredictionMethodLevelCallers GOLD2", "132->2TPredictionClassLevelCallees GOLD2", "133->2TPredictionClassLevelCallers GOLD2", 
-				"134->2TPredictionMethodLevelCallees GOLD2", "135->2TPredictionMethodLevelCallers GOLD2", 
-				"136-AllNClassLevelCallees GOLD2", "137-AllNClassLevelCallers GOLD2","138-AllNMethodLevelCallees GOLD2","139-AllNMethodLevelCallers GOLD2",
-				"140-AllTClassLevelCallees GOLD2", "141-AllTClassLevelCallers GOLD2", "142-AllTMethodLevelCallees GOLD2", "143-AllTMethodLevelCallers  GOLD2"
-				,"144-AllNAtLeast2NClassLevelCallees GOLD2", "145-AllNAtLeast2NClassLevelCallers GOLD2","146-AllNAtLeast2NMethodLevelCallees GOLD2","147-AllNAtLeast2NMethodLevelCallers GOLD2",
-				"148-AllTAtLeast2TClassLevelCallees GOLD2", "149-AllTAtLeast2TClassLevelCallers GOLD2", "150-AllTAtLeast2TMethodLevelCallees GOLD2", "151-AllTAtLeast2TMethodLevelCallers GOLD2"
+				"95-Gold2V2", "96-OwnerClass T Gold2V2", "97-Owner Class N Gold2V2", "98-Owner Class E Gold2V2", "99-# caller methods Gold2V2",
+				"100-# caller methods T Gold2V2", "101-#caller methods N Gold2V2", "102-#caller methods E Gold2V2", "103-# caller classes Gold2V2",
+				"104-# caller classes T Gold2V2", "105-#caller classes N Gold2V2", "106-#caller classes E Gold2V2", "107-# callee methods Gold2V2",
+				"108-# callee methods T Gold2V2", "109-#callee methods N Gold2V2", "110-#callee methods E Gold2V2", "111-# callee classes Gold2V2",
+				"112-# callee classes T Gold2V2", "113-#callee classes N Gold2V2", "114-#callee classes E Gold2V2",  "115-OwnerClassPrediction Gold2V2",
+				"116-MajorityClassLevelCallees Gold2V2","117-MajorityClassLevelCallers Gold2V2", "118-MajorityMethodLevelCallees Gold2V2","119-MajorityMethodLevelCallers Gold2V2",
+				"120->0NPredictionClassLevelCallees Gold2V2", "121->0NPredictionClassLevelCallers Gold2V2", "122->0NPredictionMethodLevelCallees Gold2V2", 
+				"123->0NPredictionMethodLevelCallers Gold2V2", "124->0TPredictionClassLevelCallees Gold2V2", "125->0TPredictionClassLevelCallers Gold2V2", 
+				"126->0TPredictionMethodLevelCallees Gold2V2", "127->0TPredictionMethodLevelCallers Gold2V2", 
+				"128->2NPredictionClassLevelCallees Gold2V2", "129->2NPredictionClassLevelCallers Gold2V2", "130->2NPredictionMethodLevelCallees Gold2V2", 
+				"131->2NPredictionMethodLevelCallers Gold2V2", "132->2TPredictionClassLevelCallees Gold2V2", "133->2TPredictionClassLevelCallers Gold2V2", 
+				"134->2TPredictionMethodLevelCallees Gold2V2", "135->2TPredictionMethodLevelCallers Gold2V2", 
+				"136-AllNClassLevelCallees Gold2V2", "137-AllNClassLevelCallers Gold2V2","138-AllNMethodLevelCallees Gold2V2","139-AllNMethodLevelCallers Gold2V2",
+				"140-AllTClassLevelCallees Gold2V2", "141-AllTClassLevelCallers Gold2V2", "142-AllTMethodLevelCallees Gold2V2", "143-AllTMethodLevelCallers  Gold2V2"
+				,"144-AllNAtLeast2NClassLevelCallees Gold2V2", "145-AllNAtLeast2NClassLevelCallers Gold2V2","146-AllNAtLeast2NMethodLevelCallees Gold2V2","147-AllNAtLeast2NMethodLevelCallers Gold2V2",
+				"148-AllTAtLeast2TClassLevelCallees Gold2V2", "149-AllTAtLeast2TClassLevelCallers Gold2V2", "150-AllTAtLeast2TMethodLevelCallees Gold2V2", "151-AllTAtLeast2TMethodLevelCallers Gold2V2"
 				
-				,"152-Callers GOLD2", "153-Callees GOLD2", "154-#parameters GOLD2","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction GOLD2", "159-AtLeast1NParameterPrediction GOLD2", 
-				"160-AtLeast1TParameterPrediction GOLD2", "161-AtLeast2TParameterPrediction GOLD2", 
-				"162-AtLeast2NParameterPrediction GOLD2", "163-AllNParameterPrediction GOLD2", "164-AllTParameterPrediction GOLD2",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGOLD2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed GOLD2", 
-				"169-AllTMethodLevelCallersCalleesClass GOLD2", "170-AllNMethodLevelCallersCalleesClass GOLD2",
-				"171-AllTClassLevelCallersCalleesClass GOLD2", "172-AllNClassLevelCallersCalleesClass GOLD2", 
-				"173-CLASSTRACEMethodLevelPureGold2","174-CLASSTRACEMethodLevelMixedGold2","175-CLASSNOTRACEMethodLevelPureGold2","176-CLASSNOTRACEMethodLevelMixedGold2]",
-				"177-CLASSTRACEClassLevelPureGold2","178-CLASSTRACEClassLevelMixedGold2","179-CLASSNOTRACEClassLevelPureGold2","180-CLASSNOTRACEClassLevelMixedGold2"
+				,"152-Callers Gold2V2", "153-Callees Gold2V2", "154-#parameters Gold2V2","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
+				"158-MajorityParameterPrediction Gold2V2", "159-AtLeast1NParameterPrediction Gold2V2", 
+				"160-AtLeast1TParameterPrediction Gold2V2", "161-AtLeast2TParameterPrediction Gold2V2", 
+				"162-AtLeast2NParameterPrediction Gold2V2", "163-AllNParameterPrediction Gold2V2", "164-AllTParameterPrediction Gold2V2",
+				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedGold2V2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed Gold2V2", 
+				"169-AllTMethodLevelCallersCalleesClass Gold2V2", "170-AllNMethodLevelCallersCalleesClass Gold2V2",
+				"171-AllTClassLevelCallersCalleesClass Gold2V2", "172-AllNClassLevelCallersCalleesClass Gold2V2", 
+				"173-CLASSTRACEMethodLevelPureGold2V2","174-CLASSTRACEMethodLevelMixedGold2V2","175-CLASSNOTRACEMethodLevelPureGold2V2","176-CLASSNOTRACEMethodLevelMixedGold2V2]",
+				"177-CLASSTRACEClassLevelPureGold2V2","178-CLASSTRACEClassLevelMixedGold2V2","179-CLASSNOTRACEClassLevelPureGold2V2","180-CLASSNOTRACEClassLevelMixedGold2V2"
 				};
 		DefaultTableModel model = new DefaultTableModel(data, columnNames);
 		 
@@ -1117,8 +1117,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionFields.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionFields.add(traceGold2V2); 
 				}
 			}
 		if( paramlist!=null) {
@@ -1127,8 +1127,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionParams.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionParams.add(traceGold2V2); 
 				}
 			}
 		}
@@ -1139,8 +1139,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionParamsOwnerClass.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionParamsOwnerClass.add(traceGold2V2); 
 				}
 			}
 		}
@@ -1151,8 +1151,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					PredictionFieldsOwnerClass.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					PredictionFieldsOwnerClass.add(traceGold2V2); 
 				}
 			}
 			methodtrace.setPredictionParams(PredictionParams);
@@ -1181,8 +1181,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					InterfaceList.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					InterfaceList.add(traceGold2V2); 
 				}
 			}
 		if( mysuperclasses!=null)
@@ -1191,8 +1191,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					SuperClassesList.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					SuperClassesList.add(traceGold2V2); 
 				}
 			}
 		if(mychildren!=null)
@@ -1201,8 +1201,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					ChildrenList.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					ChildrenList.add(traceGold2V2); 
 				}
 			}
 		if( myimplementations!=null)
@@ -1211,8 +1211,8 @@ public class TracesTableChessFINALROUND2Superclasses extends JFrame {
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
 				if(myclasstraceHashMap.getTrace2()!=null) {
-					String traceGOLD2 = myclasstraceHashMap.getTrace2().trim();
-					ImplementationList.add(traceGOLD2); 
+					String traceGold2V2 = myclasstraceHashMap.getTrace2().trim();
+					ImplementationList.add(traceGold2V2); 
 				}
 			}
 			methodtrace.setSuperClassesList(SuperClassesList);
@@ -1843,7 +1843,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGold2V2()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
 				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 

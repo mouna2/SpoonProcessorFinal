@@ -19,6 +19,7 @@ public class MethodTrace2 {
 	public String goldpredictionCaller; 
 	public String goldpredictionCallee; 
 	public String gold2; 
+	public String gold2V2; 
 	public String gold3; 
 	public String gold4; 
 	public String gold5; 
@@ -34,6 +35,14 @@ public class MethodTrace2 {
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	
+	public String getGold2V2() {
+		return gold2V2;
+	}
+
+	public void setGold2V2(String gold2v2) {
+		gold2V2 = gold2v2;
+	}
+
 	public String getCLASSTYPE() {
 		return CLASSTYPE;
 	}
@@ -325,7 +334,7 @@ public class MethodTrace2 {
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				 mytrace.setGold2(myresults.getString("gold2"));
-				
+				 mytrace.setGold2V2(myresults.getString("gold2V2"));
 				 String id= mytrace.getMethodRepresentation().methodid; 
 				 String tracename= mytrace.getMethodRepresentation().fullmethodname; 
 				 

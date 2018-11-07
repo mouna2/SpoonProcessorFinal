@@ -130,6 +130,8 @@ public class MethodTraceSubjectTSubjectN {
 		return PredictionFieldsOwnerClass;
 	}
 
+	
+
 	public void setPredictionFieldsOwnerClass(List<String> predictionFieldsOwnerClass) {
 		PredictionFieldsOwnerClass = predictionFieldsOwnerClass;
 	}
