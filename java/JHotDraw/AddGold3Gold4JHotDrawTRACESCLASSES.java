@@ -420,12 +420,14 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 					    System.out.println(newsize);
 					    	   String charac = MyValues.get(newsize); 
 					    
-					  
+//					    	   if(count.CountT>count.CountN ) {		
+
 					    	   if(count.CountT>count.CountN && count.CountT>count.CountE) {		
 									st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						     } 
 //						    else  if(charac.trim().equals("N")) {
+//							    else  if(count.CountN>count.CountT) {
 
 						    else  if(count.CountN>count.CountE && count.CountN>count.CountT) {
 						    		
@@ -440,10 +442,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 									st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						    	 
-						     }else if(MyValues.isEmpty()) {
-					    	 //DO NOTHING 
-					     }
-					     
+						     }
 			     }  else{
 						st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 

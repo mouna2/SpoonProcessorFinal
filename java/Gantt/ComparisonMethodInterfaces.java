@@ -147,11 +147,11 @@ public class ComparisonMethodInterfaces {
 		ResultSet rs = null; 
 		
 		
-		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleGANTT_INTERFACES.txt");
+		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpGantt.txt");
 		FileOutputStream fos1 = new FileOutputStream(fout1);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 		
-		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\ComparisonInterfacesImpGantt.txt");
+		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpGantt_COUNTS.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
 		
@@ -570,7 +570,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				 }
 				
 				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
-				 bwfile4.newLine();
+				
 				String countSuperclassVal=""; 
 				 if(countSuperclass.CountE==1) {
 					 countSuperclassVal="E"; 
@@ -581,26 +581,43 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				if(countSuperclass.CountT==1) {
 					countSuperclassVal="T"; 	
 				}
-				 if(countImp.CountT>0 && countImp.CountN>0 ) {
-					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
-					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountN>0 && countImp.CountE>0) {
-					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("T MIXED WITH N  ");
+				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD T  ");
+				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD  N  "); 
+				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD  E  "); 
+				 }  
+				 
+				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL T  ");
+				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL N  "); 
+				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL E  "); 
+				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("N MIXED WITH E  "); 
 				 }
-				  if(countImp.CountT>0 && countImp.CountE>0) {
-					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+					  bwfile4.write("T MIXED WITH E  "); 
 				 }
 				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+					  bwfile4.write("T MIXED WITH N AND E  "); 
 				 }
 				
-				
-			
+				  bwfile4.newLine();
 			}
 			
 			
@@ -672,24 +689,44 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				 }
 				
 				 bwfile2.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
-				 bwfile2.newLine();
-//				 if(countImp.CountT>0 && countImp.CountN>0 ) {
-//					 System.out.println("T MIXED WITH N ");
-//				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL T");
-//				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
-//					 System.out.println("ALL N");
-//				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL E");
-//				 } if(countImp.CountN>0 && countImp.CountE>0) {
-//					 System.out.println("N MIXED WITH E");
-//				 }
-//				  if(countImp.CountT>0 && countImp.CountE>0) {
-//					 System.out.println("T MIXED WITH E");
-//				 }
-//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-//					 System.out.println("T MIXED WITH N AND E");
-//				 }
+				 
+				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("T MIXED WITH N  ");
+				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ONLY 1 IMPLEMENTATION T  ");
+				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ONLY 1 IMPLEMENTATION  N  "); 
+				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ONLY 1 IMPLEMENTATION  E  "); 
+				 }  
+				 
+				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ALL T  ");
+				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ALL N  "); 
+				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("ALL E  "); 
+				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+					 bwfile2.write("N MIXED WITH E  "); 
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+					  bwfile2.write("T MIXED WITH E  "); 
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+					  bwfile2.write("T MIXED WITH N AND E  "); 
+				 }
+				
+				  bwfile2.newLine();
 				
 				
 		    

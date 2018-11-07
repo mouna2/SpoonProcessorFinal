@@ -147,9 +147,13 @@ public class ComparisonMethodInterfaces {
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
 		
-		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleCHESS_INTERFACES.txt");
+		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpChess.txt");
 		FileOutputStream fos1 = new FileOutputStream(fout1);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
+		
+		File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
+		FileOutputStream fos5 = new FileOutputStream(fout5);
+		BufferedWriter bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		
 		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
 		FileOutputStream fos4 = new FileOutputStream(fout4);
@@ -433,11 +437,13 @@ public class ComparisonMethodInterfaces {
 						if(ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
-							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.gold2.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -501,7 +507,10 @@ public class ComparisonMethodInterfaces {
 			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
 			  bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
 			  bwfile1.newLine();
+			  CountTNE countInterface= new CountTNE(); 
+
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
+				
 			    String key = entry.getKey();
 			    List<String> values = entry.getValue();
 			    // now work with key and value...
@@ -511,28 +520,98 @@ public class ComparisonMethodInterfaces {
 				 String myclassid= keys[2]; 
 				 String myclassname= keys[3]; 
 				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
-				 bwfile1.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
+				 bwfile1.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" ");
+				 countInterface= new CountTNE(); 
 				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
 					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
 					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
-				 }
-				for(String value: values) {
+					 String TraceVal=InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
+					 if(TraceVal.trim().equals("T")) {
+						 countInterface.CountT++; 
+						
+					 }else if(TraceVal.trim().equals("N")) {
+						 countInterface.CountN++; 
+						
+					 }else if(TraceVal.trim().equals("E")) {
+						 countInterface.CountE++; 
+						
+					 }
 					
+					 
+				 }
+				
+				 CountTNE countImp= new CountTNE(); 
+				for(String value: values) {
+					 for(String val: values) {
+						 if(val.trim().equals("T")) {
+							 countImp.CountT++; 
+						 }else  if(val.trim().equals("N")) {
+							 countImp.CountN++; 
+						 }
+						 else  if(val.trim().equals("E")) {
+							 countImp.CountE++; 
+						 }
+					 }
 
-					if(values.size()>1) {
-						 System.out.print("*************** ");
-						 bwfile1.write("*************** "); 
-					}
-
+					
+					 System.out.print("*************** ");
+					 bwfile1.write("*************** ");
 			        System.out.print(value+" ");
-			        bwfile1.write(value+" "); 
+			        bwfile1.write(value+" ");
 			    }
+				
 				 System.out.println(); 
+				
 				 bwfile1.newLine();
 				
 				
+				 bwfile5.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
+				 if(countInterface.CountT>0|| countInterface.CountN>0|| countInterface.CountE>0) {
+					 bwfile5.write("COUNT INTERFACE "+countInterface.toString()+"  ,");
+				 }
 				
-			
+				 bwfile5.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
+				 
+				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("T MIXED WITH N  ");
+				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ONLY 1 IMPLEMENTATION T  ");
+				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ONLY 1 IMPLEMENTATION  N  "); 
+				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ONLY 1 IMPLEMENTATION  E  "); 
+				 }  
+				 
+				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ALL T  ");
+				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ALL N  "); 
+				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("ALL E  "); 
+				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+					 bwfile5.write("N MIXED WITH E  "); 
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+					  bwfile5.write("T MIXED WITH E  "); 
+				 }
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+					  bwfile5.write("T MIXED WITH N AND E  "); 
+				 }
+				
+				  bwfile5.newLine();
+				
+				
+		    
 			}
 			
 			
@@ -601,7 +680,6 @@ public class ComparisonMethodInterfaces {
 				 }
 				
 				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
-				 bwfile4.newLine();
 				 String countSuperclassVal=""; 
 				 if(countSuperclass.CountE==1) {
 					 countSuperclassVal="E"; 
@@ -612,23 +690,44 @@ public class ComparisonMethodInterfaces {
 				if(countSuperclass.CountT==1) {
 					countSuperclassVal="T"; 	
 				}
-				 if(countImp.CountT>0 && countImp.CountN>0 ) {
-					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountT>0 && countImp.CountE==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountN>0 && countImp.CountT==0 && countImp.CountE==0 ) {
-					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountE>0 && countImp.CountT==0 && countImp.CountN==0 ) {
-					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-				 } if(countImp.CountN>0 && countImp.CountE>0) {
-					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("T MIXED WITH N  ");
+				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD T  ");
+				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD  N  "); 
+				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ONLY 1 CHILD  E  "); 
+				 }  
+				 
+				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL T  ");
+				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL N  "); 
+				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("ALL E  "); 
+				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+					 bwfile4.write("N MIXED WITH E  "); 
 				 }
-				  if(countImp.CountT>0 && countImp.CountE>0) {
-					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+					  bwfile4.write("T MIXED WITH E  "); 
 				 }
 				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+					  bwfile4.write("T MIXED WITH N AND E  "); 
 				 }
+				
+				
+				  bwfile4.newLine();
 				
 			
 			}
@@ -640,6 +739,7 @@ public class ComparisonMethodInterfaces {
 			bwfile2.close();
 			bwfile1.close();
 			bwfile4.close();
+			bwfile5.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
 			e.printStackTrace();

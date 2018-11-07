@@ -1207,9 +1207,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		 ITERATION1=0; 
 			//PATTERN 1
 			if(myclasstraceHashMap.getTrace2()!=null) {
+				
 				String traceGOLD2 = myclasstraceHashMap.getTrace2(); 
-
-//				String traceGOLD2 = myclasstraceHashMap.getTrace2V2(); 
 				traceGOLD2=traceGOLD2.trim(); 
 				if (traceGOLD2.equals("T")) {
 					data[j][OwnerClassTGOLD2] = "1";

@@ -1351,6 +1351,12 @@ public class TracesTableiTrustFINALROUND2Superclasses extends JFrame {
 						//PATTERN 1	MIXED T
 						CountTNE childrenListCount = GenerateCounts(childrenList); 
 						CountTNE SuperclassListCount=GenerateCounts(SuperclassList); 
+						for(String child: childrenList) {
+							System.out.println("CHILD   "+ child);
+						}
+						for(String Superclass: SuperclassList) {
+							System.out.println("Superclass   "+ Superclass);
+						}
 						CountTNE InterfaceListCount = GenerateCounts(InterfaceList); 
 						CountTNE ImplementationListCount=GenerateCounts(ImplementationList); 
 						CountTNE methodfieldsCount = GenerateCounts(methodfields); 
@@ -1850,6 +1856,9 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			//System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
+				if(myvalue.getPrediction().equals("N")) {
+					System.out.println("Yes");
+				}
 				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}

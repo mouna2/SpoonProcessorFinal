@@ -19,11 +19,20 @@ public class ClassTrace2 {
 		String trace3; 
 		String trace4; 
 		String trace5; 
+		String trace5V2; 
 		String trace6; 
 		String subject;
 		
 		
 		
+		public String getTrace5V2() {
+			return trace5V2;
+		}
+
+		public void setTrace5V2(String trace5v2) {
+			trace5V2 = trace5v2;
+		}
+
 		public String getTrace2V2() {
 			return trace2V2;
 		}
@@ -192,6 +201,7 @@ public class ClassTrace2 {
 				 myclasstrace.setTrace3(myresults.getString("gold3"));
 				 myclasstrace.setTrace4(myresults.getString("gold4"));
 				 myclasstrace.setTrace5(myresults.getString("gold5"));
+				 myclasstrace.setTrace5V2(myresults.getString("gold5V2"));
 //				 myclasstrace.setTrace6(myresults.getString("gold6"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 

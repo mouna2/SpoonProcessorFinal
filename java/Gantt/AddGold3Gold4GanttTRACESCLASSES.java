@@ -129,11 +129,11 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5V2");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5V2");
 		
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
@@ -432,12 +432,13 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 					    System.out.println(newsize);
 					    	   String charac = MyValues.get(newsize); 
 					    
-					  
+//					    	   if(count.CountT>count.CountN ) {		
 					    	   if(count.CountT>count.CountN && count.CountT>count.CountE) {		
 									st.executeUpdate("UPDATE `tracesclasses` SET `gold5` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						     } 
 //						    else  if(charac.trim().equals("N")) {
+//							   else  if( count.CountN>count.CountT) {
 
 						    else  if(count.CountN>count.CountE && count.CountN>count.CountT) {
 						    		
