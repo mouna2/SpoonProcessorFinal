@@ -38,68 +38,16 @@ import spoon.reflect.factory.Factory;
 import spoon.reflect.factory.InterfaceFactory;
 import spoon.reflect.factory.MethodFactory;
 
-public class ComparisonMethodInterfacesFinal {
-	/** The name of the MySQL account to use (or empty for anonymous) */
-	private static final String userName = "root";
+public class UnitedComparisonMethodInterfacesFinal {
+	 final static String userName = "root";
 
-	/** The password for the MySQL account (or empty for anonymous) */
-	private static final String password = "root";
-
-	/** The name of the computer running MySQL */  
-	
-	private final String serverName = "localhost";
-
-	/** The port of the MySQL server (default is 3306) */
-	private final int portNumber = 3306;
-
-	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "databasechess";
-	
-	/** The name of the table we are testing with */
-	private final String tableName = "classes";
-	public static List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
-	public static List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
-	public static HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
-	public static HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
-	public static HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
-	public static HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
-	
-	public static HashMap <String, List<String>> methodcallsinexecnotparsedcallercallee = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinexecnotparsedcalleecaller = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
-	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
-	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
-
-	public static LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-	public static LinkedHashMap <String, String> SuperclassesTracesHashMap = new LinkedHashMap <String, String>(); 
-	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
-	
-	
-	static File fout = null; 
-	static FileOutputStream fos = null; 
-	static BufferedWriter bwGold = null; 
-	
-	static File foutIntersection = null; 
-	static FileOutputStream fosIntersection = null; 
-	static BufferedWriter bwGoldIntersection = null; 
-	public ComparisonMethodInterfacesFinal(List<tracesmethodscallees> tracesCalleesList) {
-		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
+		/** The password for the MySQL account (or empty for anonymous) */
+		  final static String password = "root";
+	public UnitedComparisonMethodInterfacesFinal() {
 
 	}
 
-	public ComparisonMethodInterfacesFinal() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public List<tracesmethodscallees> getTracesCalleesList() {
-		return TracesCalleesList;
-	}
-
-	public void setTracesCalleesList(List<tracesmethodscallees> tracesCalleesList) {
-		TracesCalleesList = tracesCalleesList;
-	}
+	
 
 	/**
 	 * Get a new database connection
@@ -107,12 +55,14 @@ public class ComparisonMethodInterfacesFinal {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static Connection getConnection() throws SQLException {
+	static Connection getConnection(String ProgramName) throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
+		
 		connectionProps.put("root", userName);
 		connectionProps.put("123456", password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
+		String connectionString="jdbc:mysql://localhost:3306/database"+ProgramName;
+		conn = DriverManager.getConnection(connectionString,"root","123456");
 
 		return conn;
 	}
@@ -138,37 +88,93 @@ public class ComparisonMethodInterfacesFinal {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
+	 * @param string 
+	 * @param string 
 	 * @throws IOException 
 	 */
-	public void run() throws IOException {
+	public void run(Connection conn, String ProgramName, String ProgramNameLoweCase) throws IOException {
+		
+		
+		/** The name of the MySQL account to use (or empty for anonymous) */
+		 
+
+		/** The name of the computer running MySQL */  
+		
+		 final String serverName = "localhost";
+
+		/** The port of the MySQL server (default is 3306) */
+		
+		final int portNumber = 3306;
+
+		/** The name of the database we are testing with (this default is installed with MySQL) */
+		
+		/** The name of the table we are testing with */
+		 final String tableName = "classes";
+		List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
+		List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
+		HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
+		HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
+		HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
+		HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
+		
+		HashMap <String, List<String>> methodcallsinexecnotparsedcallercallee = new HashMap <String, List<String>>(); 
+		HashMap <String, List<String>> methodcallsinexecnotparsedcalleecaller = new HashMap <String, List<String>>(); 
+		HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
+		HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
+		LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
+		LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
+		LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
+
+		LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
+		LinkedHashMap <String, String> SuperclassesTracesHashMap = new LinkedHashMap <String, String>(); 
+		LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
+		
+		
+
+		
 		ResultSet rs = null; 
 
-		File fout = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
-		FileOutputStream fos = new FileOutputStream(fout);
-		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
-		
-		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess.txt");
-		FileOutputStream fos1 = new FileOutputStream(fout1);
-		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
-		
-		File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
-		FileOutputStream fos5 = new FileOutputStream(fout5);
-		BufferedWriter bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
-		
-		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess.txt");
-		FileOutputStream fos4 = new FileOutputStream(fout4);
-		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
-		// Connect to MySQL
-		Connection conn = null;
-		try {
-			conn = getConnection();
-			System.out.println("Connected to database");
-			
-		} catch (SQLException e) {
-			System.out.println("ERROR: Could not connect to the database");
-			e.printStackTrace();
-			return;
+		BufferedWriter bwfile5 = null ; 
+		BufferedWriter bwfile2= null ; 
+		if(ProgramName.equals("Chess")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
+			FileOutputStream fos = new FileOutputStream(fout1);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
+			FileOutputStream fos5 = new FileOutputStream(fout5);
+			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		}
+		if(ProgramName.equals("iTrust")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildreniTrust_COUNTS.txt");
+			FileOutputStream fos = new FileOutputStream(fout1);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpiTrust_COUNTS.txt");
+			FileOutputStream fos5 = new FileOutputStream(fout5);
+			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
+		}
+		if(ProgramName.equals("Gantt")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenGantt_COUNTS.txt");
+			FileOutputStream fos = new FileOutputStream(fout1);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpGantt_COUNTS.txt");
+			FileOutputStream fos5 = new FileOutputStream(fout5);
+			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
+		}
+		if(ProgramName.equals("JHotDraw")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenJHotDraw_COUNTS.txt");
+			FileOutputStream fos = new FileOutputStream(fout1);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
+			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpJHotDraw_COUNTS.txt");
+			FileOutputStream fos5 = new FileOutputStream(fout5);
+			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
+		}
+		
+		
+		
+		
+		
+		
+		
 
 		// Create a table
 		try {
@@ -193,8 +199,8 @@ public class ComparisonMethodInterfacesFinal {
 			String childclassid=""; 
 			String childclassname=""; 
 			String rowID=""; 
-			ResultSet res2=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.interfaces" ); 
+			ResultSet res2=st.executeQuery("SELECT * "+
+					"			FROM "+ProgramNameLoweCase+".interfaces" ); 
 			while(res2.next()) {
 				
 				interfaceclassid=res2.getString("interfaceclassid"); 
@@ -235,7 +241,7 @@ public class ComparisonMethodInterfacesFinal {
 			
 			
 			ResultSet res3=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.superclasses" ); 
+					"			FROM "+ProgramNameLoweCase+".superclasses" ); 
 			while(res3.next()) {
 				
 				superclassid=res3.getString("superclassid"); 
@@ -268,14 +274,19 @@ public class ComparisonMethodInterfacesFinal {
 			
 			int	counter=0; 
 			ResultSet res=st.executeQuery("SELECT *" + 
-					"			FROM databasechess.tracesclasses" ); 
+					"			FROM "+ProgramNameLoweCase+".tracesclasses" ); 
 			while(res.next()) {
 				
 				requirementid=res.getString("requirementid"); 
 				classid=res.getString("classid"); 
 				classname=res.getString("classname"); 
-
-				gold2=res.getString("gold2"); 
+				if(ProgramName.equals("Chess")|| ProgramName.equals("iTrust")) {
+					gold2=res.getString("gold2"); 
+				}
+				else if(ProgramName.equals("JHotDraw")|| ProgramName.equals("Gantt")) {
+					gold2=res.getString("gold"); 
+				}
+				
 				SuperClass2 superclass= new SuperClass2(); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
@@ -430,13 +441,13 @@ public class ComparisonMethodInterfacesFinal {
 						if(ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2.trim()); 
+							list.add(value.gold2+"-"+classIDTrace); 
+//							list.add(value.gold2.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2.trim()); 
+							list.add(value.gold2+"-"+classIDTrace); 
+//							list.add(value.gold2.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -473,13 +484,11 @@ public class ComparisonMethodInterfacesFinal {
 						if(SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2); 
+							list.add(value.gold2+"-"+classIDTrace); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2); 
+							list.add(value.gold2+"-"+classIDTrace); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -497,8 +506,7 @@ public class ComparisonMethodInterfacesFinal {
 			
 //			System.setOut(fileOut);
 			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
-			  bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
-			  bwfile1.newLine();
+		
 			  bwfile5.write("RequirementID, InterfaceID, InterfaceTraceValue, #ImplementationT, #ImplementationN, #ImplementationE");
 			  bwfile5.newLine();
 			  CountTNE countInterface= new CountTNE(); 
@@ -514,12 +522,12 @@ public class ComparisonMethodInterfacesFinal {
 				 String myclassid= keys[1]; 
 				 String myclassname= keys[2]; 
 				 System.out.print(RequirementID+","+myclassid+","+myclassname+" "); 
-				 bwfile1.write(RequirementID+","+myclassid+","+myclassname+" ");
+			
 				 
 				 countInterface= new CountTNE(); 
 				 if(InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)!=null) {
 					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
-					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
+				
 					 String TraceVal=InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname); 
 					 if(TraceVal.trim().equals("T")) {
 						 countInterface.CountT++; 
@@ -534,30 +542,35 @@ public class ComparisonMethodInterfacesFinal {
 					
 					 
 				 }
-				
+				String myinterfacesIDsT= ""; 
+				String myinterfacesIDsN= ""; 
+				String myinterfacesIDsE= ""; 
+
 				 CountTNE countImp= new CountTNE(); 
-				for(String value: values) {
+			
 					 for(String val: values) {
+						 String[] myinterfacesIDs = val.split("-"); 
+						 val=myinterfacesIDs[0]; 
 						 if(val.trim().equals("T")) {
 							 countImp.CountT++; 
+							 myinterfacesIDsT=myinterfacesIDs[1]+"-"+myinterfacesIDsT; 
 						 }else  if(val.trim().equals("N")) {
 							 countImp.CountN++; 
+							 myinterfacesIDsN=myinterfacesIDs[1]+"-"+myinterfacesIDsN; 
+
 						 }
 						 else  if(val.trim().equals("E")) {
 							 countImp.CountE++; 
+							 myinterfacesIDsE=myinterfacesIDs[1]+"-"+myinterfacesIDsE; 
+
 						 }
 					 }
 
 					
-					 System.out.print("*************** ");
-					 bwfile1.write("*************** ");
-			        System.out.print(value+" ");
-			        bwfile1.write(value+" ");
-			    }
+					
 				
 				 System.out.println(); 
 				
-				 bwfile1.newLine();
 				String countInterfaceVal=""; 
 				 if(countInterface.CountT==1) {
 					 countInterfaceVal="T"; 
@@ -569,7 +582,8 @@ public class ComparisonMethodInterfacesFinal {
 					 countInterfaceVal="E"; 
 				 }
 				
-				 bwfile5.write(RequirementID+","+ myclassid+","+countInterfaceVal+" , "+countImp.CountT+" , "+countImp.CountN+" , "+countImp.CountE);
+				 bwfile5.write(RequirementID+","+ myclassid+","+countInterfaceVal+" , "+countImp.CountT+"("+ myinterfacesIDsT+")"+", "+countImp.CountN+"("+ myinterfacesIDsN+")"+" , "+countImp.CountE
+						 +"("+ myinterfacesIDsE+")");
 //				 if(countInterface.CountT>0|| countInterface.CountN>0|| countInterface.CountE>0) {
 //					 bwfile5.write("COUNT INTERFACE "+countInterface.toString()+"  ,");
 //				 }
@@ -638,7 +652,6 @@ public class ComparisonMethodInterfacesFinal {
 				 String myclassname= keys[2]; 
 				String TraceVal=null; 
 				 
-				 bwfile4.write(RequirementID+ ", "+ myclassid+" , "+myclassname+",  ");
 				 countSuperclass= new CountTNE(); 
 				 if(SuperclassesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)!=null) {
 //					 bwfile2.write("------ "+SuperclassesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
@@ -672,24 +685,35 @@ public class ComparisonMethodInterfacesFinal {
 //			        bwfile2.write(value+" "); 
 			    }
 				
-				for(String val: values) {
-					 if(val.trim().equals("T")) {
-						 countImp.CountT++; 
-					 }else  if(val.trim().equals("N")) {
-						 countImp.CountN++; 
+				String myinterfacesIDsT= ""; 
+				String myinterfacesIDsN= ""; 
+				String myinterfacesIDsE= ""; 
+
+			
+					 for(String val: values) {
+						 String[] myinterfacesIDs = val.split("-"); 
+						 val=myinterfacesIDs[0]; 
+						 if(val.trim().equals("T")) {
+							 countImp.CountT++; 
+							 myinterfacesIDsT=myinterfacesIDs[1]+"-"+myinterfacesIDsT; 
+						 }else  if(val.trim().equals("N")) {
+							 countImp.CountN++; 
+							 myinterfacesIDsN=myinterfacesIDs[1]+"-"+myinterfacesIDsN; 
+
+						 }
+						 else  if(val.trim().equals("E")) {
+							 countImp.CountE++; 
+							 myinterfacesIDsE=myinterfacesIDs[1]+"-"+myinterfacesIDsE; 
+
+						 }
 					 }
-					 else  if(val.trim().equals("E")) {
-						 countImp.CountE++; 
-					 }
-				 }
+
 				 System.out.println(); 
 //				 bwfile2.newLine(); 
 				
 				 if(countSuperclass.CountT>0|| countSuperclass.CountN>0|| countSuperclass.CountE>0) {
-					 bwfile4.write("COUNT SUPERCLASS "+countSuperclass.toString()+"  ,");
 				 }
 				
-				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
 				 String countSuperclassVal=""; 
 				 if(countSuperclass.CountE==1) {
 					 countSuperclassVal="E"; 
@@ -701,7 +725,9 @@ public class ComparisonMethodInterfacesFinal {
 					countSuperclassVal="T"; 	
 				}
 				
-				bwfile2.write(RequirementID+ ", "+ myclassid+" , "+TraceVal+",  "+countSuperclassVal+","+countImp.CountT+","+countImp.CountN+","+countImp.CountE);
+				bwfile2.write(RequirementID+","+ myclassid+","+countSuperclassVal+" , "+countImp.CountT+"("+ myinterfacesIDsT+")"+", "+countImp.CountN+"("+ myinterfacesIDsN+")"+" , "+countImp.CountE
+						 +"("+ myinterfacesIDsE+")");
+				
 				bwfile2.newLine(); 
 //				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
 ////					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
@@ -750,8 +776,6 @@ public class ComparisonMethodInterfacesFinal {
 			
 			System.out.println("finished");
 			bwfile2.close();
-			bwfile1.close();
-			bwfile4.close();
 			bwfile5.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
@@ -768,15 +792,74 @@ public class ComparisonMethodInterfacesFinal {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws SQLException, IOException {
-		ComparisonMethodInterfacesFinal app = new ComparisonMethodInterfacesFinal();
-		app.run();
+		UnitedComparisonMethodInterfacesFinal app = new UnitedComparisonMethodInterfacesFinal();
+		
+		// Connect to MySQL
+				Connection conn = null;
+				try {
+					conn = getConnection("chess");
+					System.out.println("Connected to database");
+					
+				} catch (SQLException e) {
+					System.out.println("ERROR: Could not connect to the database");
+					e.printStackTrace();
+					return;
+				}
+		app.run(conn, "Chess", "databasechess");
 		Spoon(); 
 		
+		conn.close();
+		
+		
+		
+		
+		 conn = null;
+		try {
+			conn = getConnection("gantt");
+			System.out.println("Connected to database");
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: Could not connect to the database");
+			e.printStackTrace();
+			return;
+		}
+		app.run(conn, "Gantt", "databasegantt");
+		Spoon(); 
+		conn.close();
+		
+		
+		 conn = null;
+			try {
+				conn = getConnection("itrust");
+				System.out.println("Connected to database");
+				
+			} catch (SQLException e) {
+				System.out.println("ERROR: Could not connect to the database");
+				e.printStackTrace();
+				return;
+			}
+			app.run(conn, "iTrust", "databaseitrust");
+			Spoon(); 
+			conn.close();
+			
+			conn = null;
+			try {
+				conn = getConnection("jhotdraw");
+				System.out.println("Connected to database");
+				
+			} catch (SQLException e) {
+				System.out.println("ERROR: Could not connect to the database");
+				e.printStackTrace();
+				return;
+			}
+			app.run(conn, "JHotDraw", "databasejhotdraw");
+			Spoon(); 
+			conn.close();
 	}
 	
 	
 
-	public static void Spoon() throws SQLException, IOException {
+	static void Spoon() throws SQLException, IOException {
 		
 		
 		

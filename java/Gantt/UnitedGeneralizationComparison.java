@@ -40,7 +40,7 @@ import spoon.reflect.factory.Factory;
 import spoon.reflect.factory.InterfaceFactory;
 import spoon.reflect.factory.MethodFactory;
 
-public class GeneralizationComparison {
+public class UnitedGeneralizationComparison {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private static final String userName = "root";
 
@@ -55,48 +55,19 @@ public class GeneralizationComparison {
 	private final int portNumber = 3306;
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "databasegantt";
 	
 	/** The name of the table we are testing with */
 	private final String tableName = "classes";
-	public static List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
-	public static List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
-	public static HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
-	public static HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
-	public static HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
-	public static HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
 	
-	public static HashMap <String, List<String>> methodcallsinexecnotparsedcallercallee = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinexecnotparsedcalleecaller = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
-	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
-	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
-	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 
-	static File fout = null; 
-	static FileOutputStream fos = null; 
-	static BufferedWriter bwGold = null; 
 	
-	static File foutIntersection = null; 
-	static FileOutputStream fosIntersection = null; 
-	static BufferedWriter bwGoldIntersection = null; 
-	public GeneralizationComparison(List<tracesmethodscallees> tracesCalleesList) {
-		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
+	
 
-	}
-
-	public GeneralizationComparison() {
+	public UnitedGeneralizationComparison() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public List<tracesmethodscallees> getTracesCalleesList() {
-		return TracesCalleesList;
-	}
-
-	public void setTracesCalleesList(List<tracesmethodscallees> tracesCalleesList) {
-		TracesCalleesList = tracesCalleesList;
-	}
+	
 
 	/**
 	 * Get a new database connection
@@ -104,12 +75,14 @@ public class GeneralizationComparison {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static Connection getConnection() throws SQLException {
+	static Connection getConnection(String ProgramName) throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
+		
 		connectionProps.put("root", userName);
 		connectionProps.put("123456", password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		String connectionString="jdbc:mysql://localhost:3306/database"+ProgramName;
+		conn = DriverManager.getConnection(connectionString,"root","123456");
 
 		return conn;
 	}
@@ -135,34 +108,52 @@ public class GeneralizationComparison {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
+	 * @param string2 
+	 * @param string 
+	 * @param conn2 
 	 * @throws IOException 
 	 */
-	public void run() throws IOException {
+	public void run(Connection conn, String string, String string2) throws IOException {
+		
+		List<tracesmethodscallees> TracesCalleesList= new ArrayList<tracesmethodscallees>();
+		  List<tracesmethodscallees> TracesCallersList= new ArrayList<tracesmethodscallees>();
+		  HashMap <String, String> MethodInterfaces = new HashMap <String, String>(); 
+		HashMap <String, String> InterfacesMethods = new HashMap <String, String>(); 
+		 HashMap <String, String> MethodSuperclasses = new HashMap <String, String>(); 
+		HashMap <String, String> SuperclassesMethods = new HashMap <String, String>(); 
+		
+		
+		LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
+		LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
+	LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 		ResultSet rs = null; 
-
-		
-		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonGanttTableAtLeast2.txt");
-		FileOutputStream fos1 = new FileOutputStream(fout1);
-		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
-		
-		
-		File fout2 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonGanttTableAtLeast3.txt");
-		FileOutputStream fos2 = new FileOutputStream(fout2);
-		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos2));
-		
-		
-		
-		// Connect to MySQL
-		Connection conn = null;
-		try {
-			conn = getConnection();
-			System.out.println("Connected to database");
+		BufferedWriter bwfile2 =null; 
+		BufferedWriter bwfile1 =null; 
+		if(string.equals("Gantt")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonGanttTableAtLeast2.txt");
+			FileOutputStream fos1 = new FileOutputStream(fout1);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 			
-		} catch (SQLException e) {
-			System.out.println("ERROR: Could not connect to the database");
-			e.printStackTrace();
-			return;
+			
+			File fout2 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonGanttTableAtLeast3.txt");
+			FileOutputStream fos2 = new FileOutputStream(fout2);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos2));
+		}else if(string.equals("JHotDraw")) {
+			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonJHotDrawTableAtLeast2.txt");
+			FileOutputStream fos1 = new FileOutputStream(fout1);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
+			
+			
+			File fout2 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonJHotDrawTableAtLeast3.txt");
+			FileOutputStream fos2 = new FileOutputStream(fout2);
+			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos2));
+			
 		}
+		
+		
+		
+		
+		
 
 		// Create a table
 		try {
@@ -172,7 +163,7 @@ public class GeneralizationComparison {
 			Statement st= conn.createStatement();
 			int count=0; 
 			ResultSet res2=st.executeQuery("SELECT *" + 
-					"			FROM databasegantt.tracesclasses" ); 
+					"			FROM "+ string2 +".tracesclasses" ); 
 			while(res2.next()) {
 				String requirementid=""; 
 				String classid=""; 
@@ -241,7 +232,8 @@ public class GeneralizationComparison {
 				int AtLeast3EMethodTraces=0; 
 count=0; 
 				  res2=st.executeQuery("SELECT *" + 
-							"			FROM databasegantt.tracesclasses inner join traces where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +
+						  "			FROM "+ string2 +".traces"  
+							+ " inner join tracesclasses where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +
 							"' and tracesclasses.requirementid='"+RequirementID+"'and tracesclasses.classid='"+classid+
 							
 						  "'"); 
@@ -396,9 +388,37 @@ count=0;
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws SQLException, IOException {
-		GeneralizationComparison app = new GeneralizationComparison();
-		app.run();
+		UnitedGeneralizationComparison app = new UnitedGeneralizationComparison();
+		Connection conn = null;
+		try {
+			conn = getConnection("gantt");
+			System.out.println("Connected to database");
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: Could not connect to the database");
+			e.printStackTrace();
+			return;
+		}
+		app.run(conn, "Gantt", "databasegantt");
 		Spoon(); 
+
+		conn.close();
+		
+		
+		 conn = null;
+		try {
+			conn = getConnection("jhotdraw");
+			System.out.println("Connected to database");
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: Could not connect to the database");
+			e.printStackTrace();
+			return;
+		}
+		app.run(conn, "JHotDraw", "databasejhotdraw");
+		Spoon(); 
+
+		conn.close();
 		
 	}
 	

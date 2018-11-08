@@ -241,7 +241,7 @@ public class GeneralizationComparison {
 				int AtLeast3EMethodTraces=0; 
 count=0; 
 res2=st.executeQuery("SELECT *" + 
-		"			FROM databasegantt.tracesclasses inner join traces where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +
+		"			FROM databasejhotdraw.tracesclasses inner join traces where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +
 		"' and tracesclasses.requirementid='"+RequirementID+"'and tracesclasses.classid='"+classid+
 		
 	  "'"); 
