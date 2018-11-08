@@ -627,7 +627,7 @@ public class ComparisonMethodInterfacesFinal {
 	
 			
 //			System.setOut(fileOut);
-			bwfile2.write("RequirementID, SuperclassID, SuperclassTraceValue, #SuperclassT, #SuperclassN, #SuperclassE");
+			bwfile2.write("RequirementID, SuperclassID, SuperclassTraceValue, #ChildClassT, #ChildClassN, #ChildClassE");
 			bwfile2.newLine();
 			 CountTNE countSuperclass= new CountTNE(); 
 			for (Entry<String, List<String>> entry : SuperclassesTracesHashMapFinal.entrySet()) {
