@@ -1962,6 +1962,3 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		  return list;
 		}	
 }
-
-
-
