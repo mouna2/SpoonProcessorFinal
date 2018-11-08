@@ -1,4 +1,4 @@
-package Gantt;
+package Chess;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,11 +20,8 @@ import java.util.Map.Entry;
 
 import javax.swing.plaf.synth.SynthSplitPaneUI;
 
-import Chess.CountTNE;
-
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.CountDownLatch;
 
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
@@ -41,7 +38,7 @@ import spoon.reflect.factory.Factory;
 import spoon.reflect.factory.InterfaceFactory;
 import spoon.reflect.factory.MethodFactory;
 
-public class ComparisonMethodInterfaces {
+public class ComparisonMethodInterfacesFinal {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private static final String userName = "root";
 
@@ -56,7 +53,7 @@ public class ComparisonMethodInterfaces {
 	private final int portNumber = 3306;
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasechess";
 	
 	/** The name of the table we are testing with */
 	private final String tableName = "classes";
@@ -74,12 +71,12 @@ public class ComparisonMethodInterfaces {
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
 	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
-	
-	
+
 	public static LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
 	public static LinkedHashMap <String, String> SuperclassesTracesHashMap = new LinkedHashMap <String, String>(); 
 	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
-
+	
+	
 	static File fout = null; 
 	static FileOutputStream fos = null; 
 	static BufferedWriter bwGold = null; 
@@ -87,12 +84,12 @@ public class ComparisonMethodInterfaces {
 	static File foutIntersection = null; 
 	static FileOutputStream fosIntersection = null; 
 	static BufferedWriter bwGoldIntersection = null; 
-	public ComparisonMethodInterfaces(List<tracesmethodscallees> tracesCalleesList) {
+	public ComparisonMethodInterfacesFinal(List<tracesmethodscallees> tracesCalleesList) {
 		 TracesCalleesList= new ArrayList<tracesmethodscallees>();
 
 	}
 
-	public ComparisonMethodInterfaces() {
+	public ComparisonMethodInterfacesFinal() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -115,7 +112,7 @@ public class ComparisonMethodInterfaces {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", userName);
 		connectionProps.put("123456", password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
 
 		return conn;
 	}
@@ -145,22 +142,20 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws IOException {
 		ResultSet rs = null; 
-		
-		
-		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpGantt.txt");
-		FileOutputStream fos1 = new FileOutputStream(fout1);
-		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
-		
-		File fout = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpGantt_COUNTS.txt");
+
+		File fout = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
 		
-		File fout3 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenGantt.txt");
-		FileOutputStream fos3 = new FileOutputStream(fout3);
-		BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fos3));
-
+		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess.txt");
+		FileOutputStream fos1 = new FileOutputStream(fout1);
+		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 		
-		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenGantt_COUNTS.txt");
+		File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
+		FileOutputStream fos5 = new FileOutputStream(fout5);
+		BufferedWriter bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
+		
+		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess.txt");
 		FileOutputStream fos4 = new FileOutputStream(fout4);
 		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL
@@ -199,7 +194,7 @@ public class ComparisonMethodInterfaces {
 			String childclassname=""; 
 			String rowID=""; 
 			ResultSet res2=st.executeQuery("SELECT *" + 
-					"			FROM databasegantt.interfaces" ); 
+					"			FROM databasechess.interfaces" ); 
 			while(res2.next()) {
 				
 				interfaceclassid=res2.getString("interfaceclassid"); 
@@ -240,7 +235,7 @@ public class ComparisonMethodInterfaces {
 			
 			
 			ResultSet res3=st.executeQuery("SELECT *" + 
-					"			FROM databasegantt.superclasses" ); 
+					"			FROM databasechess.superclasses" ); 
 			while(res3.next()) {
 				
 				superclassid=res3.getString("superclassid"); 
@@ -273,25 +268,20 @@ public class ComparisonMethodInterfaces {
 			
 			int	counter=0; 
 			ResultSet res=st.executeQuery("SELECT *" + 
-					"			FROM databasegantt.traces" ); 
+					"			FROM databasechess.tracesclasses" ); 
 			while(res.next()) {
 				
-				rowID=res.getString("id"); 
-				requirement=res.getString("requirement"); 
 				requirementid=res.getString("requirementid"); 
-				methodname=res.getString("methodname"); 
-				methodid=res.getString("methodid"); 
-				fullmethod=res.getString("fullmethod"); 
-				classname=res.getString("classname"); 
 				classid=res.getString("classid"); 
-				gold2=res.getString("gold5"); 
+				classname=res.getString("classname"); 
+
+				gold2=res.getString("gold2"); 
+				SuperClass2 superclass= new SuperClass2(); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
-				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
 				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
-				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
-				methodtrace.setMethodRepresentation(methodrep);
+				
 				methodtrace.setClassRepresentation(classrep);
 				methodtrace.setGold2(gold2);
 			
@@ -301,7 +291,7 @@ public class ComparisonMethodInterfaces {
 				
 					if(classid.equals(mykey2)) {
 						System.out.println("=================THIS IS AN INTERFACE");
-						InterfacesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
+						InterfacesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, gold2); 
 					}
 					
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
@@ -340,47 +330,42 @@ public class ComparisonMethodInterfaces {
 				//SUPERCLASSES
 				/////////////////////////////////////////
 				
-////////////////////////////////////////////
-//SUPERCLASSES
-/////////////////////////////////////////
-
-
-for(String mykey: SuperclassesChildrenHashMap.keySet()) {
-
-String mykey2=mykey.substring(0, mykey.indexOf("-")); 
-
-if(classid.equals(mykey2)) {
-System.out.println("=================THIS IS A SUPERCLASS");
-SuperclassesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
-}
-
-for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
-
-
-if(impl.getOwnerClass().getClassid().equals(classid)) {
-	if(SuperclassesChildrenHashMap.get(mykey)!=null) {
-	System.out.println(counter);
-			List<MethodTrace2> 	mysuperclasses= new ArrayList<MethodTrace2>(); 
-			
-			mysuperclasses=SuperclassesChildrenTracesHashMap.get(mykey); 
-			if(mysuperclasses!=null) {
-				mysuperclasses.add(methodtrace); 
-			}
-			else {
-				mysuperclasses= new ArrayList<MethodTrace2>(); 
-				mysuperclasses.add(methodtrace); 
-			}
-			SuperclassesChildrenTracesHashMap.put(mykey, mysuperclasses); 
-		
-		
-
-	}
-	
-}
-
-}
-}
 				
+				for(String mykey: SuperclassesChildrenHashMap.keySet()) {
+
+					String mykey2=mykey.substring(0, mykey.indexOf("-")); 
+				
+					if(classid.equals(mykey2)) {
+						System.out.println("=================THIS IS A SUPERCLASS");
+						SuperclassesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, gold2); 
+					}
+					
+					for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
+						
+
+						if(impl.getOwnerClass().getClassid().equals(classid)) {
+							if(SuperclassesChildrenHashMap.get(mykey)!=null) {
+							System.out.println(counter);
+									List<MethodTrace2> 	mysuperclasses= new ArrayList<MethodTrace2>(); 
+									
+									mysuperclasses=SuperclassesChildrenTracesHashMap.get(mykey); 
+									if(mysuperclasses!=null) {
+										mysuperclasses.add(methodtrace); 
+									}
+									else {
+										mysuperclasses= new ArrayList<MethodTrace2>(); 
+										mysuperclasses.add(methodtrace); 
+									}
+									SuperclassesChildrenTracesHashMap.put(mykey, mysuperclasses); 
+								
+								
+
+							}
+							
+						}
+						
+					}
+				}
 				
 				
 //				for(String mykey: SuperclassesChildrenHashMap.keySet()) {
@@ -432,8 +417,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				for(MethodTrace2 value: values) {
 				String	gold2val=value.getGold2(); 
 				String	req=value.getRequirement().ID; 
-				String	method=value.getMethodRepresentation().methodname; 
-				String	methodID=value.getMethodRepresentation().methodid; 
+				
 				String	classIDTrace=value.getClassRepresentation().classid; 
 				String	classnameTrace=value.getClassRepresentation().classname; 
 				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
@@ -443,17 +427,17 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 					
 				
 					
-						if(ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+						if(ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
-							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
-							list.add(value.gold2); 
+							list=ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+							list.add(value.gold2.trim()); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-							list.add(value.gold2); 
 //							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+							list.add(value.gold2.trim()); 
+							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
 				
@@ -466,7 +450,6 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				
 				
 			}
-			
 			
 			LinkedHashMap <String, List<String>>	SuperclassesTracesHashMapFinal= new  LinkedHashMap <String, List<String>>(); 
 			 counter=0; 
@@ -477,8 +460,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				for(MethodTrace2 value: values) {
 				String	gold2val=value.getGold2(); 
 				String	req=value.getRequirement().ID; 
-				String	method=value.getMethodRepresentation().methodname; 
-				String	methodID=value.getMethodRepresentation().methodid; 
+				
 				String	classIDTrace=value.getClassRepresentation().classid; 
 				String	classnameTrace=value.getClassRepresentation().classname; 
 				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
@@ -488,17 +470,17 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 					
 				
 					
-						if(SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
+						if(SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
-							list=SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
+							list=SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
 							list.add(value.gold2); 
-							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
 //							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
 							list.add(value.gold2); 
-							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
+							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
 				
@@ -512,121 +494,15 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				
 			}
 			
-			 bwfile3.write("RequirementID, MethodName, SuperclassID, SuperclassName, Values");
-			 bwfile3.newLine(); 
-			 CountTNE countSuperclass= new CountTNE(); 
-			for (Entry<String, List<String>> entry : SuperclassesTracesHashMapFinal.entrySet()) {
-			    String key = entry.getKey();
-			    List<String> values = entry.getValue();
-			    // now work with key and value...
-			    String[] keys = key.split("/"); 
-				 String RequirementID= keys[0]; 
-				 String MethodName= keys[1]; 
-				 String myclassid= keys[2]; 
-				 String myclassname= keys[3]; 
-				 bwfile3.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
-				 bwfile4.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
-				 countSuperclass= new CountTNE(); 
-				 if(SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
-					 bwfile3.write("------ "+SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
-					 String TraceVal=SuperclassesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
-					 if(TraceVal.trim().equals("T")) {
-						 countSuperclass.CountT++; 
-						
-					 }else if(TraceVal.trim().equals("N")) {
-						 countSuperclass.CountN++; 
-						
-					 }else if(TraceVal.trim().equals("E")) {
-						 countSuperclass.CountE++; 
-						
-					 }
-				 } CountTNE countImp= new CountTNE(); 
-				for(String value: values) {
-					
-					
-					if(values.size()>1) {
-						 System.out.print("*************** ");
-						 bwfile3.write("*************** "); 
-					}
-
-			        System.out.print(value+" ");
-			        bwfile3.write(value+" "); 
-			    }
-				
-				for(String val: values) {
-					 if(val.trim().equals("T")) {
-						 countImp.CountT++; 
-					 }else  if(val.trim().equals("N")) {
-						 countImp.CountN++; 
-					 }
-					 else  if(val.trim().equals("E")) {
-						 countImp.CountE++; 
-					 }
-				 }
-				 System.out.println(); 
-				 bwfile3.newLine(); 
-				 if(countSuperclass.CountT>0|| countSuperclass.CountN>0|| countSuperclass.CountE>0) {
-					 bwfile4.write("COUNT SUPERCLASS "+countSuperclass.toString()+"  ,");
-				 }
-				
-				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
-				
-				String countSuperclassVal=""; 
-				 if(countSuperclass.CountE==1) {
-					 countSuperclassVal="E"; 
-				 }
-				if(countSuperclass.CountN==1) {
-					 countSuperclassVal="N"; 		 
-								 }
-				if(countSuperclass.CountT==1) {
-					countSuperclassVal="T"; 	
-				}
-				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
-//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("T MIXED WITH N  ");
-				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ONLY 1 CHILD T  ");
-				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
-//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ONLY 1 CHILD  N  "); 
-				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ONLY 1 CHILD  E  "); 
-				 }  
-				 
-				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ALL T  ");
-				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
-//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ALL N  "); 
-				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("ALL E  "); 
-				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
-//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
-					 bwfile4.write("N MIXED WITH E  "); 
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
-//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
-					  bwfile4.write("T MIXED WITH E  "); 
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
-					  bwfile4.write("T MIXED WITH N AND E  "); 
-				 }
-				
-				  bwfile4.newLine();
-			}
-			
 			
 //			System.setOut(fileOut);
-			 bwfile2.write("RequirementID, MethodName, InterfaceID, InterfaceName, COUNTTNE INTERFACE, COUNTTNE IMPLEMENTATION");
-			 bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
-			  bwfile2.newLine(); 
-			  bwfile1.newLine(); 
+			  System.out.println("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			  bwfile1.write("RequirementID, MethodName, InterfaceID, InterfaceName, Values");
+			  bwfile1.newLine();
+			  bwfile5.write("RequirementID, InterfaceID, InterfaceTraceValue, #ImplementationT, #ImplementationN, #ImplementationE");
+			  bwfile5.newLine();
 			  CountTNE countInterface= new CountTNE(); 
+
 			for (Entry<String, List<String>> entry : ImplementationsTracesHashMapFinal.entrySet()) {
 				
 			    String key = entry.getKey();
@@ -634,16 +510,17 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 			    // now work with key and value...
 			    String[] keys = key.split("/"); 
 				 String RequirementID= keys[0]; 
-				 String MethodName= keys[1]; 
-				 String myclassid= keys[2]; 
-				 String myclassname= keys[3]; 
-				 System.out.print(RequirementID+","+MethodName+","+myclassid+","+myclassname+" "); 
-				 bwfile1.write(RequirementID+","+MethodName+","+myclassid+","+myclassname+" ");
+				
+				 String myclassid= keys[1]; 
+				 String myclassname= keys[2]; 
+				 System.out.print(RequirementID+","+myclassid+","+myclassname+" "); 
+				 bwfile1.write(RequirementID+","+myclassid+","+myclassname+" ");
+				 
 				 countInterface= new CountTNE(); 
-				 if(InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)!=null) {
-					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
-					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname)+"------ ");
-					 String TraceVal=InterfacesTracesHashMap.get(RequirementID+"/"+MethodName+"/"+myclassid+"/"+myclassname); 
+				 if(InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)!=null) {
+					 System.out.print("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
+					 bwfile1.write("------ "+InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
+					 String TraceVal=InterfacesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname); 
 					 if(TraceVal.trim().equals("T")) {
 						 countInterface.CountT++; 
 						
@@ -681,52 +558,61 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				 System.out.println(); 
 				
 				 bwfile1.newLine();
-				
-				
-				 bwfile2.write(RequirementID+","+MethodName+ ", "+ myclassid+" , "+myclassname+",  ");
-				 if(countInterface.CountT>0|| countInterface.CountN>0|| countInterface.CountE>0) {
-					 bwfile2.write("COUNT INTERFACE "+countInterface.toString()+"  ,");
+				String countInterfaceVal=""; 
+				 if(countInterface.CountT==1) {
+					 countInterfaceVal="T"; 
+				 }
+				 else if(countInterface.CountN==1) {
+					 countInterfaceVal="N"; 
+				 }
+				 else {
+					 countInterfaceVal="E"; 
 				 }
 				
-				 bwfile2.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
-				 
-				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
-//					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("T MIXED WITH N  ");
-				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ONLY 1 IMPLEMENTATION T  ");
-				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
-//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ONLY 1 IMPLEMENTATION  N  "); 
-				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ONLY 1 IMPLEMENTATION  E  "); 
-				 }  
-				 
-				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ALL T  ");
-				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
-//					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ALL N  "); 
-				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
-//					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("ALL E  "); 
-				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
-//					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
-					 bwfile2.write("N MIXED WITH E  "); 
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
-//					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
-					  bwfile2.write("T MIXED WITH E  "); 
-				 }
-				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
-//					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
-					  bwfile2.write("T MIXED WITH N AND E  "); 
-				 }
+				 bwfile5.write(RequirementID+","+ myclassid+","+countInterfaceVal+" , "+countImp.CountT+" , "+countImp.CountN+" , "+countImp.CountE);
+//				 if(countInterface.CountT>0|| countInterface.CountN>0|| countInterface.CountE>0) {
+//					 bwfile5.write("COUNT INTERFACE "+countInterface.toString()+"  ,");
+//				 }
+//				
+//				 bwfile5.write("COUNT IMPLEMENTATION "+countImp.toString()+"  ");
+//				 
+//				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+////					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("T MIXED WITH N  ");
+//				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ONLY 1 IMPLEMENTATION T  ");
+//				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+////					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ONLY 1 IMPLEMENTATION  N  "); 
+//				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ONLY 1 IMPLEMENTATION  E  "); 
+//				 }  
+//				 
+//				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ALL T  ");
+//				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+////					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ALL N  "); 
+//				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("ALL E  "); 
+//				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+////					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+//					 bwfile5.write("N MIXED WITH E  "); 
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+////					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+//					  bwfile5.write("T MIXED WITH E  "); 
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+////					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+//					  bwfile5.write("T MIXED WITH N AND E  "); 
+//				 }
 				
-				  bwfile2.newLine();
+				  bwfile5.newLine();
 				
 				
 		    
@@ -734,19 +620,139 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 			
 			
 			
-				
-				
-				
 			
 			
 	
 			
+//			System.setOut(fileOut);
+			bwfile2.write("RequirementID, SuperclassID, SuperclassTraceValue, #SuperclassT, #SuperclassN, #SuperclassE");
+			bwfile2.newLine();
+			 CountTNE countSuperclass= new CountTNE(); 
+			for (Entry<String, List<String>> entry : SuperclassesTracesHashMapFinal.entrySet()) {
+			    String key = entry.getKey();
+			    List<String> values = entry.getValue();
+			    // now work with key and value...
+			    String[] keys = key.split("/"); 
+				 String RequirementID= keys[0]; 
+				 String myclassid= keys[1]; 
+				 String myclassname= keys[2]; 
+				String TraceVal=null; 
+				 
+				 bwfile4.write(RequirementID+ ", "+ myclassid+" , "+myclassname+",  ");
+				 countSuperclass= new CountTNE(); 
+				 if(SuperclassesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)!=null) {
+//					 bwfile2.write("------ "+SuperclassesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname)+"------ ");
+					  TraceVal=SuperclassesTracesHashMap.get(RequirementID+"/"+myclassid+"/"+myclassname); 
+					
+					 if(TraceVal.trim().equals("T")) {
+						 countSuperclass.CountT++; 
+						
+					 }else if(TraceVal.trim().equals("N")) {
+						 countSuperclass.CountN++; 
+						
+					 }else if(TraceVal.trim().equals("E")) {
+						 countSuperclass.CountE++; 
+						
+					 }
+				 }
+				 
+				 
+				
+				 
+				 CountTNE countImp= new CountTNE(); 
+				for(String value: values) {
+					
+
+					if(values.size()>1) {
+						 System.out.print("*************** ");
+//						 bwfile2.write("*************** "); 
+					}
+
+			        System.out.print(value+" ");
+//			        bwfile2.write(value+" "); 
+			    }
+				
+				for(String val: values) {
+					 if(val.trim().equals("T")) {
+						 countImp.CountT++; 
+					 }else  if(val.trim().equals("N")) {
+						 countImp.CountN++; 
+					 }
+					 else  if(val.trim().equals("E")) {
+						 countImp.CountE++; 
+					 }
+				 }
+				 System.out.println(); 
+//				 bwfile2.newLine(); 
+				
+				 if(countSuperclass.CountT>0|| countSuperclass.CountN>0|| countSuperclass.CountE>0) {
+					 bwfile4.write("COUNT SUPERCLASS "+countSuperclass.toString()+"  ,");
+				 }
+				
+				 bwfile4.write("COUNT CHILDCLASS "+countImp.toString()+"  ");
+				 String countSuperclassVal=""; 
+				 if(countSuperclass.CountE==1) {
+					 countSuperclassVal="E"; 
+				 }
+				if(countSuperclass.CountN==1) {
+					 countSuperclassVal="N"; 		 
+								 }
+				if(countSuperclass.CountT==1) {
+					countSuperclassVal="T"; 	
+				}
+				
+				bwfile2.write(RequirementID+ ", "+ myclassid+" , "+TraceVal+",  "+countSuperclassVal+","+countImp.CountT+","+countImp.CountN+","+countImp.CountE);
+				bwfile2.newLine(); 
+//				 if(countImp.CountT>0 && countImp.CountN>0 && countImp.CountE==0) {
+////					 System.out.println("T MIXED WITH N CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("T MIXED WITH N  ");
+//				 }if(countImp.CountT==1 && countImp.CountE==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ONLY 1 CHILD T  ");
+//				 } if(countImp.CountN==1 && countImp.CountT==0 && countImp.CountE==0 ) {
+////					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ONLY 1 CHILD  N  "); 
+//				 } if(countImp.CountE==1 && countImp.CountT==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ONLY 1 CHILD  E  "); 
+//				 }  
+//				 
+//				 if(countImp.CountT>1 && countImp.CountE==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL T CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ALL T  ");
+//				 } if(countImp.CountN>1 && countImp.CountT==0 && countImp.CountE==0 ) {
+////					 System.out.println("ALL N CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ALL N  "); 
+//				 } if(countImp.CountE>1 && countImp.CountT==0 && countImp.CountN==0 ) {
+////					 System.out.println("ALL E CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("ALL E  "); 
+//				 } if(countImp.CountN>0 && countImp.CountE>0 && countImp.CountT==0) {
+////					 System.out.println("N MIXED WITH E CountSuperclass "+countSuperclassVal);
+//					 bwfile4.write("N MIXED WITH E  "); 
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN==0) {
+////					 System.out.println("T MIXED WITH E CountSuperclass "+countSuperclassVal);
+//					  bwfile4.write("T MIXED WITH E  "); 
+//				 }
+//				  if(countImp.CountT>0 && countImp.CountE>0 && countImp.CountN>0) {
+////					 System.out.println("T MIXED WITH N AND E CountSuperclass "+countSuperclassVal);
+//					  bwfile4.write("T MIXED WITH N AND E  "); 
+//				 }
+//				
+//				
+//				  bwfile4.newLine();
+				
+			
+			}
+			
+			
+			
 			
 			System.out.println("finished");
-			bwfile2.close(); 
-			bwfile1.close(); 
-			bwfile3.close(); 
+			bwfile2.close();
+			bwfile1.close();
 			bwfile4.close();
+			bwfile5.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
 			e.printStackTrace();
@@ -762,7 +768,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 	 * @throws IOException 
 	 */
 	public static void main(String[] args) throws SQLException, IOException {
-		ComparisonMethodInterfaces app = new ComparisonMethodInterfaces();
+		ComparisonMethodInterfacesFinal app = new ComparisonMethodInterfacesFinal();
 		app.run();
 		Spoon(); 
 		

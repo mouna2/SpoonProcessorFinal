@@ -76,7 +76,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\Comparison.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\Comparison.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	BufferedWriter bwGold = new BufferedWriter(new OutputStreamWriter(fos));
 

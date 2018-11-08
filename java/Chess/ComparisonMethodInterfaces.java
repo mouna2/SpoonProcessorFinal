@@ -143,19 +143,19 @@ public class ComparisonMethodInterfaces {
 	public void run() throws IOException {
 		ResultSet rs = null; 
 
-		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess.txt");
+		File fout = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
 		
-		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpChess.txt");
+		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess.txt");
 		FileOutputStream fos1 = new FileOutputStream(fout1);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 		
-		File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
+		File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
 		FileOutputStream fos5 = new FileOutputStream(fout5);
 		BufferedWriter bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		
-		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
+		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
 		FileOutputStream fos4 = new FileOutputStream(fout4);
 		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL

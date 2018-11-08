@@ -136,7 +136,7 @@ public class GeneralizationComparison {
 	 */
 	public void run() throws FileNotFoundException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\consoleiTrustGeneralization.txt");
+		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\dumps\\logs\\consoleiTrustGeneralization.txt");
 
 		// Connect to MySQL
 		Connection conn = null;

@@ -248,7 +248,7 @@ public class TracesTableGantt extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogGantt.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogGantt.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");

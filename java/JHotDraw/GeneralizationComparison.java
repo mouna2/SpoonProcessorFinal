@@ -135,12 +135,23 @@ public class GeneralizationComparison {
 	
 	/**
 	 * Connect to MySQL and do some stuff.
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public void run() throws FileNotFoundException {
+	public void run() throws IOException {
 		ResultSet rs = null; 
-		PrintStream fileOut = new PrintStream("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\GeneralizationComparisonJHOTDRAW.txt");
 
+		
+		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonJHotDrawTableAtLeast2.txt");
+		FileOutputStream fos1 = new FileOutputStream(fout1);
+		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
+		
+		
+		File fout2 = new File("C:\\Users\\mouna\\dumps\\logs\\GeneralizationComparisonJHotDrawTableAtLeast3.txt");
+		FileOutputStream fos2 = new FileOutputStream(fout2);
+		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos2));
+		
+		
+		
 		// Connect to MySQL
 		Connection conn = null;
 		try {
@@ -159,22 +170,26 @@ public class GeneralizationComparison {
 			List<SuperClass2> superclassList = new ArrayList<SuperClass2>(); 
 			HashMap<String, String> myhashmap= new 	HashMap<String, String>(); 
 			Statement st= conn.createStatement();
-			
+			int count=0; 
 			ResultSet res2=st.executeQuery("SELECT *" + 
 					"			FROM databasejhotdraw.tracesclasses" ); 
 			while(res2.next()) {
 				String requirementid=""; 
 				String classid=""; 
 				String gold5=""; 
-				String gold5V2=""; 
+				String goldAtLeast3=""; 
+				String goldAtLeast2=""; 
 				String gold=""; 
 				requirementid=res2.getString("requirementid"); 
 				classid=res2.getString("classid"); 
 				gold5=res2.getString("gold5"); 
-				gold5V2=res2.getString("gold5V2"); 
+				goldAtLeast3=res2.getString("goldAtLeast3"); 
+				goldAtLeast2=res2.getString("goldAtLeast2"); 
+
 				gold=res2.getString("gold"); 
-				myhashmap.put(requirementid+"-"+classid, gold+"-"+gold5+"-"+gold5V2); 
-				
+				myhashmap.put(requirementid+"-"+classid, gold+"-"+gold5+"-"+goldAtLeast3+"-"+goldAtLeast2); 
+				System.out.println(count);
+				count++; 
 			}
 			
 			
@@ -187,7 +202,12 @@ public class GeneralizationComparison {
 			
 			PredictionEvaluation predMouna= new PredictionEvaluation();
 			PredictionEvaluation predAlex= new PredictionEvaluation();
-			System.setOut(fileOut);
+			bwfile1.write("RequirementID, ClassID,CLASS-GOLD, #methodsTotal,  #methodsT, #methodsN, #methodsE, PrecisionRecall");
+			bwfile1.newLine();
+			bwfile2.write("RequirementID, ClassID,CLASS-GOLD, #methodsTotal,  #methodsT, #methodsN, #methodsE, PrecisionRecall");
+			bwfile2.newLine();
+			count=0; 
+			int count2=0; 
 
 			for (  Entry<String, String>entry : myhashmap.entrySet()) {
 			    String key = entry.getKey();
@@ -199,7 +219,71 @@ public class GeneralizationComparison {
 				 String classid= keys[1]; 
 				 String gold= values[0]; 
 				 String gold5= values[1]; 
-				 String gold5V2= values[2]; 
+				 String goldAtLeast3TracesClasses= values[2]; 
+				 String goldAtLeast2TracesClasses= values[3]; 
+				 
+//				  res2=st.executeQuery("SELECT COUNT(*)" + 
+//							"			FROM databasejhotdraw.tracesclasses inner join traces where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +"'");
+//				  while(res2.next()) {
+//					   MethodsTotal= res2.getInt(1); 
+//					   System.out.println("MethodsTotal"+MethodsTotal);
+//				  }
+				
+				int AtLeast2TMethodTraces=0; 
+				int AtLeast2NMethodTraces=0; 
+				int AtLeast2EMethodTraces=0; 
+				 int MethodsTotal=0; 
+				 int MethodsTotalAtLeast3=0; 
+				
+				
+				int AtLeast3TMethodTraces=0; 
+				int AtLeast3NMethodTraces=0; 
+				int AtLeast3EMethodTraces=0; 
+count=0; 
+res2=st.executeQuery("SELECT *" + 
+		"			FROM databasegantt.tracesclasses inner join traces where traces.requirementid='"+RequirementID+"'AND traces.classid='"+classid +
+		"' and tracesclasses.requirementid='"+RequirementID+"'and tracesclasses.classid='"+classid+
+		
+	  "'"); 
+				  while(res2.next()) {
+					
+					  String goldAtLeast2Traces =null; 
+					  String goldAtLeast3Traces =null; 
+					   goldAtLeast2Traces =res2.getString("goldAtLeast2"); 
+					   goldAtLeast3Traces =res2.getString("goldAtLeast3"); 
+					  if(goldAtLeast2Traces.trim().equals("T")) {
+						  AtLeast2TMethodTraces++; 
+					  }
+					  
+					  if(goldAtLeast2Traces.trim().equals("N")) {
+						  AtLeast2NMethodTraces++; 
+					  }
+					  	if(goldAtLeast2Traces.trim().equals("E")) {
+					  		AtLeast2EMethodTraces++; 
+					  }
+					  	
+					  	
+					  	
+					    if(goldAtLeast3Traces.trim().equals("T")) {
+							  AtLeast3TMethodTraces++; 
+						  }
+						  
+						  if(goldAtLeast3Traces.trim().equals("N")) {
+							  AtLeast3NMethodTraces++; 
+						  }
+						  	if(goldAtLeast3Traces.trim().equals("E")) {
+						  		AtLeast3EMethodTraces++; 
+						  }
+					  	
+					    MethodsTotal= AtLeast2TMethodTraces+AtLeast2NMethodTraces+AtLeast2EMethodTraces; 
+					    MethodsTotalAtLeast3= AtLeast3TMethodTraces+AtLeast3NMethodTraces+AtLeast3EMethodTraces; 
+
+//						System.out.println(count+" COUNT");
+						count++; 
+				  }
+				  
+				  
+				  
 				 
 				if(gold5.trim().equals("T") && gold.trim().equals("T")) {
 					predMouna.TruePositive++; 
@@ -217,23 +301,73 @@ public class GeneralizationComparison {
 					predMouna.E++; 
 				}
 				 
-				if(gold5V2.trim().equals("T") && gold.trim().equals("T")) {
-					predAlex.TruePositive++; 
+				
+				
+				String PrecisionRecall=null; 
+				
+				if(goldAtLeast2TracesClasses.trim().equals("T") && gold.trim().equals("T")) {
+					predAlex.TruePositive++;
+					PrecisionRecall="TP"; 
 				}
-				else if(gold5V2.trim().equals("T") && gold.trim().equals("N")) {
+				else if(goldAtLeast2TracesClasses.trim().equals("T") && gold.trim().equals("N")) {
 					predAlex.FalsePositive++; 
+					PrecisionRecall="FP"; 
 				}
-				if(gold5V2.trim().equals("N") && gold.trim().equals("N")) {
+				if(goldAtLeast2TracesClasses.trim().equals("N") && gold.trim().equals("N")) {
 					predAlex.TrueNegative++; 
+					PrecisionRecall="TN"; 
 				}
-				else if(gold5V2.trim().equals("N") && gold.trim().equals("T")) {
+				else if(goldAtLeast2TracesClasses.trim().equals("N") && gold.trim().equals("T")) {
 					predAlex.FalseNegative++; 
+					PrecisionRecall="FN"; 
 				}
-				else if(gold5V2.trim().equals("E") || gold.trim().equals("E")) {
+				else if(goldAtLeast2TracesClasses.trim().equals("E") || gold.trim().equals("E")) {
 					predAlex.E++; 
+					PrecisionRecall="E"; 
 				}
 				
-			
+				
+				
+				
+				String PrecisionRecallAtLeast3=null; 
+				
+				if(goldAtLeast3TracesClasses.trim().equals("T") && gold.trim().equals("T")) {
+					predAlex.TruePositive++;
+					PrecisionRecallAtLeast3="TP"; 
+				}
+				else if(goldAtLeast3TracesClasses.trim().equals("T") && gold.trim().equals("N")) {
+					predAlex.FalsePositive++; 
+					PrecisionRecallAtLeast3="FP"; 
+				}
+				if(goldAtLeast3TracesClasses.trim().equals("N") && gold.trim().equals("N")) {
+					predAlex.TrueNegative++; 
+					PrecisionRecallAtLeast3="TN"; 
+				}
+				else if(goldAtLeast3TracesClasses.trim().equals("N") && gold.trim().equals("T")) {
+					predAlex.FalseNegative++; 
+					PrecisionRecallAtLeast3="FN"; 
+				}
+				else if(goldAtLeast3TracesClasses.trim().equals("E") || gold.trim().equals("E")) {
+					predAlex.E++; 
+					PrecisionRecallAtLeast3="E"; 
+				}
+				
+				
+				
+				 bwfile1.write(RequirementID+","+classid+","+goldAtLeast2TracesClasses+","+MethodsTotal+","+AtLeast2TMethodTraces+","+
+						  AtLeast2NMethodTraces+","+AtLeast2EMethodTraces+","+PrecisionRecall);
+				 bwfile1.newLine();
+				 
+				 
+				 
+				 bwfile2.write(RequirementID+","+classid+","+goldAtLeast3TracesClasses+","+MethodsTotalAtLeast3+","+AtLeast3TMethodTraces+","+
+						  AtLeast3NMethodTraces+","+AtLeast3EMethodTraces+","+PrecisionRecallAtLeast3);
+				 bwfile2.newLine();
+				 
+				 
+				 
+				System.out.println("count2  "+count2);
+				count2++; 
 			}
 			
 			
@@ -244,7 +378,8 @@ public class GeneralizationComparison {
 			System.out.println("Alex ======"+predAlex.toString2()+ "  TOTAL "+TotalAlex);
 			System.out.println("Mouna ======"+predMouna.toString2()+ "  TOTAL "+TotalMouna);
 			System.out.println("finished");
-		
+			bwfile1.close();
+			bwfile2.close();
 	    } catch (SQLException e) {
 			System.out.println("ERROR: Could not create the table");
 			e.printStackTrace();

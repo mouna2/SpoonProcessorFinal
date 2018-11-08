@@ -407,17 +407,17 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogiTrustEXEC.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogiTrustEXEC.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationiTrustEXEC.txt");
+	File fout2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationiTrustEXEC.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold2.txt");
-	File foutGold2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationiTrustGold2EXEC.txt");
+	File foutGold2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationiTrustGold2EXEC.txt");
 
 	FileOutputStream fileGold2 = new FileOutputStream(foutGold2);
 	
@@ -425,20 +425,20 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold2 = new BufferedWriter(new OutputStreamWriter(fileGold2));
 	
-	File foutGold2TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogiTrustGOLD2EXEC.txt");
+	File foutGold2TableLog = new File("C:\\Users\\mouna\\dumps\\TableLogiTrustGOLD2EXEC.txt");
 	FileOutputStream fosGold2 = new FileOutputStream(foutGold2TableLog);
 	BufferedWriter bwGold2TableLog = new BufferedWriter(new OutputStreamWriter(fosGold2));
 	
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllTClassLevelCallers.txt");
+	File mylog = new File("C:\\Users\\mouna\\dumps\\logs\\logiTrustAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllNClassLevelCallers.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\dumps\\logs\\logiTrustAllNClassLevelCallers.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	
-	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logiTrustAllNParameters.txt");
+	File mylog3 = new File("C:\\Users\\mouna\\dumps\\logs\\logiTrustAllNParameters.txt");
 	FileOutputStream mylogfile3 = new FileOutputStream(mylog3);
 	BufferedWriter bwlog3 = new BufferedWriter(new OutputStreamWriter(mylogfile3));
 	

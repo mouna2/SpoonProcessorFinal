@@ -143,20 +143,20 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws IOException {
 		ResultSet rs = null; 
-		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpITRUST.txt");
+		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpITRUST.txt");
 		FileOutputStream fos1 = new FileOutputStream(fout1);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 
 		
-		File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenITRUST.txt");
+		File fout3 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenITRUST.txt");
 		FileOutputStream fos3 = new FileOutputStream(fout3);
 		BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fos3));
 		
-		File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpITRUST_COUNTS.txt");
+		File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpITRUST_COUNTS.txt");
 		FileOutputStream fos5 = new FileOutputStream(fout5);
 		BufferedWriter bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		
-		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenITRUST_COUNTS.txt");
+		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenITRUST_COUNTS.txt");
 		FileOutputStream fos4 = new FileOutputStream(fout4);
 		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL

@@ -575,20 +575,20 @@ public class TracesTableGantt2FINALReq6 extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\TableLogGanttReq6.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\TableLogGanttReq6.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGANTTReq6.txt");
+	File fout2 = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGANTTReq6.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold3.txt");
-	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGold3GANTTReq6.txt");
+	File fout3 = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGold3GANTTReq6.txt");
 
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
 	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold4.txt");
-	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGold4GANTTReq6.txt");
+	File fout4 = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\PredictionEvaluationGold4GANTTReq6.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
 	
@@ -599,16 +599,16 @@ public class TracesTableGantt2FINALReq6 extends JFrame {
 	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fos4));
 
 	
-	File foutGold3TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\TableLogGanttGOLD3Req6.txt");
+	File foutGold3TableLog = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\TableLogGanttGOLD3Req6.txt");
 	FileOutputStream fosGold3 = new FileOutputStream(foutGold3TableLog);
 	BufferedWriter bwGold3TableLog = new BufferedWriter(new OutputStreamWriter(fosGold3));
 	
 	
-	File foutGold4TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\TableLogGanttGOLD4Req6.txt");
+	File foutGold4TableLog = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\TableLogGanttGOLD4Req6.txt");
 	FileOutputStream fosGold4 = new FileOutputStream(foutGold4TableLog);
 	BufferedWriter bwGold4TableLog = new BufferedWriter(new OutputStreamWriter(fosGold4));
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\logs\\loggantt.txt");
+	File mylog = new File("C:\\Users\\mouna\\dumps\\GANTT_REQUIREMENTS_SEPARATED\\\\logs\\loggantt.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog); 
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	

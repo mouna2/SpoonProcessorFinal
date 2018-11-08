@@ -563,50 +563,50 @@ public class TracesTableGANTTFINALROUND2Superclasses extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChess.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogChess.txt");
 
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 //	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChess.txt");
+	File fout2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationChess.txt");
 
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File foutGold5 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessGold5.txt");
-	File foutGold5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationChessGold5.txt");
+	File foutGold5 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationChessGold5.txt");
 
 	FileOutputStream fileGold5 = new FileOutputStream(foutGold5);
 	
-	File foutGold5TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogChessGold5.txt");
+	File foutGold5TableLog = new File("C:\\Users\\mouna\\dumps\\TableLogChessGold5.txt");
 	FileOutputStream fosGold5 = new FileOutputStream(foutGold5TableLog);
 	BufferedWriter bwGold5TableLog = new BufferedWriter(new OutputStreamWriter(fosGold5));
 
 	
-	File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\file1.txt");
+	File file1log = new File("C:\\Users\\mouna\\dumps\\file1.txt");
 	FileOutputStream fosfila1 = new FileOutputStream(file1log);
 	BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 	
 	
-	File file2log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\file2.txt");
+	File file2log = new File("C:\\Users\\mouna\\dumps\\file2.txt");
 	FileOutputStream fosfila2 = new FileOutputStream(file2log);
 	BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 	
-	File file3log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\file3.txt");
+	File file3log = new File("C:\\Users\\mouna\\dumps\\file3.txt");
 	FileOutputStream fosfila3 = new FileOutputStream(file3log);
 	BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila3));
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
 	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
 	BufferedWriter bwGold5 = new BufferedWriter(new OutputStreamWriter(fileGold5));
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
+	File mylog = new File("C:\\Users\\mouna\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	
-	File mylog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logChessTraceMixed.txt");
+	File mylog2 = new File("C:\\Users\\mouna\\dumps\\logs\\logChessTraceMixed.txt");
 	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
 	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
 	
-	File mylog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\PredictionCounts.txt");
+	File mylog3 = new File("C:\\Users\\mouna\\dumps\\logs\\PredictionCounts.txt");
 	FileWriter fr = new FileWriter(mylog3, true);
 	BufferedWriter br = new BufferedWriter(fr);
 	

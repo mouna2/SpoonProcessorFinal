@@ -290,20 +290,20 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogGantt.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogGantt.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGANTT_ACHRAF.txt");
+	File fout2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationGANTT_ACHRAF.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold3.txt");
-	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold3GANTT_ACHRAF.txt");
+	File fout3 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationGold3GANTT_ACHRAF.txt");
 
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
 	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\PredictionEvaluationGold4.txt");
-	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4GANTT_ACHRAF.txt");
+	File fout4 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationGold4GANTT_ACHRAF.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
 	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
@@ -311,7 +311,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 	BufferedWriter bwGold3 = new BufferedWriter(new OutputStreamWriter(fos3));
 	BufferedWriter bwGold4 = new BufferedWriter(new OutputStreamWriter(fos4));
 
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\loggantt.txt");
+	File mylog = new File("C:\\Users\\mouna\\dumps\\logs\\loggantt.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog); 
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	

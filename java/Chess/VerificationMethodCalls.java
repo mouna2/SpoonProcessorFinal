@@ -232,7 +232,7 @@ public class VerificationMethodCalls {
 	public static void Spoon() throws SQLException, IOException {
 	Connection conn=getConnection();
 	Statement st= conn.createStatement();
-	 fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\CallsNotFoundLog.txt");
+	 fout = new File("C:\\Users\\mouna\\dumps\\CallsNotFoundLog.txt");
 	 fos = new FileOutputStream(fout);
 	 bwGold = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -940,7 +940,7 @@ public class VerificationMethodCalls {
 		
 		
 	
-		 foutIntersection = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\IntersectionExecParsed.txt");
+		 foutIntersection = new File("C:\\Users\\mouna\\dumps\\IntersectionExecParsed.txt");
 		 fosIntersection = new FileOutputStream(foutIntersection);
 		 bwGoldIntersection = new BufferedWriter(new OutputStreamWriter(fosIntersection));
 

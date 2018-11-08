@@ -144,20 +144,20 @@ public class ComparisonMethodInterfaces {
 	 */
 	public void run() throws IOException {
 		ResultSet rs = null; 
-		File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpJHOTDRAW.txt");
+		File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpJHOTDRAW.txt");
 		FileOutputStream fos1 = new FileOutputStream(fout1);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fos1));
 		
 		
-		File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpJHOTDRAW_COUNTS.txt");
+		File fout = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpJHOTDRAW_COUNTS.txt");
 		FileOutputStream fos = new FileOutputStream(fout);
 		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
 		
-		File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenJHOTDRAW.txt");
+		File fout3 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenJHOTDRAW.txt");
 		FileOutputStream fos3 = new FileOutputStream(fout3);
 		BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fos3));
 
-		File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenJHOTDRAW_COUNTS.txt");
+		File fout4 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenJHOTDRAW_COUNTS.txt");
 		FileOutputStream fos4 = new FileOutputStream(fout4);
 		BufferedWriter bwfile4 = new BufferedWriter(new OutputStreamWriter(fos4));
 		// Connect to MySQL

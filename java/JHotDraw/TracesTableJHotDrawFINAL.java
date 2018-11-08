@@ -651,40 +651,40 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHotDraw.txt");
+	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogJHotDraw.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
 	//File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluation.txt");
-	File fout2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationJHotDraw.txt");
+	File fout2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationJHotDraw.txt");
 	FileOutputStream fos2 = new FileOutputStream(fout2);
 	
 	//File fout3 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold3.txt");
-	File fout3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold3JHOTDRAW.txt");
+	File fout3 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationGold3JHOTDRAW.txt");
 	FileOutputStream fos3 = new FileOutputStream(fout3);
 	
 	//File fout4 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\PredictionEvaluationGold4.txt");
-	File fout4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\PredictionEvaluationGold4JHOTDRAW.txt");
+	File fout4 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationGold4JHOTDRAW.txt");
 	FileOutputStream fos4 = new FileOutputStream(fout4);
 	
-	File mylog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawALLTCALLERSFP.txt");
+	File mylog = new File("C:\\Users\\mouna\\dumps\\logs\\logjhotdrawALLTCALLERSFP.txt");
 	FileOutputStream mylogfile = new FileOutputStream(mylog);
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 
 	
-	File mylogcallees = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawALLTCALLEESFP.txt");
+	File mylogcallees = new File("C:\\Users\\mouna\\dumps\\logs\\logjhotdrawALLTCALLEESFP.txt");
 	FileOutputStream mylogfilecallees = new FileOutputStream(mylogcallees);
 	BufferedWriter bwlogcallees = new BufferedWriter(new OutputStreamWriter(mylogfilecallees));
 	
 	
 	
-	File MajorityCallersLogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawMajorityClassCallersFP.txt");
+	File MajorityCallersLogFP = new File("C:\\Users\\mouna\\dumps\\logs\\logjhotdrawMajorityClassCallersFP.txt");
 	FileOutputStream MajorityCallersFP = new FileOutputStream(MajorityCallersLogFP);
 	BufferedWriter bwlogMajorityCallersFP = new BufferedWriter(new OutputStreamWriter(MajorityCallersFP));
 	
-	File MajorityCallersLogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\logjhotdrawMajorityClassCallersFN.txt");
+	File MajorityCallersLogFN = new File("C:\\Users\\mouna\\dumps\\logs\\logjhotdrawMajorityClassCallersFN.txt");
 	FileOutputStream MajorityCallersFN = new FileOutputStream(MajorityCallersLogFN);
 	BufferedWriter bwlogMajorityCallersFN = new BufferedWriter(new OutputStreamWriter(MajorityCallersFN));
-	File foutGold3TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHOTDRAWGOLD3.txt");
+	File foutGold3TableLog = new File("C:\\Users\\mouna\\dumps\\TableLogJHOTDRAWGOLD3.txt");
 	FileOutputStream fosGold3 = new FileOutputStream(foutGold3TableLog);
 	BufferedWriter bwGold3TableLog = new BufferedWriter(new OutputStreamWriter(fosGold3));
 	 HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
@@ -692,7 +692,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
 	
-	File foutGold4TableLog = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\TableLogJHOTDRAWGOLD4.txt");
+	File foutGold4TableLog = new File("C:\\Users\\mouna\\dumps\\TableLogJHOTDRAWGOLD4.txt");
 	FileOutputStream fosGold4 = new FileOutputStream(foutGold4TableLog);
 	BufferedWriter bwGold4TableLog = new BufferedWriter(new OutputStreamWriter(fosGold4));
 	
