@@ -177,10 +177,10 @@ public class AddGold3Gold4Gantt {
 					goldAtLeast3=PredictGoldAtLeast3(SubjectT, SubjectN); 
 					goldAtLeast2=PredictGoldAtLeast2(SubjectT, SubjectN); 
 					gold6=PredictGold6(SubjectT, SubjectN); 
-					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"',"+"`goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldAtLeast2` ='"+ goldAtLeast2 +"'WHERE id='"+counter+"'"); 
+					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"',"+"`goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldAtLeast2 +"'WHERE id='"+counter+"'"); 
 				}
 				else {
-					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ "E" +"',"+"`gold4` ='"+ "E" +"',"+"`goldAtLeast3` ='"+ "E"+"',"+"`goldAtLeast2` ='"+ "E" +"'WHERE id='"+counter+"'"); 
+					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ "E" +"',"+"`gold4` ='"+ "E" +"',"+"`goldAtLeast3` ='"+ "E"+"',"+"`goldfinal` ='"+ "E" +"'WHERE id='"+counter+"'"); 
 
 				}
 				

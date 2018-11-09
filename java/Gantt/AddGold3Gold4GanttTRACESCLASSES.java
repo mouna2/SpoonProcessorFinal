@@ -570,7 +570,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 					    
 					  
 					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						     } 
 //						    else  if(charac.trim().equals("N")) {
@@ -579,20 +579,20 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 						    		
 						    		
 						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 						    			     }
 						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						    	 
 						     }
 					     
 			     }
 			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }

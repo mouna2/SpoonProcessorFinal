@@ -111,127 +111,9 @@ public class AddGold2ColumnTTRACESCLASSES {
 	}
 	
 	public static void main(String[] args) throws SQLException, IOException {
-//		AddColumns();
 		AddColumns2();
 	}
 
-	public static void AddColumns() throws SQLException {
-		// TODO Auto-generated method stub
-		Connection conn = null;
-		DBDemo2 DatabaseReading = new DBDemo2();
-		conn = DatabaseReading.getConnection();
-		Statement st = conn.createStatement();
-		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold5"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold3");
-
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold4");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold5");
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold3 LONGTEXT"); 
-
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold4 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold5 LONGTEXT"); 
-
-
-		int  TracesNumber=0; 
-		int counter=0; 
-		String mytraceclass=""; 
-		String classid=""; 
-		String requirementid= ""; 
-		String gold2=""; 
-		
-		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMap2=new Hashtable<String,List<String>>(); 
-		List<String> mylist= new ArrayList<String>(); 
-		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
-		while(TracesCount.next()) {
-			 TracesNumber= TracesCount.getInt(1); 
-			System.out.println(TracesNumber);
-		}
-		
-		while(counter<TracesNumber) {
-			ResultSet traces = st.executeQuery("SELECT traces.* from traces where id='"+counter+"'"); 
-			while(traces.next()){		
-				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid").trim(); 
-				 classid=traces.getString("classid").trim(); 
-				String ReqClass=requirementid+"-"+classid;
-				RequirementClassHashMap.put(ReqClass, mylist); 
-
-			
-	   		   }
-			counter++; 
-		}
-		
-		counter=0; 
-		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-		    System.out.println(counter + " COUNTER " );
-		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-		     List<String> List= new ArrayList<String>(); 
-		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
-			while(traces.next()){		
-				//THIS IS GOLD 2
-				 requirementid=traces.getString("requirementid").trim(); 
-				 classid=traces.getString("classid").trim(); 
-				
-				 gold2=traces.getString("gold2").trim(); 
-				 if(gold2!=null) {
-					 List.add(gold2); 
-				 }
-				
-				
-			
-	   		   }
-			String ReqClass=requirementid+"-"+classid;
-			 System.out.println(counter + " COUNTER " );
-			RequirementClassHashMap2.put(ReqClass, List); 
-			counter ++; 
-		}
-		
-		
-		
-			int 	COUNTER=0; 
-		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
-			   System.out.println(COUNTER + " COUNTER " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-			     
-			     List<String> MyValues = entry.getValue(); 
-			     
-			     if(MyValues.contains("T")) {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-			     }else if(MyValues.contains("E")) {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-			    	 
-			     }else if(MyValues.isEmpty()) {
-			    	 //DO NOTHING 
-			     }
-			     else {	//st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-			    		
-			    	 boolean allEqual = MyValues.isEmpty() || MyValues.stream().allMatch(MyValues.get(0)::equals);
-if(allEqual && MyValues.get(0).equals("N")) {
-	for(String val: MyValues) {
-   	 System.out.println("NNNNNNN  "+val);
-   	 
-    }
-	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-}
-
-			     
-			     }
-			     COUNTER++; 
-		}
-	
-		
-		
-		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
-	}
 	
 	
 	public static void AddColumns2() throws SQLException {
@@ -339,10 +221,10 @@ if(allEqual && MyValues.get(0).equals("N")) {
 //					    	 
 //					     }
 //			     
-//						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 //
 //			     }else if(MyValues.contains("E")) {
-//						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 //
 //			    	 
 //			     }else if(MyValues.isEmpty()) {
@@ -360,7 +242,7 @@ if(allEqual && MyValues.get(0).equals("N")) {
 //	
 //	
 //	
-//	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 //
 ////}
 //
@@ -393,7 +275,7 @@ if(allEqual && MyValues.get(0).equals("N")) {
 			    System.out.println("CountE "+count.CountE);
 //			     if(charac.trim().equals("T")) {
 			    if(count.CountT>count.CountN && count.CountT>count.CountE) {		
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     } 
 //			    else  if(charac.trim().equals("N")) {
@@ -402,13 +284,13 @@ if(allEqual && MyValues.get(0).equals("N")) {
 			    		
 			    		
 			    		
-			    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+			    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 			    			     }
 			     else  {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }
@@ -436,7 +318,7 @@ if(allEqual && MyValues.get(0).equals("N")) {
 			    System.out.println("CountE "+count.CountE);
 //			     if(charac.trim().equals("T")) {
 			    if(count.CountT>0) {		
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     } 
 //			    else  if(charac.trim().equals("N")) {
@@ -445,13 +327,13 @@ if(allEqual && MyValues.get(0).equals("N")) {
 			    		
 			    		
 			    		
-			    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+			    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 			    			     }
 			     else  {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }

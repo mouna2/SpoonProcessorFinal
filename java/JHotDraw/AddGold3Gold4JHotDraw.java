@@ -177,7 +177,7 @@ public class AddGold3Gold4JHotDraw {
 					goldAtLeast2=PredictGoldAtLeast2(SubjectT, SubjectN); 
 
 					gold6=PredictGold6(SubjectT, SubjectN);
-					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"',"+"`goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldAtLeast2` ='"+ goldAtLeast2 +"'WHERE id='"+counter+"'"); 
+					st.executeUpdate("UPDATE `traces` SET `gold3` ='"+ gold3 +"',"+"`gold4` ='"+ gold4 +"',"+"`goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldAtLeast2 +"'WHERE id='"+counter+"'"); 
 				}
 				
 				

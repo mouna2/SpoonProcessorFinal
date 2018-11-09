@@ -246,10 +246,10 @@ public class AddGold2ColumnTTRACESCLASSES {
 			     List<String> MyValues = entry.getValue(); 
 			     
 			     if(MyValues.contains("T")) {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     }else if(MyValues.contains("E")) {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }else if(MyValues.isEmpty()) {
@@ -257,7 +257,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 			     }
 			     
 			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			     }
 			     counter++; 
@@ -430,7 +430,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 				    System.out.println("CountE "+count.CountE);
 //				     if(charac.trim().equals("T")) {
 				    if(count.CountT>count.CountN && count.CountT>count.CountE) {		
-							st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+							st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 				     } 
 //				    else  if(charac.trim().equals("N")) {
@@ -439,18 +439,18 @@ public class AddGold2ColumnTTRACESCLASSES {
 				    		
 				    		
 				    		
-				    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+				    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 				    			     }
 				     else  {
-							st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+							st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 				    	 
 				     }}
 			     else  {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }
@@ -473,7 +473,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 					    System.out.println("CountE "+count.CountE);
 //					     if(charac.trim().equals("T")) {
 					    if(count.CountT>0) {		
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+								st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 					     } 
 //					    else  if(charac.trim().equals("N")) {
@@ -482,13 +482,13 @@ public class AddGold2ColumnTTRACESCLASSES {
 					    		
 					    		
 					    		
-					    	 st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+					    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 					    			     }
 					     else  {
-								st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+								st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 					    	 
 					     }
@@ -496,7 +496,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 				
 			    	 
 			     } else  {
-						st.executeUpdate("UPDATE `tracesclasses` SET `gold2V2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 				    	 
 			     }

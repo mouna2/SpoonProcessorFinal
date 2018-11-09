@@ -172,12 +172,12 @@ public class AddGold2Column {
 			for (SubjectTSubjectNObject entry: mylist) {
 				System.out.println(entry.toString()+ " "+count);
 				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `gold2` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
+				st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
 			
-			st.executeUpdate("UPDATE `traces` SET `gold2` ='"+ "E" +"'WHERE gold2 IS NULL"); 
+			st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ "E" +"'WHERE gold2 IS NULL"); 
 
 			
 		} catch (IOException e) {
