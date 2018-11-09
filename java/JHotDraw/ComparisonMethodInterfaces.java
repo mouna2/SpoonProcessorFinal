@@ -427,7 +427,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 					List<String> list = new ArrayList<String>();
 
 				for(MethodTrace2 value: values) {
-				String	gold2val=value.getGold2(); 
+				String	gold2val=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
 				String	methodID=value.getMethodRepresentation().methodid; 
@@ -443,13 +443,13 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 						if(ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
-							list.add(value.gold2); 
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.goldfinal); 
+//							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-							list.add(value.gold2); 
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.goldfinal); 
+//							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -470,7 +470,7 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 					List<String> list = new ArrayList<String>();
 
 				for(MethodTrace2 value: values) {
-				String	gold2val=value.getGold2(); 
+				String	gold2val=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
 				String	methodID=value.getMethodRepresentation().methodid; 
@@ -486,13 +486,13 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 						if(SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2); 
+//							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.goldfinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-//							list.add(value.gold2+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.gold2); 
+//							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
+							list.add(value.goldfinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					

@@ -1064,10 +1064,10 @@ public class TracesTableiTrustFINALROUND2 extends JFrame {
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGoldfinal()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGoldfinal().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		
@@ -1217,7 +1217,7 @@ public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, Li
 		data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 		data[j][Gold] = methodtrace.gold;
 		data[j][Subject] = methodtrace.subject;
-		data[j][Gold2] = methodtrace.gold2;
+		data[j][Gold2] = methodtrace.goldfinal;
 		data[j][CallerClassesT] = 0;
 		data[j][CallerClassesN] = 0;
 		data[j][CallerClassesE] = 0;

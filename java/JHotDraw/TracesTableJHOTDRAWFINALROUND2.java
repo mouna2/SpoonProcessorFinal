@@ -719,7 +719,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold2] = methodtrace.gold2;
+			data[j][Gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;

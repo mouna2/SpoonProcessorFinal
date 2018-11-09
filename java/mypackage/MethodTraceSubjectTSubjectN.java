@@ -19,12 +19,12 @@ public class MethodTraceSubjectTSubjectN {
 	public String goldprediction; 
 	public String goldpredictionCaller; 
 	public String goldpredictionCallee; 
-	public String gold2; 
+	public String goldfinal; 
 	public String SubjectT; 
 	public String SubjectN; 
 	public String gold3; 
 	public String gold4; 
-	public String gold5; 
+	public String goldAtLeast2; 
 	public String gold6; 
 	String prediction; 
 	String prediction2; 
@@ -94,12 +94,14 @@ public class MethodTraceSubjectTSubjectN {
 		return ChildrenList;
 	}
 
-	public String getGold5() {
-		return gold5;
+	
+
+	public String getGoldAtLeast2() {
+		return goldAtLeast2;
 	}
 
-	public void setGold5(String gold5) {
-		this.gold5 = gold5;
+	public void setGoldAtLeast2(String goldAtLeast2) {
+		this.goldAtLeast2 = goldAtLeast2;
 	}
 
 	public String getGold6() {
@@ -244,12 +246,14 @@ public class MethodTraceSubjectTSubjectN {
 		this.gold4 = gold4;
 	}
 
-	public String getGold2() {
-		return gold2;
+	
+
+	public String getGoldfinal() {
+		return goldfinal;
 	}
 
-	public void setGold2(String gold2) {
-		this.gold2 = gold2;
+	public void setGoldfinal(String goldfinal) {
+		this.goldfinal = goldfinal;
 	}
 
 	public String getGoldpredictionCaller() {
@@ -429,7 +433,7 @@ public class MethodTraceSubjectTSubjectN {
 				
 					MethodTrace.setGold(traces.getString("gold"));
 				
-					MethodTrace.setGold2(traces.getString("gold2"));
+					MethodTrace.setGoldFinal(traces.getString("goldfinal"));
 					MethodTrace.setGold4(traces.getString("gold4"));
 					MethodTrace.setGold3(traces.getString("gold3"));
 					MethodTrace.setGold5(traces.getString("gold5"));
@@ -1060,9 +1064,9 @@ if(myinterfacelist!=null) {
 				 
 				 mytrace.setGold(myresults.getString("gold"));
 
-				 mytrace.setGold2(myresults.getString("gold2"));
+				 mytrace.setGoldfinal(myresults.getString("goldfinal"));
 				 mytrace.setGold3(myresults.getString("gold3"));
-				 mytrace.setGold5(myresults.getString("gold5"));
+				 mytrace.setGoldfinal(myresults.getString("goldfinal"));
 				 mytrace.setGold4(myresults.getString("gold4"));
 				
 				 mytrace.setSubject(myresults.getString("subject"));
@@ -1269,7 +1273,7 @@ if(myinterfacelist!=null) {
 				 
 				 mytrace.setGold(myresults.getString("gold"));
 
-				 mytrace.setGold2(myresults.getString("gold2"));
+				 mytrace.setGoldfinal(myresults.getString("goldfinal"));
 				 
 				 
 				 mytrace.setSubject(myresults.getString("subject"));

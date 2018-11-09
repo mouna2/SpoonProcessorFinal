@@ -780,7 +780,7 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold2] = methodtrace.gold2;
+			data[j][Gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1649,13 +1649,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
-					if(methtrace.gold2!=null) {
-						if (methtrace.gold2.equals("T")) {
+					if(methtrace.goldfinal!=null) {
+						if (methtrace.goldfinal.equals("T")) {
 							CountMethodTACHRAFGold2++;
-						} else if (methtrace.gold2.equals("N")) {
+						} else if (methtrace.goldfinal.equals("N")) {
 							CountMethodNACHRAFGold2++;
 						}
-						else if (methtrace.gold2.equals("E")) {
+						else if (methtrace.goldfinal.equals("E")) {
 							CountMethodEACHRAFGold2++;
 						}
 					}else  {
@@ -1677,13 +1677,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
-				if(methtrace!=null && methtrace.gold2!=null) {
-					if (methtrace.gold2.equals("T")) {
+				if(methtrace!=null && methtrace.goldfinal!=null) {
+					if (methtrace.goldfinal.equals("T")) {
 						CountMethodTACHRAFCalleeGold2++;
-					} else if (methtrace.gold2.equals("N")) {
+					} else if (methtrace.goldfinal.equals("N")) {
 						CountMethodNACHRAFCalleeGold2++;
 					} 
-					else if (methtrace.gold2.equals("E")) {
+					else if (methtrace.goldfinal.equals("E")) {
 						CountMethodEACHRAFCalleeGold2++;
 					} 
 				}else  {
@@ -3305,7 +3305,7 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 					
 					
 									String key= methodtrace.getMethodRepresentation().methodid+"-"+methodtrace.getRequirement().ID; 
-									PredictionStandardHashMap.put(key, methodtrace.gold2.trim()); 
+									PredictionStandardHashMap.put(key, methodtrace.goldfinal.trim()); 
 									
 									
 									
@@ -3330,9 +3330,9 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 									flagGold2=false; 
 									if(OwnerClassNVarGOLD2!=null) {
-										if(methodtrace.getGold2()!=null){
+										if(methodtrace.getGoldfinal()!=null){
 											data[j][OwnerClassPredictionGOLD2]="N"; 
-											String Result2=OwnerClassPredictionClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][OwnerClassPredictionGOLD2].toString()); 
+											String Result2=OwnerClassPredictionClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][OwnerClassPredictionGOLD2].toString()); 
 											OwnerClassPredictionClassGold2.UpdateCounters(Result2, OwnerClassPredictionClassGold2);
 											 key= methodtrace.getMethodRepresentation().methodid+"-"+methodtrace.getRequirement().ID; 
 											OwnerClassPredictionClassGold2HashMap.put(key, data[j][OwnerClassPredictionGOLD2].toString()); 
@@ -3395,9 +3395,9 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											} */else if ((counterParameterNGOLD2 >= counterParameterTGOLD2)) {
 												data[j][MajorityParametersGOLD2] = "N";
 											}
-											//if(methodtrace.getGold2()!=null) {
-												if( methodtrace.getGold2()!=null) {
-												String Result=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityParametersGOLD2].toString()); 
+											//if(methodtrace.getGoldfinal()!=null) {
+												if( methodtrace.getGoldfinal()!=null) {
+												String Result=MajorityParametersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][MajorityParametersGOLD2].toString()); 
 												MajorityParametersClassGold2.UpdateCounters(Result, MajorityParametersClassGold2);
 												MajorityParametersClassGold2HashMap.put(key, data[j][MajorityParametersGOLD2].toString()); 
 											}
@@ -3422,8 +3422,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									if (counterParameterNGOLD2 >=1 )
 											 {
 										data[j][AtLeast1NParameterGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NParameterGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast1NParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1NParameterGOLD2].toString()); 
 										AtLeast1NParameterClassGold2.UpdateCounters(Result, AtLeast1NParameterClassGold2);
 										AtLeast1NParameterClassGold2HashMap.put(key, data[j][AtLeast1NParameterGOLD2].toString()); 
 										}
@@ -3446,9 +3446,9 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									if (counterParameterNGOLD2 >=2 )
 											 {
 										data[j][AtLeast2NParameterGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
+										if(methodtrace.getGoldfinal()!=null) {
 											
-											String Result=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NParameterGOLD2].toString()); 
+											String Result=AtLeast2NParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2NParameterGOLD2].toString()); 
 										AtLeast2NParameterClassGold2.UpdateCounters(Result, AtLeast2NParameterClassGold2);
 										AtLeast2NParameterClassGold2HashMap.put(key, data[j][AtLeast2NParameterGOLD2].toString()); 
 										}
@@ -3470,8 +3470,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									if (counterParameterTGOLD2 >=1 )
 											 {
 										data[j][AtLeast1TParameterGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TParameterGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast1TParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1TParameterGOLD2].toString()); 
 										AtLeast1TParameterClassGold2.UpdateCounters(Result, AtLeast1TParameterClassGold2);
 										AtLeast1TParameterClassGold2HashMap.put(key, data[j][AtLeast1TParameterGOLD2].toString()); 
 										}
@@ -3492,8 +3492,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (counterParameterTGOLD2 >=2 )
 												 {
 											data[j][AtLeast2TParameterGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TParameterGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeast2TParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TParameterGOLD2].toString()); 
 											AtLeast2TParameterClassGold2.UpdateCounters(Result, AtLeast2TParameterClassGold2);
 											AtLeast2TParameterClassGold2HashMap.put(key, data[j][AtLeast2TParameterGOLD2].toString()); 
 											}
@@ -3516,8 +3516,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllTParametersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTParametersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllTParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTParametersGOLD2].toString()); 
 											AllTParameterClassGold2.UpdateCounters(Result, AllTParameterClassGold2);
 											AllTParameterClassGold2HashMap.put(key, data[j][AllTParametersGOLD2].toString()); 
 											}
@@ -3540,8 +3540,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllNParametersGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNParametersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllNParameterClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNParametersGOLD2].toString()); 
 											AllNParameterClassGold2.UpdateCounters(Result, AllNParameterClassGold2);
 											AllNParameterClassGold2HashMap.put(key, data[j][AllNParametersGOLD2].toString()); 
 
@@ -3587,8 +3587,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										}*/ else if (CounterTraceClassCalleeNGOLD2 >= CounterTraceClassCalleeTGOLD2) {
 											data[j][MajorityClassLevelCalleesGOLD2] = "N";
 										}
-										if(true && methodtrace.getGold2()!=null && data[j][MajorityClassLevelCalleesGOLD2]!=null) {
-										String Result=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCalleesGOLD2].toString()); 
+										if(true && methodtrace.getGoldfinal()!=null && data[j][MajorityClassLevelCalleesGOLD2]!=null) {
+										String Result=MajorityClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][MajorityClassLevelCalleesGOLD2].toString()); 
 										MajorityClassLevelCalleesClassGold2.UpdateCounters(Result, MajorityClassLevelCalleesClassGold2);
 										MajorityClassLevelCalleesClassGold2HashMap.put(key, data[j][MajorityClassLevelCalleesGOLD2].toString()); 
 										}
@@ -3627,8 +3627,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											 {
 											data[j][MajorityClassLevelCallersGOLD2] = "N";
 										} 
-										if(methodtrace.getGold2()!=null) {
-										String Result=MajorityClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityClassLevelCallersGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=MajorityClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][MajorityClassLevelCallersGOLD2].toString()); 
 										MajorityClassLevelCallersClassGold2.UpdateCounters(Result, MajorityClassLevelCallersClassGold2);
 										MajorityClassLevelCallersClassGold2HashMap.put(key, data[j][MajorityClassLevelCallersGOLD2].toString()); 
 										}
@@ -3665,8 +3665,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											data[j][MajorityMethodLevelCalleesGOLD2] = "N";
 										}
 									
-										if(methodtrace.getGold2()!=null) {
-										String Result=MajorityMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCalleesGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=MajorityMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][MajorityMethodLevelCalleesGOLD2].toString()); 
 										MajorityMethodLevelCalleesClassGold2.UpdateCounters(Result, MajorityMethodLevelCalleesClassGold2);
 										MajorityMethodLevelCalleesClassGold2HashMap.put(key, data[j][MajorityMethodLevelCalleesGOLD2].toString()); 
 
@@ -3703,8 +3703,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												) {
 											data[j][MajorityMethodLevelCallersGOLD2] = "N";
 										}
-										if(methodtrace.getGold2()!=null) {
-										String Result=MajorityMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][MajorityMethodLevelCallersGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=MajorityMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][MajorityMethodLevelCallersGOLD2].toString()); 
 										MajorityMethodLevelCallersClassGold2.UpdateCounters(Result, MajorityMethodLevelCallersClassGold2);
 										MajorityMethodLevelCallersClassGold2HashMap.put(key, data[j][MajorityMethodLevelCallersGOLD2].toString()); 
 
@@ -3729,8 +3729,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											data[j][AtLeast1NPredictionClassLevelCallersGOLD2] = "N";
 											Object var= 	data[j][AtLeast1NPredictionClassLevelCallersGOLD2]; 
 											String NEWVAR=var.toString(); 
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastNPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastNPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1NPredictionClassLevelCallersGOLD2].toString()); 
 											AtLeastNPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCallersClassGold2);
 											AtLeastNPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1NPredictionClassLevelCallersGOLD2].toString()); 
 
@@ -3755,8 +3755,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CounterTraceClassCallerTGOLD2 >=1 )
 												 {
 											data[j][AtLeast1TPredictionClassLevelCallersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastTPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastTPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1TPredictionClassLevelCallersGOLD2].toString()); 
 											AtLeastTPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCallersClassGold2);
 											AtLeastTPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1TPredictionClassLevelCallersGOLD2].toString()); 
 
@@ -3784,8 +3784,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CounterTraceClassCalleeNGOLD2 >=1 )
 												 {
 											data[j][AtLeast1NPredictionClassLevelCalleesGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastNPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionClassLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastNPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1NPredictionClassLevelCalleesGOLD2].toString()); 
 											AtLeastNPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionClassLevelCalleesClassGold2);
 											AtLeastNPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1NPredictionClassLevelCalleesGOLD2].toString()); 
 
@@ -3811,8 +3811,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CounterTraceClassCalleeTGOLD2 >=1 )
 												 {
 											data[j][AtLeast1TPredictionClassLevelCalleesGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastTPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionClassLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastTPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1TPredictionClassLevelCalleesGOLD2].toString()); 
 											AtLeastTPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionClassLevelCalleesClassGold2);
 											AtLeastTPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1TPredictionClassLevelCalleesGOLD2].toString()); 
 
@@ -3836,8 +3836,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CountMethodNGOLD2 >=1 )
 												 {
 											data[j][AtLeast1NPredictionMethodLevelCallersGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastNPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastNPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1NPredictionMethodLevelCallersGOLD2].toString()); 
 											AtLeastNPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCallersClassGold2);
 											AtLeastNPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1NPredictionMethodLevelCallersGOLD2].toString()); 
 
@@ -3861,8 +3861,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CountMethodTGOLD2 >=1 )
 												 {
 											data[j][AtLeast1TPredictionMethodLevelCallersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastTPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastTPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1TPredictionMethodLevelCallersGOLD2].toString()); 
 											AtLeastTPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCallersClassGold2);
 											AtLeastTPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast1TPredictionMethodLevelCallersGOLD2].toString()); 
 
@@ -3886,8 +3886,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CountMethodNCalleeGOLD2 >=1 )
 												 {
 											data[j][AtLeast1NPredictionMethodLevelCalleesGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastNPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1NPredictionMethodLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastNPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1NPredictionMethodLevelCalleesGOLD2].toString()); 
 											AtLeastNPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastNPredictionMethodLevelCalleesClassGold2);
 											AtLeastNPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1NPredictionMethodLevelCalleesGOLD2].toString()); 
 
@@ -3913,8 +3913,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										if (CountMethodTCalleeGOLD2 >=1 )
 												 {
 											data[j][AtLeast1TPredictionMethodLevelCalleesGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeastTPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast1TPredictionMethodLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeastTPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast1TPredictionMethodLevelCalleesGOLD2].toString()); 
 											AtLeastTPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeastTPredictionMethodLevelCalleesClassGold2);
 											AtLeastTPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast1TPredictionMethodLevelCalleesGOLD2].toString()); 
 
@@ -3944,8 +3944,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												data[j][AtLeast2NPredictionClassLevelCalleesGOLD2] = "N";
 												Object var= 	data[j][AtLeast2NPredictionClassLevelCalleesGOLD2]; 
 												String NEWVAR=var.toString(); 
-												if(methodtrace.getGold2()!=null) {
-													String Result=AtLeast2NPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCalleesGOLD2].toString()); 
+												if(methodtrace.getGoldfinal()!=null) {
+													String Result=AtLeast2NPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2NPredictionClassLevelCalleesGOLD2].toString()); 
 													AtLeast2NPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionClassLevelCalleesClassGold2);
 													AtLeast2NPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2NPredictionClassLevelCalleesGOLD2].toString()); 
 
@@ -3977,8 +3977,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CounterTraceClassCalleeTGOLD2 >=2 )
 											 {
 										data[j][AtLeast2TPredictionClassLevelCalleesGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast2TPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCalleesGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast2TPredictionClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TPredictionClassLevelCalleesGOLD2].toString()); 
 										AtLeast2TPredictionClassLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCalleesClassGold2);
 										AtLeast2TPredictionClassLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCalleesGOLD2].toString()); 
 
@@ -4006,8 +4006,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CountMethodNGOLD2 >=2 )
 													 {
 												data[j][AtLeast2NPredictionMethodLevelCallersGOLD2] = "N";
-												if(methodtrace.getGold2()!=null) {
-												String Result=AtLeast2NPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCallersGOLD2].toString()); 
+												if(methodtrace.getGoldfinal()!=null) {
+												String Result=AtLeast2NPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2NPredictionMethodLevelCallersGOLD2].toString()); 
 												AtLeast2NPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCallersClassGold2);
 												AtLeast2NPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2NPredictionMethodLevelCallersGOLD2].toString()); 
 
@@ -4032,8 +4032,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												if (CounterTraceClassCallerTGOLD2 >=2 )
 												 {
 											data[j][AtLeast2TPredictionClassLevelCallersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 											AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
 											AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 
@@ -4056,8 +4056,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CountMethodTGOLD2 >=2 )
 											 {
 										data[j][AtLeast2TPredictionMethodLevelCallersGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast2TPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCallersGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast2TPredictionMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TPredictionMethodLevelCallersGOLD2].toString()); 
 										AtLeast2TPredictionMethodLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCallersClassGold2);
 										AtLeast2TPredictionMethodLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionMethodLevelCallersGOLD2].toString()); 
 
@@ -4098,8 +4098,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CountMethodNCalleeGOLD2 >=2 )
 											 {
 										data[j][AtLeast2NPredictionMethodLevelCalleesGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast2NPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionMethodLevelCalleesGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast2NPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2NPredictionMethodLevelCalleesGOLD2].toString()); 
 										AtLeast2NPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2NPredictionMethodLevelCalleesClassGold2);
 										AtLeast2NPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2NPredictionMethodLevelCalleesGOLD2].toString()); 
 
@@ -4123,8 +4123,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CountMethodTCalleeGOLD2 >=2 )
 											 {
 										data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-											String Result=AtLeast2TPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeast2TPredictionMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2].toString()); 
 											AtLeast2TPredictionMethodLevelCalleesClassGold2.UpdateCounters(Result, AtLeast2TPredictionMethodLevelCalleesClassGold2);
 											AtLeast2TPredictionMethodLevelCalleesClassGold2HashMap.put(key, data[j][AtLeast2TPredictionMethodLevelCalleesGOLD2].toString()); 
 
@@ -4150,8 +4150,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CounterTraceClassCallerNGOLD2 >=2 )
 											 {
 										data[j][AtLeast2NPredictionClassLevelCallersGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AtLeast2NPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2NPredictionClassLevelCallersGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AtLeast2NPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2NPredictionClassLevelCallersGOLD2].toString()); 
 										AtLeast2NPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2NPredictionClassLevelCallersClassGold2);
 										AtLeast2NPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2NPredictionClassLevelCallersGOLD2].toString()); 
 
@@ -4194,8 +4194,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											if (CounterTraceClassCallerTGOLD2 >=2 )
 											 {
 										data[j][AtLeast2TPredictionClassLevelCallersGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-											String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+											String Result=AtLeast2TPredictionClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 											AtLeast2TPredictionClassLevelCallersClassGold2.UpdateCounters(Result, AtLeast2TPredictionClassLevelCallersClassGold2);
 											AtLeast2TPredictionClassLevelCallersClassGold2HashMap.put(key, data[j][AtLeast2TPredictionClassLevelCallersGOLD2].toString()); 
 
@@ -4229,8 +4229,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 											
 											data[j][AllTMethodLevelCalleesGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllTMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllTMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTMethodLevelCalleesGOLD2].toString()); 
 											AllTMethodLevelCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCalleesClassGold2);
 											AllTMethodLevelCalleesClassGold2HashMap.put(key, data[j][AllTMethodLevelCalleesGOLD2].toString()); 
 
@@ -4252,8 +4252,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllTMethodLevelCallersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllTMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllTMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTMethodLevelCallersGOLD2].toString()); 
 											AllTMethodLevelCallersClassGold2.UpdateCounters(Result, AllTMethodLevelCallersClassGold2);
 											AllTMethodLevelCallersClassGold2HashMap.put(key, data[j][AllTMethodLevelCallersGOLD2].toString()); 
 
@@ -4275,8 +4275,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllTClassLevelCallersGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllTClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllTClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTClassLevelCallersGOLD2].toString()); 
 											AllTClassLevelCallersClassGold2.UpdateCounters(Result, AllTClassLevelCallersClassGold2);
 											System.out.println(methodtrace.toString());
 											AllTClassLevelCallersClassGold2HashMap.put(key, data[j][AllTClassLevelCallersGOLD2].toString()); 
@@ -4301,8 +4301,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllTClassLevelCalleesGOLD2] = "T";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllTClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTClassLevelCalleesGOLD2].toString()); 
 											AllTClassLevelCalleesClassGold2.UpdateCounters(Result, AllTClassLevelCalleesClassGold2);
 											AllTClassLevelCalleesClassGold2HashMap.put(key, data[j][AllTClassLevelCalleesGOLD2].toString()); 
 
@@ -4325,8 +4325,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllNClassLevelCallersGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllNClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllNClassLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNClassLevelCallersGOLD2].toString()); 
 											AllNClassLevelCallersClassGold2.UpdateCounters(Result, AllNClassLevelCallersClassGold2);
 											AllNClassLevelCallersClassGold2HashMap.put(key, data[j][AllNClassLevelCallersGOLD2].toString()); 
 
@@ -4350,8 +4350,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllNClassLevelCalleesGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllNClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllNClassLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNClassLevelCalleesGOLD2].toString()); 
 											AllNClassLevelCalleesClassGold2.UpdateCounters(Result, AllNClassLevelCalleesClassGold2);
 											AllNClassLevelCalleesClassGold2HashMap.put(key, data[j][AllNClassLevelCalleesGOLD2].toString()); 
 
@@ -4374,8 +4374,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllNMethodLevelCallersGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-											String Result=AllNMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllNMethodLevelCallersClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNMethodLevelCallersGOLD2].toString()); 
 											AllNMethodLevelCallersClassGold2.UpdateCounters(Result, AllNMethodLevelCallersClassGold2);
 											AllNMethodLevelCallersClassGold2HashMap.put(key, data[j][AllNMethodLevelCallersGOLD2].toString()); 
 
@@ -4398,8 +4398,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										
 									
 											data[j][AllNMethodLevelCalleesGOLD2] = "N";
-											if(methodtrace.getGold2()!=null) {
-												String Result=AllNMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCalleesGOLD2].toString()); 
+											if(methodtrace.getGoldfinal()!=null) {
+												String Result=AllNMethodLevelCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNMethodLevelCalleesGOLD2].toString()); 
 												AllNMethodLevelCalleesClassGold2.UpdateCounters(Result, AllNMethodLevelCalleesClassGold2);
 												AllNMethodLevelCalleesClassGold2HashMap.put(key, data[j][AllNMethodLevelCalleesGOLD2].toString()); 
 
@@ -4428,8 +4428,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 										
 										data[j][AllTMethodLevelCalleesAtLeast2TGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllTMethodLevelCalleesClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCalleesAtLeast2TGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllTMethodLevelCalleesClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTMethodLevelCalleesAtLeast2TGOLD2].toString()); 
 										AllTMethodLevelCalleesClassAtLeast2TGold2.UpdateCounters(Result, AllTMethodLevelCalleesClassAtLeast2TGold2);
 										AllTMethodLevelCalleesClassAtLeast2TGold2HashMap.put(key, data[j][AllTMethodLevelCalleesAtLeast2TGOLD2].toString()); 
 
@@ -4451,8 +4451,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllTMethodLevelCallersAtLeast2TGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllTMethodLevelCallersClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersAtLeast2TGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllTMethodLevelCallersClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTMethodLevelCallersAtLeast2TGOLD2].toString()); 
 										AllTMethodLevelCallersClassAtLeast2TGold2.UpdateCounters(Result, AllTMethodLevelCallersClassAtLeast2TGold2);
 										AllTMethodLevelCallersClassAtLeast2TGold2HashMap.put(key, data[j][AllTMethodLevelCallersAtLeast2TGOLD2].toString()); 
 
@@ -4474,8 +4474,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllTClassLevelCallersAtLeast2TGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllTClassLevelCallersClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallersAtLeast2TGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllTClassLevelCallersClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTClassLevelCallersAtLeast2TGOLD2].toString()); 
 										AllTClassLevelCallersClassAtLeast2TGold2.UpdateCounters(Result, AllTClassLevelCallersClassAtLeast2TGold2);
 										System.out.println(methodtrace.toString());
 										AllTClassLevelCallersClassAtLeast2TGold2HashMap.put(key, data[j][AllTClassLevelCallersAtLeast2TGOLD2].toString()); 
@@ -4500,8 +4500,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllTClassLevelCalleesAtLeast2TGOLD2] = "T";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllTClassLevelCalleesClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCalleesAtLeast2TGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllTClassLevelCalleesClassAtLeast2TGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTClassLevelCalleesAtLeast2TGOLD2].toString()); 
 										AllTClassLevelCalleesClassAtLeast2TGold2.UpdateCounters(Result, AllTClassLevelCalleesClassAtLeast2TGold2);
 										AllTClassLevelCalleesClassAtLeast2TGold2HashMap.put(key, data[j][AllTClassLevelCalleesAtLeast2TGOLD2].toString()); 
 
@@ -4524,8 +4524,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllNClassLevelCallersAtLeast2NGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllNClassLevelCallersClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallersAtLeast2NGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllNClassLevelCallersClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNClassLevelCallersAtLeast2NGOLD2].toString()); 
 										AllNClassLevelCallersClassAtLeast2NGold2.UpdateCounters(Result, AllNClassLevelCallersClassAtLeast2NGold2);
 										AllNClassLevelCallersClassAtLeast2NGold2HashMap.put(key, data[j][AllNClassLevelCallersAtLeast2NGOLD2].toString()); 
 
@@ -4549,8 +4549,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllNClassLevelCalleesAtLeast2NGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllNClassLevelCalleesClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCalleesAtLeast2NGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllNClassLevelCalleesClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNClassLevelCalleesAtLeast2NGOLD2].toString()); 
 										AllNClassLevelCalleesClassAtLeast2NGold2.UpdateCounters(Result, AllNClassLevelCalleesClassAtLeast2NGold2);
 										AllNClassLevelCalleesClassAtLeast2NGold2HashMap.put(key, data[j][AllNClassLevelCalleesAtLeast2NGOLD2].toString()); 
 
@@ -4573,8 +4573,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllNMethodLevelCallersAtLeast2NGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-										String Result=AllNMethodLevelCallersClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersAtLeast2NGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+										String Result=AllNMethodLevelCallersClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNMethodLevelCallersAtLeast2NGOLD2].toString()); 
 										AllNMethodLevelCallersClassAtLeast2NGold2.UpdateCounters(Result, AllNMethodLevelCallersClassAtLeast2NGold2);
 										AllNMethodLevelCallersClassAtLeast2NGold2HashMap.put(key, data[j][AllNMethodLevelCallersAtLeast2NGOLD2].toString()); 
 
@@ -4597,8 +4597,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									
 								
 										data[j][AllNMethodLevelCalleesAtLeast2NGOLD2] = "N";
-										if(methodtrace.getGold2()!=null) {
-											String Result=AllNMethodLevelCalleesClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCalleesAtLeast2NGOLD2].toString()); 
+										if(methodtrace.getGoldfinal()!=null) {
+											String Result=AllNMethodLevelCalleesClassAtLeast2NGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNMethodLevelCalleesAtLeast2NGOLD2].toString()); 
 											AllNMethodLevelCalleesClassAtLeast2NGold2.UpdateCounters(Result, AllNMethodLevelCalleesClassAtLeast2NGold2);
 											AllNMethodLevelCalleesClassAtLeast2NGold2HashMap.put(key, data[j][AllNMethodLevelCalleesAtLeast2NGOLD2].toString()); 
 
@@ -4628,8 +4628,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											
 										
 												data[j][AllNMethodLevelCallersCalleesGOLD2] = "N";
-												if(methodtrace.getGold2()!=null) {
-													String Result=AllNMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNMethodLevelCallersCalleesGOLD2].toString()); 
+												if(methodtrace.getGoldfinal()!=null) {
+													String Result=AllNMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNMethodLevelCallersCalleesGOLD2].toString()); 
 													AllNMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllNMethodLevelCallersCalleesClassGold2);
 													AllNMethodLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllNMethodLevelCallersCalleesGOLD2].toString()); 
 
@@ -4656,8 +4656,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 												
 											
 													data[j][AllTMethodLevelCallersCalleesGOLD2] = "T";
-													if(methodtrace.getGold2()!=null) {
-														String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTMethodLevelCallersCalleesGOLD2].toString()); 
+													if(methodtrace.getGoldfinal()!=null) {
+														String Result=AllTMethodLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTMethodLevelCallersCalleesGOLD2].toString()); 
 														AllTMethodLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTMethodLevelCallersCalleesClassGold2);
 														AllTMethodLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllTMethodLevelCallersCalleesGOLD2].toString()); 
 
@@ -4682,8 +4682,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 													
 												
 														data[j][AllNClassLevelCallersCalleesGOLD2] = "N";
-														if(methodtrace.getGold2()!=null) {
-															String Result=AllNClassLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllNClassLevelCallersCalleesGOLD2].toString()); 
+														if(methodtrace.getGoldfinal()!=null) {
+															String Result=AllNClassLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllNClassLevelCallersCalleesGOLD2].toString()); 
 															AllNClassLevelCallersCalleesClassGold2.UpdateCounters(Result, AllNClassLevelCallersCalleesClassGold2);
 															AllNClassLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllNClassLevelCallersCalleesGOLD2].toString()); 
 
@@ -4710,8 +4710,8 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 														
 													
 															data[j][AllTClassLevelCallersCalleesGOLD2] = "T";
-															if(methodtrace.getGold2()!=null) {
-																String Result=AllTClassLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), data[j][AllTClassLevelCallersCalleesGOLD2].toString()); 
+															if(methodtrace.getGoldfinal()!=null) {
+																String Result=AllTClassLevelCallersCalleesClassGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), data[j][AllTClassLevelCallersCalleesGOLD2].toString()); 
 																AllTClassLevelCallersCalleesClassGold2.UpdateCounters(Result, AllTClassLevelCallersCalleesClassGold2);
 																AllTClassLevelCallersCalleesClassGold2HashMap.put(key, data[j][AllTClassLevelCallersCalleesGOLD2].toString()); 
 
@@ -4830,37 +4830,37 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 	if(CountMethodTACHRAFGold2>0 && CountMethodTACHRAFCalleeGold2>0) {
 											
 											boolean entered=false; 
-											if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0 && methodtrace.getGold2()!=null ) {
+											if(CountMethodNACHRAF+CountMethodNACHRAFCallee==0 && methodtrace.getGoldfinal()!=null ) {
 												
 												TracePureGold2++; 
 												TracePureGold2Value="T"; 
 												entered=true; 
 												
-											} else if(methodtrace.getGold2()!=null) {
+											} else if(methodtrace.getGoldfinal()!=null) {
 												TraceMixedGold2++; 
 												TraceMixedGold2Value="T"; 
 												entered=true; 
 											}
 										
 											if(entered==true) {
-											if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
+											if(methodtrace.getGoldfinal()!=null && methodtrace.getGoldfinal().trim().equals("T")) {
 												TraceCountTotal++; 
 												
 											}
-											else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
+											else if(methodtrace.getGoldfinal()!=null && methodtrace.getGoldfinal().trim().equals("N")) {
 												NoTraceCountTotal++; 
 											}
 											
 											
-											if(methodtrace.getGold2()!=null ) {
+											if(methodtrace.getGoldfinal()!=null ) {
 											data[j][ACHRAFTRACEPureGOLD2]=TracePureGold2Value; 
-											String Result=ACHRAFTracePureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2Value); 
+											String Result=ACHRAFTracePureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TracePureGold2Value); 
 											ACHRAFTracePureGold2.UpdateCounters(Result, ACHRAFTracePureGold2);
 											}
 											
-											if(methodtrace.getGold2()!=null ) {
+											if(methodtrace.getGoldfinal()!=null ) {
 												data[j][ACHRAFTRACEMixedGOLD2]=TraceMixedGold2Value; 
-												String Result=ACHRAFTraceMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TraceMixedGold2Value); 
+												String Result=ACHRAFTraceMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TraceMixedGold2Value); 
 												ACHRAFTraceMixedGold2.UpdateCounters(Result, ACHRAFTraceMixedGold2);
 												}
 											}
@@ -4868,7 +4868,7 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 									}else if(CountMethodNACHRAF>0 && CountMethodNACHRAFCallee>0) {
 										
 										boolean entered=false; 
-										if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0 && methodtrace.getGold2()!=null ) {
+										if(CountMethodTACHRAFGold2+CountMethodTACHRAFCalleeGold2==0 && methodtrace.getGoldfinal()!=null ) {
 											
 											NoTracePureGold2++; 
 											NOTracePureGold2Value="N"; 
@@ -4876,7 +4876,7 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 											entered=true; 
 											
 											
-										} else if(methodtrace.getGold2()!=null) {
+										} else if(methodtrace.getGoldfinal()!=null) {
 											NoTraceMixedGold2++; 
 											NOTraceMixedGold2Value="N"; 
 											data[j][ACHRAFNOTRACEMixedGOLD2]=NOTraceMixedGold2Value; 
@@ -4884,11 +4884,11 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 										}
 										
 										if(entered==true) {
-										if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("N")) {
+										if(methodtrace.getGoldfinal()!=null && methodtrace.getGoldfinal().trim().equals("N")) {
 											
 											NoTraceCountTotal++; 
 										}
-											else if(methodtrace.getGold2()!=null && methodtrace.getGold2().trim().equals("T")) {
+											else if(methodtrace.getGoldfinal()!=null && methodtrace.getGoldfinal().trim().equals("T")) {
 											TraceCountTotal++; 
 										}
 										
@@ -4899,13 +4899,13 @@ public class TracesTableChessFINALGeneticAlgorithm extends JFrame {
 							
 										
 										
-										if(methodtrace.getGold2()!=null ) {
-											String Result=ACHRAFNOTracePureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTracePureGold2Value); 
+										if(methodtrace.getGoldfinal()!=null ) {
+											String Result=ACHRAFNOTracePureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTracePureGold2Value); 
 											ACHRAFNOTracePureGold2.UpdateCounters(Result, ACHRAFNOTracePureGold2);
 											}
 											
-											if(methodtrace.getGold2()!=null ) {
-												String Result=ACHRAFNOTraceMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2Value); 
+											if(methodtrace.getGoldfinal()!=null ) {
+												String Result=ACHRAFNOTraceMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTraceMixedGold2Value); 
 												ACHRAFNOTraceMixedGold2.UpdateCounters(Result, ACHRAFNOTraceMixedGold2);
 												}
 										}
@@ -5060,13 +5060,13 @@ failGold++;
 if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		
 		boolean entered=false; 
-		if(CountMethodNGOLD2+CountMethodNCalleeGOLD2==0 && methodtrace.getGold2()!=null ) {
+		if(CountMethodNGOLD2+CountMethodNCalleeGOLD2==0 && methodtrace.getGoldfinal()!=null ) {
 			
 			TracePureGold2++; 
 			TracePureGold2ValueMethodLevel="T"; 
 			entered=true; 
 			
-		} else if(methodtrace.getGold2()!=null) {
+		} else if(methodtrace.getGoldfinal()!=null) {
 			TraceMixedGold2++; 
 			TraceMixedGold2ValueMethodLevel="T"; 
 			entered=true; 
@@ -5074,9 +5074,9 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 	
 //		if(true) {
 		
-		if(methodtrace.getGold2()!=null ) {
+		if(methodtrace.getGoldfinal()!=null ) {
 		data[j][CLASSTRACEMethodLevelPureGold2]=TracePureGold2ValueMethodLevel; 
-		String Result=PredictionCLASSTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueMethodLevel); 
+		String Result=PredictionCLASSTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TracePureGold2ValueMethodLevel); 
 		PredictionCLASSTRACEMethodLevelPureGold2.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold2);
 		PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, data[j][CLASSTRACEMethodLevelPureGold2].toString()); 
 
@@ -5085,9 +5085,9 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 
 		}
 		
-		if(methodtrace.getGold2()!=null ) {
+		if(methodtrace.getGoldfinal()!=null ) {
 			data[j][CLASSTRACEMethodLevelMixedGold2]=TraceMixedGold2ValueMethodLevel; 
-			String Result=PredictionCLASSTRACEMethodLevelMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TraceMixedGold2ValueMethodLevel); 
+			String Result=PredictionCLASSTRACEMethodLevelMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TraceMixedGold2ValueMethodLevel); 
 			PredictionCLASSTRACEMethodLevelMixedGold2.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold2);
 			PredictionCLASSTRACEMethodLevelMixedGold2HashMap.put(key, data[j][CLASSTRACEMethodLevelMixedGold2].toString()); 
 	
@@ -5100,7 +5100,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 }else if(CountMethodNGOLD2>0 && CountMethodNCalleeGOLD2>0) {
 	
 	boolean entered=false; 
-	if(CountMethodTGOLD2+CountMethodTCalleeGOLD2==0 && methodtrace.getGold2()!=null ) {
+	if(CountMethodTGOLD2+CountMethodTCalleeGOLD2==0 && methodtrace.getGoldfinal()!=null ) {
 		
 		NoTracePureGold2++; 
 		NOTracePureGold2ValueMethodLevel="N"; 
@@ -5108,7 +5108,7 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 		entered=true; 
 		
 		
-	} else if(methodtrace.getGold2()!=null) {
+	} else if(methodtrace.getGoldfinal()!=null) {
 		NoTraceMixedGold2++; 
 		NOTraceMixedGold2ValueMethodLevel="N"; 
 		data[j][CLASSNOTRACEMethodLevelMixedGold2]=NOTraceMixedGold2ValueMethodLevel; 
@@ -5123,8 +5123,8 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 
 	
 	
-	if(methodtrace.getGold2()!=null ) {
-		String Result=PredictionCLASSNOTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTracePureGold2ValueMethodLevel); 
+	if(methodtrace.getGoldfinal()!=null ) {
+		String Result=PredictionCLASSNOTRACEMethodLevelPureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTracePureGold2ValueMethodLevel); 
 		PredictionCLASSNOTRACEMethodLevelPureGold2.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold2);
 		PredictionCLASSNOTRACEMethodLevelPureGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2].toString()); 
 	
@@ -5133,8 +5133,8 @@ if(CountMethodTGOLD2>0 && CountMethodTCalleeGOLD2>0) {
 
 	}
 		
-		if(methodtrace.getGold2()!=null ) {
-			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2ValueMethodLevel); 
+		if(methodtrace.getGoldfinal()!=null ) {
+			String Result=PredictionCLASSNOTRACEMethodLevelMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTraceMixedGold2ValueMethodLevel); 
 			PredictionCLASSNOTRACEMethodLevelMixedGold2.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold2);
 			PredictionCLASSNOTRACEMethodLevelMixedGold2HashMap.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2].toString()); 
 			PredictionCLASSTRACEMethodLevelPureGold2HashMap.put(key, "null"); 
@@ -5299,13 +5299,13 @@ if(true) {
 if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 	
 	boolean entered=false; 
-	if(CounterTraceClassCallerNGOLD2+CounterTraceClassCalleeNGOLD2==0 && methodtrace.getGold2()!=null ) {
+	if(CounterTraceClassCallerNGOLD2+CounterTraceClassCalleeNGOLD2==0 && methodtrace.getGoldfinal()!=null ) {
 		
 		TracePureGold2++; 
 		TracePureGold2ValueClassLevel="T"; 
 		entered=true; 
 		
-	} else if(methodtrace.getGold2()!=null) {
+	} else if(methodtrace.getGoldfinal()!=null) {
 		TraceMixedGold2++; 
 		TraceMixedGold2ValueClassLevel="T"; 
 		entered=true; 
@@ -5313,9 +5313,9 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 
 	if(entered==true) {
 	
-	if(methodtrace.getGold2()!=null ) {
+	if(methodtrace.getGoldfinal()!=null ) {
 	data[j][CLASSTRACEClassLevelPureGold2]=TracePureGold2ValueClassLevel; 
-	String Result=PredictionCLASSTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueClassLevel); 
+	String Result=PredictionCLASSTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TracePureGold2ValueClassLevel); 
 	PredictionCLASSTRACEClassLevelPureGold2.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold2);
 	PredictionCLASSTRACEClassLevelPureGold2HashMap.put(key, data[j][CLASSTRACEClassLevelPureGold2].toString()); 
 	}else {
@@ -5323,9 +5323,9 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 
 	}
 	
-	if(methodtrace.getGold2()!=null ) {
+	if(methodtrace.getGoldfinal()!=null ) {
 		data[j][CLASSTRACEClassLevelMixedGold2]=TraceMixedGold2ValueClassLevel; 
-		String Result=PredictionCLASSTRACEClassLevelMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), TraceMixedGold2ValueClassLevel); 
+		String Result=PredictionCLASSTRACEClassLevelMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TraceMixedGold2ValueClassLevel); 
 		PredictionCLASSTRACEClassLevelMixedGold2.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold2);
 		PredictionCLASSTRACEClassLevelMixedGold2HashMap.put(key, data[j][CLASSTRACEClassLevelMixedGold2].toString()); 
 	
@@ -5338,7 +5338,7 @@ if(CounterTraceClassCallerTGOLD2>0 && CounterTraceClassCalleeTGOLD2>0) {
 }else if(CounterTraceClassCallerNGOLD2>0 && CounterTraceClassCalleeNGOLD2>0) {
 
 boolean entered=false; 
-if(CounterTraceClassCallerTGOLD2+CounterTraceClassCalleeTGOLD2==0 && methodtrace.getGold2()!=null ) {
+if(CounterTraceClassCallerTGOLD2+CounterTraceClassCalleeTGOLD2==0 && methodtrace.getGoldfinal()!=null ) {
 	
 	NoTracePureGold2++; 
 	NOTracePureGold2ValueClassLevel="N"; 
@@ -5346,7 +5346,7 @@ if(CounterTraceClassCallerTGOLD2+CounterTraceClassCalleeTGOLD2==0 && methodtrace
 	entered=true; 
 	
 	
-} else if(methodtrace.getGold2()!=null) {
+} else if(methodtrace.getGoldfinal()!=null) {
 	NoTraceMixedGold2++; 
 	NOTraceMixedGold2ValueClassLevel="N"; 
 	data[j][CLASSNOTRACEClassLevelMixedGold2]=NOTraceMixedGold2ValueClassLevel; 
@@ -5361,8 +5361,8 @@ if(entered==true) {
 
 
 
-if(methodtrace.getGold2()!=null ) {
-	String Result=PredictionCLASSNOTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTracePureGold2ValueClassLevel); 
+if(methodtrace.getGoldfinal()!=null ) {
+	String Result=PredictionCLASSNOTRACEClassLevelPureGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTracePureGold2ValueClassLevel); 
 	PredictionCLASSNOTRACEClassLevelPureGold2.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold2);
 	PredictionCLASSNOTRACEClassLevelPureGold2HashMap.put(key, data[j][CLASSNOTRACEClassLevelPureGold2].toString()); 
 	
@@ -5371,8 +5371,8 @@ if(methodtrace.getGold2()!=null ) {
 
 }
 	
-	if(methodtrace.getGold2()!=null ) {
-		String Result=PredictionCLASSNOTRACEClassLevelMixedGold2.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2ValueClassLevel); 
+	if(methodtrace.getGoldfinal()!=null ) {
+		String Result=PredictionCLASSNOTRACEClassLevelMixedGold2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTraceMixedGold2ValueClassLevel); 
 		PredictionCLASSNOTRACEClassLevelMixedGold2.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold2);
 		PredictionCLASSNOTRACEClassLevelMixedGold2HashMap.put(key, data[j][CLASSNOTRACEClassLevelMixedGold2].toString()); 
 	
@@ -5503,13 +5503,13 @@ if(true) {
 if(CountMethodTGOLD2ACROSS>0 && CountMethodTGOLD2ACROSSCallee>0) {
 
 boolean entered=false; 
-if(CountMethodNGOLD2ACROSS+CountMethodNGOLD2ACROSSCallee==0 && methodtrace.getGold2()!=null ) {
+if(CountMethodNGOLD2ACROSS+CountMethodNGOLD2ACROSSCallee==0 && methodtrace.getGoldfinal()!=null ) {
 
 
 TracePureGold2ValueMethodLevelACROSS="T"; 
 entered=true; 
 
-} else if(methodtrace.getGold2()!=null) {
+} else if(methodtrace.getGoldfinal()!=null) {
 
 TraceMixedGold2ValueMethodLevelACROSS="T"; 
 entered=true; 
@@ -5517,15 +5517,15 @@ entered=true;
 
 if(entered==true) {
 
-if(methodtrace.getGold2()!=null ) {
+if(methodtrace.getGoldfinal()!=null ) {
 data[j][CLASSTRACEMethodLevelPureGold2ACROSS]=TracePureGold2ValueMethodLevelACROSS; 
-String Result=PredictionCLASSTRACEMethodLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueMethodLevelACROSS); 
+String Result=PredictionCLASSTRACEMethodLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TracePureGold2ValueMethodLevelACROSS); 
 PredictionCLASSTRACEMethodLevelPureGold2ACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelPureGold2ACROSS);
 }
 
-if(methodtrace.getGold2()!=null ) {
+if(methodtrace.getGoldfinal()!=null ) {
 data[j][CLASSTRACEMethodLevelMixedGold2ACROSS]=TraceMixedGold2ValueMethodLevelACROSS; 
-String Result=PredictionCLASSTRACEMethodLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), TraceMixedGold2ValueMethodLevelACROSS); 
+String Result=PredictionCLASSTRACEMethodLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TraceMixedGold2ValueMethodLevelACROSS); 
 PredictionCLASSTRACEMethodLevelMixedGold2ACROSS.UpdateCounters(Result, PredictionCLASSTRACEMethodLevelMixedGold2ACROSS);
 }
 }
@@ -5533,7 +5533,7 @@ PredictionCLASSTRACEMethodLevelMixedGold2ACROSS.UpdateCounters(Result, Predictio
 }else if(CountMethodNGOLD2ACROSS>0 && CountMethodNGOLD2ACROSSCallee>0) {
 
 boolean entered=false; 
-if(CountMethodTGOLD2ACROSS+CountMethodTGOLD2ACROSSCallee==0 && methodtrace.getGold2()!=null ) {
+if(CountMethodTGOLD2ACROSS+CountMethodTGOLD2ACROSSCallee==0 && methodtrace.getGoldfinal()!=null ) {
 
 
 NOTracePureGold2ValueMethodLevelACROSS="N"; 
@@ -5541,7 +5541,7 @@ data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS]=NOTracePureGold2ValueMethodLevel
 entered=true; 
 PredictionCLASSTRACEMethodLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS].toString()); 
 
-} else if(methodtrace.getGold2()!=null) {
+} else if(methodtrace.getGoldfinal()!=null) {
 
 	NOTraceMixedGold2ValueMethodLevelACROSS="N"; 
 data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS]=NOTraceMixedGold2ValueMethodLevelACROSS; 
@@ -5561,8 +5561,8 @@ if(entered==true) {
 
 
 
-if(methodtrace.getGold2()!=null ) {
-String Result=PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTracePureGold2ValueMethodLevelACROSS); 
+if(methodtrace.getGoldfinal()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTracePureGold2ValueMethodLevelACROSS); 
 PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelPureGold2ACROSS);
 PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelPureGold2ACROSS].toString()); 
 
@@ -5571,8 +5571,8 @@ PredictionCLASSNOTRACEMethodLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNO
 
 }
 
-if(methodtrace.getGold2()!=null ) {
-String Result=PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2ValueMethodLevelACROSS); 
+if(methodtrace.getGoldfinal()!=null ) {
+String Result=PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTraceMixedGold2ValueMethodLevelACROSS); 
 PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEMethodLevelMixedGold2ACROSS);
 PredictionCLASSNOTRACEMethodLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEMethodLevelMixedGold2ACROSS].toString()); 
 
@@ -5684,13 +5684,13 @@ if(true) {
 if(CounterTraceClassCallerTGOLD2ACROSS>0 && CounterTraceClassCalleeTGOLD2ACROSS>0) {
 
 boolean entered=false; 
-if(CounterTraceClassCallerNGOLD2ACROSS+CounterTraceClassCalleeNGOLD2ACROSS==0 && methodtrace.getGold2()!=null ) {
+if(CounterTraceClassCallerNGOLD2ACROSS+CounterTraceClassCalleeNGOLD2ACROSS==0 && methodtrace.getGoldfinal()!=null ) {
 
 
 TracePureGold2ValueClassLevelACROSS="T"; 
 entered=true; 
 
-} else if(methodtrace.getGold2()!=null) {
+} else if(methodtrace.getGoldfinal()!=null) {
 
 TraceMixedGold2ValueClassLevelACROSS="T"; 
 entered=true; 
@@ -5698,9 +5698,9 @@ entered=true;
 
 if(entered==true) {
 
-if(methodtrace.getGold2()!=null ) {
+if(methodtrace.getGoldfinal()!=null ) {
 data[j][CLASSTRACEClassLevelPureGold2ACROSS]=TracePureGold2ValueClassLevelACROSS; 
-String Result=PredictionCLASSTRACEClassLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), TracePureGold2ValueClassLevelACROSS); 
+String Result=PredictionCLASSTRACEClassLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TracePureGold2ValueClassLevelACROSS); 
 PredictionCLASSTRACEClassLevelPureGold2ACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelPureGold2ACROSS);
 PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSTRACEClassLevelPureGold2ACROSS].toString()); 
 
@@ -5709,9 +5709,9 @@ PredictionCLASSTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSTRACE
 
 }
 
-if(methodtrace.getGold2()!=null ) {
+if(methodtrace.getGoldfinal()!=null ) {
 data[j][CLASSTRACEClassLevelMixedGold2ACROSS]=TraceMixedGold2ValueClassLevelACROSS; 
-String Result=PredictionCLASSTRACEClassLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), TraceMixedGold2ValueClassLevelACROSS); 
+String Result=PredictionCLASSTRACEClassLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), TraceMixedGold2ValueClassLevelACROSS); 
 PredictionCLASSTRACEClassLevelMixedGold2ACROSS.UpdateCounters(Result, PredictionCLASSTRACEClassLevelMixedGold2ACROSS);
 PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSTRACEClassLevelMixedGold2ACROSS].toString()); 
 
@@ -5724,7 +5724,7 @@ PredictionCLASSTRACEClassLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSTRAC
 }else if(CounterTraceClassCallerNGOLD2ACROSS>0 && CounterTraceClassCalleeNGOLD2ACROSS>0) {
 
 boolean entered=false; 
-if(CounterTraceClassCallerTGOLD2ACROSS+CounterTraceClassCalleeTGOLD2ACROSS==0 && methodtrace.getGold2()!=null ) {
+if(CounterTraceClassCallerTGOLD2ACROSS+CounterTraceClassCalleeTGOLD2ACROSS==0 && methodtrace.getGoldfinal()!=null ) {
 
 
 NOTracePureGold2ValueClassLevelACROSS="N"; 
@@ -5732,7 +5732,7 @@ data[j][CLASSNOTRACEClassLevelPureGold2ACROSS]=NOTracePureGold2ValueClassLevelAC
 entered=true; 
 
 
-} else if(methodtrace.getGold2()!=null) {
+} else if(methodtrace.getGoldfinal()!=null) {
 
 NOTraceMixedGold2ValueClassLevelACROSS="N"; 
 data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS]=NOTraceMixedGold2ValueClassLevelACROSS; 
@@ -5747,8 +5747,8 @@ if(entered==true) {
 
 
 
-if(methodtrace.getGold2()!=null ) {
-String Result=PredictionCLASSNOTRACEClassLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTracePureGold2ValueClassLevelACROSS); 
+if(methodtrace.getGoldfinal()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelPureGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTracePureGold2ValueClassLevelACROSS); 
 PredictionCLASSNOTRACEClassLevelPureGold2ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelPureGold2ACROSS);
 PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEClassLevelPureGold2ACROSS].toString()); 
 
@@ -5757,8 +5757,8 @@ PredictionCLASSNOTRACEClassLevelPureGold2HashMapACROSS.put(key, data[j][CLASSNOT
 
 }
 
-if(methodtrace.getGold2()!=null ) {
-String Result=PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGold2().trim(), NOTraceMixedGold2ValueClassLevelACROSS); 
+if(methodtrace.getGoldfinal()!=null ) {
+String Result=PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS.ComparePredictionToGold(methodtrace.getGoldfinal().trim(), NOTraceMixedGold2ValueClassLevelACROSS); 
 PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS.UpdateCounters(Result, PredictionCLASSNOTRACEClassLevelMixedGold2ACROSS);
 PredictionCLASSNOTRACEClassLevelMixedGold2HashMapACROSS.put(key, data[j][CLASSNOTRACEClassLevelMixedGold2ACROSS].toString()); 
 
@@ -5943,7 +5943,7 @@ data[j][CLASSTRACEClassLevelPureGold2ACROSS]+","+data[j][CLASSTRACEClassLevelMix
 			
 			bw.write(data[j][Row] + "," +data[j][MethodID] + "," + data[j][MethodName] + "," + data[j][RequirementID] + "," + data[j][RequirementName] + "," + data[j][ClassID] + ","
 					+ data[j][ClassName] + "," + data[j][Gold] +","+	
-							methodtrace.gold2+ "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
+							methodtrace.goldfinal+ "," + data[j][Subject] + "," + data[j][OwnerClassT] + "," + data[j][OwnerClassN] + ","
 					+ data[j][OwnerClassE] 
 							
 							+ "," + 

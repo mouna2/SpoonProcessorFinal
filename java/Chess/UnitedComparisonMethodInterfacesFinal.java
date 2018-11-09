@@ -189,7 +189,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 			String fullmethod=""; 
 			String classname=""; 
 			String classid=""; 
-			String gold2=""; 
+			String goldfinal=""; 
 			String interfaceclassid=""; 
 			String interfacename=""; 
 			String implementationclassid=""; 
@@ -281,10 +281,10 @@ public class UnitedComparisonMethodInterfacesFinal {
 				classid=res.getString("classid"); 
 				classname=res.getString("classname"); 
 				if(ProgramName.equals("Chess")|| ProgramName.equals("iTrust")) {
-					gold2=res.getString("gold2"); 
+					goldfinal=res.getString("goldfinal"); 
 				}
 				else if(ProgramName.equals("JHotDraw")|| ProgramName.equals("Gantt")) {
-					gold2=res.getString("gold"); 
+					goldfinal=res.getString("goldfinal"); 
 				}
 				
 				SuperClass2 superclass= new SuperClass2(); 
@@ -294,7 +294,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 				methodtrace.setRequirement(req);
 				
 				methodtrace.setClassRepresentation(classrep);
-				methodtrace.setGold2(gold2);
+				methodtrace.setGoldFinal(goldfinal);
 			
 				for(String mykey: InterfacesImplementationsHashMap.keySet()) {
 
@@ -302,7 +302,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 				
 					if(classid.equals(mykey2)) {
 						System.out.println("=================THIS IS AN INTERFACE");
-						InterfacesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, gold2); 
+						InterfacesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, goldfinal); 
 					}
 					
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
@@ -348,7 +348,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 				
 					if(classid.equals(mykey2)) {
 						System.out.println("=================THIS IS A SUPERCLASS");
-						SuperclassesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, gold2); 
+						SuperclassesTracesHashMap.put(requirementid+"/"+classid+"/"+classname, goldfinal); 
 					}
 					
 					for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
@@ -426,7 +426,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 					List<String> list = new ArrayList<String>();
 
 				for(MethodTrace2 value: values) {
-				String	gold2val=value.getGold2(); 
+				String	goldfinalval=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				
 				String	classIDTrace=value.getClassRepresentation().classid; 
@@ -441,13 +441,13 @@ public class UnitedComparisonMethodInterfacesFinal {
 						if(ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
-							list.add(value.gold2+"-"+classIDTrace); 
-//							list.add(value.gold2.trim()); 
+							list.add(value.goldFinal+"-"+classIDTrace); 
+//							list.add(value.goldfinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-							list.add(value.gold2+"-"+classIDTrace); 
-//							list.add(value.gold2.trim()); 
+							list.add(value.goldFinal+"-"+classIDTrace); 
+//							list.add(value.goldfinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -469,7 +469,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 					List<String> list = new ArrayList<String>();
 
 				for(MethodTrace2 value: values) {
-				String	gold2val=value.getGold2(); 
+				String	goldfinalval=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				
 				String	classIDTrace=value.getClassRepresentation().classid; 
@@ -484,11 +484,11 @@ public class UnitedComparisonMethodInterfacesFinal {
 						if(SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename)!=null) {
 							
 							list=SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
-							list.add(value.gold2+"-"+classIDTrace); 
+							list.add(value.goldFinal+"-"+classIDTrace); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
-							list.add(value.gold2+"-"+classIDTrace); 
+							list.add(value.goldFinal+"-"+classIDTrace); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					

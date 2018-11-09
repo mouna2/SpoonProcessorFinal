@@ -9,8 +9,8 @@ We are only making predictions in case we are dealing with T's or N's, predictio
 Flags used in run configurations to run TracesTableJHotDraw, TracesTableGantt and TracesTableiTrust: -d64 -Xms8G -Xmx12G
 Queries used in mysql workbench to replace all the null values within the gold2, SubjectT and SubjectN columns with "E":
 -SET SQL_SAFE_UPDATES = 0;
--update databaseitrust.traces set traces.gold2 = "E" where traces.gold2 = "null";
--update databasechess.traces set traces.gold2 = "E" where traces.gold2 = "null";
+-update databaseitrust.traces set traces.goldfinal = "E" where traces.goldfinal = "null";
+-update databasechess.traces set traces.goldfinal = "E" where traces.goldfinal = "null";
 -After creating the database, need to run the following query on MySQLWorkBench:  
 ALTER TABLE databasejhotdraw.traces ADD COLUMN gold2 VARCHAR(15) AFTER gold3;
 ALTER TABLE databasegantt.traces ADD COLUMN gold2 VARCHAR(15) AFTER gold3;

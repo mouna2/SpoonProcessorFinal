@@ -63,12 +63,12 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		this.gold4 = gold4;
 	}
 
-	public String getGold2() {
+	public String getGoldfinal() {
 		return gold2;
 	}
 
 	public void setGold2(String gold2) {
-		this.gold2 = gold2;
+		this.goldfinal = gold2;
 	}
 
 	public String getGoldpredictionCaller() {

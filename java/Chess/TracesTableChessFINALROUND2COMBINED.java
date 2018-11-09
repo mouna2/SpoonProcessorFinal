@@ -1125,7 +1125,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold2] = methodtrace.gold2;
+			data[j][Gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1430,7 +1430,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			//PRINT 
 			
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   GOLD2  "+methodtrace.gold2);
+				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   GOLD2  "+methodtrace.goldfinal);
 //				if(methodtrace.getPrediction().equals("T")){
 //					methodtrace.setPrediction("");
 //				}
@@ -1488,7 +1488,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][Gold2] = methodtrace.gold2;
+			data[j][Gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1806,10 +1806,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getGold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGoldfinal()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGoldfinal().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		

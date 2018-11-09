@@ -340,7 +340,7 @@ public class Method2Details {
 						
 							MethodTrace.setGold(methodtrace.getGold());
 							System.out.println("GOLD: "+methodtrace.getGold());
-							MethodTrace.setGold2(methodtrace.getGold2());
+							MethodTrace.setGoldFinal(methodtrace.getGoldfinal());
 							MethodTrace.setGold4(methodtrace.getGold4());
 							MethodTrace.setGold3(methodtrace.getGold3());
 							MethodTrace.setSubject(methodtrace.getSubject());
@@ -537,7 +537,7 @@ public class Method2Details {
 						MethodTrace.setGold(methodtracesres.getString("gold"));
 						
 						
-						MethodTrace.setGold2(methodtracesres.getString("gold2"));
+						MethodTrace.setGoldFinal(methodtracesres.getString("goldfinal"));
 						
 						MethodTrace.setGold3(methodtracesres.getString("gold3")); 
 						 

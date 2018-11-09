@@ -175,7 +175,7 @@ public class UnitedGeneralizationComparison {
 				classid=res2.getString("classid"); 
 				gold5=res2.getString("gold5"); 
 				goldAtLeast3=res2.getString("goldAtLeast3"); 
-				goldAtLeast2=res2.getString("goldAtLeast2"); 
+				goldAtLeast2=res2.getString("goldfinal"); 
 
 				gold=res2.getString("gold"); 
 				myhashmap.put(requirementid+"-"+classid, gold+"-"+gold5+"-"+goldAtLeast3+"-"+goldAtLeast2); 
@@ -242,7 +242,7 @@ count=0;
 					
 					  String goldAtLeast2Traces =null; 
 					  String goldAtLeast3Traces =null; 
-					   goldAtLeast2Traces =res2.getString("goldAtLeast2"); 
+					   goldAtLeast2Traces =res2.getString("goldfinal"); 
 					   goldAtLeast3Traces =res2.getString("goldAtLeast3"); 
 					  if(goldAtLeast2Traces.trim().equals("T")) {
 						  AtLeast2TMethodTraces++; 

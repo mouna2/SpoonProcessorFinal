@@ -16,17 +16,17 @@ public class SubjectTSubjectNObject {
 	public void setRequirementID(String RequirementID) {
 		this.RequirementID = RequirementID;
 	}
-	public String getGold2() {
+	public String getGoldfinal() {
 		return gold2;
 	}
 	public void setGold2(String gold2) {
-		this.gold2 = gold2;
+		this.goldfinal = gold2;
 	}
 	public SubjectTSubjectNObject(String methodName, String requirementID, String gold2) {
 		super();
 		MethodName = methodName;
 		RequirementID = requirementID;
-		this.gold2 = gold2;
+		this.goldfinal = gold2;
 	}
 	public SubjectTSubjectNObject() {
 		// TODO Auto-generated constructor stub

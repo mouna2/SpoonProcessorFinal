@@ -43,6 +43,10 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
+import Gantt.DatabaseReading2Gantt;
+import JHotDraw.DatabaseReading2JHotDraw3;
+import iTrust.DatabaseReading2itrust;
+import iTrust.DatabaseReading2itrustfinal;
 import mypackage.Children2;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
@@ -64,15 +68,7 @@ import mypackage.SuperClass2;
 
 public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 	
-	public Connection getConnection() throws SQLException {
-		Connection conn = null;
-		Properties connectionProps = new Properties();
-		connectionProps.put("root", this.userName);
-		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasechess","root","123456");
-
-		return conn;
-	}
+	
 
 	/**
 	 * Run a SQL command which does not return a recordset:
@@ -99,13 +95,9 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 	  
 	ResultSet rs = null; 
 	// Connect to MySQL
-	Connection conn = this.getConnection(); 
 	
 
 
-
-	Statement st= conn.createStatement();	
-	  
 	   
 	   
 	
@@ -570,9 +562,7 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 	BufferedWriter bwgold2TableLog = new BufferedWriter(new OutputStreamWriter(fosgold2));
 
 	
-	File file1log = new File("C:\\Users\\mouna\\dumps\\file1.txt");
-	FileOutputStream fosfila1 = new FileOutputStream(file1log);
-	BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
+
 	
 	
 	File file2log = new File("C:\\Users\\mouna\\dumps\\file2.txt");
@@ -624,7 +614,7 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableChessFINALROUND2MethodCallsV3() throws SQLException, IOException {
+	public TracesTableChessFINALROUND2MethodCallsV3(String ProgramName) throws SQLException, IOException {
 	
 		bwgold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, gold2, Subject, OwnerClassT, OwnerClassN, "
 				+ "OwnerClassE, #callermethods, callers, "
@@ -668,54 +658,10 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 
 	
 
-		
 		bw.newLine();
 		bwgold2TableLog.newLine();
-		DatabaseReading2 db = new DatabaseReading2();
-		DatabaseReading2.MakePredictions();
-		methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
-		methodtraces2HashMap=db.getMethodtracehashmap(); 
-		classtraces2 = db.getClassestraces2();
-	//	methodlist = db.getMethodlist();
-		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-		 InterfacesHashMap = db.getInterfaces();
-		  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-		  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
-		  //INTERFACES 
-		  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
-		  //FIELD METHODS 
-		  FieldMethodsHashMap= db.getMethodFieldHashMap();
-		  //FIELD CLASSES 
-		  FieldClassesHashMap= db.getClassFieldHashMap(); 
-		  //SUPERCLASSES
-		  SuperclassesHashMap= db.getSuperclassesHashMap(); 
-		  //PARAMETERS 
-		  
-		  parameterHashMap= db.getParameterhashMap(); 
-		  
-			methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
-			methodtraces2HashMap=db.getMethodtracehashmap(); 
-			classtraces2 = db.getClassestraces2();
-		//	methodlist = db.getMethodlist();
-			 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
-			 InterfacesHashMap = db.getInterfaces();
-			  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
-			  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
-			  //INTERFACES 
-			  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
-			  //FIELD METHODS 
-			  FieldMethodsHashMap= db.getMethodFieldHashMap();
-			  //FIELD CLASSES 
-			  FieldClassesHashMap= db.getClassFieldHashMap(); 
-			  //SUPERCLASSES
-			  SuperclassesHashMap= db.getSuperclassesHashMap(); 
-			  //CHILDREN 
-			  ChildrenHashMap= db.getChildrenHashMap(); 
-			  //IMPLEMENTATIONS 
-			  INTERFACEHASHMAPFINAL= db.getINTERFACEHASHMAPFINAL(); 
-			  //PARAMETERS 
-			  
-			  parameterHashMap= db.getParameterhashMap(); 
+	
+		
 		LinkedHashMap<String, String> PredictionsOldHashMap= new LinkedHashMap<String, String>(); 
 		LinkedHashMap<String, String> PredictionsNewHashMap= new LinkedHashMap<String, String>(); 
 
@@ -748,14 +694,13 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 //		List<LinkedHashMap<String, String>> PredictionHashMaps= new ArrayList<LinkedHashMap<String, String>>(); 
 //		LinkedHashMap<String, String> PredictionHashMap1 = function1(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtraces2); 
 		List<MethodTraceSubjectTSubjectN> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
-		function1SetToT(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew); 
+		function1SetToT(j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew, ProgramName); 
 		
 		
 //		PredictionHashMaps.add(PredictionHashMap1); 
 //		PredictionHashMaps.add(PredictionHashMap2); 
 		
 		
-		bwfile1.close();
 		bwfile2.close();
 		bwfile3.close();
 		bw.close();
@@ -1138,426 +1083,264 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) throws SQLException {
+	public LinkedHashMap<String, String>  function1SetToT( int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22, String ProgramName) throws SQLException, IOException {
 		// TODO Auto-generated method stub
 		int ITERATION1=0; 
+
+		DatabaseReading2 db = null; 
+		DatabaseReading2Gantt dbgantt = null; 
+		DatabaseReading2JHotDraw3 dbjhotdraw = null; 
+		DatabaseReading2itrustfinal dbitrust = null; 
+		BufferedWriter bwfile1=null; 
+	if(ProgramName.equals("chess")) {
+			
+			
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsChess.txt");
+			FileOutputStream fosfila1 = new FileOutputStream(file1log);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
+			
+			
+			
+			db = new DatabaseReading2();
+			DatabaseReading2.MakePredictions();
+			
+			methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
+			methodtraces2HashMap=db.getMethodtracehashmap(); 
+			classtraces2 = db.getClassestraces2();
+		//	methodlist = db.getMethodlist();
+			 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+			 InterfacesHashMap = db.getInterfaces();
+			  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+			  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+			  //INTERFACES 
+			  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
+			  //FIELD METHODS 
+			  FieldMethodsHashMap= db.getMethodFieldHashMap();
+			  //FIELD CLASSES 
+			  FieldClassesHashMap= db.getClassFieldHashMap(); 
+			  //SUPERCLASSES
+			  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+			  //PARAMETERS 
+			  
+			  parameterHashMap= db.getParameterhashMap(); 
+			  
+				methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
+				methodtraces2HashMap=db.getMethodtracehashmap(); 
+				classtraces2 = db.getClassestraces2();
+			//	methodlist = db.getMethodlist();
+				 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
+				 InterfacesHashMap = db.getInterfaces();
+				  linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+				  InterfacesHashMapAlreadyImpl = db.getInterfacehashmapAlreadyImpl();
+				  //INTERFACES 
+				  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
+				  //FIELD METHODS 
+				  FieldMethodsHashMap= db.getMethodFieldHashMap();
+				  //FIELD CLASSES 
+				  FieldClassesHashMap= db.getClassFieldHashMap(); 
+				  //SUPERCLASSES
+				  SuperclassesHashMap= db.getSuperclassesHashMap(); 
+				  //CHILDREN 
+				  ChildrenHashMap= db.getChildrenHashMap(); 
+				  //IMPLEMENTATIONS 
+				  INTERFACEHASHMAPFINAL= db.getINTERFACEHASHMAPFINAL(); 
+				  //PARAMETERS 
+				  
+				  parameterHashMap= db.getParameterhashMap(); 
+		}else if(ProgramName.equals("gantt")) {
+			
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsGantt.txt");
+			FileOutputStream fosfila1 = new FileOutputStream(file1log);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
+			 
+			 
+			dbgantt = new DatabaseReading2Gantt();
+			DatabaseReading2Gantt.MakePredictions();
+			
+			methodtraces2 = dbgantt.getMethodtraces2SubjectTSubjectN();
+			methodtraces2HashMap=dbgantt.getMethodtracehashmap(); 
+			classtraces2 = dbgantt.getClassestraces2();
+		//	methodlist = dbgantt.getMethodlist();
+			 methodtracesRequirementClass = dbgantt.getClassesRequirementtraceshashmap(); 
+			 InterfacesHashMap = dbgantt.getInterfaces();
+			  linkedmethodhashmap = dbgantt.getLinkedmethodhashmap(); 
+			  InterfacesHashMapAlreadyImpl = dbgantt.getInterfacehashmapAlreadyImpl();
+			  //INTERFACES 
+			  InterfacesOwnerClassHashMap = dbgantt.getInterfacehashmapOwnerClass(); 
+			  //FIELD METHODS 
+			  FieldMethodsHashMap= dbgantt.getMethodFieldHashMap();
+			  //FIELD CLASSES 
+			  FieldClassesHashMap= dbgantt.getClassFieldHashMap(); 
+			  //SUPERCLASSES
+			  SuperclassesHashMap= dbgantt.getSuperclassesHashMap(); 
+			  //PARAMETERS 
+			  
+			  parameterHashMap= dbgantt.getParameterhashMap(); 
+			  
+				methodtraces2 = dbgantt.getMethodtraces2SubjectTSubjectN();
+				methodtraces2HashMap=dbgantt.getMethodtracehashmap(); 
+				classtraces2 = dbgantt.getClassestraces2();
+			//	methodlist = dbgantt.getMethodlist();
+				 methodtracesRequirementClass = dbgantt.getClassesRequirementtraceshashmap(); 
+				 InterfacesHashMap = dbgantt.getInterfaces();
+				  linkedmethodhashmap = dbgantt.getLinkedmethodhashmap(); 
+				  InterfacesHashMapAlreadyImpl = dbgantt.getInterfacehashmapAlreadyImpl();
+				  //INTERFACES 
+				  InterfacesOwnerClassHashMap = dbgantt.getInterfacehashmapOwnerClass(); 
+				  //FIELD METHODS 
+				  FieldMethodsHashMap= dbgantt.getMethodFieldHashMap();
+				  //FIELD CLASSES 
+				  FieldClassesHashMap= dbgantt.getClassFieldHashMap(); 
+				  //SUPERCLASSES
+				  SuperclassesHashMap= dbgantt.getSuperclassesHashMap(); 
+				  //CHILDREN 
+				  ChildrenHashMap= dbgantt.getChildrenHashMap(); 
+				  //IMPLEMENTATIONS 
+				  INTERFACEHASHMAPFINAL= dbgantt.getINTERFACEHASHMAPFINAL(); 
+				  //PARAMETERS 
+				  
+				  parameterHashMap= dbgantt.getParameterhashMap(); 
+		}else if(ProgramName.equals("jhotdraw")) {
+			
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsJHotDraw.txt");
+			FileOutputStream fosfila1 = new FileOutputStream(file1log);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
+			
+			dbjhotdraw = new DatabaseReading2JHotDraw3(); 
+			DatabaseReading2JHotDraw3.MakePredictions();
+			methodtraces2 = dbjhotdraw.getMethodtraces2SubjectTSubjectN();
+			methodtraces2HashMap=dbjhotdraw.getMethodtracehashmap(); 
+			classtraces2 = dbjhotdraw.getClassestraces2();
+		//	methodlist = dbjhotdraw.getMethodlist();
+			 methodtracesRequirementClass = dbjhotdraw.getClassesRequirementtraceshashmap(); 
+			 InterfacesHashMap = dbjhotdraw.getInterfaces();
+			  linkedmethodhashmap = dbjhotdraw.getLinkedmethodhashmap(); 
+			  InterfacesHashMapAlreadyImpl = dbjhotdraw.getInterfacehashmapAlreadyImpl();
+			  //INTERFACES 
+			  InterfacesOwnerClassHashMap = dbjhotdraw.getInterfacehashmapOwnerClass(); 
+			  //FIELD METHODS 
+			  FieldMethodsHashMap= dbjhotdraw.getMethodFieldHashMap();
+			  //FIELD CLASSES 
+			  FieldClassesHashMap= dbjhotdraw.getClassFieldHashMap(); 
+			  //SUPERCLASSES
+			  SuperclassesHashMap= dbjhotdraw.getSuperclassesHashMap(); 
+			  //PARAMETERS 
+			  
+			  parameterHashMap= dbjhotdraw.getParameterhashMap(); 
+			  
+				methodtraces2 = dbjhotdraw.getMethodtraces2SubjectTSubjectN();
+				methodtraces2HashMap=dbjhotdraw.getMethodtracehashmap(); 
+				classtraces2 = dbjhotdraw.getClassestraces2();
+			//	methodlist = dbjhotdraw.getMethodlist();
+				 methodtracesRequirementClass = dbjhotdraw.getClassesRequirementtraceshashmap(); 
+				 InterfacesHashMap = dbjhotdraw.getInterfaces();
+				  linkedmethodhashmap = dbjhotdraw.getLinkedmethodhashmap(); 
+				  InterfacesHashMapAlreadyImpl = dbjhotdraw.getInterfacehashmapAlreadyImpl();
+				  //INTERFACES 
+				  InterfacesOwnerClassHashMap = dbjhotdraw.getInterfacehashmapOwnerClass(); 
+				  //FIELD METHODS 
+				  FieldMethodsHashMap= dbjhotdraw.getMethodFieldHashMap();
+				  //FIELD CLASSES 
+				  FieldClassesHashMap= dbjhotdraw.getClassFieldHashMap(); 
+				  //SUPERCLASSES
+				  SuperclassesHashMap= dbjhotdraw.getSuperclassesHashMap(); 
+				  //CHILDREN 
+				  ChildrenHashMap= dbjhotdraw.getChildrenHashMap(); 
+				  //IMPLEMENTATIONS 
+				  INTERFACEHASHMAPFINAL= dbjhotdraw.getINTERFACEHASHMAPFINAL(); 
+				  //PARAMETERS 
+				  
+				  parameterHashMap= dbjhotdraw.getParameterhashMap(); 
+		}else if(ProgramName.equals("itrust")) {
+			
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsiTrust.txt");
+			FileOutputStream fosfila1 = new FileOutputStream(file1log);
+			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
+			 
+			 
+			dbitrust = new DatabaseReading2itrustfinal();
+			DatabaseReading2itrustfinal.MakePredictions();
+			methodtraces2 = dbitrust.getMethodtraces2SubjectTSubjectN();
+			methodtraces2HashMap=dbitrust.getMethodtracehashmap(); 
+			classtraces2 = dbitrust.getClassestraces2();
+		//	methodlist = dbitrust.getMethodlist();
+			 methodtracesRequirementClass = dbitrust.getClassesRequirementtraceshashmap(); 
+			 InterfacesHashMap = dbitrust.getInterfaces();
+			  linkedmethodhashmap = dbitrust.getLinkedmethodhashmap(); 
+			  InterfacesHashMapAlreadyImpl = dbitrust.getInterfacehashmapAlreadyImpl();
+			  //INTERFACES 
+			  InterfacesOwnerClassHashMap = dbitrust.getInterfacehashmapOwnerClass(); 
+			  //FIELD METHODS 
+			  FieldMethodsHashMap= dbitrust.getMethodFieldHashMap();
+			  //FIELD CLASSES 
+			  FieldClassesHashMap= dbitrust.getClassFieldHashMap(); 
+			  //SUPERCLASSES
+			  SuperclassesHashMap= dbitrust.getSuperclassesHashMap(); 
+			  //PARAMETERS 
+			  
+			  parameterHashMap= dbitrust.getParameterhashMap(); 
+			  
+				methodtraces2 = dbitrust.getMethodtraces2SubjectTSubjectN();
+				methodtraces2HashMap=dbitrust.getMethodtracehashmap(); 
+				classtraces2 = dbitrust.getClassestraces2();
+			//	methodlist = dbitrust.getMethodlist();
+				 methodtracesRequirementClass = dbitrust.getClassesRequirementtraceshashmap(); 
+				 InterfacesHashMap = dbitrust.getInterfaces();
+				  linkedmethodhashmap = dbitrust.getLinkedmethodhashmap(); 
+				  InterfacesHashMapAlreadyImpl = dbitrust.getInterfacehashmapAlreadyImpl();
+				  //INTERFACES 
+				  InterfacesOwnerClassHashMap = dbitrust.getInterfacehashmapOwnerClass(); 
+				  //FIELD METHODS 
+				  FieldMethodsHashMap= dbitrust.getMethodFieldHashMap();
+				  //FIELD CLASSES 
+				  FieldClassesHashMap= dbitrust.getClassFieldHashMap(); 
+				  //SUPERCLASSES
+				  SuperclassesHashMap= dbitrust.getSuperclassesHashMap(); 
+				  //CHILDREN 
+				  ChildrenHashMap= dbitrust.getChildrenHashMap(); 
+				  //IMPLEMENTATIONS 
+				  INTERFACEHASHMAPFINAL= dbitrust.getINTERFACEHASHMAPFINAL(); 
+				  //PARAMETERS 
+				  
+				  parameterHashMap= dbitrust.getParameterhashMap(); 
+		}
 		
 		
 
+CalculateChildrenInterfaces(); 
+		
+GenerateNewValuesInTracesClasses(); 
+		
+		j=0; 
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			List<String> PredictionParams= new ArrayList<String>(); 
-			List<String> PredictionParamsOwnerClass= new ArrayList<String>(); 
-			List<String> PredictionFields= new ArrayList<String>(); 
-			List<String> PredictionFieldsOwnerClass= new ArrayList<String>(); 
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(Row);
-			System.out.println(methodtraces2HashMap.size());
 
-			
-			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.MethodRepresentation.methodid); 
-			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.MethodRepresentation.methodid); 
-		if(mymethodfields!=null)
-			for(MethodField2 mymeth: mymethodfields) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					PredictionFields.add(traceGold2V2); 
-				}
-			}
-		if( paramlist!=null) {
-			for(Parameter2 mymeth: paramlist) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					PredictionParams.add(traceGold2V2); 
-				}
-			}
-		}
-		
-		if( paramlist!=null) {
-			for(Parameter2 mymeth: paramlist) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					PredictionParamsOwnerClass.add(traceGold2V2); 
-				}
-			}
-		}
-		
-		if(mymethodfields!=null)
-			for(MethodField2 mymeth: mymethodfields) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					PredictionFieldsOwnerClass.add(traceGold2V2); 
-				}
-			}
-			methodtrace.setPredictionParams(PredictionParams);
-			methodtrace.setPredictionFields(PredictionFields);
-			methodtrace.setPredictionFieldsOwnerClass(PredictionFieldsOwnerClass);
-			methodtrace.setPredictionParamsOwnerClass(PredictionParamsOwnerClass);
-			
-			List<String> SuperClassesList= new ArrayList<String>(); 
-			List<String> InterfaceList= new ArrayList<String>(); 
-			List<String> ChildrenList= new ArrayList<String>(); 
-			List<String> ImplementationList= new ArrayList<String>(); 
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(Row);
-			System.out.println(methodtraces2HashMap.size());
-
-			
-			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid); 
-			 List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid); 
-			 System.out.println("Methodtrace class id "+methodtrace.ClassRepresentation.classid);
-		if(myinterfaces!=null)
-			for(Interface2 myinterface: myinterfaces) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					InterfaceList.add(traceGold2V2+"-"+myinterface.getInterfaceClass().getClassid()+"-"+methodtrace.ClassRepresentation.classid); 
-				}
-			}
-		if( mysuperclasses!=null)
-			for(SuperClass2 mysuperclass: mysuperclasses) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					SuperClassesList.add(traceGold2V2+"-"+ mysuperclass.getSuperClass().classid+"-"+methodtrace.ClassRepresentation.classid); 
-				}
-			}
-		if(mychildren!=null)
-			for(Children2 mychild: mychildren) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					ChildrenList.add(traceGold2V2+"-"+mychild.getOwnerClass().classid+"-"+methodtrace.ClassRepresentation.classid); 
-				}
-			}
-		if( myimplementations!=null)
-			for(Implementation2 myimplementation: myimplementations) {
-				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
-				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
-					ImplementationList.add(traceGold2V2+"-"+myimplementation.getImplementation().classid+"-"+methodtrace.ClassRepresentation.classid); 
-				}
-			}
-			methodtrace.setSuperClassesList(SuperClassesList);
-			methodtrace.setInterfaceList(InterfaceList);
-			methodtrace.setImplementationList(ImplementationList);
-			methodtrace.setChildrenList(ChildrenList);
-			j++; 
-		}
-		
-		
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
-			data[j][Row] = j; 
-			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
-			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
-			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
-			data[j][RequirementID] = methodtrace.Requirement.getID();
-			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
-			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
-			data[j][Gold] = methodtrace.gold;
-			data[j][Subject] = methodtrace.subject;
-			data[j][gold2] = methodtrace.gold2;
-		
-			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
+			String reqclass= methodtrace.Requirement.getID()+"-"+ methodtrace.getClassRepresentation().classid; 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 	
 		 ITERATION1=0; 
 			//PATTERN 1
-		 
-		 List<String> ImplementationList = methodtrace.getImplementationList(); 
-		 List<String> ChildrenList=methodtrace.getChildrenList();
-		 List<String> SuperClassesList=methodtrace.getSuperClassesList(); 
-		 List<String> InterfaceList=methodtrace.getInterfaceList(); 
-		 
-		 
-		 
-		 List<String> childrenListOwners= new ArrayList<String>(); 
-		 List<String> TraceValues= new ArrayList<String>(); 
-		 List<String> SuperClassListOwners= new ArrayList<String>(); 
-		 
-		 List<String> SuperClassListOwners2= new ArrayList<String>(); 
-		 List<String> childrenListOwners2= new ArrayList<String>(); 
-		 List<String> TraceValues2= new ArrayList<String>(); 
-		 
-		 
-		 
-		 List<String> InterfacesListOwners= new ArrayList<String>(); 
-		 List<String> ImplementationListOwners= new ArrayList<String>(); 
-		 List<String> TraceValuesInterfaces= new ArrayList<String>(); 
-		 
-		 List<String> InterfacesListOwners2= new ArrayList<String>(); 
-		 List<String> ImplementationListOwners2= new ArrayList<String>(); 
-		 List<String> TraceValuesInterfaces2= new ArrayList<String>(); 
-
-//CHILDREN 
-		 for(String childVal: ChildrenList) {
-			  String[] Vals = childVal.split("-"); 
-			  String myvalue = Vals[0]; 
-			  String ownerclassChild = Vals[1]; 
-			  String superclassownerID = Vals[2]; 
-			  TraceValues.add(myvalue); 
-			  childrenListOwners.add(ownerclassChild); 
-			  SuperClassListOwners.add(superclassownerID); 
-		 }
-		 boolean allEqual = TraceValues.stream().distinct().limit(2).count() <= 1 && TraceValues.size()>=1; 
-		 if(allEqual) {
-			
-				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
-				if( (myclasstraceNew.getTrace2V2()==null  
-						 ||	myclasstraceNew.getTrace2V2().equals("E")
-						 ||	myclasstraceNew.getTrace2V2().equals("null")) &&
-						 (TraceValues.get(0).equals("T")|| TraceValues.get(0).equals("N"))) {
-					 myclasstraceNew.setTrace2V2(TraceValues.get(0));
-					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
-				 }
-			 
-		 }
-		
-		 
-			
-		 
-	//SUPERCLASSES	 
-		 
-		 for(String SuperclassVal: SuperClassesList) {
-			  String[] Vals = SuperclassVal.split("-"); 
-			  String myvalue = Vals[0]; 
-			  String ownerclassSuperclass = Vals[1]; 
-			  String childclassownerID = Vals[2]; 
-			  TraceValues2.add(myvalue); 
-			  childrenListOwners2.add(childclassownerID); 
-			  SuperClassListOwners2.add(ownerclassSuperclass); 
-		 }
-		  allEqual = TraceValues2.stream().distinct().limit(2).count() <= 1 && TraceValues2.size()>=1; 
-		 if(allEqual) {
-			
-				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
-				 if( (myclasstraceNew.getTrace2V2()==null  
-						 ||	myclasstraceNew.getTrace2V2().equals("E")
-						 ||	myclasstraceNew.getTrace2V2().equals("null")) &&
-						 (TraceValues2.get(0).equals("T")|| TraceValues2.get(0).equals("N"))) {
-					 myclasstraceNew.setTrace2V2(TraceValues2.get(0));
-					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
-				 }
-			 
-		 }
-		 
-		 
-			
-		 
-//INTERFACES	 
-		 
-		 for(String interfaceVal: InterfaceList) {
-			  String[] Vals = interfaceVal.split("-"); 
-			  String myvalue = Vals[0]; 
-			  String InterfaceID = Vals[1]; 
-			  String ImplementationID = Vals[2]; 
-			  TraceValuesInterfaces.add(myvalue); 
-			  InterfacesListOwners.add(InterfaceID); 
-			  ImplementationListOwners.add(ImplementationID); 
-		 }
-		  allEqual = TraceValuesInterfaces.stream().distinct().limit(2).count() <= 1 && TraceValuesInterfaces.size()>=1; 
-		 if(allEqual) {
-			
-				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
-				 if( (myclasstraceNew.getTrace2V2()==null  
-						 ||	myclasstraceNew.getTrace2V2().equals("E")
-						 ||	myclasstraceNew.getTrace2V2().equals("null")) &&
-						 (TraceValuesInterfaces.get(0).equals("T")|| TraceValuesInterfaces.get(0).equals("N"))) {
-					 myclasstraceNew.setTrace2V2(TraceValuesInterfaces.get(0));
-					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
-				 }
-			 
-		 }
-		 
-			
-		 
-//IMPLEMENTATIONS	 
-		 
-		 for(String ImplementationVal: ImplementationList) {
-			  String[] Vals = ImplementationVal.split("-"); 
-			  String myvalue = Vals[0]; 
-			  String ImplementationID = Vals[1]; 
-			  String InterfaceID = Vals[2]; 
-			  TraceValuesInterfaces2.add(myvalue); 
-			  InterfacesListOwners2.add(InterfaceID); 
-			  ImplementationListOwners2.add(ImplementationID); 
-		 }
-		  allEqual = TraceValuesInterfaces2.stream().distinct().limit(2).count() <= 1 && TraceValuesInterfaces2.size()>=1; 
-		 if(allEqual) {
-			
-				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
-				 if( (myclasstraceNew.getTrace2V2()==null  
-						 ||	myclasstraceNew.getTrace2V2().equals("E")
-						 ||	myclasstraceNew.getTrace2V2().equals("null")) &&
-						 (TraceValuesInterfaces2.get(0).equals("T")|| TraceValuesInterfaces2.get(0).equals("N"))) {
-					 myclasstraceNew.setTrace2V2(TraceValuesInterfaces2.get(0));
-					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
-				 }
-			 
-		 }
-			
-		
-			
-			
-			
-			
-			
-			
-			j++;
-			
-		
-		}
-		
-		
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			data[j][Row] = j; 
-			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
-			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
-			data[j][MethodName] =	data[j][MethodName].toString().replaceAll(",", "/"); 
-			data[j][RequirementID] = methodtrace.Requirement.getID();
-			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
-			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
-			data[j][Gold] = methodtrace.gold;
-			data[j][Subject] = methodtrace.subject;
-			data[j][gold2] = methodtrace.gold2;
-			data[j][CallerClassesT] = 0;
-			data[j][CallerClassesN] = 0;
-			data[j][CallerClassesE] = 0;
-			data[j][CallerMethodsT] = 0;
-			data[j][CallerMethodsN] = 0;
-			data[j][CallerMethodsE] = 0;
-			data[j][CalleeClassesT] = 0;
-			data[j][CalleeClassesN] = 0;
-			data[j][CalleeClassesE] = 0;
-			data[j][CalleeMethodsT] = 0;
-			data[j][CalleeMethodsN] = 0;
-			data[j][CalleeMethodsE] = 0;
-			data[j][CalleeMethodsNumber] = 0;
-			data[j][CallerMethodsNumber] = 0;
-			data[j][CallerClassesNumber] = 0;
-			data[j][CalleeClassesNumber] = 0;
-			
-			data[j][CallerClassesTgold2] = 0;
-			data[j][CallerClassesNgold2] = 0;
-			data[j][CallerClassesEgold2] = 0;
-			data[j][CallerMethodsTgold2] = 0;
-			data[j][CallerMethodsNgold2] = 0;
-			data[j][CallerMethodsEgold2] = 0;
-			data[j][CalleeClassesTgold2] = 0;
-			data[j][CalleeClassesNgold2] = 0;
-			data[j][CalleeClassesEgold2] = 0;
-			data[j][CalleeMethodsTgold2] = 0;
-			data[j][CalleeMethodsNgold2] = 0;
-			data[j][CalleeMethodsEgold2] = 0;
-			data[j][CalleeMethodsNumbergold2] = 0;
-			data[j][CallerMethodsNumbergold2] = 0;
-			data[j][CallerClassesNumbergold2] = 0;
-			data[j][CalleeClassesNumbergold2] = 0;
-			data[j][CLASSTRACEClassLevelMixedGold] = "null";
-			data[j][CLASSTRACEClassLevelPureGold] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGold] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGold] = "null";
-			data[j][CLASSTRACEClassLevelMixedgold2] = "null";
-			data[j][CLASSTRACEClassLevelPuregold2] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedgold2] = "null";
-			data[j][CLASSNOTRACEClassLevelPuregold2] = "null";
-			
-			data[j][CLASSTRACEMethodLevelMixedGold] = "null";
-			data[j][CLASSTRACEMethodLevelPureGold] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGold] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGold] = "null";
-			data[j][CLASSTRACEMethodLevelMixedgold2] = "null";
-			data[j][CLASSTRACEMethodLevelPuregold2] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedgold2] = "null";
-			data[j][CLASSNOTRACEMethodLevelPuregold2] = "null";
-			
-			
-			data[j][CLASSTRACEClassLevelMixedGoldACROSS] = "null";
-			data[j][CLASSTRACEClassLevelPureGoldACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedGoldACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelPureGoldACROSS] = "null";
-			data[j][CLASSTRACEClassLevelMixedgold2ACROSS] = "null";
-			data[j][CLASSTRACEClassLevelPuregold2ACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelMixedgold2ACROSS] = "null";
-			data[j][CLASSNOTRACEClassLevelPuregold2ACROSS] = "null";
-			
-			data[j][CLASSTRACEMethodLevelMixedGoldACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelPureGoldACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedGoldACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelPureGoldACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelMixedgold2ACROSS] = "null";
-			data[j][CLASSTRACEMethodLevelPuregold2ACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelMixedgold2ACROSS] = "null";
-			data[j][CLASSNOTRACEMethodLevelPuregold2ACROSS] = "null";
-			data[j][OwnerClassT] = "0";
-			data[j][OwnerClassN] = "0";
-			data[j][OwnerClassE] = "1";
-			data[j][OwnerClassTgold2] = "0";
-			data[j][OwnerClassNgold2] = "0";
-			data[j][OwnerClassEgold2] = "1";
-			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
-			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-	
-		 ITERATION1=0; 
-			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2V2()!=null) {
+			if(myclasstraceHashMap.getTraceFinal()!=null) {
 				
-				String tracegold2 = myclasstraceHashMap.getTrace2V2(); 
+				String tracegold2 = myclasstraceHashMap.getTraceFinal(); 
 				tracegold2=tracegold2.trim(); 
 				if (tracegold2.equals("T")) {
-					data[j][OwnerClassTgold2] = "1";
-					data[j][OwnerClassNgold2] = "0";
-					data[j][OwnerClassEgold2] = "0";
 					
-					PatternSetVariables("E",methodtrace,"100%","P1"); 
+					
+//					PatternSetVariables("E",methodtrace,"100%","P1"); 
 					
 				} else if (tracegold2.equals("N")) {
-					data[j][OwnerClassTgold2] = "0";
-					data[j][OwnerClassNgold2] = "1";
-					data[j][OwnerClassEgold2] = "0";
 					
-					PatternSetVariables("N",methodtrace,"100%","P1"); 
+			
+//					PatternSetVariables("N",methodtrace,"100%","P1"); 
 				
 				} 
 				
-//				else if (tracegold2.equals("E")) {
-//					data[j][OwnerClassTgold2] = "0";
-//					data[j][OwnerClassNgold2] = "0";
-//					data[j][OwnerClassEgold2] = "1";
-//					
-//					PatternSetVariables("E", methodtrace,"100%","P1"); 
-//				
-//				}
+
 				
 				else {
-					PatternSetVariables("E", methodtrace,"100%","P1"); 
+//					PatternSetVariables("E", methodtrace,"100%","P1"); 
 				}
 				ITERATION1++; 
 			}
@@ -1630,7 +1413,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						)
 						{
 					
-					PatternSetVariables("N", methodtrace, "80%", "P3");
+//					PatternSetVariables("N", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
 				}
@@ -1641,7 +1424,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "80%", "P3");
+//					PatternSetVariables("T", methodtrace, "80%", "P3");
 
 					//System.out.println("yes");
 				}
@@ -1654,7 +1437,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					
-					PatternSetVariables("N", methodtrace, "80%", "P5");
+//					PatternSetVariables("N", methodtrace, "80%", "P5");
 				}
 				else if(PredictionCalleeList.isEmpty() 
 						&&  PredictionCallerList.contains("T")  
@@ -1665,7 +1448,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 				
-					PatternSetVariables("T", methodtrace, "80%", "P5");
+//					PatternSetVariables("T", methodtrace, "80%", "P5");
 				}
 				k++; 
 			}
@@ -1731,7 +1514,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P2");
+//					PatternSetVariables("N", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
 				else 	if(!PredictionCalleeList.contains("N") 
@@ -1744,7 +1527,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
+//					PatternSetVariables("T", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
 				
@@ -1759,7 +1542,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P4");
+//					PatternSetVariables("N", methodtrace, "90%", "P4");
 
 					//System.out.println("yes");
 				}
@@ -1773,7 +1556,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 						
 						) {
 					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
+//					PatternSetVariables("T", methodtrace, "90%", "P2");
 					//System.out.println("yes");
 				}
 				k++; 
@@ -1822,6 +1605,15 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				 boolean allEqualSuperclasses = superclassesTraceValues.stream().distinct().limit(2).count() <= 1 && superclassesTraceValues.size()>=1; 
 				 boolean allEqualChildren = childrenTraceValues.stream().distinct().limit(2).count() <= 1 && childrenTraceValues.size()>=1; 
 				
+//				 if(methodtrace.getPrediction()==null) {
+//					 methodtrace.setPrediction("E");
+//				 }
+				 
+				 
+				 
+				 
+				 
+				 
 				 
 				 if(
 					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N"))
@@ -1829,18 +1621,40 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("N"))
 					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N"))
 					
-						 ) {
+						 ) 
+					 
+					 
+					 
+//					 if(
+//								((allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N")) && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("N") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
+//								|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("N") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N")&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								
+//									 ) 
+				 
+				 {
 						PatternSetVariables("N", methodtrace, "90%", "P2");
 
 				 }
 				 
-				 else  if(
+				  if(
 							(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T"))
 							|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("T")) 
 							|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("T"))
 							|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T"))
 							
-								 ) {
+								 ) 
+				  
+//					  if(
+//								(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
+//								|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+//								
+//									 ) 
+				  
+				  {
 								PatternSetVariables("T", methodtrace, "90%", "P2");
 
 						 }
@@ -1851,20 +1665,34 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 //			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//				System.out.println("PREDICTION  "+methodtrace.getPrediction()+" ------------  gold2  "+methodtrace.gold2);
+//				System.out.println("PREDICTION  "+methodtrace.getPrediction()+" ------------  gold2  "+methodtrace.goldfinal);
 //
 //				
 //				
 //			}
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 
-				if(methodtrace.getPrediction().equals("E")){
-					methodtrace.setPrediction("T");
-					
-				}
-				
-				
-			}
+			
+			
+		
+			
+			
+			
+			
+			
+//			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+//if(methodtrace.getPrediction()!=null)
+//				if(methodtrace.getPrediction().equals("E") ){
+//					methodtrace.setPrediction("T");
+//					
+//				}
+//				
+//				
+//			}
+			
+			
+			
+			
+			
 			
 			
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
@@ -1878,10 +1706,15 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		
 		}
 //		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+//			
 //				if(methodtrace.getPrediction().trim().equals("E")){
 //					methodtrace.setPrediction("T");
 //				}
 //		}
+		
+		
+		
+		
 //	 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
@@ -1894,17 +1727,306 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsSetToT);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
-
+		bwfile1.write(NEWPATTERNMethodCallsSetToT.toString());
+		bwfile1.close();
 		return PredictionsNewHashMap; 
 	}
 	
 	
+	private void GenerateNewValuesInTracesClasses() {
+	// TODO Auto-generated method stub
+		int j=0; 
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+
+		
+		
+			String reqclass= methodtrace.Requirement.getID()+"-"+ methodtrace.ClassRepresentation.classid;
+			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+	
+			//PATTERN 1
+		 
+		 List<String> ImplementationList = methodtrace.getImplementationList(); 
+		 List<String> ChildrenList=methodtrace.getChildrenList();
+		 List<String> SuperClassesList=methodtrace.getSuperClassesList(); 
+		 List<String> InterfaceList=methodtrace.getInterfaceList(); 
+		 
+		 
+		 
+		 List<String> childrenListOwners= new ArrayList<String>(); 
+		 List<String> TraceValues= new ArrayList<String>(); 
+		 List<String> SuperClassListOwners= new ArrayList<String>(); 
+		 
+		 List<String> SuperClassListOwners2= new ArrayList<String>(); 
+		 List<String> childrenListOwners2= new ArrayList<String>(); 
+		 List<String> TraceValues2= new ArrayList<String>(); 
+		 
+		 
+		 
+		 List<String> InterfacesListOwners= new ArrayList<String>(); 
+		 List<String> ImplementationListOwners= new ArrayList<String>(); 
+		 List<String> TraceValuesInterfaces= new ArrayList<String>(); 
+		 
+		 List<String> InterfacesListOwners2= new ArrayList<String>(); 
+		 List<String> ImplementationListOwners2= new ArrayList<String>(); 
+		 List<String> TraceValuesInterfaces2= new ArrayList<String>(); 
+
+//CHILDREN 
+		 for(String childVal: ChildrenList) {
+			  String[] Vals = childVal.split("-"); 
+			  String myvalue = Vals[0]; 
+			  String ownerclassChild = Vals[1]; 
+			  String superclassownerID = Vals[2]; 
+			  TraceValues.add(myvalue); 
+			  childrenListOwners.add(ownerclassChild); 
+			  SuperClassListOwners.add(superclassownerID); 
+		 }
+		 boolean allEqual = TraceValues.stream().distinct().limit(2).count() <= 1 && TraceValues.size()>=1; 
+		 if(allEqual) {
+			
+				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
+				if( (myclasstraceNew.getTraceFinal()==null  
+						 ||	myclasstraceNew.getTraceFinal().equals("E")
+						 ||	myclasstraceNew.getTraceFinal().equals("null")) &&
+						 (TraceValues.get(0).equals("T")|| TraceValues.get(0).equals("N"))) {
+					 myclasstraceNew.setTraceFinal(TraceValues.get(0));
+					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
+				 }
+			 
+		 }
+		
+		 
+			
+		 
+	//SUPERCLASSES	 
+		 
+		 for(String SuperclassVal: SuperClassesList) {
+			  String[] Vals = SuperclassVal.split("-"); 
+			  String myvalue = Vals[0]; 
+			  String ownerclassSuperclass = Vals[1]; 
+			  String childclassownerID = Vals[2]; 
+			  TraceValues2.add(myvalue); 
+			  childrenListOwners2.add(childclassownerID); 
+			  SuperClassListOwners2.add(ownerclassSuperclass); 
+		 }
+		  allEqual = TraceValues2.stream().distinct().limit(2).count() <= 1 && TraceValues2.size()>=1; 
+		 if(allEqual) {
+			
+				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
+				 if( (myclasstraceNew.getTraceFinal()==null  
+						 ||	myclasstraceNew.getTraceFinal().equals("E")
+						 ||	myclasstraceNew.getTraceFinal().equals("null")) &&
+						 (TraceValues2.get(0).equals("T")|| TraceValues2.get(0).equals("N"))) {
+					 myclasstraceNew.setTraceFinal(TraceValues2.get(0));
+					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
+				 }
+			 
+		 }
+		 
+		 
+			
+		 
+//INTERFACES	 
+		 
+		 for(String interfaceVal: InterfaceList) {
+			  String[] Vals = interfaceVal.split("-"); 
+			  String myvalue = Vals[0]; 
+			  String InterfaceID = Vals[1]; 
+			  String ImplementationID = Vals[2]; 
+			  TraceValuesInterfaces.add(myvalue); 
+			  InterfacesListOwners.add(InterfaceID); 
+			  ImplementationListOwners.add(ImplementationID); 
+		 }
+		  allEqual = TraceValuesInterfaces.stream().distinct().limit(2).count() <= 1 && TraceValuesInterfaces.size()>=1; 
+		 if(allEqual) {
+			
+				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
+				 if( (myclasstraceNew.getTraceFinal()==null  
+						 ||	myclasstraceNew.getTraceFinal().equals("E")
+						 ||	myclasstraceNew.getTraceFinal().equals("null")) &&
+						 (TraceValuesInterfaces.get(0).equals("T")|| TraceValuesInterfaces.get(0).equals("N"))) {
+					 myclasstraceNew.setTraceFinal(TraceValuesInterfaces.get(0));
+					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
+				 }
+			 
+		 }
+		 
+			
+		 
+//IMPLEMENTATIONS	 
+		 
+		 for(String ImplementationVal: ImplementationList) {
+			  String[] Vals = ImplementationVal.split("-"); 
+			  String myvalue = Vals[0]; 
+			  String ImplementationID = Vals[1]; 
+			  String InterfaceID = Vals[2]; 
+			  TraceValuesInterfaces2.add(myvalue); 
+			  InterfacesListOwners2.add(InterfaceID); 
+			  ImplementationListOwners2.add(ImplementationID); 
+		 }
+		  allEqual = TraceValuesInterfaces2.stream().distinct().limit(2).count() <= 1 && TraceValuesInterfaces2.size()>=1; 
+		 if(allEqual) {
+			
+				ClassTrace2 myclasstraceNew = methodtracesRequirementClass.get(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid); 
+				 if( (myclasstraceNew.getTraceFinal()==null  
+						 ||	myclasstraceNew.getTraceFinal().equals("E")
+						 ||	myclasstraceNew.getTraceFinal().equals("null")) &&
+						 (TraceValuesInterfaces2.get(0).equals("T")|| TraceValuesInterfaces2.get(0).equals("N"))) {
+					 myclasstraceNew.setTraceFinal(TraceValuesInterfaces2.get(0));
+					 methodtracesRequirementClass.put(methodtrace.Requirement.getID()+"-"+methodtrace.ClassRepresentation.classid, myclasstraceNew); 
+				 }
+			 
+		 }
+			
+		
+			
+			
+			
+			
+			
+			
+			j++;
+			
+		
+		}
+}
+
+	public void CalculateChildrenInterfaces() {
+	// TODO Auto-generated method stub
+		int j=0; 
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			List<String> PredictionParams= new ArrayList<String>(); 
+			List<String> PredictionParamsOwnerClass= new ArrayList<String>(); 
+			List<String> PredictionFields= new ArrayList<String>(); 
+			List<String> PredictionFieldsOwnerClass= new ArrayList<String>(); 
+			System.out.println(methodtraces2.size());
+			System.out.println(j);
+			System.out.println(Row);
+			System.out.println(methodtraces2HashMap.size());
+
+			
+			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.MethodRepresentation.methodid); 
+			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.MethodRepresentation.methodid); 
+		if(mymethodfields!=null)
+			for(MethodField2 mymeth: mymethodfields) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					PredictionFields.add(traceGold2V2); 
+				}
+			}
+		if( paramlist!=null) {
+			for(Parameter2 mymeth: paramlist) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					PredictionParams.add(traceGold2V2); 
+				}
+			}
+		}
+		
+		if( paramlist!=null) {
+			for(Parameter2 mymeth: paramlist) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					PredictionParamsOwnerClass.add(traceGold2V2); 
+				}
+			}
+		}
+		
+		if(mymethodfields!=null)
+			for(MethodField2 mymeth: mymethodfields) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					PredictionFieldsOwnerClass.add(traceGold2V2); 
+				}
+			}
+			methodtrace.setPredictionParams(PredictionParams);
+			methodtrace.setPredictionFields(PredictionFields);
+			methodtrace.setPredictionFieldsOwnerClass(PredictionFieldsOwnerClass);
+			methodtrace.setPredictionParamsOwnerClass(PredictionParamsOwnerClass);
+			
+			List<String> SuperClassesList= new ArrayList<String>(); 
+			List<String> InterfaceList= new ArrayList<String>(); 
+			List<String> ChildrenList= new ArrayList<String>(); 
+			List<String> ImplementationList= new ArrayList<String>(); 
+			System.out.println(methodtraces2.size());
+			System.out.println(j);
+			System.out.println(Row);
+			System.out.println(methodtraces2HashMap.size());
+
+			
+			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid); 
+			 List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid); 
+			 System.out.println("Methodtrace class id "+methodtrace.ClassRepresentation.classid);
+		if(myinterfaces!=null)
+			for(Interface2 myinterface: myinterfaces) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					InterfaceList.add(traceGold2V2+"-"+myinterface.getInterfaceClass().getClassid()+"-"+methodtrace.ClassRepresentation.classid); 
+				}
+			}
+		if( mysuperclasses!=null)
+			for(SuperClass2 mysuperclass: mysuperclasses) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					SuperClassesList.add(traceGold2V2+"-"+ mysuperclass.getSuperClass().classid+"-"+methodtrace.ClassRepresentation.classid); 
+				}
+			}
+		if(mychildren!=null)
+			for(Children2 mychild: mychildren) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					ChildrenList.add(traceGold2V2+"-"+mychild.getOwnerClass().classid+"-"+methodtrace.ClassRepresentation.classid); 
+				}
+			}
+		if( myimplementations!=null)
+			for(Implementation2 myimplementation: myimplementations) {
+				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
+				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
+				if(myclasstraceHashMap!=null)
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
+					ImplementationList.add(traceGold2V2+"-"+myimplementation.getImplementation().classid+"-"+methodtrace.ClassRepresentation.classid); 
+				}
+			}
+			methodtrace.setSuperClassesList(SuperClassesList);
+			methodtrace.setInterfaceList(InterfaceList);
+			methodtrace.setImplementationList(ImplementationList);
+			methodtrace.setChildrenList(ChildrenList);
+			j++; 
+		}
+}
+
 	public void WriteInDatabaseAndComputePrecisionAndRecall(List<MethodTraceSubjectTSubjectN> methodtraces22,
 		PredictionEvaluation nEWPATTERNMethodCallsSetToT2) {
 	// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
-//		nEWPATTERNMethodCallsSetToT2.ResetCounters(nEWPATTERNMethodCallsSetToT2);
+		nEWPATTERNMethodCallsSetToT2.ResetCounters(nEWPATTERNMethodCallsSetToT2);
 		
 		for(MethodTraceSubjectTSubjectN mykey:methodtraces22) {
 			String methodid=mykey.getMethodRepresentation().methodid; 
@@ -1919,12 +2041,12 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getgold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 			
-			System.out.println("PREDICTION  "+mykey.getPrediction()+" ------------  gold2  "+mykey.gold2);
-			if(mykey.getGold2()!=null && mykey.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGold2().trim(), mykey.getPrediction().trim()); 
+			System.out.println("PREDICTION  "+mykey.getPrediction()+" ------------  gold2  "+mykey.goldfinal);
+			if(mykey.getGoldfinal()!=null && mykey.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGoldfinal().trim(), mykey.getPrediction().trim()); 
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
 			}
 		
@@ -1959,12 +2081,12 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getgold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 			
-			System.out.println("PREDICTION  "+myvalue.getPrediction()+" ------------  gold2  "+myvalue.gold2);
-			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction().trim()); 
+			System.out.println("PREDICTION  "+myvalue.getPrediction()+" ------------  gold2  "+myvalue.goldfinal);
+			if(myvalue.getGoldfinal()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGoldfinal().trim(), myvalue.getPrediction().trim()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		
@@ -2073,8 +2195,17 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	}
 
 	public static void main(String[] args) throws SQLException, IOException {
-
-		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3();
+//		String ProgramName="chess"; 
+//		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName);
+//		
+//		String ProgramName2="gantt"; 
+//		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName2);
+//		
+//		String ProgramName3="itrust"; 
+//		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName3);
+		
+		String ProgramName4="jhotdraw"; 
+		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

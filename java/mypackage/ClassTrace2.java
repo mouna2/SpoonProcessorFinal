@@ -15,30 +15,34 @@ public class ClassTrace2 {
 		ClassRepresentation2 myclass; 
 		String trace; 
 		String trace2; 
-		String trace2V2; 
+		String traceFinal; 
 		String trace3; 
 		String trace4; 
 		String trace5; 
-		String trace5V2; 
+		String goldFinal; 
 		String trace6; 
 		String subject;
 		
 		
 		
-		public String getTrace5V2() {
-			return trace5V2;
+		
+	
+
+	
+		public String getGoldfinal() {
+			return goldFinal;
 		}
 
-		public void setTrace5V2(String trace5v2) {
-			trace5V2 = trace5v2;
+		public void setGoldFinal(String goldFinal) {
+			this.goldFinal = goldFinal;
 		}
 
-		public String getTrace2V2() {
-			return trace2V2;
+		public String getTraceFinal() {
+			return traceFinal;
 		}
 
-		public void setTrace2V2(String trace2v2) {
-			trace2V2 = trace2v2;
+		public void setTraceFinal(String traceFinal) {
+			this.traceFinal = traceFinal;
 		}
 
 		public String getTrace6() {
@@ -155,7 +159,7 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.settrace(myresults.getString("gold"));
+				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
 				 
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 
@@ -197,11 +201,10 @@ public class ClassTrace2 {
 				 
 				 myclasstrace.settrace(myresults.getString("gold"));
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
-				 myclasstrace.setTrace2V2(myresults.getString("gold2V2"));
+				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
 				 myclasstrace.setTrace3(myresults.getString("gold3"));
-				 myclasstrace.setTrace4(myresults.getString("gold4"));
-				 myclasstrace.setTrace5(myresults.getString("gold5"));
-				 myclasstrace.setTrace5V2(myresults.getString("gold5V2"));
+				
+//				 myclasstrace.setGoldFinal(myresults.getString("goldfinal"));
 //				 myclasstrace.setTrace6(myresults.getString("gold6"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 

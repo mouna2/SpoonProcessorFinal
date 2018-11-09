@@ -1163,8 +1163,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getMethodFieldType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					PredictionFields.add(traceGold2V2); 
 				}
 			}
@@ -1173,8 +1173,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getParameterType().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					PredictionParams.add(traceGold2V2); 
 				}
 			}
@@ -1185,8 +1185,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					PredictionParamsOwnerClass.add(traceGold2V2); 
 				}
 			}
@@ -1197,8 +1197,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mymeth.getOwnerClass().classid;  
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					PredictionFieldsOwnerClass.add(traceGold2V2); 
 				}
 			}
@@ -1227,8 +1227,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ myinterface.getInterfaceClass().getClassid(); 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					InterfaceList.add(traceGold2V2); 
 				}
 			}
@@ -1237,8 +1237,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mysuperclass.getSuperClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					SuperClassesList.add(traceGold2V2); 
 				}
 			}
@@ -1247,8 +1247,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ mychild.getOwnerClass().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					ChildrenList.add(traceGold2V2); 
 				}
 			}
@@ -1257,8 +1257,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				String reqclass= methodtrace.Requirement.ID+"-"+ myimplementation.getImplementation().classid; 
 				ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
 				if(myclasstraceHashMap!=null)
-				if(myclasstraceHashMap.getTrace2V2()!=null) {
-					String traceGold2V2 = myclasstraceHashMap.getTrace2V2().trim();
+				if(myclasstraceHashMap.getTraceFinal()!=null) {
+					String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 					ImplementationList.add(traceGold2V2); 
 				}
 			}
@@ -1282,7 +1282,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][gold2] = methodtrace.gold2;
+			data[j][gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1363,9 +1363,9 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 		 ITERATION1=0; 
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2V2()!=null) {
+			if(myclasstraceHashMap.getTraceFinal()!=null) {
 				
-				String tracegold2 = myclasstraceHashMap.getTrace2V2(); 
+				String tracegold2 = myclasstraceHashMap.getTraceFinal(); 
 				tracegold2=tracegold2.trim(); 
 				if (tracegold2.equals("T")) {
 					data[j][OwnerClassTgold2] = "1";
@@ -1593,7 +1593,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			//PRINT 
 			
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   gold2  "+methodtrace.gold2);
+				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   gold2  "+methodtrace.goldfinal);
 //				if(methodtrace.getPrediction().equals("T")){
 //					methodtrace.setPrediction("");
 //				}
@@ -1653,7 +1653,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
-			data[j][gold2] = methodtrace.gold2;
+			data[j][gold2] = methodtrace.goldfinal;
 			data[j][CallerClassesT] = 0;
 			data[j][CallerClassesN] = 0;
 			data[j][CallerClassesE] = 0;
@@ -1734,8 +1734,8 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 			
 			//PATTERN 1
-			if(myclasstraceHashMap.getTrace2V2()!=null) {
-				String tracegold2 = myclasstraceHashMap.getTrace2V2();
+			if(myclasstraceHashMap.getTraceFinal()!=null) {
+				String tracegold2 = myclasstraceHashMap.getTraceFinal();
 				tracegold2=tracegold2.trim(); 
 				if (tracegold2.equals("T")) {
 					data[j][OwnerClassTgold2] = "1";
@@ -1971,10 +1971,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 //			
 //			st.executeUpdate(query); 
 
-			//System.out.println(myvalue.getgold2()+"   "+myvalue.getPrediction());
+			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-			if(myvalue.getGold2()!=null && myvalue.getPrediction()!=null) {
-				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGold2().trim(), myvalue.getPrediction()); 
+			if(myvalue.getGoldfinal()!=null && myvalue.getPrediction()!=null) {
+				String Result=nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGoldfinal().trim(), myvalue.getPrediction()); 
 				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
 			}
 		

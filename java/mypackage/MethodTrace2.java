@@ -18,7 +18,7 @@ public class MethodTrace2 {
 	public String goldprediction; 
 	public String goldpredictionCaller; 
 	public String goldpredictionCallee; 
-	public String gold2; 
+	public String goldFinal; 
 	public String gold2V2; 
 	public String gold3; 
 	public String gold4; 
@@ -99,12 +99,15 @@ public class MethodTrace2 {
 		this.why = why;
 	}
 
-	public String getGold2() {
-		return gold2;
+
+	
+
+	public String getGoldfinal() {
+		return goldFinal;
 	}
 
-	public void setGold2(String gold2) {
-		this.gold2 = gold2;
+	public void setGoldFinal(String goldFinal) {
+		this.goldFinal = goldFinal;
 	}
 
 	public String getGoldpredictionCaller() {
@@ -333,7 +336,7 @@ public class MethodTrace2 {
 				 
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
-				 mytrace.setGold2(myresults.getString("gold2"));
+				 mytrace.setGoldFinal(myresults.getString("goldfinal"));
 				 mytrace.setGold2V2(myresults.getString("gold2V2"));
 				 String id= mytrace.getMethodRepresentation().methodid; 
 				 String tracename= mytrace.getMethodRepresentation().fullmethodname; 

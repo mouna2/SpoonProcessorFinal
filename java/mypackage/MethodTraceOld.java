@@ -47,12 +47,12 @@ public class MethodTraceOld {
 				+ ", ClassRepresentation=" + ClassRepresentation + "]";
 	}
 
-	public String getGold2() {
+	public String getGoldfinal() {
 		return gold2;
 	}
 
 	public void setGold2(String gold2) {
-		this.gold2 = gold2;
+		this.goldfinal = gold2;
 	}
 
 	public String getGoldpredictionCaller() {
@@ -225,8 +225,8 @@ public class MethodTraceOld {
 				
 					MethodTrace.setGold(traces.getString("gold"));
 					System.out.println("Method Trace Gold: "+MethodTrace.getGold());
-					MethodTrace.setGold2(traces.getString("gold2"));
-					//System.out.println("Method Trace Gold2: "+MethodTrace.getGold2());
+					MethodTrace.setGoldFinal(traces.getString("goldfinal"));
+					//System.out.println("Method Trace Gold2: "+MethodTrace.getGoldfinal());
 
 					MethodTrace.setGold4(traces.getString("gold4"));
 					//System.out.println("Method Trace Gold4: "+MethodTrace.getGold4());
