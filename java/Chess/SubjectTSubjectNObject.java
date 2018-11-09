@@ -3,7 +3,7 @@ package Chess;
 public class SubjectTSubjectNObject {
 	String MethodName; 
 	String RequirementID; 
-	String gold2; 
+	String goldfinal; 
 	public String getMethodName() {
 		return MethodName;
 	}
@@ -17,10 +17,10 @@ public class SubjectTSubjectNObject {
 		this.RequirementID = RequirementID;
 	}
 	public String getGoldfinal() {
-		return gold2;
+		return goldfinal;
 	}
-	public void setGold2(String gold2) {
-		this.goldfinal = gold2;
+	public void setGold2(String goldfinal) {
+		this.goldfinal = goldfinal;
 	}
 	public SubjectTSubjectNObject(String methodName, String requirementID, String gold2) {
 		super();
@@ -34,7 +34,7 @@ public class SubjectTSubjectNObject {
 	@Override
 	public String toString() {
 		return "SubjectTSubjectNObject [MethodName=" + MethodName + ", RequirementID=" + RequirementID + ", gold2="
-				+ gold2 + "]";
+				+ goldfinal + "]";
 	}
 	
 	

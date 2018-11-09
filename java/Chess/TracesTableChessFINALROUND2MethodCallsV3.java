@@ -1609,19 +1609,56 @@ GenerateNewValuesInTracesClasses();
 //					 methodtrace.setPrediction("E");
 //				 }
 				 
+				 int interfaceCountT=0; 
+				 int interfaceCountN=0;
+				 int interfaceCountE=0; 
+				 for(String interfaceval: interfaceTraceValues) {
+					 if(interfaceval.trim().equals("T")) {
+						 interfaceCountT++; 
+					 }else if(interfaceval.trim().equals("N")) {
+						 interfaceCountN++; 
+					 }else {
+						 interfaceCountE++; 
+					 }
+				 }
+				 int impplementationCountT=0; 
+				 int impplementationCountN=0;
+				 int impplementationCountE=0; 
+				 for(String interfaceval: implementationsTraceValues) {
+					 if(interfaceval.trim().equals("T")) {
+						 impplementationCountT++; 
+					 }else if(interfaceval.trim().equals("N")) {
+						 impplementationCountN++; 
+					 }else {
+						 impplementationCountE++; 
+					 }
+				 }
+				 int superclassCountT=0; 
+				 int superclassCountN=0;
+				 int superclassCountE=0; 
+				 for(String interfaceval: superclassesTraceValues) {
+					 if(interfaceval.trim().equals("T")) {
+						 superclassCountT++; 
+					 }else if(interfaceval.trim().equals("N")) {
+						 superclassCountN++; 
+					 }else {
+						 superclassCountE++; 
+					 }
+				 }
 				 
-				 
-				 
-				 
-				 
-				 
-				 if(
-					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N"))
-					|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("N")) 
-					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("N"))
-					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N"))
-					
-						 ) 
+				 int childrenCountT=0; 
+				 int childrenCountN=0;
+				 int childrenCountE=0; 
+				 for(String interfaceval: childrenTraceValues) {
+					 if(interfaceval.trim().equals("T")) {
+						 childrenCountT++; 
+					 }else if(interfaceval.trim().equals("N")) {
+						 childrenCountN++; 
+					 }else {
+						 childrenCountE++; 
+					 }
+				 }
+
 					 
 					 
 					 
@@ -1632,19 +1669,33 @@ GenerateNewValuesInTracesClasses();
 //								|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N")&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
 //								
 //									 ) 
+			
+				 
+				 
+				 
+//				 if(
+//					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N"))
+//					|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("N")) 
+//					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("N"))
+//					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N"))
+//					
+//						 ) 
+				 
+				 if(
+							(childrenCountN>childrenCountT && childrenCountN>childrenCountE)
+							|| (impplementationCountN>impplementationCountT && impplementationCountN>impplementationCountE) 
+							|| (childrenCountN>childrenCountT && childrenCountN>childrenCountE)
+							|| (superclassCountN>superclassCountT && superclassCountN>superclassCountE)
+							
+								 ) 
+				 
 				 
 				 {
 						PatternSetVariables("N", methodtrace, "90%", "P2");
 
 				 }
 				 
-				  if(
-							(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T"))
-							|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("T")) 
-							|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("T"))
-							|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T"))
-							
-								 ) 
+
 				  
 //					  if(
 //								(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
@@ -1653,7 +1704,24 @@ GenerateNewValuesInTracesClasses();
 //								|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
 //								
 //									 ) 
-				  
+		
+//				  if(
+//					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T"))
+//					|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("T")) 
+//					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("T"))
+//					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T"))
+//					
+//						 ) 
+				 
+				 
+				 
+				 if(
+							(childrenCountT>childrenCountN && childrenCountT>childrenCountE)
+							|| (impplementationCountT>impplementationCountN && impplementationCountT>impplementationCountE) 
+							|| (childrenCountT>childrenCountN && childrenCountT>childrenCountE)
+							|| (superclassCountT>superclassCountN && superclassCountT>superclassCountE)
+							
+								 ) 		  
 				  {
 								PatternSetVariables("T", methodtrace, "90%", "P2");
 
@@ -1680,7 +1748,7 @@ GenerateNewValuesInTracesClasses();
 			
 			
 //			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//if(methodtrace.getPrediction()!=null)
+//if(methodtrace.getPrediction()!=null && !methodtrace.goldfinal.equals("E"))
 //				if(methodtrace.getPrediction().equals("E") ){
 //					methodtrace.setPrediction("T");
 //					
@@ -1696,7 +1764,6 @@ GenerateNewValuesInTracesClasses();
 			
 			
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-//			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
 
 			 //END  PRINT 
 			ITERATION++; 
@@ -2195,17 +2262,17 @@ GenerateNewValuesInTracesClasses();
 	}
 
 	public static void main(String[] args) throws SQLException, IOException {
-//		String ProgramName="chess"; 
-//		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName);
-//		
-//		String ProgramName2="gantt"; 
-//		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName2);
-//		
-//		String ProgramName3="itrust"; 
-//		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName3);
+		String ProgramName="chess"; 
+		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName);
+		
+		String ProgramName2="gantt"; 
+		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName2);
+		
+		String ProgramName3="itrust"; 
+		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName3);
 		
 		String ProgramName4="jhotdraw"; 
-		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName4);
+		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
