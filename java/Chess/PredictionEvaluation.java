@@ -63,7 +63,7 @@ public class PredictionEvaluation {
 			return "FP"; 
 		}
 		else {
-			return null; 
+			return "E"; 
 		}
 	}
 	
@@ -77,6 +77,10 @@ public class PredictionEvaluation {
 				predictionEvaluation.FalseNegative++; 
 			}else if(value.equals("FP")) {
 				predictionEvaluation.FalsePositive++; 
+
+			}
+			else if(value.equals("E")) {
+				predictionEvaluation.E++; 
 
 			}
 	//	System.out.println(predictionEvaluation.toString());
@@ -95,12 +99,9 @@ public class PredictionEvaluation {
 	@Override
 	public String toString() {
 		return "PredictionEvaluation [TruePositive=" + TruePositive + ", TrueNegative=" + TrueNegative
-				+ ", FalsePositive=" + FalsePositive + ", FalseNegative=" + FalseNegative + "]";
-	}
-	
-	public String toString2() {
-		return "PredictionEvaluation [TruePositive=" + TruePositive + ", TrueNegative=" + TrueNegative
 				+ ", FalsePositive=" + FalsePositive + ", FalseNegative=" + FalseNegative + ", E=" + E + "]";
 	}
+	
+	
 	
 }

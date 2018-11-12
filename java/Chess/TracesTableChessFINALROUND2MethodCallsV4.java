@@ -66,7 +66,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
+public class TracesTableChessFINALROUND2MethodCallsV4 extends JFrame {
 	
 	
 
@@ -522,7 +522,7 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 	PredictionEvaluation NEWPATTERNMethodCallsSetToT=new PredictionEvaluation();  
 
 	PredictionEvaluation NEWPATTERNMethodFields=new PredictionEvaluation();  
-
+	
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new HashMap<String, MethodTraceSubjectTSubjectN>();
@@ -543,55 +543,13 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 	JTable table = new JTable(); 
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
-	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogChess.txt");
-
-	FileOutputStream fos = new FileOutputStream(fout);
 	
-//	File fout2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChess.txt");
-	File fout2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationChess.txt");
-
-	FileOutputStream fos2 = new FileOutputStream(fout2);
-	
-	//File foutgold2 = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\PredictionEvaluationChessgold2.txt");
-	File foutgold2 = new File("C:\\Users\\mouna\\dumps\\PredictionEvaluationChessgold2.txt");
-
-	FileOutputStream filegold2 = new FileOutputStream(foutgold2);
-	
-	File foutgold2TableLog = new File("C:\\Users\\mouna\\dumps\\TableLogChessgold2.txt");
-	FileOutputStream fosgold2 = new FileOutputStream(foutgold2TableLog);
-	BufferedWriter bwgold2TableLog = new BufferedWriter(new OutputStreamWriter(fosgold2));
-
 	
 
 	
 	
-	File file2log = new File("C:\\Users\\mouna\\dumps\\file2.txt");
-	FileOutputStream fosfila2 = new FileOutputStream(file2log);
-	BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
-	
-	File file3log = new File("C:\\Users\\mouna\\dumps\\file3.txt");
-	FileOutputStream fosfila3 = new FileOutputStream(file3log);
-	BufferedWriter bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila3));
-	
-	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos));
-	BufferedWriter bw2 = new BufferedWriter(new OutputStreamWriter(fos2));
-	BufferedWriter bwgold2 = new BufferedWriter(new OutputStreamWriter(filegold2));
-	File mylog = new File("C:\\Users\\mouna\\dumps\\logs\\logChessAllTClassLevelCallers.txt");
-	FileOutputStream mylogfile = new FileOutputStream(mylog);
-	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
-	
-	File mylog2 = new File("C:\\Users\\mouna\\dumps\\logs\\logChessTraceMixed.txt");
-	FileOutputStream mylogfile2 = new FileOutputStream(mylog2);
-	BufferedWriter bwlog2 = new BufferedWriter(new OutputStreamWriter(mylogfile2));
-	
-	File mylog3 = new File("C:\\Users\\mouna\\dumps\\logs\\logChessPure.txt");
-	FileOutputStream mylogfile3 = new FileOutputStream(mylog3);
-	BufferedWriter bwlog3 = new BufferedWriter(new OutputStreamWriter(mylogfile3));
 	
 	
-	File mylog5 = new File("C:\\Users\\mouna\\dumps\\logs\\PredictionCounts.txt");
-	FileOutputStream mylogfile5 = new FileOutputStream(mylog5);
-	BufferedWriter bwlog5 = new BufferedWriter(new OutputStreamWriter(mylogfile5));
 	
 	public final String userName = "root";
 	public final String password = "123456";
@@ -614,401 +572,22 @@ public class TracesTableChessFINALROUND2MethodCallsV3 extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
-	public TracesTableChessFINALROUND2MethodCallsV3(String ProgramName) throws SQLException, IOException {
+	public TracesTableChessFINALROUND2MethodCallsV4(String ProgramName) throws SQLException, IOException {
 	
-		bwgold2TableLog.write("RowNumber, MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, gold2, Subject, OwnerClassT, OwnerClassN, "
-				+ "OwnerClassE, #callermethods, callers, "
-				+ "#callermethodsT, #callermethodsN, #callermethodsE, #callerclasses, #callerclassesT, #callerclassesN, "
-				+ "#callerclassesE, #calleemethods, callees, #calleemethodsT, #calleemethodsN, #calleemethodsE, #calleeclasses, #calleeclassesT, #calleeclassesN, "
-				+ "#calleeclassesE, "
-				
-				+"#callermethodsACROSS, #callermethodsTACROSS, #callermethodsNACROSS, #callermethodsEACROSS, #callerclassesACROSS, #callerclassesTACROSS, #callerclassesNACROSS, "
-				+ "#callerclassesEACROSS, #calleemethodsACROSS,#calleemethodsTACROSS, #calleemethodsNACROSS, #calleemethodsEACROSS, #calleeclassesACROSS, #calleeclassesTACROSS, #calleeclassesNACROSS, "
-				+ "#calleeclassesEACROSS, "
-				
-				+ "OwnerClassPrediction, MajorityClassLevelCallees, MajorityClassLevelCallers, MajorityMethodLevelCallees, MajorityMethodLevelCallers,"
-				+ "AtLeast1NPredictionClassLevelCallees, AtLeast1NPredictionClassLevelCallers, AtLeast1NPredictionMethodLevelCallees, AtLeast1NPredictionMethodLevelCallers, "
-				+"AtLeast1TPredictionClassLevelCallees, AtLeast1TPredictionClassLevelCallers, AtLeast1TPredictionMethodLevelCallees, AtLeast1TPredictionMethodLevelCallers,"
-				+ "AtLeast2NPredictionClassLevelCallees, AtLeast2NPredictionClassLevelCallers, AtLeast2NPredictionMethodLevelCallees, AtLeast2NPredictionMethodLevelCallers, "
-				+"AtLeast2TPredictionClassLevelCallees, AtLeast2TPredictionClassLevelCallers, AtLeast2TPredictionMethodLevelCallees, AtLeast2TPredictionMethodLevelCallers,"
-				+"AllNClassLevelCallees, AllNClassLevelCallers, AllNMethodLevelCallees, AllNMethodLevelCallers,"
-				+"AllTClassLevelCallees, AllTClassLevelCallers, AllTMethodLevelCallees, AllTMethodLevelCallers,"
-				+"AllNClassLevelCalleesAtLeast2, AllNClassLevelCallersAtLeast2, AllNMethodLevelCalleesAtLeast2, AllNMethodLevelCallersAtLeast2,"
-				+"AllTClassLevelCalleesAtLeast2, AllTClassLevelCallersAtLeast2, AllTMethodLevelCalleesAtLeast2, AllTMethodLevelCallersAtLeast2,"
-				+ " OnlyInParsedCallers, OnlyInExecutedCallers, BothParsedAndExecutedCallers, "
-				+ "OnlyInParsedCallees, OnlyInExecutedCallees, BothParsedAndExecutedCallees,"
-				
-				
-				
-				+ " #parametersMethodLevel, parametersMethodLevel, # Parameter TMethodLevel, # Parameter NMethodLevel, # Parameter EMethodLevel," 
-				+ " #interfacesMethodLevel,  # InterfaceTMethodLevel, # InterfaceNMethodLevel, # InterfaceEMethodLevel," 
-				+ " #superclassesMethodLevel,  # SuperclassTMethodLevel, # SuperclassNMethodLevel, # SuperclassEMethodLevel," 
-				+ " #FieldMethodsMethodLevel,  # FieldMethodsTMethodLevel, # FieldMethodsNMethodLevel, # FieldMethodsEMethodLevel," 
-				+ " #FieldClassesMethodLevel,  # FieldClassesTMethodLevel, # FieldClassesNMethodLevel, # FieldClassesEMethodLevel," 
-				
-				+ "MajorityParameter ,AtLeast1NParameterPrediction," + 
-				"AtLeast1TParameterPrediction, AtLeast2TParameterPrediction, AtLeast2NParameterPrediction,  AllNParameterPrediction, AllTParameterPrediction, "
-				+"ACHRAFTracePure, ACHRAFTraceMixed, ACHRAFNoTracePure,  ACHRAFNoTraceMixed, AllNMethodLevelCallersCallees, AllTMethodLevelCallersCallees, "
-				+ "AllTClassLevelCallersCallees, AllNClassLevelCallersCallees,"
-				+"ClassTraceMethodLevelPure, ClassTraceMethodLevelMixed, ClassNoTraceMethodLevelPure, ClassNoTraceMethodLevelMixed,"
-				+"ClassTraceClassLevelPure, ClassTraceClassLevelMixed, ClassNoTraceClassLevelPure, ClassNoTraceClassLevelMixed,"
-				+"ClassTraceMethodLevelPureACROSS, ClassTraceMethodLevelMixedACROSS, ClassNoTraceMethodLevelPureACROSS, ClassNoTraceMethodLevelMixedACROSS,"
-				+"ClassTraceClassLevelPureACROSS, ClassTraceClassLevelMixedACROSS, ClassNoTraceClassLevelPureACROSS, ClassNoTraceClassLevelMixedACROSS"
-				 );
-
-	
-
-		bw.newLine();
-		bwgold2TableLog.newLine();
+		
 	
 		
 		LinkedHashMap<String, String> PredictionsOldHashMap= new LinkedHashMap<String, String>(); 
 		LinkedHashMap<String, String> PredictionsNewHashMap= new LinkedHashMap<String, String>(); 
 
-		List<TableCellEditor> editors1 = new ArrayList<TableCellEditor>(methodtraces2.size());
-		List<TableCellEditor> editors2 = new ArrayList<TableCellEditor>(methodtraces2.size());
-		List<TableCellEditor> editors3 = new ArrayList<TableCellEditor>(methodtraces2.size());
-		List<TableCellEditor> editors4 = new ArrayList<TableCellEditor>(methodtraces2.size());
-		List<TableCellEditor> myparametersEditor = new ArrayList<TableCellEditor>(methodtraces2.size());
-
-		int j = 0;
-		final int jfinal=0; 
-		String[] items1 = new String[methodtraces2.size()];
-		String[] items2 = new String[methodtraces2.size()];
-		String[] items3 = new String[methodtraces2.size()];
-		String[] items4 = new String[methodtraces2.size()];
-		String[] items5 = new String[methodtraces2.size()];
-		String[] items6 = new String[methodtraces2.size()];
-		String[] myparameters = new String[methodtraces2.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
-		Object[][] data = new Object[100000][400];
-		int myfinalcounter=1; 
-		int MethodTraceCountGold=0; 
-		int ClassTraceCount=0; 
-		int MethodTraceCountgold2=0; 
-		// Create the editors to be used for each row
+	
+	
 		
-//		List<LinkedHashMap<String, String>> PredictionHashMaps= new ArrayList<LinkedHashMap<String, String>>(); 
-//		LinkedHashMap<String, String> PredictionHashMap1 = function1(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtraces2); 
+int j=0;
 		List<MethodTraceSubjectTSubjectN> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
 		function1SetToT(j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew, ProgramName); 
 		
-		
-//		PredictionHashMaps.add(PredictionHashMap1); 
-//		PredictionHashMaps.add(PredictionHashMap2); 
-		
-		
-		bwfile2.close();
-		bwfile3.close();
-		bw.close();
-		bwlog3.close();
-		bwlog2.close();
-		bwlog.write(AllTClassLevelCallersClass.toString()); 
-		bwlog.newLine();
-		bwlog.close(); 
-		System.out.println("OWNER CLASS PREDICTION: "+OwnerClassPredictionClass.toString()); 
-		System.out.println("MAJORITY CLASS LEVEL CALLERS PREDICTION: "+MajorityClassLevelCallersClass.toString()); 
-		System.out.println("MAJORITY CLASS LEVEL CALLEES PREDICTION: "+MajorityClassLevelCalleesClass.toString()); 
-		System.out.println("MAJORITY METHOD LEVEL CALLERS PREDICTION: "+MajorityMethodLevelCallersClass.toString()); 
-		System.out.println("MAJORITY METHOD LEVEL CALLEES PREDICTION: "+MajorityMethodLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 1 N PREDICTION CLASS LEVEL CALLERS: "+AtLeastNPredictionClassLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 1 N PREDICTION CLASS LEVEL CALLEES: "+AtLeastNPredictionClassLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 1 N PREDICTION METHOD LEVEL CALLERS: "+AtLeastNPredictionMethodLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 1 N PREDICTION METHOD LEVEL CALLEES: "+AtLeastNPredictionMethodLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 1 T PREDICTION CLASS LEVEL CALLERS: "+AtLeastTPredictionClassLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 1 T PREDICTION CLASS LEVEL CALLEES: "+AtLeastTPredictionClassLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 1 T PREDICTION METHOD LEVEL CALLERS: "+AtLeastTPredictionMethodLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 1 T PREDICTION METHOD LEVEL CALLEES: "+AtLeastTPredictionMethodLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 2 N PREDICTION CLASS LEVEL CALLERS: "+AtLeast2NPredictionClassLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 2 N PREDICTION CLASS LEVEL CALLEES: "+AtLeast2NPredictionClassLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 2 N PREDICTION METHOD LEVEL CALLERS: "+AtLeast2NPredictionMethodLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 2 N PREDICTION METHOD LEVEL CALLEES: "+AtLeast2NPredictionMethodLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 2 T PREDICTION CLASS LEVEL CALLERS: "+AtLeast2TPredictionClassLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 2 T PREDICTION CLASS LEVEL CALLEES: "+AtLeast2TPredictionClassLevelCalleesClass.toString()); 
-		System.out.println("AT LEAST 2 T PREDICTION METHOD LEVEL CALLERS: "+AtLeast2TPredictionMethodLevelCallersClass.toString()); 
-		System.out.println("AT LEAST 2 T PREDICTION METHOD LEVEL CALLEES: "+AtLeast2TPredictionMethodLevelCalleesClass.toString()); 
-		System.out.println("ALL N CLASS LEVEL CALLERS: "+AllNClassLevelCallersClass.toString()); 
-		System.out.println("ALL N CLASS LEVEL CALLEES: "+AllNClassLevelCalleesClass.toString()); 
-		System.out.println("ALL N METHOD LEVEL CALLERS: "+AllNMethodLevelCallersClass.toString()); 
-		System.out.println("ALL N METHOD LEVEL CALLEES: "+AllNMethodLevelCalleesClass.toString()); 
-		System.out.println("ALL T CLASS LEVEL CALLERS: "+AllTClassLevelCallersClass.toString()); 
-		System.out.println("ALL T CLASS LEVEL CALLEES: "+AllTClassLevelCalleesClass.toString()); 
-		System.out.println("ALL T METHOD LEVEL CALLERS: "+AllTMethodLevelCallersClass.toString()); 
-		System.out.println("ALL T METHOD LEVEL CALLEES: "+AllTMethodLevelCalleesClass.toString()); 
-		System.out.println("MAJORITY PARAMETERS CLASS: "+MajorityParametersClass.toString()); 
-		System.out.println("AT LEAST 1N PARAMETER CLASS: "+AtLeast1NParameterClass.toString()); 
-		System.out.println("AT LEAST 1T PARAMETER CLASS: "+AtLeast1TParameterClass.toString()); 
-		System.out.println("AT LEAST 2T PARAMETER CLASS: "+AtLeast2TParameterClass.toString()); 
-		System.out.println("AT LEAST 2N PARAMETER CLASS: "+AtLeast2NParameterClass.toString()); 
-		System.out.println("ALL N PARAMETERS: "+AllNParameterClass.toString()); 
-		System.out.println("ALL T PARAMETERS: "+AllTParameterClass.toString()); 
-		System.out.println("NEW PATTERN METHOD CALLS: "+NEWPATTERNMethodCalls.toString()); 
-		System.out.println("NEW PATTERN METHOD CALLS SET TO T : "+NEWPATTERNMethodCallsSetToT.toString()); 
-		System.out.println("NEW PATTERN METHOD FIELDS : "+NEWPATTERNMethodFields.toString()); 
-		
-		
-		bwlog5.write("NEW PATTERN METHOD CALLS SET TO T : "+NEWPATTERNMethodCallsSetToT.toString());
-		bwlog5.close();
-		
-		
-		
-		
-		
-		
-		bwgold2.close();
-		
-		
-//		String[] columnNames = {"Row",  "MethodID", "MethodName", "RequirementID", "RequirementName", "ClassID", "ClassName",
-//				"Gold", "Subject", "OwnerClass T", "Owner Class N", "Owner Class E", "# caller methods",
-//				"# caller methods T", "#caller methods N", "#caller methods E", "# caller classes",
-//				"# caller classes T", "#caller classes N", "#caller classes E", "# callee methods",
-//				"# callee methods T", "#callee methods N", "#callee methods E", "# callee classes",
-//				"# callee classes T", "#callee classes N", "#callee classes E",  "OwnerClassPrediction",
-//				"MajorityClassLevelCallers","MajorityClassLevelCallees", "MajorityMethodLevelCallers","MajorityMethodLevelCallees",
-//				">1NPredictionClassLevelCallers", ">1NPredictionClassLevelCallees", ">1NPredictionMethodLevelCallers", 
-//				">1NPredictionMethodLevelCallees", ">1TPredictionClassLevelCallers", ">1TPredictionClassLevelCallees", 
-//				">1TPredictionMethodLevelCallers", ">1TPredictionMethodLevelCallees", 
-//				">2NPredictionClassLevelCallers", ">2NPredictionClassLevelCallees", ">2NPredictionMethodLevelCallers", 
-//				">2NPredictionMethodLevelCallees", ">2TPredictionClassLevelCallers", ">2TPredictionClassLevelCallees", 
-//				">2TPredictionMethodLevelCallers", ">2TPredictionMethodLevelCallees", 
-//				"AllNClassLevelCallers", "AllNClassLevelCallees","AllNMethodLevelCallers","AllNMethodLevelCallees",
-//				"AllTClassLevelCallers", "AllTClassLevelCallees", "AllTMethodLevelCallers", "AllTMethodLevelCallees"
-//				,"Callers", "Callees", "#parameters", "Parameters","# Parameter T" ,"# Parameter N" ,"# Parameter E" ,
-//				"MajorityParameterPrediction", "AtLeast1NParameterPrediction", 
-//				"AtLeast1TParameterPrediction", "AtLeast2TParameterPrediction", 
-//				"AtLeast2NParameterPrediction", "AllNParameterPrediction", "AllTParameterPrediction"
-//				};
-		
-		
-		String[] columnNames = {"0-Row",  "1-MethodID", "2-MethodName", "3-RequirementID", "4-RequirementName", "5-ClassID", "6-ClassName",
-				"7-Gold", "8-Subject", "9-OwnerClass T", "10-Owner Class N", "11-Owner Class E", "12-# caller methods",
-				"13-# caller methods T", "14-#caller methods N", "15-#caller methods E", "16-# caller classes",
-				"17-# caller classes T", "18-#caller classes N", "19-#caller classes E", "20-# callee methods",
-				"21-# callee methods T", "22-#callee methods N", "23-#callee methods E", "24-# callee classes",
-				"25-# callee classes T", "26-#callee classes N", "27-#callee classes E",  "28-OwnerClassPrediction",
-				"29-MajorityClassLevelCallees","30-MajorityClassLevelCallers", "31-MajorityMethodLevelCallees","32-MajorityMethodLevelCallers",
-				"33->1NPredictionClassLevelCallees", "34->1NPredictionClassLevelCallers", "35->1NPredictionMethodLevelCallees", 
-				"36->1NPredictionMethodLevelCallers", "37->1TPredictionClassLevelCallees", "38->1TPredictionClassLevelCallers", 
-				"39->1TPredictionMethodLevelCallees", "40->1TPredictionMethodLevelCallers", 
-				"41->2NPredictionClassLevelCallees", "42->2NPredictionClassLevelCallers", "43->2NPredictionMethodLevelCallees", 
-				"44->2NPredictionMethodLevelCallers", "45->2TPredictionClassLevelCallees", "46->2TPredictionClassLevelCallers", 
-				"47->2TPredictionMethodLevelCallees", "48->2TPredictionMethodLevelCallers", 
-				"49-AllNClassLevelCallees", "50-AllNClassLevelCallers","51-AllNMethodLevelCallees","52-AllNMethodLevelCallers",
-				"53-AllTClassLevelCallees", "54-AllTClassLevelCallers", "55-AllTMethodLevelCallees", "56-AllTMethodLevelCallers"
-				,"57-AllNAtLeast2NClassLevelCallees", "58-AllNAtLeast2NClassLevelCallers","59-AllNAtLeast2NMethodLevelCallees","60-AllNAtLeast2NMethodLevelCallers",
-				"61-AllTAtLeast2TClassLevelCallees", "62-AllTAtLeast2TClassLevelCallers", "63-AllTAtLeast2TMethodLevelCallees", "64-AllTAtLeast2TMethodLevelCallers"
-				,"65-Callers", "66-Callees", "67-#parameters", "68-Parameters","69-# Parameter T" ,"70-# Parameter N" ,"71-# Parameter E" ,
-				"72-MajorityParameterPrediction", "73-AtLeast1NParameterPrediction", 
-				"74-AtLeast1TParameterPrediction", "75-AtLeast2TParameterPrediction", 
-				"76-AtLeast2NParameterPrediction", "77-AllNParameterPrediction", "78-AllTParameterPrediction", 
-				"79-ACHRAFTRACEPureGOLD", "80-ACHRAFTRACEMixedGOLD", "81-ACHRAFNOTRACEPureGOLD", "82-ACHRAFNOTRACEMixedGOLD", 
-				"83-AllTMethodLevelCallersCalleesClass ", "84-AllNMethodLevelCallersCalleesClass",
-				"85-AllTClassLevelCallersCalleesClass", "86-AllNClassLevelCallersCalleesClass", 
-				"87-CLASSTRACEMethodLevelPureGold","88-CLASSTRACEMethodLevelMixedGold","89-CLASSNOTRACEMethodLevelPureGold","90-CLASSNOTRACEMethodLevelMixedGold",
-				"91-CLASSTRACEClassLevelPureGold","92-CLASSTRACEClassLevelMixedGold","93-CLASSNOTRACEClassLevelPureGold","94-CLASSNOTRACEClassLevelMixedGold",
-				
-				
-				"95-gold2", "96-OwnerClass T gold2", "97-Owner Class N gold2", "98-Owner Class E gold2", "99-# caller methods gold2",
-				"100-# caller methods T gold2", "101-#caller methods N gold2", "102-#caller methods E gold2", "103-# caller classes gold2",
-				"104-# caller classes T gold2", "105-#caller classes N gold2", "106-#caller classes E gold2", "107-# callee methods gold2",
-				"108-# callee methods T gold2", "109-#callee methods N gold2", "110-#callee methods E gold2", "111-# callee classes gold2",
-				"112-# callee classes T gold2", "113-#callee classes N gold2", "114-#callee classes E gold2",  "115-OwnerClassPrediction gold2",
-				"116-MajorityClassLevelCallees gold2","117-MajorityClassLevelCallers gold2", "118-MajorityMethodLevelCallees gold2","119-MajorityMethodLevelCallers gold2",
-				"120->1NPredictionClassLevelCallees gold2", "121->1NPredictionClassLevelCallers gold2", "122->1NPredictionMethodLevelCallees gold2", 
-				"123->1NPredictionMethodLevelCallers gold2", "124->1TPredictionClassLevelCallees gold2", "125->1TPredictionClassLevelCallers gold2", 
-				"126->1TPredictionMethodLevelCallees gold2", "127->1TPredictionMethodLevelCallers gold2", 
-				"128->2NPredictionClassLevelCallees gold2", "129->2NPredictionClassLevelCallers gold2", "130->2NPredictionMethodLevelCallees gold2", 
-				"131->2NPredictionMethodLevelCallers gold2", "132->2TPredictionClassLevelCallees gold2", "133->2TPredictionClassLevelCallers gold2", 
-				"134->2TPredictionMethodLevelCallees gold2", "135->2TPredictionMethodLevelCallers gold2", 
-				"136-AllNClassLevelCallees gold2", "137-AllNClassLevelCallers gold2","138-AllNMethodLevelCallees gold2","139-AllNMethodLevelCallers gold2",
-				"140-AllTClassLevelCallees gold2", "141-AllTClassLevelCallers gold2", "142-AllTMethodLevelCallees gold2", "143-AllTMethodLevelCallers  gold2"
-				,"144-AllNAtLeast2NClassLevelCallees gold2", "145-AllNAtLeast2NClassLevelCallers gold2","146-AllNAtLeast2NMethodLevelCallees gold2","147-AllNAtLeast2NMethodLevelCallers gold2",
-				"148-AllTAtLeast2TClassLevelCallees gold2", "149-AllTAtLeast2TClassLevelCallers gold2", "150-AllTAtLeast2TMethodLevelCallees gold2", "151-AllTAtLeast2TMethodLevelCallers gold2"
-				
-				,"152-Callers gold2", "153-Callees gold2", "154-#parameters gold2","155-# Parameter T" ,"156-# Parameter N" ,"157-# Parameter E" ,
-				"158-MajorityParameterPrediction gold2", "159-AtLeast1NParameterPrediction gold2", 
-				"160-AtLeast1TParameterPrediction gold2", "161-AtLeast2TParameterPrediction gold2", 
-				"162-AtLeast2NParameterPrediction gold2", "163-AllNParameterPrediction gold2", "164-AllTParameterPrediction gold2",
-				"165-ACHRAFTRACEPureGOLD 2", "166-ACHRAFTRACEMixedgold2", "167-ACHRAFNOTRACEPureGOLD 2", "168-ACHRAFNOTRACEMixed gold2", 
-				"169-AllTMethodLevelCallersCalleesClass gold2", "170-AllNMethodLevelCallersCalleesClass gold2",
-				"171-AllTClassLevelCallersCalleesClass gold2", "172-AllNClassLevelCallersCalleesClass gold2", 
-				"173-CLASSTRACEMethodLevelPuregold2","174-CLASSTRACEMethodLevelMixedgold2","175-CLASSNOTRACEMethodLevelPuregold2","176-CLASSNOTRACEMethodLevelMixedgold2]",
-				"177-CLASSTRACEClassLevelPuregold2","178-CLASSTRACEClassLevelMixedgold2","179-CLASSNOTRACEClassLevelPuregold2","180-CLASSNOTRACEClassLevelMixedgold2"
-				};
-		DefaultTableModel model = new DefaultTableModel(data, columnNames);
-		 
-		 
-		    
 
-		    
-		table = new JTable(model) {
-			// Determine editor to be used by row
-			public TableCellEditor getCellEditor(int row, int column) {
-				int modelColumn = convertColumnIndexToModel(column);
-
-				if (modelColumn == 48 && row < methodtraces2.size())
-					return editors1.get(row);
-				if (modelColumn == 49 && row < methodtraces2.size())
-					return editors3.get(row);
-				if (modelColumn == 51 && row < methodtraces2.size())
-					return myparametersEditor.get(row);
-				/*
-				 * if (modelColumn == 31 && row < methodtraces2.size()) return
-				 * editors3.get(row); if (modelColumn == 32 && row < methodtraces2.size())
-				 * return editors4.get(row);
-				 */
-
-				else
-					return super.getCellEditor(row, column);
-			}
-
-			
-			  public  final Color VERY_LIGHT_RED = new Color(255,153,153);
-			  public  final Color EXTRA_LIGHT_RED = new Color(220,156,156);
-			  public  final Color YELLOW = new Color(236,236,153);
-			  public  final Color GREEN = new Color(204,255,204);
-			  public  final Color BLUE = new Color(189,216,232);	
-			  public  final Color LIGHTBLUE = new Color(204,255,229);	
-			  public  final Color PURPLE = new Color(204,204,255);	
-			  public  final Color VERY_LIGHT_PINK = new Color(255,204,204);	
-			  public  final Color VERY_LIGHT_YELLOW = new Color(225,229,170);
-			  public  final Color LIGHT_GREEN = new Color(217,246,201);
-			  public  final Color BEIGE = new Color(223,201,140);
-			  public  final Color YELLOW_GREEN = new Color(215,222,157);
-			  public  final Color LIGHT_GRAY = new Color(192,192,192);
-			  public  final Color LIGHT_PURPLE = new Color(226,207,252);
-			  public  final Color EXTRA_LIGHT_PINK = new Color(250,214,252);
-			@Override
-			   public Component prepareRenderer(TableCellRenderer renderer,
-			         int row, int column) {
-			      Component label = (Component) super.prepareRenderer(renderer, row, column);
-			   
-			int rownum=table.getSelectedRow(); 
-			if(rownum==row) {
-			    	  label.setBackground(Color.ORANGE);
-			    	  
-			}
-			else { 
-				if(column==RequirementID || column==RequirementName) {
-					label.setBackground(GREEN);
-				}
-				else if (column==Gold || column==Subject) {
-					 label.setBackground(EXTRA_LIGHT_RED);
-			    	  
-			      } 
-				else if (column==ClassID || column==ClassName) {
-					 label.setBackground(EXTRA_LIGHT_PINK);
-			    	  
-			      } 
-				else if (column==OwnerClassT || column==OwnerClassN || column==OwnerClassE) {
-					 label.setBackground(YELLOW_GREEN);
-			    	  
-			      } 
-			      else if (column==CallerMethodsNumber || column==CallerMethodsT ||column==CallerMethodsN || column==CallerMethodsE) {
-			    	  label.setBackground(BEIGE);
-				      } 
-			      else if(column==CallerClassesNumber || column==CallerClassesT || column==CallerClassesN || column==CallerClassesE) {
-			    	   label.setBackground(LIGHT_PURPLE);
-				      } 
-			      else if (column==CalleeMethodsNumber || column==CalleeMethodsT || column==CalleeMethodsN ||column==CalleeMethodsE) {
-			    	   label.setBackground(BLUE);
-				      } 
-			      else if (column==CalleeClassesNumber || column==CalleeClassesT || column==CalleeClassesN ||column==CalleeClassesE) {
-			    	   label.setBackground(LIGHT_GREEN);
-				      } 
-			  
-				
-			      else if(column==OwnerClassPrediction){
-			    	  label.setBackground(VERY_LIGHT_RED);
-			      }
-			      else if(column==MajorityClassLevelCallers || column==MajorityClassLevelCallees|| column==MajorityMethodLevelCallers || column==MajorityMethodLevelCallees){
-			    	  label.setBackground(YELLOW);
-			      }
-			      
-			      else if(column==AtLeast1NPredictionClassLevelCallees || column==AtLeast1NPredictionClassLevelCallers || column==AtLeast1NPredictionMethodLevelCallers || column==AtLeast1NPredictionMethodLevelCallees){
-			    	  label.setBackground(LIGHTBLUE);
-			      }
-			      
-			      else if(column==AtLeast1TPredictionClassLevelCallers || column==AtLeast1TPredictionClassLevelCallees || column==AtLeast1TPredictionMethodLevelCallers || column==AtLeast1TPredictionMethodLevelCallees){
-			    	  label.setBackground(PURPLE);
-			      }
-			      else if(column==AtLeast2NPredictionClassLevelCallees || column==AtLeast2NPredictionClassLevelCallers || column==AtLeast2NPredictionMethodLevelCallers || column==AtLeast2NPredictionMethodLevelCallees){
-			    	  label.setBackground(LIGHTBLUE);
-			      }
-			      
-			      else if(column==AtLeast2TPredictionClassLevelCallers || column==AtLeast2TPredictionClassLevelCallees || column==AtLeast2TPredictionMethodLevelCallers || column==AtLeast2TPredictionMethodLevelCallees){
-			    	  label.setBackground(PURPLE);
-			      }
-			      else if(column==AllNClassLevelCallers || column==AllNClassLevelCallees || column==AllNMethodLevelCallers || column==AllNMethodLevelCallees){
-			    	  label.setBackground(VERY_LIGHT_YELLOW);
-			      }
-			      
-			      else if(column==AllTClassLevelCallers || column==AllTClassLevelCallees || column==AllTMethodLevelCallers || column==AllTMethodLevelCallees){
-			    	  label.setBackground(VERY_LIGHT_PINK);
-			      }
-			    
-			      else if (column==Callers || column==Callees ) {
-			    	   label.setBackground(Color.pink);
-				      }
-			      else {
-			    	  //This corresponds to the first 2 columns MethodID and MethodName 
-			    	  label.setBackground(LIGHT_GRAY);
-			      }
-				}
-			
-			    	 
-			     
-			      table.setRowSelectionAllowed(true);
-			      return label;
-			   }
-		};
-		
-		//Sets the width of each column to the size of the column header 
-		TableColumnModel columnModel = table.getColumnModel();
-        for (int col = 0; col < table.getColumnCount(); col++) {
-            int maxWidth = 0;
-           
-            TableColumn column = columnModel.getColumn(col);
-            TableCellRenderer headerRenderer = column.getHeaderRenderer();
-            if (headerRenderer == null) {
-                headerRenderer = table.getTableHeader().getDefaultRenderer();
-            }
-            Object headerValue = column.getHeaderValue();
-            Component headerComp = headerRenderer.getTableCellRendererComponent(table, headerValue, false, false, 0, col);
-            maxWidth =  headerComp.getPreferredSize().width;
-            // note some extra padding
-            column.setPreferredWidth(maxWidth + 6);//IntercellSpacing * 2 + 2 * 2 pixel instead of taking this value from Borders
-        }
-        DefaultTableCellRenderer stringRenderer = (DefaultTableCellRenderer) table.getDefaultRenderer(String.class);
-        stringRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-    //    table.setPreferredScrollableViewportSize(table.getPreferredSize());
-    
-		 
-		   
-		
-		table.getColumnModel().getColumn(48).setPreferredWidth(150);
-		table.getColumnModel().getColumn(49).setPreferredWidth(150);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-		table.setRowSelectionAllowed(true);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		getContentPane().add(scrollPane);
-		
-		JScrollPane horizontalscroll = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		getContentPane().add(horizontalscroll);
-		// table.getColumnModel().getColumn(1).setCellRenderer(new ComboBoxRenderer() );
-		table.setRowHeight(50);
-
-		
-		
-		/*
-		 * getContentPane().add(comboBox); getContentPane().add(field); }
-		 */
 
 	}
 
@@ -1091,18 +670,49 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		DatabaseReading2Gantt dbgantt = null; 
 		DatabaseReading2JHotDraw3 dbjhotdraw = null; 
 		DatabaseReading2itrustfinal dbitrust = null; 
-		BufferedWriter bwfile1=null; 
-		
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		BufferedWriter	 bwfile4=null; 
+		BufferedWriter	 bwfile3=null; 
+		BufferedWriter	 bwfile2=null; 
+		BufferedWriter	 bwfile=null; 
 
+		BufferedWriter bwfile1=null;
+		if(ProgramName.equals("chess")) {
+			File filelog = new File("C:\\Users\\mouna\\dumps\\TableLogChess.txt");
+			FileOutputStream fosfila = new FileOutputStream(filelog);
+				 bwfile = new BufferedWriter(new OutputStreamWriter(fosfila));
+		}
+	
+		
+		
+		if(ProgramName.equals("gantt")) {
+			File filelog2 = new File("C:\\Users\\mouna\\dumps\\TableLogGantt.txt");
+			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
+				 bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
+		}
+		
+		
+		
+		if(ProgramName.equals("itrust")) {
+		File filelog3 = new File("C:\\Users\\mouna\\dumps\\TableLogiTrust.txt");
+		FileOutputStream fosfila5 = new FileOutputStream(filelog3);
+			 bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
+		}
+		
+		
+		if(ProgramName.equals("jhotdraw")) {
+		File filelog4 = new File("C:\\Users\\mouna\\dumps\\TableLogJHotDraw.txt");
+		FileOutputStream fosfila4 = new FileOutputStream(filelog4);
+			 bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
+		}
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+//		bwfile2.newLine();
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 					methodtrace.setPrediction("E");
 		}
-		
 	if(ProgramName.equals("chess")) {
 			
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsChessAllEqualPredictionNotMade.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			
@@ -1154,13 +764,19 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				  //PARAMETERS 
 				  
 				  parameterHashMap= db.getParameterhashMap(); 
+				  
+				
 		}else if(ProgramName.equals("gantt")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsGanttAllEqualPredictionNotMade.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			 
 			 
+			 
+			 
+				 
+				 
 			dbgantt = new DatabaseReading2Gantt();
 			DatabaseReading2Gantt.MakePredictions();
 			
@@ -1209,10 +825,15 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				  parameterHashMap= dbgantt.getParameterhashMap(); 
 		}else if(ProgramName.equals("jhotdraw")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsJHotDrawAllEqualPredictionNotMade.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			
+			 
+			
+				 
+				 
+				 
 			dbjhotdraw = new DatabaseReading2JHotDraw3(); 
 			DatabaseReading2JHotDraw3.MakePredictions();
 			methodtraces2 = dbjhotdraw.getMethodtraces2SubjectTSubjectN();
@@ -1260,11 +881,16 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				  parameterHashMap= dbjhotdraw.getParameterhashMap(); 
 		}else if(ProgramName.equals("itrust")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsiTrustAllEqualPredictionNotMade.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\MethodCallsiTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			 
 			 
+			 
+			
+				 
+				 
+				 
 			dbitrust = new DatabaseReading2itrustfinal();
 			DatabaseReading2itrustfinal.MakePredictions();
 			methodtraces2 = dbitrust.getMethodtraces2SubjectTSubjectN();
@@ -1313,21 +939,28 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		}
 		
 		
-
+	
 CalculateChildrenInterfaces(); 
 		
 GenerateNewValuesInTracesClasses(); 
-		
+		HashMap<String, LogInfo> LogInfoHashMap= new HashMap<String, LogInfo>(); 
 		j=0; 
-		LogInfo LogInfo= new LogInfo(); 
 		 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
 			String reqclass= methodtrace.Requirement.getID()+"-"+ methodtrace.getClassRepresentation().classid; 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-	
+			String reqmethod= methodtrace.Requirement.getID()+"-"+ methodtrace.getMethodRepresentation().methodid; 
 		 ITERATION1=0; 
+		 LogInfo loginfo = new LogInfo(); 
+		 
+		 loginfo.setMethodID( methodtrace.getMethodRepresentation().methodid);
+		 loginfo.setMethodName(methodtrace.getMethodRepresentation().methodname); 
+		 loginfo.setClassID(methodtrace.getClassRepresentation().classid);
+		 loginfo.setClassName(methodtrace.getClassRepresentation().classname);
+		 loginfo.setTraceValue(methodtrace.getGoldfinal());
+
 			//PATTERN 1
 			if(myclasstraceHashMap.getTraceFinal()!=null) {
 				
@@ -1335,26 +968,29 @@ GenerateNewValuesInTracesClasses();
 				tracegold2=tracegold2.trim(); 
 				if (tracegold2.equals("T")) {
 					
-					
+					loginfo.setOwnerClassPrediction("E");
 					PatternSetVariables("E",methodtrace,"100%","P1"); 
+					LogInfoHashMap.put(reqmethod, loginfo); 
 					
 				} else if (tracegold2.equals("N")) {
 					
-			
+					loginfo.setOwnerClassPrediction("N");
 					PatternSetVariables("N",methodtrace,"100%","P1"); 
-				
+					LogInfoHashMap.put(reqmethod, loginfo); 
 				} 
 				
 
 				
 				else {
+					loginfo.setOwnerClassPrediction("E");
 					PatternSetVariables("E", methodtrace,"100%","P1"); 
+					LogInfoHashMap.put(reqmethod, loginfo); 
 				}
 				ITERATION1++; 
 			}
 			
+
 			
-		
 			
 			
 			
@@ -1370,18 +1006,169 @@ GenerateNewValuesInTracesClasses();
 
 		 int ITERATION=0; 
 		
-		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues); 
 		while(Equals(PredictionsOldHashMap, PredictionsNewHashMap)==false) {
 		
-			PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, methodtraces2); 
+			PredictionsOldHashMap=InitializePredictionsHashMap(PredictionsOldHashMap, MethodTracesHashmapValues); 
 
 			
 			System.out.println("-------------------------------------------");
 
-			int k=0; 
+			
+			
+			
+					//////////////////////////////////////////////////////////////////////////////////////////
+					int k=0; 
+					//PATTERN 2 AND PATTERN 4 PURE 
+					// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
+					for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+						String reqMethod= methodtrace.Requirement.ID+"-"+ methodtrace.getMethodRepresentation().methodid; 
+						LogInfo LogInfo = LogInfoHashMap.get(reqMethod); 
+					//methodtrace.setPrediction("");
+					//PATTERN 2 AND PATTERN 4
+					List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
+					List<Method2Representation> CallersList = methodtrace.getCallersList(); 
+					
+					List<String> PredictionCalleeList=new ArrayList<String>();
+					for(Method2Representation callee: CalleesList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= callee.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+					String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+					PredictionCalleeList.add(predictionvalue); 
+					}
+					
+					}
+					
+					
+					
+					List<String> PredictionCallerList=new ArrayList<String>();
+					for(Method2Representation caller: CallersList) {
+					String RequirementID=methodtrace.Requirement.ID; 
+					String MethodID= caller.methodid; 
+					String key= MethodID+"-"+RequirementID; 
+					if(methodtraces2HashMap.get(key)!=null) {
+					String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
+					PredictionCallerList.add(predictionvalue); 
+					}
+					}
+					
+					
+					
+					
+						 List<String> iterationValues = LogInfo.getIterationValues(); 
+						 
+					
+					
+					//methodtrace.setPrediction("");
+					//PATTERN 2
+					if(			PredictionCalleeList.contains("N") 
+					&& PredictionCallerList.contains("N")
+					&& !PredictionCalleeList.contains("T") 
+					&& !PredictionCallerList.contains("T") 						
+					&& !methodtrace.getPrediction().equals("T") 
+					&& !methodtrace.getPrediction().equals("N")
+					
+					
+					) {
+					//methodtrace.setPrediction("N");
+					
+					
+					
+					PatternSetVariables("N", methodtrace, "90%", "P2");
+					
+					
+					iterationValues.add("N-PureN"); 
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
+					//System.out.println("yes");
+					}
+					else 	if(!PredictionCalleeList.contains("N") 
+					&& !PredictionCallerList.contains("N") 
+					&& PredictionCalleeList.contains("T") 
+					&&  PredictionCallerList.contains("T") 
+					&& !methodtrace.getPrediction().equals("T") 
+					&& !methodtrace.getPrediction().equals("N")
+					
+					
+					) {
+					//methodtrace.setPrediction("N");
+					
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					
+					iterationValues.add("T-PureT"); 
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
+					
+					
+					//System.out.println("yes");
+					}
+					
+					//PATTERN 4
+					if(		PredictionCalleeList.isEmpty() 
+					&&  PredictionCallerList.contains("N")
+					&& !PredictionCallerList.contains("T") 
+					&& !methodtrace.getPrediction().equals("T") 
+					&& !methodtrace.getPrediction().equals("N")
+					
+					
+					
+					) {
+					//methodtrace.setPrediction("N");
+						
+						iterationValues.add("N-PureNLeaf"); 
+						LogInfo.setIterationValues(iterationValues);
+						LogInfoHashMap.put(reqMethod, LogInfo);
+						
+						
+					PatternSetVariables("N", methodtrace, "90%", "P4");
+					
+					//System.out.println("yes");
+					}
+					else 	if(PredictionCalleeList.isEmpty() 
+					&& !PredictionCallerList.contains("N") 
+					&&  PredictionCallerList.contains("T")  
+					&& !methodtrace.getPrediction().equals("T") 
+					&& !methodtrace.getPrediction().equals("N")
+					
+					
+					
+					) {
+					//methodtrace.setPrediction("N");
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+					
+					iterationValues.add("T-PureTLeaf"); 
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
+					
+					
+					//System.out.println("yes");
+					}
+					k++; 
+					
+					
+					}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 k=0; 
 			//PATTERN 3 AND PATTERN 5 MIXED 
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-				
+				String reqMethod= methodtrace.Requirement.ID+"-"+ methodtrace.getMethodRepresentation().methodid; 
+				LogInfo LogInfo = LogInfoHashMap.get(reqMethod); 
 			
 				//PATTERN 3 AND PATTERN 5
 				//MIXED PATTERNS 
@@ -1406,13 +1193,23 @@ GenerateNewValuesInTracesClasses();
 					String RequirementID=methodtrace.Requirement.ID; 
 					String MethodID= caller.methodid; 
 					String key= MethodID+"-"+RequirementID; 
+					
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 						PredictionCallerList.add(predictionvalue); 
 					}
 				}
 //				methodtrace.setPrediction("");
+				
 				//PATTERN 3
+				
+				
+				List<String> mylist;
+			List<String> iterationValues = LogInfo.getIterationValues(); 
+			for(String it: iterationValues) {
+				System.out.print(it+", ");
+			}
+			System.out.println();
 				if(		PredictionCalleeList.contains("N") 
 						&& PredictionCallerList.contains("N") 	
 						&& !methodtrace.getPrediction().equals("T") 
@@ -1422,6 +1219,9 @@ GenerateNewValuesInTracesClasses();
 						{
 					
 					PatternSetVariables("N", methodtrace, "80%", "P3");
+					iterationValues.add("N-MixedN"); 
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
 
 					//System.out.println("yes");
 				}
@@ -1433,6 +1233,9 @@ GenerateNewValuesInTracesClasses();
 						) {
 					//methodtrace.setPrediction("N");
 					PatternSetVariables("T", methodtrace, "80%", "P3");
+					iterationValues.add("T-MixedT"); 
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
 
 					//System.out.println("yes");
 				}
@@ -1444,8 +1247,11 @@ GenerateNewValuesInTracesClasses();
 						&& !methodtrace.getPrediction().equals("N")
 						
 						) {
-					
+					iterationValues.add("N-MixedNLeaf"); 
+					LogInfo.setIterationValues(iterationValues);
 					PatternSetVariables("N", methodtrace, "80%", "P5");
+					LogInfoHashMap.put(reqMethod, LogInfo);
+
 				}
 				else if(PredictionCalleeList.isEmpty() 
 						&&  PredictionCallerList.contains("T")  
@@ -1455,126 +1261,32 @@ GenerateNewValuesInTracesClasses();
 						
 						
 						) {
-				
+					iterationValues.add("T-MixedTLeaf"); 
+					LogInfo.setIterationValues(iterationValues);
 					PatternSetVariables("T", methodtrace, "80%", "P5");
+					LogInfoHashMap.put(reqMethod, LogInfo);
+
 				}
 				k++; 
 			}
 			//InitializePredictionsHashMapBlankValues(PredictionsNewHashMap, methodtraces2); 
 			//PRINT 
+			
 			  MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 //			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
 			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
-
 			 //END  PRINT 
 			
 			
 			
 			
-			//////////////////////////////////////////////////////////////////////////////////////////
-			 k=0; 
-			//PATTERN 2 AND PATTERN 4 PURE 
-			// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
-			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-				
-//				methodtrace.setPrediction("");
-				//PATTERN 2 AND PATTERN 4
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
-				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
-				
-				List<String> PredictionCalleeList=new ArrayList<String>();
-				for(Method2Representation callee: CalleesList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCalleeList.add(predictionvalue); 
-					}
-					
-				}
-				
-				
-				
-				List<String> PredictionCallerList=new ArrayList<String>();
-				for(Method2Representation caller: CallersList) {
-					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
-					String key= MethodID+"-"+RequirementID; 
-					if(methodtraces2HashMap.get(key)!=null) {
-						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
-						PredictionCallerList.add(predictionvalue); 
-					}
-				}
-				
-				
-				
-				
-//				methodtrace.setPrediction("");
-				//PATTERN 2
-				if(			PredictionCalleeList.contains("N") 
-						&& PredictionCallerList.contains("N")
-						&& !PredictionCalleeList.contains("T") 
-						&& !PredictionCallerList.contains("T") 						
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						
-						
-						) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P2");
-					//System.out.println("yes");
-				}
-				else 	if(!PredictionCalleeList.contains("N") 
-						&& !PredictionCallerList.contains("N") 
-						&& PredictionCalleeList.contains("T") 
-						&&  PredictionCallerList.contains("T") 
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						
-						
-						) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
-					//System.out.println("yes");
-				}
-				
-				//PATTERN 4
-				if(		PredictionCalleeList.isEmpty() 
-						&&  PredictionCallerList.contains("N")
-						&& !PredictionCallerList.contains("T") 
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						
-						
-						
-						) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("N", methodtrace, "90%", "P4");
-
-					//System.out.println("yes");
-				}
-				else 	if(PredictionCalleeList.isEmpty() 
-						&& !PredictionCallerList.contains("N") 
-						&&  PredictionCallerList.contains("T")  
-						&& !methodtrace.getPrediction().equals("T") 
-						&& !methodtrace.getPrediction().equals("N")
-						
-						
-						
-						) {
-					//methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
-					//System.out.println("yes");
-				}
-				k++; 
 			
-
-			}
 			
 			
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-
+			String ReqMethod=	methodtrace.Requirement.ID+"-"+methodtrace.MethodRepresentation.methodid; 
+				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod); 
+				List<String> IterationValues = LogInfo.getIterationValues();
 				List<String> interfaces = methodtrace.getInterfaceList(); 
 				List<String> implementations=methodtrace.getImplementationList(); 
 				List<String> superclasses=methodtrace.getSuperClassesList(); 
@@ -1667,9 +1379,7 @@ GenerateNewValuesInTracesClasses();
 
 					 
 					 
-				 if(methodtrace.getPrediction()==null) {
-					 methodtrace.setPrediction("E");
-				 } 
+			
 					 if(
 								((allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N")) && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
 								|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("N") && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
@@ -1681,56 +1391,19 @@ GenerateNewValuesInTracesClasses();
 				 
 				 
 				 
-//				 if(
-//					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("N"))
-//					|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("N")) 
-//					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("N"))
-//					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("N"))
-//					
-//						 ) 
-//			
-				 
-				 
-//				 if(
-//							(childrenCountN>childrenCountT && childrenCountN>childrenCountE)
-//							|| (impplementationCountN>impplementationCountT && impplementationCountN>impplementationCountE) 
-//							|| (childrenCountN>childrenCountT && childrenCountN>childrenCountE)
-//							|| (superclassCountN>superclassCountT && superclassCountN>superclassCountE)
-//							
-//								 ) 
-				 
-					 
-					 
-//					 if(
-//								(childrenCountN>childrenCountT )
-//								|| (impplementationCountN>impplementationCountT ) 
-//								|| (childrenCountN>childrenCountT )
-//								|| (superclassCountN>superclassCountT )
-//								
-//									 ) 
-//	
-				 
-				 
-				 
-//				 if(
-//							(childrenCountN>childrenCountT  && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//							|| (impplementationCountN>impplementationCountT  && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
-//							|| (interfaceCountN>interfaceCountT  && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//							|| (superclassCountN>superclassCountT  && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//							
-//								 ) 
-				 
-				 
-				 
-//				 if(
-//					(childrenCountN>childrenCountT && childrenCountN>childrenCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//					|| (impplementationCountN>impplementationCountT && impplementationCountN>impplementationCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
-//					|| (interfaceCountN>interfaceCountT && interfaceCountN>childrenCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//					|| (superclassCountN>superclassCountT && superclassCountN>superclassCountN && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//					
-//						 ) 
+
 				 
 				 {
+						 if(IterationValues!=null) {
+							 IterationValues.add("N-AllNInheritance"); 
+							 LogInfo.setIterationValues(IterationValues);
+							 LogInfoHashMap.put(ReqMethod, LogInfo);
+						 }else {
+							 IterationValues= new ArrayList<String>(); 
+							 IterationValues.add("N-AllNInheritance"); 
+							 LogInfo.setIterationValues(IterationValues);
+							 LogInfoHashMap.put(ReqMethod, LogInfo);
+						 }
 						PatternSetVariables("N", methodtrace, "90%", "P2");
 
 				 }
@@ -1745,53 +1418,19 @@ GenerateNewValuesInTracesClasses();
 								
 									 ) 
 		
-//				  if(
-//					(allEqualInterfaces==true &&  interfaceTraceValues.get(0).equals("T"))
-//					|| (allEqualImplementations==true &&  implementationsTraceValues.get(0).equals("T")) 
-//					|| (allEqualSuperclasses==true &&  superclassesTraceValues.get(0).equals("T"))
-//					|| (allEqualChildren==true && childrenTraceValues.get(0).equals("T"))
-//					
-//						 ) 
-				 
-				 
-				 
-//				 if(
-//							(childrenCountT>childrenCountN && childrenCountT>childrenCountE)
-//							|| (impplementationCountT>impplementationCountN && impplementationCountT>impplementationCountE) 
-//							|| (childrenCountT>childrenCountN && childrenCountT>childrenCountE)
-//							|| (superclassCountT>superclassCountN && superclassCountT>superclassCountE)
-//							
-//								 ) 		  
-//					 
-				 
-				 
-//					 if(
-//								(childrenCountT>childrenCountN )
-//								|| (impplementationCountT>impplementationCountN ) 
-//								|| (childrenCountT>childrenCountN )
-//								|| (superclassCountT>superclassCountN)
-//								
-//									 ) 		
-//					
-				 
-				 
-//				 if(
-//							(childrenCountT>childrenCountN && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//							|| (impplementationCountT>impplementationCountN  && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
-//							|| (interfaceCountT>interfaceCountN  && !methodtrace.getPrediction().equals("N") && !methodtrace.getPrediction().equals("T"))
-//							|| (superclassCountT>superclassCountN && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//							
-//								 ) 	
-				 
-				 
-//				 if(
-//					(childrenCountT>childrenCountN && childrenCountT>childrenCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//					|| (impplementationCountT>impplementationCountN && impplementationCountT>impplementationCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) 
-//					|| (interfaceCountT>interfaceCountN && interfaceCountT>interfaceCountE && !methodtrace.getPrediction().equals("N") && !methodtrace.getPrediction().equals("T"))
-//					|| (superclassCountT>superclassCountN&& superclassCountT>superclassCountE && !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-//					
-//						 ) 	
+
 				  {
+						  
+						  if(IterationValues!=null) {
+								 IterationValues.add("T-AllTInheritance"); 
+								 LogInfo.setIterationValues(IterationValues);
+								 LogInfoHashMap.put(ReqMethod, LogInfo);
+							 }else {
+								 IterationValues= new ArrayList<String>(); 
+								 IterationValues.add("T-AllTInheritance"); 
+								 LogInfo.setIterationValues(IterationValues);
+								 LogInfoHashMap.put(ReqMethod, LogInfo);
+							 }
 								PatternSetVariables("T", methodtrace, "90%", "P2");
 
 						 }
@@ -1801,28 +1440,7 @@ GenerateNewValuesInTracesClasses();
 			//PRINT 
 			
 			
-//			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//				System.out.println("PREDICTION  "+methodtrace.getPrediction()+" ------------  gold2  "+methodtrace.goldfinal);
-//
-//				
-//				
-//			}
 
-			
-			
-		
-			
-			
-			
-			
-			
-//			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//if(methodtrace.getPrediction()==null || methodtrace.getPrediction().equals("E") )
-//				{
-//					methodtrace.setPrediction("T");
-//					
-//				}
-//		}	
 				
 			
 			
@@ -1830,44 +1448,97 @@ GenerateNewValuesInTracesClasses();
 			
 			
 			
-			
-			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {	
+				String ReqMethod=methodtrace.Requirement.ID+"-"+methodtrace.MethodRepresentation.methodid; 
+				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod); 
+				List<String> myits = LogInfo.getIterationValues(); 
+				if(myits.size()==ITERATION+1) {
+					System.out.println(myits.get(ITERATION));
+
+				}
+				else {
+					myits.add(" "); 
+					LogInfo.setIterationValues(myits);
+				}
+		
+			for(String it: myits) {
+				System.out.println("it"+ it+ " it");
+			}
+			LogInfoHashMap.put(ReqMethod, LogInfo);
+			}			
 			 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 
 			 //END  PRINT 
 			ITERATION++; 
-			//System.out.println("HEEEEEEY");
-			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+			System.out.println("HEEEEEEY  " +ITERATION);
 			
-		
+			PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues); 
 		}
-//		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//			
-//				if(methodtrace.getPrediction().trim().equals("E")){
-//					methodtrace.setPrediction("T");
-//				}
-//		}
 		
 		
-		
-		
-//	 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
-//		st.executeUpdate("ALTER TABLE `traces` ADD prediction LONGTEXT"); 
-//		st.executeUpdate("ALTER TABLE `traces` ADD likelihood LONGTEXT");
-//		st.executeUpdate("ALTER TABLE `traces` ADD why LONGTEXT");
-//		
-		
-		
-		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsSetToT);
+		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsSetToT, LogInfoHashMap);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  "+ITERATION  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
+		
+		
+		
 		bwfile1.write(NEWPATTERNMethodCallsSetToT.toString());
 		bwfile1.close();
+		if(ProgramName.equals("chess")) {
+		bwfile.write("MethodID, MethodName, ClassID, ClassName, TraceValue, OwnerClassPrediction, PrecisionRecall, IterationValues");	
+		bwfile.newLine();
+		}
+		if(ProgramName.equals("gantt")) {
+		bwfile2.write("MethodID, MethodName, ClassID, ClassName, TraceValue, OwnerClassPrediction, PrecisionRecall, IterationValues");	
+		bwfile2.newLine();
+		}
+		if(ProgramName.equals("itrust")) {
+		bwfile3.write("MethodID, MethodName, ClassID, ClassName, TraceValue, OwnerClassPrediction, PrecisionRecall, IterationValues");	
+		bwfile3.newLine();
+	}
+		if(ProgramName.equals("jhotdraw")) {
+		bwfile4.write("MethodID, MethodName, ClassID, ClassName, TraceValue, OwnerClassPrediction, PrecisionRecall, IterationValues");	
+		bwfile4.newLine();
+		}
+		
+		PredictionsNewHashMap=InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2); 
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {	
+				String	reqmethod=methodtrace.Requirement.ID+"-"+methodtrace.MethodRepresentation.methodid; 
+				LogInfoHashMap.get(reqmethod); 
+				if(ProgramName.equals("gantt")) {
+					bwfile2.write(LogInfoHashMap.get(reqmethod).toString());
+					bwfile2.newLine();
+				}
+				if(ProgramName.equals("chess")) {
+					bwfile.write(LogInfoHashMap.get(reqmethod).toString());
+					bwfile.newLine();
+				}
+				if(ProgramName.equals("itrust")) {
+					bwfile3.write(LogInfoHashMap.get(reqmethod).toString());
+					bwfile3.newLine();
+				}
+				if(ProgramName.equals("jhotdraw")) {
+					bwfile4.write(LogInfoHashMap.get(reqmethod).toString());
+					bwfile4.newLine();
+				}
+		}
+		
+		
+		if(ProgramName.equals("chess")) {
+			bwfile.close();
+
+		}else if(ProgramName.equals("gantt")) {
+			bwfile2.close();
+		}else if(ProgramName.equals("itrust")) {
+			bwfile3.close();
+		}else if(ProgramName.equals("jhotdraw")) {
+			bwfile4.close();
+		}
+		
 		return PredictionsNewHashMap; 
 	}
-	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/	
 	
 	private void GenerateNewValuesInTracesClasses() {
 	// TODO Auto-generated method stub
@@ -2027,7 +1698,9 @@ GenerateNewValuesInTracesClasses();
 		
 		}
 }
-
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/	
 	public void CalculateChildrenInterfaces() {
 	// TODO Auto-generated method stub
 		int j=0; 
@@ -2156,9 +1829,12 @@ GenerateNewValuesInTracesClasses();
 			j++; 
 		}
 }
-
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/**
+	 * @param logInfoHashMap **********************************************************************************************************************************************/	
 	public void WriteInDatabaseAndComputePrecisionAndRecall(List<MethodTraceSubjectTSubjectN> methodtraces22,
-		PredictionEvaluation nEWPATTERNMethodCallsSetToT2) {
+		PredictionEvaluation nEWPATTERNMethodCallsSetToT2, HashMap<String, LogInfo> logInfoHashMap) {
 	// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
@@ -2167,6 +1843,8 @@ GenerateNewValuesInTracesClasses();
 		for(MethodTraceSubjectTSubjectN mykey:methodtraces22) {
 			String methodid=mykey.getMethodRepresentation().methodid; 
 			String requirementID= mykey.getRequirement().ID; 
+			String ReqMethod= requirementID+"-"+methodid; 
+			LogInfo logInfo = logInfoHashMap.get(ReqMethod); 
 			//String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'"; 
 			String likelihood= mykey.getLikelihood(); 
 			String why= mykey.getWhy(); 
@@ -2180,10 +1858,12 @@ GenerateNewValuesInTracesClasses();
 			//System.out.println(myvalue.getGoldfinal()+"   "+myvalue.getPrediction());
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 			
-			System.out.println("PREDICTION  "+mykey.getPrediction()+" ------------  gold2  "+mykey.goldfinal);
+//			System.out.println("PREDICTION  "+mykey.getPrediction()+" ------------  gold2  "+mykey.goldfinal);
 			if(mykey.getGoldfinal()!=null && mykey.getPrediction()!=null) {
 				String Result=nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGoldfinal().trim(), mykey.getPrediction().trim()); 
+				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
+				logInfoHashMap.put(ReqMethod, logInfo); 
 			}
 		
 			
@@ -2238,7 +1918,7 @@ GenerateNewValuesInTracesClasses();
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	
-	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, Collection<MethodTraceSubjectTSubjectN> methodtraces22) {
 		// TODO Auto-generated method stub
 
 		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
@@ -2332,16 +2012,16 @@ GenerateNewValuesInTracesClasses();
 
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName="chess"; 
-		TracesTableChessFINALROUND2MethodCallsV3 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName);
+		TracesTableChessFINALROUND2MethodCallsV4 frame = new TracesTableChessFINALROUND2MethodCallsV4(ProgramName);
 		
 		String ProgramName2="gantt"; 
-		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName2);
+		 frame = new TracesTableChessFINALROUND2MethodCallsV4(ProgramName2);
 		
 		String ProgramName3="itrust"; 
-		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName3);
+			 frame = new TracesTableChessFINALROUND2MethodCallsV4(ProgramName3);
 		
 		String ProgramName4="jhotdraw"; 
-		 frame = new TracesTableChessFINALROUND2MethodCallsV3(ProgramName4);
+		 frame = new TracesTableChessFINALROUND2MethodCallsV4(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
@@ -2353,6 +2033,9 @@ GenerateNewValuesInTracesClasses();
 			            //HANDLE NULLS if any
 			        if( OldHashMap.get(s)!=null && newHashMap.get(s)!=null)
 			        		if( OldHashMap.get(s).equals(newHashMap.get(s))==false) {
+			        			if(OldHashMap.get(s).equals("T")|| OldHashMap.get(s).equals("N")) {
+			        				System.out.println("YEEEEEEEEEEEEEEEEEEEEEES IT IS EQUAL");
+			        			}
 				            	return false; 
 				            }	
 			        	}
