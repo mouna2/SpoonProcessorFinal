@@ -215,7 +215,7 @@ int j=0;
 
 		BufferedWriter bwfile1=null;
 		if(ProgramName.equals("chess")) {
-			File filelogChess = new File("C:\\Users\\mouna\\dumps\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 		     bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 		}
@@ -223,7 +223,7 @@ int j=0;
 		
 		
 		if(ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\dumps\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 				 bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 		}
@@ -231,14 +231,14 @@ int j=0;
 		
 		
 		if(ProgramName.equals("itrust")) {
-		File filelog3 = new File("C:\\Users\\mouna\\dumps\\TableLogiTrust.txt");
+		File filelog3 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
 		FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			 bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 		}
 		
 		
 		if(ProgramName.equals("jhotdraw")) {
-		File filelog4 = new File("C:\\Users\\mouna\\dumps\\TableLogJHotDraw.txt");
+		File filelog4 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
 		FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			 bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 		}
@@ -250,7 +250,7 @@ int j=0;
 	if(ProgramName.equals("chess")) {
 			
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\PrecisionRecallChess.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			
@@ -307,7 +307,7 @@ int j=0;
 				
 		}else if(ProgramName.equals("gantt")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\PrecisionRecallGantt.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			 
@@ -365,7 +365,7 @@ int j=0;
 				  parameterHashMap= dbgantt.getParameterhashMap(); 
 		}else if(ProgramName.equals("jhotdraw")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\PrecisionRecallJHotDraw.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			
@@ -423,7 +423,7 @@ int j=0;
 				  parameterHashMap= dbjhotdraw.getParameterhashMap(); 
 		}else if(ProgramName.equals("itrust")) {
 			
-			File file1log = new File("C:\\Users\\mouna\\dumps\\PrecisionRecalliTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecalliTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			 bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 			 
