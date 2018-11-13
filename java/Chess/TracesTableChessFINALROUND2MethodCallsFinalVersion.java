@@ -581,13 +581,17 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 			
 					//////////////////////////////////////////////////////////////////////////////////////////
 					int k=0; 
-					//PATTERN 2 AND PATTERN 4 PURE 
+					//////////////////////////////////////////////////////////////////////////////////////////
+					//////////////////////////////////////////////////////////////////////////////////////////
+					//PURE PATTERNS
+					//////////////////////////////////////////////////////////////////////////////////////////
+					//////////////////////////////////////////////////////////////////////////////////////////
+
 					// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
 					for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 						String reqMethod= methodtrace.Requirement.ID+"-"+ methodtrace.getMethodRepresentation().methodid; 
 						LogInfo LogInfo = LogInfoHashMap.get(reqMethod); 
 					//methodtrace.setPrediction("");
-					//PATTERN 2 AND PATTERN 4
 					List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
 					List<Method2Representation> CallersList = methodtrace.getCallersList(); 
 					
@@ -624,7 +628,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					
 					
 					//methodtrace.setPrediction("");
-					//PATTERN 2
+					//PURE N PATTERN 
 					if(			PredictionCalleeList.contains("N") 
 					&& PredictionCallerList.contains("N")
 					&& !PredictionCalleeList.contains("T") 
@@ -646,6 +650,8 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					//System.out.println("yes");
 					}
+					
+					//PURE T PATTERN 
 					else 	if(!PredictionCalleeList.contains("N") 
 					&& !PredictionCallerList.contains("N") 
 					&& PredictionCalleeList.contains("T") 
@@ -667,7 +673,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					//System.out.println("yes");
 					}
 					
-					//PATTERN 4
+					//PURE N LEAF PATTERN 
 					if(		PredictionCalleeList.isEmpty() 
 					&&  PredictionCallerList.contains("N")
 					&& !PredictionCallerList.contains("T") 
@@ -688,6 +694,9 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					
 					//System.out.println("yes");
 					}
+					
+					
+					//PURE T LEAF PATTERN 
 					else 	if(PredictionCalleeList.isEmpty() 
 					&& !PredictionCallerList.contains("N") 
 					&&  PredictionCallerList.contains("T")  
@@ -727,12 +736,15 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 			
 			
 			 k=0; 
-			//PATTERN 3 AND PATTERN 5 MIXED 
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//MIXED PATTERNS
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 				String reqMethod= methodtrace.Requirement.ID+"-"+ methodtrace.getMethodRepresentation().methodid; 
 				LogInfo LogInfo = LogInfoHashMap.get(reqMethod); 
 			
-				//PATTERN 3 AND PATTERN 5
 				//MIXED PATTERNS 
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
 				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
@@ -763,7 +775,6 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 				}
 //				methodtrace.setPrediction("");
 				
-				//PATTERN 3
 				
 				
 				List<String> mylist;
@@ -772,6 +783,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 				System.out.print(it+", ");
 			}
 			System.out.println();
+			//MIXED N PATTERN 
 				if(		PredictionCalleeList.contains("N") 
 						&& PredictionCallerList.contains("N") 	
 						&& !methodtrace.getPrediction().equals("T") 
@@ -787,6 +799,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 
 					//System.out.println("yes");
 				}
+				//MIXED T PATTERN 
 				else if(PredictionCalleeList.contains("T")
 						&& PredictionCallerList.contains("T") 	
 						&& !methodtrace.getPrediction().equals("T") 
@@ -802,7 +815,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					//System.out.println("yes");
 				}
 				
-				//PATTERN 5
+				//MIXED N LEAF PATTERN 
 				if(			PredictionCalleeList.isEmpty() 
 						&&  PredictionCallerList.contains("N") 
 						&& !methodtrace.getPrediction().equals("T") 
@@ -815,6 +828,7 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 					LogInfoHashMap.put(reqMethod, LogInfo);
 
 				}
+				//MIXED T LEAF PATTERN 
 				else if(PredictionCalleeList.isEmpty() 
 						&&  PredictionCallerList.contains("T")  
 						&& !methodtrace.getPrediction().equals("T") 
@@ -1212,6 +1226,9 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 			  childrenListOwners2.add(childclassownerID); 
 			  SuperClassListOwners2.add(ownerclassSuperclass); 
 		 }
+		 
+		 
+		 
 		  allEqual = TraceValues2.stream().distinct().limit(2).count() <= 1 && TraceValues2.size()>=1; 
 		 if(allEqual) {
 			
@@ -1242,6 +1259,11 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 			  InterfacesListOwners.add(InterfaceID); 
 			  ImplementationListOwners.add(ImplementationID); 
 		 }
+		 
+		 
+		 
+		 
+		 
 		  allEqual = TraceValuesInterfaces.stream().distinct().limit(2).count() <= 1 && TraceValuesInterfaces.size()>=1; 
 		 if(allEqual) {
 			
@@ -1559,8 +1581,9 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 	}
 	
 	
-	/******************************************************************************************************************************/
-
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 	public void PatternSetVariables(String Prediction, MethodTraceSubjectTSubjectN methodtrace, String Likelihood, String Why) {
 		// TODO Auto-generated method stub
 		methodtrace.setPrediction(Prediction);
@@ -1573,8 +1596,9 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 	
 
 	
-	/******************************************************************************************************************************/
-
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName="chess"; 
 		TracesTableChessFINALROUND2MethodCallsFinalVersion frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName);
@@ -1591,8 +1615,9 @@ RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementC
 		frame.pack();
 		frame.setVisible(true);
 	}
-	/******************************************************************************************************************************/
-	 public boolean Equals(LinkedHashMap<String, String> OldHashMap, LinkedHashMap<String, String> newHashMap) {
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/	 public boolean Equals(LinkedHashMap<String, String> OldHashMap, LinkedHashMap<String, String> newHashMap) {
 		if(OldHashMap!=null && newHashMap!=null) {
 			 if(!OldHashMap.isEmpty()) {
 			        for(String s: newHashMap.keySet()) {
