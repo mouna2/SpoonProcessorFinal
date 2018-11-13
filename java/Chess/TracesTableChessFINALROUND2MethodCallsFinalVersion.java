@@ -184,6 +184,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 		BufferedWriter bwfile2 = null;
 		BufferedWriter bwfileChess = null;
 
+		BufferedWriter bwfileFP =null; 
+		
+		
 		BufferedWriter bwfile1 = null;
 		if (ProgramName.equals("chess")) {
 			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
@@ -195,6 +198,10 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 			File filelog2 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
+			
+			File filelogFP = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
+			FileOutputStream fosfilaFP = new FileOutputStream(filelogFP);
+			 bwfileFP = new BufferedWriter(new OutputStreamWriter(fosfilaFP));
 		}
 
 		if (ProgramName.equals("itrust")) {
@@ -929,9 +936,16 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 			LogInfoHashMap.get(reqmethod);
+			
 			if (ProgramName.equals("gantt")) {
 				bwfile2.write(LogInfoHashMap.get(reqmethod).toString());
 				bwfile2.newLine();
+				
+				if(LogInfoHashMap.get(reqmethod).PrecisionRecall.equals("FP")) {
+					bwfileFP.write(LogInfoHashMap.get(reqmethod).toString());
+					bwfileFP.newLine();
+				}
+				
 			}
 			if (ProgramName.equals("chess")) {
 				bwfileChess.write(LogInfoHashMap.get(reqmethod).toString());
@@ -952,12 +966,13 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 
 		} else if (ProgramName.equals("gantt")) {
 			bwfile2.close();
+			bwfileFP.close();
+
 		} else if (ProgramName.equals("itrust")) {
 			bwfile3.close();
 		} else if (ProgramName.equals("jhotdraw")) {
 			bwfile4.close();
 		}
-
 		return PredictionsNewHashMap;
 	}
 
@@ -1456,7 +1471,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-		frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName2);
+		 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName2);
 
 		String ProgramName3 = "itrust";
 		frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName3);
