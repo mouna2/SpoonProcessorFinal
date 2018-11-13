@@ -66,6 +66,8 @@ public class DatabaseReading2JHotDraw3 {
 	public static HashMap<String, List<Children2>> childrenHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
+	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
+
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	
 	
@@ -74,6 +76,14 @@ public class DatabaseReading2JHotDraw3 {
 	private final String userName = "root";
 
 	
+
+	public static HashMap<String, List<String>> getClassMethodsHashMap() {
+		return ClassMethodsHashMap;
+	}
+
+	public static void setClassMethodsHashMap(HashMap<String, List<String>> classMethodsHashMap) {
+		ClassMethodsHashMap = classMethodsHashMap;
+	}
 
 	public static HashMap<Integer, String> getClassesHashMap() {
 		return classesHashMap;
@@ -247,7 +257,7 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
 		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn);
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn, ClassMethodsHashMap);
 		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
 		setMethodtraces2SubjectTSubjectN(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 

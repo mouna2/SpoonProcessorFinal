@@ -978,7 +978,7 @@ public class MethodTraceSubjectTSubjectN {
 	
 	
 	
-	public  LinkedHashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn) throws SQLException {
+	public  LinkedHashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn, HashMap<String, List<String>> classMethodsHashMap) throws SQLException {
 		DatabaseReading2 db = new DatabaseReading2(); 
 		ClassDetails2 classdet= new ClassDetails2(); 
 		//CLASSESHASHMAP
@@ -1022,11 +1022,23 @@ public class MethodTraceSubjectTSubjectN {
 				 methodrep.setMethodname(myresults.getString("method"));
 				 methodrep.setMethodname(myresults.getString("methodname"));
 				 methodrep.setFullmethodname(myresults.getString("fullmethod"));
-
 				 mytrace.setMethodRepresentation(methodrep);
 				 
 				 mytrace.setClassRepresentation(classrep);
+				 if(classMethodsHashMap.get(mytrace.getClassRepresentation().classid)!=null) {
+					 List<String> MethodList = classMethodsHashMap.get(mytrace.getClassRepresentation().classid); 
+					 if(!MethodList.contains(mytrace.getMethodRepresentation().methodid)) {
+						 MethodList.add(mytrace.getMethodRepresentation().methodid); 
+						 
+					 }
+					 classMethodsHashMap.put(mytrace.getClassRepresentation().classid, MethodList); 
+				 }else {
+					 List<String> MethodList = new ArrayList<String>(); 
+					 MethodList.add(mytrace.getMethodRepresentation().methodid); 
+					 classMethodsHashMap.put(mytrace.getClassRepresentation().classid, MethodList); 
+				 }
 				 
+
 				 
 				 List<Interface2> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().classid);
 				 

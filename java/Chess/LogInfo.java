@@ -6,12 +6,24 @@ import java.util.List;
 public class LogInfo {
 	String MethodID; 
 	String MethodName; 
+	String RequirementID; 
+	String RequirementName; 
 	String ClassID; 
 	String ClassName; 
 	String TraceValue;
+	String TraceClassNewValue; 
 	String OwnerClassPrediction; 
 	String PrecisionRecall; 
 	List<String> IterationValues= new ArrayList<String>();
+	
+	
+	
+	public String getTraceClassNewValue() {
+		return TraceClassNewValue;
+	}
+	public void setTraceClassNewValue(String traceClassNewValue) {
+		TraceClassNewValue = traceClassNewValue;
+	}
 	public String getMethodID() {
 		return MethodID;
 	}
@@ -66,14 +78,30 @@ public class LogInfo {
 	public LogInfo() {
 		super();
 	}
+	
+	
+	
+	
 	@Override
 	public String toString() {
-		return "LogInfo [MethodID=" + MethodID + ", MethodName=" + MethodName + ", ClassID=" + ClassID + ", ClassName="
-				+ ClassName + ", TraceValue=" + TraceValue + ", OwnerClassPrediction=" + OwnerClassPrediction
-				+ ", PrecisionRecall=" + PrecisionRecall + ", IterationValues=" + toString2(IterationValues) + "]";
+		return "LogInfo [MethodID=" + MethodID + ", MethodName=" + MethodName + ", RequirementID=" + RequirementID
+				+ ", RequirementName=" + RequirementName + ", ClassID=" + ClassID + ", ClassName=" + ClassName+ ", TraceClassNewValue=" + TraceClassNewValue
+				+ ", TraceValue=" + TraceValue + ", OwnerClassPrediction=" + OwnerClassPrediction  + ", IterationValues=" + toString2(IterationValues) + ", PrecisionRecall="
+						+ PrecisionRecall +"]";
 	}
 	
-	
+	public String getRequirementID() {
+		return RequirementID;
+	}
+	public void setRequirementID(String requirementID) {
+		RequirementID = requirementID;
+	}
+	public String getRequirementName() {
+		return RequirementName;
+	}
+	public void setRequirementName(String requirementName) {
+		RequirementName = requirementName;
+	}
 	public String toString2(List<String> IterationValues) {
 		 String FinalString=""; 
 		 int it=0; 
