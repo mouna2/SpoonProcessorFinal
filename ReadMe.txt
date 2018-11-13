@@ -23,9 +23,14 @@ Here is the list of the database files to be run in order to populate the databa
 -DBDemo3JHotDraw3 followed by AddSubjectTSubjectNJHotDraw, AddGold3Gold4JHotDraw,  AddGold3Gold4JHotDrawTRACESCLASSES
 -DBDemo3iTrust followed by AddGold2Column, AddGold2ColumnTRACESCLASSES
 -DBDemo3Gantt followed by AddSubjectTSubjectNGANTT, AddGold3Gold4Gantt,  AddGold3Gold4GanttTRACESCLASSES
--DBDemoChess followed by AddGold2Column, AddGold2ColumnTRACESCLASSES
+-DBDemo3Chess followed by AddGold2Column, AddGold2ColumnTRACESCLASSES
 
 
+Files for reading the database: 
+-Chess: DatabaseReading2
+-Gantt: DatabaseReading2Gantt
+-iTrust: DatabaseReading2itrustfinal
+-JHotDraw: DatabaseReading2JHotDraw3
 
 TableLog needs to be adapted depending on whether we are interested in Gold, Gold2, Gold3 or Gold4 for each one of the four programs 
 
