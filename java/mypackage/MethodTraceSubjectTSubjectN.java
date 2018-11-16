@@ -65,7 +65,47 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
+	List<String> SuperClassesListMethodTraces; 
+	List<String> InterfaceListMethodTraces; 
+	List<String> ChildrenListMethodTraces; 
+	List<String> ImplementationListMethodTraces; 
 	
+	
+	
+	
+	
+	public List<String> getSuperClassesListMethodTraces() {
+		return SuperClassesListMethodTraces;
+	}
+
+	public void setSuperClassesListMethodTraces(List<String> superClassesListMethodTraces) {
+		SuperClassesListMethodTraces = superClassesListMethodTraces;
+	}
+
+	public List<String> getInterfaceListMethodTraces() {
+		return InterfaceListMethodTraces;
+	}
+
+	public void setInterfaceListMethodTraces(List<String> interfaceListMethodTraces) {
+		InterfaceListMethodTraces = interfaceListMethodTraces;
+	}
+
+	public List<String> getChildrenListMethodTraces() {
+		return ChildrenListMethodTraces;
+	}
+
+	public void setChildrenListMethodTraces(List<String> childrenListMethodTraces) {
+		ChildrenListMethodTraces = childrenListMethodTraces;
+	}
+
+	public List<String> getImplementationListMethodTraces() {
+		return ImplementationListMethodTraces;
+	}
+
+	public void setImplementationListMethodTraces(List<String> implementationListMethodTraces) {
+		ImplementationListMethodTraces = implementationListMethodTraces;
+	}
+
 	public List<String> getPredictionParamsOwnerClass() {
 		return PredictionParamsOwnerClass;
 	}
@@ -1184,6 +1224,9 @@ if(myinterfacelist!=null) {
 				String RequirementID= mytrace.Requirement.getID(); 
 				String key=methodid+"-"+RequirementID; 
 			//	 System.out.println("HEY");
+				if(methodtraceHashMap2.get(key)!=null) {
+					System.out.println("yes");
+				}
 				 methodtraceHashMap2.put(key, mytrace); 
 				 index++; 
 			//	 MethodTraceSubjectTSubjectN33 methtrace= new MethodTraceSubjectTSubjectN33(); 

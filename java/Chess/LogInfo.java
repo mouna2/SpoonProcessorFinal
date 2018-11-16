@@ -11,6 +11,7 @@ public class LogInfo {
 	String ClassID; 
 	String ClassName; 
 	String TraceValue;
+	String TraceClassOldValue; 
 	String TraceClassNewValue; 
 	String OwnerClassPrediction; 
 	String PrecisionRecall; 
@@ -18,6 +19,12 @@ public class LogInfo {
 	
 	
 	
+	public String getTraceClassOldValue() {
+		return TraceClassOldValue;
+	}
+	public void setTraceClassOldValue(String traceClassOldValue) {
+		TraceClassOldValue = traceClassOldValue;
+	}
 	public String getTraceClassNewValue() {
 		return TraceClassNewValue;
 	}
@@ -84,10 +91,10 @@ public class LogInfo {
 	
 	@Override
 	public String toString() {
-		return "LogInfo [MethodID=" + MethodID + ", MethodName=" + MethodName + ", RequirementID=" + RequirementID
-				+ ", RequirementName=" + RequirementName + ", ClassID=" + ClassID + ", ClassName=" + ClassName+ ", TraceClassNewValue=" + TraceClassNewValue
-				+ ", TraceValue=" + TraceValue + ", OwnerClassPrediction=" + OwnerClassPrediction  + ", IterationValues=" + toString2(IterationValues) + ", PrecisionRecall="
-						+ PrecisionRecall +"]";
+		
+		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+OwnerClassPrediction
+				+","+toString2(IterationValues)+","+PrecisionRecall; 
+		
 	}
 	
 	public String getRequirementID() {

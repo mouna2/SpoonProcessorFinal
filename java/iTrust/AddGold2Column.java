@@ -120,7 +120,7 @@ public class AddGold2Column {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
 		
 		try {

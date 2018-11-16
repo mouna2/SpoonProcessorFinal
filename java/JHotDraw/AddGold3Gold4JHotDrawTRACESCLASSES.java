@@ -676,7 +676,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DBDemo3JHotDraw3 DatabaseReading = new DBDemo3JHotDraw3();
+		DBDemo3JHotDraw5 DatabaseReading = new DBDemo3JHotDraw5();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();

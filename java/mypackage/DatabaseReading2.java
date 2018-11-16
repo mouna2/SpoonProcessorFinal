@@ -47,6 +47,9 @@ public class DatabaseReading2 {
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
+	
+	
+	
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
