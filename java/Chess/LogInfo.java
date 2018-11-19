@@ -91,9 +91,9 @@ public class LogInfo {
 	
 	@Override
 	public String toString() {
-		
+		MethodName=MethodName.replaceAll(",", "/"); 
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+OwnerClassPrediction
-				+","+toString2(IterationValues)+","+PrecisionRecall; 
+				+","+PrecisionRecall	+","+toString2(IterationValues); 
 		
 	}
 	
@@ -121,6 +121,7 @@ public class LogInfo {
 			else if(it+1==IterationValues.size()) {
 				FinalString=FinalString+s; 
 			}
+			
 		}
 		return FinalString;
 		

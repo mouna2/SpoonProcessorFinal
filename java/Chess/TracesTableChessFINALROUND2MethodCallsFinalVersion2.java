@@ -67,7 +67,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
+public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame {
 
 	/**
 	 * Run a SQL command which does not return a recordset:
@@ -150,7 +150,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableChessFINALROUND2MethodCallsFinalVersion(String ProgramName) throws SQLException, IOException {
+	public TracesTableChessFINALROUND2MethodCallsFinalVersion2(String ProgramName) throws SQLException, IOException {
 
 		LinkedHashMap<String, String> PredictionsOldHashMap = new LinkedHashMap<String, String>();
 		LinkedHashMap<String, String> PredictionsNewHashMap = new LinkedHashMap<String, String>();
@@ -529,7 +529,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 				String tracegold2 = myclasstraceHashMap.getTraceFinal();
 				tracegold2 = tracegold2.trim();
 
-				if (tracegold2.equals("T") ) {
+				if (tracegold2.equals("E") ) {
 						loginfo.setOwnerClassPrediction("E");
 						PatternSetVariables("E", methodtrace, "100%", "P1");
 						LogInfoHashMap.put(reqmethod, loginfo);
@@ -987,12 +987,14 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 		
 		
 		//SET EVERYTHING ELSE TO T 
-//		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-//
-//			if(methodtrace.getPrediction().equals("") || methodtrace.getPrediction()==null|| methodtrace.getPrediction().equals("E")) {
-//				methodtrace.setPrediction("T");
-//			}
-//		}
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+
+			if(
+//					methodtrace.getPrediction().equals("") || methodtrace.getPrediction()==null|| 
+					methodtrace.getPrediction().equals("E")) {
+				methodtrace.setPrediction("T");
+			}
+		}
 
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
@@ -1701,17 +1703,17 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName = "chess";
-		TracesTableChessFINALROUND2MethodCallsFinalVersion frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(
+		TracesTableChessFINALROUND2MethodCallsFinalVersion2 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName2);
+			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName3);
+			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName4);
+			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
