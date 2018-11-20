@@ -751,7 +751,7 @@ public class AlgoFinal extends JFrame {
 				System.out.println();
 				
 				// MIXED T PATTERN
-				 if (PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
+				 if (PredictionCalleeList.contains("T") && PredictionCallerList.contains("T") 
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
