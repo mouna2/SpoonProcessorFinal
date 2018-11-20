@@ -1701,17 +1701,17 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName = "chess";
-		TracesTableChessFINALROUND2MethodCallsFinalVersion frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(
+		TracesTableChessFINALROUND2MethodCallsFinalVersion2 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName2);
+			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName3);
+			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName4);
+			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

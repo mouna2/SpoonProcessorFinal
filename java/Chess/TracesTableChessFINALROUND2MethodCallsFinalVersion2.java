@@ -114,16 +114,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 	HashMap<String, List<SuperClass2>> SuperclassesHashMap = new HashMap<String, List<SuperClass2>>();
 	HashMap<String, List<Children2>> ChildrenHashMap = new HashMap<String, List<Children2>>();
 	HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINAL = new HashMap<String, List<Implementation2>>();
-	HashMap<String, String> RequirementMethodNameClassIDHashMap = new HashMap<String, String>(); 
-	
-	
-	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMapMethodTraces = new HashMap<String, List<Interface2>>();
-	HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINALMethodTraces = new HashMap<String, List<Implementation2>>();
-	HashMap<String, List<SuperClass2>> SuperclassesHashMapMethodTraces = new HashMap<String, List<SuperClass2>>();
-	HashMap<String, List<Children2>> ChildrenHashMapMethodTraces = new HashMap<String, List<Children2>>();
-
-	
-	
 	JTable table = new JTable();
 	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	// File fout = new
@@ -195,21 +185,13 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 		BufferedWriter bwfileChess = null;
 
 		BufferedWriter bwfileFP =null; 
-		BufferedWriter bwfileFN =null; 
-		BufferedWriter bwfile3Chess =null; 
-		BufferedWriter bwfile3iTrust =null; 
-		BufferedWriter bwfile3jHotDraw =null; 
-
+		
 		
 		BufferedWriter bwfile1 = null;
 		if (ProgramName.equals("chess")) {
 			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
-			
-			File filelogFPChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsChess.txt");
-			FileOutputStream fosfilaFPChess = new FileOutputStream(filelogFPChess);
-			 bwfile3Chess = new BufferedWriter(new OutputStreamWriter(fosfilaFPChess));
 		}
 
 		if (ProgramName.equals("gantt")) {
@@ -226,24 +208,12 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			File filelog3 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
-			
-			File filelog3iTrust = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsiTrust.txt");
-			FileOutputStream fosfila5iTrust = new FileOutputStream(filelog3iTrust);
-			bwfile3iTrust = new BufferedWriter(new OutputStreamWriter(fosfila5iTrust));
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
 			File filelog4 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
-			
-			File filelogFN = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalseNegativeDetailsJHotDraw.txt");
-			FileOutputStream fosfilaFN = new FileOutputStream(filelogFN);
-			 bwfileFN = new BufferedWriter(new OutputStreamWriter(fosfilaFN));
-			 
-			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsJHotDraw.txt");
-				FileOutputStream fosfila5JHotDraw = new FileOutputStream(filelog3JHotDraw);
-				bwfile3jHotDraw = new BufferedWriter(new OutputStreamWriter(fosfila5JHotDraw));
 		}
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
 		// bwfile2.newLine();
@@ -465,35 +435,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			parameterHashMap = dbitrust.getParameterhashMap();
 		}
 
-		CalculateChildrenInterfacesTracesClasses();
+		CalculateChildrenInterfaces();
 		HashMap<String, LogInfo> LogInfoHashMap = new HashMap<String, LogInfo>();
 		HashMap<String, String> RequirementClassHashMapNewValues = new HashMap<String, String>();
-		
-		LogInfoHashMap=InitializeLogInfoHashMap(LogInfoHashMap,MethodTracesHashmapValues ); 
-		MethodTracesHashmapValues = methodtraces2HashMap.values();
-
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-
-			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
-			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethodRepresentation().methodid;
-			System.out.println(reqclass);
-
-			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
-			System.out.println(myclasstraceHashMap);
-
-			String traceClassOldValue = myclasstraceHashMap.getTraceFinal(); 
-			LogInfo LogInfo= new LogInfo(); 
-			 if(LogInfoHashMap.get(reqmethod)!=null) {
-				  LogInfo= LogInfoHashMap.get(reqmethod); 
-			 }else {
-				 LogInfo= new LogInfo(); 
-			 }
-			LogInfo.setTraceClassOldValue(traceClassOldValue);
-			LogInfoHashMap.put(reqmethod, LogInfo); 
-			
-		}
-		
-		
 		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues);
 		j = 0;
 
@@ -501,7 +445,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				LogInfoHashMap);
 
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
-		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
@@ -521,37 +464,29 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			loginfo.setClassID(methodtrace.getClassRepresentation().classid);
 			loginfo.setClassName(methodtrace.getClassRepresentation().classname);
 			loginfo.setTraceValue(methodtrace.getGoldfinal());
-			System.out.println("Trace Class New Value "+loginfo.getTraceClassNewValue());
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+
 			// PATTERN 1
 			if (myclasstraceHashMap.getTraceFinal() != null) {
 
 				String tracegold2 = myclasstraceHashMap.getTraceFinal();
 				tracegold2 = tracegold2.trim();
+				if (tracegold2.equals("T")) {
 
-				if (tracegold2.equals("E") ) {
-						loginfo.setOwnerClassPrediction("E");
-						PatternSetVariables("E", methodtrace, "100%", "P1");
-						LogInfoHashMap.put(reqmethod, loginfo);
-						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
-					
-				
+					loginfo.setOwnerClassPrediction("E");
+					PatternSetVariables("E", methodtrace, "100%", "P1");
+					LogInfoHashMap.put(reqmethod, loginfo);
 
 				} else if (tracegold2.equals("N")) {
 
 					loginfo.setOwnerClassPrediction("N");
 					PatternSetVariables("N", methodtrace, "100%", "P1");
 					LogInfoHashMap.put(reqmethod, loginfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-
 				}
 
 				else {
 					loginfo.setOwnerClassPrediction("E");
 					PatternSetVariables("E", methodtrace, "100%", "P1");
 					LogInfoHashMap.put(reqmethod, loginfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
-
 				}
 				ITERATION1++;
 			}
@@ -616,7 +551,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				}
 
 				List<String> iterationValues = LogInfo.getIterationValues();
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 
 				// methodtrace.setPrediction("");
 				// PURE N PATTERN
@@ -629,11 +563,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 
-					iterationValues.add("N,PureN");
+					iterationValues.add("N-PureN");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-
 					// System.out.println("yes");
 				}
 
@@ -647,10 +579,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
-					iterationValues.add("T,PureT");
+					iterationValues.add("T-PureT");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 					// System.out.println("yes");
 				}
@@ -663,12 +594,11 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				) {
 					// methodtrace.setPrediction("N");
 
-					iterationValues.add("N,PureNLeaf");
+					iterationValues.add("N-PureNLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
 
 					PatternSetVariables("N", methodtrace, "90%", "P4");
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
 					// System.out.println("yes");
 				}
@@ -682,10 +612,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 					// methodtrace.setPrediction("N");
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
-					iterationValues.add("T,PureTLeaf");
+					iterationValues.add("T-PureTLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 					// System.out.println("yes");
 				}
@@ -706,7 +635,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				// MIXED PATTERNS
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
 				List<Method2Representation> CallersList = methodtrace.getCallersList();
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 
 				List<String> PredictionCalleeList = new ArrayList<String>();
 				for (Method2Representation callee : CalleesList) {
@@ -745,10 +673,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				) {
 
 					PatternSetVariables("N", methodtrace, "80%", "P3");
-					iterationValues.add("N,MixedN");
+					iterationValues.add("N-MixedN");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
 					// System.out.println("yes");
 				}
@@ -759,10 +686,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				) {
 					// methodtrace.setPrediction("N");
 					PatternSetVariables("T", methodtrace, "80%", "P3");
-					iterationValues.add("T,MixedT");
+					iterationValues.add("T-MixedT");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 					// System.out.println("yes");
 				}
@@ -772,11 +698,10 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
-					iterationValues.add("N,MixedNLeaf");
+					iterationValues.add("N-MixedNLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					PatternSetVariables("N", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
 				}
 				// MIXED T LEAF PATTERN
@@ -784,11 +709,10 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
-					iterationValues.add("T,MixedTLeaf");
+					iterationValues.add("T-MixedTLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					PatternSetVariables("T", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 				}
 				k++;
@@ -803,19 +727,15 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION " + ITERATION
 					+ "   PREDICTION VALUES " + NEWPATTERNMethodCallsFinal.toString());
 			// END PRINT
-			CalculateChildrenInterfacesMethodTraces(RequirementMethodNameClassIDHashMap);
-			
-			
-			
-			
+
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
 				List<String> IterationValues = LogInfo.getIterationValues();
-				List<String> interfaces = methodtrace.getInterfaceListMethodTraces();
-				List<String> implementations = methodtrace.getImplementationListMethodTraces(); 
-				List<String> superclasses = methodtrace.getSuperClassesListMethodTraces(); 
-				List<String> children = methodtrace.getChildrenListMethodTraces(); 
+				List<String> interfaces = methodtrace.getInterfaceList();
+				List<String> implementations = methodtrace.getImplementationList();
+				List<String> superclasses = methodtrace.getSuperClassesList();
+				List<String> children = methodtrace.getChildrenList();
 
 				List<String> interfaceTraceValues = new ArrayList<String>();
 				for (String inter : interfaces) {
@@ -916,12 +836,12 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 				{
 					if (IterationValues != null) {
-						IterationValues.add("N,AllNInheritance");
+						IterationValues.add("N-AllNInheritance");
 						LogInfo.setIterationValues(IterationValues);
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					} else {
 						IterationValues = new ArrayList<String>();
-						IterationValues.add("N,AllNInheritance");
+						IterationValues.add("N-AllNInheritance");
 						LogInfo.setIterationValues(IterationValues);
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					}
@@ -943,12 +863,12 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				{
 
 					if (IterationValues != null) {
-						IterationValues.add("T,AllTInheritance");
+						IterationValues.add("T-AllTInheritance");
 						LogInfo.setIterationValues(IterationValues);
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					} else {
 						IterationValues = new ArrayList<String>();
-						IterationValues.add("T,AllTInheritance");
+						IterationValues.add("T-AllTInheritance");
 						LogInfo.setIterationValues(IterationValues);
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					}
@@ -984,17 +904,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 			PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
 		}
-		
-		
-		//SET EVERYTHING ELSE TO T 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-
-			if(
-//					methodtrace.getPrediction().equals("") || methodtrace.getPrediction()==null|| 
-					methodtrace.getPrediction().equals("E")) {
-				methodtrace.setPrediction("T");
-			}
-		}
 
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
@@ -1004,27 +913,26 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
 			bwfileChess.newLine();
 		}
 		if (ProgramName.equals("gantt")) {
 			bwfile2.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue,TraceClassNewValue,  OwnerClassPrediction, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassNewValue,  OwnerClassPrediction, PrecisionRecall, IterationValues");
 			bwfile2.newLine();
 		}
 		if (ProgramName.equals("itrust")) {
 			bwfile3.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
 			bwfile3.newLine();
 		}
 		if (ProgramName.equals("jhotdraw")) {
 			bwfile4.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassNewValue, OwnerClassPrediction, PrecisionRecall, IterationValues");
 			bwfile4.newLine();
 		}
 
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2);
-		int counter=0; 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 			LogInfoHashMap.get(reqmethod);
@@ -1042,84 +950,30 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			if (ProgramName.equals("chess")) {
 				bwfileChess.write(LogInfoHashMap.get(reqmethod).toString());
 				bwfileChess.newLine();
-				counter++; 
-				
-				if(LogInfoHashMap.get(reqmethod).PrecisionRecall.equals("FP")) {
-					bwfile3Chess.write(LogInfoHashMap.get(reqmethod).toString());
-					bwfile3Chess.newLine();
-				}
 			}
 			if (ProgramName.equals("itrust")) {
 				bwfile3.write(LogInfoHashMap.get(reqmethod).toString());
 				bwfile3.newLine();
-				
-				if(LogInfoHashMap.get(reqmethod).PrecisionRecall.equals("FP")) {
-					bwfile3iTrust.write(LogInfoHashMap.get(reqmethod).toString());
-					bwfile3iTrust.newLine();
-				}
 			}
 			if (ProgramName.equals("jhotdraw")) {
 				bwfile4.write(LogInfoHashMap.get(reqmethod).toString());
 				bwfile4.newLine();
-				
-				
-				
-				if(LogInfoHashMap.get(reqmethod).PrecisionRecall.equals("FN")) {
-					bwfileFN.write(LogInfoHashMap.get(reqmethod).toString());
-					bwfileFN.newLine();
-				}
-				
-				if(LogInfoHashMap.get(reqmethod).PrecisionRecall.equals("FP")) {
-					bwfile3jHotDraw.write(LogInfoHashMap.get(reqmethod).toString());
-					bwfile3jHotDraw.newLine();
-				}
 			}
 		}
 
 		if (ProgramName.equals("chess")) {
 			bwfileChess.close();
-			bwfile3Chess.close();
+
 		} else if (ProgramName.equals("gantt")) {
 			bwfile2.close();
 			bwfileFP.close();
-			
 
 		} else if (ProgramName.equals("itrust")) {
 			bwfile3.close();
-			bwfile3iTrust.close(); 
 		} else if (ProgramName.equals("jhotdraw")) {
 			bwfile4.close();
-			bwfileFN.close();
-			bwfile3jHotDraw.close();
-
 		}
 		return PredictionsNewHashMap;
-	}
-
-	private HashMap<String, LogInfo> InitializeLogInfoHashMap(HashMap<String, LogInfo> logInfoHashMap,
-			Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues) {
-		// TODO Auto-generated method stub
-		for(MethodTraceSubjectTSubjectN methval: methodTracesHashmapValues) {
-			String Req= methval.getRequirement().ID; 
-			String Method= methval.getMethodRepresentation().methodid; 
-			LogInfo loginfo= new LogInfo(); 			
-			logInfoHashMap.put(Req+"-"+Method, loginfo); 
-		}
-		return logInfoHashMap; 
-	}
-
-	public HashMap<String, String> InitializeRequirementMethodNameClassIDHashMap(
-			HashMap<String, String> requirementMethodNameClassIDHashMap2, Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues) {
-		
-		for(MethodTraceSubjectTSubjectN methodtrace: methodTracesHashmapValues){
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.ClassRepresentation.classid; 
-
-			requirementMethodNameClassIDHashMap2.put(ReqMethodClasskey, "E"); 
-		}
-		
-				return requirementMethodNameClassIDHashMap2;
-		// TODO Auto-generated method stub
-		
 	}
 
 	/************************************************************************************************************************************************/
@@ -1321,101 +1175,11 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 		}
 		return requirementClassHashMapNewValues;
 	}
-	/************************************************************************************************************************************************/
-	/************************************************************************************************************************************************/
-	/**
-	 * @param requirementMethodNameClassIDHashMap2 **********************************************************************************************************************************************/
-	public void CalculateChildrenInterfacesMethodTraces(HashMap<String, String> requirementMethodNameClassIDHashMap2) {
-		// TODO Auto-generated method stub
-		int j = 0;
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-		
 
-			List<String> SuperClassesList = new ArrayList<String>();
-			List<String> InterfaceList = new ArrayList<String>();
-			List<String> ChildrenList = new ArrayList<String>();
-			List<String> ImplementationList = new ArrayList<String>();
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(methodtraces2HashMap.size());
-			String ReqID= methodtrace.Requirement.ID; 
-			String MethodName= methodtrace.MethodRepresentation.methodname; 
-
-
-			String ReqMethod=ReqID+"-"+MethodName; 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid);
-			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid);
-			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid);
-			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid);
-			
-			
-			System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.classid);
-			if (myinterfaces != null)
-				for (Interface2 myinterface : myinterfaces) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+myinterface.InterfaceClass.classid; 
-					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
-					
-					InterfaceList.add(TraceValue + "-" + myinterface.getInterfaceClass().getClassid() + "-"
-									+ methodtrace.ClassRepresentation.classid);
-						
-				}
-			if (mysuperclasses != null)
-				for (SuperClass2 mysuperclass : mysuperclasses) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+mysuperclass.SuperClass.classid; 
-							
-					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
-					
-					SuperClassesList.add(TraceValue + "-" + mysuperclass.getSuperClass().classid + "-"
-									+ methodtrace.ClassRepresentation.classid);
-					
-					
-					
-				}
-			if (mychildren != null)
-				for (Children2 mychild : mychildren) {
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+mychild.OwnerClass.classid; 
-				
-				String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
-		
-				ChildrenList.add(TraceValue + "-" + mychild.getOwnerClass().classid + "-"
-						+ methodtrace.ClassRepresentation.classid);
-				
-				}
-			if (myimplementations != null)
-				for (Implementation2 myimplementation : myimplementations) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+myimplementation.Implementation.classid;  
-					
-					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
-			
-					ImplementationList.add(TraceValue + "-" + myimplementation.getImplementation().classid + "-"
-							+ methodtrace.ClassRepresentation.classid);
-				}
-			methodtrace.setSuperClassesListMethodTraces(SuperClassesList);
-			methodtrace.setInterfaceListMethodTraces(InterfaceList);
-			methodtrace.setImplementationListMethodTraces(ImplementationList);
-			methodtrace.setChildrenListMethodTraces(ChildrenList);
-			j++;
-		}
-	}
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public void CalculateChildrenInterfacesTracesClasses() {
+	public void CalculateChildrenInterfaces() {
 		// TODO Auto-generated method stub
 		int j = 0;
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
@@ -1707,13 +1471,13 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName2);
+		 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName3);
+		frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName4);
+		frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion2(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
