@@ -14,7 +14,7 @@ public class LogInfo {
 	String TraceClassOldValue; 
 	String TraceClassNewValue; 
 	String OwnerClassPrediction; 
-	String PrecisionRecall; 
+	public String PrecisionRecall; 
 	List<String> IterationValues= new ArrayList<String>();
 	
 	

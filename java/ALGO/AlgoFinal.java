@@ -1,4 +1,4 @@
-package Chess;
+package ALGO;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -44,6 +44,8 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
+import Chess.LogInfo;
+import Chess.PredictionEvaluation;
 import Gantt.DatabaseReading2Gantt;
 import JHotDraw.DatabaseReading2JHotDraw3;
 import iTrust.DatabaseReading2itrust;
@@ -67,7 +69,7 @@ import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
+public class AlgoFinal extends JFrame {
 
 	/**
 	 * Run a SQL command which does not return a recordset:
@@ -150,7 +152,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public TracesTableChessFINALROUND2MethodCallsFinalVersion(String ProgramName) throws SQLException, IOException {
+	public AlgoFinal(String ProgramName) throws SQLException, IOException {
 
 		LinkedHashMap<String, String> PredictionsOldHashMap = new LinkedHashMap<String, String>();
 		LinkedHashMap<String, String> PredictionsNewHashMap = new LinkedHashMap<String, String>();
@@ -531,7 +533,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 
 				if (tracegold2.equals("T") ) {
 						loginfo.setOwnerClassPrediction("E");
-						PatternSetVariables("E", methodtrace, "100%", "P1");
+						methodtrace.setPrediction("E");
 						LogInfoHashMap.put(reqmethod, loginfo);
 						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
 					
@@ -540,7 +542,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 				} else if (tracegold2.equals("N")) {
 
 					loginfo.setOwnerClassPrediction("N");
-					PatternSetVariables("N", methodtrace, "100%", "P1");
+					methodtrace.setPrediction("N");
 					LogInfoHashMap.put(reqmethod, loginfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
@@ -548,7 +550,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 
 				else {
 					loginfo.setOwnerClassPrediction("E");
-					PatternSetVariables("E", methodtrace, "100%", "P1");
+					methodtrace.setPrediction("E");
 					LogInfoHashMap.put(reqmethod, loginfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
 
@@ -618,10 +620,32 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 				List<String> iterationValues = LogInfo.getIterationValues();
 				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 
+				
+				
+				// PURE T PATTERN
+
 				// methodtrace.setPrediction("");
+				if (!PredictionCalleeList.contains("N") && !PredictionCallerList.contains("N")
+						&& PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
+						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+
+				) {
+					// methodtrace.setPrediction("N");
+
+					PatternSetVariables("T", methodtrace, "90%", "P2");
+
+					iterationValues.add("T,PureT");
+					LogInfo.setIterationValues(iterationValues);
+					LogInfoHashMap.put(reqMethod, LogInfo);
+					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
+
+					// System.out.println("yes");
+				}
 				// PURE N PATTERN
-				if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
+				else if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
 						&& !PredictionCalleeList.contains("T") && !PredictionCallerList.contains("T")
+						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -637,26 +661,28 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 					// System.out.println("yes");
 				}
 
-				// PURE T PATTERN
-				else if (!PredictionCalleeList.contains("N") && !PredictionCallerList.contains("N")
-						&& PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+				 
+				// PURE T LEAF PATTERN
+				 if (PredictionCalleeList.isEmpty() && !PredictionCallerList.contains("N")
+						&& !PredictionCallerList.contains("E")
+
+						&& PredictionCallerList.contains("T") && !methodtrace.getPrediction().equals("T")
+						&& !methodtrace.getPrediction().equals("N")
 
 				) {
 					// methodtrace.setPrediction("N");
-
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
-					iterationValues.add("T,PureT");
+					iterationValues.add("T,PureTLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 					// System.out.println("yes");
 				}
-
 				// PURE N LEAF PATTERN
-				if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
+				 else if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
+						&& !PredictionCallerList.contains("E")
 						&& !PredictionCallerList.contains("T") && !methodtrace.getPrediction().equals("T")
 						&& !methodtrace.getPrediction().equals("N")
 
@@ -673,22 +699,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 					// System.out.println("yes");
 				}
 
-				// PURE T LEAF PATTERN
-				else if (PredictionCalleeList.isEmpty() && !PredictionCallerList.contains("N")
-						&& PredictionCallerList.contains("T") && !methodtrace.getPrediction().equals("T")
-						&& !methodtrace.getPrediction().equals("N")
-
-				) {
-					// methodtrace.setPrediction("N");
-					PatternSetVariables("T", methodtrace, "90%", "P2");
-
-					iterationValues.add("T,PureTLeaf");
-					LogInfo.setIterationValues(iterationValues);
-					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
-
-					// System.out.println("yes");
-				}
+				
 				k++;
 
 			}
@@ -738,22 +749,9 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 					System.out.print(it + ", ");
 				}
 				System.out.println();
-				// MIXED N PATTERN
-				if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
-
-				) {
-
-					PatternSetVariables("N", methodtrace, "80%", "P3");
-					iterationValues.add("N,MixedN");
-					LogInfo.setIterationValues(iterationValues);
-					LogInfoHashMap.put(reqMethod, LogInfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-
-					// System.out.println("yes");
-				}
+				
 				// MIXED T PATTERN
-				else if (PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
+				 if (PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -766,21 +764,27 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 
 					// System.out.println("yes");
 				}
-
-				// MIXED N LEAF PATTERN
-				if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
+				// MIXED N PATTERN
+				 else if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
+						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
-					iterationValues.add("N,MixedNLeaf");
+
+					PatternSetVariables("N", methodtrace, "80%", "P3");
+					iterationValues.add("N,MixedN");
 					LogInfo.setIterationValues(iterationValues);
-					PatternSetVariables("N", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
+					// System.out.println("yes");
 				}
+				
+
+				
+				 
 				// MIXED T LEAF PATTERN
-				else if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("T")
+				 if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("T")
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -789,6 +793,18 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 					PatternSetVariables("T", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
+
+				}// MIXED N LEAF PATTERN
+				 else if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
+						&& !PredictionCallerList.contains("E")
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+
+				) {
+					iterationValues.add("N,MixedNLeaf");
+					LogInfo.setIterationValues(iterationValues);
+					PatternSetVariables("N", methodtrace, "80%", "P5");
+					LogInfoHashMap.put(reqMethod, LogInfo);
+					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
 				}
 				k++;
@@ -902,33 +918,6 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 						childrenCountE++;
 					}
 				}
-
-				if (((allEqualInterfaces == true && interfaceTraceValues.get(0).equals("N"))
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualImplementations == true && implementationsTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualSuperclasses == true && superclassesTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualChildren == true && childrenTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-
-				)
-
-				{
-					if (IterationValues != null) {
-						IterationValues.add("N,AllNInheritance");
-						LogInfo.setIterationValues(IterationValues);
-						LogInfoHashMap.put(ReqMethod, LogInfo);
-					} else {
-						IterationValues = new ArrayList<String>();
-						IterationValues.add("N,AllNInheritance");
-						LogInfo.setIterationValues(IterationValues);
-						LogInfoHashMap.put(ReqMethod, LogInfo);
-					}
-					PatternSetVariables("N", methodtrace, "90%", "P2");
-
-				}
-
 				if ((allEqualInterfaces == true && interfaceTraceValues.get(0).equals("T")
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
 						|| (allEqualImplementations == true && implementationsTraceValues.get(0).equals("T")
@@ -955,6 +944,33 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
 				}
+				else if (((allEqualInterfaces == true && interfaceTraceValues.get(0).equals("N"))
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+						|| (allEqualImplementations == true && implementationsTraceValues.get(0).equals("N")
+								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+						|| (allEqualSuperclasses == true && superclassesTraceValues.get(0).equals("N")
+								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+						|| (allEqualChildren == true && childrenTraceValues.get(0).equals("N")
+								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+
+				)
+
+				{
+					if (IterationValues != null) {
+						IterationValues.add("N,AllNInheritance");
+						LogInfo.setIterationValues(IterationValues);
+						LogInfoHashMap.put(ReqMethod, LogInfo);
+					} else {
+						IterationValues = new ArrayList<String>();
+						IterationValues.add("N,AllNInheritance");
+						LogInfo.setIterationValues(IterationValues);
+						LogInfoHashMap.put(ReqMethod, LogInfo);
+					}
+					PatternSetVariables("N", methodtrace, "90%", "P2");
+
+				}
+
+
 			}
 
 			// PRINT
@@ -1701,17 +1717,17 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName = "chess";
-		TracesTableChessFINALROUND2MethodCallsFinalVersion frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(
+		AlgoFinal frame = new AlgoFinal(
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName2);
+			 frame = new AlgoFinal(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName3);
+			 frame = new AlgoFinal(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new TracesTableChessFINALROUND2MethodCallsFinalVersion(ProgramName4);
+			frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
