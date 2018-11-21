@@ -199,7 +199,7 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.settrace(myresults.getString("gold"));
+				 myclasstrace.settrace(myresults.getString("goldAtLeast2"));
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
 				 myclasstrace.setTrace3(myresults.getString("gold3"));

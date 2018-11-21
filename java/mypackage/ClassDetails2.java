@@ -172,7 +172,9 @@ public class ClassDetails2 {
 					while(classtraces.next()) {
 						ClassTrace2 classtrace= new ClassTrace2();
 						//classtrace.setID(classtraces.getString("id"));
-						classtrace.settrace(classtraces.getString("gold"));
+						classtrace.settrace(classtraces.getString("goldfinal"));
+						classtrace.setTraceFinal(classtraces.getString("goldfinal"));
+
 						classtrace.setSubject(classtraces.getString("subject"));
 						Requirement2 r= new Requirement2();
 						r.setID(classtraces.getString("requirementid"));

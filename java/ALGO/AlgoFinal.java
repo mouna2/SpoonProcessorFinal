@@ -536,6 +536,8 @@ public class AlgoFinal extends JFrame {
 						methodtrace.setPrediction("E");
 						LogInfoHashMap.put(reqmethod, loginfo);
 						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
+						PatternSetVariables("E", methodtrace, "90%", "P2");
+
 					
 				
 
@@ -545,6 +547,7 @@ public class AlgoFinal extends JFrame {
 					methodtrace.setPrediction("N");
 					LogInfoHashMap.put(reqmethod, loginfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
+					PatternSetVariables("N", methodtrace, "90%", "P2");
 
 				}
 
@@ -553,6 +556,7 @@ public class AlgoFinal extends JFrame {
 					methodtrace.setPrediction("E");
 					LogInfoHashMap.put(reqmethod, loginfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
+					PatternSetVariables("E", methodtrace, "90%", "P2");
 
 				}
 				ITERATION1++;
@@ -860,13 +864,13 @@ public class AlgoFinal extends JFrame {
 					String interVal = inters[0];
 					childrenTraceValues.add(interVal);
 				}
-				boolean allEqualInterfaces = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
+				boolean InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
 						&& interfaceTraceValues.size() >= 1;
-				boolean allEqualImplementations = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
+				boolean ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
 						&& implementationsTraceValues.size() >= 1;
-				boolean allEqualSuperclasses = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
+				boolean SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
 						&& superclassesTraceValues.size() >= 1;
-				boolean allEqualChildren = childrenTraceValues.stream().distinct().limit(2).count() <= 1
+				boolean ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
 						&& childrenTraceValues.size() >= 1;
 
 				int interfaceCountT = 0;
@@ -918,16 +922,13 @@ public class AlgoFinal extends JFrame {
 						childrenCountE++;
 					}
 				}
-				if ((allEqualInterfaces == true && interfaceTraceValues.get(0).equals("T")
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualImplementations == true && implementationsTraceValues.get(0).equals("T")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualSuperclasses == true && superclassesTraceValues.get(0).equals("T")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualChildren == true && childrenTraceValues.get(0).equals("T")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-
-				)
+				if (
+						methodtrace.InterfaceMethodTraceValuesAllEqualT(InterfacesFlag, interfaceTraceValues, methodtrace) 
+						||methodtrace.ImplementationMethodTraceValuesAllEqualT(ImplementationsFlag, implementationsTraceValues, methodtrace)
+						||methodtrace.SuperclassMethodTraceValuesAllEqualT(SuperclassesFlag, superclassesTraceValues, methodtrace)
+						||methodtrace.ChildMethodTraceValuesAllEqualT(ChildrenFlag, childrenTraceValues, methodtrace))
+						
+					
 
 				{
 
@@ -944,14 +945,10 @@ public class AlgoFinal extends JFrame {
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
 				}
-				else if (((allEqualInterfaces == true && interfaceTraceValues.get(0).equals("N"))
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualImplementations == true && implementationsTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualSuperclasses == true && superclassesTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
-						|| (allEqualChildren == true && childrenTraceValues.get(0).equals("N")
-								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N"))
+				else if (methodtrace.InterfaceMethodTraceValuesAllEqualN(InterfacesFlag, interfaceTraceValues, methodtrace) 
+						||methodtrace.ImplementationMethodTraceValuesAllEqualN(ImplementationsFlag, implementationsTraceValues, methodtrace)
+						||methodtrace.SuperclassMethodTraceValuesAllEqualN(SuperclassesFlag, superclassesTraceValues, methodtrace)
+						||methodtrace.ChildMethodTraceValuesAllEqualN(ChildrenFlag, childrenTraceValues, methodtrace)
 
 				)
 
@@ -1116,7 +1113,8 @@ public class AlgoFinal extends JFrame {
 		for(MethodTraceSubjectTSubjectN methval: methodTracesHashmapValues) {
 			String Req= methval.getRequirement().ID; 
 			String Method= methval.getMethodRepresentation().methodid; 
-			LogInfo loginfo= new LogInfo(); 			
+			LogInfo loginfo= new LogInfo(); 
+			System.out.println(Req+"-"+Method);
 			logInfoHashMap.put(Req+"-"+Method, loginfo); 
 		}
 		return logInfoHashMap; 

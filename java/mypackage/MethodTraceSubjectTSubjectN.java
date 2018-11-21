@@ -1787,7 +1787,95 @@ if(myinterfacelist!=null) {
 		return st+"   CALLER: "+mycaller +"  "+requicaller+"CALLEE: "+mycallee+"   "+requicallee+"CALLER EXECUTED :"+mycallerexecuted+ "  " +requicallerexecuted+"CALLEE EXCUTED: "+mycalleeexecuted+"  "+requicalleeexecuted; 
 			
 	}
+
+	public boolean InterfaceMethodTraceValuesAllEqualT(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
 	
+	
+	
+	public boolean ImplementationMethodTraceValuesAllEqualT(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	public boolean SuperclassMethodTraceValuesAllEqualT(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	public boolean ChildMethodTraceValuesAllEqualT(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(ChildFlag == true && childTraceValues.get(0).equals("T")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	
+	
+	
+	
+	
+	public boolean InterfaceMethodTraceValuesAllEqualN(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	
+	
+	public boolean ImplementationMethodTraceValuesAllEqualN(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	public boolean SuperclassMethodTraceValuesAllEqualN(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
+	
+	public boolean ChildMethodTraceValuesAllEqualN(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+		// TODO Auto-generated method stub
+		
+		if(ChildFlag == true && childTraceValues.get(0).equals("N")
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+			return true;
+		}
+		return false; 
+	}
 	
 	
 	
