@@ -68,3 +68,7 @@ Java Files to be executed to produce predictions for JHotDraw:
 -TracesTableJHotDrawFinal: Merged executed calls + parsed calls 
 -TracesTableJHotDrawFinal_EXECUTED_CALLS: executed calls
 -TracesTableJHotDrawFinal_PARSED_CALLS: parsed calls 
+
+GANTT & JHOTDRAW: goldfinal in the tracesclasses table refers to the developer gold 
+GANTT & JHOTDRAW: goldfinal in the traces table refers to AtLeast2Gold retrieved from SubjectT and SubjectN
+
