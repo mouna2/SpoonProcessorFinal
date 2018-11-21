@@ -598,40 +598,40 @@ public class AlgoFinal extends JFrame {
 				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
 				List<Method2Representation> CallersList = methodtrace.getCallersList();
 
-				List<String> PredictionCalleeList = new ArrayList<String>();
+				List<String> MethodPredictionCalleeList = new ArrayList<String>();
 				for (Method2Representation callee : CalleesList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = callee.methodid;
 					String key = MethodID + "-" + RequirementID;
 					if (methodtraces2HashMap.get(key) != null) {
 						String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-						PredictionCalleeList.add(predictionvalue);
+						MethodPredictionCalleeList.add(predictionvalue);
 					}
 
 				}
 
-				List<String> PredictionCallerList = new ArrayList<String>();
+				List<String> MethodPredictionCallerList = new ArrayList<String>();
 				for (Method2Representation caller : CallersList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = caller.methodid;
 					String key = MethodID + "-" + RequirementID;
 					if (methodtraces2HashMap.get(key) != null) {
 						String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-						PredictionCallerList.add(predictionvalue);
+						MethodPredictionCallerList.add(predictionvalue);
 					}
 				}
 
 				List<String> iterationValues = LogInfo.getIterationValues();
 				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 
-				
-				
+				methodtrace.setPredictionCalleeList(MethodPredictionCalleeList);
+				methodtrace.setPredictionCallerList(MethodPredictionCallerList);
+
 				// PURE T PATTERN
 
 				// methodtrace.setPrediction("");
-				if (!PredictionCalleeList.contains("N") && !PredictionCallerList.contains("N")
-						&& PredictionCalleeList.contains("T") && PredictionCallerList.contains("T")
-						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
+				if (    !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+						&& methodtrace.AllMethodTracePredictionCalleesEqualT() && methodtrace.AllMethodTracePredictionCallersEqualT() 					
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -647,9 +647,8 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// PURE N PATTERN
-				else if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
-						&& !PredictionCalleeList.contains("T") && !PredictionCallerList.contains("T")
-						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
+				else if ( !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+						&& methodtrace.AllMethodTracePredictionCalleesEqualN() && methodtrace.AllMethodTracePredictionCallersEqualN()
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -667,11 +666,9 @@ public class AlgoFinal extends JFrame {
 
 				 
 				// PURE T LEAF PATTERN
-				 if (PredictionCalleeList.isEmpty() && !PredictionCallerList.contains("N")
-						&& !PredictionCallerList.contains("E")
-
-						&& PredictionCallerList.contains("T") && !methodtrace.getPrediction().equals("T")
-						&& !methodtrace.getPrediction().equals("N")
+				 if (	methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+						 && methodtrace.AllMethodTracePredictionCalleesEqualT() 
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
 					// methodtrace.setPrediction("N");
@@ -685,9 +682,9 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// PURE N LEAF PATTERN
-				 else if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
-						&& !PredictionCallerList.contains("E")
-						&& !PredictionCallerList.contains("T") && !methodtrace.getPrediction().equals("T")
+				 else if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+						 && methodtrace.AllMethodTracePredictionCalleesEqualN() 
+						 && !methodtrace.getPrediction().equals("T")
 						&& !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -755,8 +752,9 @@ public class AlgoFinal extends JFrame {
 				System.out.println();
 				
 				// MIXED T PATTERN
-				 if (PredictionCalleeList.contains("T") && PredictionCallerList.contains("T") 
-						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+				 if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+					&& methodtrace.AllMethodTracePredictionCalleesContainsAtLeast1T() && methodtrace.AllMethodTracePredictionCallersContainsAtLeast1T() 
+					&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
 					// methodtrace.setPrediction("N");
@@ -769,8 +767,10 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// MIXED N PATTERN
-				 else if (PredictionCalleeList.contains("N") && PredictionCallerList.contains("N")
-						&& !PredictionCalleeList.contains("E") && !PredictionCallerList.contains("E")
+				 else if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+						
+						&& methodtrace.AllMethodTracePredictionCalleesEqualN() && methodtrace.AllMethodTracePredictionCallersEqualN() 
+						
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -788,7 +788,8 @@ public class AlgoFinal extends JFrame {
 				
 				 
 				// MIXED T LEAF PATTERN
-				 if (PredictionCalleeList.isEmpty() && PredictionCallerList.contains("T")
+				 if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+						 && methodtrace.AllMethodTracePredictionCallersContainsAtLeast1T() 
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {
@@ -799,8 +800,8 @@ public class AlgoFinal extends JFrame {
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 				}// MIXED N LEAF PATTERN
-				 else if(PredictionCalleeList.isEmpty() && PredictionCallerList.contains("N")
-						&& !PredictionCallerList.contains("E")
+				 else if(methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+						 && methodtrace.AllMethodTracePredictionCallersEqualN()
 						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 
 				) {

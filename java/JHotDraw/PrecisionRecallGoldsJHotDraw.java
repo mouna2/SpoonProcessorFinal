@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,10 +15,12 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
+import Chess.PredictionEvaluation;
+import Gantt.DatabaseReading2Gantt;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddSubjectTSubjectNGantt {
+public class PrecisionRecallGoldsJHotDraw {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -32,7 +34,7 @@ public class AddSubjectTSubjectNGantt {
 
 	private final int portNumber = 3306;
 	
-	private final String dbName = "databasegantt";
+	private final String dbName = "databasejhotdraw";
 
 	/**
 	 * Get a new database connection
@@ -45,7 +47,7 @@ public class AddSubjectTSubjectNGantt {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw","root","123456");
 
 		return conn;
 	}
@@ -115,66 +117,62 @@ public class AddSubjectTSubjectNGantt {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
+		DatabaseReading2JHotDraw3 DatabaseReading = new DatabaseReading2JHotDraw3();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
-		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
-		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\GanttFiles\\gantt_meth_votes.txt");
-			FileReader fileReader = new FileReader(file);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			StringBuffer stringBuffer = new StringBuffer();
-			String line;
-			line = bufferedReader.readLine(); 
-			List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
+	
 
-			while ((line = bufferedReader.readLine()) != null) {
-				String[] splittedline = line.split(","); 
-				stringBuffer.append(line);
-				stringBuffer.append("\n");
-				int counter =1; 
-				for(int i=1; i<splittedline.length; i+=2) {
-					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
-					String methodname= splittedline[0]; 
-					methodname=methodname.replaceAll("::", "."); 
-					methodname=methodname.replaceAll("constructor", "-init-"); 
-					methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
-				
-					String RequirementID= ""+counter;
-					String SubjectT= splittedline[i];
-					String SubjectN= splittedline[i+1]; 
-					SubjectTSubjectNObj.setMethodName(methodname);
-					SubjectTSubjectNObj.setRequirementID(RequirementID);
-					SubjectTSubjectNObj.setSubjectT(SubjectT);
-					SubjectTSubjectNObj.setSubjectN(SubjectN);
-					counter++; 
-					mylist.add(SubjectTSubjectNObj); 
-				}
+
+		int counter=1; 
+		
+//			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\gantt_meth_votes.txt");
+//			FileReader fileReader = new FileReader(file);
+//			BufferedReader bufferedReader = new BufferedReader(fileReader);
+//			StringBuffer stringBuffer = new StringBuffer();
+//			String line;
+//			line = bufferedReader.readLine(); 
+		int TracesNumber=0; 
+		int SubjectT=0; 
+		int SubjectN=0; 
+		PredictionEvaluation predictionEvaluationAlex = new PredictionEvaluation(); 
+		PredictionEvaluation predictionEvaluationMouna = new PredictionEvaluation(); 
+
 			
-			}
-			fileReader.close();
-			System.out.println(mylist.size());
-			int count=1;
-			for (SubjectTSubjectNObject entry: mylist) {
-				System.out.println(entry.toString()+ " "+count);
-				//String name= "net.sourceforge.ganttproject."+entry.MethodName; 
-				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
-				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-				count++;
-			}
-			System.out.println(stringBuffer.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+				
+				ResultSet TraceInformation= st.executeQuery("SELECT tracesclasses.* from tracesclasses "); 
+				
+				while(TraceInformation.next()) {
+					String	goldfinal=TraceInformation.getString("goldfinal"); 
+					String goldAtLeast2=TraceInformation.getString("goldAtLeast2"); 
+					String goldAlex=TraceInformation.getString("goldAlex"); 
+
+					
+					String val = predictionEvaluationMouna.ComparePredictionToGold(goldfinal, goldAtLeast2); 				
+					predictionEvaluationMouna.UpdateCounters(val, predictionEvaluationMouna);
+					
+					
+					String val2 = predictionEvaluationAlex.ComparePredictionToGold(goldfinal, goldAlex); 					
+					predictionEvaluationAlex.UpdateCounters(val2, predictionEvaluationAlex);
+				}
+				
+			
+				
+			
+
+
+		
+		
+			System.out.println("predictionEvaluationMouna JHotDraw "+predictionEvaluationMouna.toString());
+			System.out.println("predictionEvaluationAlex JHotDraw "+predictionEvaluationAlex.toString());
+
 		
 		
 		
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	}
+	
+	
+	
 }

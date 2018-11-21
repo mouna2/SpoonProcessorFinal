@@ -228,9 +228,9 @@ public class MethodTraceOld {
 					MethodTrace.setGoldFinal(traces.getString("goldfinal"));
 					//System.out.println("Method Trace Gold2: "+MethodTrace.getGoldfinal());
 
-					MethodTrace.setGold4(traces.getString("gold4"));
+//					MethodTrace.setGold4(traces.getString("gold4"));
 					//System.out.println("Method Trace Gold4: "+MethodTrace.getGold4());
-					MethodTrace.setGold3(traces.getString("gold3"));
+//					MethodTrace.setGold3(traces.getString("gold3"));
 					//System.out.println("Method Trace Gold3: "+MethodTrace.getGold3());
 					MethodTrace.setSubject(traces.getString("subject"));
 					Requirement2 requirement= new Requirement2();

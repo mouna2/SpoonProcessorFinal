@@ -48,6 +48,26 @@ public class MethodTraceSubjectTSubjectN {
 	List<String> InterfaceList; 
 	List<String> ChildrenList; 
 	List<String> ImplementationList; 
+	
+	List<String> PredictionCalleeList; 
+	List<String> PredictionCallerList; 
+
+	public List<String> getPredictionCalleeList() {
+		return PredictionCalleeList;
+	}
+
+	public void setPredictionCalleeList(List<String> predictionCalleeList) {
+		PredictionCalleeList = predictionCalleeList;
+	}
+
+	public List<String> getPredictionCallerList() {
+		return PredictionCallerList;
+	}
+
+	public void setPredictionCallerList(List<String> predictionCallerList) {
+		PredictionCallerList = predictionCallerList;
+	}
+
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
@@ -1117,9 +1137,9 @@ if(myinterfacelist!=null) {
 				 mytrace.setGold(myresults.getString("gold"));
 
 				 mytrace.setGoldfinal(myresults.getString("goldfinal"));
-				 mytrace.setGold3(myresults.getString("gold3"));
+//				 mytrace.setGold3(myresults.getString("gold3"));
 				 mytrace.setGoldfinal(myresults.getString("goldfinal"));
-				 mytrace.setGold4(myresults.getString("gold4"));
+//				 mytrace.setGold4(myresults.getString("gold4"));
 				
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
@@ -1876,8 +1896,63 @@ if(myinterfacelist!=null) {
 		}
 		return false; 
 	}
+
+	public boolean AllMethodTracePredictionCalleesEqualT() {
+		// TODO Auto-generated method stub
+		
+		if(!getPredictionCalleeList().contains("N")  && getPredictionCalleeList().contains("T") && !getPredictionCalleeList().contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean AllMethodTracePredictionCallersContainsAtLeast1T() {
+		// TODO Auto-generated method stub
+		
+		if(getPredictionCallerList().contains("T") ) {
+			return true;
+		}
+		return false;
+	}
+	public boolean AllMethodTracePredictionCalleesContainsAtLeast1T() {
+		// TODO Auto-generated method stub
+		
+		if(getPredictionCalleeList().contains("T") ) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean AllMethodTracePredictionCallersEqualT() {
+		// TODO Auto-generated method stub
+		
+		if(!getPredictionCallerList().contains("N")  && getPredictionCallerList().contains("T") && !getPredictionCallerList().contains("E")) {
+			return true;
+		}
+		return false;
+	}
 	
 	
+	public boolean AllMethodTracePredictionCalleesEqualN() {
+		// TODO Auto-generated method stub
+		
+		if(!getPredictionCalleeList().contains("T")  && getPredictionCalleeList().contains("N") && !getPredictionCalleeList().contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	
+	public boolean AllMethodTracePredictionCallersEqualN() {
+		// TODO Auto-generated method stub
+		
+		if(!getPredictionCallerList().contains("T")  && getPredictionCallerList().contains("N") && !getPredictionCallerList().contains("E")) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 }
