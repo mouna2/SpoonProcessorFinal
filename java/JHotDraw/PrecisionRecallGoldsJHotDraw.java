@@ -138,7 +138,8 @@ public class PrecisionRecallGoldsJHotDraw {
 		PredictionEvaluation predictionEvaluationAlex = new PredictionEvaluation(); 
 		PredictionEvaluation predictionEvaluationMouna = new PredictionEvaluation(); 
 
-			
+		PredictionEvaluation predictionEvaluationAlexAtLeast3 = new PredictionEvaluation(); 
+
 				
 				ResultSet TraceInformation= st.executeQuery("SELECT tracesclasses.* from tracesclasses "); 
 				
@@ -146,7 +147,8 @@ public class PrecisionRecallGoldsJHotDraw {
 					String	goldfinal=TraceInformation.getString("goldfinal"); 
 					String goldAtLeast2=TraceInformation.getString("goldAtLeast2"); 
 					String goldAlex=TraceInformation.getString("goldAlex"); 
-
+					
+					String goldAlexAtLeast3=TraceInformation.getString("goldAlexAtLeast3"); 
 					
 					String val = predictionEvaluationMouna.ComparePredictionToGold(goldfinal, goldAtLeast2); 				
 					predictionEvaluationMouna.UpdateCounters(val, predictionEvaluationMouna);
@@ -154,6 +156,9 @@ public class PrecisionRecallGoldsJHotDraw {
 					
 					String val2 = predictionEvaluationAlex.ComparePredictionToGold(goldfinal, goldAlex); 					
 					predictionEvaluationAlex.UpdateCounters(val2, predictionEvaluationAlex);
+					
+					String val3 = predictionEvaluationAlexAtLeast3.ComparePredictionToGold(goldfinal, goldAlexAtLeast3); 					
+					predictionEvaluationAlexAtLeast3.UpdateCounters(val3, predictionEvaluationAlexAtLeast3);
 				}
 				
 			
@@ -165,7 +170,7 @@ public class PrecisionRecallGoldsJHotDraw {
 		
 			System.out.println("predictionEvaluationMouna JHotDraw "+predictionEvaluationMouna.toString());
 			System.out.println("predictionEvaluationAlex JHotDraw "+predictionEvaluationAlex.toString());
-
+			System.out.println("predictionEvaluationAlexAtLeast3 JHotDraw "+predictionEvaluationAlexAtLeast3.toString());
 		
 		
 		

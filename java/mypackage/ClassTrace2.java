@@ -22,7 +22,7 @@ public class ClassTrace2 {
 		String goldFinal; 
 		String trace6; 
 		String subject;
-		
+		String SubjectGold; 
 		
 		
 		
@@ -83,6 +83,14 @@ public class ClassTrace2 {
 
 		public void setTrace4(String trace4) {
 			this.trace4 = trace4;
+		}
+
+		public String getSubjectGold() {
+			return SubjectGold;
+		}
+
+		public void setSubjectGold(String subjectGold) {
+			SubjectGold = subjectGold;
 		}
 
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
@@ -160,7 +168,7 @@ public class ClassTrace2 {
 				 myclasstrace.setMyclass(classrep);
 				 
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
-				 
+				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 
 				 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
@@ -202,6 +210,8 @@ public class ClassTrace2 {
 				 myclasstrace.settrace(myresults.getString("goldAtLeast2"));
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
+				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
+
 //				 myclasstrace.setTrace3(myresults.getString("gold3"));
 				
 //				 myclasstrace.setGoldFinal(myresults.getString("goldfinal"));

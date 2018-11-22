@@ -15,11 +15,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -3623,17 +3625,36 @@ int COUNTER3=1;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
-ResultSet traces = st2.executeQuery("SELECT traces.* from traces "); 
-while(traces.next()){
-	String requirementid = traces.getString("requirementid"); 
-	String requirement = traces.getString("requirement"); 
-	String classid = traces.getString("classid"); 
-	String classname = traces.getString("classname"); 
-	
-	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"')";	
-	st.executeUpdate(statement8); 
 
-	   }
+HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
+
+String classname=""; 
+String classid=""; 
+String requirementname=""; 
+String requirementid="";
+ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
+while(Traces.next()){
+	classname = Traces.getString("classname"); 
+	classid = Traces.getString("classid"); 
+	requirementname = Traces.getString("requirement"); 
+	requirementid = Traces.getString("requirementid"); 
+	
+	
+	String key= requirementid+"-"+classid; 
+	String val= requirementid+"-"+requirementname+"-"+classid+"-"+classname; 
+
+	RequirementClassHashMap.put(key, val); 
+	
+	
+  }
+
+for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
+	String myvalue = entry.getValue(); 
+	String[] myvalues = myvalue.split("-"); 
+	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]+"')";	
+	st2.executeUpdate(statement8);
+}
+
 
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	

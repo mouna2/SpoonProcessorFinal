@@ -121,17 +121,17 @@ public class AddGold3Gold4Gantt {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold3");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold4");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast3");
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-		
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast2");
+
 		
 		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD goldAtLeast3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD goldfinalAlex LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD goldAlexAtLeast3 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD goldAtLeast2 LONGTEXT"); 
 		int counter=1; 
 		
@@ -174,17 +174,18 @@ public class AddGold3Gold4Gantt {
 				String goldAtLeast3=null; 
 				String goldAtLeast2=null; 
 				String goldAtLeast2Alex=null; 
-				String gold6=null; 
+				String goldAtLeast3Alex=null; 
 				if(subjectNflag==true && subjectTflag==true) {
 				
 					goldAtLeast3=PredictGoldAtLeast3(SubjectT, SubjectN); 
 					goldAtLeast2=PredictGoldAtLeast2(SubjectT, SubjectN); 
 					goldAtLeast2Alex=PredictGoldAtLeast2Alex(SubjectT, SubjectN); 
-					gold6=PredictGold6(SubjectT, SubjectN); 
-					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldAtLeast2 +"',"+"`goldfinalAlex` ='"+ goldAtLeast2Alex +"'WHERE id='"+counter+"'"); 
+					goldAtLeast3Alex=PredictGoldAtLeast3Alex(SubjectT, SubjectN); 
+
+					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldAtLeast2+"',"+"`goldAlexAtLeast3` ='"+ goldAtLeast3Alex +"',"+"`goldfinalAlex` ='"+ goldAtLeast2Alex +"'WHERE id='"+counter+"'"); 
 				}
 				else {
-					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ "E"+"',"+"`goldfinal` ='"+ "E"+"',"+"`goldfinalAlex` ='"+ "E" +"'WHERE id='"+counter+"'"); 
+					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ "E"+"',"+"`goldfinal` ='"+ "E"+"',"+"`goldAlexAtLeast3` ='"+ "E"+"',"+"`goldfinalAlex` ='"+ "E" +"'WHERE id='"+counter+"'"); 
 
 				}
 				
@@ -301,47 +302,26 @@ public class AddGold3Gold4Gantt {
 	}
 	
 	
-	static String PredictGold4(int SubjectT, int SubjectN) {
-		
-		String gold4=null; 
-		if(SubjectT+SubjectN>=3) {
-			if(SubjectT>=2) {
-				gold4="T"; 
+	
+	static String PredictGoldAtLeast3Alex(int SubjectT, int SubjectN) {
+		String goldAtLeast2=null; 
+	
+			if(SubjectT>=3 ) {
+				goldAtLeast2="T"; 
 			}
-			else if(SubjectT==0 && SubjectN>=3) {
-				gold4="N"; 
+			else if(SubjectT==0 && SubjectN>=2) {
+				goldAtLeast2="N"; 
 			}
 			else {
-				gold4="E"; 
+				goldAtLeast2="E"; 
 			}
 			
 			
 			
-		}else {
-			gold4="E"; 
-		}
-		return gold4; 
+		
+		
+		return goldAtLeast2; 
 	}
 	
-static String PredictGold6(int SubjectT, int SubjectN) {
-		
-		String gold6=null; 
-		if(SubjectT+SubjectN>=3) {
-			if(SubjectT>SubjectN) {
-				gold6="T"; 
-			}
-			else if(SubjectN>SubjectT) {
-				gold6="N"; 
-			}
-			else {
-				gold6="E"; 
-			}
-			
-			
-			
-		}else {
-			gold6="E"; 
-		}
-		return gold6; 
-	}
+	
 }
