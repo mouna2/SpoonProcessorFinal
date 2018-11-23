@@ -14,11 +14,18 @@ public class LogInfo {
 	String TraceClassOldValue; 
 	String TraceClassNewValue; 
 	String OwnerClassPrediction; 
+	String Prediction; 
 	public String PrecisionRecall; 
 	List<String> IterationValues= new ArrayList<String>();
 	
 	
 	
+	public String getPrediction() {
+		return Prediction;
+	}
+	public void setPrediction(String prediction) {
+		Prediction = prediction;
+	}
 	public String getTraceClassOldValue() {
 		return TraceClassOldValue;
 	}
