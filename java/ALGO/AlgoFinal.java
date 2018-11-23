@@ -96,7 +96,7 @@ public class AlgoFinal extends JFrame {
 	ResultSet rs = null;
 	// Connect to MySQL
 
-	PredictionEvaluation PredictionPatternOwnerClass = new PredictionEvaluation();
+	PredictionEvaluation NEWPATTERNMethodCallsFinal = new PredictionEvaluation();
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
@@ -577,6 +577,7 @@ public class AlgoFinal extends JFrame {
 			j++;
 			}else {
 				loginfo.setOwnerClassPrediction("null");
+
 				methodtrace.setPrediction("null");
 				LogInfoHashMap.put(reqmethod, loginfo);
 				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "null"); 
@@ -585,10 +586,11 @@ public class AlgoFinal extends JFrame {
 		}
 		}
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
-		// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
-		// NEWPATTERNMethodCallsSetToT);
+		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,NEWPATTERNMethodCallsFinal);
+		 bwfile1.write("OWNER CLASS PRED "+NEWPATTERNMethodCallsFinal.toString());
+		 bwfile1.newLine();
 		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
-				+ PredictionPatternOwnerClass.toString());
+				+ NEWPATTERNMethodCallsFinal.toString());
 
 		int ITERATION = 0;
 
@@ -596,6 +598,11 @@ public class AlgoFinal extends JFrame {
 		
 		
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
+		
+		
+		
+		
+		
 		while (Equals(PredictionsOldHashMap, PredictionsNewHashMap) == false) {
 
 			PredictionsOldHashMap = InitializePredictionsHashMap(PredictionsOldHashMap, MethodTracesHashmapValues);
@@ -662,6 +669,8 @@ public class AlgoFinal extends JFrame {
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
 					iterationValues.add("T,PureT");
+					LogInfo.setPrediction("T");
+
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
@@ -679,6 +688,8 @@ public class AlgoFinal extends JFrame {
 					PatternSetVariables("N", methodtrace, "90%", "P2");
 
 					iterationValues.add("N,PureN");
+					LogInfo.setPrediction("N");
+
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
@@ -699,6 +710,8 @@ public class AlgoFinal extends JFrame {
 					iterationValues.add("T,PureTLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
+					LogInfo.setPrediction("T");
+
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
 					// System.out.println("yes");
@@ -714,6 +727,7 @@ public class AlgoFinal extends JFrame {
 					iterationValues.add("N,PureNLeaf");
 					LogInfo.setIterationValues(iterationValues);
 					LogInfoHashMap.put(reqMethod, LogInfo);
+					LogInfo.setPrediction("N");
 
 					PatternSetVariables("N", methodtrace, "90%", "P4");
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
@@ -782,6 +796,8 @@ public class AlgoFinal extends JFrame {
 					PatternSetVariables("T", methodtrace, "80%", "P3");
 					iterationValues.add("T,MixedT");
 					LogInfo.setIterationValues(iterationValues);
+					LogInfo.setPrediction("T");
+
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 
@@ -799,6 +815,8 @@ public class AlgoFinal extends JFrame {
 					PatternSetVariables("N", methodtrace, "80%", "P3");
 					iterationValues.add("N,MixedN");
 					LogInfo.setIterationValues(iterationValues);
+					LogInfo.setPrediction("N");
+
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 
@@ -816,6 +834,8 @@ public class AlgoFinal extends JFrame {
 				) {
 					iterationValues.add("T,MixedTLeaf");
 					LogInfo.setIterationValues(iterationValues);
+					LogInfo.setPrediction("T");
+
 					PatternSetVariables("T", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
@@ -828,6 +848,8 @@ public class AlgoFinal extends JFrame {
 				) {
 					iterationValues.add("N,MixedNLeaf");
 					LogInfo.setIterationValues(iterationValues);
+					LogInfo.setPrediction("N");
+
 					PatternSetVariables("N", methodtrace, "80%", "P5");
 					LogInfoHashMap.put(reqMethod, LogInfo);
 					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
@@ -859,7 +881,7 @@ public class AlgoFinal extends JFrame {
 			// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
 			// NEWPATTERNMethodCallsSetToT);
 			System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION " + ITERATION
-					+ "   PREDICTION VALUES " + PredictionPatternOwnerClass.toString());
+					+ "   PREDICTION VALUES " + NEWPATTERNMethodCallsFinal.toString());
 			// END PRINT
 			CalculateChildrenInterfacesMethodTraces(RequirementMethodNameClassIDHashMap);
 			
@@ -961,12 +983,10 @@ public class AlgoFinal extends JFrame {
 					}
 				}
 				if (
-						(methodtrace.InterfaceMethodTraceValuesAllEqualT(InterfacesFlag, interfaceTraceValues, methodtrace) 
+						methodtrace.InterfaceMethodTraceValuesAllEqualT(InterfacesFlag, interfaceTraceValues, methodtrace) 
 						||methodtrace.ImplementationMethodTraceValuesAllEqualT(ImplementationsFlag, implementationsTraceValues, methodtrace)
 						||methodtrace.SuperclassMethodTraceValuesAllEqualT(SuperclassesFlag, superclassesTraceValues, methodtrace)
 						||methodtrace.ChildMethodTraceValuesAllEqualT(ChildrenFlag, childrenTraceValues, methodtrace))
-					&& methodtrace.getPrediction().equals("E") 
-					)
 						
 					
 
@@ -975,22 +995,24 @@ public class AlgoFinal extends JFrame {
 					if (IterationValues != null) {
 						IterationValues.add("T,AllTInheritance");
 						LogInfo.setIterationValues(IterationValues);
+						LogInfo.setPrediction("T");
+
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					} else {
 						IterationValues = new ArrayList<String>();
 						IterationValues.add("T,AllTInheritance");
+						LogInfo.setPrediction("T");
+
 						LogInfo.setIterationValues(IterationValues);
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					}
 					PatternSetVariables("T", methodtrace, "90%", "P2");
 
 				}
-				else if (
-						(methodtrace.InterfaceMethodTraceValuesAllEqualN(InterfacesFlag, interfaceTraceValues, methodtrace) 
+				else if (methodtrace.InterfaceMethodTraceValuesAllEqualN(InterfacesFlag, interfaceTraceValues, methodtrace) 
 						||methodtrace.ImplementationMethodTraceValuesAllEqualN(ImplementationsFlag, implementationsTraceValues, methodtrace)
 						||methodtrace.SuperclassMethodTraceValuesAllEqualN(SuperclassesFlag, superclassesTraceValues, methodtrace)
-						||methodtrace.ChildMethodTraceValuesAllEqualN(ChildrenFlag, childrenTraceValues, methodtrace))
-						&& methodtrace.getPrediction().equals("E") 
+						||methodtrace.ChildMethodTraceValuesAllEqualN(ChildrenFlag, childrenTraceValues, methodtrace)
 
 				)
 
@@ -998,11 +1020,15 @@ public class AlgoFinal extends JFrame {
 					if (IterationValues != null) {
 						IterationValues.add("N,AllNInheritance");
 						LogInfo.setIterationValues(IterationValues);
+						LogInfo.setPrediction("N");
+
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					} else {
 						IterationValues = new ArrayList<String>();
 						IterationValues.add("N,AllNInheritance");
 						LogInfo.setIterationValues(IterationValues);
+						LogInfo.setPrediction("N");
+
 						LogInfoHashMap.put(ReqMethod, LogInfo);
 					}
 					PatternSetVariables("N", methodtrace, "90%", "P2");
@@ -1081,12 +1107,14 @@ public class AlgoFinal extends JFrame {
 					// ALL T CALLERS 
 					 if (!methodtrace.getPredictionCallerList().isEmpty() 
 						&& methodtrace.AllMethodTracePredictionCallersEqualT() 
-						&& methodtrace.getPrediction().equals("E") 
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 	
 					) {
 						// methodtrace.setPrediction("N");
 						PatternSetVariables("T", methodtrace, "80%", "P3");
 						iterationValues.add("T,AllTCallers");
+						LogInfo.setPrediction("T");
+
 						LogInfo.setIterationValues(iterationValues);
 						LogInfoHashMap.put(reqMethod, LogInfo);
 						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
@@ -1096,13 +1124,15 @@ public class AlgoFinal extends JFrame {
 					// ALL N CALLERS
 					 else if (!methodtrace.getPredictionCallerList().isEmpty() 
 								&& methodtrace.AllMethodTracePredictionCallersEqualN() 
-								&& methodtrace.getPrediction().equals("E") 
+								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 	
 							) {
 	
 						PatternSetVariables("N", methodtrace, "80%", "P3");
 						iterationValues.add("N,AllNCallers");
 						LogInfo.setIterationValues(iterationValues);
+						LogInfo.setPrediction("N");
+
 						LogInfoHashMap.put(reqMethod, LogInfo);
 						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 	
@@ -1182,13 +1212,15 @@ public class AlgoFinal extends JFrame {
 				// ALL T CALLEES 
 				if (!methodtrace.getPredictionCalleeList().isEmpty() 
 				&& methodtrace.AllMethodTracePredictionCalleesEqualT() 
-				&& methodtrace.getPrediction().equals("E") 
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 				
 				) {
 				// methodtrace.setPrediction("N");
 				PatternSetVariables("T", methodtrace, "80%", "P3");
 				iterationValues.add("T,AllTCallees");
 				LogInfo.setIterationValues(iterationValues);
+				LogInfo.setPrediction("T");
+
 				LogInfoHashMap.put(reqMethod, LogInfo);
 				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
 				
@@ -1197,13 +1229,14 @@ public class AlgoFinal extends JFrame {
 				// ALL N CALLEES
 				else if (!methodtrace.getPredictionCalleeList().isEmpty() 
 				&& methodtrace.AllMethodTracePredictionCalleesEqualN() 
-				&& methodtrace.getPrediction().equals("E") 
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
 				
 				) {
 				
 				PatternSetVariables("N", methodtrace, "80%", "P3");
 				iterationValues.add("N,AllNCallees");
 				LogInfo.setIterationValues(iterationValues);
+				LogInfo.setPrediction("N");
 				LogInfoHashMap.put(reqMethod, LogInfo);
 				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
 				
@@ -1265,11 +1298,11 @@ public class AlgoFinal extends JFrame {
 //			}
 //		}
 
-		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, PredictionPatternOwnerClass, LogInfoHashMap);
+		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
-				+ "   PREDICTION VALUES " + PredictionPatternOwnerClass.toString());
+				+ "   PREDICTION VALUES " + NEWPATTERNMethodCallsFinal.toString());
 
-		bwfile1.write(PredictionPatternOwnerClass.toString());
+		bwfile1.write(NEWPATTERNMethodCallsFinal.toString());
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(

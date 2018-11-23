@@ -94,6 +94,8 @@ public class PredictionEvaluation {
 		predictionEvaluation.setTruePositive(0);
 		predictionEvaluation.setTrueNegative(0);
 		predictionEvaluation.setFalsePositive(0);
+		predictionEvaluation.setE(0); 
+
 		
 	}
 	@Override
