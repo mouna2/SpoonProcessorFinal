@@ -899,7 +899,7 @@ public class AlgoFinal extends JFrame {
 			
 			
 		
-			
+			//the following line should not be moved when putting 3 before 1-2 (3-1-2 combination)
 			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
 			// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
 			// NEWPATTERNMethodCallsSetToT);
@@ -1071,264 +1071,259 @@ public class AlgoFinal extends JFrame {
 
 
 			}
-//
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//
-//			
-//			
-//			
-//			
-//			
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				// ALL CALLERS 
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				
-//				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-//					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-//	
-//					// MIXED PATTERNS
-//					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-//					List<Method2Representation> CallersList = methodtrace.getCallersList();
-//					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-//	
-//					List<String> PredictionCalleeList = new ArrayList<String>();
-//					for (Method2Representation callee : CalleesList) {
-//						String RequirementID = methodtrace.Requirement.ID;
-//						String MethodID = callee.methodid;
-//						String key = MethodID + "-" + RequirementID;
-//						if (methodtraces2HashMap.get(key) != null) {
-//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//							PredictionCalleeList.add(predictionvalue);
-//						}
-//					}
-//	
-//					List<String> PredictionCallerList = new ArrayList<String>();
-//					for (Method2Representation caller : CallersList) {
-//						String RequirementID = methodtrace.Requirement.ID;
-//						String MethodID = caller.methodid;
-//						String key = MethodID + "-" + RequirementID;
-//	
-//						if (methodtraces2HashMap.get(key) != null) {
-//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//							PredictionCallerList.add(predictionvalue);
-//						}
-//					}
-//					// methodtrace.setPrediction("");
-//	
-//					List<String> mylist;
-//					List<String> iterationValues = LogInfo.getIterationValues();
-//					for (String it : iterationValues) {
-//						System.out.print(it + ", ");
-//					}
-//					System.out.println();
-//					
-//					
-//					
-//				
-//					
-//					// ALL T CALLERS 
-//					 if (!methodtrace.getPredictionCallerList().isEmpty() 
-//						&& methodtrace.AllMethodTracePredictionCallersEqualT() 
-//						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
-//	
-//					) {
-//						// methodtrace.setPrediction("N");
-//						PatternSetVariables("T", methodtrace, "80%", "P3");
-//						iterationValues.add("T,AllTCallers");
-//						LogInfo.setPrediction("T");
-//
-//						LogInfo.setIterationValues(iterationValues);
-//						LogInfoHashMap.put(reqMethod, LogInfo);
-//						LogHashMapRemaining.put(reqMethod, LogInfo);
-//
-//						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
-//	
-//						// System.out.println("yes");
-//					}
-//					// ALL N CALLERS
-//					 else if (!methodtrace.getPredictionCallerList().isEmpty() 
-//								&& methodtrace.AllMethodTracePredictionCallersEqualN() 
-//								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
-//	
-//							) {
-//	
-//						PatternSetVariables("N", methodtrace, "80%", "P3");
-//						iterationValues.add("N,AllNCallers");
-//						LogInfo.setIterationValues(iterationValues);
-//						LogInfo.setPrediction("N");
-//
-//						LogInfoHashMap.put(reqMethod, LogInfo);
-//						LogHashMapRemaining.put(reqMethod, LogInfo);
-//
-//						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-//	
-//						// System.out.println("yes");
-//					}
-//					
-//	
-//					
-//					 
-//				
-//					k++;
-//				}
-//			
-//			
-//			
-//			
-//			
-//				
-//				
-//				
-//				
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				// ALL CALLEES 
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				
-//				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-//				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-//				
-//				// MIXED PATTERNS
-//				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-//				List<Method2Representation> CallersList = methodtrace.getCallersList();
-//				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-//				
-//				List<String> PredictionCalleeList = new ArrayList<String>();
-//				for (Method2Representation callee : CalleesList) {
-//				String RequirementID = methodtrace.Requirement.ID;
-//				String MethodID = callee.methodid;
-//				String key = MethodID + "-" + RequirementID;
-//				if (methodtraces2HashMap.get(key) != null) {
-//				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//				PredictionCalleeList.add(predictionvalue);
-//				}
-//				}
-//				
-//				List<String> PredictionCallerList = new ArrayList<String>();
-//				for (Method2Representation caller : CallersList) {
-//				String RequirementID = methodtrace.Requirement.ID;
-//				String MethodID = caller.methodid;
-//				String key = MethodID + "-" + RequirementID;
-//				
-//				if (methodtraces2HashMap.get(key) != null) {
-//				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//				PredictionCallerList.add(predictionvalue);
-//				}
-//				}
-//				// methodtrace.setPrediction("");
-//				
-//				List<String> mylist;
-//				List<String> iterationValues = LogInfo.getIterationValues();
-//				for (String it : iterationValues) {
-//				System.out.print(it + ", ");
-//				}
-//				System.out.println();
-//				
-//				
-//				
-//				
-//				
-//				
-//				
-//				
-//				
-//				
-//				// ALL T CALLEES 
-//				if (!methodtrace.getPredictionCalleeList().isEmpty() 
-//				&& methodtrace.AllMethodTracePredictionCalleesEqualT() 
-//				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
-//				
-//				) {
-//				// methodtrace.setPrediction("N");
-//				PatternSetVariables("T", methodtrace, "80%", "P3");
-//				iterationValues.add("T,AllTCallees");
-//				LogInfo.setIterationValues(iterationValues);
-//				LogInfo.setPrediction("T");
-//
-//				LogInfoHashMap.put(reqMethod, LogInfo);
-//				LogHashMapRemaining.put(reqMethod, LogInfo);
-//
-//				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
-//				
-//				// System.out.println("yes");
-//				}
-//				// ALL N CALLEES
-//				else if (!methodtrace.getPredictionCalleeList().isEmpty() 
-//				&& methodtrace.AllMethodTracePredictionCalleesEqualN() 
-//				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
-//				
-//				) {
-//				
-//				PatternSetVariables("N", methodtrace, "80%", "P3");
-//				iterationValues.add("N,AllNCallees");
-//				LogInfo.setIterationValues(iterationValues);
-//				LogInfo.setPrediction("N");
-//				LogInfoHashMap.put(reqMethod, LogInfo);
-//				LogHashMapRemaining.put(reqMethod, LogInfo);
-//
-//				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-//				
-//				// System.out.println("yes");
-//				}
-//				k++;
-//				}
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			// PRINT
-//
-//			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-//				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
-//				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
-//				List<String> myits = LogInfo.getIterationValues();
-//				if (myits.size() == ITERATION + 1) {
-//					System.out.println(myits.get(ITERATION));
-//
-//				} else {
-//					myits.add(" ");
-//					LogInfo.setIterationValues(myits);
-//				}
-//
-//				for (String it : myits) {
-//					System.out.println("it" + it + " it");
-//				}
-//				LogInfoHashMap.put(ReqMethod, LogInfo);
-//			}
-//			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
-//
-//			// END PRINT
-//			ITERATION++;
-//			System.out.println("HEEEEEEY  " + ITERATION);
-//
-//			PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
+	
+			
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				
+			
+			
+			
+			
+			
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// ALL CALLERS 
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				
+				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+	
+					// MIXED PATTERNS
+					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+					List<Method2Representation> CallersList = methodtrace.getCallersList();
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+	
+					List<String> PredictionCalleeList = new ArrayList<String>();
+					for (Method2Representation callee : CalleesList) {
+						String RequirementID = methodtrace.Requirement.ID;
+						String MethodID = callee.methodid;
+						String key = MethodID + "-" + RequirementID;
+						if (methodtraces2HashMap.get(key) != null) {
+							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+							PredictionCalleeList.add(predictionvalue);
+						}
+					}
+	
+					List<String> PredictionCallerList = new ArrayList<String>();
+					for (Method2Representation caller : CallersList) {
+						String RequirementID = methodtrace.Requirement.ID;
+						String MethodID = caller.methodid;
+						String key = MethodID + "-" + RequirementID;
+	
+						if (methodtraces2HashMap.get(key) != null) {
+							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+							PredictionCallerList.add(predictionvalue);
+						}
+					}
+					// methodtrace.setPrediction("");
+	
+					List<String> mylist;
+					List<String> iterationValues = LogInfo.getIterationValues();
+					for (String it : iterationValues) {
+						System.out.print(it + ", ");
+					}
+					System.out.println();
+					
+					
+					
+				
+					
+					// ALL T CALLERS 
+					 if (!methodtrace.getPredictionCallerList().isEmpty() 
+						&& methodtrace.AllMethodTracePredictionCallersEqualT() 
+						&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+	
+					) {
+						// methodtrace.setPrediction("N");
+						PatternSetVariables("T", methodtrace, "80%", "P3");
+						iterationValues.add("T,AllTCallers");
+						LogInfo.setPrediction("T");
+
+						LogInfo.setIterationValues(iterationValues);
+						LogInfoHashMap.put(reqMethod, LogInfo);
+						LogHashMapRemaining.put(reqMethod, LogInfo);
+
+						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
+	
+						// System.out.println("yes");
+					}
+					// ALL N CALLERS
+					 else if (!methodtrace.getPredictionCallerList().isEmpty() 
+								&& methodtrace.AllMethodTracePredictionCallersEqualN() 
+								&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+	
+							) {
+	
+						PatternSetVariables("N", methodtrace, "80%", "P3");
+						iterationValues.add("N,AllNCallers");
+						LogInfo.setIterationValues(iterationValues);
+						LogInfo.setPrediction("N");
+
+						LogInfoHashMap.put(reqMethod, LogInfo);
+						LogHashMapRemaining.put(reqMethod, LogInfo);
+
+						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
+	
+						// System.out.println("yes");
+					}
+					
+	
+					
+					 
+				
+					k++;
+				}
+				
+				
+				
+				
+				
+				
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// ALL CALLEES 
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				
+				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+				
+				// MIXED PATTERNS
+				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+				List<Method2Representation> CallersList = methodtrace.getCallersList();
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+				
+				List<String> PredictionCalleeList = new ArrayList<String>();
+				for (Method2Representation callee : CalleesList) {
+				String RequirementID = methodtrace.Requirement.ID;
+				String MethodID = callee.methodid;
+				String key = MethodID + "-" + RequirementID;
+				if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+				PredictionCalleeList.add(predictionvalue);
+				}
+				}
+				
+				List<String> PredictionCallerList = new ArrayList<String>();
+				for (Method2Representation caller : CallersList) {
+				String RequirementID = methodtrace.Requirement.ID;
+				String MethodID = caller.methodid;
+				String key = MethodID + "-" + RequirementID;
+				
+				if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+				PredictionCallerList.add(predictionvalue);
+				}
+				}
+				// methodtrace.setPrediction("");
+				
+				List<String> mylist;
+				List<String> iterationValues = LogInfo.getIterationValues();
+				for (String it : iterationValues) {
+				System.out.print(it + ", ");
+				}
+				System.out.println();
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				// ALL T CALLEES 
+				if (!methodtrace.getPredictionCalleeList().isEmpty() 
+				&& methodtrace.AllMethodTracePredictionCalleesEqualT() 
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+				
+				) {
+				// methodtrace.setPrediction("N");
+				PatternSetVariables("T", methodtrace, "80%", "P3");
+				iterationValues.add("T,AllTCallees");
+				LogInfo.setIterationValues(iterationValues);
+				LogInfo.setPrediction("T");
+				
+				LogInfoHashMap.put(reqMethod, LogInfo);
+				LogHashMapRemaining.put(reqMethod, LogInfo);
+				
+				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
+				
+				// System.out.println("yes");
+				}
+				// ALL N CALLEES
+				else if (!methodtrace.getPredictionCalleeList().isEmpty() 
+				&& methodtrace.AllMethodTracePredictionCalleesEqualN() 
+				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")
+				
+				) {
+				
+				PatternSetVariables("N", methodtrace, "80%", "P3");
+				iterationValues.add("N,AllNCallees");
+				LogInfo.setIterationValues(iterationValues);
+				LogInfo.setPrediction("N");
+				LogInfoHashMap.put(reqMethod, LogInfo);
+				LogHashMapRemaining.put(reqMethod, LogInfo);
+				
+				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
+				
+				// System.out.println("yes");
+				}
+				k++;
+				}
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// END PATTERNS 
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// PRINT
+
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
+				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
+				List<String> myits = LogInfo.getIterationValues();
+				if (myits.size() == ITERATION + 1) {
+					System.out.println(myits.get(ITERATION));
+
+				} else {
+					myits.add(" ");
+					LogInfo.setIterationValues(myits);
+				}
+
+				for (String it : myits) {
+					System.out.println("it" + it + " it");
+				}
+				LogInfoHashMap.put(ReqMethod, LogInfo);
+			}
+			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+
+			// END PRINT
+			ITERATION++;
+			System.out.println("HEEEEEEY  " + ITERATION);
+
+			PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
 		}
 		
 		
@@ -1361,6 +1356,16 @@ public class AlgoFinal extends JFrame {
 	}
 	
 	
+	//set everything else to T in loghashmapRemaining
+//	for(String mykey : LogHashMapRemaining.keySet()) {
+//		if( LogHashMapRemaining.get(mykey).getPrediction().equals("E")) {
+//			LogInfo loginfo = LogHashMapRemaining.get(mykey); 
+//			loginfo.setPrediction("T");
+//			LogHashMapRemaining.put(mykey, loginfo); 
+//		}
+//	}
+	
+	
 	Set<Entry<String, LogInfo>> remainingvals = LogHashMapRemaining.entrySet(); 
 	Set<Entry<String, LogInfo>> logvals = LogInfoHashMap.entrySet(); 
 	
@@ -1372,6 +1377,8 @@ public class AlgoFinal extends JFrame {
 //			}
 //		
 //		}
+	
+	
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinalRemaining, LogHashMapRemaining);
 		
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
