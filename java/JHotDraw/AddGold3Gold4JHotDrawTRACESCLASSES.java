@@ -131,7 +131,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 	
-		
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlexAtLeast3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlex");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");

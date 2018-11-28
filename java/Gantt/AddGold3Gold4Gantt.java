@@ -120,11 +120,12 @@ public class AddGold3Gold4Gantt {
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast3");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast2");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast3");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
+//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN  goldAlexAtLeast3 "); 
 
 		
 		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
@@ -257,8 +258,8 @@ public class AddGold3Gold4Gantt {
 	
 	static String PredictGoldAtLeast2(int SubjectT, int SubjectN) {
 		String goldAtLeast2=null; 
-		if(SubjectT+SubjectN>=2) {
-			if(SubjectT>=2 && SubjectN==0) {
+		
+			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
 				goldAtLeast2="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {
@@ -270,10 +271,7 @@ public class AddGold3Gold4Gantt {
 			
 			
 			
-		}
-		else {
-			goldAtLeast2="E"; 
-		}
+		
 		return goldAtLeast2; 
 	}
 	

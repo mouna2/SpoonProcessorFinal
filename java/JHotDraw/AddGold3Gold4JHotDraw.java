@@ -125,6 +125,7 @@ public class AddGold3Gold4JHotDraw {
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN  goldAlexAtLeast3 "); 
 
 		
 		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
@@ -286,25 +287,22 @@ public class AddGold3Gold4JHotDraw {
 	
 	static String PredictGoldAtLeast2(int SubjectT, int SubjectN) {
 		String goldAtLeast2=null; 
-		if(SubjectT+SubjectN>=2) {
-			if(SubjectT>=2 && SubjectN==0) {
-				goldAtLeast2="T"; 
-			}
-			else if(SubjectT==0 && SubjectN>=2) {
-				goldAtLeast2="N"; 
-			}
-			else {
-				goldAtLeast2="E"; 
-			}
-			
-			
-			
-		}else {
+		
+		if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
+			goldAtLeast2="T"; 
+		}
+		else if(SubjectT==0 && SubjectN>=2) {
+			goldAtLeast2="N"; 
+		}
+		else {
 			goldAtLeast2="E"; 
 		}
 		
-		return goldAtLeast2; 
-	}
+		
+		
+	
+	return goldAtLeast2; 
+}
 	
 	
 	

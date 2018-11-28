@@ -96,7 +96,7 @@ public class StupidAlgorithm extends JFrame {
 	ResultSet rs = null;
 	// Connect to MySQL
 
-	PredictionEvaluation NEWPATTERNMethodCallsFinal = new PredictionEvaluation();
+	PredictionEvaluation NaivePattern = new PredictionEvaluation();
 	PredictionEvaluation NEWPATTERNMethodCallsFinalRemaining = new PredictionEvaluation();
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
@@ -507,10 +507,14 @@ public class StupidAlgorithm extends JFrame {
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
 		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
 		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap); 
+		
+		
+		
+		
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
 			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
-			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
+			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
 			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethodRepresentation().methodid;
 			ITERATION1 = 0;
 			LogInfo loginfo = new LogInfo();
@@ -527,77 +531,46 @@ public class StupidAlgorithm extends JFrame {
 			loginfo.setTraceValue(methodtrace.getGoldfinal());
 			System.out.println("Trace Class New Value "+loginfo.getTraceClassNewValue());
 			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-			System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstraceHashMap.getTraceFinal());
-			if (myclasstraceHashMap.getTraceFinal() != null) {
+			System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstrace.getTraceFinal());
+			
+			System.out.println(methodtrace.getClassRepresentation().classid+"---"+ methodtrace.getRequirement().ID);
+			System.out.println("goldfinal "+myclasstrace.getGoldfinal()+"myclasstrace.getSubjectGold() "+myclasstrace.getSubjectGold()); 
+			if (myclasstrace.getTraceFinal() != null) {
 				
 			
 				System.out.println("goldfinal"+methodtrace.getGoldfinal()+"--gold"+methodtrace.getGold());
-			// PATTERN 1
-			if(
-//					(ProgramName.equals("gantt") && myclasstraceHashMap.getSubjectGold().trim().equals(myclasstraceHashMap.getTraceFinal().trim()))
-//					|| (ProgramName.equals("jhotdraw") && myclasstraceHashMap.getSubjectGold().trim().equals(myclasstraceHashMap.getTraceFinal().trim()) )
-					
-					// ONLY PUSH DOWN AGREEMENTS BETWEEN DEVELOPERS AND SUBJECTS 
-					(ProgramName.equals("gantt") && methodtrace.getGoldfinal().trim().equals(methodtrace.getGold().trim()))
-					|| (ProgramName.equals("jhotdraw") && methodtrace.getGoldfinal().trim().equals(methodtrace.getGold().trim()) )
-					|| ProgramName.equals("chess") || ProgramName.equals("itrust")){
-				
+				System.out.println("ProgramName "+ ProgramName);
+
 			
-				
-				String tracegold2 = myclasstraceHashMap.getTraceFinal();
+				String tracegold2 = myclasstrace.getTraceFinal();
 				tracegold2 = tracegold2.trim();
 
-				if (tracegold2.equals("T") ) {
-						loginfo.setOwnerClassPrediction("T");
-						methodtrace.setPrediction("T");
-						loginfo.setPrediction("T");
-						LogInfoHashMap.put(reqmethod, loginfo);
-						RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "T"); 
-						PatternSetVariables("T", methodtrace, "90%", "P2");
-
+				if (tracegold2.equals("T") ) {	
 					
-				
+						SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "T"); 
+					} else if (tracegold2.equals("N")) {
 
-				} else if (tracegold2.equals("N")) {
-
-					loginfo.setOwnerClassPrediction("N");
-					methodtrace.setPrediction("N");
-					loginfo.setPrediction("N");
-					LogInfoHashMap.put(reqmethod, loginfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "N"); 
-					PatternSetVariables("N", methodtrace, "90%", "P2");
-
-				}
+					SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "N"); 
+			}
 
 				else {
-					loginfo.setOwnerClassPrediction("E");
-					methodtrace.setPrediction("E");
-					loginfo.setPrediction("E");
-					LogInfoHashMap.put(reqmethod, loginfo);
-					RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
-					PatternSetVariables("E", methodtrace, "90%", "P2");
+					SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "E"); 
+
 
 				}
 				ITERATION1++;
 			
 
 			j++;
-			}else {
-				loginfo.setOwnerClassPrediction("E");
-				loginfo.setPrediction("E");
-				methodtrace.setPrediction("E");
-				LogInfoHashMap.put(reqmethod, loginfo);
-				RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, "E"); 
-				PatternSetVariables("E", methodtrace, "90%", "P2");
-			}
+			
 		}
 		}
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
-		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,NEWPATTERNMethodCallsFinal);
-//		 bwfile1.write("OWNER CLASS PRED "+NEWPATTERNMethodCallsFinal.toString());
-//		 bwfile1.newLine();
+		SetAgreementFlag(MyfinalHashMap, NaivePattern, ProgramName);
+		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,NaivePattern, ProgramName);
+
 		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
-				+ NEWPATTERNMethodCallsFinal.toString());
+				+ NaivePattern.toString());
 
 		int ITERATION = 0;
 
@@ -605,42 +578,20 @@ public class StupidAlgorithm extends JFrame {
 		
 		
 		
-		//SET EVERYTHING ELSE TO T 
-//		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-//
-//			if(methodtrace.getPrediction().equals("") || methodtrace.getPrediction()==null|| methodtrace.getPrediction().equals("E")) {
-//				methodtrace.setPrediction("T");
-//			}
-//		}
-		
-//		//set everything else to T 
-//	for(String mykey : LogInfoHashMap.keySet()) {
-//		if( LogInfoHashMap.get(mykey).getPrediction().equals("E")) {
-//			LogInfo loginfo = LogInfoHashMap.get(mykey); 
-//			loginfo.setPrediction("T");
-//			LogInfoHashMap.put(mykey, loginfo); 
-//		}
-//	}
+
 	
 	
 	Set<Entry<String, LogInfo>> remainingvals = LogHashMapRemaining.entrySet(); 
 	Set<Entry<String, LogInfo>> logvals = LogInfoHashMap.entrySet(); 
 	
-//		for( Entry<String, LogInfo> ent: logvals) {
-//			String keyent = ent.getKey(); 
-//			if( LogInfoHashMap.get(keyent).getPrediction()!=null)
-//			if(!LogHashMapRemaining.get(keyent).getPrediction().equals(LogInfoHashMap.get(keyent).getPrediction())) {
-//				System.out.println("here");
-//			}
-//		
-//		}
-		
-		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
+
+//	MyfinalHashMap=	SetFlag(MyfinalHashMap, NEWPATTERNMethodCallsFinal, ProgramName);
+//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, NEWPATTERNMethodCallsFinal, LogInfoHashMap);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
 				+ "   PREDICTION VALUES " + NEWPATTERNMethodCallsFinalRemaining.toString());
 
 	
-		bwfile1.write("TOTAL PREDICTION "+NEWPATTERNMethodCallsFinal.toString());
+		bwfile1.write("TOTAL PREDICTION "+NaivePattern.toString());
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(
@@ -731,6 +682,16 @@ public class StupidAlgorithm extends JFrame {
 
 		}
 		return PredictionsNewHashMap;
+	}
+
+	public void SetPredictionFinal(LogInfo loginfo, MethodTraceSubjectTSubjectN methodtrace, HashMap<String, LogInfo> LogInfoHashMap, String reqmethod, String reqMethodClasskey, HashMap<String, String> requirementMethodNameClassIDHashMap2, String value) {
+		// TODO Auto-generated method stub
+		loginfo.setOwnerClassPrediction(value);
+		methodtrace.setPrediction(value);
+		loginfo.setPrediction(value);
+		LogInfoHashMap.put(reqmethod, loginfo);
+		RequirementMethodNameClassIDHashMap.put(reqMethodClasskey, value); 
+		PatternSetVariables(value, methodtrace, "90%", "P2");
 	}
 
 	private HashMap<String, LogInfo> InitializeHashMapWithPrecisionRecall(
@@ -1253,31 +1214,18 @@ public class StupidAlgorithm extends JFrame {
 		// TODO Auto-generated method stub
 		nEWPATTERNMethodCallsSetToT2.ResetCounters(nEWPATTERNMethodCallsSetToT2);
 
-		for (MethodTraceSubjectTSubjectN mykey : methodtraces22) {
-			String methodid = mykey.getMethodRepresentation().methodid;
-			String requirementID = mykey.getRequirement().ID;
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
+			String methodid = methodtrace.getMethodRepresentation().methodid;
+			String requirementID = methodtrace.getRequirement().ID;
 			String ReqMethod = requirementID + "-" + methodid;
 			LogInfo logInfo = logInfoHashMap.get(ReqMethod);
-			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
-			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
-			String likelihood = mykey.getLikelihood();
-			String why = mykey.getWhy();
+		
+			String likelihood = methodtrace.getLikelihood();
+			String why = methodtrace.getWhy();
 
-			// String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
-			// +"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
-			// +"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND
-			// methodid='"+myvalue.MethodRepresentation.methodid+"'";
-			//
-			// st.executeUpdate(query);
-
-			// System.out.println(myvalue.getGoldfinal()+" "+myvalue.getPrediction());
-			// st.executeUpdate("UPDATE `traces` SET +"'WHERE
-			// requirementid='"+entry.RequirementID+"' AND method='"+name+"'");
-
-			// System.out.println("PREDICTION "+mykey.getPrediction()+" ------------ gold2
-			// "+mykey.goldfinal);
-			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null) {
-				String Result = nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGoldfinal().trim(),
+		
+			if (methodtrace.getGoldfinal() != null && logInfo.getPrediction() != null && methodtrace.isMyflag()) {
+				String Result = nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(methodtrace.getGoldfinal().trim(),
 						logInfo.getPrediction().trim());
 				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
@@ -1291,42 +1239,73 @@ public class StupidAlgorithm extends JFrame {
 
 	}
 
+	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	public LinkedHashMap<String, MethodTraceSubjectTSubjectN> SetAgreementFlag(LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
+			PredictionEvaluation nEWPATTERNMethodFields2, String ProgramName) {
+		for (String mykey : MyfinalHashMap.keySet()) {
+			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
+			String methodid = myvalue.getMethodRepresentation().methodid;
+			String requirementID = myvalue.getRequirement().ID;
+			
+		
+			String reqclass = myvalue.Requirement.getID() + "-" + myvalue.getClassRepresentation().classid;
+			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
+			
+
+			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
+			if (myclasstrace.getGoldfinal().equals(myclasstrace.getSubjectGold()) && (ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw"))) {
+				myvalue.setMyflag(true);
+				MyfinalHashMap.put(mykey, myvalue); 
+				
+			}
+
+		}
+		return MyfinalHashMap;
+	}
+
+	
+	
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 
 	public void WriteInDatabaseAndComputePrecisionAndRecall(
 			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
-			PredictionEvaluation nEWPATTERNMethodFields2) throws SQLException {
+			PredictionEvaluation nEWPATTERNMethodFields2, String ProgramName) throws SQLException {
 		// TODO Auto-generated method stub
 		nEWPATTERNMethodFields2.ResetCounters(nEWPATTERNMethodFields2);
 
 		for (String mykey : MyfinalHashMap.keySet()) {
-			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
-			String methodid = myvalue.getMethodRepresentation().methodid;
-			String requirementID = myvalue.getRequirement().ID;
-			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
-			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
-			String likelihood = myvalue.getLikelihood();
-			String why = myvalue.getWhy();
+			MethodTraceSubjectTSubjectN mymethod = MyfinalHashMap.get(mykey);
+			String methodid = mymethod.getMethodRepresentation().methodid;
+			String requirementID = mymethod.getRequirement().ID;
+		
+			String likelihood = mymethod.getLikelihood();
+			String why = mymethod.getWhy();
+			String reqclass = mymethod.Requirement.getID() + "-" + mymethod.getClassRepresentation().classid;
+			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
+			
 
-			// String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
-			// +"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
-			// +"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND
-			// methodid='"+myvalue.MethodRepresentation.methodid+"'";
-			//
-			// st.executeUpdate(query);
-
-			// System.out.println(myvalue.getGoldfinal()+" "+myvalue.getPrediction());
-			// st.executeUpdate("UPDATE `traces` SET +"'WHERE
-			// requirementid='"+entry.RequirementID+"' AND method='"+name+"'");
-
-			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
-			if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null) {
-				String Result = nEWPATTERNMethodFields2.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
-						myvalue.getPrediction().trim());
-				nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
+			System.out.println("PREDICTION  " + mymethod.getPrediction() + " ------------  gold2  " + mymethod.goldfinal);
+			
+			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")) {
+				if (mymethod.getGoldfinal() != null && mymethod.getPrediction() != null && mymethod.isMyflag()) {
+					String Result = nEWPATTERNMethodFields2.ComparePredictionToGold(mymethod.getGoldfinal().trim(),
+							mymethod.getPrediction().trim());
+					nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
+				}
 			}
+			else {
+				if (mymethod.getGoldfinal() != null && mymethod.getPrediction() != null ) {
+					String Result = nEWPATTERNMethodFields2.ComparePredictionToGold(mymethod.getGoldfinal().trim(),
+							mymethod.getPrediction().trim());
+					nEWPATTERNMethodFields2.UpdateCounters(Result, nEWPATTERNMethodFields2);
+				}
+			}
+			
 
 		}
 		nEWPATTERNMethodFields2.toString();
@@ -1403,7 +1382,7 @@ public class StupidAlgorithm extends JFrame {
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new StupidAlgorithm(ProgramName2);
+		 frame = new StupidAlgorithm(ProgramName2);
 
 		String ProgramName3 = "itrust";
 			 frame = new StupidAlgorithm(ProgramName3);

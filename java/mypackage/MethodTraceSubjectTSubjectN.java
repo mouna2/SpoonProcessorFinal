@@ -30,12 +30,21 @@ public class MethodTraceSubjectTSubjectN {
 	String prediction2; 
 	String likelihood; 
 	String why; 
+	boolean myflag; 
 	
 	List<MethodField2> MethodFieldT; 
 	List<MethodField2> MethodFieldN; 
 	List<MethodField2> MethodFieldE; 
 	
 	
+	public boolean isMyflag() {
+		return myflag;
+	}
+
+	public void setMyflag(boolean myflag) {
+		this.myflag = myflag;
+	}
+
 	List<Parameter2> ParameterListT; 
 	List<Parameter2> ParameterListN; 
 	List<Parameter2> ParameterListE; 
@@ -1812,7 +1821,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1824,7 +1833,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1834,7 +1843,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1844,7 +1853,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(ChildFlag == true && childTraceValues.get(0).equals("T")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1859,7 +1868,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1871,7 +1880,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1881,7 +1890,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 
@@ -1891,7 +1900,7 @@ if(myinterfacelist!=null) {
 		// TODO Auto-generated method stub
 		
 		if(ChildFlag == true && childTraceValues.get(0).equals("N")
-				&& !methodtrace.getPrediction().equals("T") && !methodtrace.getPrediction().equals("N")) {
+				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
 		return false; 

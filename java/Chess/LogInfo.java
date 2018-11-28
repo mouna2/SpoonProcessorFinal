@@ -16,10 +16,30 @@ public class LogInfo {
 	String OwnerClassPrediction; 
 	String Prediction; 
 	public String PrecisionRecall; 
+	String GoldFinal; 
+	String SubjectGold; 
 	List<String> IterationValues= new ArrayList<String>();
+	boolean myFlag; 
 	
 	
-	
+	public boolean isMyFlag() {
+		return myFlag;
+	}
+	public void setMyFlag(boolean myFlag) {
+		this.myFlag = myFlag;
+	}
+	public String getGoldFinal() {
+		return GoldFinal;
+	}
+	public void setGoldFinal(String goldFinal) {
+		GoldFinal = goldFinal;
+	}
+	public String getSubjectGold() {
+		return SubjectGold;
+	}
+	public void setSubjectGold(String subjectGold) {
+		SubjectGold = subjectGold;
+	}
 	public String getPrediction() {
 		return Prediction;
 	}

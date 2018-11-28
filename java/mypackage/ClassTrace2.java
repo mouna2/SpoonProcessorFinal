@@ -167,7 +167,7 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
+				 myclasstrace.setTraceFinal(myresults.getString("gold"));
 				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 
@@ -211,10 +211,10 @@ public class ClassTrace2 {
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
 				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
+				 myclasstrace.setGoldFinal(myresults.getString("goldfinal"));
 
 //				 myclasstrace.setTrace3(myresults.getString("gold3"));
 				
-//				 myclasstrace.setGoldFinal(myresults.getString("goldfinal"));
 //				 myclasstrace.setTrace6(myresults.getString("gold6"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 
