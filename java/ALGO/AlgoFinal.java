@@ -501,7 +501,9 @@ public class AlgoFinal extends JFrame {
 			
 		}
 		
-		
+		PredictionValues TotalPredictionValues = new PredictionValues(); 
+		PredictionValues RemainingpredictionValues = new PredictionValues(); 
+
 		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues);
 		j = 0;
 
@@ -552,7 +554,8 @@ public class AlgoFinal extends JFrame {
 				if (tracegold2.equals("T") ) {
 						
 						SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "E"); 
-
+						
+						
 					
 				
 
@@ -579,6 +582,16 @@ public class AlgoFinal extends JFrame {
 		MyfinalHashMap=SetFlagOwnerClassPattern(MyfinalHashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,TotalPattern, ProgramName, LogInfoHashMap);
 		 bwfile1.write("OWNER CLASS PRED 				"+ProgramName+" "+TotalPattern.toString());
+		 bwfile1.newLine();
+		
+		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
+		 for ( String key : LogInfoHashMap.keySet()) {
+				LogInfo myval = LogInfoHashMap.get(key); 	
+				String prediction= myval.getPrediction(); 
+				
+				OwnerClassPredictionValues.ComputePredictionValues(OwnerClassPredictionValues, prediction);
+			}
+		 bwfile1.write("owner class prediction values		"+ProgramName+" "+OwnerClassPredictionValues.toString());
 		 bwfile1.newLine();
 		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
 				+ TotalPattern.toString());
@@ -1158,7 +1171,12 @@ public class AlgoFinal extends JFrame {
 		
 		
 		
-		
+		for ( String key : LogInfoHashMap.keySet()) {
+			LogInfo myval = LogInfoHashMap.get(key); 	
+			String prediction= myval.getPrediction(); 
+			
+			TotalPredictionValues.ComputePredictionValues(TotalPredictionValues, prediction);
+		}
 		
 		
 		
@@ -1212,15 +1230,19 @@ public class AlgoFinal extends JFrame {
 
 		LogInfoHashMap=SetFlagTotalPattern(LogInfoHashMap, TotalPattern, ProgramName); 
 
-		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals);
+		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals, RemainingpredictionValues);
 //		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
 		System.out.println("here 2");
 		bwfile1.write("NON OWNER CLASS PREDICTION 		"+ProgramName+" "+RemainingPattern.toString());
+		bwfile1.newLine();
+		bwfile1.write("Remaining Prediction Values 		"+ProgramName+" "+RemainingpredictionValues.toString());
 		bwfile1.newLine();
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, TotalPattern, LogInfoHashMap, ProgramName);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
 				+ "   PREDICTION VALUES " + RemainingPattern.toString());
 		bwfile1.write("TOTAL PREDICTION 				"+ProgramName+" "+TotalPattern.toString());
+		bwfile1.newLine();
+		bwfile1.write("Prediction Values 				"+ProgramName+" "+TotalPredictionValues.toString());
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(
@@ -1393,11 +1415,12 @@ public class AlgoFinal extends JFrame {
 	
 	}
 	/************************************************************************************************************************************************/
-	/************************************************************************************************************************************************/
+	/**
+	 * @param remainingpredictionValues **********************************************************************************************************************************************/
 	private void WriteInDatabaseAndComputePrecisionAndRecallRemaining(
 			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
 			LinkedHashMap<String, LogInfo> logHashMapRemaining, PredictionEvaluation Pattern,
-			String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, LinkedHashMap<String, String>loghashmapNewVals) {
+			String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, LinkedHashMap<String, String>loghashmapNewVals, PredictionValues remainingpredictionValues) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Pattern.ResetCounters(Pattern);
@@ -1422,6 +1445,9 @@ public class AlgoFinal extends JFrame {
 			// st.executeUpdate("UPDATE `traces` SET +"'WHERE
 			// requirementid='"+entry.RequirementID+"' AND method='"+name+"'");
 
+			
+			
+			
 			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
@@ -1429,6 +1455,10 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							logHashMapRemaining.get(mykey).getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
+					
+					
+					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, myvalue.getPrediction().trim()); 
+				
 				}
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust")) {
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null 
@@ -1436,6 +1466,11 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
+					
+					
+					
+					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, myvalue.getPrediction().trim()); 
+
 				}
 			}
 			
