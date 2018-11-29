@@ -812,10 +812,10 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
 				List<String> IterationValues = LogInfo.getIterationValues();
-				List<String> interfaces = methodtrace.getInterfaceListMethodTraces();
-				List<String> implementations = methodtrace.getImplementationListMethodTraces(); 
-				List<String> superclasses = methodtrace.getSuperClassesListMethodTraces(); 
-				List<String> children = methodtrace.getChildrenListMethodTraces(); 
+				List<String> interfaces = methodtrace.getInterfaceList();
+				List<String> implementations = methodtrace.getImplementationList(); 
+				List<String> superclasses = methodtrace.getSuperClassesList(); 
+				List<String> children = methodtrace.getChildrenList(); 
 
 				List<String> interfaceTraceValues = new ArrayList<String>();
 				for (String inter : interfaces) {

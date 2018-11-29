@@ -745,9 +745,9 @@ public class StupidAlgorithm extends JFrame {
 					MethodPredictionCallerList.add(predictionvalue);
 				}
 			}
-			
-			methodtrace.setPredictionCalleeList(MethodPredictionCalleeList);
-			methodtrace.setPredictionCallerList(MethodPredictionCallerList);
+			MethodList<String> ml = new MethodList<String>(); 
+			methodtrace.setPredictionCalleeList(ml.ConvertToMethodList(MethodPredictionCalleeList));
+			methodtrace.setPredictionCallerList(ml.ConvertToMethodList(MethodPredictionCallerList));
 			
 		}
 	}

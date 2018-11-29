@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import ALGO.MethodList;
+
 public class MethodTraceSubjectTSubjectN {
 	
 	public Method2Representation MethodRepresentation; 
@@ -58,23 +60,61 @@ public class MethodTraceSubjectTSubjectN {
 	List<String> ChildrenList; 
 	List<String> ImplementationList; 
 	
-	List<String> PredictionCalleeList; 
-	List<String> PredictionCallerList; 
+	MethodList<String> PredictionCalleeList; 
+	MethodList<String> PredictionCallerList; 
 
-	public List<String> getPredictionCalleeList() {
+	
+	
+	MethodList<String> Interfaces; 
+	MethodList<String> Implementations; 
+	MethodList<String> Superclasses; 
+	MethodList<String> Children; 
+	public MethodList<String> getPredictionCalleeList() {
 		return PredictionCalleeList;
 	}
 
-	public void setPredictionCalleeList(List<String> predictionCalleeList) {
+	public void setPredictionCalleeList(MethodList<String> predictionCalleeList) {
 		PredictionCalleeList = predictionCalleeList;
 	}
 
-	public List<String> getPredictionCallerList() {
+	public MethodList<String> getPredictionCallerList() {
 		return PredictionCallerList;
 	}
 
-	public void setPredictionCallerList(List<String> predictionCallerList) {
+	public void setPredictionCallerList(MethodList<String> predictionCallerList) {
 		PredictionCallerList = predictionCallerList;
+	}
+
+	public MethodList<String> getInterfaces() {
+		return Interfaces;
+	}
+
+	public void setInterfaces(MethodList<String> interfaces) {
+		Interfaces = interfaces;
+	}
+
+	public MethodList<String> getImplementations() {
+		return Implementations;
+	}
+
+	public void setImplementations(MethodList<String> implementations) {
+		Implementations = implementations;
+	}
+
+	public MethodList<String> getSuperclasses() {
+		return Superclasses;
+	}
+
+	public void setSuperclasses(MethodList<String> superclasses) {
+		Superclasses = superclasses;
+	}
+
+	public MethodList<String> getChildren() {
+		return Children;
+	}
+
+	public void setChildren(MethodList<String> children) {
+		Children = children;
 	}
 
 	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
@@ -94,45 +134,51 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
-	List<String> SuperClassesListMethodTraces; 
-	List<String> InterfaceListMethodTraces; 
-	List<String> ChildrenListMethodTraces; 
-	List<String> ImplementationListMethodTraces; 
+	MethodList<String> SuperClassesListMethodTraces; 
+	MethodList<String> InterfaceListMethodTraces; 
+	MethodList<String> ChildrenListMethodTraces; 
+	MethodList<String> ImplementationListMethodTraces; 
 	
 	
 	
 	
 	
-	public List<String> getSuperClassesListMethodTraces() {
+	public MethodList<String> getSuperClassesListMethodTraces() {
 		return SuperClassesListMethodTraces;
 	}
 
 	public void setSuperClassesListMethodTraces(List<String> superClassesListMethodTraces) {
-		SuperClassesListMethodTraces = superClassesListMethodTraces;
+		SuperClassesListMethodTraces = new MethodList<String>();
+		SuperClassesListMethodTraces.addAll(superClassesListMethodTraces);
 	}
 
-	public List<String> getInterfaceListMethodTraces() {
+	public MethodList<String> getInterfaceListMethodTraces() {
 		return InterfaceListMethodTraces;
 	}
 
 	public void setInterfaceListMethodTraces(List<String> interfaceListMethodTraces) {
-		InterfaceListMethodTraces = interfaceListMethodTraces;
+		InterfaceListMethodTraces = new MethodList<String>();
+		InterfaceListMethodTraces.addAll(interfaceListMethodTraces);
 	}
 
-	public List<String> getChildrenListMethodTraces() {
+	public MethodList<String> getChildrenListMethodTraces() {
 		return ChildrenListMethodTraces;
 	}
 
 	public void setChildrenListMethodTraces(List<String> childrenListMethodTraces) {
-		ChildrenListMethodTraces = childrenListMethodTraces;
+		
+		ChildrenListMethodTraces = new MethodList<String>();
+		ChildrenListMethodTraces.addAll(childrenListMethodTraces);
 	}
 
-	public List<String> getImplementationListMethodTraces() {
+	public MethodList<String> getImplementationListMethodTraces() {
 		return ImplementationListMethodTraces;
 	}
 
 	public void setImplementationListMethodTraces(List<String> implementationListMethodTraces) {
-		ImplementationListMethodTraces = implementationListMethodTraces;
+		
+		ImplementationListMethodTraces = new MethodList<String>();
+		ImplementationListMethodTraces.addAll(implementationListMethodTraces);
 	}
 
 	public List<String> getPredictionParamsOwnerClass() {
