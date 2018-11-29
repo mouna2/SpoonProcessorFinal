@@ -549,7 +549,13 @@ public class AlgoFinal extends JFrame {
 
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
 		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
-		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap); 
+		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap);
+		
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// OWNER CLASS PATTERN
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
 			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
@@ -991,91 +997,172 @@ public class AlgoFinal extends JFrame {
 			
 			
 			
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				// ALL CALLERS PATTERN 4.1
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				
+//				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+//					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+//					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+//	
+//					// MIXED PATTERNS
+//					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+//					List<Method2Representation> CallersList = methodtrace.getCallersList();
+//					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+//	
+//					List<String> PredictionCalleeList = new ArrayList<String>();
+//					for (Method2Representation callee : CalleesList) {
+//						String RequirementID = methodtrace.Requirement.ID;
+//						String MethodID = callee.methodid;
+//						String key = MethodID + "-" + RequirementID;
+//						if (methodtraces2HashMap.get(key) != null) {
+//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//							PredictionCalleeList.add(predictionvalue);
+//						}
+//					}
+//	
+//					List<String> PredictionCallerList = new ArrayList<String>();
+//					for (Method2Representation caller : CallersList) {
+//						String RequirementID = methodtrace.Requirement.ID;
+//						String MethodID = caller.methodid;
+//						String key = MethodID + "-" + RequirementID;
+//	
+//						if (methodtraces2HashMap.get(key) != null) {
+//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//							PredictionCallerList.add(predictionvalue);
+//						}
+//					}
+//					// methodtrace.setPrediction("");
+//	
+//					List<String> mylist;
+//					List<String> iterationValues = LogInfo.getIterationValues();
+//					for (String it : iterationValues) {
+//						System.out.print(it + ", ");
+//					}
+//					System.out.println();
+//					
+//					
+//					
+//				
+//					
+//					// ALL T CALLERS 
+//					 if (!methodtrace.getCallerList().isEmpty() 
+//						&& methodtrace.getCallerList().AllCallersAreT() 
+//						&& methodtrace.getPrediction().trim().equals("E")
+//	
+//					) {
+//						// methodtrace.setPrediction("N");
+//						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+//									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers"); 
+//
+//						// System.out.println("yes");
+//					}
+//					// ALL N CALLERS
+//					 else if (!methodtrace.getCallerList().isEmpty() 
+//								&& methodtrace.getCallerList().AllCallersAreN() 
+//								&& methodtrace.getPrediction().trim().equals("E")
+//	
+//							) {
+//	
+//						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+//									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers"); 
+//
+//	
+//						// System.out.println("yes");
+//					}
+//					
+//	
+//					
+//					 
+//				
+//					k++;
+//				}
+				
+				
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
-				// ALL CALLERS PATTERN 4
+				// ALL CALLERS PATTERN 4.2
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
 				
 				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-	
-					// MIXED PATTERNS
-					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-					List<Method2Representation> CallersList = methodtrace.getCallersList();
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-	
-					List<String> PredictionCalleeList = new ArrayList<String>();
-					for (Method2Representation callee : CalleesList) {
-						String RequirementID = methodtrace.Requirement.ID;
-						String MethodID = callee.methodid;
-						String key = MethodID + "-" + RequirementID;
-						if (methodtraces2HashMap.get(key) != null) {
-							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-							PredictionCalleeList.add(predictionvalue);
-						}
-					}
-	
-					List<String> PredictionCallerList = new ArrayList<String>();
-					for (Method2Representation caller : CallersList) {
-						String RequirementID = methodtrace.Requirement.ID;
-						String MethodID = caller.methodid;
-						String key = MethodID + "-" + RequirementID;
-	
-						if (methodtraces2HashMap.get(key) != null) {
-							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-							PredictionCallerList.add(predictionvalue);
-						}
-					}
-					// methodtrace.setPrediction("");
-	
-					List<String> mylist;
-					List<String> iterationValues = LogInfo.getIterationValues();
-					for (String it : iterationValues) {
-						System.out.print(it + ", ");
-					}
-					System.out.println();
-					
-					
-					
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 				
-					
-					// ALL T CALLERS 
-					 if (!methodtrace.getCallerList().isEmpty() 
-						&& methodtrace.getCallerList().AllCallersAreT() 
-						&& methodtrace.getPrediction().trim().equals("E")
-	
-					) {
-						// methodtrace.setPrediction("N");
-						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers"); 
-
-						// System.out.println("yes");
-					}
-					// ALL N CALLERS
-					 else if (!methodtrace.getCallerList().isEmpty() 
-								&& methodtrace.getCallerList().AllCallersAreN() 
-								&& methodtrace.getPrediction().trim().equals("E")
-	
-							) {
-	
-						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers"); 
-
-	
-						// System.out.println("yes");
-					}
-					
-	
-					
-					 
+				// MIXED PATTERNS
+				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+				List<Method2Representation> CallersList = methodtrace.getCallersList();
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 				
-					k++;
+				List<String> PredictionCalleeList = new ArrayList<String>();
+				for (Method2Representation callee : CalleesList) {
+				String RequirementID = methodtrace.Requirement.ID;
+				String MethodID = callee.methodid;
+				String key = MethodID + "-" + RequirementID;
+				if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+				PredictionCalleeList.add(predictionvalue);
+				}
+				}
+				
+				List<String> PredictionCallerList = new ArrayList<String>();
+				for (Method2Representation caller : CallersList) {
+				String RequirementID = methodtrace.Requirement.ID;
+				String MethodID = caller.methodid;
+				String key = MethodID + "-" + RequirementID;
+				
+				if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+				PredictionCallerList.add(predictionvalue);
+				}
+				}
+				// methodtrace.setPrediction("");
+				
+				List<String> mylist;
+				List<String> iterationValues = LogInfo.getIterationValues();
+				for (String it : iterationValues) {
+				System.out.print(it + ", ");
+				}
+				System.out.println();
+				
+				
+				
+				
+				
+				// ALL T CALLERS 
+				if (!methodtrace.getCallerList().isEmpty() 
+				&& methodtrace.getCallerList().AllCallersAreTWithAtLeast2T()
+				&& methodtrace.getPrediction().trim().equals("E")
+				
+				) {
+				// methodtrace.setPrediction("N");
+				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers"); 
+				
+				// System.out.println("yes");
+				}
+				// ALL N CALLERS
+				else if (!methodtrace.getCallerList().isEmpty() 
+				&& methodtrace.getCallerList().AllCallersAreNWithAtLeast2N()
+				&& methodtrace.getPrediction().trim().equals("E")
+				
+				) {
+				
+				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers"); 
+				
+				
+				// System.out.println("yes");
 				}
 				
 				
 				
+				
+				
+				k++;
+				}
 				
 				
 				

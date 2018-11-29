@@ -2,6 +2,7 @@ package ALGO;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -10,7 +11,6 @@ import mypackage.MethodTraceSubjectTSubjectN;
 
 public class MethodList<String> extends ArrayList<String>{
 
-	
 	
 //	MethodList<String> MethodList; 
 	
@@ -22,11 +22,29 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
+	public boolean AllCallersAreNWithAtLeast2N() {
+		// TODO Auto-generated method stub
+		
+		int occurrences = Collections.frequency(this, "N");
+
+		if(!this.contains("T")  && this.contains("N") && !this.contains("E") && occurrences>=2) {
+			return true;
+		}
+		return false;
+	}
 
 
 
+	public boolean AllCallersAreTWithAtLeast2T() {
+		// TODO Auto-generated method stub
+	
+		int occurrences = Collections.frequency(this, "T");
 
-
+		if(!this.contains("N")  && this.contains("T") && !this.contains("E") && occurrences>=2) {
+			return true;
+		}
+		return false;
+	}
 
 	
 	
