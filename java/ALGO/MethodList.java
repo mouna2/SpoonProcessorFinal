@@ -114,10 +114,11 @@ public class MethodList<String> extends ArrayList<String>{
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T") && !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+//		else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T") && !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -129,10 +130,12 @@ public class MethodList<String> extends ArrayList<String>{
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+		
+//		else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -142,10 +145,11 @@ public class MethodList<String> extends ArrayList<String>{
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+//		else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -155,10 +159,12 @@ public class MethodList<String> extends ArrayList<String>{
 		if(ChildFlag == true && childTraceValues.get(0).equals("T")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(ChildFlag == true && childTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+		
+//		else if(ChildFlag == true && childTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -173,10 +179,11 @@ public class MethodList<String> extends ArrayList<String>{
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+//		else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -188,10 +195,12 @@ public class MethodList<String> extends ArrayList<String>{
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-		}else {
-			System.out.println("hey");
 		}
+		
+//		else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -201,11 +210,13 @@ public class MethodList<String> extends ArrayList<String>{
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-			
-		}else {
-			System.out.println("hey");
 		}
+		
+//		else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
+//			
+//		}else {
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 	
@@ -215,11 +226,13 @@ public class MethodList<String> extends ArrayList<String>{
 		if(ChildFlag == true && childTraceValues.get(0).equals("N")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
-		}else if(ChildFlag == true && childTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-			
-		}else if( !methodtrace.getPrediction().trim().equals("E")){
-			System.out.println("hey");
 		}
+		
+//		else if(ChildFlag == true && childTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
+//			
+//		}else if( !methodtrace.getPrediction().trim().equals("E")){
+//			System.out.println("hey");
+//		}
 		return false; 
 	}
 
