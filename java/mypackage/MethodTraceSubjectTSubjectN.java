@@ -69,7 +69,7 @@ public class MethodTraceSubjectTSubjectN {
 	MethodList<String> Implementations; 
 	MethodList<String> Superclasses; 
 	MethodList<String> Children; 
-	public MethodList<String> getPredictionCalleeList() {
+	public MethodList<String> getCalleeList() {
 		return PredictionCalleeList;
 	}
 
@@ -77,7 +77,7 @@ public class MethodTraceSubjectTSubjectN {
 		PredictionCalleeList = predictionCalleeList;
 	}
 
-	public MethodList<String> getPredictionCallerList() {
+	public MethodList<String> getCallerList() {
 		return PredictionCallerList;
 	}
 
@@ -143,7 +143,7 @@ public class MethodTraceSubjectTSubjectN {
 	
 	
 	
-	public MethodList<String> getSuperClassesListMethodTraces() {
+	public MethodList<String> getSuperClassesFinalList() {
 		return SuperClassesListMethodTraces;
 	}
 
@@ -152,7 +152,7 @@ public class MethodTraceSubjectTSubjectN {
 		SuperClassesListMethodTraces.addAll(superClassesListMethodTraces);
 	}
 
-	public MethodList<String> getInterfaceListMethodTraces() {
+	public MethodList<String> getInterfacesFinalList() {
 		return InterfaceListMethodTraces;
 	}
 
@@ -161,7 +161,7 @@ public class MethodTraceSubjectTSubjectN {
 		InterfaceListMethodTraces.addAll(interfaceListMethodTraces);
 	}
 
-	public MethodList<String> getChildrenListMethodTraces() {
+	public MethodList<String> getChildrenFinalList() {
 		return ChildrenListMethodTraces;
 	}
 
@@ -171,7 +171,7 @@ public class MethodTraceSubjectTSubjectN {
 		ChildrenListMethodTraces.addAll(childrenListMethodTraces);
 	}
 
-	public MethodList<String> getImplementationListMethodTraces() {
+	public MethodList<String> getImplementationFinalList() {
 		return ImplementationListMethodTraces;
 	}
 
@@ -1955,7 +1955,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesEqualT() {
 		// TODO Auto-generated method stub
 		
-		if(!getPredictionCalleeList().contains("N")  && getPredictionCalleeList().contains("T") && !getPredictionCalleeList().contains("E")) {
+		if(!getCalleeList().contains("N")  && getCalleeList().contains("T") && !getCalleeList().contains("E")) {
 			return true;
 		}
 		return false;
@@ -1964,7 +1964,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersContainsAtLeast1T() {
 		// TODO Auto-generated method stub
 		
-		if(getPredictionCallerList().contains("T") ) {
+		if(getCallerList().contains("T") ) {
 			return true;
 		}
 		return false;
@@ -1972,7 +1972,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesContainsAtLeast1T() {
 		// TODO Auto-generated method stub
 		
-		if(getPredictionCalleeList().contains("T") ) {
+		if(getCalleeList().contains("T") ) {
 			return true;
 		}
 		return false;
@@ -1981,7 +1981,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersEqualT() {
 		// TODO Auto-generated method stub
 		
-		if(!getPredictionCallerList().contains("N")  && getPredictionCallerList().contains("T") && !getPredictionCallerList().contains("E")) {
+		if(!getCallerList().contains("N")  && getCallerList().contains("T") && !getCallerList().contains("E")) {
 			return true;
 		}
 		return false;
@@ -1991,7 +1991,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesEqualN() {
 		// TODO Auto-generated method stub
 		
-		if(!getPredictionCalleeList().contains("T")  && getPredictionCalleeList().contains("N") && !getPredictionCalleeList().contains("E")) {
+		if(!getCalleeList().contains("T")  && getCalleeList().contains("N") && !getCalleeList().contains("E")) {
 			return true;
 		}
 		return false;
@@ -2003,7 +2003,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersEqualN() {
 		// TODO Auto-generated method stub
 		
-		if(!getPredictionCallerList().contains("T")  && getPredictionCallerList().contains("N") && !getPredictionCallerList().contains("E")) {
+		if(!getCallerList().contains("T")  && getCallerList().contains("N") && !getCallerList().contains("E")) {
 			return true;
 		}
 		return false;

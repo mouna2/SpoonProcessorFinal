@@ -651,8 +651,8 @@ public class AlgoFinal extends JFrame {
 				// PURE T PATTERN
 
 				// methodtrace.setPrediction("");
-				if (    !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
-						&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualT() && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualT() 					
+				if (    !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+						&& methodtrace.getCalleeList().AllCalleesAreT() && methodtrace.getCallerList().AllCallersAreT() 					
 						&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -665,8 +665,8 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// PURE N PATTERN
-				else if ( !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
-						&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualN() && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualN()
+				else if ( !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN()
 						&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -680,8 +680,8 @@ public class AlgoFinal extends JFrame {
 
 				 
 				// PURE T LEAF PATTERN
-				 if (	methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
-						 && methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualT() 
+				 if (	methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+						 && methodtrace.getCalleeList().AllCalleesAreT() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -692,8 +692,8 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// PURE N LEAF PATTERN
-				 else if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
-						 && methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualN() 
+				 else if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+						 && methodtrace.getCalleeList().AllCalleesAreN() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -756,8 +756,8 @@ public class AlgoFinal extends JFrame {
 				System.out.println();
 				
 				// MIXED T PATTERN
-				 if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
-					&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesContainsAtLeast1T() && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersContainsAtLeast1T() 
+				 if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
+					&& methodtrace.getCalleeList().SomeCalleeIsT() && methodtrace.getCallerList().SomeCallerIsT() 
 					&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -768,9 +768,9 @@ public class AlgoFinal extends JFrame {
 					// System.out.println("yes");
 				}
 				// MIXED N PATTERN
-				 else if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+				 else if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
 						
-						&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualN() && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualN() 
+						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN() 
 						
 						&& methodtrace.getPrediction().trim().equals("E")
 
@@ -786,8 +786,8 @@ public class AlgoFinal extends JFrame {
 				
 				 
 				// MIXED T LEAF PATTERN
-				 if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
-						 && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersContainsAtLeast1T() 
+				 if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
+						 && methodtrace.getCallerList().SomeCallerIsT() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -795,8 +795,8 @@ public class AlgoFinal extends JFrame {
 								iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf"); 
 
 				}// MIXED N LEAF PATTERN
-				 else if(methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
-						 && methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualN()
+				 else if(methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
+						 && methodtrace.getCallerList().AllCallersAreN()
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -845,10 +845,10 @@ public class AlgoFinal extends JFrame {
 				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 				List<String> IterationValues = LogInfo.getIterationValues();
-				MethodList<String> interfaces = methodtrace.getInterfaceListMethodTraces();
-				MethodList<String> implementations = methodtrace.getImplementationListMethodTraces(); 
-				MethodList<String> superclasses = methodtrace.getSuperClassesListMethodTraces(); 
-				MethodList<String> children = methodtrace.getChildrenListMethodTraces(); 
+				MethodList<String> interfaces = methodtrace.getInterfacesFinalList();
+				MethodList<String> implementations = methodtrace.getImplementationFinalList(); 
+				MethodList<String> superclasses = methodtrace.getSuperClassesFinalList(); 
+				MethodList<String> children = methodtrace.getChildrenFinalList(); 
 
 				List<String> interfaceTraceValues = new ArrayList<String>();
 				for (String inter : interfaces) {
@@ -942,10 +942,10 @@ public class AlgoFinal extends JFrame {
 				
 //				methodtrace.setChildren(childrenTraceValues);
 				if (
-						methodtrace.getInterfaceListMethodTraces().InterfaceMethodTraceValuesAllEqualT(InterfacesFlag, interfaceTraceValues, methodtrace) 
-						||methodtrace.getImplementationListMethodTraces().ImplementationMethodTraceValuesAllEqualT(ImplementationsFlag, implementationsTraceValues, methodtrace)
-						||methodtrace.getSuperClassesListMethodTraces().SuperclassMethodTraceValuesAllEqualT(SuperclassesFlag, superclassesTraceValues, methodtrace)
-						||methodtrace.getChildrenListMethodTraces().ChildMethodTraceValuesAllEqualT(ChildrenFlag, childrenTraceValues, methodtrace))
+						methodtrace.getInterfacesFinalList().AllInterfacesAreT(InterfacesFlag, interfaceTraceValues, methodtrace) 
+						||methodtrace.getImplementationFinalList().AllImplementationsAreT(ImplementationsFlag, implementationsTraceValues, methodtrace)
+						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreT(SuperclassesFlag, superclassesTraceValues, methodtrace)
+						||methodtrace.getChildrenFinalList().AllChildrenAreT(ChildrenFlag, childrenTraceValues, methodtrace))
 						
 					
 
@@ -956,10 +956,10 @@ public class AlgoFinal extends JFrame {
 					
 
 				}
-				else if (methodtrace.getInterfaceListMethodTraces().InterfaceMethodTraceValuesAllEqualN(InterfacesFlag, interfaceTraceValues, methodtrace) 
-						||methodtrace.getImplementationListMethodTraces().ImplementationMethodTraceValuesAllEqualN(ImplementationsFlag, implementationsTraceValues, methodtrace)
-						||methodtrace.getSuperClassesListMethodTraces().SuperclassMethodTraceValuesAllEqualN(SuperclassesFlag, superclassesTraceValues, methodtrace)
-						||methodtrace.getChildrenListMethodTraces().ChildMethodTraceValuesAllEqualN(ChildrenFlag, childrenTraceValues, methodtrace)
+				else if (methodtrace.getInterfacesFinalList().AllInterfacesAreN(InterfacesFlag, interfaceTraceValues, methodtrace) 
+						||methodtrace.getImplementationFinalList().AllImplementationsAreN(ImplementationsFlag, implementationsTraceValues, methodtrace)
+						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreN(SuperclassesFlag, superclassesTraceValues, methodtrace)
+						||methodtrace.getChildrenFinalList().AllChildrenAreN(ChildrenFlag, childrenTraceValues, methodtrace)
 
 				)
 
@@ -1041,8 +1041,8 @@ public class AlgoFinal extends JFrame {
 				
 					
 					// ALL T CALLERS 
-					 if (!methodtrace.getPredictionCallerList().isEmpty() 
-						&& methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualT() 
+					 if (!methodtrace.getCallerList().isEmpty() 
+						&& methodtrace.getCallerList().AllCallersAreT() 
 						&& methodtrace.getPrediction().trim().equals("E")
 	
 					) {
@@ -1053,8 +1053,8 @@ public class AlgoFinal extends JFrame {
 						// System.out.println("yes");
 					}
 					// ALL N CALLERS
-					 else if (!methodtrace.getPredictionCallerList().isEmpty() 
-								&& methodtrace.getPredictionCallerList().AllMethodTracePredictionCallersEqualN() 
+					 else if (!methodtrace.getCallerList().isEmpty() 
+								&& methodtrace.getCallerList().AllCallersAreN() 
 								&& methodtrace.getPrediction().trim().equals("E")
 	
 							) {
@@ -1134,8 +1134,8 @@ public class AlgoFinal extends JFrame {
 				
 				
 				// ALL T CALLEES 
-				if (!methodtrace.getPredictionCalleeList().isEmpty() 
-				&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualT() 
+				if (!methodtrace.getCalleeList().isEmpty() 
+				&& methodtrace.getCalleeList().AllCalleesAreT() 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {
@@ -1147,8 +1147,8 @@ public class AlgoFinal extends JFrame {
 				// System.out.println("yes");
 				}
 				// ALL N CALLEES
-				else if (!methodtrace.getPredictionCalleeList().isEmpty() 
-				&& methodtrace.getPredictionCalleeList().AllMethodTracePredictionCalleesEqualN() 
+				else if (!methodtrace.getCalleeList().isEmpty() 
+				&& methodtrace.getCalleeList().AllCalleesAreN() 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {

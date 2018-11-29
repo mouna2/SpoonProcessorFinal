@@ -31,7 +31,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllMethodTracePredictionCalleesEqualT() {
+	public boolean AllCalleesAreT() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
@@ -40,7 +40,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AllMethodTracePredictionCallersContainsAtLeast1T() {
+	public boolean SomeCallerIsT() {
 		// TODO Auto-generated method stub
 		
 		if(this.contains("T") ) {
@@ -48,7 +48,7 @@ public class MethodList<String> extends ArrayList<String>{
 		}
 		return false;
 	}
-	public boolean AllMethodTracePredictionCalleesContainsAtLeast1T() {
+	public boolean SomeCalleeIsT() {
 		// TODO Auto-generated method stub
 		
 		if(this.contains("T") ) {
@@ -57,7 +57,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AllMethodTracePredictionCallersEqualT() {
+	public boolean AllCallersAreT() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
@@ -67,7 +67,7 @@ public class MethodList<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllMethodTracePredictionCalleesEqualN() {
+	public boolean AllCalleesAreN() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
@@ -79,7 +79,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllMethodTracePredictionCallersEqualN() {
+	public boolean AllCallersAreN() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
@@ -90,7 +90,7 @@ public class MethodList<String> extends ArrayList<String>{
 
 
 
-	public boolean InterfaceMethodTraceValuesAllEqualT(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllInterfacesAreT(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
@@ -102,7 +102,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean ImplementationMethodTraceValuesAllEqualT(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllImplementationsAreT(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")
@@ -112,7 +112,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false; 
 	}
 	
-	public boolean SuperclassMethodTraceValuesAllEqualT(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllSuperclassesAreT(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")
@@ -122,7 +122,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false; 
 	}
 	
-	public boolean ChildMethodTraceValuesAllEqualT(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllChildrenAreT(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(ChildFlag == true && childTraceValues.get(0).equals("T")
@@ -137,7 +137,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean InterfaceMethodTraceValuesAllEqualN(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllInterfacesAreN(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")
@@ -149,7 +149,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean ImplementationMethodTraceValuesAllEqualN(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllImplementationsAreN(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N")
@@ -159,7 +159,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false; 
 	}
 	
-	public boolean SuperclassMethodTraceValuesAllEqualN(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllSuperclassesAreN(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N")
@@ -169,7 +169,7 @@ public class MethodList<String> extends ArrayList<String>{
 		return false; 
 	}
 	
-	public boolean ChildMethodTraceValuesAllEqualN(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllChildrenAreN(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(ChildFlag == true && childTraceValues.get(0).equals("N")
