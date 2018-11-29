@@ -163,7 +163,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		String goldfinalAlex=""; 
 		String goldAlexAtLeast3=""; 
 
-		String goldAtLeast2=""; 
+		String UnionGold=""; 
 		Hashtable<String,String> RequirementClassHashMapNames=new Hashtable<String,String>(); 
 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
@@ -173,7 +173,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast3=new Hashtable<String,List<String>>(); 
 		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast3Alex=new Hashtable<String,List<String>>(); 
 
-		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast2=new Hashtable<String,List<String>>(); 
+		Hashtable<String,List<String>> RequirementClassHashMapUnionGold=new Hashtable<String,List<String>>(); 
 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
@@ -214,7 +214,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		     List<String> ListGoldAtLeast3= new ArrayList<String>(); 
 		     List<String> ListGoldAlexAtLeast3= new ArrayList<String>(); 
 		     List<String> ListGold6= new ArrayList<String>(); 
-		     List<String> ListGoldAtLeast2= new ArrayList<String>(); 
+		     List<String> ListUnionGold= new ArrayList<String>(); 
 
 		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
 			while(traces.next()){		
@@ -225,7 +225,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 				gold3=null; 
 				goldAtLeast3=null; 
 				gold6=null; 
-				goldAtLeast2=null; 
+				UnionGold=null; 
 				 requirementid=traces.getString("requirementid").trim(); 
 				 classid=traces.getString("classid").trim(); 
 				
@@ -262,9 +262,9 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 				
 				//gold at least 2
 				if(traces.getString("goldfinal")!=null) {
-					 goldAtLeast2=traces.getString("goldfinal").trim(); 
-					 if(goldAtLeast2!=null) {
-						 ListGoldAtLeast2.add(goldAtLeast2); 
+					 UnionGold=traces.getString("goldfinal").trim(); 
+					 if(UnionGold!=null) {
+						 ListUnionGold.add(UnionGold); 
 					 }
 					
 				}
@@ -277,7 +277,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 //			System.out.println(ReqClass);
 			RequirementClassHashMapGold.put(ReqClass, ListGold); 
 			RequirementClassHashMapGoldAlex.put(ReqClass, ListGoldAlex); 
-			RequirementClassHashMapGoldAtLeast2.put(ReqClass, ListGoldAtLeast2); 
+			RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
 			RequirementClassHashMapGoldAtLeast3.put(ReqClass, ListGoldAtLeast3); 
 			RequirementClassHashMapGoldAtLeast3Alex.put(ReqClass, ListGoldAlexAtLeast3); 
 
@@ -578,7 +578,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGoldAtLeast2.entrySet()) {
+		for(Entry<String, List<String>>  entry: RequirementClassHashMapUnionGold.entrySet()) {
 
 			   System.out.println(entry.getKey() + " = " );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 

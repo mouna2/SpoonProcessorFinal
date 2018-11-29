@@ -890,57 +890,7 @@ public class AlgoFinal extends JFrame {
 				boolean ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
 						&& childrenTraceValues.size() >= 1;
 
-//				int interfaceCountT = 0;
-//				int interfaceCountN = 0;
-//				int interfaceCountE = 0;
-//				for (String interfaceval : interfaceTraceValues) {
-//					if (interfaceval.trim().equals("T")) {
-//						interfaceCountT++;
-//					} else if (interfaceval.trim().equals("N")) {
-//						interfaceCountN++;
-//					} else {
-//						interfaceCountE++;
-//					}
-//				}
-//				int impplementationCountT = 0;
-//				int impplementationCountN = 0;
-//				int impplementationCountE = 0;
-//				for (String interfaceval : implementationsTraceValues) {
-//					if (interfaceval.trim().equals("T")) {
-//						impplementationCountT++;
-//					} else if (interfaceval.trim().equals("N")) {
-//						impplementationCountN++;
-//					} else {
-//						impplementationCountE++;
-//					}
-//				}
-//				int superclassCountT = 0;
-//				int superclassCountN = 0;
-//				int superclassCountE = 0;
-//				for (String interfaceval : superclassesTraceValues) {
-//					if (interfaceval.trim().equals("T")) {
-//						superclassCountT++;
-//					} else if (interfaceval.trim().equals("N")) {
-//						superclassCountN++;
-//					} else {
-//						superclassCountE++;
-//					}
-//				}
-//
-//				int childrenCountT = 0;
-//				int childrenCountN = 0;
-//				int childrenCountE = 0;
-//				for (String interfaceval : childrenTraceValues) {
-//					if (interfaceval.trim().equals("T")) {
-//						childrenCountT++;
-//					} else if (interfaceval.trim().equals("N")) {
-//						childrenCountN++;
-//					} else {
-//						childrenCountE++;
-//					}
-//				}
-				
-//				methodtrace.setChildren(childrenTraceValues);
+
 				if (
 						methodtrace.getInterfacesFinalList().AllInterfacesAreT(InterfacesFlag, interfaceTraceValues, methodtrace) 
 						||methodtrace.getImplementationFinalList().AllImplementationsAreT(ImplementationsFlag, implementationsTraceValues, methodtrace)

@@ -173,17 +173,17 @@ public class AddGold3Gold4Gantt {
 				
 				
 				String goldAtLeast3=null; 
-				String goldAtLeast2=null; 
+				String goldUnionFinal=null; 
 				String goldAtLeast2Alex=null; 
 				String goldAtLeast3Alex=null; 
 				if(subjectNflag==true && subjectTflag==true) {
 				
 					goldAtLeast3=PredictGoldAtLeast3(SubjectT, SubjectN); 
-					goldAtLeast2=PredictGoldAtLeast2(SubjectT, SubjectN); 
+					goldUnionFinal=PredictGoldUnionFinal(SubjectT, SubjectN); 
 					goldAtLeast2Alex=PredictGoldAtLeast2Alex(SubjectT, SubjectN); 
 					goldAtLeast3Alex=PredictGoldAtLeast3Alex(SubjectT, SubjectN); 
 
-					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldAtLeast2+"',"+"`goldAlexAtLeast3` ='"+ goldAtLeast3Alex +"',"+"`goldfinalAlex` ='"+ goldAtLeast2Alex +"'WHERE id='"+counter+"'"); 
+					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ goldAtLeast3+"',"+"`goldfinal` ='"+ goldUnionFinal+"',"+"`goldAlexAtLeast3` ='"+ goldAtLeast3Alex +"',"+"`goldfinalAlex` ='"+ goldAtLeast2Alex +"'WHERE id='"+counter+"'"); 
 				}
 				else {
 					st.executeUpdate("UPDATE `traces` SET `goldAtLeast3` ='"+ "E"+"',"+"`goldfinal` ='"+ "E"+"',"+"`goldAlexAtLeast3` ='"+ "E"+"',"+"`goldfinalAlex` ='"+ "E" +"'WHERE id='"+counter+"'"); 
@@ -256,23 +256,23 @@ public class AddGold3Gold4Gantt {
 		return goldAtLeast3; 
 	}
 	
-	static String PredictGoldAtLeast2(int SubjectT, int SubjectN) {
-		String goldAtLeast2=null; 
+	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
+		String goldUnion=null; 
 		
 			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
-				goldAtLeast2="T"; 
+				goldUnion="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {
-				goldAtLeast2="N"; 
+				goldUnion="N"; 
 			}
 			else {
-				goldAtLeast2="E"; 
+				goldUnion="E"; 
 			}
 			
 			
 			
 		
-		return goldAtLeast2; 
+		return goldUnion; 
 	}
 	
 	

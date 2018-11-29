@@ -145,11 +145,11 @@ public class PrecisionRecallGoldsGantt {
 				
 				while(TraceInformation.next()) {
 					String	goldfinal=TraceInformation.getString("goldfinal"); 
-					String goldAtLeast2=TraceInformation.getString("goldAtLeast2"); 
+					String UnionGold=TraceInformation.getString("goldAtLeast2"); 
 					String goldAlex=TraceInformation.getString("goldAlex"); 
 					String goldAlexAtLeast3=TraceInformation.getString("goldAlexAtLeast3"); 
 					
-					String val = predictionEvaluationMouna.ComparePredictionToGold(goldfinal, goldAtLeast2); 				
+					String val = predictionEvaluationMouna.ComparePredictionToGold(goldfinal, UnionGold); 				
 					predictionEvaluationMouna.UpdateCounters(val, predictionEvaluationMouna);
 					
 					
