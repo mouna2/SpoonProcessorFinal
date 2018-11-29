@@ -3,9 +3,9 @@ package ALGO;
 import mypackage.MethodTraceSubjectTSubjectN;
 
 public class PredictionValues {
-		public int T=0; 
-		public int N=0; 
-		public int E=0;
+		public int T; 
+		public int N; 
+		public int E;
 		public int getT() {
 			return T;
 		}
