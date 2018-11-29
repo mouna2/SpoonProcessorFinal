@@ -1,4 +1,4 @@
-package ALGO;
+package ALGOWorked;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -47,16 +47,11 @@ import org.eclipse.swt.widgets.Table;
 
 import Chess.LogInfo;
 import Chess.PredictionEvaluation;
-import Gantt.DatabaseReading2Gantt;
-import JHotDraw.DatabaseReading2JHotDraw3;
-import iTrust.DatabaseReading2itrust;
-import iTrust.DatabaseReading2itrustfinal;
 import mypackage.Children2;
 import mypackage.ClassField2;
 import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
-import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
 import mypackage.Interface2;
@@ -64,7 +59,7 @@ import mypackage.Method2Details;
 import mypackage.Method2Representation;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
-import mypackage.MethodTraceSubjectTSubjectN;
+import ALGOWorked.*;
 import mypackage.Parameter2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
@@ -207,9 +202,6 @@ public class AlgoFinal extends JFrame {
 
 		
 		BufferedWriter bwfile1 = null;
-		BufferedWriter bwTraceClass = null;
-	
-
 		if (ProgramName.equals("chess")) {
 			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
@@ -264,12 +256,6 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
-			
-			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesChess.txt");
-			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
-			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
-			
-			
 			db = new DatabaseReading2();
 			DatabaseReading2.MakePredictions();
 			classMethodsHashMap = db.getClassMethodsHashMap();
@@ -324,12 +310,6 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
-			
-			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesGantt.txt");
-			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
-			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
-			
-			
 			dbgantt = new DatabaseReading2Gantt();
 			DatabaseReading2Gantt.MakePredictions();
 			classMethodsHashMap = dbgantt.getClassMethodsHashMap();
@@ -383,12 +363,6 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
-			
-			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesJHotDraw.txt");
-			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
-			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
-			
-			
 			dbjhotdraw = new DatabaseReading2JHotDraw3();
 			DatabaseReading2JHotDraw3.MakePredictions();
 			classMethodsHashMap = dbjhotdraw.getClassMethodsHashMap();
@@ -442,12 +416,6 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
-			
-			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesiTrust.txt");
-			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
-			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
-			
-			
 			dbitrust = new DatabaseReading2itrustfinal();
 			DatabaseReading2itrustfinal.MakePredictions();
 			classMethodsHashMap = dbitrust.getClassMethodsHashMap();
@@ -528,20 +496,8 @@ public class AlgoFinal extends JFrame {
 			
 		}
 		
-		PredictionValues TotalPredictionValues = new PredictionValues(); 
-		PredictionValues RemainingpredictionValues = new PredictionValues(); 
-		PredictionValues PredictionClassTraceBefore = new PredictionValues(); 
-		PredictionValues PredictionClassTraceAfter = new PredictionValues(); 
-
-		CountTracesClassesValues(PredictionClassTraceBefore, methodtracesRequirementClass); 
-		bwTraceClass.write("BEFORE PATTERN 0 "+PredictionClassTraceBefore.toString());
-		bwTraceClass.newLine();
-
-		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues, methodtracesRequirementClass);
-		CountTracesClassesValues(PredictionClassTraceAfter, methodtracesRequirementClass); 
-
-		bwTraceClass.write("AFTER PATTERN 0 "+PredictionClassTraceAfter.toString());
-		bwTraceClass.close();
+		
+		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues);
 		j = 0;
 
 		LogInfoHashMap = IntroduceNewValuesWithinLogInfoHashMap(RequirementClassHashMapNewValues, classMethodsHashMap,
@@ -549,13 +505,7 @@ public class AlgoFinal extends JFrame {
 
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
 		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
-		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap);
-		
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// OWNER CLASS PATTERN
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
+		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap); 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
 			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
@@ -597,8 +547,7 @@ public class AlgoFinal extends JFrame {
 				if (tracegold2.equals("T") ) {
 						
 						SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "E"); 
-						
-						
+
 					
 				
 
@@ -623,15 +572,9 @@ public class AlgoFinal extends JFrame {
 		}
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
 		MyfinalHashMap=SetFlagOwnerClassPattern(MyfinalHashMap, TotalPattern, LogInfoHashMap, ProgramName); 
-		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
-
-		WriteInDatabaseAndComputePrecisionAndRecallOwner(MyfinalHashMap,TotalPattern, ProgramName, LogInfoHashMap, OwnerClassPredictionValues);
+		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,TotalPattern, ProgramName, LogInfoHashMap);
 		 bwfile1.write("OWNER CLASS PRED 				"+ProgramName+" "+TotalPattern.toString());
 		 bwfile1.newLine();
-		 bwfile1.write("owner class prediction values	"+ProgramName+" "+OwnerClassPredictionValues.toString());
-		 bwfile1.newLine();
-		
-		
 		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
 				+ TotalPattern.toString());
 
@@ -652,23 +595,18 @@ public class AlgoFinal extends JFrame {
 			PredictionsOldHashMap = InitializePredictionsHashMap(PredictionsOldHashMap, MethodTracesHashmapValues);
 
 			System.out.println("-------------------------------------------");
-			////////////////////////////////////////////////////////////////////////////////////////////
+//
 			//////////////////////////////////////////////////////////////////////////////////////////
-			// PURE AND MIXED PATTERNS	PATTERN 1
+			int k = 0;
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// PURE PATTERNS
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 
-			//////////////////////////////////////////////////////////////////////////////////////////
-			int k = 0;
-//			//////////////////////////////////////////////////////////////////////////////////////////
-//			//////////////////////////////////////////////////////////////////////////////////////////
-//			// PURE PATTERNS
-//			//////////////////////////////////////////////////////////////////////////////////////////
-//			//////////////////////////////////////////////////////////////////////////////////////////
-//
-//			// methodtraces2 =
-//			// InitializePredictionsHashMapBlankValues(PredictionsOldHashMap,
-//			// methodtraces22);
+			// methodtraces2 =
+			// InitializePredictionsHashMapBlankValues(PredictionsOldHashMap,
+			// methodtraces22);
 //			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 //				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 //				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
@@ -676,7 +614,7 @@ public class AlgoFinal extends JFrame {
 //				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
 //				List<Method2Representation> CallersList = methodtrace.getCallersList();
 //
-//				MethodList<String> MethodPredictionCalleeList = new MethodList<String>(); 
+//				List<String> MethodPredictionCalleeList = new ArrayList<String>();
 //				for (Method2Representation callee : CalleesList) {
 //					String RequirementID = methodtrace.Requirement.ID;
 //					String MethodID = callee.methodid;
@@ -688,7 +626,7 @@ public class AlgoFinal extends JFrame {
 //
 //				}
 //
-//				MethodList<String> MethodPredictionCallerList = new MethodList<String>(); 
+//				List<String> MethodPredictionCallerList = new ArrayList<String>();
 //				for (Method2Representation caller : CallersList) {
 //					String RequirementID = methodtrace.Requirement.ID;
 //					String MethodID = caller.methodid;
@@ -702,14 +640,14 @@ public class AlgoFinal extends JFrame {
 //				List<String> iterationValues = LogInfo.getIterationValues();
 //				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 //
-//				methodtrace.setPredictionCalleeList( MethodPredictionCalleeList);
-//				methodtrace.setPredictionCallerList( MethodPredictionCallerList);
+//				methodtrace.setPredictionCalleeList(MethodPredictionCalleeList);
+//				methodtrace.setPredictionCallerList(MethodPredictionCallerList);
 //
 //				// PURE T PATTERN
 //
 //				// methodtrace.setPrediction("");
-//				if (    !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-//						&& methodtrace.getCalleeList().AllCalleesAreT() && methodtrace.getCallerList().AllCallersAreT() 					
+//				if (    !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+//						&& methodtrace.AllMethodTracePredictionCalleesEqualT() && methodtrace.AllMethodTracePredictionCallersEqualT() 					
 //						&& methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -722,8 +660,8 @@ public class AlgoFinal extends JFrame {
 //					// System.out.println("yes");
 //				}
 //				// PURE N PATTERN
-//				else if ( !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-//						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN()
+//				else if ( !methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+//						&& methodtrace.AllMethodTracePredictionCalleesEqualN() && methodtrace.AllMethodTracePredictionCallersEqualN()
 //						&& methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -737,8 +675,8 @@ public class AlgoFinal extends JFrame {
 //
 //				 
 //				// PURE T LEAF PATTERN
-//				 if (	methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-//						 && methodtrace.getCalleeList().AllCalleesAreT() 
+//				 if (	methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+//						 && methodtrace.AllMethodTracePredictionCalleesEqualT() 
 //						 && methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -749,8 +687,8 @@ public class AlgoFinal extends JFrame {
 //					// System.out.println("yes");
 //				}
 //				// PURE N LEAF PATTERN
-//				 else if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-//						 && methodtrace.getCalleeList().AllCalleesAreN() 
+//				 else if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
+//						 && methodtrace.AllMethodTracePredictionCalleesEqualN() 
 //						 && methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -813,8 +751,8 @@ public class AlgoFinal extends JFrame {
 //				System.out.println();
 //				
 //				// MIXED T PATTERN
-//				 if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-//					&& methodtrace.getCalleeList().SomeCalleeIsT() && methodtrace.getCallerList().SomeCallerIsT() 
+//				 if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+//					&& methodtrace.AllMethodTracePredictionCalleesContainsAtLeast1T() && methodtrace.AllMethodTracePredictionCallersContainsAtLeast1T() 
 //					&& methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -825,9 +763,9 @@ public class AlgoFinal extends JFrame {
 //					// System.out.println("yes");
 //				}
 //				// MIXED N PATTERN
-//				 else if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+//				 else if (!methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty()
 //						
-//						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN() 
+//						&& methodtrace.AllMethodTracePredictionCalleesEqualN() && methodtrace.AllMethodTracePredictionCallersEqualN() 
 //						
 //						&& methodtrace.getPrediction().trim().equals("E")
 //
@@ -843,8 +781,8 @@ public class AlgoFinal extends JFrame {
 //				
 //				 
 //				// MIXED T LEAF PATTERN
-//				 if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-//						 && methodtrace.getCallerList().SomeCallerIsT() 
+//				 if (methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+//						 && methodtrace.AllMethodTracePredictionCallersContainsAtLeast1T() 
 //						 && methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -852,8 +790,8 @@ public class AlgoFinal extends JFrame {
 //								iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf"); 
 //
 //				}// MIXED N LEAF PATTERN
-//				 else if(methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-//						 && methodtrace.getCallerList().AllCallersAreN()
+//				 else if(methodtrace.getPredictionCalleeList().isEmpty() && !methodtrace.getPredictionCallerList().isEmpty() 
+//						 && methodtrace.AllMethodTracePredictionCallersEqualN()
 //						 && methodtrace.getPrediction().trim().equals("E")
 //
 //				) {
@@ -863,25 +801,25 @@ public class AlgoFinal extends JFrame {
 //				}
 //				k++;
 //			}
-//			// InitializePredictionsHashMapBlankValues(PredictionsNewHashMap,
-//			// methodtraces2);
-//			// PRINT
-//
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//			
-//		
+			// InitializePredictionsHashMapBlankValues(PredictionsNewHashMap,
+			// methodtraces2);
+			// PRINT
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
 //			//the following line should not be moved when putting 3 before 1-2 (3-1-2 combination)
 //			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
 //			// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
@@ -890,28 +828,27 @@ public class AlgoFinal extends JFrame {
 //					+ "   PREDICTION VALUES " + TotalPattern.toString());
 //			// END PRINT
 //			CalculateChildrenInterfacesMethodTraces(RequirementMethodNameClassIDHashMap);
-//			
-//			
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				// SUPERCLASSES , CHILDREN , INTERFACES , IMPLEMENTATIONS  PATTERN 3
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//			
+			
+			
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// SUPERCLASSES , CHILDREN , INTERFACES , IMPLEMENTATIONS
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+			
 //			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 //				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 //				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 //				List<String> IterationValues = LogInfo.getIterationValues();
-//				MethodList<String> interfaces = methodtrace.getInterfacesFinalList();
-//				MethodList<String> implementations = methodtrace.getImplementationFinalList(); 
-//				MethodList<String> superclasses = methodtrace.getSuperClassesFinalList(); 
-//				MethodList<String> children = methodtrace.getChildrenFinalList(); 
+//				List<String> interfaces = methodtrace.getInterfaceListMethodTraces();
+//				List<String> implementations = methodtrace.getImplementationListMethodTraces(); 
+//				List<String> superclasses = methodtrace.getSuperClassesListMethodTraces(); 
+//				List<String> children = methodtrace.getChildrenListMethodTraces(); 
 //
 //				List<String> interfaceTraceValues = new ArrayList<String>();
 //				for (String inter : interfaces) {
 //					String[] inters = inter.split("-");
 //					String interVal = inters[0];
-//					
 //					interfaceTraceValues.add(interVal);
 //				}
 //
@@ -919,7 +856,6 @@ public class AlgoFinal extends JFrame {
 //				for (String inter : implementations) {
 //					String[] inters = inter.split("-");
 //					String interVal = inters[0];
-//					
 //					implementationsTraceValues.add(interVal);
 //				}
 //
@@ -927,7 +863,6 @@ public class AlgoFinal extends JFrame {
 //				for (String inter : superclasses) {
 //					String[] inters = inter.split("-");
 //					String interVal = inters[0];
-//					
 //					superclassesTraceValues.add(interVal);
 //				}
 //
@@ -935,7 +870,6 @@ public class AlgoFinal extends JFrame {
 //				for (String inter : children) {
 //					String[] inters = inter.split("-");
 //					String interVal = inters[0];
-//				
 //					childrenTraceValues.add(interVal);
 //				}
 //				boolean InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
@@ -947,12 +881,60 @@ public class AlgoFinal extends JFrame {
 //				boolean ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
 //						&& childrenTraceValues.size() >= 1;
 //
+//				int interfaceCountT = 0;
+//				int interfaceCountN = 0;
+//				int interfaceCountE = 0;
+//				for (String interfaceval : interfaceTraceValues) {
+//					if (interfaceval.trim().equals("T")) {
+//						interfaceCountT++;
+//					} else if (interfaceval.trim().equals("N")) {
+//						interfaceCountN++;
+//					} else {
+//						interfaceCountE++;
+//					}
+//				}
+//				int impplementationCountT = 0;
+//				int impplementationCountN = 0;
+//				int impplementationCountE = 0;
+//				for (String interfaceval : implementationsTraceValues) {
+//					if (interfaceval.trim().equals("T")) {
+//						impplementationCountT++;
+//					} else if (interfaceval.trim().equals("N")) {
+//						impplementationCountN++;
+//					} else {
+//						impplementationCountE++;
+//					}
+//				}
+//				int superclassCountT = 0;
+//				int superclassCountN = 0;
+//				int superclassCountE = 0;
+//				for (String interfaceval : superclassesTraceValues) {
+//					if (interfaceval.trim().equals("T")) {
+//						superclassCountT++;
+//					} else if (interfaceval.trim().equals("N")) {
+//						superclassCountN++;
+//					} else {
+//						superclassCountE++;
+//					}
+//				}
 //
+//				int childrenCountT = 0;
+//				int childrenCountN = 0;
+//				int childrenCountE = 0;
+//				for (String interfaceval : childrenTraceValues) {
+//					if (interfaceval.trim().equals("T")) {
+//						childrenCountT++;
+//					} else if (interfaceval.trim().equals("N")) {
+//						childrenCountN++;
+//					} else {
+//						childrenCountE++;
+//					}
+//				}
 //				if (
-//						methodtrace.getInterfacesFinalList().AllInterfacesAreT(InterfacesFlag, interfaceTraceValues, methodtrace) 
-//						||methodtrace.getImplementationFinalList().AllImplementationsAreT(ImplementationsFlag, implementationsTraceValues, methodtrace)
-//						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreT(SuperclassesFlag, superclassesTraceValues, methodtrace)
-//						||methodtrace.getChildrenFinalList().AllChildrenAreT(ChildrenFlag, childrenTraceValues, methodtrace))
+//						methodtrace.InterfaceMethodTraceValuesAllEqualT(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.ImplementationMethodTraceValuesAllEqualT(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.SuperclassMethodTraceValuesAllEqualT(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.ChildMethodTraceValuesAllEqualT(ChildrenFlag, childrenTraceValues, methodtrace))
 //						
 //					
 //
@@ -963,10 +945,10 @@ public class AlgoFinal extends JFrame {
 //					
 //
 //				}
-//				else if (methodtrace.getInterfacesFinalList().AllInterfacesAreN(InterfacesFlag, interfaceTraceValues, methodtrace) 
-//						||methodtrace.getImplementationFinalList().AllImplementationsAreN(ImplementationsFlag, implementationsTraceValues, methodtrace)
-//						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreN(SuperclassesFlag, superclassesTraceValues, methodtrace)
-//						||methodtrace.getChildrenFinalList().AllChildrenAreN(ChildrenFlag, childrenTraceValues, methodtrace)
+//				else if (methodtrace.InterfaceMethodTraceValuesAllEqualN(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.ImplementationMethodTraceValuesAllEqualN(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.SuperclassMethodTraceValuesAllEqualN(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.ChildMethodTraceValuesAllEqualN(ChildrenFlag, childrenTraceValues, methodtrace)
 //
 //				)
 //
@@ -999,7 +981,7 @@ public class AlgoFinal extends JFrame {
 			
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
-				// ALL CALLERS PATTERN 4.1
+				// ALL CALLERS 
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
 				
@@ -1048,8 +1030,8 @@ public class AlgoFinal extends JFrame {
 				
 					
 					// ALL T CALLERS 
-					 if (!methodtrace.getCallerList().isEmpty() 
-						&& methodtrace.getCallerList().AllCallersAreT() 
+					 if (!methodtrace.getPredictionCallerList().isEmpty() 
+						&& methodtrace.AllMethodTracePredictionCallersEqualT() 
 						&& methodtrace.getPrediction().trim().equals("E")
 	
 					) {
@@ -1060,8 +1042,8 @@ public class AlgoFinal extends JFrame {
 						// System.out.println("yes");
 					}
 					// ALL N CALLERS
-					 else if (!methodtrace.getCallerList().isEmpty() 
-								&& methodtrace.getCallerList().AllCallersAreN() 
+					 else if (!methodtrace.getPredictionCallerList().isEmpty() 
+								&& methodtrace.AllMethodTracePredictionCallersEqualN() 
 								&& methodtrace.getPrediction().trim().equals("E")
 	
 							) {
@@ -1081,97 +1063,16 @@ public class AlgoFinal extends JFrame {
 				}
 				
 				
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				// ALL CALLERS PATTERN 4.2
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				//////////////////////////////////////////////////////////////////////////////////////////
-//				
-//				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
-//				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-//				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-//				
-//				// MIXED PATTERNS
-//				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-//				List<Method2Representation> CallersList = methodtrace.getCallersList();
-//				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-//				
-//				List<String> PredictionCalleeList = new ArrayList<String>();
-//				for (Method2Representation callee : CalleesList) {
-//				String RequirementID = methodtrace.Requirement.ID;
-//				String MethodID = callee.methodid;
-//				String key = MethodID + "-" + RequirementID;
-//				if (methodtraces2HashMap.get(key) != null) {
-//				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//				PredictionCalleeList.add(predictionvalue);
-//				}
-//				}
-//				
-//				List<String> PredictionCallerList = new ArrayList<String>();
-//				for (Method2Representation caller : CallersList) {
-//				String RequirementID = methodtrace.Requirement.ID;
-//				String MethodID = caller.methodid;
-//				String key = MethodID + "-" + RequirementID;
-//				
-//				if (methodtraces2HashMap.get(key) != null) {
-//				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-//				PredictionCallerList.add(predictionvalue);
-//				}
-//				}
-//				// methodtrace.setPrediction("");
-//				
-//				List<String> mylist;
-//				List<String> iterationValues = LogInfo.getIterationValues();
-//				for (String it : iterationValues) {
-//				System.out.print(it + ", ");
-//				}
-//				System.out.println();
-//				
-//				
-//				
-//				
-//				
-//				// ALL T CALLERS 
-//				if (!methodtrace.getCallerList().isEmpty() 
-//				&& methodtrace.getCallerList().AllCallersAreTWithAtLeast2T()
-//				&& methodtrace.getPrediction().trim().equals("E")
-//				
-//				) {
-//				// methodtrace.setPrediction("N");
-//				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers"); 
-//				
-//				// System.out.println("yes");
-//				}
-//				// ALL N CALLERS
-//				else if (!methodtrace.getCallerList().isEmpty() 
-//				&& methodtrace.getCallerList().AllCallersAreNWithAtLeast2N()
-//				&& methodtrace.getPrediction().trim().equals("E")
-//				
-//				) {
-//				
-//				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers"); 
-//				
-//				
-//				// System.out.println("yes");
-//				}
-//				
-//				
-//				
-//				
-//				
-//				k++;
-//				}
 				
 				
 				
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				// ALL CALLEES PATTERN 5
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
 				
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				// ALL CALLEES 
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				
 //				for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 //				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 //				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
@@ -1222,8 +1123,8 @@ public class AlgoFinal extends JFrame {
 //				
 //				
 //				// ALL T CALLEES 
-//				if (!methodtrace.getCalleeList().isEmpty() 
-//				&& methodtrace.getCalleeList().AllCalleesAreT() 
+//				if (!methodtrace.getPredictionCalleeList().isEmpty() 
+//				&& methodtrace.AllMethodTracePredictionCalleesEqualT() 
 //				&& methodtrace.getPrediction().trim().equals("E")
 //				
 //				) {
@@ -1235,8 +1136,8 @@ public class AlgoFinal extends JFrame {
 //				// System.out.println("yes");
 //				}
 //				// ALL N CALLEES
-//				else if (!methodtrace.getCalleeList().isEmpty() 
-//				&& methodtrace.getCalleeList().AllCalleesAreN() 
+//				else if (!methodtrace.getPredictionCalleeList().isEmpty() 
+//				&& methodtrace.AllMethodTracePredictionCalleesEqualN() 
 //				&& methodtrace.getPrediction().trim().equals("E")
 //				
 //				) {
@@ -1296,7 +1197,7 @@ public class AlgoFinal extends JFrame {
 		
 		
 		
-	
+		
 		
 		
 		
@@ -1350,19 +1251,15 @@ public class AlgoFinal extends JFrame {
 
 		LogInfoHashMap=SetFlagTotalPattern(LogInfoHashMap, TotalPattern, ProgramName); 
 
-		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals, RemainingpredictionValues);
+		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals);
 //		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
 		System.out.println("here 2");
 		bwfile1.write("NON OWNER CLASS PREDICTION 		"+ProgramName+" "+RemainingPattern.toString());
 		bwfile1.newLine();
-		bwfile1.write("Remaining Prediction Values 	"+ProgramName+" "+RemainingpredictionValues.toString());
-		bwfile1.newLine();
-		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, TotalPattern, LogInfoHashMap, ProgramName, TotalPredictionValues);
+		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, TotalPattern, LogInfoHashMap, ProgramName);
 		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
 				+ "   PREDICTION VALUES " + RemainingPattern.toString());
 		bwfile1.write("TOTAL PREDICTION 				"+ProgramName+" "+TotalPattern.toString());
-		bwfile1.newLine();
-		bwfile1.write("Prediction Values 				"+ProgramName+" "+TotalPredictionValues.toString());
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(
@@ -1459,20 +1356,6 @@ public class AlgoFinal extends JFrame {
 	}
 
 
-	public void CountTracesClassesValues(PredictionValues PredictionClassTraceBefore, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
-		// TODO Auto-generated method stub
-		
-			for(String mykey: methodtracesRequirementClass.keySet()) {
-				ClassTrace2 classtrace = methodtracesRequirementClass.get(mykey); 
-				
-				PredictionClassTraceBefore.ComputePredictionValues(PredictionClassTraceBefore, classtrace.getTraceFinal().trim());
-			}
-		
-		
-		
-		
-	}
-
 	private void SetPredictionFinalNonOwnerInheritance(LogInfo LogInfo, MethodTraceSubjectTSubjectN methodtrace,
 			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod,
 			HashMap<String, String> requirementMethodNameClassIDHashMap2, List<String> IterationValues,
@@ -1549,12 +1432,11 @@ public class AlgoFinal extends JFrame {
 	
 	}
 	/************************************************************************************************************************************************/
-	/**
-	 * @param remainingpredictionValues **********************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 	private void WriteInDatabaseAndComputePrecisionAndRecallRemaining(
 			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
 			LinkedHashMap<String, LogInfo> logHashMapRemaining, PredictionEvaluation Pattern,
-			String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, LinkedHashMap<String, String>loghashmapNewVals, PredictionValues remainingpredictionValues) {
+			String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, LinkedHashMap<String, String>loghashmapNewVals) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Pattern.ResetCounters(Pattern);
@@ -1568,10 +1450,17 @@ public class AlgoFinal extends JFrame {
 			String likelihood = myvalue.getLikelihood();
 			String why = myvalue.getWhy();
 
-			
-			
-			
-			
+			// String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
+			// +"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
+			// +"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND
+			// methodid='"+myvalue.MethodRepresentation.methodid+"'";
+			//
+			// st.executeUpdate(query);
+
+			// System.out.println(myvalue.getGoldfinal()+" "+myvalue.getPrediction());
+			// st.executeUpdate("UPDATE `traces` SET +"'WHERE
+			// requirementid='"+entry.RequirementID+"' AND method='"+name+"'");
+
 			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
@@ -1579,10 +1468,6 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							logHashMapRemaining.get(mykey).getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					
-					
-					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, logHashMapRemaining.get(mykey).getPrediction().trim()); 
-				
 				}
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust")) {
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null 
@@ -1590,11 +1475,6 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					
-					
-					
-					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, myvalue.getPrediction().trim()); 
-
 				}
 			}
 			
@@ -1671,9 +1551,9 @@ public class AlgoFinal extends JFrame {
 					MethodPredictionCallerList.add(predictionvalue);
 				}
 			}
-			MethodList<String> ml = new MethodList<String>(); 
-			methodtrace.setPredictionCalleeList(ml.ConvertToMethodList(MethodPredictionCalleeList));
-			methodtrace.setPredictionCallerList(ml.ConvertToMethodList(MethodPredictionCallerList));
+			
+			methodtrace.setPredictionCalleeList(MethodPredictionCalleeList);
+			methodtrace.setPredictionCallerList(MethodPredictionCallerList);
 			
 		}
 	}
@@ -1738,12 +1618,11 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/**
 	 * @param requirementClassHashMapNewValues
-	 * @param methodtracesRequirementClass2 
 	 * @return
 	 **********************************************************************************************************************************************/
 
 	private LinkedHashMap<String, String> GenerateNewValuesInTracesClasses(
-			LinkedHashMap<String, String> requirementClassHashMapNewValues, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
+			LinkedHashMap<String, String> requirementClassHashMapNewValues) {
 		// TODO Auto-generated method stub
 		int j = 0;
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
@@ -1795,7 +1674,9 @@ public class AlgoFinal extends JFrame {
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValues.get(0).equals("T") || TraceValues.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValues.get(0));
-					methodtracesRequirementClass.put(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,myclasstraceNew);
+					methodtracesRequirementClass.put(
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
+							myclasstraceNew);
 					requirementClassHashMapNewValues.put(
 							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
@@ -2214,10 +2095,9 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/**
 	 * @param logInfoHashMap
-	 * @param totalPredictionValues 
 	 **********************************************************************************************************************************************/
 	public void WriteInDatabaseAndComputePrecisionAndRecall(List<MethodTraceSubjectTSubjectN> methodtraces22,
-			PredictionEvaluation nEWPATTERNMethodCallsSetToT2, HashMap<String, LogInfo> logInfoHashMap, String ProgramName, PredictionValues totalPredictionValues) {
+			PredictionEvaluation nEWPATTERNMethodCallsSetToT2, HashMap<String, LogInfo> logInfoHashMap, String ProgramName) {
 		// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
@@ -2239,7 +2119,6 @@ public class AlgoFinal extends JFrame {
 				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
 				logInfoHashMap.put(ReqMethod, logInfo);
-				totalPredictionValues.ComputePredictionValues(totalPredictionValues, logInfo.getPrediction().trim());
 			}
 		}
 		else if(ProgramName.equals("itrust")|| ProgramName.equals("chess")) {
@@ -2249,8 +2128,6 @@ public class AlgoFinal extends JFrame {
 				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
 				logInfoHashMap.put(ReqMethod, logInfo);
-				totalPredictionValues.ComputePredictionValues(totalPredictionValues, logInfo.getPrediction().trim());
-
 			}
 		}
 
@@ -2263,12 +2140,11 @@ public class AlgoFinal extends JFrame {
 
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	/**
-	 * @param ownerClassPredictionValues **********************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 
-	public void WriteInDatabaseAndComputePrecisionAndRecallOwner(
+	public void WriteInDatabaseAndComputePrecisionAndRecall(
 			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
-			PredictionEvaluation Pattern, String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, PredictionValues ownerClassPredictionValues) throws SQLException {
+			PredictionEvaluation Pattern, String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3) throws SQLException {
 		// TODO Auto-generated method stub
 		Pattern.ResetCounters(Pattern);
 
@@ -2281,7 +2157,16 @@ public class AlgoFinal extends JFrame {
 			String likelihood = myvalue.getLikelihood();
 			String why = myvalue.getWhy();
 
-			
+			// String query="UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
+			// +"',"+"`likelihood` ='"+ likelihood+"',"+"`why` ='"+ why
+			// +"'WHERE requirementid='"+myvalue.Requirement.ID+"' AND
+			// methodid='"+myvalue.MethodRepresentation.methodid+"'";
+			//
+			// st.executeUpdate(query);
+
+			// System.out.println(myvalue.getGoldfinal()+" "+myvalue.getPrediction());
+			// st.executeUpdate("UPDATE `traces` SET +"'WHERE
+			// requirementid='"+entry.RequirementID+"' AND method='"+name+"'");
 
 			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
@@ -2290,7 +2175,6 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
 				}
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust")) {
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null 
@@ -2298,8 +2182,6 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
-
 				}
 			}
 			

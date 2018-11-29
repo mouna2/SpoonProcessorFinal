@@ -1,8 +1,8 @@
 package mypackage;
 
 public class MethodCalls {
-		Method2Representation Caller; 
-		Method2Representation Callee;
+		public Method2Representation Caller; 
+		public Method2Representation Callee;
 		public MethodCalls(Method2Representation caller, Method2Representation callee) {
 			super();
 			Caller = caller;
