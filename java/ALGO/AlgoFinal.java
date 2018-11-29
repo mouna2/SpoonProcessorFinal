@@ -207,6 +207,9 @@ public class AlgoFinal extends JFrame {
 
 		
 		BufferedWriter bwfile1 = null;
+		BufferedWriter bwTraceClass = null;
+	
+
 		if (ProgramName.equals("chess")) {
 			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
@@ -261,6 +264,12 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
+			
+			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesChess.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
+			
+			
 			db = new DatabaseReading2();
 			DatabaseReading2.MakePredictions();
 			classMethodsHashMap = db.getClassMethodsHashMap();
@@ -315,6 +324,12 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
+			
+			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesGantt.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
+			
+			
 			dbgantt = new DatabaseReading2Gantt();
 			DatabaseReading2Gantt.MakePredictions();
 			classMethodsHashMap = dbgantt.getClassMethodsHashMap();
@@ -368,6 +383,12 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
+			
+			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesJHotDraw.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
+			
+			
 			dbjhotdraw = new DatabaseReading2JHotDraw3();
 			DatabaseReading2JHotDraw3.MakePredictions();
 			classMethodsHashMap = dbjhotdraw.getClassMethodsHashMap();
@@ -421,6 +442,12 @@ public class AlgoFinal extends JFrame {
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
+			
+			File mytraceClass = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TracesClassesiTrust.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
+			
+			
 			dbitrust = new DatabaseReading2itrustfinal();
 			DatabaseReading2itrustfinal.MakePredictions();
 			classMethodsHashMap = dbitrust.getClassMethodsHashMap();
@@ -503,8 +530,18 @@ public class AlgoFinal extends JFrame {
 		
 		PredictionValues TotalPredictionValues = new PredictionValues(); 
 		PredictionValues RemainingpredictionValues = new PredictionValues(); 
+		PredictionValues PredictionClassTraceBefore = new PredictionValues(); 
+		PredictionValues PredictionClassTraceAfter = new PredictionValues(); 
 
-		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues);
+		CountTracesClassesValues(PredictionClassTraceBefore, methodtracesRequirementClass); 
+		bwTraceClass.write("BEFORE PATTERN 0 "+PredictionClassTraceBefore.toString());
+		bwTraceClass.newLine();
+
+		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues, methodtracesRequirementClass);
+		CountTracesClassesValues(PredictionClassTraceAfter, methodtracesRequirementClass); 
+
+		bwTraceClass.write("AFTER PATTERN 0 "+PredictionClassTraceAfter.toString());
+		bwTraceClass.close();
 		j = 0;
 
 		LogInfoHashMap = IntroduceNewValuesWithinLogInfoHashMap(RequirementClassHashMapNewValues, classMethodsHashMap,
@@ -1335,6 +1372,20 @@ public class AlgoFinal extends JFrame {
 	}
 
 
+	public void CountTracesClassesValues(PredictionValues PredictionClassTraceBefore, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
+		// TODO Auto-generated method stub
+		
+			for(String mykey: methodtracesRequirementClass.keySet()) {
+				ClassTrace2 classtrace = methodtracesRequirementClass.get(mykey); 
+				
+				PredictionClassTraceBefore.ComputePredictionValues(PredictionClassTraceBefore, classtrace.getTraceFinal().trim());
+			}
+		
+		
+		
+		
+	}
+
 	private void SetPredictionFinalNonOwnerInheritance(LogInfo LogInfo, MethodTraceSubjectTSubjectN methodtrace,
 			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod,
 			HashMap<String, String> requirementMethodNameClassIDHashMap2, List<String> IterationValues,
@@ -1600,11 +1651,12 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/**
 	 * @param requirementClassHashMapNewValues
+	 * @param methodtracesRequirementClass2 
 	 * @return
 	 **********************************************************************************************************************************************/
 
 	private LinkedHashMap<String, String> GenerateNewValuesInTracesClasses(
-			LinkedHashMap<String, String> requirementClassHashMapNewValues) {
+			LinkedHashMap<String, String> requirementClassHashMapNewValues, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
 		// TODO Auto-generated method stub
 		int j = 0;
 		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
@@ -1656,9 +1708,7 @@ public class AlgoFinal extends JFrame {
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValues.get(0).equals("T") || TraceValues.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValues.get(0));
-					methodtracesRequirementClass.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
-							myclasstraceNew);
+					methodtracesRequirementClass.put(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,myclasstraceNew);
 					requirementClassHashMapNewValues.put(
 							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
