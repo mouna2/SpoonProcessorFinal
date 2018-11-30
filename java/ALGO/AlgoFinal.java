@@ -1653,7 +1653,7 @@ public class AlgoFinal extends JFrame {
 			for (Method2Representation callee : CalleesList) {
 				String RequirementID = methodtrace.Requirement.ID;
 				String MethodID = callee.methodid;
-				String key = MethodID + "-" + RequirementID;
+				String key = RequirementID+ "-" +MethodID  ;
 				if (methodtraces2HashMap.get(key) != null) {
 					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
 					MethodPredictionCalleeList.add(predictionvalue);
@@ -1665,7 +1665,7 @@ public class AlgoFinal extends JFrame {
 			for (Method2Representation caller : CallersList) {
 				String RequirementID = methodtrace.Requirement.ID;
 				String MethodID = caller.methodid;
-				String key = MethodID + "-" + RequirementID;
+				String key = RequirementID+ "-" +MethodID  ;
 				if (methodtraces2HashMap.get(key) != null) {
 					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
 					MethodPredictionCallerList.add(predictionvalue);

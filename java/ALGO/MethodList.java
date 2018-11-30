@@ -16,7 +16,9 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	public MethodList<String> ConvertToMethodList(List<String> inputString)
 	{	this.clear();
-		this.addAll(inputString); 
+		for(String st: inputString) {
+			this.add(st); 
+		}
 		return this; 
 	}
 	

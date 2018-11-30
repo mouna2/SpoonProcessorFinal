@@ -1264,7 +1264,7 @@ if(myinterfacelist!=null) {
 				
 				String methodid= mytrace.MethodRepresentation.methodid; 
 				String RequirementID= mytrace.Requirement.getID(); 
-				String key=methodid+"-"+RequirementID; 
+				String key=RequirementID+"-"+methodid; 
 			//	 System.out.println("HEY");
 				if(methodtraceHashMap2.get(key)!=null) {
 					System.out.println("yes");

@@ -60,7 +60,7 @@ public class MethodTraceSubjectTSubjectN {
 	List<String> ChildrenList; 
 	List<String> ImplementationList; 
 	
-	MethodList<String> PredictionCalleeList; 
+	MethodList<String> CalleeList; 
 	MethodList<String> PredictionCallerList; 
 
 	
@@ -70,11 +70,12 @@ public class MethodTraceSubjectTSubjectN {
 	MethodList<String> Superclasses; 
 	MethodList<String> Children; 
 	public MethodList<String> getCalleeList() {
-		return PredictionCalleeList;
+		return CalleeList;
 	}
 
 	public void setPredictionCalleeList(MethodList<String> predictionCalleeList) {
-		PredictionCalleeList = predictionCalleeList;
+		
+		CalleeList = predictionCalleeList;
 	}
 
 	public MethodList<String> getCallerList() {
@@ -1297,7 +1298,7 @@ if(myinterfacelist!=null) {
 				
 				String methodid= mytrace.MethodRepresentation.methodid; 
 				String RequirementID= mytrace.Requirement.getID(); 
-				String key=methodid+"-"+RequirementID; 
+				String key=RequirementID+"-"+methodid; 
 			//	 System.out.println("HEY");
 				if(methodtraceHashMap2.get(key)!=null) {
 					System.out.println("yes");
