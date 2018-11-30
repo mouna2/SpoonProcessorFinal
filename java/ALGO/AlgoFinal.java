@@ -1667,6 +1667,7 @@ public class AlgoFinal extends JFrame {
 				String MethodID = caller.methodid;
 				String key = RequirementID+ "-" +MethodID  ;
 				if (methodtraces2HashMap.get(key) != null) {
+					
 					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
 					MethodPredictionCallerList.add(predictionvalue);
 				}
