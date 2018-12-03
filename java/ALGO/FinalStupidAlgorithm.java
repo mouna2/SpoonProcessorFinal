@@ -567,6 +567,8 @@ public class FinalStupidAlgorithm extends JFrame {
 			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 			System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstrace.getTraceFinal());
 			System.out.println("REQ METHOD ==========================="+reqmethod);
+			
+			System.out.println("REQ class ==========================="+methodtrace.getRequirement().ID+"-"+methodtrace.getClassRepresentation().classid);
 			LogInfoHashMap.put(reqmethod, loginfo); 
 			if (myclasstrace.getTraceFinal() != null) {
 				
@@ -602,7 +604,7 @@ public class FinalStupidAlgorithm extends JFrame {
 				}
 				ITERATION1++;
 			
-
+				System.out.println("======MY TRACE FINAL "+ tracegold2+" MY FINAL PREDICTION "+methodtrace.getPrediction());
 			j++;
 			
 		}
@@ -616,7 +618,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		 bwfile1.newLine();
 		 bwfile1.write("owner class prediction values	"+ProgramName+" "+OwnerClassPredictionValues.toString());
 		 bwfile1.newLine();
-		
+		 bwfile1.close();
 		
 		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
 				+ TotalPattern.toString());
@@ -896,7 +898,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			
 			
 			
-			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
+//			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
 						&& logHashMapRemaining.get(mykey)!=null) {
@@ -1614,7 +1616,6 @@ public class FinalStupidAlgorithm extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
 				}
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust")) {
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null 
@@ -1622,11 +1623,13 @@ public class FinalStupidAlgorithm extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
-					ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
 
 				}
 			}
-			
+			ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
+
+			System.out.println("PREDICTION "+myvalue.getPrediction().trim()+"   REAL GOLD FINAL "+myvalue.getGoldfinal().trim());
+
 
 		}
 		Pattern.toString();

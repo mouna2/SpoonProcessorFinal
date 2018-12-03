@@ -1301,6 +1301,7 @@ if(myinterfacelist!=null) {
 				String key=RequirementID+"-"+methodid; 
 			//	 System.out.println("HEY");
 				if(methodtraceHashMap2.get(key)!=null) {
+					System.out.println("KEY COMMON "+key);
 					System.out.println("yes");
 				}
 				 methodtraceHashMap2.put(key, mytrace); 

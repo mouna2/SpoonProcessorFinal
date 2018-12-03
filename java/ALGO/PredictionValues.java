@@ -31,9 +31,9 @@ public class PredictionValues {
 		public void ComputePredictionValues(PredictionValues remainingpredictionValues, String  prediction) {
 			
 			// TODO Auto-generated method stub
-			if(prediction.equals("T")) {
+			if(prediction.trim().equals("T")) {
 				remainingpredictionValues.T++; 
-			}else if(prediction.equals("N")) {
+			}else if(prediction.trim().equals("N")) {
 				remainingpredictionValues.N++; 
 			}else {
 				remainingpredictionValues.E++; 
