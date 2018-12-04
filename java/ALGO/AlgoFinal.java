@@ -2252,6 +2252,7 @@ public class AlgoFinal extends JFrame {
 			
 			String likelihood = mykey.getLikelihood();
 			String why = mykey.getWhy();
+			System.out.println("gold  " + mykey.getGoldfinal().trim() + " ------------  prediction  " + logInfo.getPrediction().trim());
 
 		if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")) {
 			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null && logInfo.isMyFlag()) {
@@ -2305,7 +2306,7 @@ public class AlgoFinal extends JFrame {
 
 			
 
-			//System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
+//			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
 				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
 						) {
