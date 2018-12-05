@@ -181,8 +181,8 @@ public class tracesmethods {
 	}
 
 	public boolean equals(tracesmethods t) {
-		if( classid.equals(t.classid) && requirementid.equals(t.requirementid)  && fullmethod.equals(t.fullmethod)   && methodid.equals(t.methodid)  && classname.equals(t.classname)
-				&& classid.equals(t.classid) && gold.equals(t.gold)  && subject.equals(t.subject)) {
+		if(  requirementid.equals(t.requirementid)     && methodid.equals(t.methodid)  
+				&& classid.equals(t.classid) ) {
 			return true; 
 		}
 	return false; 
@@ -201,6 +201,13 @@ public class tracesmethods {
 	
 	public tracesmethods() {
 		
+	}
+
+	public tracesmethods(String requirementid2, String methodid2, String classid2) {
+		// TODO Auto-generated constructor stub
+		this.requirementid=requirementid2; 
+		this.methodid=methodid2; 
+		this.classid=classid2; 
 	}
 
 	public void toString(List<tracesmethods> mylist) {

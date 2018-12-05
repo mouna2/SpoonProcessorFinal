@@ -54,79 +54,75 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	
-	
-	public boolean SomeCallerIsT() {
+	public boolean AllCalleesAreT() {
 		// TODO Auto-generated method stub
 		
-		if(this.contains("T") ) {
-			return true;
-		}
-		return false;
-	}
-	public boolean SomeCalleeIsT() {
-		// TODO Auto-generated method stub
-		
-		if(this.contains("T") ) {
+		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean AllCallersAreT(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
+	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+		// TODO Auto-generated method stub
+	
+		 
+
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation call : calls) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) call.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
+		}
+		if(PredictionList.contains("T") ) {
+			return true;
+		}
+		return false;
+	}
+	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement, List<Method2Representation> calls) {
+		// TODO Auto-generated method stub
+	
+		 
+
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation callee : calls) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) callee.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
+		}
+		if(PredictionList.contains("N") ) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean AllCallersAreT() {
 		// TODO Auto-generated method stub
 		
-		List<String> mycallers= new ArrayList<String>(); 
-		for( Method2Representation mycaller: method.getCallersList()) {
-			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
-			String value=reqPredictionsHashMap.get(requirement); 
-			mycallers.add(value); 
+		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
+			return true;
 		}
+		return false;
+	}
+	public boolean AllTs() {
+		// TODO Auto-generated method stub
 		
-		if(!mycallers.contains("N")  && mycallers.contains("T") && !mycallers.contains("E")) {
+		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
 			return true;
 		}
 		return false;
 	}
 	
 	
-	public boolean AllCalleesAreT(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
-		// TODO Auto-generated method stub
-		
-		List<String> mycallers= new ArrayList<String>(); 
-		for( Method2Representation mycaller: method.getCalleesList()) {
-			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
-			String value=reqPredictionsHashMap.get(requirement); 
-			mycallers.add(value); 
-		}
-		
-		if(!mycallers.contains("N")  && mycallers.contains("T") && !mycallers.contains("E")) {
-			return true;
-		}
-		return false;
-	}
-	
-	
-	public boolean AllNs(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
-		// TODO Auto-generated method stub
-		
-		List<String> mycallers= new ArrayList<String>(); 
-		for( Method2Representation mycaller: method.getCallersList()) {
-			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
-			String value=reqPredictionsHashMap.get(requirement); 
-			mycallers.add(value); 
-		}
-		
-		if(mycallers.contains("N")  && !mycallers.contains("T") && !mycallers.contains("E")) {
-			return true;
-		}
-		return false;
-	}
-	
-	
-	
-	
-	public boolean AllNs() {
+	public boolean AllCalleesAreN() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
@@ -136,19 +132,106 @@ public class MethodList<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllTs() {
+	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
 		// TODO Auto-generated method stub
 		
-		if(this.contains("T") && !this.contains("N")&& !this.contains("E")) {
-			return true; 
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation callee : calls) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) callee.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
 		}
 
-		return false; 
+		if(!PredictionList.contains("T")  && PredictionList.contains("N") && !PredictionList.contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public boolean AllCallersN(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
+		// TODO Auto-generated method stub
+		List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+		List<Method2Representation> CallersList = methodtrace.getCallersList();
+		 
+
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation callee : CallersList) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) callee.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
+		}
+
+		if(!PredictionList.contains("T")  && PredictionList.contains("N") && !PredictionList.contains("E")) {
+			return true;
+		}
+		return false;
 	}
 	
 	
 	
+	public boolean AllCalleesT(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
+		// TODO Auto-generated method stub
+		List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+		List<Method2Representation> CallersList = methodtrace.getCallersList();
+		 
+
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation callee : CalleesList) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) callee.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
+		}
+
+		if(PredictionList.contains("T")  && !PredictionList.contains("N") && !PredictionList.contains("E")) {
+			return true;
+		}
+		return false;
+	}
 	
+	
+	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+		// TODO Auto-generated method stub
+		
+		 
+
+		List<String> PredictionList = new ArrayList<String>();
+		for (Method2Representation callee : calls) {
+			String RequirementID = (String) methodtrace.Requirement.ID;
+			String MethodID = (String) callee.methodid;
+			String key = (String) (RequirementID + "-" + MethodID);
+			if (methodtraces2HashMap.get(key) != null) {
+				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
+				PredictionList.add(predictionvalue);
+			}
+		}
+
+		if(PredictionList.contains("T")  && !PredictionList.contains("N") && !PredictionList.contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	public boolean AllCallersAreN() {
+		// TODO Auto-generated method stub
+		
+		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
+			return true;
+		}
+		return false;
+	}
+
 
 
 	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
@@ -163,41 +246,7 @@ public class MethodList<String> extends ArrayList<String>{
 	}
 	
 	
-	
-	public boolean AllImplementationsAreT(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-		
 
-		return false; 
-	}
-	
-	public boolean AllSuperclassesAreT(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-
-		return false; 
-	}
-	
-	public boolean AllChildrenAreT(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(ChildFlag == true && childTraceValues.get(0).equals("T")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-		
-
-		return false; 
-	}
 	
 	
 	
@@ -217,41 +266,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllImplementationsAreN(boolean ImplementationFlag, List<String> implementationTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-		
 
-		return false; 
-	}
-	
-	public boolean AllSuperclassesAreN(boolean SuperclassFlag, List<String> superclassTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-		
-
-		return false; 
-	}
-	
-	public boolean AllChildrenAreN(boolean ChildFlag, List<String> childTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
-		// TODO Auto-generated method stub
-		
-		if(ChildFlag == true && childTraceValues.get(0).equals("N")
-				&& methodtrace.getPrediction().trim().equals("E")) {
-			return true;
-		}
-		
-
-		return false; 
-	}
 
 
 
@@ -268,6 +283,9 @@ public class MethodList<String> extends ArrayList<String>{
 		return splitted;
 	}
 
+
+
+	
 
 
 

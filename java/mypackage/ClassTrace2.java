@@ -194,7 +194,7 @@ public class ClassTrace2 {
 			int rowcountint= Integer.parseInt(rowcount); 
 		
 			int index=1; 
-			 ResultSet myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
+			 ResultSet myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses "); 
 			 while(myresults.next()) {
 				 ClassTrace2 myclasstrace= new ClassTrace2(); 
 				 Requirement2 requirement = new Requirement2(); 
@@ -222,7 +222,7 @@ public class ClassTrace2 {
 				 classtraceHashMapRequirementClass.put(ReqClass, myclasstrace); 
 			//	 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
 				 index++; 
-				 myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
+				
 				 System.out.println("INDEX 4 "+index);
 			 }
 			 
