@@ -167,7 +167,7 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.setTraceFinal(myresults.getString("gold"));
+				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
 				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 

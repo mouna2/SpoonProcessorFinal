@@ -28,6 +28,8 @@ public class MethodTraceSubjectTSubjectN {
 	public String gold4; 
 	public String goldAtLeast2; 
 	public String gold6; 
+	 Method2Representation methodrep2= new Method2Representation(); 
+
 	String prediction; 
 	String prediction2; 
 	String likelihood; 
@@ -39,14 +41,7 @@ public class MethodTraceSubjectTSubjectN {
 	List<MethodField2> MethodFieldE; 
 	
 	
-	public boolean isMyflag() {
-		return myflag;
-	}
-
-	public void setMyflag(boolean myflag) {
-		this.myflag = myflag;
-	}
-
+	
 	List<Parameter2> ParameterListT; 
 	List<Parameter2> ParameterListN; 
 	List<Parameter2> ParameterListE; 
@@ -69,7 +64,16 @@ public class MethodTraceSubjectTSubjectN {
 	MethodList<String> Implementations; 
 	MethodList<String> Superclasses; 
 	MethodList<String> Children; 
-	public MethodList<String> getCalleeList() {
+	
+	public boolean isMyflag() {
+		return myflag;
+	}
+
+	public void setMyflag(boolean myflag) {
+		this.myflag = myflag;
+	}
+
+	public MethodList<String> getCallees() {
 		return CalleeList;
 	}
 
@@ -78,7 +82,7 @@ public class MethodTraceSubjectTSubjectN {
 		CalleeList = predictionCalleeList;
 	}
 
-	public MethodList<String> getCallerList() {
+	public MethodList<String> getCallers() {
 		return PredictionCallerList;
 	}
 
@@ -1094,7 +1098,8 @@ public class MethodTraceSubjectTSubjectN {
 	
 	
 	
-	public  LinkedHashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn, HashMap<String, List<String>> classMethodsHashMap) throws SQLException {
+	public  LinkedHashMap<String, MethodTraceSubjectTSubjectN> ReadClassesRepresentationsVersion2(Connection conn, HashMap<String, List<String>> classMethodsHashMap, 	 HashMap<Method2Representation, HashMap<Requirement2, String>> FinalMethodHashMapReqGolds 
+) throws SQLException {
 		DatabaseReading2 db = new DatabaseReading2(); 
 		ClassDetails2 classdet= new ClassDetails2(); 
 		//CLASSESHASHMAP
@@ -1139,6 +1144,9 @@ public class MethodTraceSubjectTSubjectN {
 				 methodrep.setMethodname(myresults.getString("methodname"));
 				 methodrep.setFullmethodname(myresults.getString("fullmethod"));
 				 mytrace.setMethodRepresentation(methodrep);
+				 
+				 
+				 
 				 
 				 mytrace.setClassRepresentation(classrep);
 				 if(classMethodsHashMap.get(mytrace.getClassRepresentation().classid)!=null) {
@@ -1202,8 +1210,12 @@ if(myinterfacelist!=null) {
 				
 				 String id= mytrace.getMethodRepresentation().methodid; 
 				 
+				 methodrep2.setMethodid(myresults.getString("methodid"));
+				 methodrep2.setMethodname(myresults.getString("methodname"));
+				 methodrep2.setClassrep(classrep);
 				 
-				 
+				
+
 				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
 				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
 				 if(mycalleelist!=null) {
@@ -1957,7 +1969,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesEqualT() {
 		// TODO Auto-generated method stub
 		
-		if(!getCalleeList().contains("N")  && getCalleeList().contains("T") && !getCalleeList().contains("E")) {
+		if(!getCallees().contains("N")  && getCallees().contains("T") && !getCallees().contains("E")) {
 			return true;
 		}
 		return false;
@@ -1966,7 +1978,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersContainsAtLeast1T() {
 		// TODO Auto-generated method stub
 		
-		if(getCallerList().contains("T") ) {
+		if(getCallers().contains("T") ) {
 			return true;
 		}
 		return false;
@@ -1974,7 +1986,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesContainsAtLeast1T() {
 		// TODO Auto-generated method stub
 		
-		if(getCalleeList().contains("T") ) {
+		if(getCallees().contains("T") ) {
 			return true;
 		}
 		return false;
@@ -1983,7 +1995,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersEqualT() {
 		// TODO Auto-generated method stub
 		
-		if(!getCallerList().contains("N")  && getCallerList().contains("T") && !getCallerList().contains("E")) {
+		if(!getCallers().contains("N")  && getCallers().contains("T") && !getCallers().contains("E")) {
 			return true;
 		}
 		return false;
@@ -1993,7 +2005,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCalleesEqualN() {
 		// TODO Auto-generated method stub
 		
-		if(!getCalleeList().contains("T")  && getCalleeList().contains("N") && !getCalleeList().contains("E")) {
+		if(!getCallees().contains("T")  && getCallees().contains("N") && !getCallees().contains("E")) {
 			return true;
 		}
 		return false;
@@ -2005,7 +2017,7 @@ if(myinterfacelist!=null) {
 	public boolean AllMethodTracePredictionCallersEqualN() {
 		// TODO Auto-generated method stub
 		
-		if(!getCallerList().contains("T")  && getCallerList().contains("N") && !getCallerList().contains("E")) {
+		if(!getCallers().contains("T")  && getCallers().contains("N") && !getCallers().contains("E")) {
 			return true;
 		}
 		return false;

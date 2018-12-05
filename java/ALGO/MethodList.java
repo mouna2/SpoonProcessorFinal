@@ -3,11 +3,14 @@ package ALGO;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import mypackage.Method2Representation;
 import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.Requirement2;
 
 public class MethodList<String> extends ArrayList<String>{
 
@@ -51,14 +54,7 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllCalleesAreT() {
-		// TODO Auto-generated method stub
-		
-		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
-			return true;
-		}
-		return false;
-	}
+	
 	
 	public boolean SomeCallerIsT() {
 		// TODO Auto-generated method stub
@@ -77,17 +73,60 @@ public class MethodList<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AllCallersAreT() {
+	public boolean AllCallersAreT(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
 		// TODO Auto-generated method stub
 		
-		if(!this.contains("N")  && this.contains("T") && !this.contains("E")) {
+		List<String> mycallers= new ArrayList<String>(); 
+		for( Method2Representation mycaller: method.getCallersList()) {
+			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
+			String value=reqPredictionsHashMap.get(requirement); 
+			mycallers.add(value); 
+		}
+		
+		if(!mycallers.contains("N")  && mycallers.contains("T") && !mycallers.contains("E")) {
 			return true;
 		}
 		return false;
 	}
 	
 	
-	public boolean AllCalleesAreN() {
+	public boolean AllCalleesAreT(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
+		// TODO Auto-generated method stub
+		
+		List<String> mycallers= new ArrayList<String>(); 
+		for( Method2Representation mycaller: method.getCalleesList()) {
+			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
+			String value=reqPredictionsHashMap.get(requirement); 
+			mycallers.add(value); 
+		}
+		
+		if(!mycallers.contains("N")  && mycallers.contains("T") && !mycallers.contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	public boolean AllNs(Requirement2 requirement, HashMap<Method2Representation, HashMap<Requirement2, String>> finalMethodHashMapReqGolds, Method2Representation methodrep, MethodTraceSubjectTSubjectN method) {
+		// TODO Auto-generated method stub
+		
+		List<String> mycallers= new ArrayList<String>(); 
+		for( Method2Representation mycaller: method.getCallersList()) {
+			HashMap<Requirement2, String> reqPredictionsHashMap = finalMethodHashMapReqGolds.get(methodrep); 
+			String value=reqPredictionsHashMap.get(requirement); 
+			mycallers.add(value); 
+		}
+		
+		if(mycallers.contains("N")  && !mycallers.contains("T") && !mycallers.contains("E")) {
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	
+	public boolean AllNs() {
 		// TODO Auto-generated method stub
 		
 		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
@@ -97,30 +136,29 @@ public class MethodList<String> extends ArrayList<String>{
 	}
 	
 	
-	
-	
-	public boolean AllCallersAreN() {
+	public boolean AllTs() {
 		// TODO Auto-generated method stub
 		
-		if(!this.contains("T")  && this.contains("N") && !this.contains("E")) {
-			return true;
+		if(this.contains("T") && !this.contains("N")&& !this.contains("E")) {
+			return true; 
 		}
-		return false;
+
+		return false; 
 	}
+	
+	
+	
+	
 
 
-
-	public boolean AllInterfacesAreT(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
-//		else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T") && !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -134,10 +172,7 @@ public class MethodList<String> extends ArrayList<String>{
 			return true;
 		}
 		
-//		else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -148,10 +183,7 @@ public class MethodList<String> extends ArrayList<String>{
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
-//		else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -163,10 +195,7 @@ public class MethodList<String> extends ArrayList<String>{
 			return true;
 		}
 		
-//		else if(ChildFlag == true && childTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -175,17 +204,14 @@ public class MethodList<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllInterfacesAreN(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")
 				&& methodtrace.getPrediction().trim().equals("E")) {
 			return true;
 		}
-//		else if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")&& !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -199,10 +225,7 @@ public class MethodList<String> extends ArrayList<String>{
 			return true;
 		}
 		
-//		else if(ImplementationFlag == true && implementationTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -214,11 +237,7 @@ public class MethodList<String> extends ArrayList<String>{
 			return true;
 		}
 		
-//		else if(SuperclassFlag == true && superclassTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-//			
-//		}else {
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 	
@@ -230,11 +249,7 @@ public class MethodList<String> extends ArrayList<String>{
 			return true;
 		}
 		
-//		else if(ChildFlag == true && childTraceValues.get(0).equals("N") && !methodtrace.getPrediction().trim().equals("E")) {
-//			
-//		}else if( !methodtrace.getPrediction().trim().equals("E")){
-//			System.out.println("hey");
-//		}
+
 		return false; 
 	}
 

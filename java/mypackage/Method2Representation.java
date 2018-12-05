@@ -1,15 +1,19 @@
 package mypackage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Method2Representation {
 	public String methodid; 
 	public String methodname;
 	public String fullmethodname;
+	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
+
 	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
-	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
+	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
+	
 	public Method2Representation(String methodid, String methodname) {
 		super();
 		this.methodid = methodid;
@@ -29,6 +33,12 @@ public class Method2Representation {
 	}
 	public void setMethodname(String methodname) {
 		this.methodname = methodname;
+	}
+	public HashMap<Requirement2, String> getFinalMethodHashMap() {
+		return FinalMethodHashMap;
+	}
+	public void setFinalMethodHashMap(HashMap<Requirement2, String> finalMethodHashMap) {
+		FinalMethodHashMap = finalMethodHashMap;
 	}
 	@Override
 	public String toString() {
@@ -51,6 +61,26 @@ public class Method2Representation {
 	}
 	
 	
+	public Method2Representation(String methodid, String methodname, String fullmethodname,
+			ClassRepresentation2 classrep, HashMap<Requirement2, String> finalMethodHashMap) {
+		super();
+		this.methodid = methodid;
+		this.methodname = methodname;
+		this.fullmethodname = fullmethodname;
+		this.classrep = classrep;
+		FinalMethodHashMap = finalMethodHashMap;
+	}
+	
+	
+	
+	public Method2Representation(String methodid, String methodname, String fullmethodname,
+			ClassRepresentation2 classrep) {
+		super();
+		this.methodid = methodid;
+		this.methodname = methodname;
+		this.fullmethodname = fullmethodname;
+		this.classrep = classrep;
+	}
 	public List<RequirementGold> getRequirementsGold() {
 		return requirementsGold;
 	}
@@ -75,12 +105,14 @@ public class Method2Representation {
 	public void setFullmethodname(String fullmethodname) {
 		this.fullmethodname = fullmethodname;
 	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((classrep == null) ? 0 : classrep.hashCode());
-		result = prime * result + ((fullmethodname == null) ? 0 : fullmethodname.hashCode());
 		result = prime * result + ((methodid == null) ? 0 : methodid.hashCode());
 		result = prime * result + ((methodname == null) ? 0 : methodname.hashCode());
 		return result;
@@ -98,11 +130,6 @@ public class Method2Representation {
 			if (other.classrep != null)
 				return false;
 		} else if (!classrep.equals(other.classrep))
-			return false;
-		if (fullmethodname == null) {
-			if (other.fullmethodname != null)
-				return false;
-		} else if (!fullmethodname.equals(other.fullmethodname))
 			return false;
 		if (methodid == null) {
 			if (other.methodid != null)

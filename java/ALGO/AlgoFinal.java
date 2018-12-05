@@ -707,8 +707,8 @@ public class AlgoFinal extends JFrame {
 
 				// methodtrace.setPrediction("");
 
-				if (    !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-						&& methodtrace.getCalleeList().AllCalleesAreT() && methodtrace.getCallerList().AllCallersAreT() 					
+				if (    !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
+						&& methodtrace.getCallees().AllTs() && methodtrace.getCallers().AllTs() 					
 						&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -721,8 +721,8 @@ public class AlgoFinal extends JFrame {
 					// //System.out.println("yes");
 				}
 				// PURE N PATTERN
-				else if ( !methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN()
+				else if ( !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
+						&& methodtrace.getCallees().AllNs() && methodtrace.getCallers().AllNs()
 						&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -736,8 +736,8 @@ public class AlgoFinal extends JFrame {
 
 				 
 				// PURE T LEAF PATTERN
-				 if (	methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-						 && methodtrace.getCalleeList().AllCalleesAreT() 
+				 if (	methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
+						 && methodtrace.getCallees().AllTs() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -748,8 +748,8 @@ public class AlgoFinal extends JFrame {
 					// //System.out.println("yes");
 				}
 				// PURE N LEAF PATTERN
-				 else if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
-						 && methodtrace.getCalleeList().AllCalleesAreN() 
+				 else if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
+						 && methodtrace.getCallees().AllNs() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -812,8 +812,8 @@ public class AlgoFinal extends JFrame {
 				//System.out.println();
 				
 				// MIXED T PATTERN
-				 if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-					&& methodtrace.getCalleeList().SomeCalleeIsT() && methodtrace.getCallerList().SomeCallerIsT() 
+				 if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
+					&& methodtrace.getCallees().SomeCalleeIsT() && methodtrace.getCallers().SomeCallerIsT() 
 					&& methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -824,9 +824,9 @@ public class AlgoFinal extends JFrame {
 					// //System.out.println("yes");
 				}
 				// MIXED N PATTERN
-				 else if (!methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty()
+				 else if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
 						
-						&& methodtrace.getCalleeList().AllCalleesAreN() && methodtrace.getCallerList().AllCallersAreN() 
+						&& methodtrace.getCallees().AllNs() && methodtrace.getCallers().AllNs() 
 						
 						&& methodtrace.getPrediction().trim().equals("E")
 
@@ -842,8 +842,8 @@ public class AlgoFinal extends JFrame {
 				
 				 
 				// MIXED T LEAF PATTERN
-				 if (methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-						 && methodtrace.getCallerList().SomeCallerIsT() 
+				 if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
+						 && methodtrace.getCallers().SomeCallerIsT() 
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -851,8 +851,8 @@ public class AlgoFinal extends JFrame {
 								iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf", methodtraces2HashMap); 
 
 				}// MIXED N LEAF PATTERN
-				 else if(methodtrace.getCalleeList().isEmpty() && !methodtrace.getCallerList().isEmpty() 
-						 && methodtrace.getCallerList().AllCallersAreN()
+				 else if(methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
+						 && methodtrace.getCallers().AllNs()
 						 && methodtrace.getPrediction().trim().equals("E")
 
 				) {
@@ -895,213 +895,299 @@ public class AlgoFinal extends JFrame {
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
 			
-			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
-				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-				List<String> IterationValues = LogInfo.getIterationValues();
-				MethodList<String> interfaces = methodtrace.getInterfacesFinalList();
-				MethodList<String> implementations = methodtrace.getImplementationFinalList(); 
-				MethodList<String> superclasses = methodtrace.getSuperClassesFinalList(); 
-				MethodList<String> children = methodtrace.getChildrenFinalList(); 
-
-				List<String> interfaceTraceValues = new ArrayList<String>();
-				for (String inter : interfaces) {
-					String[] inters = inter.split("-");
-					String interVal = inters[0];
-					
-					interfaceTraceValues.add(interVal);
-				}
-
-				List<String> implementationsTraceValues = new ArrayList<String>();
-				for (String inter : implementations) {
-					String[] inters = inter.split("-");
-					String interVal = inters[0];
-					
-					implementationsTraceValues.add(interVal);
-				}
-
-				List<String> superclassesTraceValues = new ArrayList<String>();
-				for (String inter : superclasses) {
-					String[] inters = inter.split("-");
-					String interVal = inters[0];
-					
-					superclassesTraceValues.add(interVal);
-				}
-
-				List<String> childrenTraceValues = new ArrayList<String>();
-				for (String inter : children) {
-					String[] inters = inter.split("-");
-					String interVal = inters[0];
-				
-					childrenTraceValues.add(interVal);
-				}
-				boolean InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
-						&& interfaceTraceValues.size() >= 1;
-				boolean ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
-						&& implementationsTraceValues.size() >= 1;
-				boolean SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
-						&& superclassesTraceValues.size() >= 1;
-				boolean ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
-						&& childrenTraceValues.size() >= 1;
-
-
-				if (
-						methodtrace.getInterfacesFinalList().AllInterfacesAreT(InterfacesFlag, interfaceTraceValues, methodtrace) 
-						||methodtrace.getImplementationFinalList().AllImplementationsAreT(ImplementationsFlag, implementationsTraceValues, methodtrace)
-						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreT(SuperclassesFlag, superclassesTraceValues, methodtrace)
-						||methodtrace.getChildrenFinalList().AllChildrenAreT(ChildrenFlag, childrenTraceValues, methodtrace))
-						
-					
-
-				{
-					
-					 SetPredictionFinalNonOwnerInheritance(LogInfo, methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
-								IterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
-					
-
-				}
-				else if (methodtrace.getInterfacesFinalList().AllInterfacesAreN(InterfacesFlag, interfaceTraceValues, methodtrace) 
-						||methodtrace.getImplementationFinalList().AllImplementationsAreN(ImplementationsFlag, implementationsTraceValues, methodtrace)
-						||methodtrace.getSuperClassesFinalList().AllSuperclassesAreN(SuperclassesFlag, superclassesTraceValues, methodtrace)
-						||methodtrace.getChildrenFinalList().AllChildrenAreN(ChildrenFlag, childrenTraceValues, methodtrace)
-
-				)
-
-				{
-					
-					 SetPredictionFinalNonOwnerInheritance(LogInfo, methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
-								IterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
-					
-
-				}
-
-
-			}
-	
-			
-			
-			
-			
-			
-			
-				
-				
-				
-
-				
-			
-			
-			
-		
-			
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				// ALL CALLERS PATTERN 4.1
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				
-				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-	
-					// MIXED PATTERNS
-					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-					List<Method2Representation> CallersList = methodtrace.getCallersList();
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-	
-					List<String> PredictionCalleeList = new ArrayList<String>();
-					for (Method2Representation callee : CalleesList) {
-						String RequirementID = methodtrace.Requirement.ID;
-						String MethodID = callee.methodid;
-						String key = MethodID + "-" + RequirementID;
-						if (methodtraces2HashMap.get(key) != null) {
-							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-							PredictionCalleeList.add(predictionvalue);
-						}
-					}
-	
-					List<String> PredictionCallerList = new ArrayList<String>();
-					for (Method2Representation caller : CallersList) {
-						String RequirementID = methodtrace.Requirement.ID;
-						String MethodID = caller.methodid;
-						String key = MethodID + "-" + RequirementID;
-	
-						if (methodtraces2HashMap.get(key) != null) {
-							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-							PredictionCallerList.add(predictionvalue);
-						}
-					}
-					// methodtrace.setPrediction("");
-	
-					List<String> mylist;
-					List<String> iterationValues = LogInfo.getIterationValues();
-					for (String it : iterationValues) {
-						System.out.print(it + ", ");
-					}
-					//System.out.println();
-					
-					
-					
-				
-					
-					// ALL T CALLERS 
-					 if (!methodtrace.getCallerList().isEmpty() 
-						&& methodtrace.getCallerList().AllCallersAreT() 
-						&& methodtrace.getPrediction().trim().equals("E")
-	
-					) {
-						// methodtrace.setPrediction("N");
-						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
-
-						// //System.out.println("yes");
-					}
-					// ALL N CALLERS
-					 else if (!methodtrace.getCallerList().isEmpty() 
-								&& methodtrace.getCallerList().AllCallersAreN() 
-								&& methodtrace.getPrediction().trim().equals("E")
-	
-							) {
-	
-						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
-
-	
-						// //System.out.println("yes");
-					}
-					
-	
-					
-					 
-				
-					k++;
-				}
-				
-
-		
-				
-				
-			
-			
-			
-			
-			
-				
-				
-				
-				
-				
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				// ALL CALLERS PATTERN 4.2
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				
+//			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+//				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
+//				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+//				List<String> IterationValues = LogInfo.getIterationValues();
+//				MethodList<String> interfaces = methodtrace.getInterfacesFinalList();
+//				MethodList<String> implementations = methodtrace.getImplementationFinalList(); 
+//				MethodList<String> superclasses = methodtrace.getSuperClassesFinalList(); 
+//				MethodList<String> children = methodtrace.getChildrenFinalList(); 
+//
+//				List<String> interfaceTraceValues = new ArrayList<String>();
+//				for (String inter : interfaces) {
+//					String[] inters = inter.split("-");
+//					String interVal = inters[0];
+//					
+//					interfaceTraceValues.add(interVal);
+//				}
+//
+//				List<String> implementationsTraceValues = new ArrayList<String>();
+//				for (String inter : implementations) {
+//					String[] inters = inter.split("-");
+//					String interVal = inters[0];
+//					
+//					implementationsTraceValues.add(interVal);
+//				}
+//
+//				List<String> superclassesTraceValues = new ArrayList<String>();
+//				for (String inter : superclasses) {
+//					String[] inters = inter.split("-");
+//					String interVal = inters[0];
+//					
+//					superclassesTraceValues.add(interVal);
+//				}
+//
+//				List<String> childrenTraceValues = new ArrayList<String>();
+//				for (String inter : children) {
+//					String[] inters = inter.split("-");
+//					String interVal = inters[0];
+//				
+//					childrenTraceValues.add(interVal);
+//				}
+//				boolean InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
+//						&& interfaceTraceValues.size() >= 1;
+//				boolean ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
+//						&& implementationsTraceValues.size() >= 1;
+//				boolean SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
+//						&& superclassesTraceValues.size() >= 1;
+//				boolean ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
+//						&& childrenTraceValues.size() >= 1;
+//
+//
+//				if (
+//						methodtrace.getInterfacesFinalList().AllTs(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.getImplementationFinalList().AllTs(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.getSuperClassesFinalList().AllTs(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.getChildrenFinalList().AllTs(ChildrenFlag, childrenTraceValues, methodtrace))
+//						
+//					
+//
+//				{
+//					
+//					 SetPredictionFinalNonOwnerInheritance(LogInfo, methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
+//								IterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
+//					
+//
+//				}
+//				else if (methodtrace.getInterfacesFinalList().AllNs(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.getImplementationFinalList().AllNs(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.getSuperClassesFinalList().AllNs(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.getChildrenFinalList().AllNs(ChildrenFlag, childrenTraceValues, methodtrace)
+//
+//				)
+//
+//				{
+//					
+//					 SetPredictionFinalNonOwnerInheritance(LogInfo, methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
+//								IterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
+//					
+//
+//				}
+//
+//
+//			}
+//	
+//			
+//			
+//			
+//			
+//			
+//			
+//				
+//				
+//				
+//
+//				
+//			
+//			
+//			
+//		
+//			
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				// ALL CALLERS PATTERN 4.1
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				
+//				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+//					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+//					LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+//	
+//					// MIXED PATTERNS
+//					List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+//					List<Method2Representation> CallersList = methodtrace.getCallersList();
+//					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+//	
+//					List<String> PredictionCalleeList = new ArrayList<String>();
+//					for (Method2Representation callee : CalleesList) {
+//						String RequirementID = methodtrace.Requirement.ID;
+//						String MethodID = callee.methodid;
+//						String key = MethodID + "-" + RequirementID;
+//						if (methodtraces2HashMap.get(key) != null) {
+//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//							PredictionCalleeList.add(predictionvalue);
+//						}
+//					}
+//	
+//					List<String> PredictionCallerList = new ArrayList<String>();
+//					for (Method2Representation caller : CallersList) {
+//						String RequirementID = methodtrace.Requirement.ID;
+//						String MethodID = caller.methodid;
+//						String key = MethodID + "-" + RequirementID;
+//	
+//						if (methodtraces2HashMap.get(key) != null) {
+//							String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//							PredictionCallerList.add(predictionvalue);
+//						}
+//					}
+//					// methodtrace.setPrediction("");
+//	
+//					List<String> mylist;
+//					List<String> iterationValues = LogInfo.getIterationValues();
+//					for (String it : iterationValues) {
+//						System.out.print(it + ", ");
+//					}
+//					//System.out.println();
+//					
+//					
+//					
+//				
+//					
+//					// ALL T CALLERS 
+//					 if (!methodtrace.getCallers().isEmpty() 
+//						&& methodtrace.getCallers().AllTs() 
+//						&& methodtrace.getPrediction().trim().equals("E")
+//	
+//					) {
+//						// methodtrace.setPrediction("N");
+//						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+//									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
+//
+//						// //System.out.println("yes");
+//					}
+//					// ALL N CALLERS
+//					 else if (!methodtrace.getCallers().isEmpty() 
+//								&& methodtrace.getCallers().AllNs() 
+//								&& methodtrace.getPrediction().trim().equals("E")
+//	
+//							) {
+//	
+//						 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+//									iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
+//
+//	
+//						// //System.out.println("yes");
+//					}
+//					
+//	
+//					
+//					 
+//				
+//					k++;
+//				}
+//				
+//
+//		
+//				
+//				
+//			
+//			
+//			
+//			
+//			
+//				
+//				
+//				
+//				
+//				
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				// ALL CALLERS PATTERN 4.2
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				
+////				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+////				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+////				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+////				
+////				// MIXED PATTERNS
+////				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
+////				List<Method2Representation> CallersList = methodtrace.getCallersList();
+////				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+////				
+////				List<String> PredictionCalleeList = new ArrayList<String>();
+////				for (Method2Representation callee : CalleesList) {
+////				String RequirementID = methodtrace.Requirement.ID;
+////				String MethodID = callee.methodid;
+////				String key = MethodID + "-" + RequirementID;
+////				if (methodtraces2HashMap.get(key) != null) {
+////				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+////				PredictionCalleeList.add(predictionvalue);
+////				}
+////				}
+////				
+////				List<String> PredictionCallerList = new ArrayList<String>();
+////				for (Method2Representation caller : CallersList) {
+////				String RequirementID = methodtrace.Requirement.ID;
+////				String MethodID = caller.methodid;
+////				String key = MethodID + "-" + RequirementID;
+////				
+////				if (methodtraces2HashMap.get(key) != null) {
+////				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+////				PredictionCallerList.add(predictionvalue);
+////				}
+////				}
+////				// methodtrace.setPrediction("");
+////				
+////				List<String> mylist;
+////				List<String> iterationValues = LogInfo.getIterationValues();
+////				for (String it : iterationValues) {
+////				System.out.print(it + ", ");
+////				}
+////				//System.out.println();
+////				
+////				
+////				
+////				
+////				
+////				// ALL T CALLERS 
+////				if (!methodtrace.getCallerList().isEmpty() 
+////				&& methodtrace.getCallerList().AllCallersAreTWithAtLeast2T()
+////				&& methodtrace.getPrediction().trim().equals("E")
+////				
+////				) {
+////				// methodtrace.setPrediction("N");
+////				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+////				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
+////				
+////				// //System.out.println("yes");
+////				}
+////				// ALL N CALLERS
+////				else if (!methodtrace.getCallerList().isEmpty() 
+////				&& methodtrace.getCallerList().AllCallersAreNWithAtLeast2N()
+////				&& methodtrace.getPrediction().trim().equals("E")
+////				
+////				) {
+////				
+////				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
+////				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
+////				
+////				
+////				// //System.out.println("yes");
+////				}
+////				
+////				
+////				
+////				
+////				
+////				k++;
+////				}
+//				
+//				
+//				
+//				
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//ALL CALLEES PATTERN 5
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				
 //				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 //				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 //				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 //				
-//				// MIXED PATTERNS
+//				//MIXED PATTERNS
 //				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
 //				List<Method2Representation> CallersList = methodtrace.getCallersList();
 //				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
@@ -1128,7 +1214,7 @@ public class AlgoFinal extends JFrame {
 //				PredictionCallerList.add(predictionvalue);
 //				}
 //				}
-//				// methodtrace.setPrediction("");
+//				//methodtrace.setPrediction("");
 //				
 //				List<String> mylist;
 //				List<String> iterationValues = LogInfo.getIterationValues();
@@ -1141,125 +1227,39 @@ public class AlgoFinal extends JFrame {
 //				
 //				
 //				
-//				// ALL T CALLERS 
-//				if (!methodtrace.getCallerList().isEmpty() 
-//				&& methodtrace.getCallerList().AllCallersAreTWithAtLeast2T()
+//				
+//				
+//				
+//				
+//				
+//				//ALL T CALLEES 
+//				if (!methodtrace.getCallees().isEmpty() 
+//				&& methodtrace.getCallees().AllTs() 
 //				&& methodtrace.getPrediction().trim().equals("E")
 //				
 //				) {
-//				// methodtrace.setPrediction("N");
+//				//methodtrace.setPrediction("N");
 //				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
+//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
 //				
-//				// //System.out.println("yes");
+//				
+//				////System.out.println("yes");
 //				}
-//				// ALL N CALLERS
-//				else if (!methodtrace.getCallerList().isEmpty() 
-//				&& methodtrace.getCallerList().AllCallersAreNWithAtLeast2N()
+//				//ALL N CALLEES
+//				else if (!methodtrace.getCallees().isEmpty() 
+//				&& methodtrace.getCallees().AllNs()
 //				&& methodtrace.getPrediction().trim().equals("E")
 //				
 //				) {
 //				
 //				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
+//				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
 //				
 //				
-//				// //System.out.println("yes");
+//				////System.out.println("yes");
 //				}
-//				
-//				
-//				
-//				
-//				
 //				k++;
-//				}
-				
-				
-				
-				
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//ALL CALLEES PATTERN 5
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				
-				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
-				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-				
-				//MIXED PATTERNS
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-				List<Method2Representation> CallersList = methodtrace.getCallersList();
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-				
-				List<String> PredictionCalleeList = new ArrayList<String>();
-				for (Method2Representation callee : CalleesList) {
-				String RequirementID = methodtrace.Requirement.ID;
-				String MethodID = callee.methodid;
-				String key = MethodID + "-" + RequirementID;
-				if (methodtraces2HashMap.get(key) != null) {
-				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-				PredictionCalleeList.add(predictionvalue);
-				}
-				}
-				
-				List<String> PredictionCallerList = new ArrayList<String>();
-				for (Method2Representation caller : CallersList) {
-				String RequirementID = methodtrace.Requirement.ID;
-				String MethodID = caller.methodid;
-				String key = MethodID + "-" + RequirementID;
-				
-				if (methodtraces2HashMap.get(key) != null) {
-				String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-				PredictionCallerList.add(predictionvalue);
-				}
-				}
-				//methodtrace.setPrediction("");
-				
-				List<String> mylist;
-				List<String> iterationValues = LogInfo.getIterationValues();
-				for (String it : iterationValues) {
-				System.out.print(it + ", ");
-				}
-				//System.out.println();
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				//ALL T CALLEES 
-				if (!methodtrace.getCalleeList().isEmpty() 
-				&& methodtrace.getCalleeList().AllCalleesAreT() 
-				&& methodtrace.getPrediction().trim().equals("E")
-				
-				) {
-				//methodtrace.setPrediction("N");
-				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
-				
-				
-				////System.out.println("yes");
-				}
-				//ALL N CALLEES
-				else if (!methodtrace.getCalleeList().isEmpty() 
-				&& methodtrace.getCalleeList().AllCalleesAreN() 
-				&& methodtrace.getPrediction().trim().equals("E")
-				
-				) {
-				
-				SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
-				iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
-				
-				
-				////System.out.println("yes");
-				}
-				k++;
-				}	
+//				}	
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// END PATTERNS 

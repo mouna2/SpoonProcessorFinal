@@ -94,5 +94,40 @@ public class Requirement2 {
 	public String toString() {
 		return "Requirement2 [ID=" + ID + ", RequirementName=" + RequirementName + "]";
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
+		result = prime * result + ((RequirementName == null) ? 0 : RequirementName.hashCode());
+		result = prime * result + ((RequirementsHashMap == null) ? 0 : RequirementsHashMap.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Requirement2 other = (Requirement2) obj;
+		if (ID == null) {
+			if (other.ID != null)
+				return false;
+		} else if (!ID.equals(other.ID))
+			return false;
+		if (RequirementName == null) {
+			if (other.RequirementName != null)
+				return false;
+		} else if (!RequirementName.equals(other.RequirementName))
+			return false;
+		if (RequirementsHashMap == null) {
+			if (other.RequirementsHashMap != null)
+				return false;
+		} else if (!RequirementsHashMap.equals(other.RequirementsHashMap))
+			return false;
+		return true;
+	}
 	
 }
