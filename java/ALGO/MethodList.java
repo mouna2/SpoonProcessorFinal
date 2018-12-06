@@ -206,22 +206,23 @@ public class MethodList<String> extends ArrayList<String>{
 		// TODO Auto-generated method stub
 		
 		 
-
-		List<String> PredictionList = new ArrayList<String>();
 		for (Method2Representation callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
-			if (methodtraces2HashMap.get(key) != null) {
-				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
-				PredictionList.add(predictionvalue);
+			if (methodtraces2HashMap.get(key) == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
 			}
+			
+			if (methodtraces2HashMap.get(key).getPrediction()!="T") return false; 
 		}
 
-		if(PredictionList.contains("T")  && !PredictionList.contains("N") && !PredictionList.contains("E")) {
-			return true;
-		}
-		return false;
+		return true;
 	}
 	public boolean AllCallersAreN() {
 		// TODO Auto-generated method stub
