@@ -604,7 +604,7 @@ public class AlgoFinal extends JFrame {
 				
 
 				} else if (tracegold2.equals("N")) {
-					System.out.println("ReqMethod "+reqmethod);
+//					System.out.println("ReqMethod "+reqmethod);
 					SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "N", methodtraces2HashMap); 
 					counter++; 
 
@@ -855,10 +855,10 @@ public class AlgoFinal extends JFrame {
 				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
 				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 				List<String> IterationValues = LogInfo.getIterationValues();
-				MethodList<String> interfaces = methodtrace.getInterfacesFinalList();
-				MethodList<String> implementations = methodtrace.getImplementationFinalList(); 
-				MethodList<String> superclasses = methodtrace.getSuperClassesFinalList(); 
-				MethodList<String> children = methodtrace.getChildrenFinalList(); 
+				Methods<String> interfaces = methodtrace.getInterfacesFinalList();
+				Methods<String> implementations = methodtrace.getImplementationFinalList(); 
+				Methods<String> superclasses = methodtrace.getSuperClassesFinalList(); 
+				Methods<String> children = methodtrace.getChildrenFinalList(); 
 				String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.ClassRepresentation.classid; 
 				List<String> interfaceTraceValues = new ArrayList<String>();
 				List<String> implementationsTraceValues = new ArrayList<String>();
@@ -1187,9 +1187,11 @@ public class AlgoFinal extends JFrame {
 		
 
 		LogInfoHashMap=SetFlagTotalPattern(LogInfoHashMap, TotalPattern, ProgramName); 
-
+		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
 		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals, RemainingpredictionValues);
-//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
+		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
+
+		//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
 		//System.out.println("here 2");
 		bwfile1.write("NON OWNER CLASS PREDICTION 		"+ProgramName+" "+RemainingPattern.toString());
 		bwfile1.newLine();
@@ -1310,8 +1312,8 @@ public class AlgoFinal extends JFrame {
 	}
 
 	public void computeVariables(boolean InterfacesFlag, boolean ImplementationsFlag, boolean SuperclassesFlag,
-			boolean ChildrenFlag, MethodList<String> interfaces, MethodList<String> implementations,
-			MethodList<String> superclasses, MethodList<String> children, List<String> implementationsTraceValues, List<String> childrenTraceValues, List<String> superclassesTraceValues, List<String> interfaceTraceValues) {
+			boolean ChildrenFlag, Methods<String> interfaces, Methods<String> implementations,
+			Methods<String> superclasses, Methods<String> children, List<String> implementationsTraceValues, List<String> childrenTraceValues, List<String> superclassesTraceValues, List<String> interfaceTraceValues) {
 		// TODO Auto-generated method stub
 		for (String inter : interfaces) {
 			String[] inters = inter.split("-");
@@ -1457,10 +1459,11 @@ public class AlgoFinal extends JFrame {
 			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
 			String likelihood = myvalue.getLikelihood();
 			String why = myvalue.getWhy();
+			String reqMethod= requirementID+"-"+methodid; 
+			
+			
+		//	System.out.println(Pattern.toString());
 
-			
-			
-			
 			
 			//System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
@@ -1469,6 +1472,11 @@ public class AlgoFinal extends JFrame {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							logHashMapRemaining.get(mykey).getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
+				//	System.out.println(Pattern.toString());
+					if(Result.equals("TN")) {
+						System.out.println("REQMETHOD========>"+reqMethod);
+
+					}
 					
 					
 				
@@ -1537,35 +1545,35 @@ public class AlgoFinal extends JFrame {
 			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 			LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 			// methodtrace.setPrediction("");
-			List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-			List<Method2Representation> CallersList = methodtrace.getCallersList();
+			MethodList  CalleesList = methodtrace.getCalleesList();
+			MethodList CallersList = methodtrace.getCallersList();
 
-			MethodList<String> MethodPredictionCalleeList = new MethodList<String>();
-			for (Method2Representation callee : CalleesList) {
-				String RequirementID = methodtrace.getRequirement().ID; 
-				String MethodID = callee.methodid; 
-				String key = RequirementID+ "-" +MethodID  ;
-				if (methodtraces2HashMap.get(key) != null) {
-					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-					MethodPredictionCalleeList.add(predictionvalue);
-				}
-
-			}
-
-			MethodList<String> MethodPredictionCallerList = new MethodList<String>();
-			for (Method2Representation caller : CallersList) {
-				String RequirementID = methodtrace.getRequirement().ID; 
-				String MethodID = caller.methodid; 
-				String key = RequirementID+ "-" +MethodID  ;
-				if (methodtraces2HashMap.get(key) != null) {
-					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
-					MethodPredictionCallerList.add(predictionvalue);
-				}
-			}
-			MethodList<String> ml = new MethodList<String>(); 
-			methodtrace.setPredictionCalleeList(MethodPredictionCalleeList);
+//			MethodList MethodPredictionCalleeList = new MethodList();
+//			for (Method2Representation callee : CalleesList) {
+//				String RequirementID = methodtrace.getRequirement().ID; 
+//				String MethodID = callee.methodid; 
+//				String key = RequirementID+ "-" +MethodID  ;
+//				if (methodtraces2HashMap.get(key) != null) {
+//					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//					MethodPredictionCalleeList.add(predictionvalue);
+//				}
+//
+//			}
+//
+//			MethodList<String> MethodPredictionCallerList = new MethodList<String>();
+//			for (Method2Representation caller : CallersList) {
+//				String RequirementID = methodtrace.getRequirement().ID; 
+//				String MethodID = caller.methodid; 
+//				String key = RequirementID+ "-" +MethodID  ;
+//				if (methodtraces2HashMap.get(key) != null) {
+//					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//					MethodPredictionCallerList.add(predictionvalue);
+//				}
+//			}
+			MethodList ml = new MethodList(); 
+			methodtrace.setPredictionCalleeList(CalleesList);
 			//System.out.println(methodtrace.getCalleeList());
-			methodtrace.setPredictionCallerList(MethodPredictionCallerList);
+			methodtrace.setPredictionCallerList(CallersList);
 			//System.out.println(methodtrace.getCallerList());
 
 			
@@ -2276,18 +2284,18 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
-		String ProgramName = "chess";
-		AlgoFinal frame = new AlgoFinal(
-				ProgramName);
-
-		String ProgramName2 = "gantt";
-			 frame = new AlgoFinal(ProgramName2);
-
-		String ProgramName3 = "itrust";
-			 frame = new AlgoFinal(ProgramName3);
+//		String ProgramName = "chess";
+//		AlgoFinal frame = new AlgoFinal(
+//				ProgramName);
+//
+//		String ProgramName2 = "gantt";
+//			 frame = new AlgoFinal(ProgramName2);
+//
+//		String ProgramName3 = "itrust";
+//			 frame = new AlgoFinal(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new AlgoFinal(ProgramName4);
+		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

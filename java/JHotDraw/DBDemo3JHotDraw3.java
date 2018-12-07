@@ -15,11 +15,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -3562,6 +3564,95 @@ public class DBDemo3JHotDraw3 {
 //	// TODO Auto-generated catch block
 //	e.printStackTrace();
 //}
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//
+//
+//HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
+//RequirementIDNameHashMap.put("1", "01: Paint figures and connections"); 
+//RequirementIDNameHashMap.put("2", "02: Create figures and connections"); 
+//RequirementIDNameHashMap.put("3", "03: Delete figures"); 
+//RequirementIDNameHashMap.put("4", "04: Delete connections"); 
+//RequirementIDNameHashMap.put("5", "05: Select and deselect figures"); 
+//RequirementIDNameHashMap.put("6", "06: Move- scale- or rotate figures"); 
+//RequirementIDNameHashMap.put("7", "07: Change properties of figures"); 
+//RequirementIDNameHashMap.put("8", "08: Edit  text in figures"); 
+//RequirementIDNameHashMap.put("9", "09: Align figures"); 
+//RequirementIDNameHashMap.put("10", "10: Change z-ordering"); 
+//RequirementIDNameHashMap.put("11", "11: Grouping and ungrouping figures"); 
+//RequirementIDNameHashMap.put("12", "12: Launch the application"); 
+//RequirementIDNameHashMap.put("13", "13: Open an existing drawing"); 
+//RequirementIDNameHashMap.put("14", "14: Save a drawing"); 
+//RequirementIDNameHashMap.put("15", "15: Scalability:  Drawings should be as large as possible"); 
+//RequirementIDNameHashMap.put("16", "16: Performance: Quickly redraw figures if changed"); 
+//RequirementIDNameHashMap.put("17", "17: Performance: Quickly locate figures based on x-y coordinates"); 
+//RequirementIDNameHashMap.put("18", "18: Interoperability: Support data exchange via the clipboard"); 
+//RequirementIDNameHashMap.put("19", "19: Usability: Support operating system specific user interfaces"); 
+//RequirementIDNameHashMap.put("20", "20: Performance: Strive for a short startup latency"); 
+//RequirementIDNameHashMap.put("21", "21: Recoverability: periodic auto-save"); 
+//
+//
+//
+//ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
+//while(mymeths.next()){
+//String methodid = mymeths.getString("id"); 
+//String method = mymeths.getString("methodabbreviation"); 
+//String methodname = mymeths.getString("methodname"); 
+//String fullmethod = mymeths.getString("fullmethod"); 
+//
+//String classname = mymeths.getString("classname"); 
+//String classid = mymeths.getString("classid"); 
+//
+//
+//
+//for(String key: RequirementIDNameHashMap.keySet()) {
+//tracesmethods tr= new tracesmethods(key, methodid,  classid); 
+//
+//if(!tr.contains(TraceListMethods, tr)) {
+//String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
+//st.executeUpdate(statement);
+//}
+//}
+//
+//
+//}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+
+
+HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
+
+String classname=""; 
+String classid=""; 
+String requirementname=""; 
+String requirementid="";
+ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
+while(Traces.next()){
+classname = Traces.getString("classname"); 
+classid = Traces.getString("classid"); 
+requirementname = Traces.getString("requirement"); 
+requirementid = Traces.getString("requirementid"); 
+
+
+String key= requirementid+"-"+classid; 
+String val= requirementid+"%"+requirementname+"%"+classid+"%"+classname; 
+
+RequirementClassHashMap.put(key, val); 
+
+
+}
+
+for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
+String myvalue = entry.getValue(); 
+String[] myvalues = myvalue.split("%"); 
+String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]+"')";	
+st2.executeUpdate(statement8);
+}
 ///*********************************************************************************************************************************************************************************/	
 ///*********************************************************************************************************************************************************************************/	
 ///*********************************************************************************************************************************************************************************/   
@@ -3624,278 +3715,278 @@ public class DBDemo3JHotDraw3 {
 //	/*********************************************************************************************************************************************************************************/   
 ////BUILD TABLE FOR TRACES CLASSES 
 
-List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
-Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
-
-try {
-	 int counter2=1; 
-	 file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\JHotDrawFiles\\TracesJHotDrawFinal2.txt");
-		fileReader = new FileReader(file);
-		bufferedReader = new BufferedReader(fileReader);	
-		line = bufferedReader.readLine(); 
-		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
-		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>(); 
-		
-		while ((line = bufferedReader.readLine()) != null) {
-			String requirement=null; 
-			 String method=null; 
-			 String gold=null; 
-			 String subject=null; 
-			 String methodid=null; 
-			 String classname=null; 
-			 String classid=null; 
-			 String requirementid=null; 
-			String calleeid=null; 
-			String goldprediction=null; 
-			String calleeidexecuted=null; 
-			String callerid=null; 
-			String callerexecutedid=null; 
-			List<List<String>> myinterfacesList= new ArrayList<List<String>>(); 
-			System.out.println(line);
-			String[] linesplitted = line.split(","); 
-			method=linesplitted[1]; 
-			requirement=linesplitted[2]; 
-			gold=linesplitted[4]; 
-			subject=linesplitted[5]; 
-			method=method.replace("/", "."); 
-			method=method.replace(";", ","); 
-			method=method.replace("Lde", "de"); 
-
-			  method=method.replaceAll("clinit", "init"); 
-		//	shortmethod=ParseLine(line); 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER");
-			method=AddParenthesis(method);
-
-			  method=RewriteFullMethod(method);
-				method=AddParenthesis(method);
-
-			  System.out.println("HERE IS THIS long METHOD========>"+ method); 
-				method=AddParenthesis(method);
-
-				method=RewriteFullMethod(method);
-				method=AddParenthesis(method);
-
-				method=method.trim(); 
-				String shortmethod=method.substring(0, method.indexOf("("));
-				System.out.println("METHOD PARSED::::::::::::::"+method);
-
-				System.out.println();
-				System.out.println("LINE====>"+line);
-				System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
-				method=dbg.RewriteFullMethodRemoveDollarTraces(method); 
-
-				System.out.println("hey");
-				method=AddParenthesis(method);
-
-				method=RewriteFullMethod(method);
-				method=AddParenthesis(method);
-
-				method=ReplaceLorgLjava(method);
-				System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "COUNTER"); 
-			methodid=null; 
-			String myclass= method.substring(0, method.lastIndexOf(".")); 
-			method=method.substring(0, method.indexOf(")")+1);
-
-			if(method.contains(",)")) {
-				method=method.replaceAll(",\\)", ")");
-			}
-			
-//			 shortmethod=ParseLine(line); 
-			 
-			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER222: "+counter2); 
-//			method=method.replaceAll("Lnet", "net");
-	 String goldvalue=null; 
-	 String subjectvalue=null; 
-		
-	method=method.replaceAll("bytede", "byte,de"); 
-	method=method.replaceAll("booleanI", "boolean,int"); 
-	method=method.replaceAll("intshort", "int,short"); 
-
-
-	
-	
-	
-	
-	
-	
-
-	 callerexecutedid=null; 
-	System.out.println(line);
-	method=linesplitted[1]; 
-	requirement=linesplitted[2]; 
-	gold=linesplitted[4]; 
-	subject=linesplitted[5]; 
-	//method=method.replaceAll("java/awt/geom/2D$Double$Double", "java/awt/geom/2D$Double/Double"); 
-	method=method.replace("/", "."); 
-	method=method.replace(";", ","); 
-	method=ReplaceLorgLjava(method); 
-	if(method.contains("2D$Double")==false) {
-	method=RewriteFullMethod(method);
-	}
-	method=method.trim(); 
-	 shortmethod=method.substring(0, method.indexOf("("));
-	System.out.println("METHOD PARSED::::::::::::::"+method);
-	method=method.replaceAll("clinit", "init"); 
-	System.out.println();
-	System.out.println("LINE====>"+line);
-	System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
-	
-	if(method.contains("2D$Double")==false) {
-		method=dbg.RewriteFullMethodRemoveDollarTraces(method); 
-	}
-
-		System.out.println("hey");
-		method=AddParenthesis(method);
-		if(method.contains("2D$Double")==false) {
-			method=RewriteFullMethod(method);
-		}
-		int methlength = method.length();
-		int methlengthParen = method.replace(")", "").length();
-
-		if(methlength - methlengthParen >= 2) {
-		    // Two or more apostrophes
-			method=method.substring(0, method.indexOf(")")+1); 
-		}
-		method=ReplaceLorgLjava(method);
-		System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "   COUNTER"); 
-	
-	
-	
-	classname=null; 
-	method=method.trim();
-	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.fullmethod ='"+method+"'"); 
-	while(classnames.next()){
-		classname = classnames.getString("classname"); 
-		   }
-	classid=null; 
-	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.fullmethod ='"+method+"'"); 
-	while(classids.next()){
-		classid = classids.getString("classid"); 
-		   }
-
-
-	
-	requirement=requirement.trim(); 
-	requirementid=null; 
-	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
-	while(requirements.next()){
-		requirementid = requirements.getString("id"); 
-		   }	
-	
-
-	goldvalue=null; 
-	List<String> goldvaluesList= new ArrayList<String>();
-	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-	 while(goldvalues.next()){
-			goldvalue = goldvalues.getString("gold"); 
-
-		    goldvalue=goldvalue.trim();
-			goldvaluesList.add(goldvalue);
-			   }
-	 
-	 subjectvalue=null; 
-	 List<String> subjectvaluesList= new ArrayList<String>();
-		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
-		while(subjectvalues.next()){
-			subjectvalue = subjectvalues.getString("subject"); 
-
-			subjectvalue=subjectvalue.trim();
-			subjectvaluesList.add(subjectvalue);
-			   }
-		String ReqClass=requirementid+"-"+classid;
-		if(requirementid!=null && classid!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
-			
-	 //1 TT
-			
-		if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TT");
-			st.executeUpdate(statement8);
-
-	 }
-	 //2 ET
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "ET");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //3 TE
-	 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TE");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //4 NN
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NN");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //5 NT
-	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NT");
-
-			st.executeUpdate(statement8);
-
-	 }
-	 //6 EN
-	 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "EN");
-
-			st.executeUpdate(statement8);
-
-	 }
-		//7 NE
-	 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "NE");
-
-			st.executeUpdate(statement8);
-
-	 }
-		 //8 TN
-	 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
-			RequirementClassHashMap.put(ReqClass, "TN");
-
-			st.executeUpdate(statement8);
-
-	 }
-		 // 9 EE
-	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
-			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
-			RequirementClassHashMap.put(ReqClass, "EE");
-
-			st.executeUpdate(statement8);
-
-	 }
-		}
-	
-	
-
-		
-	
-counter2++; 
-
-
-		}
-	
-	
-	
-	
-	}
-	catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
+//List<RequirementClassKey> RequirementClassKeys= new ArrayList<RequirementClassKey>(); 
+//Hashtable<String,String> RequirementClassHashMap=new Hashtable<String,String>(); 
+//
+//try {
+//	 int counter2=1; 
+//	 file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\JHotDrawFiles\\TracesJHotDrawFinal2.txt");
+//		fileReader = new FileReader(file);
+//		bufferedReader = new BufferedReader(fileReader);	
+//		line = bufferedReader.readLine(); 
+//		Hashtable<RequirementClassKey,String> GoldHashTable=new Hashtable<RequirementClassKey,String>();  
+//		Hashtable<RequirementClassKey,String> SubjectHashTable=new Hashtable<RequirementClassKey,String>(); 
+//		
+//		while ((line = bufferedReader.readLine()) != null) {
+//			String requirement=null; 
+//			 String method=null; 
+//			 String gold=null; 
+//			 String subject=null; 
+//			 String methodid=null; 
+//			 String classname=null; 
+//			 String classid=null; 
+//			 String requirementid=null; 
+//			String calleeid=null; 
+//			String goldprediction=null; 
+//			String calleeidexecuted=null; 
+//			String callerid=null; 
+//			String callerexecutedid=null; 
+//			List<List<String>> myinterfacesList= new ArrayList<List<String>>(); 
+//			System.out.println(line);
+//			String[] linesplitted = line.split(","); 
+//			method=linesplitted[1]; 
+//			requirement=linesplitted[2]; 
+//			gold=linesplitted[4]; 
+//			subject=linesplitted[5]; 
+//			method=method.replace("/", "."); 
+//			method=method.replace(";", ","); 
+//			method=method.replace("Lde", "de"); 
+//
+//			  method=method.replaceAll("clinit", "init"); 
+//		//	shortmethod=ParseLine(line); 
+//			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER");
+//			method=AddParenthesis(method);
+//
+//			  method=RewriteFullMethod(method);
+//				method=AddParenthesis(method);
+//
+//			  System.out.println("HERE IS THIS long METHOD========>"+ method); 
+//				method=AddParenthesis(method);
+//
+//				method=RewriteFullMethod(method);
+//				method=AddParenthesis(method);
+//
+//				method=method.trim(); 
+//				String shortmethod=method.substring(0, method.indexOf("("));
+//				System.out.println("METHOD PARSED::::::::::::::"+method);
+//
+//				System.out.println();
+//				System.out.println("LINE====>"+line);
+//				System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
+//				method=dbg.RewriteFullMethodRemoveDollarTraces(method); 
+//
+//				System.out.println("hey");
+//				method=AddParenthesis(method);
+//
+//				method=RewriteFullMethod(method);
+//				method=AddParenthesis(method);
+//
+//				method=ReplaceLorgLjava(method);
+//				System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "COUNTER"); 
+//			methodid=null; 
+//			String myclass= method.substring(0, method.lastIndexOf(".")); 
+//			method=method.substring(0, method.indexOf(")")+1);
+//
+//			if(method.contains(",)")) {
+//				method=method.replaceAll(",\\)", ")");
+//			}
+//			
+////			 shortmethod=ParseLine(line); 
+//			 
+//			System.out.println("HERE IS THIS SHORT METHOD========>"+ method+ "COUNTER222: "+counter2); 
+////			method=method.replaceAll("Lnet", "net");
+//	 String goldvalue=null; 
+//	 String subjectvalue=null; 
+//		
+//	method=method.replaceAll("bytede", "byte,de"); 
+//	method=method.replaceAll("booleanI", "boolean,int"); 
+//	method=method.replaceAll("intshort", "int,short"); 
+//
+//
+//	
+//	
+//	
+//	
+//	
+//	
+//
+//	 callerexecutedid=null; 
+//	System.out.println(line);
+//	method=linesplitted[1]; 
+//	requirement=linesplitted[2]; 
+//	gold=linesplitted[4]; 
+//	subject=linesplitted[5]; 
+//	//method=method.replaceAll("java/awt/geom/2D$Double$Double", "java/awt/geom/2D$Double/Double"); 
+//	method=method.replace("/", "."); 
+//	method=method.replace(";", ","); 
+//	method=ReplaceLorgLjava(method); 
+//	if(method.contains("2D$Double")==false) {
+//	method=RewriteFullMethod(method);
+//	}
+//	method=method.trim(); 
+//	 shortmethod=method.substring(0, method.indexOf("("));
+//	System.out.println("METHOD PARSED::::::::::::::"+method);
+//	method=method.replaceAll("clinit", "init"); 
+//	System.out.println();
+//	System.out.println("LINE====>"+line);
+//	System.out.println("HERE IS THIS SHORT METHOD BEFORE:::::::::::::"+ method+ "COUNTER"); 
+//	
+//	if(method.contains("2D$Double")==false) {
+//		method=dbg.RewriteFullMethodRemoveDollarTraces(method); 
+//	}
+//
+//		System.out.println("hey");
+//		method=AddParenthesis(method);
+//		if(method.contains("2D$Double")==false) {
+//			method=RewriteFullMethod(method);
+//		}
+//		int methlength = method.length();
+//		int methlengthParen = method.replace(")", "").length();
+//
+//		if(methlength - methlengthParen >= 2) {
+//		    // Two or more apostrophes
+//			method=method.substring(0, method.indexOf(")")+1); 
+//		}
+//		method=ReplaceLorgLjava(method);
+//		System.out.println("HERE IS THIS SHORT METHOD AFTER:::::::::::::"+ method+ "   COUNTER"); 
+//	
+//	
+//	
+//	classname=null; 
+//	method=method.trim();
+//	ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.fullmethod ='"+method+"'"); 
+//	while(classnames.next()){
+//		classname = classnames.getString("classname"); 
+//		   }
+//	classid=null; 
+//	ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.fullmethod ='"+method+"'"); 
+//	while(classids.next()){
+//		classid = classids.getString("classid"); 
+//		   }
+//
+//
+//	
+//	requirement=requirement.trim(); 
+//	requirementid=null; 
+//	ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname LIKE'%"+requirement+"%'"); 
+//	while(requirements.next()){
+//		requirementid = requirements.getString("id"); 
+//		   }	
+//	
+//
+//	goldvalue=null; 
+//	List<String> goldvaluesList= new ArrayList<String>();
+//	ResultSet goldvalues = st.executeQuery("SELECT traces.gold from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//	 while(goldvalues.next()){
+//			goldvalue = goldvalues.getString("gold"); 
+//
+//		    goldvalue=goldvalue.trim();
+//			goldvaluesList.add(goldvalue);
+//			   }
+//	 
+//	 subjectvalue=null; 
+//	 List<String> subjectvaluesList= new ArrayList<String>();
+//		ResultSet subjectvalues = st.executeQuery("SELECT traces.subject from traces where traces.requirementid ='"+requirementid+"' and traces.classid='"+classid+"'"); 
+//		while(subjectvalues.next()){
+//			subjectvalue = subjectvalues.getString("subject"); 
+//
+//			subjectvalue=subjectvalue.trim();
+//			subjectvaluesList.add(subjectvalue);
+//			   }
+//		String ReqClass=requirementid+"-"+classid;
+//		if(requirementid!=null && classid!=null && RequirementClassHashMap.containsKey(ReqClass)==false) {
+//			
+//	 //1 TT
+//			
+//		if(goldvaluesList.contains("T") && subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TT");
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //2 ET
+//	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "ET");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //3 TE
+//	 else if(goldvaluesList.contains("T") && subjectvaluesList.contains("E")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //4 NN
+//	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //5 NT
+//	 else if((goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false )&& subjectvaluesList.contains("T")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"T"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NT");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//	 //6 EN
+//	 else if( goldvaluesList.contains("E") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "EN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		//7 NE
+//	 else if( (goldvaluesList.contains("T")==false && goldvaluesList.contains("E")==false ) && (subjectvaluesList.contains("E") )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"N" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "NE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		 //8 TN
+//	 else if(goldvaluesList.contains("T") && (subjectvaluesList.contains("T")==false && subjectvaluesList.contains("E")==false )) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"T" +"','" +"N"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "TN");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		 // 9 EE
+//	 else if(goldvaluesList.contains("E") && subjectvaluesList.contains("E")) {
+//			String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','"  +classname+"','" +classid+"','"+"E" +"','" +"E"+"')";	
+//			RequirementClassHashMap.put(ReqClass, "EE");
+//
+//			st.executeUpdate(statement8);
+//
+//	 }
+//		}
+//	
+//	
+//
+//		
+//	
+//counter2++; 
+//
+//
+//		}
+//	
+//	
+//	
+//	
+//	}
+//	catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 	}
 	
 	

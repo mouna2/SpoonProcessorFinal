@@ -12,7 +12,7 @@ public class Method2Representation {
 
 	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
-	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
+	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
 	
 	public Method2Representation(String methodid, String methodname) {
 		super();

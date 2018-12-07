@@ -972,8 +972,8 @@ public class FinalStupidAlgorithm extends JFrame {
 			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 			LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 			// methodtrace.setPrediction("");
-			List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-			List<Method2Representation> CallersList = methodtrace.getCallersList();
+			MethodList CalleesList = methodtrace.getCalleesList();
+			MethodList CallersList = methodtrace.getCallersList();
 
 			List<String> MethodPredictionCalleeList = new ArrayList<String>();
 			for (Method2Representation callee : CalleesList) {
@@ -997,9 +997,9 @@ public class FinalStupidAlgorithm extends JFrame {
 					MethodPredictionCallerList.add(predictionvalue);
 				}
 			}
-			MethodList<String> ml = new MethodList<String>(); 
-			methodtrace.setPredictionCalleeList(ml.ConvertToMethodList(MethodPredictionCalleeList));
-			methodtrace.setPredictionCallerList(ml.ConvertToMethodList(MethodPredictionCallerList));
+			MethodList ml = new MethodList(); 
+			methodtrace.setPredictionCalleeList(CalleesList);
+			methodtrace.setPredictionCallerList(CallersList);
 			
 		}
 	}

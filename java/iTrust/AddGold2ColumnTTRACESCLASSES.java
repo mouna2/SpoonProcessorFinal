@@ -163,49 +163,61 @@ public class AddGold2ColumnTTRACESCLASSES {
 				//THIS IS GOLD 2
 				 requirementid=traces.getString("requirementid").trim(); 
 				 classid=traces.getString("classid").trim(); 
-				String ReqClass=requirementid+"-"+classid;
-				RequirementClassHashMap.put(ReqClass, mylist); 
+				String goldfinal =traces.getString("goldfinal").trim(); 
 
+				String ReqClass=requirementid+"-"+classid;
+				if(RequirementClassHashMap.get(ReqClass)==null) {
+					mylist= new ArrayList<String>(); 
+					RequirementClassHashMap.put(ReqClass, mylist); 
+					List<String> list = RequirementClassHashMap.get(ReqClass); 
+					list.add(goldfinal); 
+					RequirementClassHashMap.put(ReqClass, list); 
+				}else {
+					List<String> list = RequirementClassHashMap.get(ReqClass); 
+					list.add(goldfinal); 
+					RequirementClassHashMap.put(ReqClass, list); 
+				}
 			
 	   		   }
 			counter++; 
+			System.out.println(counter);
 		}
 		
 		int counter2=0; 
-		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-//		    System.out.println(counter2 + " = " );
-		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-		     List<String> List= new ArrayList<String>(); 
-		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
-			while(traces.next()){		
-				//THIS IS GOLD 2
-				gold2=null; 
-			
-				 requirementid=traces.getString("requirementid").trim(); 
-				 classid=traces.getString("classid").trim(); 
-				if(traces.getString("goldfinal")!=null) {
-					 gold2=traces.getString("goldfinal").trim(); 
-					 if(gold2!=null) {
-						 List.add(gold2); 
-					 }
-				}
-				
-				
-				
-			
-	   		   }
-			String ReqClass=requirementid+"-"+classid;
-			
-			RequirementClassHashMap2.put(ReqClass, List); 
-			counter2++; 
-			System.out.println(counter2);
-		}
+//		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
+////		    System.out.println(counter2 + " = " );
+//		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+//		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+//		     List<String> List= new ArrayList<String>(); 
+//		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
+//			while(traces.next()){		
+//				//THIS IS GOLD 2
+//				gold2=null; 
+//			
+//				 requirementid=traces.getString("requirementid").trim(); 
+//				 classid=traces.getString("classid").trim(); 
+//				if(traces.getString("goldfinal")!=null) {
+//					 gold2=traces.getString("goldfinal").trim(); 
+//					 if(gold2!=null) {
+//						 List.add(gold2); 
+//					 }
+//				}
+//				
+//				
+//				
+//			
+//	   		   }
+//			String ReqClass=requirementid+"-"+classid;
+//			
+//			RequirementClassHashMap2.put(ReqClass, List); 
+//			counter2++; 
+//			System.out.println(counter2);
+//		}
 		
 		
 		
 		 counter2=0; 
-		for (Entry<String, List<String>> entry : RequirementClassHashMap2.entrySet()) {
+		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
 			 System.out.println(" mmmmmmm "+counter2  );
 			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 

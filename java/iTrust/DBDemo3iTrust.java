@@ -3184,178 +3184,279 @@ file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\iTr
  List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
 tracesmethodscallees tmc = null; 
 int COUNTER3=1; 
-//try {
-//	
-//	line = bufferedReader.readLine(); 
-//	while ((line = bufferedReader.readLine()) != null) {
-//		String interfaces_info[][] = new String[8][8];
-//		String[] inter_item= new String[4]; 
-//		 String requirement=null; 
-//		 String method=null; 
-//		 String gold=null; 
-//		 String subject=null; 
-//		 String methodid=null; 
-//		 String classname=null; 
-//		 String classid=null; 
-//		 String requirementid=null; 
-//		String calleeid=null; 
-//		String goldprediction=null; 
-//		String calleeidexecuted=null; 
-//		String callerid=null; 
-//		String callerexecutedid=null; 
-//		System.out.println(line);
-//		String[] linesplitted = line.split(","); 
-//		method=linesplitted[1]; 
-//		requirement=linesplitted[2]; 
-//		gold=linesplitted[4]; 
-//		subject=linesplitted[5]; 
-//		method=method.replace("/", "."); 
-//		method=method.replace(";", ","); 
-//		method=method.replaceAll("clinit", "init"); 
-//		method=RewriteFullMethod(method);
-//		System.out.println("METHOD PARSED::::::::::::::"+method);
-//
-//method=method.trim(); 
-//String shortmethod=method.substring(0, method.indexOf("("));
-//	method=ReplaceLeduLjava(method); 
-//	System.out.println("MY METHOD"+method);
-//String shortmethodname=null; 
-////			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname LIKE '%"+method+"%'"); 
-////			while(methodids.next()){
-////				methodid = methodids.getString("id"); 
-////				classname = methodids.getString("classname"); 
-////				classid = methodids.getString("classid"); 
-////				   }
-////			
-//			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname = '"+method+"'"); 
-//
-////			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname LIKE '%"+method+"%'"); 
+try {
+	
+	line = bufferedReader.readLine(); 
+	while ((line = bufferedReader.readLine()) != null) {
+		String interfaces_info[][] = new String[8][8];
+		String[] inter_item= new String[4]; 
+		 String requirement=null; 
+		 String method=null; 
+		 String gold=null; 
+		 String subject=null; 
+		 String methodid=null; 
+		 String classname=null; 
+		 String classid=null; 
+		 String requirementid=null; 
+		String calleeid=null; 
+		String goldprediction=null; 
+		String calleeidexecuted=null; 
+		String callerid=null; 
+		String callerexecutedid=null; 
+		System.out.println(line);
+		String[] linesplitted = line.split(","); 
+		method=linesplitted[1]; 
+		requirement=linesplitted[2]; 
+		gold=linesplitted[4]; 
+		subject=linesplitted[5]; 
+		method=method.replace("/", "."); 
+		method=method.replace(";", ","); 
+		method=method.replaceAll("clinit", "init"); 
+		method=RewriteFullMethod(method);
+		System.out.println("METHOD PARSED::::::::::::::"+method);
+
+method=method.trim(); 
+String shortmethod=method.substring(0, method.indexOf("("));
+	method=ReplaceLeduLjava(method); 
+	System.out.println("MY METHOD"+method);
+String shortmethodname=null; 
+//			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname LIKE '%"+method+"%'"); 
 //			while(methodids.next()){
 //				methodid = methodids.getString("id"); 
-//				shortmethodname = methodids.getString("methodname"); 
 //				classname = methodids.getString("classname"); 
 //				classid = methodids.getString("classid"); 
 //				   }
-//	
-////		if(methodid==null) {
-////			 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+method+"'"); 
-////			while(methodids.next()){
-////				methodid = methodids.getString("id"); 
-////				classname = methodids.getString("classname"); 
-////				classid = methodids.getString("classid"); 
-////		}
-////		}
-////			if(methodid==null) {
-////				
-////				 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////				while(methodids.next()){
-////					methodid = methodids.getString("id"); 
-////					classname = methodids.getString("classname"); 
-////					classid = methodids.getString("classid"); 
-////			}
-////			}
-////		 classname=null; 
-////		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////		while(classnames.next()){
-////			classname = classnames.getString("classname"); 
-////			   }
-//		
-//				//////////////////////////////////////////////////////////////////
-//			//////////////////////////////////////////////////////////////////
 //			
-//			
-////		classid=null; 
-////		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
-////		while(classids.next()){
-////			classid = classids.getString("classid"); 
-////			   }
-//		requirementid=null; 
-//		requirement=requirement.trim();
-//		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
-//		while(requirements.next()){
-//			requirementid = requirements.getString("id"); 
-//			   }
-//		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
-//		// Retrieving the calleeid
-//		calleeid=null; 
-//			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
-//			while(calleesparsed.next()){
-//				 calleeid = calleesparsed.getString("calleemethodid"); }
-//			calleeidexecuted=null; 	   
-//			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
-//			while(calleesexecuted.next()){
-//				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
-//				   }
-//			callerid=null; 
-//			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
-//			while(callersparsed.next()){
-//				  callerid = callersparsed.getString("callermethodid"); }
-//			callerexecutedid=null; 	   
-//			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
-//			while(callersexecuted.next()){
-//				 callerexecutedid = callersexecuted.getString("callermethodid"); 
-//				   }
-//	
-//		
-//		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
-//		//otherwise, use the value from the methodcallsexecuted table 
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
-//				 TracesCalleesList.add(tmc); 
-//			}
-//			
-//			if(calleeid!=null && requirementid!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			else if(calleeidexecuted!=null) {
-//				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
-//				 TracesCallersList.add(tmc); 
-//			}
-//			
-//			
-//			
-//		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
-//		if(methodid!=null && requirementid!=null && classid!=null) {
-//			boolean mycond=tr.contains(TraceListMethods, tr);
-//			if(mycond==false) {
-//				method=RewriteFullMethod(method);  
-//				String methodnameAndParams= GetMethodNameAndParams(method); 
-//				method=method.replaceAll("Lde", "de"); 
-//				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-//				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
-//				st.executeUpdate(statement);
-//				TraceListMethods.add(tr); 
-//				
-//				
-//			}
-//			
-//			
+			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname = '"+method+"'"); 
+
+//			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.shortmethodname LIKE '%"+method+"%'"); 
+			while(methodids.next()){
+				methodid = methodids.getString("id"); 
+				shortmethodname = methodids.getString("methodname"); 
+				classname = methodids.getString("classname"); 
+				classid = methodids.getString("classid"); 
+				   }
+	
+//		if(methodid==null) {
+//			 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+method+"'"); 
+//			while(methodids.next()){
+//				methodid = methodids.getString("id"); 
+//				classname = methodids.getString("classname"); 
+//				classid = methodids.getString("classid"); 
 //		}
-//
-//		
-//		
-//	
-//		COUNTER3++; 
-//		
-//	}
-//	
-//	
-//	/*String filename= "TracesCalleesList.txt"; 
-//	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
-//		oos.writeObject(TracesCalleesList);
-//		oos.flush();
-//		oos.close();*/
-//}
-//	
-//catch (IOException e) {
-//	// TODO Auto-generated catch block
-//	e.printStackTrace();
-//}
+//		}
+//			if(methodid==null) {
+//				
+//				 methodids = st.executeQuery("SELECT methods.* from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//				while(methodids.next()){
+//					methodid = methodids.getString("id"); 
+//					classname = methodids.getString("classname"); 
+//					classid = methodids.getString("classid"); 
+//			}
+//			}
+//		 classname=null; 
+//		ResultSet classnames = st.executeQuery("SELECT methods.classname from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//		while(classnames.next()){
+//			classname = classnames.getString("classname"); 
+//			   }
+		
+				//////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////
+			
+			
+//		classid=null; 
+//		ResultSet classids = st.executeQuery("SELECT methods.classid from methods where methods.methodabbreviation ='"+shortmethod+"'"); 
+//		while(classids.next()){
+//			classid = classids.getString("classid"); 
+//			   }
+		requirementid=null; 
+		requirement=requirement.trim();
+		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
+		while(requirements.next()){
+			requirementid = requirements.getString("id"); 
+			   }
+		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
+		// Retrieving the calleeid
+		calleeid=null; 
+			ResultSet calleesparsed = st.executeQuery("SELECT methodcalls.calleemethodid from methodcalls where methodcalls.callermethodid ='"+methodid+"'"); 
+			while(calleesparsed.next()){
+				 calleeid = calleesparsed.getString("calleemethodid"); }
+			calleeidexecuted=null; 	   
+			ResultSet calleesexecuted = st.executeQuery("SELECT methodcallsexecuted.calleemethodid from methodcallsexecuted where methodcallsexecuted.callermethodid ='"+methodid+"'"); 
+			while(calleesexecuted.next()){
+				 calleeidexecuted = calleesexecuted.getString("calleemethodid"); 
+				   }
+			callerid=null; 
+			ResultSet callersparsed = st.executeQuery("SELECT methodcalls.callermethodid from methodcalls where methodcalls.calleemethodid ='"+methodid+"'"); 
+			while(callersparsed.next()){
+				  callerid = callersparsed.getString("callermethodid"); }
+			callerexecutedid=null; 	   
+			ResultSet callersexecuted = st.executeQuery("SELECT methodcallsexecuted.callermethodid from methodcallsexecuted where methodcallsexecuted.calleemethodid ='"+methodid+"'"); 
+			while(callersexecuted.next()){
+				 callerexecutedid = callersexecuted.getString("callermethodid"); 
+				   }
+	
+		
+		//insert into tracesmethodscallees a new object: if is found in the methodcalls table, then use the value from there 
+		//otherwise, use the value from the methodcallsexecuted table 
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeid); 
+				 TracesCalleesList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, calleeidexecuted); 
+				 TracesCalleesList.add(tmc); 
+			}
+			
+			if(calleeid!=null && requirementid!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerid); 
+				 TracesCallersList.add(tmc); 
+			}
+			else if(calleeidexecuted!=null) {
+				 tmc= new tracesmethodscallees(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject, callerexecutedid); 
+				 TracesCallersList.add(tmc); 
+			}
+			
+			
+			
+		tracesmethods tr= new tracesmethods(requirement, requirementid, shortmethod, methodid, classname, classid, gold, subject); 
+		if(methodid!=null && requirementid!=null && classid!=null) {
+			boolean mycond=tr.contains(TraceListMethods, tr);
+			if(mycond==false) {
+				method=RewriteFullMethod(method);  
+				String methodnameAndParams= GetMethodNameAndParams(method); 
+				method=method.replaceAll("Lde", "de"); 
+				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`, `goldpredictioncallee`, `goldpredictioncaller`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"','" +goldprediction+"','" +goldprediction+"')";		
+				st.executeUpdate(statement);
+				TraceListMethods.add(tr); 
+				
+				
+			}
+			
+			
+		}
+
+		
+		
+	
+		COUNTER3++; 
+		
+	}
+	
+	
+	/*String filename= "TracesCalleesList.txt"; 
+	ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+		oos.writeObject(TracesCalleesList);
+		oos.flush();
+		oos.close();*/
+}
+	
+catch (IOException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+
+HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
+RequirementIDNameHashMap.put("1", "UC1"); 
+RequirementIDNameHashMap.put("2", "UC2"); 
+RequirementIDNameHashMap.put("3", "UC3"); 
+RequirementIDNameHashMap.put("4", "UC4"); 
+RequirementIDNameHashMap.put("5", "UC5"); 
+RequirementIDNameHashMap.put("6", "UC6"); 
+RequirementIDNameHashMap.put("7", "UC8"); 
+RequirementIDNameHashMap.put("8", "UC9"); 
+RequirementIDNameHashMap.put("9", "UC10"); 
+RequirementIDNameHashMap.put("10", "UC11"); 
+RequirementIDNameHashMap.put("11", "UC12"); 
+RequirementIDNameHashMap.put("12", "UC13"); 
+RequirementIDNameHashMap.put("13", "UC15"); 
+RequirementIDNameHashMap.put("14", "UC16"); 
+RequirementIDNameHashMap.put("15", "UC17"); 
+RequirementIDNameHashMap.put("16", "UC18"); 
+RequirementIDNameHashMap.put("17", "UC19"); 
+RequirementIDNameHashMap.put("18", "UC21"); 
+RequirementIDNameHashMap.put("19", "UC23"); 
+RequirementIDNameHashMap.put("20", "UC24"); 
+RequirementIDNameHashMap.put("21", "UC25"); 
+RequirementIDNameHashMap.put("22", "UC26"); 
+RequirementIDNameHashMap.put("23", "UC27"); 
+RequirementIDNameHashMap.put("24", "UC28"); 
+RequirementIDNameHashMap.put("25", "UC29"); 
+RequirementIDNameHashMap.put("26", "UC30"); 
+RequirementIDNameHashMap.put("27", "UC31"); 
+RequirementIDNameHashMap.put("28", "UC32"); 
+RequirementIDNameHashMap.put("29", "UC33"); 
+RequirementIDNameHashMap.put("30", "UC34"); 
+RequirementIDNameHashMap.put("31", "UC35"); 
+RequirementIDNameHashMap.put("32", "UC36"); 
+RequirementIDNameHashMap.put("33", "UC37"); 
+RequirementIDNameHashMap.put("34", "UC38"); 
+
+
+ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
+while(mymeths.next()){
+	String methodid = mymeths.getString("id"); 
+	String method = mymeths.getString("methodabbreviation"); 
+	String methodname = mymeths.getString("methodname"); 
+	String fullmethod = mymeths.getString("fullmethod"); 
+	
+	String classname = mymeths.getString("classname"); 
+	String classid = mymeths.getString("classid"); 
+	
+	
+	
+	for(String key: RequirementIDNameHashMap.keySet()) {
+		tracesmethods tr= new tracesmethods(key, methodid,  classid); 
+		
+		if(!tr.contains(TraceListMethods, tr)) {
+			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
+			st.executeUpdate(statement);
+		}
+	}
+	
+
+}
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+
+
+HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
+
+String classname=""; 
+String classid=""; 
+String requirementname=""; 
+String requirementid="";
+ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
+while(Traces.next()){
+classname = Traces.getString("classname"); 
+classid = Traces.getString("classid"); 
+requirementname = Traces.getString("requirement"); 
+requirementid = Traces.getString("requirementid"); 
+
+
+String key= requirementid+"-"+classid; 
+String val= requirementid+"-"+requirementname+"-"+classid+"-"+classname; 
+
+RequirementClassHashMap.put(key, val); 
+
+
+}
+
+for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
+String myvalue = entry.getValue(); 
+String[] myvalues = myvalue.split("-"); 
+String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]+"')";	
+st2.executeUpdate(statement8);
+}
 ///////*********************************************************************************************************************************************************************************/	
 ///////*********************************************************************************************************************************************************************************/	
 ///////*********************************************************************************************************************************************************************************/   
@@ -3622,38 +3723,7 @@ int COUNTER3=1;
 
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
-
-
-HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
-
-String classname=""; 
-String classid=""; 
-String requirementname=""; 
-String requirementid="";
-ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
-while(Traces.next()){
-	classname = Traces.getString("classname"); 
-	classid = Traces.getString("classid"); 
-	requirementname = Traces.getString("requirement"); 
-	requirementid = Traces.getString("requirementid"); 
-	
-	
-	String key= requirementid+"-"+classid; 
-	String val= requirementid+"-"+requirementname+"-"+classid+"-"+classname; 
-
-	RequirementClassHashMap.put(key, val); 
-	
-	
-  }
-
-for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
-	String myvalue = entry.getValue(); 
-	String[] myvalues = myvalue.split("-"); 
-	String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]+"')";	
-	st2.executeUpdate(statement8);
-}
 
 
 	}

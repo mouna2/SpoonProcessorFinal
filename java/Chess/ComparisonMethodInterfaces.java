@@ -279,7 +279,7 @@ public class ComparisonMethodInterfaces {
 				fullmethod=res.getString("fullmethod"); 
 				classname=res.getString("classname"); 
 				classid=res.getString("classid"); 
-				gold2=res.getString("gold2"); 
+				gold2=res.getString("goldfinal"); 
 				SuperClass2 superclass= new SuperClass2(); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
@@ -289,7 +289,7 @@ public class ComparisonMethodInterfaces {
 				methodtrace.setRequirement(req);
 				methodtrace.setMethodRepresentation(methodrep);
 				methodtrace.setClassRepresentation(classrep);
-				methodtrace.setGold2(gold2);
+				methodtrace.setGoldFinal(gold2);
 			
 				for(String mykey: InterfacesImplementationsHashMap.keySet()) {
 
@@ -438,12 +438,12 @@ public class ComparisonMethodInterfaces {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal.trim()); 
+							list.add(value.goldFinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal.trim()); 
+							list.add(value.goldFinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -482,12 +482,12 @@ public class ComparisonMethodInterfaces {
 							
 							list=SuperclassesTracesHashMapFinal.get(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal); 
+							list.add(value.goldFinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal); 
+							list.add(value.goldFinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+method+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					

@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import ALGO.MethodList;
+import ALGO.Methods;
 
 public class MethodTraceSubjectTSubjectN {
 	
@@ -55,15 +56,15 @@ public class MethodTraceSubjectTSubjectN {
 	List<String> ChildrenList; 
 	List<String> ImplementationList; 
 	
-	MethodList<String> CalleeList; 
-	MethodList<String> PredictionCallerList; 
+	public MethodList CalleeList; 
+	public MethodList PredictionCallerList; 
 
 	
 	
-	MethodList<String> Interfaces; 
-	MethodList<String> Implementations; 
-	MethodList<String> Superclasses; 
-	MethodList<String> Children; 
+	Methods<String> Interfaces; 
+	Methods<String> Implementations; 
+	Methods<String> Superclasses; 
+	Methods<String> Children; 
 	
 	public boolean isMyflag() {
 		return myflag;
@@ -73,57 +74,57 @@ public class MethodTraceSubjectTSubjectN {
 		this.myflag = myflag;
 	}
 
-	public MethodList<String> getCallees() {
+	public MethodList getCallees() {
 		return CalleeList;
 	}
 
-	public void setPredictionCalleeList(MethodList<String> predictionCalleeList) {
+	public void setPredictionCalleeList(MethodList predictionCalleeList) {
 		
 		CalleeList = predictionCalleeList;
 	}
 
-	public MethodList<String> getCallers() {
+	public MethodList getCallers() {
 		return PredictionCallerList;
 	}
 
-	public void setPredictionCallerList(MethodList<String> predictionCallerList) {
+	public void setPredictionCallerList(MethodList predictionCallerList) {
 		PredictionCallerList = predictionCallerList;
 	}
 
-	public MethodList<String> getInterfaces() {
+	public Methods<String> getInterfaces() {
 		return Interfaces;
 	}
 
-	public void setInterfaces(MethodList<String> interfaces) {
+	public void setInterfaces(Methods<String> interfaces) {
 		Interfaces = interfaces;
 	}
 
-	public MethodList<String> getImplementations() {
+	public Methods<String> getImplementations() {
 		return Implementations;
 	}
 
-	public void setImplementations(MethodList<String> implementations) {
+	public void setImplementations(Methods<String> implementations) {
 		Implementations = implementations;
 	}
 
-	public MethodList<String> getSuperclasses() {
+	public Methods<String> getSuperclasses() {
 		return Superclasses;
 	}
 
-	public void setSuperclasses(MethodList<String> superclasses) {
+	public void setSuperclasses(Methods<String> superclasses) {
 		Superclasses = superclasses;
 	}
 
-	public MethodList<String> getChildren() {
+	public Methods<String> getChildren() {
 		return Children;
 	}
 
-	public void setChildren(MethodList<String> children) {
+	public void setChildren(Methods<String> children) {
 		Children = children;
 	}
 
-	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
+	MethodList  callersList= new MethodList (); 
+	MethodList  calleesList= new MethodList (); 
 	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
 	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapOwner= new HashMap<String, List<Interface2>>(); 
@@ -139,50 +140,50 @@ public class MethodTraceSubjectTSubjectN {
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsEXECHashMapCallee= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
-	MethodList<String> SuperClassesListMethodTraces; 
-	MethodList<String> InterfaceListMethodTraces; 
-	MethodList<String> ChildrenListMethodTraces; 
-	MethodList<String> ImplementationListMethodTraces; 
+	Methods<String> SuperClassesListMethodTraces; 
+	Methods<String> InterfaceListMethodTraces; 
+	Methods<String> ChildrenListMethodTraces; 
+	Methods<String> ImplementationListMethodTraces; 
 	
 	
 	
 	
 	
-	public MethodList<String> getSuperClassesFinalList() {
+	public Methods<String> getSuperClassesFinalList() {
 		return SuperClassesListMethodTraces;
 	}
 
 	public void setSuperClassesListMethodTraces(List<String> superClassesListMethodTraces) {
-		SuperClassesListMethodTraces = new MethodList<String>();
+		SuperClassesListMethodTraces = new Methods<String>();
 		SuperClassesListMethodTraces.addAll(superClassesListMethodTraces);
 	}
 
-	public MethodList<String> getInterfacesFinalList() {
+	public Methods<String> getInterfacesFinalList() {
 		return InterfaceListMethodTraces;
 	}
 
 	public void setInterfaceListMethodTraces(List<String> interfaceListMethodTraces) {
-		InterfaceListMethodTraces = new MethodList<String>();
+		InterfaceListMethodTraces = new Methods<String>();
 		InterfaceListMethodTraces.addAll(interfaceListMethodTraces);
 	}
 
-	public MethodList<String> getChildrenFinalList() {
+	public Methods<String> getChildrenFinalList() {
 		return ChildrenListMethodTraces;
 	}
 
 	public void setChildrenListMethodTraces(List<String> childrenListMethodTraces) {
 		
-		ChildrenListMethodTraces = new MethodList<String>();
+		ChildrenListMethodTraces = new Methods<String>();
 		ChildrenListMethodTraces.addAll(childrenListMethodTraces);
 	}
 
-	public MethodList<String> getImplementationFinalList() {
+	public Methods<String> getImplementationFinalList() {
 		return ImplementationListMethodTraces;
 	}
 
 	public void setImplementationListMethodTraces(List<String> implementationListMethodTraces) {
 		
-		ImplementationListMethodTraces = new MethodList<String>();
+		ImplementationListMethodTraces = new Methods<String>();
 		ImplementationListMethodTraces.addAll(implementationListMethodTraces);
 	}
 
@@ -392,7 +393,7 @@ public class MethodTraceSubjectTSubjectN {
 		this.goldpredictionCallee = goldpredictionCallee;
 	}
 
-	public List<Method2Representation> getCallersList() {
+	public MethodList  getCallersList() {
 		return callersList;
 	}
 
@@ -412,15 +413,15 @@ public class MethodTraceSubjectTSubjectN {
 		SubjectN = subjectN;
 	}
 
-	public void setCallersList(List<Method2Representation> callersList) {
+	public void setCallersList(MethodList  callersList) {
 		this.callersList = callersList;
 	}
 
-	public List<Method2Representation> getCalleesList() {
+	public MethodList  getCalleesList() {
 		return calleesList;
 	}
 
-	public void setCalleesList(List<Method2Representation> calleesList) {
+	public void setCalleesList(MethodList  calleesList) {
 		this.calleesList = calleesList;
 	}
 
@@ -1217,7 +1218,7 @@ if(myinterfacelist!=null) {
 				
 
 				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
+				 MethodList  mycalleelistrep = new MethodList (); 
 				 if(mycalleelist!=null) {
 				 for(MethodCalls mycallee: mycalleelist) {
 					 
@@ -1235,7 +1236,7 @@ if(myinterfacelist!=null) {
 				 }
 				 
 				 List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrep = new ArrayList<Method2Representation>(); 
+				 MethodList  mycallerlistrep = new MethodList (); 
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
 						 Method2Representation meth= new Method2Representation(); 	
@@ -1253,7 +1254,7 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycallerlistexecuted = MethodCallsEXECHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrepexecuted = new ArrayList<Method2Representation>(); 
+				 MethodList  mycallerlistrepexecuted = new MethodList (); 
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
 						 Method2Representation meth= new Method2Representation(); 	
@@ -1273,7 +1274,7 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycalleelistexecuted = MethodCallsEXECHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrepexecuted = new ArrayList<Method2Representation>(); 
+				 MethodList  mycalleelistrepexecuted = new MethodList (); 
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
 						 Method2Representation meth= new Method2Representation(); 	
@@ -1427,8 +1428,8 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 
-				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
+				 List<MethodCalls>  mycalleelist = MethodCallsHashMapCallee.get(id); 
+				 MethodList  mycalleelistrep = new  MethodList (); 
 				 if(mycalleelist!=null) {
 				 for(MethodCalls mycallee: mycalleelist) {
 					 
@@ -1446,7 +1447,7 @@ if(myinterfacelist!=null) {
 				 }
 				 
 				 List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrep = new ArrayList<Method2Representation>(); 
+				 MethodList  mycallerlistrep = new MethodList (); 
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
 						 Method2Representation meth= new Method2Representation(); 	
@@ -1464,7 +1465,7 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycallerlistexecuted = MethodCallsEXECHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrepexecuted = new ArrayList<Method2Representation>(); 
+				 MethodList  mycallerlistrepexecuted = new  MethodList (); 
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
 						 Method2Representation meth= new Method2Representation(); 	
@@ -1481,7 +1482,7 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycalleelistexecuted = MethodCallsEXECHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrepexecuted = new ArrayList<Method2Representation>(); 
+				 MethodList  mycalleelistrepexecuted = new  MethodList (); 
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
 						 Method2Representation meth= new Method2Representation(); 	

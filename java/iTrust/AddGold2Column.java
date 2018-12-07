@@ -120,8 +120,8 @@ public class AddGold2Column {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 //		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN gold2");
-		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
+		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
 		
 		try {
 			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\iTrustFiles\\itrust_vote_dev.txt");
