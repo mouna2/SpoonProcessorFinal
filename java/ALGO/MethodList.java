@@ -56,28 +56,25 @@ public class MethodList extends ArrayList<Method2Representation>{
 		return false;
 	}
 	
-	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap) {
 		// TODO Auto-generated method stub
 		
 		for (Method2Representation callee : this) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = callee.methodid; 
 			String key = (String) (RequirementID + "-" + MethodID);
-//			if (methodtraces2HashMap.get(key) == null) {
-//				try {
-//					throw new Exception();
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} 
-//			}
-			if (methodtraces2HashMap.get(key) != null) {
+			if (methodtraces2HashMap.get(key) == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 				if (methodtraces2HashMap.get(key).getPrediction().equals("T")) 
 					return true; 
 
-			}else {
-				
-			}
+			
 		}
 
 		return false;
@@ -102,28 +99,25 @@ public class MethodList extends ArrayList<Method2Representation>{
 //		}
 //		return false;
 	}
-	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement, List<Method2Representation> calls) {
+	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
 		// TODO Auto-generated method stub
 		
 		for (Method2Representation callee : this) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = callee.methodid; 
 			String key = (String) (RequirementID + "-" + MethodID);
-//			if (methodtraces2HashMap.get(key) == null) {
-//				try {
-//					throw new Exception();
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} 
-//			}
-			if (methodtraces2HashMap.get(key) != null) {
+			if (methodtraces2HashMap.get(key) == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 				if (methodtraces2HashMap.get(key).getPrediction().equals("N"))
 					return true; 
 
-			}else {
-				
-			}
+			
 		}
 		return false;
 		
@@ -174,31 +168,24 @@ public class MethodList extends ArrayList<Method2Representation>{
 	}
 	
 	
-	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap) {
 		// TODO Auto-generated method stub
 		int counter=0; 
 		for (Method2Representation callee : this) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = callee.methodid; 
 			String key = (String) (RequirementID + "-" + MethodID);
-//			if (methodtraces2HashMap.get(key) == null) {
-//				try {
-//					throw new Exception();
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} 
-//			}
-			if (methodtraces2HashMap.get(key) != null) {
+			if (methodtraces2HashMap.get(key) == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
 				if (!methodtraces2HashMap.get(key).getPrediction().equals("N")) return false; 
 
-			}else if(methodtraces2HashMap.get(key) == null){
-				
-				counter++; 
-				if(counter==this.size()) {
-					return false; 
-				}
-			}
+			
 		}
 		return true;
 		
@@ -270,24 +257,25 @@ public class MethodList extends ArrayList<Method2Representation>{
 		return false;
 	}
 	
-	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap) {
 		// TODO Auto-generated method stub
 		int counter=0; 
 		for (Method2Representation callee : this) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = callee.methodid; 
 			String key = (String) (RequirementID + "-" + MethodID);
-
-			if (methodtraces2HashMap.get(key) != null) {
+			if (methodtraces2HashMap.get(key) == null) {
+				try {
+					throw new Exception();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+			}
+			
 				if (!methodtraces2HashMap.get(key).getPrediction().equals("T")) return false; 
 
-			}else if(methodtraces2HashMap.get(key) == null){
-				
-				counter++; 
-				if(counter==this.size()) {
-					return false; 
-				}
-			}
+			
 		}
 		return true;
 		

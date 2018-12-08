@@ -695,8 +695,8 @@ public class AlgoFinal extends JFrame {
 
 
 				if (    !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						&& methodtrace.getCallees().AllTs(requirement, methodtrace, methodtraces2HashMap, callees)
-						&& methodtrace.getCallers().AllTs(requirement, methodtrace, methodtraces2HashMap, callers)					
+						&& methodtrace.getCallees().AllTs(requirement, methodtrace, methodtraces2HashMap)
+						&& methodtrace.getCallers().AllTs(requirement, methodtrace, methodtraces2HashMap)					
 						
 
 				) {
@@ -708,8 +708,8 @@ public class AlgoFinal extends JFrame {
 				}
 				// PURE N PATTERN
 				else if ( !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap, callees)
-						&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap, callers)
+						&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap)
+						&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap)
 
 				) {
 					SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
@@ -721,7 +721,7 @@ public class AlgoFinal extends JFrame {
 				 
 				// PURE T LEAF PATTERN
 				 if (	methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						 && methodtrace.getCallers().AllTs(requirement,methodtrace, methodtraces2HashMap, callers)
+						 && methodtrace.getCallers().AllTs(requirement,methodtrace, methodtraces2HashMap)
 
 				) {
 					 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
@@ -730,7 +730,7 @@ public class AlgoFinal extends JFrame {
 				}
 				// PURE N LEAF PATTERN
 				 else if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						 && methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap, callers)
+						 && methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap)
 
 				) {
 
@@ -771,8 +771,8 @@ public class AlgoFinal extends JFrame {
 				//////////////////////////////////////////////////////////////////////////////////////////
 				// MIXED T PATTERN
 				 if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-					&& methodtrace.getCallees().AtLeast1T(requirement, methodtrace, methodtraces2HashMap, callees) 
-					&& methodtrace.getCallers().AtLeast1T(requirement, methodtrace, methodtraces2HashMap, callers) 
+					&& methodtrace.getCallees().AtLeast1T(requirement, methodtrace, methodtraces2HashMap) 
+					&& methodtrace.getCallers().AtLeast1T(requirement, methodtrace, methodtraces2HashMap) 
 
 				) {
 					// methodtrace.setPrediction("N");
@@ -784,8 +784,8 @@ public class AlgoFinal extends JFrame {
 				// MIXED N PATTERN
 				 else if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
 						
-						&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap, callees) 
-						&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap, callers) 
+						&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap) 
+						&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap) 
 						
 
 				) {
@@ -801,7 +801,7 @@ public class AlgoFinal extends JFrame {
 				 
 				// MIXED T LEAF PATTERN
 				 if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-						 && methodtrace.getCallers().AtLeast1T(requirement, methodtrace, methodtraces2HashMap, callers) 
+						 && methodtrace.getCallers().AtLeast1T(requirement, methodtrace, methodtraces2HashMap) 
 
 				) {
 					 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
@@ -809,7 +809,7 @@ public class AlgoFinal extends JFrame {
 
 				}// MIXED N LEAF PATTERN
 				 else if(methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-						 && methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap, callers) 
+						 && methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap) 
 
 				) {
 					 SetPredictionFinalNonOwner(LogInfo, methodtrace, LogInfoHashMap, reqMethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, 
@@ -976,7 +976,7 @@ public class AlgoFinal extends JFrame {
 					
 					// ALL T CALLERS 
 					 if (!methodtrace.getCallers().isEmpty() 
-						&& methodtrace.getCallers().AllTs(requirement, methodtrace, methodtraces2HashMap, callers) 
+						&& methodtrace.getCallers().AllTs(requirement, methodtrace, methodtraces2HashMap) 
 						&& methodtrace.getPrediction().trim().equals("E")
 	
 					) {
@@ -988,7 +988,7 @@ public class AlgoFinal extends JFrame {
 					}
 					// ALL N CALLERS
 					 else if (!methodtrace.getCallers().isEmpty() 
-								&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap, callers) 
+								&& methodtrace.getCallers().AllNs(requirement, methodtrace, methodtraces2HashMap) 
 								&& methodtrace.getPrediction().trim().equals("E")
 	
 							) {
@@ -1061,7 +1061,7 @@ public class AlgoFinal extends JFrame {
 				
 				//ALL T CALLEES 
 				if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllTs(requirement, methodtrace, methodtraces2HashMap, callees) 
+				&& methodtrace.getCallees().AllTs(requirement, methodtrace, methodtraces2HashMap) 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {
@@ -1074,7 +1074,7 @@ public class AlgoFinal extends JFrame {
 				}
 				//ALL N CALLEES
 				else if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap, callees) 
+				&& methodtrace.getCallees().AllNs(requirement, methodtrace, methodtraces2HashMap) 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {
@@ -2284,18 +2284,18 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
-//		String ProgramName = "chess";
-//		AlgoFinal frame = new AlgoFinal(
-//				ProgramName);
-//
-//		String ProgramName2 = "gantt";
-//			 frame = new AlgoFinal(ProgramName2);
-//
-//		String ProgramName3 = "itrust";
-//			 frame = new AlgoFinal(ProgramName3);
+		String ProgramName = "chess";
+		AlgoFinal frame = new AlgoFinal(
+				ProgramName);
+
+		String ProgramName2 = "gantt";
+			 frame = new AlgoFinal(ProgramName2);
+
+		String ProgramName3 = "itrust";
+			 frame = new AlgoFinal(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-		AlgoFinal	frame = new AlgoFinal(ProgramName4);
+			frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
