@@ -28,7 +28,7 @@ import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceOld;

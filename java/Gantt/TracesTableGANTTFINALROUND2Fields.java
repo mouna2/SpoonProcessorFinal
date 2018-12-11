@@ -53,7 +53,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
@@ -604,22 +604,22 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 	
 	public final String userName = "root";
 	public final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 	
@@ -709,10 +709,10 @@ public class TracesTableGANTTFINALROUND2Fields extends JFrame {
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
 		String[] myparameters = new String[methodtraces2.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
+		Method[] callersarr = new Method[methodtraces2.size()];
+		Method[] callersex = new Method[methodtraces2.size()];
+		Method[] calleesarr = new Method[methodtraces2.size()];
+		Method[] calleesex = new Method[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][6000];
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
@@ -1734,17 +1734,17 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 		
 	        return true;
 	    }
-	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+	public static List<Method> removeDuplicates(List<Method> list) {
 		  // convert input array to populated list
 
 		  // convert list to populated set
 		  
 		  
 		
-		  HashSet<Method2Representation> set=new HashSet(list); 
+		  HashSet<Method> set=new HashSet(list); 
 		  set.addAll(list);
 		 
-		  list = new ArrayList<Method2Representation>(set);
+		  list = new ArrayList<Method>(set);
 		  // convert set to array & return, 
 		  // use cast because you can't create generic arrays
 		  return list;

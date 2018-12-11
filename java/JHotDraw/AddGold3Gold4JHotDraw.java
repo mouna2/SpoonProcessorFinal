@@ -124,7 +124,7 @@ public class AddGold3Gold4JHotDraw {
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast3");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinalAlex");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldAtLeast2");
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectGold");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN  goldAlexAtLeast3 "); 
 
 		
@@ -133,7 +133,7 @@ public class AddGold3Gold4JHotDraw {
 		st.executeUpdate("ALTER TABLE `traces` ADD gold2 LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD goldfinalAlex LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD goldAlexAtLeast3 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `traces` ADD goldAtLeast2 LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD SubjectGold LONGTEXT"); 
 
 
 		int counter=1; 
@@ -286,46 +286,46 @@ public class AddGold3Gold4JHotDraw {
 	
 	
 	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
-		String goldAtLeast2=null; 
+		String SubjectGold=null; 
 		
 		if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
-			goldAtLeast2="T"; 
+			SubjectGold="T"; 
 		}
 		else if(SubjectT==0 && SubjectN>=2) {
-			goldAtLeast2="N"; 
+			SubjectGold="N"; 
 		}
 		else {
-			goldAtLeast2="E"; 
+			SubjectGold="E"; 
 		}
 		
 		
 		
 	
-	return goldAtLeast2; 
+	return SubjectGold; 
 }
 	
 	
 	
 	static String PredictGoldAtLeast2Alex(int SubjectT, int SubjectN) {
-		String goldAtLeast2=null; 
+		String SubjectGold=null; 
 		if(SubjectT+SubjectN>=2) {
 			if(SubjectT>=2 ) {
-				goldAtLeast2="T"; 
+				SubjectGold="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {
-				goldAtLeast2="N"; 
+				SubjectGold="N"; 
 			}
 			else {
-				goldAtLeast2="E"; 
+				SubjectGold="E"; 
 			}
 			
 			
 			
 		}
 		else {
-			goldAtLeast2="E"; 
+			SubjectGold="E"; 
 		}
-		return goldAtLeast2; 
+		return SubjectGold; 
 	}
 
 	
@@ -333,23 +333,23 @@ public class AddGold3Gold4JHotDraw {
 	
 	
 	static String PredictGoldAtLeast3Alex(int SubjectT, int SubjectN) {
-		String goldAtLeast2=null; 
+		String SubjectGold=null; 
 	
 			if(SubjectT>=3 ) {
-				goldAtLeast2="T"; 
+				SubjectGold="T"; 
 			}
 			else if(SubjectT==0 && SubjectN>=2) {
-				goldAtLeast2="N"; 
+				SubjectGold="N"; 
 			}
 			else {
-				goldAtLeast2="E"; 
+				SubjectGold="E"; 
 			}
 			
 			
 			
 		
 		
-		return goldAtLeast2; 
+		return SubjectGold; 
 	}
 	
 	

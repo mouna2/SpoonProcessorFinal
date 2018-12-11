@@ -1,9 +1,9 @@
 package mypackage;
 
 public class MethodCalls {
-		public Method2Representation Caller; 
-		public Method2Representation Callee;
-		public MethodCalls(Method2Representation caller, Method2Representation callee) {
+		public Method Caller; 
+		public Method Callee;
+		public MethodCalls(Method caller, Method callee) {
 			super();
 			Caller = caller;
 			Callee = callee;
@@ -12,16 +12,16 @@ public class MethodCalls {
 		public MethodCalls() {
 			// TODO Auto-generated constructor stub
 		}
-		public Method2Representation getCaller() {
+		public Method getCaller() {
 			return Caller;
 		}
-		public void setCaller(Method2Representation caller) {
+		public void setCaller(Method caller) {
 			Caller = caller;
 		}
-		public Method2Representation getCallee() {
+		public Method getCallee() {
 			return Callee;
 		}
-		public void setCallee(Method2Representation callee) {
+		public void setCallee(Method callee) {
 			Callee = callee;
 		} 
 		

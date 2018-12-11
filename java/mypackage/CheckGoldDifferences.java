@@ -30,7 +30,7 @@ public class CheckGoldDifferences {
 			List<List<RequirementGold>> CalleesListExecuted = new ArrayList<List<RequirementGold>>();
 			List<List<RequirementGold>> CallersListExecuted = new ArrayList<List<RequirementGold>>();
 			String methodID=methodtrace.MethodRepresentation.methodid; 
-			for (Method2Representation callee : methodtrace.calleesList) {
+			for (Method callee : methodtrace.calleesList) {
 
 				List<RequirementGold> requirementsgold = new ArrayList<RequirementGold>();
 				for (RequirementGold reqgold : callee.requirementsGold) {
@@ -40,7 +40,7 @@ public class CheckGoldDifferences {
 				CalleesList.add(requirementsgold);
 			}
 
-			for (Method2Representation caller : methodtrace.callersList) {
+			for (Method caller : methodtrace.callersList) {
 
 				List<RequirementGold> requirementsgold = new ArrayList<RequirementGold>();
 				for (RequirementGold reqgold : caller.requirementsGold) {
@@ -50,7 +50,7 @@ public class CheckGoldDifferences {
 				CallersList.add(requirementsgold);
 			}
 
-			for (Method2Representation callerExecuted : methodtrace.callersListExecuted) {
+			for (Method callerExecuted : methodtrace.callersListExecuted) {
 
 				List<RequirementGold> requirementsgold = new ArrayList<RequirementGold>();
 				for (RequirementGold reqgold : callerExecuted.requirementsGold) {
@@ -60,7 +60,7 @@ public class CheckGoldDifferences {
 				CallersListExecuted.add(requirementsgold);
 			}
 
-			for (Method2Representation calleeExecuted : methodtrace.calleesListExecuted) {
+			for (Method calleeExecuted : methodtrace.calleesListExecuted) {
 
 				List<RequirementGold> requirementsgold = new ArrayList<RequirementGold>();
 				for (RequirementGold reqgold : calleeExecuted.requirementsGold) {

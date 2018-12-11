@@ -22,7 +22,7 @@ import Chess.TracesTableChessFINALGeneticAlgorithm;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
-import mainPackage.ClassRepresentation;
+import mypackage.*;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
@@ -47,7 +47,7 @@ public class DatabaseReading2 {
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
 	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
-	public static HashMap<Method2Representation, HashMap<Requirement2, String>> FinalMethodHashMapReqGolds= new HashMap<Method2Representation, HashMap<Requirement2, String>>() ; 
+	public static HashMap<Method, HashMap<Requirement2, String>> FinalMethodHashMapReqGolds= new HashMap<Method, HashMap<Requirement2, String>>() ; 
 	
 	
 	
@@ -151,35 +151,35 @@ public class DatabaseReading2 {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		int index = 0;
-		mypackage.ClassRepresentation2 classrep = new mypackage.ClassRepresentation2();
-
-		HashMap<Integer, mypackage.ClassRepresentation2> ClassRepresentationHashMap = classrep
-				.ReadClassesRepresentations(conn);
-		Set<Integer> keys = ClassRepresentationHashMap.keySet();
-		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
-					+ ClassRepresentationHashMap.get(key).classname + "   ");
-		}
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		mypackage.ClassDetails2 classdet = new mypackage.ClassDetails2();
-
-		HashMap<Integer, mypackage.ClassDetails2> ClassDetailsHashMap = classdet.ReadClassesRepresentations(conn);
-		keys = ClassRepresentationHashMap.keySet();
-		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
-					+ ClassRepresentationHashMap.get(key).classname + "   ");
-		}
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		Requirement2 req = new Requirement2();
-
-		HashMap<String, Requirement2> RequirementHashMap = req.ReadClassesRepresentations(conn);
-		Set<String> keys2 = RequirementHashMap.keySet();
-		for (String key : keys2) {
-			System.out.println("Value of " + key + " is: " + RequirementHashMap.get(key).ID + "   "
-					+ RequirementHashMap.get(key).RequirementName + "   ");
-		}
+//		mypackage.ClassRepresentation2 classrep = new mypackage.ClassRepresentation2();
+//
+//		HashMap<Integer, mypackage.ClassRepresentation2> ClassRepresentationHashMap = classrep
+//				.ReadClassesRepresentations(conn);
+//		Set<Integer> keys = ClassRepresentationHashMap.keySet();
+//		for (Integer key : keys) {
+//			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+//					+ ClassRepresentationHashMap.get(key).classname + "   ");
+//		}
+//
+//		///////////////////////////////////////////////////////////////////////////////////////
+//		mypackage.ClassDetails2 classdet = new mypackage.ClassDetails2();
+//
+//		HashMap<Integer, mypackage.ClassDetails2> ClassDetailsHashMap = classdet.ReadClassesRepresentations(conn);
+//		keys = ClassRepresentationHashMap.keySet();
+//		for (Integer key : keys) {
+//			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+//					+ ClassRepresentationHashMap.get(key).classname + "   ");
+//		}
+//
+//		///////////////////////////////////////////////////////////////////////////////////////
+//		Requirement2 req = new Requirement2();
+//
+//		HashMap<String, Requirement2> RequirementHashMap = req.ReadClassesRepresentations(conn);
+//		Set<String> keys2 = RequirementHashMap.keySet();
+//		for (String key : keys2) {
+//			System.out.println("Value of " + key + " is: " + RequirementHashMap.get(key).ID + "   "
+//					+ RequirementHashMap.get(key).RequirementName + "   ");
+//		}
 		///////////////////////////////////////////////////////////////////////////////////////
 		Method2Details methoddet2 = new Method2Details();
 		HashMap<String, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations2(conn);

@@ -28,7 +28,7 @@ import java.util.Set;
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
 import mypackage.Interface2;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
 import mypackage.SuperClass2;
@@ -208,7 +208,7 @@ public class ComparisonMethodInterfacesFinal {
 				ClassRepresentation2 interfaceclass= new ClassRepresentation2(interfaceclassid, interfacename); 
 				Interface2 myinter= new Interface2(); 
 				myinter.setInterfaceClass(interfaceclass);
-				myinter.setOwnerClass(implclass);
+				myinter.setImplementation(implclass);
 //				System.out.println("INTERFACE CLASS ID    "+ interfaceclassid);
 				if(InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename)!=null) {
 					implementationList= InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename); 
@@ -299,7 +299,7 @@ public class ComparisonMethodInterfacesFinal {
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
 						
 
-						if(impl.getOwnerClass().getClassid().equals(classid)) {
+						if(impl.getImplementation().getClassid().equals(classid)) {
 							if(InterfacesImplementationsHashMap.get(mykey)!=null) {
 							System.out.println(counter);
 									List<MethodTrace2> 	mymethodtraces= new ArrayList<MethodTrace2>(); 

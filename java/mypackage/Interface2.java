@@ -16,16 +16,16 @@ import java.util.stream.Collectors;
 public class Interface2 {
 	String ID; 
 	public ClassRepresentation2 InterfaceClass; 
-	public ClassRepresentation2 OwnerClass;
+	public ClassRepresentation2 Implementation;
 	 HashMap<String, List<Interface2>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface2>>(); 
 
 	 HashMap<String, Interface2> ClassRepresentationHashMap= new HashMap<String, Interface2>(); 
 	
-	public Interface2(String iD, ClassRepresentation2 interfaceClass, ClassRepresentation2 ownerClass) {
+	public Interface2(String iD, ClassRepresentation2 interfaceClass, ClassRepresentation2 implementation) {
 		super();
 		ID = iD;
 		InterfaceClass = interfaceClass;
-		OwnerClass = ownerClass;
+		Implementation = implementation;
 	}
 	public Interface2() {
 		// TODO Auto-generated constructor stub
@@ -42,15 +42,15 @@ public class Interface2 {
 	public void setInterfaceClass(ClassRepresentation2 interfaceClass) {
 		InterfaceClass = interfaceClass;
 	}
-	public ClassRepresentation2 getOwnerClass() {
-		return OwnerClass;
+	public ClassRepresentation2 getImplementation() {
+		return Implementation;
 	}
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
-		OwnerClass = ownerClass;
+	public void setImplementation(ClassRepresentation2 implementation) {
+		Implementation = implementation;
 	}
 	@Override
 	public String toString() {
-		return "Interface2 [ID=" + ID + ", InterfaceClass=" + InterfaceClass + ", OwnerClass=" + OwnerClass + "]";
+		return "Interface2 [ID=" + ID + ", InterfaceClass=" + InterfaceClass + ", Implementation=" + Implementation + "]";
 	}
 	 
 	
@@ -79,14 +79,14 @@ public class Interface2 {
 				 InterfaceClass.setClassid(interfaceclassid);
 				 InterfaceClass.setClassname(interfacename);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 ClassRepresentation2 Implementation= new ClassRepresentation2();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("classname"); 
-				 OwnerClass.setClassid(ownerclassid);
-				 OwnerClass.setClassname(classname);
+				 Implementation.setClassid(ownerclassid);
+				 Implementation.setClassname(classname);
 				 
 				 myinterface.setInterfaceClass(InterfaceClass);
-				 myinterface.setOwnerClass(OwnerClass);
+				 myinterface.setImplementation(Implementation);
 				 
 				 String key=ownerclassid;
 				 if(ClassRepresentationHashMapOwnerClass.get(key)!=null) {
@@ -141,14 +141,14 @@ public class Interface2 {
 				 InterfaceClass.setClassid(interfaceclassid);
 				 InterfaceClass.setClassname(interfacename);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 ClassRepresentation2 Implementation= new ClassRepresentation2();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("classname"); 
-				 OwnerClass.setClassid(ownerclassid);
-				 OwnerClass.setClassname(classname);
+				 Implementation.setClassid(ownerclassid);
+				 Implementation.setClassname(classname);
 				 
 				 myinterface.setInterfaceClass(InterfaceClass);
-				 myinterface.setOwnerClass(OwnerClass);
+				 myinterface.setImplementation(Implementation);
 				 
 				 String key=interfaceclassid+"-"+interfacename;
 				 

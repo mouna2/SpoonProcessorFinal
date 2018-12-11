@@ -26,7 +26,7 @@ import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Requirement2;

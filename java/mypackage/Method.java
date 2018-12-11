@@ -4,22 +4,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Method2Representation {
+import ALGO.MethodList;
+
+public class Method {
 	public String methodid; 
 	public String methodname;
 	public String fullmethodname;
 	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
-
+	public MethodList Callees= new MethodList(); 
+	public MethodList Callers= new MethodList(); 
+	public MethodList Interfaces= new MethodList(); 
+	public MethodList implementations= new MethodList(); 
+	public MethodList Superclasses= new MethodList(); 
+	public MethodList Children= new MethodList(); 
 	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
 	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
 	
-	public Method2Representation(String methodid, String methodname) {
+	public MethodList getSuperclasses() {
+		return Superclasses;
+	}
+	public void setSuperclasses(MethodList superclasses) {
+		Superclasses = superclasses;
+	}
+	public MethodList getChildren() {
+		return Children;
+	}
+	public void setChildren(MethodList children) {
+		Children = children;
+	}
+	public MethodList getInterfaces() {
+		return Interfaces;
+	}
+	public void setInterfaces(MethodList interfaces) {
+		Interfaces = interfaces;
+	}
+	public MethodList getImplementations() {
+		return implementations;
+	}
+	public void setImplementations(MethodList implementations) {
+		this.implementations = implementations;
+	}
+	public Method(String methodid, String methodname) {
 		super();
 		this.methodid = methodid;
 		this.methodname = methodname;
 	}
-	public Method2Representation() {
+	public Method() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getMethodid() {
@@ -52,16 +83,16 @@ public class Method2Representation {
 		return "["+  methodid + ": methodname=" + methodname  + ": classname=" + classrep.classname + ": classid=" + classrep.classid +"]";
 	}
 	
-	public String PrintList(List<Method2Representation> methods) {
+	public String PrintList(List<Method> methods) {
 		String s =""; 
-		for(Method2Representation mymethod: methods) {
+		for(Method mymethod: methods) {
 			 s= s +mymethod.toString(); 
 		}
 		return s; 
 	}
 	
 	
-	public Method2Representation(String methodid, String methodname, String fullmethodname,
+	public Method(String methodid, String methodname, String fullmethodname,
 			ClassRepresentation2 classrep, HashMap<Requirement2, String> finalMethodHashMap) {
 		super();
 		this.methodid = methodid;
@@ -73,7 +104,7 @@ public class Method2Representation {
 	
 	
 	
-	public Method2Representation(String methodid, String methodname, String fullmethodname,
+	public Method(String methodid, String methodname, String fullmethodname,
 			ClassRepresentation2 classrep) {
 		super();
 		this.methodid = methodid;
@@ -108,6 +139,18 @@ public class Method2Representation {
 	
 	
 	
+	public MethodList getCallees() {
+		return Callees;
+	}
+	public void setCallees(MethodList callees) {
+		Callees = callees;
+	}
+	public MethodList getCallers() {
+		return Callers;
+	}
+	public void setCallers(MethodList callers) {
+		Callers = callers;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -125,7 +168,7 @@ public class Method2Representation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Method2Representation other = (Method2Representation) obj;
+		Method other = (Method) obj;
 		if (classrep == null) {
 			if (other.classrep != null)
 				return false;

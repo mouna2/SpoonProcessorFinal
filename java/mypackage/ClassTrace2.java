@@ -168,7 +168,7 @@ public class ClassTrace2 {
 				 myclasstrace.setMyclass(classrep);
 				 
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
-				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
+				 myclasstrace.setSubjectGold(myresults.getString("SubjectGold"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 classtraceHashMap.put(index, myclasstrace); 
 				 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
@@ -207,10 +207,10 @@ public class ClassTrace2 {
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
 				 
-				 myclasstrace.settrace(myresults.getString("goldAtLeast2"));
+				 myclasstrace.settrace(myresults.getString("SubjectGold"));
 				 myclasstrace.setTrace2(myresults.getString("gold2"));
 				 myclasstrace.setTraceFinal(myresults.getString("goldfinal"));
-				 myclasstrace.setSubjectGold(myresults.getString("goldAtLeast2"));
+				 myclasstrace.setSubjectGold(myresults.getString("SubjectGold"));
 				 myclasstrace.setGoldFinal(myresults.getString("goldfinal"));
 
 //				 myclasstrace.setTrace3(myresults.getString("gold3"));

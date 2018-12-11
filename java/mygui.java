@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
 
 import mypackage.DatabaseReading2;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 
 import org.eclipse.swt.custom.CCombo;
@@ -156,10 +156,10 @@ public class mygui {
 		
 		for(MethodTrace2 meth: methodtraces2) {
 			TableItem item1 = new TableItem(table, SWT.NONE);
-			List<Method2Representation> callees = meth.getCalleesList(); 
-			List<Method2Representation> callers = meth.getCallersList(); 
-			List<Method2Representation> callersExecuted = meth.getCallersListExecuted(); 
-			List<Method2Representation> calleesExecuted = meth.getCalleesListExecuted(); 
+			List<Method> callees = meth.getCalleesList(); 
+			List<Method> callers = meth.getCallersList(); 
+			List<Method> callersExecuted = meth.getCallersListExecuted(); 
+			List<Method> calleesExecuted = meth.getCalleesListExecuted(); 
 		    item1.setText(new String[] { meth.MethodRepresentation.getMethodid(), meth.MethodRepresentation.getMethodname(), meth.Requirement.getID(), meth.Requirement.RequirementName, meth.ClassRepresentation.classid, meth.ClassRepresentation.classname, meth.gold
 		    		, meth.subject, meth.goldpredictionCaller, meth.goldpredictionCallee});
 		  //  Method2Representation methrep= new Method2Representation(); 
@@ -190,7 +190,7 @@ public class mygui {
 	            items = table.getItems();
 	            CCombo comboCallers = new CCombo(table, SWT.NONE);
 	            comboCallers.setText("Callers");
-	            for (Method2Representation caller : methodtraces2.get(i).getCallersList()) {
+	            for (Method caller : methodtraces2.get(i).getCallersList()) {
 	                comboCallers.add(caller.toString());
 
 	            }
@@ -198,7 +198,7 @@ public class mygui {
 	            // items = table.getItems();
 	            CCombo comboCallees = new CCombo(table, SWT.NONE);
 	            comboCallees.setText("Callees");
-	            for (Method2Representation callee : methodtraces2.get(i).getCalleesList()) {
+	            for (Method callee : methodtraces2.get(i).getCalleesList()) {
 	                comboCallees.add(callee.toString());
 
 	            }
@@ -206,14 +206,14 @@ public class mygui {
 	            items = table.getItems();
 	            CCombo comboCallersExecuted = new CCombo(table, SWT.NONE);
 	            comboCallersExecuted.setText("CallersExecuted");
-	            for (Method2Representation callerExecuted : methodtraces2.get(i).getCallersListExecuted()) {
+	            for (Method callerExecuted : methodtraces2.get(i).getCallersListExecuted()) {
 	                comboCallersExecuted.add(callerExecuted.toString());
 
 	            }
 	            items = table.getItems();
 	            CCombo comboCalleesExecuted = new CCombo(table, SWT.NONE);
 	            comboCalleesExecuted.setText("CalleesExecuted");
-	            for (Method2Representation calleeExecuted : methodtraces2.get(i).getCalleesListExecuted()) {
+	            for (Method calleeExecuted : methodtraces2.get(i).getCalleesListExecuted()) {
 	                comboCalleesExecuted.add(calleeExecuted.toString());
 
 	            }

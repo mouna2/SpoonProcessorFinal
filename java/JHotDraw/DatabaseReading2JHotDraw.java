@@ -29,7 +29,7 @@ import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Requirement2;

@@ -26,7 +26,7 @@ import java.util.Set;
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
 import mypackage.Interface2;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
 import mypackage.SuperClass2;
@@ -137,34 +137,34 @@ public class UnitedComparisonMethodInterfacesFinal {
 		BufferedWriter bwfile5 = null ; 
 		BufferedWriter bwfile2= null ; 
 		if(ProgramName.equals("Chess")) {
-			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
+			File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenChess_COUNTS.txt");
 			FileOutputStream fos = new FileOutputStream(fout1);
 			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
-			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
+			File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpChess_COUNTS.txt");
 			FileOutputStream fos5 = new FileOutputStream(fout5);
 			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		}
 		if(ProgramName.equals("iTrust")) {
-			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildreniTrust_COUNTS.txt");
+			File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildreniTrust_COUNTS.txt");
 			FileOutputStream fos = new FileOutputStream(fout1);
 			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
-			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpiTrust_COUNTS.txt");
+			File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpiTrust_COUNTS.txt");
 			FileOutputStream fos5 = new FileOutputStream(fout5);
 			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		}
 		if(ProgramName.equals("Gantt")) {
-			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenGantt_COUNTS.txt");
+			File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenGantt_COUNTS.txt");
 			FileOutputStream fos = new FileOutputStream(fout1);
 			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
-			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpGantt_COUNTS.txt");
+			File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpGantt_COUNTS.txt");
 			FileOutputStream fos5 = new FileOutputStream(fout5);
 			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		}
 		if(ProgramName.equals("JHotDraw")) {
-			File fout1 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonSuperclassesChildrenJHotDraw_COUNTS.txt");
+			File fout1 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonSuperclassesChildrenJHotDraw_COUNTS.txt");
 			FileOutputStream fos = new FileOutputStream(fout1);
 			 bwfile2 = new BufferedWriter(new OutputStreamWriter(fos));
-			File fout5 = new File("C:\\Users\\mouna\\dumps\\logs\\ComparisonInterfacesImpJHotDraw_COUNTS.txt");
+			File fout5 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\logs\\ComparisonInterfacesImpJHotDraw_COUNTS.txt");
 			FileOutputStream fos5 = new FileOutputStream(fout5);
 			 bwfile5 = new BufferedWriter(new OutputStreamWriter(fos5));
 		}
@@ -212,7 +212,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 				ClassRepresentation2 interfaceclass= new ClassRepresentation2(interfaceclassid, interfacename); 
 				Interface2 myinter= new Interface2(); 
 				myinter.setInterfaceClass(interfaceclass);
-				myinter.setOwnerClass(implclass);
+				myinter.setImplementation(implclass);
 //				System.out.println("INTERFACE CLASS ID    "+ interfaceclassid);
 				if(InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename)!=null) {
 					implementationList= InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename); 
@@ -308,7 +308,7 @@ public class UnitedComparisonMethodInterfacesFinal {
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
 						
 
-						if(impl.getOwnerClass().getClassid().equals(classid)) {
+						if(impl.getImplementation().getClassid().equals(classid)) {
 							if(InterfacesImplementationsHashMap.get(mykey)!=null) {
 							System.out.println(counter);
 									List<MethodTrace2> 	mymethodtraces= new ArrayList<MethodTrace2>(); 

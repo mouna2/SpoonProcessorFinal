@@ -26,7 +26,7 @@ import java.util.Set;
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
 import mypackage.Interface2;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
 import mypackage.SuperClass2;
@@ -206,7 +206,7 @@ public class ComparisonMethodInterfaces {
 				ClassRepresentation2 interfaceclass= new ClassRepresentation2(interfaceclassid, interfacename); 
 				Interface2 myinter= new Interface2(); 
 				myinter.setInterfaceClass(interfaceclass);
-				myinter.setOwnerClass(implclass);
+				myinter.setImplementation(implclass);
 //				System.out.println("INTERFACE CLASS ID    "+ interfaceclassid);
 				if(InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename)!=null) {
 					implementationList= InterfacesImplementationsHashMap.get(interfaceclassid+"-"+interfacename); 
@@ -283,7 +283,7 @@ public class ComparisonMethodInterfaces {
 				SuperClass2 superclass= new SuperClass2(); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
-				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
+				Method methodrep = new Method(methodid, methodname); 
 				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
@@ -303,7 +303,7 @@ public class ComparisonMethodInterfaces {
 					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
 						
 
-						if(impl.getOwnerClass().getClassid().equals(classid)) {
+						if(impl.getImplementation().getClassid().equals(classid)) {
 							if(InterfacesImplementationsHashMap.get(mykey)!=null) {
 							System.out.println(counter);
 									List<MethodTrace2> 	mymethodtraces= new ArrayList<MethodTrace2>(); 

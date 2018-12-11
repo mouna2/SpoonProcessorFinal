@@ -22,7 +22,6 @@ import Chess.TracesTableChessFINALGeneticAlgorithm;
 import Tables.CallerIDName;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
-import mainPackage.ClassRepresentation;
 import mypackage.Children2;
 import mypackage.ClassDetails2;
 import mypackage.ClassField2;

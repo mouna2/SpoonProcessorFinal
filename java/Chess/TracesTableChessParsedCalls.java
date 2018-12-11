@@ -47,7 +47,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
 import mypackage.RequirementGold;
@@ -239,22 +239,22 @@ public class TracesTableChessParsedCalls extends JFrame {
 	BufferedWriter bwlog = new BufferedWriter(new OutputStreamWriter(mylogfile));
 	private final String userName = "root";
 	private final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -323,10 +323,10 @@ public class TracesTableChessParsedCalls extends JFrame {
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
 		String[] myparameters = new String[methodtraces2.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
+		Method[] callersarr = new Method[methodtraces2.size()];
+		Method[] callersex = new Method[methodtraces2.size()];
+		Method[] calleesarr = new Method[methodtraces2.size()];
+		Method[] calleesex = new Method[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][100];
 		int myfinalcounter=1; 
 		// Create the editors to be used for each row
@@ -462,7 +462,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			int OnlyinExecutedCallers=0; 
 			int CountCallers = 0;
 			items1 = new String[methodtrace.getCallersList().size()];
-			callersarr = new Method2Representation[methodtrace.getCallersList().size()];
+			callersarr = new Method[methodtrace.getCallersList().size()];
 			int myparametercount=0; 
 		/////////////////////////////////	
 			
@@ -532,7 +532,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			
 			
 			
-			for (Method2Representation caller : methodtrace.getCallersList()) {
+			for (Method caller : methodtrace.getCallersList()) {
 				items1[CountCallers] = caller.toString2();
 				callersarr[CountCallers] = caller;
 				System.out.println(caller.toString2());
@@ -641,10 +641,10 @@ public class TracesTableChessParsedCalls extends JFrame {
 
 			String[] items1And2 = new String[items1.length + items2.length];
 			items1And2 = (String[]) ArrayUtils.addAll(items1, items2);
-			Method2Representation[] CallerMethods = new Method2Representation[items1.length + items2.length];
-			CallerMethods = (Method2Representation[]) ArrayUtils.addAll(callersarr, callersex);
+			Method[] CallerMethods = new Method[items1.length + items2.length];
+			CallerMethods = (Method[]) ArrayUtils.addAll(callersarr, callersex);
 			//=======> LIST OF CALLERS AFTER MERGING CALLERS + CALLERSEXECUTED 
-			List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods);
+			List<Method> CallerMethodsList = Arrays.asList(CallerMethods);
 			
 			
 			int BothInParsedAndExecutedCallees=0; 
@@ -653,8 +653,8 @@ public class TracesTableChessParsedCalls extends JFrame {
 			// data[j][OwnerClassE]=items1;
 			int CountCallees = 0;
 			items3 = new String[methodtrace.getCalleesList().size()];
-			calleesarr = new Method2Representation[methodtrace.getCalleesList().size()];
-			for (Method2Representation caller : methodtrace.getCalleesList()) {
+			calleesarr = new Method[methodtrace.getCalleesList().size()];
+			for (Method caller : methodtrace.getCalleesList()) {
 				items3[CountCallees] = caller.toString2();
 				calleesarr[CountCallees] = caller;
 				System.out.println(caller.toString2());
@@ -739,10 +739,10 @@ public class TracesTableChessParsedCalls extends JFrame {
 			
 			String[] items3And4 = new String[items3.length + items4.length];
 			items3And4 = (String[]) ArrayUtils.addAll(items3, items4);
-			Method2Representation[] CalleeMethods = new Method2Representation[items3.length + items4.length];
-			CalleeMethods = (Method2Representation[]) ArrayUtils.addAll(calleesarr, calleesex);
+			Method[] CalleeMethods = new Method[items3.length + items4.length];
+			CalleeMethods = (Method[]) ArrayUtils.addAll(calleesarr, calleesex);
 			//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
-			List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods);
+			List<Method> CalleeMethodsList = Arrays.asList(CalleeMethods);
 
 			
 			
@@ -755,17 +755,17 @@ public class TracesTableChessParsedCalls extends JFrame {
 			System.out.println("Caller Methods List Size: "+CallerMethodsList.size());
 		
 			
-			CallerMethodListFinal = new ArrayList<Method2Representation>();
-			CalleeMethodListFinal = new ArrayList<Method2Representation>();
+			CallerMethodListFinal = new ArrayList<Method>();
+			CalleeMethodListFinal = new ArrayList<Method>();
 
 			
-			for (Method2Representation methcaller : CallerMethodsList) {
+			for (Method methcaller : CallerMethodsList) {
 				if (methcaller != null) {
 					CallerMethodListFinal.add(methcaller);
 				}
 			}
 
-			for (Method2Representation methcaller : CalleeMethodsList) {
+			for (Method methcaller : CalleeMethodsList) {
 				if (methcaller != null) {
 					CalleeMethodListFinal.add(methcaller);
 				}
@@ -784,11 +784,11 @@ public class TracesTableChessParsedCalls extends JFrame {
 			//***********************************************CALLERS**************************************************//	
 			//***********************************************CALLERS**************************************************//	
 
-			for (Method2Representation methcaller : CallerMethodsList) {
+			for (Method methcaller : CallerMethodsList) {
 				if (methcaller != null) {
 							boolean flag=false; 
 							
-								for(Method2Representation item: CallerMethodsList) {
+								for(Method item: CallerMethodsList) {
 									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
@@ -809,11 +809,11 @@ public class TracesTableChessParsedCalls extends JFrame {
 			
 			
 
-			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+			List<Method> CallerMethodsListFinalNoDuplicates = new ArrayList<Method>();
 
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
-			for( Method2Representation item : CallerMethodListFinal ) {
+			for( Method item : CallerMethodListFinal ) {
 				String val= item.classrep.classid+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
@@ -833,7 +833,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			
 			
 			
-			for (Method2Representation methcaller : CalleeMethodsList) {
+			for (Method methcaller : CalleeMethodsList) {
 				if (methcaller != null) {
 					
 				
@@ -842,7 +842,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 						
 							boolean flag=false; 
 							
-								for(Method2Representation item: CalleeMethodsList) {
+								for(Method item: CalleeMethodsList) {
 									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
@@ -865,10 +865,10 @@ public class TracesTableChessParsedCalls extends JFrame {
 			
 			
 
-			List<Method2Representation> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+			List<Method> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method>();
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
-			for( Method2Representation item : CalleeMethodListFinal ) {
+			for( Method item : CalleeMethodListFinal ) {
 				String val= item.classrep.classid+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
@@ -906,7 +906,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			CallerMethodListFinal=removeDuplicates(CallerMethodListFinal); 
 
 			String AppendedCallers=""; 
-			for(Method2Representation CallerMethod: CallerMethodListFinal) {
+			for(Method CallerMethod: CallerMethodListFinal) {
 				if(CallerMethod!=null) {
 					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
 				}
@@ -915,7 +915,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			CalleeMethodListFinal=removeDuplicates(CalleeMethodListFinal); 
 			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
-			for(Method2Representation CalleeMethod: CalleeMethodListFinal) {
+			for(Method CalleeMethod: CalleeMethodListFinal) {
 				if(CalleeMethod!=null) {
 					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
 				}
@@ -928,7 +928,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			int CounterTraceClassCallerE = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation callermeth : CallerMethodListFinal) {
+			for (Method callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
@@ -992,7 +992,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 			int CounterTraceClassCalleeE = 0;
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation calleemeth : CalleeMethodListFinal) {
+			for (Method calleemeth : CalleeMethodListFinal) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
 				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
 
@@ -1926,7 +1926,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 								bwlog.newLine();
 								bwlog.write(methodtrace.toString());
 								bwlog.newLine();
-								for(Method2Representation call: CallerMethodListFinal) {
+								for(Method call: CallerMethodListFinal) {
 									bwlog.write("callerlist "+ call.toString2());
 									
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1939,7 +1939,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 									 bwlog.newLine();
 								}
 								
-								for(Method2Representation call: CalleeMethodListFinal) {
+								for(Method call: CalleeMethodListFinal) {
 									bwlog.write("calleelist "+ call.toString2());
 									bwlog.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2194,11 +2194,11 @@ public class TracesTableChessParsedCalls extends JFrame {
 		        comboBox4.addActionListener(cbActionListener2);
 		*/
 
-			List<Method2Representation> callers = methodtrace.getCallersList();
-			List<Method2Representation> callersmerged = new ArrayList<Method2Representation>();
-			List<Method2Representation> callersExecuted = methodtrace.getCallersListExecuted();
+			List<Method> callers = methodtrace.getCallersList();
+			List<Method> callersmerged = new ArrayList<Method>();
+			List<Method> callersExecuted = methodtrace.getCallersListExecuted();
 
-			for (Method2Representation methrep : callers) {
+			for (Method methrep : callers) {
 				String methodname = methrep.getMethodname();
 				if (methodname.contains("(")) {
 					methodname = methodname.replaceAll("\\(.*\\)", "");
@@ -2206,17 +2206,17 @@ public class TracesTableChessParsedCalls extends JFrame {
 				}
 
 			}
-			for (Method2Representation caller : callers) {
+			for (Method caller : callers) {
 				callersmerged.add(caller);
 			}
-			for (Method2Representation caller : callersExecuted) {
+			for (Method caller : callersExecuted) {
 				callersmerged.add(caller);
 			}
 
 			
-			List<Method2Representation> callees = methodtrace.getCalleesList();
-			List<Method2Representation> calleesExecuted = methodtrace.getCalleesListExecuted();
-			for (Method2Representation methrep : callees) {
+			List<Method> callees = methodtrace.getCalleesList();
+			List<Method> calleesExecuted = methodtrace.getCalleesListExecuted();
+			for (Method methrep : callees) {
 				String methodname = methrep.getMethodname();
 				if (methodname.contains("(")) {
 					methodname = methodname.replaceAll("\\(.*\\)", "");
@@ -2778,17 +2778,17 @@ public class TracesTableChessParsedCalls extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+	public static List<Method> removeDuplicates(List<Method> list) {
 		  // convert input array to populated list
 
 		  // convert list to populated set
 		  
 		  
 		
-		  HashSet<Method2Representation> set=new HashSet(list); 
+		  HashSet<Method> set=new HashSet(list); 
 		  set.addAll(list);
 		 
-		  list = new ArrayList<Method2Representation>(set);
+		  list = new ArrayList<Method>(set);
 		  // convert set to array & return, 
 		  // use cast because you can't create generic arrays
 		  return list;

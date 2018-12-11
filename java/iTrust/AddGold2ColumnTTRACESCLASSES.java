@@ -184,36 +184,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 		}
 		
 		int counter2=0; 
-//		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-////		    System.out.println(counter2 + " = " );
-//		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-//		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-//		     List<String> List= new ArrayList<String>(); 
-//		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
-//			while(traces.next()){		
-//				//THIS IS GOLD 2
-//				gold2=null; 
-//			
-//				 requirementid=traces.getString("requirementid").trim(); 
-//				 classid=traces.getString("classid").trim(); 
-//				if(traces.getString("goldfinal")!=null) {
-//					 gold2=traces.getString("goldfinal").trim(); 
-//					 if(gold2!=null) {
-//						 List.add(gold2); 
-//					 }
-//				}
-//				
-//				
-//				
-//			
-//	   		   }
-//			String ReqClass=requirementid+"-"+classid;
-//			
-//			RequirementClassHashMap2.put(ReqClass, List); 
-//			counter2++; 
-//			System.out.println(counter2);
-//		}
-		
+
 		
 		
 		 counter2=0; 
@@ -253,7 +224,7 @@ public class AddGold2ColumnTTRACESCLASSES {
 					     } 
 //					    else  if(charac.trim().equals("N")) {
 
-					    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+					    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
 					    		
 					    		
 					    		

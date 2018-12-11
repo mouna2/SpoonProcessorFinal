@@ -52,7 +52,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
@@ -594,22 +594,22 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 	
 	private final String userName = "root";
 	private final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -697,10 +697,10 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 		String[] items5 = new String[methodtraces2HashMap.size()];
 		String[] items6 = new String[methodtraces2HashMap.size()];
 		String[] myparameters = new String[methodtraces2HashMap.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2HashMap.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2HashMap.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2HashMap.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2HashMap.size()];
+		Method[] callersarr = new Method[methodtraces2HashMap.size()];
+		Method[] callersex = new Method[methodtraces2HashMap.size()];
+		Method[] calleesarr = new Method[methodtraces2HashMap.size()];
+		Method[] calleesex = new Method[methodtraces2HashMap.size()];
 		Object[][] data = new Object[methodtraces2HashMap.size()][400];
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
@@ -871,11 +871,11 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
 				//PATTERN 3 AND PATTERN 5
 				
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
-				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
+				List<Method> CalleesList = methodtrace.getCalleesList(); 
+				List<Method> CallersList = methodtrace.getCallersList(); 
 				
 				List<String> PredictionCalleeList=new ArrayList<String>();
-				for(Method2Representation callee: CalleesList) {
+				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
 					String MethodID= callee.methodid; 
 					String key= MethodID+"-"+RequirementID; 
@@ -888,7 +888,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				
 				
 				List<String> PredictionCallerList=new ArrayList<String>();
-				for(Method2Representation caller: CallersList) {
+				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
 					String MethodID= caller.methodid; 
 					String key= MethodID+"-"+RequirementID; 
@@ -927,11 +927,11 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				
 
 				//PATTERN 2 AND PATTERN 4
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList(); 
-				List<Method2Representation> CallersList = methodtrace.getCallersList(); 
+				List<Method> CalleesList = methodtrace.getCalleesList(); 
+				List<Method> CallersList = methodtrace.getCallersList(); 
 				
 				List<String> PredictionCalleeList=new ArrayList<String>();
-				for(Method2Representation callee: CalleesList) {
+				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
 					String MethodID= callee.methodid; 
 					String key= MethodID+"-"+RequirementID; 
@@ -945,7 +945,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				
 				
 				List<String> PredictionCallerList=new ArrayList<String>();
-				for(Method2Representation caller: CallersList) {
+				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
 					String MethodID= caller.methodid; 
 					String key= MethodID+"-"+RequirementID; 
@@ -1756,17 +1756,17 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 	        }
 	        return true;
 	    }
-	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+	public static List<Method> removeDuplicates(List<Method> list) {
 		  // convert input array to populated list
 
 		  // convert list to populated set
 		  
 		  
 		
-		  HashSet<Method2Representation> set=new HashSet(list); 
+		  HashSet<Method> set=new HashSet(list); 
 		  set.addAll(list);
 		 
-		  list = new ArrayList<Method2Representation>(set);
+		  list = new ArrayList<Method>(set);
 		  // convert set to array & return, 
 		  // use cast because you can't create generic arrays
 		  return list;

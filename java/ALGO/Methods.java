@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Requirement2;
 
@@ -63,13 +63,13 @@ public class Methods<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
 
 		List<String> PredictionList = new ArrayList<String>();
-		for (Method2Representation call : calls) {
+		for (Method call : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) call.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
@@ -83,13 +83,13 @@ public class Methods<String> extends ArrayList<String>{
 		}
 		return false;
 	}
-	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement, List<Method2Representation> calls) {
+	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
 
 		List<String> PredictionList = new ArrayList<String>();
-		for (Method2Representation callee : calls) {
+		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
@@ -132,11 +132,11 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		List<String> PredictionList = new ArrayList<String>();
-		for (Method2Representation callee : calls) {
+		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
@@ -155,12 +155,12 @@ public class Methods<String> extends ArrayList<String>{
 	
 	public boolean AllCallersN(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
 		// TODO Auto-generated method stub
-		List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-		List<Method2Representation> CallersList = methodtrace.getCallersList();
+		List<Method> CalleesList = methodtrace.getCalleesList();
+		List<Method> CallersList = methodtrace.getCallersList();
 		 
 
 		List<String> PredictionList = new ArrayList<String>();
-		for (Method2Representation callee : CallersList) {
+		for (Method callee : CallersList) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
@@ -180,12 +180,12 @@ public class Methods<String> extends ArrayList<String>{
 	
 	public boolean AllCalleesT(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
 		// TODO Auto-generated method stub
-		List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-		List<Method2Representation> CallersList = methodtrace.getCallersList();
+		List<Method> CalleesList = methodtrace.getCalleesList();
+		List<Method> CallersList = methodtrace.getCallersList();
 		 
 
 		List<String> PredictionList = new ArrayList<String>();
-		for (Method2Representation callee : CalleesList) {
+		for (Method callee : CalleesList) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);
@@ -202,11 +202,11 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method2Representation> calls) {
+	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		 
-		for (Method2Representation callee : calls) {
+		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
 			String MethodID = (String) callee.methodid;
 			String key = (String) (RequirementID + "-" + MethodID);

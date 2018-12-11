@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MethodTraceSubjectTSubjectNOriginal {
 	
-	public Method2Representation MethodRepresentation; 
+	public Method MethodRepresentation; 
 	public Requirement2 Requirement; 
 	public ClassRepresentation2 ClassRepresentation; 
 	public String gold; 
@@ -23,10 +23,12 @@ public class MethodTraceSubjectTSubjectNOriginal {
 	public String SubjectN; 
 	public String gold3; 
 	public String gold4; 
-	List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
-	List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
+	public String goldfinal; 
+
+	List<Method> callersList= new ArrayList<Method>(); 
+	List<Method> calleesList= new ArrayList<Method>(); 
+	List<Method> callersListExecuted= new ArrayList<Method>(); 
+	List<Method> calleesListExecuted= new ArrayList<Method>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapOwner= new HashMap<String, List<Interface2>>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapInterface= new HashMap<String, List<Interface2>>(); 
 	HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
@@ -67,8 +69,8 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		return gold2;
 	}
 
-	public void setGold2(String gold2) {
-		this.goldfinal = gold2;
+	public void setGold2(String godlfinal) {
+		this.goldfinal = godlfinal;
 	}
 
 	public String getGoldpredictionCaller() {
@@ -87,7 +89,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		this.goldpredictionCallee = goldpredictionCallee;
 	}
 
-	public List<Method2Representation> getCallersList() {
+	public List<Method> getCallersList() {
 		return callersList;
 	}
 
@@ -107,31 +109,31 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		SubjectN = subjectN;
 	}
 
-	public void setCallersList(List<Method2Representation> callersList) {
+	public void setCallersList(List<Method> callersList) {
 		this.callersList = callersList;
 	}
 
-	public List<Method2Representation> getCalleesList() {
+	public List<Method> getCalleesList() {
 		return calleesList;
 	}
 
-	public void setCalleesList(List<Method2Representation> calleesList) {
+	public void setCalleesList(List<Method> calleesList) {
 		this.calleesList = calleesList;
 	}
 
-	public List<Method2Representation> getCallersListExecuted() {
+	public List<Method> getCallersListExecuted() {
 		return callersListExecuted;
 	}
 
-	public void setCallersListExecuted(List<Method2Representation> callersListExecuted) {
+	public void setCallersListExecuted(List<Method> callersListExecuted) {
 		this.callersListExecuted = callersListExecuted;
 	}
 
-	public List<Method2Representation> getCalleesListExecuted() {
+	public List<Method> getCalleesListExecuted() {
 		return calleesListExecuted;
 	}
 
-	public void setCalleesListExecuted(List<Method2Representation> calleesListExecuted) {
+	public void setCalleesListExecuted(List<Method> calleesListExecuted) {
 		this.calleesListExecuted = calleesListExecuted;
 	}
 
@@ -167,11 +169,11 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		super();
 	}
 
-	public Method2Representation getMethodRepresentation() {
+	public Method getMethodRepresentation() {
 		return MethodRepresentation;
 	}
 
-	public void setMethodRepresentation(Method2Representation methodRepresentation) {
+	public void setMethodRepresentation(Method methodRepresentation) {
 		MethodRepresentation = methodRepresentation;
 	}
 
@@ -231,7 +233,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 				
 					MethodTrace.setGold(traces.getString("gold"));
 				
-					MethodTrace.setGold2(traces.getString("gold2"));
+					MethodTrace.setGoldFinal(traces.getString("goldfinal"));
 					MethodTrace.setGold4(traces.getString("gold4"));
 					MethodTrace.setGold3(traces.getString("gold3"));
 					MethodTrace.setSubject(traces.getString("subject"));
@@ -246,10 +248,10 @@ public class MethodTraceSubjectTSubjectNOriginal {
 					myclass.setClassid(traces.getString("classid"));
 					MethodTrace.setClassRepresentation(myclass);
 					
-					Method2Representation methodrepres = new Method2Representation(); 
+					Method methodrepres = new Method(); 
 					methodrepres.setMethodid(traces.getString("methodid"));
 					methodrepres.setMethodname(traces.getString("method"));
-					MethodTrace.setMethodRepresentation(methodrepres);
+					MethodTrace.setMethod(methodrepres);
 					
 					 if(MethodTrace2HashMap.get(methodrepres.getMethodid())!=null) {
 						 mymethodtracelist= MethodTrace2HashMap.get(methodrepres.getMethodid()); 
@@ -296,7 +298,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 				 ownerclass.setClassid(myinterfaces.getString("ownerclassid"));
 				 ownerclass.setClassname(myinterfaces.getString("classname"));
 				 myinterface.setInterfaceClass(myclassrepinterface);
-				 myinterface.setOwnerClass(ownerclass);
+				 myinterface.setImplementation(ownerclass);
 				 String key1 =myclassrepinterface.getClassid(); 
 				 String key2= ownerclass.getClassid(); 
 				 String key=key1+"-"+key2; 
@@ -339,7 +341,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 				 ownerclass.setClassid(myinterfaces.getString("ownerclassid"));
 				 ownerclass.setClassname(myinterfaces.getString("classname"));
 				 myinterface.setInterfaceClass(myclassrepinterface);
-				 myinterface.setOwnerClass(ownerclass);
+				 myinterface.setImplementation(ownerclass);
 				 String key1 =myclassrepinterface.getClassid(); 
 				 String key2= ownerclass.getClassid(); 
 				 String key=key1+"-"+key2; 
@@ -502,11 +504,11 @@ public class MethodTraceSubjectTSubjectNOriginal {
 			 String calleename= methodcalls.getString("calleename"); 
 			
 			 
-			 Method2Representation callerclass= new Method2Representation(); 
+			 Method callerclass= new Method(); 
 			 callerclass.setMethodid(callerid); 
 			callerclass.setMethodname(callername); 
 			 
-			 Method2Representation calleeclass= new Method2Representation(); 
+			 Method calleeclass= new Method(); 
 			 calleeclass.setMethodid(calleeid);
 			 calleeclass.setMethodname(calleename);
 			 
@@ -557,11 +559,11 @@ public class MethodTraceSubjectTSubjectNOriginal {
 			 String calleename= methodcalls.getString("calleename"); 
 			
 			 
-			 Method2Representation callerclass= new Method2Representation(); 
+			 Method callerclass= new Method(); 
 			 callerclass.setMethodid(callerid); 
 			callerclass.setMethodname(callername); 
 			 
-			 Method2Representation calleeclass= new Method2Representation(); 
+			 Method calleeclass= new Method(); 
 			 calleeclass.setMethodid(calleeid);
 			 calleeclass.setMethodname(calleename);
 			 
@@ -614,11 +616,11 @@ public class MethodTraceSubjectTSubjectNOriginal {
 			 String calleename= methodcalls.getString("calleename"); 
 			
 			 
-			 Method2Representation callerclass= new Method2Representation(); 
+			 Method callerclass= new Method(); 
 			 callerclass.setMethodid(callerid); 
 			callerclass.setMethodname(callername); 
 			 
-			 Method2Representation calleeclass= new Method2Representation(); 
+			 Method calleeclass= new Method(); 
 			 calleeclass.setMethodid(calleeid);
 			 calleeclass.setMethodname(calleename);
 			 
@@ -669,11 +671,11 @@ public class MethodTraceSubjectTSubjectNOriginal {
 			 String calleename= methodcalls.getString("calleename"); 
 			
 			 
-			 Method2Representation callerclass= new Method2Representation(); 
+			 Method callerclass= new Method(); 
 			 callerclass.setMethodid(callerid); 
 			callerclass.setMethodname(callername); 
 			 
-			 Method2Representation calleeclass= new Method2Representation(); 
+			 Method calleeclass= new Method(); 
 			 calleeclass.setMethodid(calleeid);
 			 calleeclass.setMethodname(calleename);
 			 
@@ -722,7 +724,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 			 classrep.setClassname(classname);
 			 
 			 
-			 Method2Representation methodrep= new Method2Representation(); 
+			 Method methodrep= new Method(); 
 			 String key = methodid; 
 			 
 			 methodrep.setMethodid(methodid);
@@ -771,7 +773,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 		
 	}
 	
-	public MethodTraceSubjectTSubjectNOriginal(Method2Representation methodRepresentation, Requirement2 requirement,
+	public MethodTraceSubjectTSubjectNOriginal(Method methodRepresentation, Requirement2 requirement,
 			ClassRepresentation2 classRepresentation, String gold, String subject) {
 		super();
 		MethodRepresentation = methodRepresentation;
@@ -829,7 +831,7 @@ public class MethodTraceSubjectTSubjectNOriginal {
 				 classrep.setClassname(myresults.getString("classname"));
 				 String fullmethodname= myresults.getString("fullmethod"); 
 
-				 Method2Representation methodrep= new Method2Representation(); 
+				 Method methodrep= new Method(); 
 				 methodrep.setMethodid(myresults.getString("methodid"));
 				 methodrep.setMethodname(myresults.getString("method"));
 				 methodrep.setMethodname(myresults.getString("methodname"));
@@ -860,8 +862,8 @@ if(myinterfacelist!=null) {
 				 	if(myownerinterfaceList!=null) {
 				 		 for(Interface2 myinterface: myownerinterfaceList) {
 							 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
-							 myclassrepinterface.setClassid(myinterface.getOwnerClass().classid);
-							 myclassrepinterface.setClassname(myinterface.getOwnerClass().classname);
+							 myclassrepinterface.setClassid(myinterface.getImplementation().classid);
+							 myclassrepinterface.setClassname(myinterface.getImplementation().classname);
 							 interfaceclassrepsOwner.add(myclassrepinterface); 
 						 }
 				 	}
@@ -891,13 +893,13 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
+				 List<Method> mycalleelistrep = new ArrayList<Method>(); 
 				 if(mycalleelist!=null) {
 				 for(MethodCalls mycallee: mycalleelist) {
 					 
 						 
 					 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(mycallee.Callee.methodid);
 					 meth.setMethodname(mycallee.Callee.methodname);
 					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -909,10 +911,10 @@ if(myinterfacelist!=null) {
 				 }
 				 
 				 List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrep = new ArrayList<Method2Representation>(); 
+				 List<Method> mycallerlistrep = new ArrayList<Method>(); 
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -927,10 +929,10 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycallerlistexecuted = MethodCallsEXECHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrepexecuted = new ArrayList<Method2Representation>(); 
+				 List<Method> mycallerlistrepexecuted = new ArrayList<Method>(); 
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -944,10 +946,10 @@ if(myinterfacelist!=null) {
 				 
 				 
 				 List<MethodCalls> mycalleelistexecuted = MethodCallsEXECHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrepexecuted = new ArrayList<Method2Representation>(); 
+				 List<Method> mycalleelistrepexecuted = new ArrayList<Method>(); 
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycallee.Callee.methodid);
 						 meth.setMethodname(mycallee.Callee.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -1334,28 +1336,28 @@ if(myinterfacelist!=null) {
 		+ ", Requirement=" + methtr.Requirement.toString()
 			+ ", ClassRepresentation=" + methtr.ClassRepresentation.toString() + ", gold=" + methtr.gold + ", subject=" + methtr.subject 
 				+ ", goldpredictionCaller=" + methtr.goldpredictionCaller+ ", goldpredictionCallee=" + methtr.goldpredictionCallee ; 
-		for(Method2Representation caller: methtr.callersList) {
+		for(Method caller: methtr.callersList) {
 		 mycaller=	mycaller+caller.getMethodid() +" "+caller.getMethodname(); 
 		for(RequirementGold req: caller.requirementsGold) {
 			 requicaller= requicaller+ " "+ req.Requirement.ID+ "  "+ req.Requirement.RequirementName; 
 		}
 		}
 		
-		for(Method2Representation callee: methtr.calleesList) {
+		for(Method callee: methtr.calleesList) {
 			 mycallee=	mycallee+callee.getMethodid() +" "+callee.getMethodname(); 
 			for(RequirementGold req: callee.requirementsGold) {
 				 requicallee= requicallee+ " "+ req.Requirement.ID+ "  "+ req.Requirement.RequirementName; 
 			}
 			}
 		
-		for(Method2Representation callerexecuted: methtr.callersListExecuted) {
+		for(Method callerexecuted: methtr.callersListExecuted) {
 			 mycallerexecuted=	mycallerexecuted+callerexecuted.getMethodid() +" "+callerexecuted.getMethodname(); 
 			for(RequirementGold req: callerexecuted.requirementsGold) {
 				 requicallerexecuted=requicallerexecuted+ " "+ req.Requirement.ID+ "  "+ req.Requirement.RequirementName; 
 			}
 			}
 			
-			for(Method2Representation calleeexecuted: methtr.calleesListExecuted) {
+			for(Method calleeexecuted: methtr.calleesListExecuted) {
 				 mycalleeexecuted=	mycalleeexecuted+calleeexecuted.getMethodid() +" "+calleeexecuted.getMethodname(); 
 				for(RequirementGold req: calleeexecuted.requirementsGold) {
 					 requicalleeexecuted=requicalleeexecuted+ " "+ req.Requirement.ID+ "  "+ req.Requirement.RequirementName; 

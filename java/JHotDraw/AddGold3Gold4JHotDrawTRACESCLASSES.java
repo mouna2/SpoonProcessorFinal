@@ -131,21 +131,14 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 	
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlexAtLeast3");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlex");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast3");
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN SubjectGold");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast2");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
 		
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast2 LONGTEXT"); 
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD SubjectGold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldfinal LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast3 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlex LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlexAtLeast3 LONGTEXT"); 
+	
 
 
 		int  TracesNumber=0; 
@@ -503,7 +496,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 								     } 
 //								    else  if(charac.trim().equals("N")) {
 
-								    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+								    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
 								    		
 								    		
 								    		
@@ -652,29 +645,29 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 					    
 					  
 					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						     } 
 //						    else  if(charac.trim().equals("N")) {
 
-						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+						    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
 						    		
 						    		
 						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						    	 st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 						    			     }
 						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						    	 
 						     }
 					     
 			     }
 			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }
@@ -685,7 +678,7 @@ public class AddGold3Gold4JHotDrawTRACESCLASSES {
 			     
 			     
 			     
-			     System.out.println("COUNTER goldAtLeast2 "+counter);
+			     System.out.println("COUNTER SubjectGold "+counter);
 					counter++; 
 		}
 		

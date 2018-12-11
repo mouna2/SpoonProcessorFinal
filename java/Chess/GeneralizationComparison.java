@@ -25,7 +25,7 @@ import java.util.Properties;
 import Tables.tracesmethodscallees;
 import mypackage.ClassRepresentation2;
 import mypackage.Interface2;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
 import mypackage.SuperClass2;
@@ -213,7 +213,7 @@ public class GeneralizationComparison {
 				gold2=res.getString("gold2"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
-				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
+				Method methodrep = new Method(methodid, methodname); 
 				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
@@ -248,7 +248,7 @@ public class GeneralizationComparison {
 				gold2=res2.getString("gold2V2"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
-				Method2Representation methodrep = new Method2Representation(methodid, methodname); 
+				Method methodrep = new Method(methodid, methodname); 
 				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);

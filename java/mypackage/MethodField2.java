@@ -13,7 +13,7 @@ public class MethodField2 {
 	 String FieldName;
 	 ClassRepresentation2 MethodFieldType; 
 	 ClassRepresentation2 OwnerClass;
-	 Method2Representation Method;
+	 Method Method;
 		List<MethodField2> myfieldmethods= new ArrayList<MethodField2>(); 
 	
 		HashMap<String, List<MethodField2>> ClassRepresentationHashMapMethodField= new HashMap<String, List<MethodField2>>(); 
@@ -21,10 +21,10 @@ public class MethodField2 {
 		
 	
 	
-	public Method2Representation getMethod() {
+	public Method getMethod() {
 			return Method;
 		}
-		public void setMethod(Method2Representation method) {
+		public void setMethod(Method method) {
 			Method = method;
 		}
 	public List<MethodField2> getMyfieldmethods() {
@@ -105,7 +105,7 @@ public class MethodField2 {
 				 OwnerClass.setClassname(classname);
 				 
 				 
-				 Method2Representation methodrep= new Method2Representation();
+				 Method methodrep= new Method();
 				 String ownermethodid = myresults.getString("ownermethodid"); 			
 				 String ownermethodname = myresults.getString("ownermethodname"); 
 //				 String classname = myresults.getString("classname"); 

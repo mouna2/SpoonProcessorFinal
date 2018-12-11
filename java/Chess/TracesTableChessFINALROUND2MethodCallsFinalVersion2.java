@@ -58,7 +58,7 @@ import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
@@ -121,22 +121,22 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 	public final String userName = "root";
 	public final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -189,29 +189,29 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 		
 		BufferedWriter bwfile1 = null;
 		if (ProgramName.equals("chess")) {
-			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 		}
 
 		if (ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 			
-			File filelogFP = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
+			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
 			FileOutputStream fosfilaFP = new FileOutputStream(filelogFP);
 			 bwfileFP = new BufferedWriter(new OutputStreamWriter(fosfilaFP));
 		}
 
 		if (ProgramName.equals("itrust")) {
-			File filelog3 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
+			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
-			File filelog4 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
+			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 		}
@@ -222,7 +222,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 		}
 		if (ProgramName.equals("chess")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallChess.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -276,7 +276,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 
 		} else if (ProgramName.equals("gantt")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallGantt.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -329,7 +329,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			parameterHashMap = dbgantt.getParameterhashMap();
 		} else if (ProgramName.equals("jhotdraw")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallJHotDraw.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -382,7 +382,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 			parameterHashMap = dbjhotdraw.getParameterhashMap();
 		} else if (ProgramName.equals("itrust")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecalliTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecalliTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -524,11 +524,11 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
 				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 				// methodtrace.setPrediction("");
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-				List<Method2Representation> CallersList = methodtrace.getCallersList();
+				List<Method> CalleesList = methodtrace.getCalleesList();
+				List<Method> CallersList = methodtrace.getCallersList();
 
 				List<String> PredictionCalleeList = new ArrayList<String>();
-				for (Method2Representation callee : CalleesList) {
+				for (Method callee : CalleesList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = callee.methodid;
 					String key = MethodID + "-" + RequirementID;
@@ -540,7 +540,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				}
 
 				List<String> PredictionCallerList = new ArrayList<String>();
-				for (Method2Representation caller : CallersList) {
+				for (Method caller : CallersList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = caller.methodid;
 					String key = MethodID + "-" + RequirementID;
@@ -633,11 +633,11 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 
 				// MIXED PATTERNS
-				List<Method2Representation> CalleesList = methodtrace.getCalleesList();
-				List<Method2Representation> CallersList = methodtrace.getCallersList();
+				List<Method> CalleesList = methodtrace.getCalleesList();
+				List<Method> CallersList = methodtrace.getCallersList();
 
 				List<String> PredictionCalleeList = new ArrayList<String>();
-				for (Method2Representation callee : CalleesList) {
+				for (Method callee : CalleesList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = callee.methodid;
 					String key = MethodID + "-" + RequirementID;
@@ -648,7 +648,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion2 extends JFrame 
 				}
 
 				List<String> PredictionCallerList = new ArrayList<String>();
-				for (Method2Representation caller : CallersList) {
+				for (Method caller : CallersList) {
 					String RequirementID = methodtrace.Requirement.ID;
 					String MethodID = caller.methodid;
 					String key = MethodID + "-" + RequirementID;

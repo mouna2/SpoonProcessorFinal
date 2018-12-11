@@ -47,7 +47,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceOld;
 import mypackage.MethodTraceOld;
@@ -445,22 +445,22 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 	
 	private final String userName = "root";
 	private final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -544,10 +544,10 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
 		String[] myparameters = new String[methodtraces2.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
+		Method[] callersarr = new Method[methodtraces2.size()];
+		Method[] callersex = new Method[methodtraces2.size()];
+		Method[] calleesarr = new Method[methodtraces2.size()];
+		Method[] calleesex = new Method[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][400];
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
@@ -667,7 +667,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int OnlyinExecutedCallers=0; 
 			int CountCallers = 0;
 			items1 = new String[methodtrace.getCallersList().size()];
-			callersarr = new Method2Representation[methodtrace.getCallersList().size()];
+			callersarr = new Method[methodtrace.getCallersList().size()];
 			int myparametercount=0; 
 		/////////////////////////////////	
 			
@@ -771,8 +771,8 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 
 		int CountCallersExecuted = 0;
 		items2 = new String[methodtrace.getCallersListExecuted().size()];
-		callersex = new Method2Representation[methodtrace.getCallersListExecuted().size()];
-		for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+		callersex = new Method[methodtrace.getCallersListExecuted().size()];
+		for (Method caller : methodtrace.getCallersListExecuted()) {
 
 //			boolean equalbool = false;
 //			if (items1.length == 0) {
@@ -814,7 +814,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 		
 		int CountCallerExecuted=0; 
 		String[] itemsExecuted = new String[methodtrace.getCallersListExecuted().size()];
-		for (Method2Representation caller : methodtrace.getCallersListExecuted()) {
+		for (Method caller : methodtrace.getCallersListExecuted()) {
 			
 			itemsExecuted[CountCallerExecuted] = caller.toString2();	
 			System.out.println(caller.toString2());
@@ -855,10 +855,10 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 
 		String[] items1And2 = new String[items1.length + items2.length];
 		items1And2 = (String[]) ArrayUtils.addAll(items2, items1);
-		Method2Representation[] CallerMethods = new Method2Representation[items1.length + items2.length];
-		CallerMethods = (Method2Representation[]) ArrayUtils.addAll(callersarr, callersex);
+		Method[] CallerMethods = new Method[items1.length + items2.length];
+		CallerMethods = (Method[]) ArrayUtils.addAll(callersarr, callersex);
 		//=======> LIST OF CALLERS AFTER MERGING CALLERS + CALLERSEXECUTED 
-		List<Method2Representation> CallerMethodsList = Arrays.asList(CallerMethods);
+		List<Method> CallerMethodsList = Arrays.asList(CallerMethods);
 		
 		
 	//	int BothInParsedAndExecutedCallees=0; 
@@ -878,8 +878,8 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 
 		int CountCalleesExecuted = 0;
 		items4 = new String[methodtrace.getCalleesListExecuted().size()];
-		calleesex = new Method2Representation[methodtrace.getCalleesListExecuted().size()];
-		for (Method2Representation caller : methodtrace.getCalleesListExecuted()) {
+		calleesex = new Method[methodtrace.getCalleesListExecuted().size()];
+		for (Method caller : methodtrace.getCalleesListExecuted()) {
 //			boolean equalbool = false;
 //			if (items3.length == 0) {
 				items4[CountCalleesExecuted] = caller.toString2();
@@ -909,7 +909,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 
 		int CountCalleeExecuted=0; 
 		String[] itemsExecutedCallees = new String[methodtrace.getCalleesListExecuted().size()];
-		for (Method2Representation callee : methodtrace.getCalleesListExecuted()) {
+		for (Method callee : methodtrace.getCalleesListExecuted()) {
 			
 			itemsExecutedCallees[CountCalleeExecuted] = callee.toString();	
 			System.out.println(callee.toString());
@@ -950,10 +950,10 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 		 System.out.println("LENGTH OF ITEMS4: "+items4.length);
 		String[] items3And4 = new String[items3.length + items4.length];
 		items3And4 = (String[]) ArrayUtils.addAll(items4, items3);
-		Method2Representation[] CalleeMethods = new Method2Representation[items3.length + items4.length];
-		CalleeMethods = (Method2Representation[]) ArrayUtils.addAll(calleesarr, calleesex);
+		Method[] CalleeMethods = new Method[items3.length + items4.length];
+		CalleeMethods = (Method[]) ArrayUtils.addAll(calleesarr, calleesex);
 		//=======> LIST OF CALLEES AFTER MERGING CALLEES + CALLEESEXECUTED 
-		List<Method2Representation> CalleeMethodsList = Arrays.asList(CalleeMethods);
+		List<Method> CalleeMethodsList = Arrays.asList(CalleeMethods);
 
 			
 			
@@ -966,17 +966,17 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			System.out.println("Caller Methods List Size: "+CallerMethodsList.size());
 		
 			
-			CallerMethodListFinal = new ArrayList<Method2Representation>();
-			CalleeMethodListFinal = new ArrayList<Method2Representation>();
+			CallerMethodListFinal = new ArrayList<Method>();
+			CalleeMethodListFinal = new ArrayList<Method>();
 
 			
-			for (Method2Representation methcaller : CallerMethodsList) {
+			for (Method methcaller : CallerMethodsList) {
 				if (methcaller != null) {
 					CallerMethodListFinal.add(methcaller);
 				}
 			}
 
-			for (Method2Representation methcaller : CalleeMethodsList) {
+			for (Method methcaller : CalleeMethodsList) {
 				if (methcaller != null) {
 					CalleeMethodListFinal.add(methcaller);
 				}
@@ -1020,11 +1020,11 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 //			
 //			
 
-			List<Method2Representation> CallerMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+			List<Method> CallerMethodsListFinalNoDuplicates = new ArrayList<Method>();
 
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
-			for( Method2Representation item : CallerMethodListFinal ) {
+			for( Method item : CallerMethodListFinal ) {
 				String val= item.classrep.classid+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
@@ -1076,10 +1076,10 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 //			
 			
 
-			List<Method2Representation> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method2Representation>();
+			List<Method> CalleeMethodsListFinalNoDuplicates = new ArrayList<Method>();
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
-			for( Method2Representation item : CalleeMethodListFinal ) {
+			for( Method item : CalleeMethodListFinal ) {
 				String val= item.classrep.classid+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
@@ -1117,7 +1117,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			CallerMethodListFinal=removeDuplicates(CallerMethodListFinal); 
 
 			String AppendedCallers=""; 
-			for(Method2Representation CallerMethod: CallerMethodListFinal) {
+			for(Method CallerMethod: CallerMethodListFinal) {
 				if(CallerMethod!=null) {
 					AppendedCallers=AppendedCallers+CallerMethod.toString2()+"-"; 
 				}
@@ -1126,7 +1126,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			CalleeMethodListFinal=removeDuplicates(CalleeMethodListFinal); 
 			AppendedCallers=AppendedCallers.replaceAll(",", "/"); 
 			String AppendedCallees=""; 
-			for(Method2Representation CalleeMethod: CalleeMethodListFinal) {
+			for(Method CalleeMethod: CalleeMethodListFinal) {
 				if(CalleeMethod!=null) {
 					AppendedCallees=AppendedCallees+CalleeMethod.toString2()+"-"; 
 				}
@@ -1142,7 +1142,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CounterTraceClassCallerEGOLD2 = 0;
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation callermeth : CallerMethodListFinal) {
+			for (Method callermeth : CallerMethodListFinal) {
 				ClassRepresentation2 classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
@@ -1230,7 +1230,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CountMethodTACHRAF = 0; 
 			int CountMethodNACHRAF = 0; 
 			int CountMethodEACHRAF = 0; 
-			for (Method2Representation mycaller: CallerMethodListFinal) {
+			for (Method mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1249,7 +1249,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CountMethodTACHRAFCallee = 0; 
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
-			for (Method2Representation mycaller: CalleeMethodListFinal) {
+			for (Method mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1277,7 +1277,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CountMethodTACHRAFGold2 = 0; 
 			int CountMethodNACHRAFGold2 = 0; 
 			int CountMethodEACHRAFGold2 = 0; 
-			for (Method2Representation mycaller: CallerMethodListFinal) {
+			for (Method mycaller: CallerMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1304,7 +1304,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CountMethodTACHRAFCalleeGold2 = 0; 
 			int CountMethodNACHRAFCalleeGold2 = 0; 
 			int CountMethodEACHRAFCalleeGold2 = 0; 
-			for (Method2Representation mycaller: CalleeMethodListFinal) {
+			for (Method mycaller: CalleeMethodListFinal) {
 				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid);
 				if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
@@ -1337,7 +1337,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 			int CounterTraceClassCalleeEGOLD2 = 0;
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
-			for (Method2Representation calleemeth : CalleeMethodListFinal) {
+			for (Method calleemeth : CalleeMethodListFinal) {
 				ClassRepresentation2 classrep = calleemeth.getClassrep();
 				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
 
@@ -1653,7 +1653,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 								bwlog3.newLine();
 								bwlog3.write(methodtrace.toString());
 								bwlog3.newLine();
-								for(Method2Representation call: methodtrace.getCallersList()) {
+								for(Method call: methodtrace.getCallersList()) {
 									bwlog3.write("callerlist "+ call.toString2());
 									
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1665,7 +1665,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog3.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+								for(Method call: methodtrace.getCallersListExecuted()) {
 									bwlog3.write("callerlistEXEC "+ call.toString2());
 									bwlog3.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1678,7 +1678,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog3.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCalleesList()) {
+								for(Method call: methodtrace.getCalleesList()) {
 									bwlog3.write("calleelist "+ call.toString2());
 									bwlog3.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -1691,7 +1691,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog3.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+								for(Method call: methodtrace.getCalleesListExecuted()) {
 									bwlog3.write("calleelistEXEC "+ call.toString2());
 									bwlog3.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2351,7 +2351,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 								bwlog2.newLine();
 								bwlog2.write(methodtrace.toString());
 								bwlog2.newLine();
-								for(Method2Representation call: methodtrace.getCallersList()) {
+								for(Method call: methodtrace.getCallersList()) {
 									bwlog2.write("callerlist "+ call.toString2());
 									
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2363,7 +2363,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog2.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+								for(Method call: methodtrace.getCallersListExecuted()) {
 									bwlog2.write("callerlistEXEC "+ call.toString2());
 									bwlog2.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2376,7 +2376,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog2.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCalleesList()) {
+								for(Method call: methodtrace.getCalleesList()) {
 									bwlog2.write("calleelist "+ call.toString2());
 									bwlog2.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2389,7 +2389,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 									 }
 									 bwlog2.newLine();
 								}
-								for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+								for(Method call: methodtrace.getCalleesListExecuted()) {
 									bwlog2.write("calleelistEXEC "+ call.toString2());
 									bwlog2.newLine();
 									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2912,7 +2912,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 													bwlog3.newLine();
 													bwlog3.write(methodtrace.toString());
 													bwlog3.newLine();
-													for(Method2Representation call: methodtrace.getCallersList()) {
+													for(Method call: methodtrace.getCallersList()) {
 														bwlog3.write("callerlist "+ call.toString2());
 														
 														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2924,7 +2924,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 														 }
 														 bwlog3.newLine();
 													}
-													for(Method2Representation call: methodtrace.getCallersListExecuted()) {
+													for(Method call: methodtrace.getCallersListExecuted()) {
 														bwlog3.write("callerlistEXEC "+ call.toString2());
 														bwlog3.newLine();
 														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2937,7 +2937,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 														 }
 														 bwlog3.newLine();
 													}
-													for(Method2Representation call: methodtrace.getCalleesList()) {
+													for(Method call: methodtrace.getCalleesList()) {
 														bwlog3.write("calleelist "+ call.toString2());
 														bwlog3.newLine();
 														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -2950,7 +2950,7 @@ public class TracesTableiTrustGold2PredictionFINAL_EXECUTED_CALLS extends JFrame
 														 }
 														 bwlog3.newLine();
 													}
-													for(Method2Representation call: methodtrace.getCalleesListExecuted()) {
+													for(Method call: methodtrace.getCalleesListExecuted()) {
 														bwlog3.write("calleelistEXEC "+ call.toString2());
 														bwlog3.newLine();
 														 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
@@ -4486,11 +4486,11 @@ failGold2++;
 					
 					
 			
-			List<Method2Representation> callers = methodtrace.getCallersList();
-			List<Method2Representation> callersmerged = new ArrayList<Method2Representation>();
-			List<Method2Representation> callersExecuted = methodtrace.getCallersListExecuted();
+			List<Method> callers = methodtrace.getCallersList();
+			List<Method> callersmerged = new ArrayList<Method>();
+			List<Method> callersExecuted = methodtrace.getCallersListExecuted();
 
-			for (Method2Representation methrep : callers) {
+			for (Method methrep : callers) {
 				String methodname = methrep.getMethodname();
 				if (methodname.contains("(")) {
 					methodname = methodname.replaceAll("\\(.*\\)", "");
@@ -4498,17 +4498,17 @@ failGold2++;
 				}
 
 			}
-			for (Method2Representation caller : callers) {
+			for (Method caller : callers) {
 				callersmerged.add(caller);
 			}
-			for (Method2Representation caller : callersExecuted) {
+			for (Method caller : callersExecuted) {
 				callersmerged.add(caller);
 			}
 
 			
-			List<Method2Representation> callees = methodtrace.getCalleesList();
-			List<Method2Representation> calleesExecuted = methodtrace.getCalleesListExecuted();
-			for (Method2Representation methrep : callees) {
+			List<Method> callees = methodtrace.getCalleesList();
+			List<Method> calleesExecuted = methodtrace.getCalleesListExecuted();
+			for (Method methrep : callees) {
 				String methodname = methrep.getMethodname();
 				if (methodname.contains("(")) {
 					methodname = methodname.replaceAll("\\(.*\\)", "");
@@ -5246,17 +5246,17 @@ failGold2++;
 		frame.setVisible(true);
 	}
 	
-	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+	public static List<Method> removeDuplicates(List<Method> list) {
 		  // convert input array to populated list
 
 		  // convert list to populated set
 		  
 		  
 		
-		  HashSet<Method2Representation> set=new HashSet(list); 
+		  HashSet<Method> set=new HashSet(list); 
 		  set.addAll(list);
 		 
-		  list = new ArrayList<Method2Representation>(set);
+		  list = new ArrayList<Method>(set);
 		  // convert set to array & return, 
 		  // use cast because you can't create generic arrays
 		  return list;

@@ -13,7 +13,7 @@ public class Parameter2 {
 	ClassRepresentation2 ParameterType;
 	ClassRepresentation2 OwnerClass;
 	String isReturn;
-	Method2Representation method; 
+	Method method; 
 	List<Parameter2> myparameters= new ArrayList<Parameter2>(); 
 	String methodname; 
 	
@@ -32,10 +32,10 @@ public class Parameter2 {
 	}
 	
 	
-	public Method2Representation getMethod() {
+	public Method getMethod() {
 		return method;
 	}
-	public void setMethod(Method2Representation method) {
+	public void setMethod(Method method) {
 		this.method = method;
 	}
 	public ClassRepresentation2 getParameterType() {
@@ -112,7 +112,7 @@ public class Parameter2 {
 				 OwnerClass.setClassname(classname);
 				 
 				 
-				 Method2Representation methodrep= new Method2Representation();
+				 Method methodrep= new Method();
 				 String ownermethodid = myresults.getString("methodid"); 			
 				 String ownermethodname = myresults.getString("methodname"); 
 //				 String classname = myresults.getString("classname"); 

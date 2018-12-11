@@ -48,7 +48,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
@@ -84,22 +84,22 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 	
 	private final String userName = "root";
 	private final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -135,10 +135,10 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 		String[] items5 = new String[methodtraces2.size()];
 		String[] items6 = new String[methodtraces2.size()];
 		String[] myparameters = new String[methodtraces2.size()];
-		Method2Representation[] callersarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] callersex = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesarr = new Method2Representation[methodtraces2.size()];
-		Method2Representation[] calleesex = new Method2Representation[methodtraces2.size()];
+		Method[] callersarr = new Method[methodtraces2.size()];
+		Method[] callersex = new Method[methodtraces2.size()];
+		Method[] calleesarr = new Method[methodtraces2.size()];
+		Method[] calleesex = new Method[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][400];
 		int myfinalcounter=1; 
 		int MethodTraceCountGold=0; 
@@ -162,11 +162,11 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 		HashMap <String, String> mapBothParsedAndExecCaller = new HashMap <String, String>(); 
 		// Create the editors to be used for each row
 		for (MethodTrace2 methodtrace : methodtraces2) {
-			List<Method2Representation> mycalleeslist = methodtrace.getCalleesList(); 
-			List<Method2Representation> mycalleeslistexecuted = methodtrace.getCalleesListExecuted(); 
+			List<Method> mycalleeslist = methodtrace.getCalleesList(); 
+			List<Method> mycalleeslistexecuted = methodtrace.getCalleesListExecuted(); 
 			
-			List<Method2Representation> mycallerslist = methodtrace.getCallersList(); 
-			List<Method2Representation> mycallerslistexecuted = methodtrace.getCallersListExecuted(); 
+			List<Method> mycallerslist = methodtrace.getCallersList(); 
+			List<Method> mycallerslistexecuted = methodtrace.getCallersListExecuted(); 
 			
 			
 			mycalleeslist = mycalleeslist.stream().filter(t -> t != null).collect(Collectors.toList()); 
@@ -174,9 +174,9 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 			
 			
 			
-			for(Method2Representation mymeth: mycalleeslist) {
+			for(Method mymeth: mycalleeslist) {
 				boolean entered1=false; 
-				for(Method2Representation mymeth2: mycalleeslistexecuted) {
+				for(Method mymeth2: mycalleeslistexecuted) {
 					String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
 					if(mapBothParsedAndExec1.get(key2)!=null) {
 						entered1=true; 
@@ -202,7 +202,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 				Interface2 val = InterfacesHashMap.get(key); 
 				boolean entered2=false; 
 				if(val!=null) {
-					for(Method2Representation mymeth2: mycalleeslistexecuted) {
+					for(Method mymeth2: mycalleeslistexecuted) {
 //						System.out.println("hey");
 //						System.out.println("hey");
 //						System.out.println(mymeth.getMethodname());
@@ -247,9 +247,9 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 		//	second part
 			
 		
-			for(Method2Representation mymeth: mycalleeslistexecuted) {
+			for(Method mymeth: mycalleeslistexecuted) {
 				boolean entered1exec=false; 
-				for(Method2Representation mymeth2: mycalleeslist) {
+				for(Method mymeth2: mycalleeslist) {
 //					System.out.println(mymeth.getClassrep().classname);
 //					System.out.println(mymeth.getClassrep().classid);
 //					System.out.println(mymeth2.getClassrep().classid);
@@ -281,7 +281,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 				boolean entered2exec=false; 
 				if(myinterfaces!=null) {
 					for(Interface2 inter: myinterfaces) {
-						for(Method2Representation mymeth2: mycalleeslist) {
+						for(Method mymeth2: mycalleeslist) {
 //							System.out.println("hey");
 //							System.out.println("hey");
 //							System.out.println(mymeth.getMethodname());
@@ -326,9 +326,9 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //	second part
 
 
-			for(Method2Representation mymeth: mycallerslistexecuted) {
+			for(Method mymeth: mycallerslistexecuted) {
 				boolean entered1execCALLER=false; 
-				for(Method2Representation mymeth2: mycallerslist) {
+				for(Method mymeth2: mycallerslist) {
 //					System.out.println(mymeth.getClassrep().classname);
 //					System.out.println(mymeth.getClassrep().classid);
 //					System.out.println(mymeth2.getClassrep().classid);
@@ -360,7 +360,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 				boolean entered2execCALLER=false; 
 				if(myinterfaces!=null) {
 					for(Interface2 inter: myinterfaces) {
-						for(Method2Representation mymeth2: mycallerslist) {
+						for(Method mymeth2: mycallerslist) {
 //							System.out.println("hey");
 //							System.out.println("hey");
 //							System.out.println(mymeth.getMethodname());
@@ -572,17 +572,17 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 		frame.setVisible(true);
 	}
 	
-	public static List<Method2Representation> removeDuplicates(List<Method2Representation> list) {
+	public static List<Method> removeDuplicates(List<Method> list) {
 		  // convert input array to populated list
 
 		  // convert list to populated set
 		  
 		  
 		
-		  HashSet<Method2Representation> set=new HashSet(list); 
+		  HashSet<Method> set=new HashSet(list); 
 		  set.addAll(list);
 		 
-		  list = new ArrayList<Method2Representation>(set);
+		  list = new ArrayList<Method>(set);
 		  // convert set to array & return, 
 		  // use cast because you can't create generic arrays
 		  return list;

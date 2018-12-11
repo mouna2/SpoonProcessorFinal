@@ -128,21 +128,21 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 	
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlexAtLeast3");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlex");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast3");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlexAtLeast3");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlex");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast3");
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast2");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN SubjectGold");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
+//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
 		
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast2 LONGTEXT"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD SubjectGold LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldfinal LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast3 LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlex LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlexAtLeast3 LONGTEXT"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast3 LONGTEXT"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlex LONGTEXT"); 
+//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlexAtLeast3 LONGTEXT"); 
 
 
 		int  TracesNumber=0; 
@@ -171,7 +171,8 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast3Alex=new Hashtable<String,List<String>>(); 
 
 		Hashtable<String,List<String>> RequirementClassHashMapUnionGold=new Hashtable<String,List<String>>(); 
-
+		List<String> ListUnionGold= new ArrayList<String>(); 
+		List<String> ListUnionGold2= new ArrayList<String>(); 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
 		while(TracesCount.next()) {
@@ -192,92 +193,43 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 
 				RequirementClassHashMap.put(ReqClass, mylist); 
 				RequirementClassHashMapNames.put(ReqClass, ReqClassNames); 
-
+				String goldfinal=traces.getString("goldfinal").trim(); 
+				if(RequirementClassHashMapUnionGold.get(ReqClass)==null) {
+					ListUnionGold= new ArrayList<String>(); 
+					RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
+					ListUnionGold = RequirementClassHashMapUnionGold.get(ReqClass); 
+					ListUnionGold.add(goldfinal); 
+					RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
+				}else {
+					ListUnionGold = RequirementClassHashMapUnionGold.get(ReqClass); 
+					ListUnionGold.add(goldfinal); 
+					RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
+				}
+				
+				
+				
+				
+				String goldNormal=traces.getString("gold").trim(); 
+				if(RequirementClassHashMapGold.get(ReqClass)==null) {
+					ListUnionGold2= new ArrayList<String>(); 
+					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
+					ListUnionGold2 = RequirementClassHashMapGold.get(ReqClass); 
+					ListUnionGold2.add(goldNormal); 
+					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
+				}else {
+					ListUnionGold2= RequirementClassHashMapGold.get(ReqClass); 
+					ListUnionGold2.add(goldNormal); 
+					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
+				}
+				
+				
+				
+				
 			
+
 	   		   }
+			System.out.println("COUNTER 1  "+counter);
 			counter++; 
-		}
-		
-		int index=0; 
-		for (Entry<String, List<String>> entry : RequirementClassHashMap.entrySet()) {
-//		    System.out.println(entry.getKey() + " = " );
-		    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-		     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-		     List<String> List= new ArrayList<String>(); 
-		     List<String> ListGold= new ArrayList<String>(); 
-
-		     List<String> ListGoldAlex= new ArrayList<String>(); 
-		     List<String> ListGold3= new ArrayList<String>(); 
-		     List<String> ListGoldAtLeast3= new ArrayList<String>(); 
-		     List<String> ListGoldAlexAtLeast3= new ArrayList<String>(); 
-		     List<String> ListGold6= new ArrayList<String>(); 
-		     List<String> ListUnionGold= new ArrayList<String>(); 
-
-		 	ResultSet traces = st.executeQuery("SELECT traces.* from traces where requirementid='"+requirementid+"' and classid='"+classid+"'"); 
-			while(traces.next()){		
-				//THIS IS GOLD 2
-				gold=null; 
-				goldfinalAlex=null; 
-				gold4=null; 
-				gold3=null; 
-				goldAtLeast3=null; 
-				gold6=null; 
-				UnionGold=null; 
-				 requirementid=traces.getString("requirementid").trim(); 
-				 classid=traces.getString("classid").trim(); 
-				
-				//developer gold
-				if(traces.getString("gold")!=null) {
-					 gold=traces.getString("gold").trim(); 
-					 if(gold!=null) {
-						 ListGold.add(gold); 
-					 }
-				}	
-				
-				if(traces.getString("goldAlexAtLeast3")!=null) {
-					goldAlexAtLeast3=traces.getString("goldAlexAtLeast3").trim(); 
-					 if(goldAlexAtLeast3!=null) {
-						 ListGoldAlexAtLeast3.add(goldAlexAtLeast3); 
-					 }
-				}	
-				
-				
-				if(traces.getString("goldfinalAlex")!=null) {
-					goldfinalAlex=traces.getString("goldfinalAlex").trim(); 
-					 if(goldfinalAlex!=null) {
-						 ListGoldAlex.add(goldfinalAlex); 
-					 }
-				}	
-				
-				if(traces.getString("goldAtLeast3")!=null) {
-					 goldAtLeast3=traces.getString("goldAtLeast3").trim(); 
-					 if(goldAtLeast3!=null) {
-						 ListGoldAtLeast3.add(goldAtLeast3); 
-					 }
-					
-				}
-				
-				//gold at least 2
-				if(traces.getString("goldfinal")!=null) {
-					 UnionGold=traces.getString("goldfinal").trim(); 
-					 if(UnionGold!=null) {
-						 ListUnionGold.add(UnionGold); 
-					 }
-					
-				}
-				
-				
-//				System.out.println(index);
-			index++; 
-	   		   }
-			String ReqClass=requirementid+"-"+classid;
-//			System.out.println(ReqClass);
-			RequirementClassHashMapGold.put(ReqClass, ListGold); 
-			RequirementClassHashMapGoldAlex.put(ReqClass, ListGoldAlex); 
-			RequirementClassHashMapUnionGold.put(ReqClass, ListUnionGold); 
-			RequirementClassHashMapGoldAtLeast3.put(ReqClass, ListGoldAtLeast3); 
-			RequirementClassHashMapGoldAtLeast3Alex.put(ReqClass, ListGoldAlexAtLeast3); 
-
 		}
 		
 		
@@ -285,145 +237,12 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		
 	
 		
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGoldAtLeast3Alex.entrySet()) {
 
-			   System.out.println(entry.getKey() + " = " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-			     
-			     List<String> MyValues = entry.getValue(); 
-			     java.util.Collections.sort(MyValues); 
-			    
-//				for(String val: MyValues) {
-//			    	 System.out.println("VAL  "+val);
-//			    	 
-//			     }
-				   int CountT=0, CountN=0, CountE=0; 
-			     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
-			
-//			    System.out.println("CountT "+count.CountT);
-//			    System.out.println("CountN "+count.CountN);
-//			    System.out.println("CountE "+count.CountE);
-			     
-		
-			     
-			     
-			     
-			     if(MyValues.size()>0) {
-				     System.out.println(MyValues.size());
-					    int newsize = MyValues.size()/2; 
-					    System.out.println(newsize);
-					    	   String charac = MyValues.get(newsize); 
-					    
-					  
-					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAlexAtLeast3` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						     } 
-//						    else  if(charac.trim().equals("N")) {
-
-						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
-						    		
-						    		
-						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAlexAtLeast3` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-
-
-						    			     }
-						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAlexAtLeast3` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						    	 
-						     }
-					     
-			     }
-			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAlexAtLeast3` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-			    	 
-			     }
-		
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-		}
-		
-		
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGoldAlex.entrySet()) {
-
-			   System.out.println(entry.getKey() + " = " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-			     
-			     List<String> MyValues = entry.getValue(); 
-			     java.util.Collections.sort(MyValues); 
-			    
-//				for(String val: MyValues) {
-//			    	 System.out.println("VAL  "+val);
-//			    	 
-//			     }
-				   int CountT=0, CountN=0, CountE=0; 
-			     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
-			
-//			    System.out.println("CountT "+count.CountT);
-//			    System.out.println("CountN "+count.CountN);
-//			    System.out.println("CountE "+count.CountE);
-			     
-		
-			     
-			     
-			     
-			     if(MyValues.size()>0) {
-				     System.out.println(MyValues.size());
-					    int newsize = MyValues.size()/2; 
-					    System.out.println(newsize);
-					    	   String charac = MyValues.get(newsize); 
-					    
-					  
-					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAlex` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						     } 
-//						    else  if(charac.trim().equals("N")) {
-
-						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
-						    		
-						    		
-						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAlex` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-
-
-						    			     }
-						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAlex` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						    	 
-						     }
-					     
-			     }
-			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAlex` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-			    	 
-			     }
-		
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-		}
 		
 		
 		
+		
+		counter=0; 
 		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold.entrySet()) {
 
 			   System.out.println(entry.getKey() + " = " );
@@ -459,7 +278,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 								     } 
 //								    else  if(charac.trim().equals("N")) {
 
-								    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+								    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
 								    		
 								    		
 								    		
@@ -485,96 +304,15 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 			    	 
 			     }
 
-		
+					System.out.println("COUNTER 1  "+counter);
+					counter++; 
 		}
 		
 		
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGoldAtLeast3.entrySet()) {
-
-			   System.out.println(entry.getKey() + " = " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-			     
-			     List<String> MyValues = entry.getValue(); 
-			     java.util.Collections.sort(MyValues); 
-			    
-//				for(String val: MyValues) {
-//			    	 System.out.println("VAL  "+val);
-//			    	 
-//			     }
-				   int CountT=0, CountN=0, CountE=0; 
-			     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
-			
-//			    System.out.println("CountT "+count.CountT);
-//			    System.out.println("CountN "+count.CountN);
-//			    System.out.println("CountE "+count.CountE);
-			     
-			     
-			     
-			     
-			     if(MyValues.size()>0) {
-				     System.out.println(MyValues.size());
-					    int newsize = MyValues.size()/2; 
-					    System.out.println(newsize);
-					    	   String charac = MyValues.get(newsize); 
-					    
-					  
-					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast3` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						     } 
-//						    else  if(charac.trim().equals("N")) {
-
-						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
-						    		
-						    		
-						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast3` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-
-
-						    			     }
-						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast3` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-						    	 
-						     }
-					     
-			     }
-			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast3` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-			    	 
-			     }
-		
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-			     
-		}
+	
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
-	
+	counter=0; 
 		for(Entry<String, List<String>>  entry: RequirementClassHashMapUnionGold.entrySet()) {
 
 			   System.out.println(entry.getKey() + " = " );
@@ -607,29 +345,29 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 					    
 					  
 					    	   if(count.CountT>0) {		
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						     } 
 //						    else  if(charac.trim().equals("N")) {
 
-						    else  if(count.CountN>0 && count.CountT==0 && count.CountE==0) {
+						    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
 						    		
 						    		
 						    		
-						    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						    	 st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 
 
 						    			     }
 						     else {
-									st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+									st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 						    	 
 						     }
 					     
 			     }
 			     else {
-						st.executeUpdate("UPDATE `tracesclasses` SET `goldAtLeast2` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+						st.executeUpdate("UPDATE `tracesclasses` SET `SubjectGold` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
 
 			    	 
 			     }
@@ -639,7 +377,8 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 			     
 			     
 			     
-			     
+			     System.out.println("COUNTER 1  "+counter);
+					counter++; 
 			     
 		}
 		

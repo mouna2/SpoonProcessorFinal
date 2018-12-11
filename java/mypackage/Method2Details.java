@@ -10,12 +10,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class Method2Details {
-	public Method2Representation methodrep; 
+	public Method methodrep; 
 	public ClassRepresentation2 OwnerClass; 
-	public List<Method2Representation> callersList= new ArrayList<Method2Representation>(); 
-	public List<Method2Representation> calleesList= new ArrayList<Method2Representation>(); 
-	public List<Method2Representation> callersListExecuted= new ArrayList<Method2Representation>(); 
-	public List<Method2Representation> calleesListExecuted= new ArrayList<Method2Representation>(); 
+	public List<Method> callersList= new ArrayList<Method>(); 
+	public List<Method> calleesList= new ArrayList<Method>(); 
+	public List<Method> callersListExecuted= new ArrayList<Method>(); 
+	public List<Method> calleesListExecuted= new ArrayList<Method>(); 
 	public List<Parameter2> parametersList= new ArrayList<Parameter2>(); 
 	public List<MethodField2> methodfieldsList= new ArrayList<MethodField2>();  
 	public HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
@@ -30,22 +30,22 @@ public class Method2Details {
 	HashMap<Integer, Method2Details> MethodDetailsHashMap= new HashMap<Integer, Method2Details>(); 
 	LinkedHashMap<String, Method2Details> MethodDetailsLinkedHashMap= new LinkedHashMap<String, Method2Details>(); 
 	MethodTraceOld methodtraceold= new MethodTraceOld(); 
-	public List<Method2Representation> getCallersListExecuted() {
+	public List<Method> getCallersListExecuted() {
 		return callersListExecuted;
 	}
-	public void setCallersListExecuted(List<Method2Representation> callersListExecuted) {
+	public void setCallersListExecuted(List<Method> callersListExecuted) {
 		this.callersListExecuted = callersListExecuted;
 	}
-	public List<Method2Representation> getCalleesListExecuted() {
+	public List<Method> getCalleesListExecuted() {
 		return calleesListExecuted;
 	}
-	public void setCalleesListExecuted(List<Method2Representation> calleesListExecuted) {
+	public void setCalleesListExecuted(List<Method> calleesListExecuted) {
 		this.calleesListExecuted = calleesListExecuted;
 	}
-	public Method2Representation getMethodrep() {
+	public Method getMethodrep() {
 		return methodrep;
 	}
-	public void setMethodrep(Method2Representation methodrep) {
+	public void setMethodrep(Method methodrep) {
 		this.methodrep = methodrep;
 	}
 	public ClassRepresentation2 getOwnerClass() {
@@ -54,16 +54,16 @@ public class Method2Details {
 	public void setOwnerClass(ClassRepresentation2 ownerClass) {
 		OwnerClass = ownerClass;
 	}
-	public List<Method2Representation> getCallers() {
+	public List<Method> getCallers() {
 		return callersList;
 	}
-	public void setCallers(List<Method2Representation> callers) {
+	public void setCallers(List<Method> callers) {
 		this.callersList = callers;
 	}
-	public List<Method2Representation> getCallees() {
+	public List<Method> getCallees() {
 		return calleesList;
 	}
-	public void setCallees(List<Method2Representation> callees) {
+	public void setCallees(List<Method> callees) {
 		this.calleesList = callees;
 	}
 	public List<Parameter2> getParameters() {
@@ -85,8 +85,8 @@ public class Method2Details {
 	public void setMethodtraces(HashMap<String, MethodTrace2> methodtraces) {
 		this.methodtraces = methodtraces;
 	}
-	public Method2Details(Method2Representation methodrep, ClassRepresentation2 ownerClass,
-			List<Method2Representation> callers, List<Method2Representation> callees, List<Parameter2> parameters,
+	public Method2Details(Method methodrep, ClassRepresentation2 ownerClass,
+			List<Method> callers, List<Method> callees, List<Parameter2> parameters,
 			List<MethodField2> methodfields, HashMap<String, MethodTrace2> methodtraces) {
 		super();
 		this.methodrep = methodrep;
@@ -99,9 +99,9 @@ public class Method2Details {
 	} 
 	
 	
-	public Method2Details(Method2Representation methodrep, ClassRepresentation2 ownerClass,
-			List<Method2Representation> callersList, List<Method2Representation> calleesList,
-			List<Method2Representation> callersListExecuted, List<Method2Representation> calleesListExecuted,
+	public Method2Details(Method methodrep, ClassRepresentation2 ownerClass,
+			List<Method> callersList, List<Method> calleesList,
+			List<Method> callersListExecuted, List<Method> calleesListExecuted,
 			List<Parameter2> parametersList, List<MethodField2> methodfieldsList,
 			HashMap<String, MethodTrace2> methodtraces, HashMap<Integer, Method2Details> methodDetailsHashMap) {
 		super();
@@ -144,17 +144,17 @@ public class Method2Details {
 	public  LinkedHashMap<String, Method2Details> ReadClassesRepresentations2(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
-		MethodCallsEXECHashMapCallee=methodtraceold.CreateMethodCallsHashMapCalleeEXEC(conn); 
-		ParameterHashMap=methodtraceold.CreateParametersHashMap(conn); 
-		MethodFieldsHashMap=methodtraceold.CreateFieldtypeHashMap(conn); 
-		MethodTrace2HashMap=methodtraceold.CreateClassTraceHashMap(conn); 
-
-		MethodCallsEXECHashMapCaller=methodtraceold.CreateMethodCallsHashMapCallerEXEC(conn); 
+//		MethodCallsEXECHashMapCallee=methodtraceold.CreateMethodCallsHashMapCalleeEXEC(conn); 
+//		ParameterHashMap=methodtraceold.CreateParametersHashMap(conn); 
+//		MethodFieldsHashMap=methodtraceold.CreateFieldtypeHashMap(conn); 
+//		MethodTrace2HashMap=methodtraceold.CreateClassTraceHashMap(conn); 
+//
+//		MethodCallsEXECHashMapCaller=methodtraceold.CreateMethodCallsHashMapCallerEXEC(conn); 
 		HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
 
 		MethodHashMap=methodtraceold.CreateMethodHashMap(conn); 
-		MethodCallsHashMapCaller=methodtraceold.CreateMethodCallsHashMapCaller(conn); 
-		MethodCallsHashMapCallee=methodtraceold.CreateMethodCallsHashMapCallee(conn); 
+//		MethodCallsHashMapCaller=methodtraceold.CreateMethodCallsHashMapCaller(conn); 
+//		MethodCallsHashMapCallee=methodtraceold.CreateMethodCallsHashMapCallee(conn); 
 		DatabaseReading2 db = new DatabaseReading2(); 
 		Method2Details methoddet2= new Method2Details(); 
 		HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
@@ -180,7 +180,7 @@ public class Method2Details {
 			     String id = myresults.getString("id"); 			
 				 String methodname = myresults.getString("methodname"); 
 				
-				 Method2Representation methodrep= new Method2Representation(id, methodname); 
+				 Method methodrep= new Method(id, methodname); 
 				 methoddet2.setMethodrep(methodrep);
 				 
 				 
@@ -192,13 +192,13 @@ public class Method2Details {
 				 
 				 
 				 List<MethodCalls> mycalleelist = MethodCallsHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrep = new ArrayList<Method2Representation>(); 
+				 List<Method> mycalleelistrep = new ArrayList<Method>(); 
 				 if(mycalleelist!=null) {
 				 for(MethodCalls mycallee: mycalleelist) {
 					 
 						 
 					 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(mycallee.Callee.methodid);
 					 meth.setMethodname(mycallee.Callee.methodname);
 					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -210,10 +210,10 @@ public class Method2Details {
 				 }
 				 
 				 List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrep = new ArrayList<Method2Representation>(); 
+				 List<Method> mycallerlistrep = new ArrayList<Method>(); 
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -228,10 +228,10 @@ public class Method2Details {
 				 
 				 
 				 List<MethodCalls> mycallerlistexecuted = MethodCallsEXECHashMapCaller.get(id); 
-				 List<Method2Representation> mycallerlistrepexecuted = new ArrayList<Method2Representation>(); 
+				 List<Method> mycallerlistrepexecuted = new ArrayList<Method>(); 
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.methodid);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -248,10 +248,10 @@ public class Method2Details {
 				 
 				 
 				 List<MethodCalls> mycalleelistexecuted = MethodCallsEXECHashMapCallee.get(id); 
-				 List<Method2Representation> mycalleelistrepexecuted = new ArrayList<Method2Representation>(); 
+				 List<Method> mycalleelistrepexecuted = new ArrayList<Method>(); 
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
-						 Method2Representation meth= new Method2Representation(); 	
+						 Method meth= new Method(); 	
 						 meth.setMethodid(mycallee.Callee.methodid);
 						 meth.setMethodname(mycallee.Callee.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
@@ -352,7 +352,7 @@ public class Method2Details {
 							MethodTrace.setClassRepresentation(methodtrace.ClassRepresentation);
 							
 							
-							MethodTrace.setMethodRepresentation(methodtrace.MethodRepresentation);
+							MethodTrace.setMethod(methodtrace.Method);
 							methodtraces.put(methodtrace.Requirement.ID, MethodTrace);
 							methoddet2.setMethodtraces(methodtraces);
 					 }
@@ -421,7 +421,7 @@ public class Method2Details {
 			     String id = myresults.getString("id"); 			
 				 String methodname = myresults.getString("methodname"); 
 				
-				 Method2Representation methodrep= new Method2Representation(id, methodname); 
+				 Method methodrep= new Method(id, methodname); 
 				 methoddet2.setMethodrep(methodrep);
 				 
 				 
@@ -433,10 +433,10 @@ public class Method2Details {
 				 
 				 
 				 ResultSet callers=st.executeQuery("select methodcalls.* from methodcalls where calleemethodid='" + id+"'"); 
-				 this.callersList= new  ArrayList<Method2Representation>(); 
+				 this.callersList= new  ArrayList<Method>(); 
 				 while(callers.next()) {
 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(callers.getString("callermethodid"));
 					 meth.setMethodname(callers.getString("callername"));
 				//	 meth.setRequirementsGold(requirementsGold);
@@ -445,10 +445,10 @@ public class Method2Details {
 				 }
 				 
 				 ResultSet callees=st.executeQuery("select methodcalls.* from methodcalls where callermethodid='" + id+"'"); 
-				 this.calleesList= new  ArrayList<Method2Representation>(); 
+				 this.calleesList= new  ArrayList<Method>(); 
 				 while(callees.next()) {
 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(callees.getString("calleemethodid"));
 					 meth.setMethodname(callees.getString("calleename"));
 					// meth.setRequirementsGold(requirementsGold);
@@ -458,10 +458,10 @@ public class Method2Details {
 				 
 				 
 				 ResultSet callersExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where calleemethodid='" + id+"'"); 
-				 this.calleesListExecuted= new  ArrayList<Method2Representation>(); 
+				 this.calleesListExecuted= new  ArrayList<Method>(); 
 				 while(callersExecuted.next()) {
 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(callersExecuted.getString("callermethodid"));
 					 meth.setMethodname(callersExecuted.getString("callername"));
 					// meth.setRequirementsGold(requirementsGold);
@@ -470,10 +470,10 @@ public class Method2Details {
 				 }
 				 
 				 ResultSet calleesExecuted=st.executeQuery("select methodcallsexecuted.* from methodcallsexecuted where callermethodid='" + id+"'"); 
-				 this.callersListExecuted= new  ArrayList<Method2Representation>(); 
+				 this.callersListExecuted= new  ArrayList<Method>(); 
 				 while(calleesExecuted.next()) {
 
-					 Method2Representation meth= new Method2Representation(); 	
+					 Method meth= new Method(); 	
 					 meth.setMethodid(calleesExecuted.getString("calleemethodid"));
 					 meth.setMethodname(calleesExecuted.getString("calleename"));
 				//	 meth.setRequirementsGold(requirementsGold);
@@ -554,10 +554,10 @@ public class Method2Details {
 						myclass.setClassid(methodtracesres.getString("classid"));
 						MethodTrace.setClassRepresentation(myclass);
 						
-						Method2Representation methodrepres = new Method2Representation(); 
+						Method methodrepres = new Method(); 
 						methodrepres.setMethodid(methodtracesres.getString("methodid"));
 						methodrepres.setMethodname(methodtracesres.getString("method"));
-						MethodTrace.setMethodRepresentation(methodrepres);
+						MethodTrace.setMethod(methodrepres);
 						methodtraces.put(requirement.getID(), MethodTrace);
 						methoddet2.setMethodtraces(methodtraces);
 						

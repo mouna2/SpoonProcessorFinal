@@ -61,7 +61,7 @@ import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
@@ -136,22 +136,22 @@ public class FinalStupidAlgorithm extends JFrame {
 
 	public final String userName = "root";
 	public final String password = "123456";
-	List<Method2Representation> CallerMethodListFinal = new ArrayList<Method2Representation>();
-	List<Method2Representation> CalleeMethodListFinal = new ArrayList<Method2Representation>();
+	List<Method> CallerMethodListFinal = new ArrayList<Method>();
+	List<Method> CalleeMethodListFinal = new ArrayList<Method>();
 
-	public List<Method2Representation> getCallerMethodListFinal() {
+	public List<Method> getCallerMethodListFinal() {
 		return CallerMethodListFinal;
 	}
 
-	public void setCallerMethodListFinal(List<Method2Representation> callerMethodListFinal) {
+	public void setCallerMethodListFinal(List<Method> callerMethodListFinal) {
 		CallerMethodListFinal = callerMethodListFinal;
 	}
 
-	public List<Method2Representation> getCalleeMethodListFinal() {
+	public List<Method> getCalleeMethodListFinal() {
 		return CalleeMethodListFinal;
 	}
 
-	public void setCalleeMethodListFinal(List<Method2Representation> calleeMethodListFinal) {
+	public void setCalleeMethodListFinal(List<Method> calleeMethodListFinal) {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
@@ -211,45 +211,45 @@ public class FinalStupidAlgorithm extends JFrame {
 	
 
 		if (ProgramName.equals("chess")) {
-			File filelogChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 			
-			File filelogFPChess = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsChess.txt");
+			File filelogFPChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsChess.txt");
 			FileOutputStream fosfilaFPChess = new FileOutputStream(filelogFPChess);
 			 bwfile3Chess = new BufferedWriter(new OutputStreamWriter(fosfilaFPChess));
 		}
 
 		if (ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 			
-			File filelogFP = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
+			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
 			FileOutputStream fosfilaFP = new FileOutputStream(filelogFP);
 			 bwfileFP = new BufferedWriter(new OutputStreamWriter(fosfilaFP));
 		}
 
 		if (ProgramName.equals("itrust")) {
-			File filelog3 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
+			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 			
-			File filelog3iTrust = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsiTrust.txt");
+			File filelog3iTrust = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsiTrust.txt");
 			FileOutputStream fosfila5iTrust = new FileOutputStream(filelog3iTrust);
 			bwfile3iTrust = new BufferedWriter(new OutputStreamWriter(fosfila5iTrust));
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
-			File filelog4 = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
+			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 			
-			File filelogFN = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalseNegativeDetailsJHotDraw.txt");
+			File filelogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalseNegativeDetailsJHotDraw.txt");
 			FileOutputStream fosfilaFN = new FileOutputStream(filelogFN);
 			 bwfileFN = new BufferedWriter(new OutputStreamWriter(fosfilaFN));
 			 
-			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\FalsePositiveDetailsJHotDraw.txt");
+			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsJHotDraw.txt");
 				FileOutputStream fosfila5JHotDraw = new FileOutputStream(filelog3JHotDraw);
 				bwfile3jHotDraw = new BufferedWriter(new OutputStreamWriter(fosfila5JHotDraw));
 		}
@@ -260,7 +260,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		}
 		if (ProgramName.equals("chess")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallStupidChess.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallStupidChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -318,7 +318,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		} else if (ProgramName.equals("gantt")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallStupidGantt.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallStupidGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -375,7 +375,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			parameterHashMap = dbgantt.getParameterhashMap();
 		} else if (ProgramName.equals("jhotdraw")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallStupidJHotDraw.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallStupidJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -432,7 +432,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			parameterHashMap = dbjhotdraw.getParameterhashMap();
 		} else if (ProgramName.equals("itrust")) {
 
-			File file1log = new File("C:\\Users\\mouna\\dumps\\FinalLogFiles\\PrecisionRecallStupidiTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallStupidiTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
@@ -502,7 +502,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
 			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
-			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethodRepresentation().methodid;
+			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethod().methodid;
 			System.out.println(reqclass);
 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
@@ -546,7 +546,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
 			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
-			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethodRepresentation().methodid;
+			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethod().methodid;
 			ITERATION1 = 0;
 			LogInfo loginfo = new LogInfo();
 			if (LogInfoHashMap.get(reqmethod) != null) {
@@ -555,8 +555,8 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			loginfo.setRequirementID(methodtrace.getRequirement().ID);
 			loginfo.setRequirementName(methodtrace.getRequirement().RequirementName);
-			loginfo.setMethodID(methodtrace.getMethodRepresentation().methodid);
-			loginfo.setMethodName(methodtrace.getMethodRepresentation().methodname);
+			loginfo.setMethodID(methodtrace.getMethod().methodid);
+			loginfo.setMethodName(methodtrace.getMethod().methodname);
 			loginfo.setClassID(methodtrace.getClassRepresentation().classid);
 			loginfo.setClassName(methodtrace.getClassRepresentation().classname);
 			loginfo.setTraceValue(methodtrace.getGoldfinal());
@@ -564,7 +564,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			loginfo.setSubjectGold(myclasstrace.getSubjectGold());
 
 			System.out.println("Trace Class New Value "+loginfo.getTraceClassNewValue());
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 			System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstrace.getTraceFinal());
 			System.out.println("REQ METHOD ==========================="+reqmethod);
 			
@@ -726,7 +726,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2);
 		int counter=0; 
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.MethodRepresentation.methodid;
+			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.methodid;
 			LogInfoHashMap.get(reqmethod);
 			
 			if (ProgramName.equals("gantt")) {
@@ -859,7 +859,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		for (MethodTraceSubjectTSubjectN methodtrace : methodTracesHashmapValues) {
 			
 			String reqID= methodtrace.getRequirement().ID; 
-			String methodID= methodtrace.getMethodRepresentation().methodid; 
+			String methodID= methodtrace.getMethod().methodid; 
 			String key= reqID+"-"+methodID; 
 			System.out.println("Key "+ key);
 			LogInfo log = new LogInfo(); 
@@ -887,7 +887,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		for (String mykey : logHashMapRemaining.keySet()) {
 			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
-			String methodid = myvalue.getMethodRepresentation().methodid;
+			String methodid = myvalue.getMethod().methodid;
 			String requirementID = myvalue.getRequirement().ID;
 			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
 			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
@@ -952,7 +952,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		for (MethodTraceSubjectTSubjectN methodtrace : methodTracesHashmapValues) {
 			
 			String reqID= methodtrace.getRequirement().ID; 
-			String methodID= methodtrace.getMethodRepresentation().methodid; 
+			String methodID= methodtrace.getMethod().methodid; 
 			String key= reqID+"-"+methodID; 
 			System.out.println("Key "+ key);
 			LogInfo log = new LogInfo(); 
@@ -969,14 +969,14 @@ public class FinalStupidAlgorithm extends JFrame {
 	private void SetPredictionCallersCallees(Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues, HashMap<String, LogInfo> LogInfoHashMap) {
 		// TODO Auto-generated method stub
 		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethodRepresentation().methodid;
+			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
 			LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
 			// methodtrace.setPrediction("");
 			MethodList CalleesList = methodtrace.getCalleesList();
 			MethodList CallersList = methodtrace.getCallersList();
 
 			List<String> MethodPredictionCalleeList = new ArrayList<String>();
-			for (Method2Representation callee : CalleesList) {
+			for (Method callee : CalleesList) {
 				String RequirementID = methodtrace.Requirement.ID;
 				String MethodID = callee.methodid;
 				String key = MethodID + "-" + RequirementID;
@@ -988,7 +988,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			}
 
 			List<String> MethodPredictionCallerList = new ArrayList<String>();
-			for (Method2Representation caller : CallersList) {
+			for (Method caller : CallersList) {
 				String RequirementID = methodtrace.Requirement.ID;
 				String MethodID = caller.methodid;
 				String key = MethodID + "-" + RequirementID;
@@ -1010,7 +1010,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		// TODO Auto-generated method stub
 		for(MethodTraceSubjectTSubjectN methval: methodTracesHashmapValues) {
 			String Req= methval.getRequirement().ID; 
-			String Method= methval.getMethodRepresentation().methodid; 
+			String Method= methval.getMethod().methodid; 
 			LogInfo loginfo= new LogInfo(); 
 			System.out.println(Req+"-"+Method);
 			logInfoHashMap.put(Req+"-"+Method, loginfo); 
@@ -1023,7 +1023,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			HashMap<String, String> requirementMethodNameClassIDHashMap2, Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues) {
 		
 		for(MethodTraceSubjectTSubjectN methodtrace: methodTracesHashmapValues){
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+methodtrace.ClassRepresentation.classid; 
+			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.ClassRepresentation.classid; 
 
 			requirementMethodNameClassIDHashMap2.put(ReqMethodClasskey, "E"); 
 		}
@@ -1331,7 +1331,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			System.out.println(j);
 			System.out.println(methodtraces2HashMap.size());
 			String ReqID= methodtrace.Requirement.ID; 
-			String MethodName= methodtrace.MethodRepresentation.methodname; 
+			String MethodName= methodtrace.Method.methodname; 
 
 
 			String ReqMethod=ReqID+"-"+MethodName; 
@@ -1358,7 +1358,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.classid);
 			if (myinterfaces != null)
 				for (Interface2 myinterface : myinterfaces) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+myinterface.InterfaceClass.classid; 
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myinterface.InterfaceClass.classid; 
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 					
 					InterfaceList.add(TraceValue + "-" + myinterface.getInterfaceClass().getClassid() + "-"
@@ -1367,7 +1367,7 @@ public class FinalStupidAlgorithm extends JFrame {
 				}
 			if (mysuperclasses != null)
 				for (SuperClass2 mysuperclass : mysuperclasses) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+mysuperclass.SuperClass.classid; 
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mysuperclass.SuperClass.classid; 
 							
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 					
@@ -1379,7 +1379,7 @@ public class FinalStupidAlgorithm extends JFrame {
 				}
 			if (mychildren != null)
 				for (Children2 mychild : mychildren) {
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+mychild.OwnerClass.classid; 
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mychild.OwnerClass.classid; 
 				
 				String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 		
@@ -1389,7 +1389,7 @@ public class FinalStupidAlgorithm extends JFrame {
 				}
 			if (myimplementations != null)
 				for (Implementation2 myimplementation : myimplementations) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+myimplementation.Implementation.classid;  
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myimplementation.Implementation.classid;  
 					
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 			
@@ -1419,8 +1419,8 @@ public class FinalStupidAlgorithm extends JFrame {
 			System.out.println(j);
 			System.out.println(methodtraces2HashMap.size());
 
-			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.MethodRepresentation.methodid);
-			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.MethodRepresentation.methodid);
+			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.Method.methodid);
+			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.Method.methodid);
 			if (mymethodfields != null)
 				for (MethodField2 mymeth : mymethodfields) {
 					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getMethodFieldType().classid;
@@ -1550,7 +1550,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		nEWPATTERNMethodCallsSetToT2.ResetCounters(nEWPATTERNMethodCallsSetToT2);
 
 		for (MethodTraceSubjectTSubjectN mykey : methodtraces22) {
-			String methodid = mykey.getMethodRepresentation().methodid;
+			String methodid = mykey.getMethod().methodid;
 			String requirementID = mykey.getRequirement().ID;
 			String ReqMethod = requirementID + "-" + methodid;
 			LogInfo logInfo = logInfoHashMap.get(ReqMethod);
@@ -1600,7 +1600,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		for (String mykey : MyfinalHashMap.keySet()) {
 			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
-			String methodid = myvalue.getMethodRepresentation().methodid;
+			String methodid = myvalue.getMethod().methodid;
 			String requirementID = myvalue.getRequirement().ID;
 			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
 			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
@@ -1648,7 +1648,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
 			String RequirementID = methodtrace.Requirement.ID;
-			String MethodID = methodtrace.MethodRepresentation.methodid;
+			String MethodID = methodtrace.Method.methodid;
 			String key = MethodID + "-" + RequirementID;
 			predictionsOldHashMap.put(key, methodtrace.getPrediction());
 		}
@@ -1679,7 +1679,7 @@ public class FinalStupidAlgorithm extends JFrame {
 		LinkedHashMap<String, MethodTraceSubjectTSubjectN> predictionsOldHashMap = new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
 		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
 			String RequirementID = methodtrace.Requirement.ID;
-			String MethodID = methodtrace.MethodRepresentation.methodid;
+			String MethodID = methodtrace.Method.methodid;
 			String key = RequirementID+"-"+MethodID  ;
 			predictionsOldHashMap.put(key, methodtrace);
 		}

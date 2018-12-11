@@ -140,7 +140,7 @@ public class ClassDetails2 {
 					 ClassRepresentation2 ownerclass= new ClassRepresentation2(); 
 					 ownerclass.setClassid(interfaces.getString("ownerclassid"));
 					 ownerclass.setClassname(interfaces.getString("classname"));
-					 myinterface.setOwnerClass(ownerclass);
+					 myinterface.setImplementation(ownerclass);
 					 Interfaces.add(myinterface); 
 					 classdet.setInterfaces(Interfaces);
 					

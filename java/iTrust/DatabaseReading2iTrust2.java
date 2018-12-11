@@ -26,7 +26,7 @@ import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
 import mypackage.Method2Details;
-import mypackage.Method2Representation;
+import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Requirement2;
 import mypackage.RequirementGold;
@@ -224,8 +224,8 @@ public class DatabaseReading2iTrust2 {
 		for (MethodTrace2 tracemeth : methodtraces) { 
 			
 			for (Method2Details method : methodlist) {
-				List<Method2Representation> Callees = method.calleesList;
-				for (Method2Representation Callee : Callees) {
+				List<Method> Callees = method.calleesList;
+				for (Method Callee : Callees) {
 					if (Callee.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
 						
 							for(RequirementGold reqgoldCallee: Callee.getRequirementsGold()) {
@@ -250,8 +250,8 @@ public class DatabaseReading2iTrust2 {
 				for (MethodTrace2 tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
-						List<Method2Representation> Callers = method2.callersList;
-						for (Method2Representation Caller : Callers) {
+						List<Method> Callers = method2.callersList;
+						for (Method Caller : Callers) {
 							if (Caller.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
 								
 									for(RequirementGold reqgoldCaller: Caller.getRequirementsGold()) {
@@ -281,8 +281,8 @@ public class DatabaseReading2iTrust2 {
 		for (MethodTrace2 tracemeth : methodtraces) {
 			
 			for (Method2Details method : methodlist) {
-				List<Method2Representation> CalleesExecuted = method.calleesListExecuted;
-				for (Method2Representation CalleeExecuted : CalleesExecuted) {
+				List<Method> CalleesExecuted = method.calleesListExecuted;
+				for (Method CalleeExecuted : CalleesExecuted) {
 					if (CalleeExecuted.methodid.equals(tracemeth.getMethodRepresentation().methodid) ) {
 						
 							for(RequirementGold reqgoldCallee: CalleeExecuted.getRequirementsGold()) {
@@ -307,8 +307,8 @@ public class DatabaseReading2iTrust2 {
 				for (MethodTrace2 tracemeth2 : methodtraces) {
 					
 					for (Method2Details method2 : methodlist) {
-						List<Method2Representation> CallersExecuted = method2.callersListExecuted;
-						for (Method2Representation CallerExecuted : CallersExecuted) {
+						List<Method> CallersExecuted = method2.callersListExecuted;
+						for (Method CallerExecuted : CallersExecuted) {
 							if (CallerExecuted.methodid.equals(tracemeth2.getMethodRepresentation().methodid) ) {
 								
 									for(RequirementGold reqgoldCaller: CallerExecuted.getRequirementsGold()) {
