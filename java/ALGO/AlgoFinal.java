@@ -2221,6 +2221,7 @@ public class AlgoFinal extends JFrame {
 //		String ProgramName3 = "itrust";
 //			 frame = new AlgoFinal(ProgramName3);
 
+		
 		String ProgramName4 = "jhotdraw";
 		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
