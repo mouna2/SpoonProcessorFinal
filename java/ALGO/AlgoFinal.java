@@ -211,45 +211,45 @@ public class AlgoFinal extends JFrame {
 	
 
 		if (ProgramName.equals("chess")) {
-			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 			
-			File filelogFPChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsChess.txt");
+			File filelogFPChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsChess.txt");
 			FileOutputStream fosfilaFPChess = new FileOutputStream(filelogFPChess);
 			 bwfile3Chess = new BufferedWriter(new OutputStreamWriter(fosfilaFPChess));
 		}
 
 		if (ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 			
-			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
+			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsGantt.txt");
 			FileOutputStream fosfilaFP = new FileOutputStream(filelogFP);
 			 bwfileFP = new BufferedWriter(new OutputStreamWriter(fosfilaFP));
 		}
 
 		if (ProgramName.equals("itrust")) {
-			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
+			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 			
-			File filelog3iTrust = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsiTrust.txt");
+			File filelog3iTrust = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsiTrust.txt");
 			FileOutputStream fosfila5iTrust = new FileOutputStream(filelog3iTrust);
 			bwfile3iTrust = new BufferedWriter(new OutputStreamWriter(fosfila5iTrust));
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
-			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
+			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 			
-			File filelogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalseNegativeDetailsJHotDraw.txt");
+			File filelogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalseNegativeDetailsJHotDraw.txt");
 			FileOutputStream fosfilaFN = new FileOutputStream(filelogFN);
 			 bwfileFN = new BufferedWriter(new OutputStreamWriter(fosfilaFN));
 			 
-			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsJHotDraw.txt");
+			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsJHotDraw.txt");
 				FileOutputStream fosfila5JHotDraw = new FileOutputStream(filelog3JHotDraw);
 				bwfile3jHotDraw = new BufferedWriter(new OutputStreamWriter(fosfila5JHotDraw));
 		}
@@ -260,12 +260,12 @@ public class AlgoFinal extends JFrame {
 		}
 		if (ProgramName.equals("chess")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallChess.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesChess.txt");
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesChess.txt");
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
@@ -320,12 +320,12 @@ public class AlgoFinal extends JFrame {
 
 		} else if (ProgramName.equals("gantt")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallGantt.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesGantt.txt");
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesGantt.txt");
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
@@ -379,12 +379,12 @@ public class AlgoFinal extends JFrame {
 			parameterHashMap = dbgantt.getParameterhashMap();
 		} else if (ProgramName.equals("jhotdraw")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallJHotDraw.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesJHotDraw.txt");
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesJHotDraw.txt");
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
@@ -438,12 +438,12 @@ public class AlgoFinal extends JFrame {
 			parameterHashMap = dbjhotdraw.getParameterhashMap();
 		} else if (ProgramName.equals("itrust")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecalliTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecalliTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesiTrust.txt");
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TracesClassesiTrust.txt");
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
@@ -827,68 +827,6 @@ public class AlgoFinal extends JFrame {
 			
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.methodid;
-//				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
-//				List<String> IterationValues = LogInfo.getIterationValues();
-//				Methods<String> interfaces = methodtrace.getInterfacesFinalList();
-//				Methods<String> implementations = methodtrace.getImplementationFinalList(); 
-//				Methods<String> superclasses = methodtrace.getSuperClassesFinalList(); 
-//				Methods<String> children = methodtrace.getChildrenFinalList(); 
-//				String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.ClassRepresentation.classid; 
-//				List<String> interfaceTraceValues = new ArrayList<String>();
-//				List<String> implementationsTraceValues = new ArrayList<String>();
-//				List<String> superclassesTraceValues = new ArrayList<String>();
-//				List<String> childrenTraceValues = new ArrayList<String>();
-//				boolean InterfacesFlag=false, ImplementationsFlag=false, SuperclassesFlag=false, ChildrenFlag=false; 
-//
-//				
-//				computeVariables(InterfacesFlag, ImplementationsFlag, SuperclassesFlag, ChildrenFlag, interfaces, implementations, superclasses, children, implementationsTraceValues, childrenTraceValues, superclassesTraceValues, interfaceTraceValues); 
-//			
-//				System.out.println(implementationsTraceValues);
-//
-//				InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
-//					&& interfaceTraceValues.size() >= 1;
-//			 ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
-//					&& implementationsTraceValues.size() >= 1;
-//			SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
-//					&& superclassesTraceValues.size() >= 1;
-//			 ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
-//					&& childrenTraceValues.size() >= 1;
-					
-					
-					
-					
-				
-					
-					
-//				if (
-//						methodtrace.getInterfacesFinalList().AllTs(InterfacesFlag, interfaceTraceValues, methodtrace) 
-//						||methodtrace.getImplementationFinalList().AllTs(ImplementationsFlag, implementationsTraceValues, methodtrace)
-//						||methodtrace.getSuperClassesFinalList().AllTs(SuperclassesFlag, superclassesTraceValues, methodtrace)
-//						||methodtrace.getChildrenFinalList().AllTs(ChildrenFlag, childrenTraceValues, methodtrace))
-//						
-//					
-//
-//				{
-//					System.out.println("==========T  "+reqMethod);
-//					 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
-//								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
-//					
-//
-//				}
-//				else if (methodtrace.getInterfacesFinalList().AllNs(InterfacesFlag, interfaceTraceValues, methodtrace) 
-//						||methodtrace.getImplementationFinalList().AllNs(ImplementationsFlag, implementationsTraceValues, methodtrace)
-//						||methodtrace.getSuperClassesFinalList().AllNs(SuperclassesFlag, superclassesTraceValues, methodtrace)
-//						||methodtrace.getChildrenFinalList().AllNs(ChildrenFlag, childrenTraceValues, methodtrace)
-//
-//				)
-//
-//				{
-//					System.out.println("==========N  "+reqMethod);
-//					 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
-//								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
-//					
-//
-//				}
 
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
@@ -908,9 +846,14 @@ public class AlgoFinal extends JFrame {
 
 					{
 //						System.out.println("==========T  "+reqMethod);
-						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,  
-									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
 						
+						
+//						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,  
+//									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
+						
+						
+						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance", methodtraces2HashMap); 
 
 					}
 					else if (
@@ -924,10 +867,13 @@ public class AlgoFinal extends JFrame {
 
 					{
 //						System.out.println("==========N  "+reqMethod);
-						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,
-									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
 						
-
+						
+//						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,
+//									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
+							System.out.println(methodtrace.getPrediction());
+						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining,"N", "N,AllNInheritance", methodtraces2HashMap); 
 					}
 
 			}
@@ -937,126 +883,126 @@ public class AlgoFinal extends JFrame {
 			
 			
 			
-			
-				
-			
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			/////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 				
-				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
-					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-					//System.out.println();
-					
-					
-					//////////////////////////////////////////////////////////////////////////////////////////
-					//////////////////////////////////////////////////////////////////////////////////////////
-					// ALL CALLERS PATTERN 4.1
-					//////////////////////////////////////////////////////////////////////////////////////////
-					//////////////////////////////////////////////////////////////////////////////////////////
-				
-					
-					// ALL T CALLERS 
-					 if (!methodtrace.getMethod().getCallers().isEmpty() 
-						&& methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
-						&& methodtrace.getPrediction().trim().equals("E")
-	
-					) {
-						// methodtrace.setPrediction("N");
-						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
-									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
 
-						// //System.out.println("yes");
-					}
-					// ALL N CALLERS
-					 else if (!methodtrace.getMethod().getCallers().isEmpty() 
-								&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
-								&& methodtrace.getPrediction().trim().equals("E")
-	
-							) {
-	
-						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
-									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
-
-	
-						// //System.out.println("yes");
-					}
 					
+				
+			
 	
-					
-					 
-				
-					k++;
-				}
-				
 
 				
 			
 			
+
+		
+		
+				
+
+		
+				
+				
 			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
 				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
-				
-				
-				
-				
+				//System.out.println();
 				
 				
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
-				//ALL CALLEES PATTERN 5
+				// ALL CALLERS PATTERN 4.1
 				//////////////////////////////////////////////////////////////////////////////////////////
 				//////////////////////////////////////////////////////////////////////////////////////////
+			
 				
-				
-				
-				
-				//ALL T CALLEES 
-				if (!methodtrace.getMethod().getCallees().isEmpty() 
-				&& methodtrace.getMethod().getCallees().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
-				&& methodtrace.getPrediction().trim().equals("E")
-				
+				// ALL T CALLERS 
+				 if (!methodtrace.getMethod().getCallers().isEmpty() 
+					&& methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+					&& methodtrace.getPrediction().trim().equals("E")
+
 				) {
-				//methodtrace.setPrediction("N");
-				SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
-				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
-				
-				
-				////System.out.println("yes");
+					// methodtrace.setPrediction("N");
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
+
+					// //System.out.println("yes");
 				}
-				//ALL N CALLEES
-				else if (!methodtrace.getMethod().getCallees().isEmpty() 
-				&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
-				&& methodtrace.getPrediction().trim().equals("E")
-				
-				) {
-				
-				SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
-				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
-				
-				
-				////System.out.println("yes");
+				// ALL N CALLERS
+				 else if (!methodtrace.getMethod().getCallers().isEmpty() 
+							&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+							&& methodtrace.getPrediction().trim().equals("E")
+
+						) {
+
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
+
+
+					// //System.out.println("yes");
 				}
-				k++;
-				}	
-		
-		
 				
 
+				
+				 
+			
+				k++;
+			}
+			
 		
+			
+			
 				
 				
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
 			
 			
 			
 			
 			
-				
-				
-				
+			
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//ALL CALLEES PATTERN 5
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			
+			
+			//ALL T CALLEES 
+			if (!methodtrace.getMethod().getCallees().isEmpty() 
+			&& methodtrace.getMethod().getCallees().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+			&& methodtrace.getPrediction().trim().equals("E")
+			
+			) {
+			//methodtrace.setPrediction("N");
+			SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+			LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
+			
+			
+			////System.out.println("yes");
+			}
+			//ALL N CALLEES
+			else if (!methodtrace.getMethod().getCallees().isEmpty() 
+			&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+			&& methodtrace.getPrediction().trim().equals("E")
+			
+			) {
+			
+			SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+			LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
+			
+			
+			////System.out.println("yes");
+			}
+			k++;
+			}	
 				
 				
 
@@ -1383,7 +1329,7 @@ public class AlgoFinal extends JFrame {
 		
 		if(methodtrace.getPrediction().trim().equals("E")) {
 			PatternSetVariables(Pred, methodtrace, "90%", "P2");
-
+			
 			iterationValues.add(Reason);
 			LogInfo.setPrediction(Pred);
 			methodtrace.setPrediction(Pred);
@@ -2265,18 +2211,18 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
-		String ProgramName = "chess";
-		AlgoFinal frame = new AlgoFinal(
-				ProgramName);
-
-		String ProgramName2 = "gantt";
-			 frame = new AlgoFinal(ProgramName2);
-
-		String ProgramName3 = "itrust";
-			 frame = new AlgoFinal(ProgramName3);
+//		String ProgramName = "chess";
+//		AlgoFinal frame = new AlgoFinal(
+//				ProgramName);
+//
+//		String ProgramName2 = "gantt";
+//			 frame = new AlgoFinal(ProgramName2);
+//
+//		String ProgramName3 = "itrust";
+//			 frame = new AlgoFinal(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new AlgoFinal(ProgramName4);
+		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

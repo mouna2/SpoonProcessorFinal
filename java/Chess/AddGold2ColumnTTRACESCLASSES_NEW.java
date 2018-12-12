@@ -138,12 +138,12 @@ public class AddGold2ColumnTTRACESCLASSES_NEW {
 	        String[] requirements = line.split(","); 
 	        while((line = bufferedReader.readLine()) != null) {
 //	            System.out.println(line);
-	            String[] splitted = line.split(","); 
+	            String[] splitted = line.split("\\,", -1);
 	            
 	            for(int i=1; i<splitted.length; i++) {
 	            	if(splitted[i].equals("x")) {
 	            		ReqClassHashMap.put(i+"-"+splitted[0], "T"); 
-	            	}else {
+	            	}else if(splitted[i].equals("")) {
 	            		ReqClassHashMap.put(i+"-"+splitted[0], "N"); 
 	            	}
 	            }
