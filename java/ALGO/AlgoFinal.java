@@ -2211,19 +2211,19 @@ public class AlgoFinal extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
-//		String ProgramName = "chess";
-//		AlgoFinal frame = new AlgoFinal(
-//				ProgramName);
-//
-//		String ProgramName2 = "gantt";
-//			 frame = new AlgoFinal(ProgramName2);
-//
-//		String ProgramName3 = "itrust";
-//			 frame = new AlgoFinal(ProgramName3);
+		String ProgramName = "chess";
+		AlgoFinal frame = new AlgoFinal(
+				ProgramName);
+
+		String ProgramName2 = "gantt";
+			 frame = new AlgoFinal(ProgramName2);
+
+		String ProgramName3 = "itrust";
+			 frame = new AlgoFinal(ProgramName3);
 
 		
-		String ProgramName4 = "jhotdraw";
-		AlgoFinal	frame = new AlgoFinal(ProgramName4);
+//		String ProgramName4 = "jhotdraw";
+//		AlgoFinal	frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
