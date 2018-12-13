@@ -14,7 +14,7 @@ public class MethodTraceOld {
 	
 	public Method Method; 
 	public Requirement2 Requirement; 
-	public ClassRepresentation2 ClassRepresentation; 
+	public Clazz ClassRepresentation; 
 	public String gold; 
 	public String subject;
 	public String goldprediction; 
@@ -32,7 +32,7 @@ public class MethodTraceOld {
 	HashMap<String, List<Interface2>> InterfaceHashMapOwner= new HashMap<String, List<Interface2>>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapInterface= new HashMap<String, List<Interface2>>(); 
 	HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
-	HashMap<String, ClassRepresentation2> ClassHashMap= new HashMap<String, ClassRepresentation2>(); 
+	HashMap<String, Clazz> ClassHashMap= new HashMap<String, Clazz>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<Parameter2>> ParameterHashMap= new HashMap<String, List<Parameter2>>(); 
 	HashMap<String, List<MethodField2>> MethodFieldsHashMap= new HashMap<String, List<MethodField2>>(); 
@@ -170,11 +170,11 @@ public class MethodTraceOld {
 		Requirement = requirement;
 	}
 
-	public ClassRepresentation2 getClassRepresentation() {
+	public Clazz getClassRepresentation() {
 		return ClassRepresentation;
 	}
 
-	public void setClassRepresentation(ClassRepresentation2 classRepresentation) {
+	public void setClassRepresentation(Clazz classRepresentation) {
 		ClassRepresentation = classRepresentation;
 	}
 
@@ -195,7 +195,7 @@ public class MethodTraceOld {
 	}
 
 	public MethodTraceOld(Method Method, Requirement2 requirement,
-			ClassRepresentation2 classRepresentation, String gold, String subject) {
+			Clazz classRepresentation, String gold, String subject) {
 		super();
 		Method = Method;
 		Requirement = requirement;
@@ -241,7 +241,7 @@ public class MethodTraceOld {
 					requirement.setRequirementName(traces.getString("requirement"));
 					MethodTrace.setRequirement(requirement);
 
-					ClassRepresentation2 myclass= new ClassRepresentation2();
+					Clazz myclass= new Clazz();
 					myclass.setClassname(traces.getString("classname"));
 					myclass.setClassid(traces.getString("classid"));
 					MethodTrace.setClassRepresentation(myclass);
@@ -288,8 +288,8 @@ public class MethodTraceOld {
 
 			 while(myinterfaces.next()) {
 				 Interface2 myinterface = new Interface2(); 
-				 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
-				 ClassRepresentation2 ownerclass= new ClassRepresentation2(); 
+				 Clazz myclassrepinterface= new Clazz(); 
+				 Clazz ownerclass= new Clazz(); 
 				 myclassrepinterface.setClassid(myinterfaces.getString("interfaceclassid"));
 				 myclassrepinterface.setClassname(myinterfaces.getString("interfacename"));
 				 
@@ -331,8 +331,8 @@ public class MethodTraceOld {
 
 			 while(myinterfaces.next()) {
 				 Interface2 myinterface = new Interface2(); 
-				 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
-				 ClassRepresentation2 ownerclass= new ClassRepresentation2(); 
+				 Clazz myclassrepinterface= new Clazz(); 
+				 Clazz ownerclass= new Clazz(); 
 				 myclassrepinterface.setClassid(myinterfaces.getString("interfaceclassid"));
 				 myclassrepinterface.setClassname(myinterfaces.getString("interfacename"));
 				 
@@ -384,12 +384,12 @@ public class MethodTraceOld {
 			 String isreturn= parameters.getString("isreturn");
 			 
 			 param.setParameterName(parametername);
-			 ClassRepresentation2 ParamType= new ClassRepresentation2(); 
+			 Clazz ParamType= new Clazz(); 
 			 ParamType.setClassid(parameterclass);
 			 ParamType.setClassname(parametertype);
 			 param.setParameterType(ParamType);
 			 
-			 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
+			 Clazz OwnerType= new Clazz(); 
 			 OwnerType.setClassid(parameters.getString("classid"));
 			 OwnerType.setClassname(parameters.getString("classname"));
 			 param.setOwnerClass(OwnerType);
@@ -442,13 +442,13 @@ public class MethodTraceOld {
 			 MethodField2 methfield= new MethodField2(); 	
 			 methfield.setFieldName(methodFields.getString("fieldaccess"));
 			 
-			 ClassRepresentation2 FieldType= new ClassRepresentation2(); 
+			 Clazz FieldType= new Clazz(); 
 			 FieldType.setClassid(methodFields.getString("fieldtypeclassid"));
 			 FieldType.setClassname(methodFields.getString("fieldtypeclassname"));
 			// FieldType.setClassname(methodFields.getString("fieldtype"));
 			 methfield.setMethodFieldType(FieldType);
 			 
-			 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
+			 Clazz OwnerType= new Clazz(); 
 			 OwnerType.setClassid(methodFields.getString("ownerclassid"));
 			 OwnerType.setClassname(methodFields.getString("ownerclassname"));
 			// OwnerType.setClassname(methodFields.getString("classname"));
@@ -718,7 +718,7 @@ public class MethodTraceOld {
 			 String classname= methods.getString("classname"); 
 			 
 			 
-			 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+			 Clazz classrep = new Clazz(); 
 			 
 			 classrep.setClassid(classid);
 			 classrep.setClassname(classname);
@@ -745,7 +745,7 @@ public class MethodTraceOld {
 		return MethodHashMap;
 		
 	}
-	public HashMap<String, ClassRepresentation2> CreateClassHashMap(Connection conn) throws SQLException {
+	public HashMap<String, Clazz> CreateClassHashMap(Connection conn) throws SQLException {
 		Statement st = conn.createStatement();
 		int index=1; 
 		
@@ -758,7 +758,7 @@ public class MethodTraceOld {
 			
 			String key=classid; 
 			 
-		ClassRepresentation2 classrep = new ClassRepresentation2(); 
+		Clazz classrep = new Clazz(); 
 		classrep.setClassid(classid);
 		classrep.setClassname(classname);
 		
@@ -810,7 +810,7 @@ public class MethodTraceOld {
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 mytrace.setRequirement(requirement);
 				 
-				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 Clazz classrep = new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 String fullmethodname= myresults.getString("fullmethod"); 
@@ -826,14 +826,14 @@ public class MethodTraceOld {
 				 mytrace.setClassRepresentation(classrep);
 				 
 				 
-				 List<Interface2> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().classid);
+				 List<Interface2> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().ID);
 				 
-				 List<Interface2> myinterfacelist = InterfaceHashMapInterface.get(mytrace.getClassRepresentation().classid);
-				 List<ClassRepresentation2> interfaceclassreps= new ArrayList<ClassRepresentation2>(); 
+				 List<Interface2> myinterfacelist = InterfaceHashMapInterface.get(mytrace.getClassRepresentation().ID);
+				 List<Clazz> interfaceclassreps= new ArrayList<Clazz>(); 
 if(myinterfacelist!=null) {
 	 for(Interface2 myinterface: myinterfacelist) {
-		 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
-		 myclassrepinterface.setClassid(myinterface.getInterfaceClass().classid);
+		 Clazz myclassrepinterface= new Clazz(); 
+		 myclassrepinterface.setClassid(myinterface.getInterfaceClass().ID);
 		 myclassrepinterface.setClassname(myinterface.getInterfaceClass().classname);
 		 interfaceclassreps.add(myclassrepinterface); 
 	 }
@@ -841,12 +841,12 @@ if(myinterfacelist!=null) {
 }
 				
 				 
-				 List<ClassRepresentation2> interfaceclassrepsOwner= new ArrayList<ClassRepresentation2>(); 
+				 List<Clazz> interfaceclassrepsOwner= new ArrayList<Clazz>(); 
 
 				 	if(myownerinterfaceList!=null) {
 				 		 for(Interface2 myinterface: myownerinterfaceList) {
-							 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
-							 myclassrepinterface.setClassid(myinterface.getImplementation().classid);
+							 Clazz myclassrepinterface= new Clazz(); 
+							 myclassrepinterface.setClassid(myinterface.getImplementation().ID);
 							 myclassrepinterface.setClassname(myinterface.getImplementation().classname);
 							 interfaceclassrepsOwner.add(myclassrepinterface); 
 						 }
@@ -868,7 +868,7 @@ if(myinterfacelist!=null) {
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				
-				 String id= mytrace.getMethod().methodid; 
+				 String id= mytrace.getMethod().ID; 
 				 
 				 
 				 
@@ -883,7 +883,7 @@ if(myinterfacelist!=null) {
 						 
 					 
 					 Method meth= new Method(); 	
-					 meth.setMethodid(mycallee.Callee.methodid);
+					 meth.setMethodid(mycallee.Callee.ID);
 					 meth.setMethodname(mycallee.Callee.methodname);
 					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 					 meth.setClassrep(val.OwnerClass);
@@ -903,7 +903,7 @@ if(myinterfacelist!=null) {
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
@@ -929,7 +929,7 @@ if(myinterfacelist!=null) {
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
@@ -950,7 +950,7 @@ if(myinterfacelist!=null) {
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycallee.Callee.methodid);
+						 meth.setMethodid(mycallee.Callee.ID);
 						 meth.setMethodname(mycallee.Callee.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
@@ -1216,7 +1216,7 @@ if(myinterfacelist!=null) {
 	
 	public List<MethodTraceOld> getElement(List<MethodTraceOld> methodtraces2, String ID, String goldpred, String goldprediction2, String RequirementID) {
 		for(MethodTraceOld methodtrace: methodtraces2) {
-			if(methodtrace.getMethod().methodid.equals(ID) && methodtrace.Requirement.ID.equals(RequirementID)) {
+			if(methodtrace.getMethod().ID.equals(ID) && methodtrace.Requirement.ID.equals(RequirementID)) {
 				if(goldprediction2.equals("goldpredictionCallee")){
 					methodtrace.setGoldpredictionCallee(goldpred);
 				}

@@ -40,7 +40,7 @@ import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
@@ -404,7 +404,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassID] = methodtrace.ClassRepresentation.ID;
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
@@ -464,7 +464,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			data[j][OwnerClassN] = "";
 			data[j][OwnerClassE] = "";
 			
-			System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
+			System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.ID);
 		//	System.out.println("CLASS TRACE REPRESENTATION CLASS ID "+myclasstraceHashMap.getMyclass().classid);
 			System.out.println("METHOD TRACE REQUIREMENT  ID "+methodtrace.Requirement.getID());
 		//	System.out.println("CLASS TRACE REQUIREMENT  ID "+myclasstraceHashMap.getRequirement().getID());
@@ -567,14 +567,14 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 				int counterParameterE=0; 
 				 myparameters = new String[methodtraces2.size()];
 				 String ParametersAppended=""; 
-				Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
+				Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 				for ( Parameter2 myparam : mymethodobje.getParameters()) {
 					myparameters[myparametercount] = myparam.toString(); 
 					
 					myparametercount++;
 					
 					ParametersAppended=ParametersAppended+myparam.toString()+"-"; 
-					String ParameterClassid = myparam.getParameterType().classid; 
+					String ParameterClassid = myparam.getParameterType().ID; 
 					
 					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 					if(mycallerclass!=null) {
@@ -858,12 +858,12 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 							boolean flag=false; 
 							
 								for(Method item: CallerMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										String ownerclassid=value.InterfaceClass.ID;
+									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CallerMethodListFinal.remove(item); 
 									}
 									}
@@ -883,7 +883,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -912,12 +912,12 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 							boolean flag=false; 
 							
 								for(Method item: CalleeMethodsList) {
-									String key =methcaller.classrep.getClassid()+"-"+methcaller.classrep.getClassname();
+									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
-										String ownerclassid=value.InterfaceClass.classid;
-									if(item.classrep.classid.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+										String ownerclassid=value.InterfaceClass.ID;
+									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CalleeMethodListFinal.remove(item); 
 									}
 									}
@@ -935,7 +935,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -951,7 +951,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			int CountMethodNACHRAF = 0; 
 			int CountMethodEACHRAF = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
@@ -970,7 +970,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -994,7 +994,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			int CountMethodNACHRAFGold2 = 0; 
 			int CountMethodEACHRAFGold2 = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
@@ -1016,7 +1016,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			int CountMethodNACHRAFCalleeGold2 = 0; 
 			int CountMethodEACHRAFCalleeGold2 = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1065,9 +1065,9 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 			if(CallerMethodListFinal.isEmpty()==false && CallerMethodListFinal!=null ) {
 				for (Method callermeth : CallerMethodListFinal) {
-					ClassRepresentation2 classrep = callermeth.getClassrep();
+					Clazz classrep = callermeth.getClassrep();
 				//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid, methodtrace.Requirement.getID());
-					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+					ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 					mycallerclasses.add(mycallerclass);
 				}
 			}
@@ -1136,10 +1136,10 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
 			for (Method calleemeth : CalleeMethodListFinal) {
-				ClassRepresentation2 classrep = calleemeth.getClassrep();
+				Clazz classrep = calleemeth.getClassrep();
 				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
 				//		methodtrace.Requirement.getID());
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,methodtrace.Requirement.getID());
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,methodtrace.Requirement.getID());
 				mycalleeclasses.add(mycalleeclass);
 			}
 
@@ -2313,10 +2313,10 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCallersList()) {
 										bwlog.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2325,11 +2325,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCallersListExecuted()) {
 										bwlog.write("callerlistEXEC "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2338,11 +2338,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCalleesList()) {
 										bwlog.write("calleelist "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2351,11 +2351,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCalleesListExecuted()) {
 										bwlog.write("calleelistEXEC "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2399,10 +2399,10 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCallersList()) {
 										bwlogcallees.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace!=null) {
 											 bwlogcallees.newLine();
-											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2411,11 +2411,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCallersListExecuted()) {
 										bwlogcallees.write("callerlistEXEC "+ call.toString2());
 										bwlogcallees.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlogcallees.newLine();
-											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2424,11 +2424,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCalleesList()) {
 										bwlogcallees.write("calleelist "+ call.toString2());
 										bwlogcallees.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlogcallees.newLine();
-											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2437,11 +2437,11 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 									for(Method call: methodtrace.getCalleesListExecuted()) {
 										bwlogcallees.write("calleelistEXEC "+ call.toString2());
 										bwlogcallees.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlogcallees.newLine();
-											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace());
+											 bwlogcallees.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }

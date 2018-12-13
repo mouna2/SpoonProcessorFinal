@@ -45,7 +45,7 @@ import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
 import mypackage.ClassField2;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -527,8 +527,8 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 
 	PredictionEvaluation NEWPATTERNMethodCalls=new PredictionEvaluation();  
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
-	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new HashMap<String, MethodTraceSubjectTSubjectN>();
+	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static HashMap<String, MethodTrace> methodtraces2HashMap  = new HashMap<String, MethodTrace>();
 
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
@@ -707,8 +707,8 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 		int ClassTraceCount=0; 
 		int MethodTraceCountGold2=0; 
 		// Create the editors to be used for each row
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -868,7 +868,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 			
 			int k=0; 
 			//PATTERN 3 AND PATTERN 5
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				//PATTERN 3 AND PATTERN 5
 				
 				List<Method> CalleesList = methodtrace.getCalleesList(); 
@@ -877,7 +877,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -890,7 +890,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -923,7 +923,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 			//////////////////////////////////////////////////////////////////////////////////////////
 			 k=0; 
 			//PATTERN 2 AND PATTERN 4
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				
 
 				//PATTERN 2 AND PATTERN 4
@@ -933,7 +933,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -947,7 +947,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -981,7 +981,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 		
 		}
 		
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN prediction"); 
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN likelihood");
 		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN why");
@@ -1613,13 +1613,13 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 
 
 	private void WriteInDatabaseAndComputePrecisionAndRecall(
-			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap) throws SQLException {
+			LinkedHashMap<String, MethodTrace> MyfinalHashMap) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		int j=0; 
 		for(String mykey:MyfinalHashMap.keySet()) {
-			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey); 
-			String methodid=myvalue.getMethodRepresentation().methodid; 
+			MethodTrace myvalue = MyfinalHashMap.get(mykey); 
+			String methodid=myvalue.getMethodRepresentation().ID; 
 			String requirementID= myvalue.getRequirement().ID; 
 			//String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'"; 
 			String likelihood= myvalue.getLikelihood(); 
@@ -1644,10 +1644,10 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 		
 	}
 
-	private LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	private LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTrace> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
+		for(MethodTrace methodtrace: methodtraces22) {
 			String RequirementID=methodtrace.Requirement.ID; 
 			String MethodID= methodtrace.MethodRepresentation.methodid; 
 			String key= MethodID+"-"+RequirementID; 
@@ -1658,11 +1658,11 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 
 	
 	
-	private LinkedHashMap<String, MethodTraceSubjectTSubjectN> RetrievePredictionsHashMap( List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	private LinkedHashMap<String, MethodTrace> RetrievePredictionsHashMap( List<MethodTrace> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> predictionsOldHashMap= new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
-		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
+		LinkedHashMap<String, MethodTrace> predictionsOldHashMap= new LinkedHashMap<String, MethodTrace>();
+		for(MethodTrace methodtrace: methodtraces22) {
 			String RequirementID=methodtrace.Requirement.ID; 
 			String MethodID= methodtrace.MethodRepresentation.methodid; 
 			String key= MethodID+"-"+RequirementID; 
@@ -1673,7 +1673,7 @@ public class TracesTableJHOTDRAWFINALROUND2 extends JFrame {
 	
 	
 	
-	private void PatternSetVariables(String Prediction, MethodTraceSubjectTSubjectN methodtrace, String Likelihood, String Why) {
+	private void PatternSetVariables(String Prediction, MethodTrace methodtrace, String Likelihood, String Why) {
 		// TODO Auto-generated method stub
 		methodtrace.setPrediction(Prediction);
 		methodtrace.setLikelihood(Likelihood);

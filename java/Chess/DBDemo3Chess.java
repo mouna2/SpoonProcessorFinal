@@ -39,7 +39,7 @@ import Tables.methodcallsexecuted;
 import Tables.methods;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.Interface2;
 import spoon.Launcher;
 import spoon.SpoonAPI;

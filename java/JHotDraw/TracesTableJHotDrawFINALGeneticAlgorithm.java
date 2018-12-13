@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Table;
 import Chess.HashMapValue;
 import Chess.PredictionEvaluation;
 import mypackage.ClassField2;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -568,8 +568,8 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 	LinkedHashMap<String, String> PredictionStandardHashMap=new LinkedHashMap<String, String>();  
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
-	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new HashMap<String, MethodTraceSubjectTSubjectN>();
+	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static HashMap<String, MethodTrace> methodtraces2HashMap  = new HashMap<String, MethodTrace>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
 		static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
@@ -768,8 +768,8 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 		int ClassTraceCount=0; 
 		int MethodTraceCountGold2=0; 
 		// Create the editors to be used for each row
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 			
 		
 			
@@ -929,18 +929,18 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<Interface2> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
 			if(InterfacesList!=null) {
 				for(Interface2 myinter: InterfacesList) {
-					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.classid,	methodtrace.Requirement.getID().trim());
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.ID,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace4()!=null) {
-					if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
+					if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
 						InterfacesTMethodLevelGold2++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
+					else if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
 						InterfacesNMethodLevelGold2++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
+					else if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
 						InterfacesEMethodLevelGold2++; 
 					}
-					else if(myinter.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) ) {
+					else if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) ) {
 						InterfacesEMethodLevelGold2++; 
 					}
 				}else {
@@ -963,18 +963,18 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<SuperClass2> SuperclassesList = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid); 
 			if(SuperclassesList!=null) {
 			for(SuperClass2 superclass: SuperclassesList) {
-				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.classid,	methodtrace.Requirement.getID().trim());
+				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.ID,	methodtrace.Requirement.getID().trim());
 				if(myinfo!=null&& myinfo.getTrace4()!=null) {
-				if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
+				if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
 					SuperclassesTMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
+				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
 					SuperclassesNMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
+				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
 					SuperclassesEMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.classid.equals(methodtrace.ClassRepresentation.classid)) {
+				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid)) {
 					SuperclassesEMethodLevelGold2++; 
 				}
 			}else {
@@ -994,18 +994,18 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<MethodField2> FieldMethodsList = FieldMethodsHashMap.get(methodtrace.ClassRepresentation.classid); 
 			if(FieldMethodsList!=null) {
 				for(MethodField2 fieldmethod: FieldMethodsList) {
-					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim());
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().ID,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace4()!=null) {
-					if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
+					if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
 						FieldMethodsTMethodLevelGold2++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
+					else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
 						FieldMethodsNMethodLevelGold2++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
+					else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
 						FieldMethodsEMethodLevelGold2++; 
 					}
-					else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
+					else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid)) {
 						FieldMethodsEMethodLevelGold2++; 
 					}
 				}
@@ -1027,18 +1027,18 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<ClassField2> FieldClassesList = FieldClassesHashMap.get(methodtrace.ClassRepresentation.classid); 
 			if(FieldClassesList!=null) {
 				for(ClassField2 fieldmethod: FieldClassesList) {
-					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().classid,	methodtrace.Requirement.getID().trim()); 
+					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, fieldmethod.getOwnerClass().ID,	methodtrace.Requirement.getID().trim()); 
 					if(myinfo!=null && myinfo.getTrace4()!=null) {
-						if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
+						if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
 							FieldClassesTMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
+						else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
 							FieldClassesNMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
+						else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
 							FieldClassesEMethodLevelGold2++; 
 						}
-						else if(fieldmethod.getOwnerClass().classid.equals(methodtrace.ClassRepresentation.classid)) {
+						else if(fieldmethod.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.classid)) {
 							FieldClassesEMethodLevelGold2++; 
 						}
 					}else {
@@ -1082,7 +1082,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 				myparametercount++;
 				
 				
-				String ParameterClassid = myparam.getParameterType().classid; 
+				String ParameterClassid = myparam.getParameterType().ID; 
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
@@ -1436,7 +1436,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1491,7 +1491,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1556,25 +1556,25 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<ClassTrace2 > mylistACROSSCallerGOLD2= new ArrayList<ClassTrace2>(); 
 			HashMap<String, Method> mymapACROSSCallerGOLD2= new HashMap<String, Method>(); 
 			for (Method callermeth : CallerMethodListFinal) {
-				ClassRepresentation2 classrep = callermeth.getClassrep();
+				Clazz classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
 					mycallerclasses.add(mycallerclass);
 				}else if(mycallerclass!=null){
-					mymapCaller.put(mycallerclass.getMyclass().classid, callermeth); 
+					mymapCaller.put(mycallerclass.getMyclass().ID, callermeth); 
 				}
 				
 				
 				
-				if(mycallerclass==null && callermeth!=null && callermeth.classrep.classid!=null) {
-					if(callermeth.classrep.classid.equals(methodtrace.ClassRepresentation.classid)==false)
+				if(mycallerclass==null && callermeth!=null && callermeth.owner.ID!=null) {
+					if(callermeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
 					mylistACROSSCallerGOLD2.add(mycallerclass); 
 				}
-				if(mycallerclass==null && callermeth!=null && callermeth.classrep.classid!=null){
-					if( callermeth.classrep.classid.equals(methodtrace.ClassRepresentation.classid)==false)
-					mymapACROSSCallerGOLD2.put(callermeth.classrep.classid, callermeth) ; 
+				if(mycallerclass==null && callermeth!=null && callermeth.owner.ID!=null){
+					if( callermeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+					mymapACROSSCallerGOLD2.put(callermeth.owner.ID, callermeth) ; 
 				}
 				
 				
@@ -1607,7 +1607,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			int CountMethodNACHRAF = 0; 
 			int CountMethodEACHRAF = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1631,7 +1631,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1662,7 +1662,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			int CountMethodNACHRAFGold2 = 0; 
 			int CountMethodEACHRAFGold2 = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1691,7 +1691,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			int CountMethodNACHRAFCalleeGold2 = 0; 
 			int CountMethodEACHRAFCalleeGold2 = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1727,22 +1727,22 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			List<ClassTrace2 > mylistACROSSCalleeGOLD2= new ArrayList<ClassTrace2>(); 
 			HashMap<String, Method> mymapACROSSCalleeGOLD2= new HashMap<String, Method>(); 
 			for (Method calleemeth : CalleeMethodListFinal) {
-				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				Clazz classrep = calleemeth.getClassrep();
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 
 				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				if(mycalleeclass!=null) {
 					mycalleeclasses.add(mycalleeclass);
 				}else if(calleemeth!=null){
-					mymap.put(calleemeth.classrep.classid, calleemeth) ; 
+					mymap.put(calleemeth.owner.ID, calleemeth) ; 
 				}
-				if(mycalleeclass==null && calleemeth!=null && calleemeth.classrep.classid!=null) {
-					if(calleemeth.classrep.classid.equals(methodtrace.ClassRepresentation.classid)==false)
+				if(mycalleeclass==null && calleemeth!=null && calleemeth.owner.ID!=null) {
+					if(calleemeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
 					mylistACROSSCalleeGOLD2.add(mycalleeclass); 
 				}
-				if(mycalleeclass==null && calleemeth!=null && calleemeth.classrep.classid!=null){
-					if( calleemeth.classrep.classid.equals(methodtrace.ClassRepresentation.classid)==false)
-					mymapACROSSCalleeGOLD2.put(calleemeth.classrep.classid, calleemeth) ; 
+				if(mycalleeclass==null && calleemeth!=null && calleemeth.owner.ID!=null){
+					if( calleemeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+					mymapACROSSCalleeGOLD2.put(calleemeth.owner.ID, calleemeth) ; 
 				}
 				
 			}
@@ -3323,7 +3323,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 					
 					
 					
-									String key= methodtrace.getMethodRepresentation().methodid+"-"+methodtrace.getRequirement().ID; 
+									String key= methodtrace.getMethodRepresentation().ID+"-"+methodtrace.getRequirement().ID; 
 									if(methodtrace.gold4!=null) {
 										PredictionStandardHashMap.put(key, methodtrace.gold4.trim()); 
 
@@ -3359,7 +3359,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 											data[j][OwnerClassPredictionGOLD2]="N"; 
 											String Result2=OwnerClassPredictionClassGold2.ComparePredictionToGold(methodtrace.getGold4().trim(), data[j][OwnerClassPredictionGOLD2].toString()); 
 											OwnerClassPredictionClassGold2.UpdateCounters(Result2, OwnerClassPredictionClassGold2);
-											 key= methodtrace.getMethodRepresentation().methodid+"-"+methodtrace.getRequirement().ID; 
+											 key= methodtrace.getMethodRepresentation().ID+"-"+methodtrace.getRequirement().ID; 
 											OwnerClassPredictionClassGold2HashMap.put(key, data[j][OwnerClassPredictionGOLD2].toString()); 
 											flagGold2=true; 
 											}
@@ -5190,10 +5190,10 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 					for(Method call: CallerMethodListFinal) {
 						bwlog2.write("callerlist "+ call.toString2());
 						
-						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 						 if(Trace4!=null) {
 							 bwlog2.newLine();
-							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 							
 							
 						 }
@@ -5203,11 +5203,11 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 					for(Method call: CalleeMethodListFinal) {
 						bwlog2.write("calleelist "+ call.toString2());
 						bwlog2.newLine();
-						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 						 if(Trace4!=null) {
 							 bwlog2.newLine();
-							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 							
 							
 						 }
@@ -5389,10 +5389,10 @@ if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 				for(Method call: CallerMethodListFinal) {
 					bwlog3.write("callerlist "+ call.toString2());
 					
-					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 					 if(Trace4!=null) {
 						 bwlog3.newLine();
-						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 						
 						
 					 }
@@ -5402,11 +5402,11 @@ if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 				for(Method call: CalleeMethodListFinal) {
 					bwlog3.write("calleelist "+ call.toString2());
 					bwlog3.newLine();
-					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()); 
+					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
 
 					 if(Trace4!=null) {
 						 bwlog3.newLine();
-						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.classrep.classid,methodtrace.Requirement.getID()).gettrace().trim());
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 						
 						
 					 }

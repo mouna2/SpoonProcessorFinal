@@ -12,8 +12,8 @@ public class ClassField2 {
 	
 	String ID; 
 	 String FieldName;
-	 ClassRepresentation2 FieldType; 
-	 ClassRepresentation2 OwnerClass;
+	 Clazz FieldType; 
+	 Clazz OwnerClass;
 	HashMap<String, ClassField2> myfieldclasses= new HashMap<String, ClassField2>(); 
 	List<ClassField2> classFieldList= new ArrayList<ClassField2>(); 
 	 HashMap<String, List<ClassField2>> ClassFieldHashMap= new HashMap<String, List<ClassField2>>(); 
@@ -27,7 +27,7 @@ public class ClassField2 {
 		this.myfieldclasses = myfieldclasses;
 	}
 
-	public ClassField2(String iD, String fieldName, ClassRepresentation2 fieldType, ClassRepresentation2 ownerClass) {
+	public ClassField2(String iD, String fieldName, Clazz fieldType, Clazz ownerClass) {
 		super();
 		ID = iD;
 		FieldName = fieldName;
@@ -56,19 +56,19 @@ public class ClassField2 {
 		FieldName = fieldName;
 	}
 
-	public ClassRepresentation2 getFieldType() {
+	public Clazz getFieldType() {
 		return FieldType;
 	}
 
-	public void setFieldType(ClassRepresentation2 fieldType) {
+	public void setFieldType(Clazz fieldType) {
 		FieldType = fieldType;
 	}
 
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
 
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
 
@@ -104,13 +104,13 @@ public class ClassField2 {
 		 while(myresults.next()) {
 			 	ClassField2 myclassfield = new ClassField2(); 
 			 
-			 	ClassRepresentation2 FieldType= new ClassRepresentation2();
+			 	Clazz FieldType= new Clazz();
 			     String fieldtypeclassid = myresults.getString("fieldtypeclassid"); 			
 				 String fieldtype = myresults.getString("fieldtype"); 
 				 FieldType.setClassid(fieldtypeclassid);
 				 FieldType.setClassname(fieldtype);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 Clazz OwnerClass= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("classname"); 
 				 OwnerClass.setClassid(ownerclassid);

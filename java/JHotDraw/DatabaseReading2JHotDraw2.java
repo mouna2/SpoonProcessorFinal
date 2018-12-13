@@ -38,7 +38,7 @@ import spoon.reflect.factory.ClassFactory;
 
 public class DatabaseReading2JHotDraw2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
-	public static List<MethodTraceSubjectTSubjectN> methodtraces2 = null;
+	public static List<MethodTrace> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Method2Details> methodlist = null;
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -106,13 +106,13 @@ public class DatabaseReading2JHotDraw2 {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		int index = 0;
-		mypackage.ClassRepresentation2 classrep = new mypackage.ClassRepresentation2();
+		mypackage.Clazz classrep = new mypackage.Clazz();
 
-		HashMap<Integer, mypackage.ClassRepresentation2> ClassRepresentationHashMap = classrep
+		HashMap<Integer, mypackage.Clazz> ClassRepresentationHashMap = classrep
 				.ReadClassesRepresentations(conn);
 		Set<Integer> keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 
@@ -122,7 +122,7 @@ public class DatabaseReading2JHotDraw2 {
 		HashMap<Integer, mypackage.ClassDetails2> ClassDetailsHashMap = classdet.ReadClassesRepresentations(conn);
 		keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 
@@ -152,9 +152,9 @@ public class DatabaseReading2JHotDraw2 {
 
 		///////////////////////////////////////////////////////////////////////////////////////
 
-		MethodTraceSubjectTSubjectN MethodTraceSubjectTSubjectN = new MethodTraceSubjectTSubjectN();
-		HashMap<Integer, MethodTraceSubjectTSubjectN> methodtracehashmap = MethodTraceSubjectTSubjectN.ReadClassesRepresentations(conn);
-		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
+		MethodTrace MethodTraceSubjectTSubjectN = new MethodTrace();
+		HashMap<Integer, MethodTrace> methodtracehashmap = MethodTraceSubjectTSubjectN.ReadClassesRepresentations(conn);
+		List<MethodTrace> methodtraces = new ArrayList<MethodTrace>(methodtracehashmap.values());
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		ClassTrace2 classtrace2= new ClassTrace2(); 
@@ -333,7 +333,7 @@ public class DatabaseReading2JHotDraw2 {
 //
 //		}
 
-		for (MethodTraceSubjectTSubjectN methtr : methodtraces2) {
+		for (MethodTrace methtr : methodtraces2) {
 			System.out.println(methtr.toString(methtr));
 		}
 
@@ -376,11 +376,11 @@ public class DatabaseReading2JHotDraw2 {
 	
 	}
 
-	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2() {
+	public static List<MethodTrace> getMethodtraces2() {
 		return methodtraces2;
 	}
 
-	public static void setMethodtraces2(List<MethodTraceSubjectTSubjectN> methodtraces2) {
+	public static void setMethodtraces2(List<MethodTrace> methodtraces2) {
 		DatabaseReading2JHotDraw2.methodtraces2 = methodtraces2;
 	}
 	

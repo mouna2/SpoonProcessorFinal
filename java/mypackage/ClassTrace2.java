@@ -12,7 +12,7 @@ import java.util.List;
 public class ClassTrace2 {
 	String ID; 
 		Requirement2 requirement; 
-		ClassRepresentation2 myclass; 
+		Clazz myclass; 
 		String trace; 
 		String trace2; 
 		String traceFinal; 
@@ -96,7 +96,7 @@ public class ClassTrace2 {
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
 		LinkedHashMap<String, ClassTrace2> classtraceHashMapRequirementClass= new LinkedHashMap<String, ClassTrace2> (); 
 		
-		public ClassTrace2(String iD, Requirement2 requirement, ClassRepresentation2 myclass, String trace, String subject) {
+		public ClassTrace2(String iD, Requirement2 requirement, Clazz myclass, String trace, String subject) {
 			super();
 			ID = iD;
 			this.requirement = requirement;
@@ -120,10 +120,10 @@ public class ClassTrace2 {
 		public void setRequirement(Requirement2 requirement) {
 			this.requirement = requirement;
 		}
-		public ClassRepresentation2 getMyclass() {
+		public Clazz getMyclass() {
 			return myclass;
 		}
-		public void setMyclass(ClassRepresentation2 myclass) {
+		public void setMyclass(Clazz myclass) {
 			this.myclass = myclass;
 		}
 		public String gettrace() {
@@ -162,7 +162,7 @@ public class ClassTrace2 {
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 myclasstrace.setRequirement(requirement);
 				 
-				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 Clazz classrep = new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
@@ -202,7 +202,7 @@ public class ClassTrace2 {
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 myclasstrace.setRequirement(requirement);
 				 
-				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 Clazz classrep = new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 myclasstrace.setMyclass(classrep);
@@ -218,7 +218,7 @@ public class ClassTrace2 {
 //				 myclasstrace.setTrace6(myresults.getString("gold6"));
 				 myclasstrace.setSubject(myresults.getString("subject"));
 				 //RequirementClass ReqClass= new RequirementClass(myclasstrace.getRequirement().ID, myclasstrace.getMyclass().classid); 
-				String ReqClass= myclasstrace.getRequirement().ID+"-"+myclasstrace.getMyclass().classid; 
+				String ReqClass= myclasstrace.getRequirement().ID+"-"+myclasstrace.getMyclass().ID; 
 				 classtraceHashMapRequirementClass.put(ReqClass, myclasstrace); 
 			//	 System.out.println("my classtrace toString: "+myclasstrace.toString()); 
 				 index++; 

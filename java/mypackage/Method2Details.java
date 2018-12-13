@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Method2Details {
 	public Method methodrep; 
-	public ClassRepresentation2 OwnerClass; 
+	public Clazz OwnerClass; 
 	public List<Method> callersList= new ArrayList<Method>(); 
 	public List<Method> calleesList= new ArrayList<Method>(); 
 	public List<Method> callersListExecuted= new ArrayList<Method>(); 
@@ -48,10 +48,10 @@ public class Method2Details {
 	public void setMethodrep(Method methodrep) {
 		this.methodrep = methodrep;
 	}
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
 	public List<Method> getCallers() {
@@ -85,7 +85,7 @@ public class Method2Details {
 	public void setMethodtraces(HashMap<String, MethodTrace2> methodtraces) {
 		this.methodtraces = methodtraces;
 	}
-	public Method2Details(Method methodrep, ClassRepresentation2 ownerClass,
+	public Method2Details(Method methodrep, Clazz ownerClass,
 			List<Method> callers, List<Method> callees, List<Parameter2> parameters,
 			List<MethodField2> methodfields, HashMap<String, MethodTrace2> methodtraces) {
 		super();
@@ -99,7 +99,7 @@ public class Method2Details {
 	} 
 	
 	
-	public Method2Details(Method methodrep, ClassRepresentation2 ownerClass,
+	public Method2Details(Method methodrep, Clazz ownerClass,
 			List<Method> callersList, List<Method> calleesList,
 			List<Method> callersListExecuted, List<Method> calleesListExecuted,
 			List<Parameter2> parametersList, List<MethodField2> methodfieldsList,
@@ -184,7 +184,7 @@ public class Method2Details {
 				 methoddet2.setMethodrep(methodrep);
 				 
 				 
-				 ClassRepresentation2 classrep= new ClassRepresentation2(); 
+				 Clazz classrep= new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 methoddet2.setOwnerClass(classrep);
@@ -199,7 +199,7 @@ public class Method2Details {
 						 
 					 
 					 Method meth= new Method(); 	
-					 meth.setMethodid(mycallee.Callee.methodid);
+					 meth.setMethodid(mycallee.Callee.ID);
 					 meth.setMethodname(mycallee.Callee.methodname);
 					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 					 meth.setClassrep(val.OwnerClass);
@@ -214,7 +214,7 @@ public class Method2Details {
 				 if(mycallerlist!=null) {
 					 for(MethodCalls mycaller: mycallerlist) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
@@ -232,7 +232,7 @@ public class Method2Details {
 				 if(mycallerlistexecuted!=null) {
 					 for(MethodCalls mycaller: mycallerlistexecuted) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycaller.Caller.methodid);
+						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						if(val!=null) {
@@ -252,7 +252,7 @@ public class Method2Details {
 				 if(mycalleelistexecuted!=null) {
 					 for(MethodCalls mycallee: mycalleelistexecuted) {
 						 Method meth= new Method(); 	
-						 meth.setMethodid(mycallee.Callee.methodid);
+						 meth.setMethodid(mycallee.Callee.ID);
 						 meth.setMethodname(mycallee.Callee.methodname);
 						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
@@ -278,11 +278,11 @@ public class Method2Details {
 						 
 						 param.setParameterName(param.parameterName);
 						 
-						 ClassRepresentation2 ParamType= new ClassRepresentation2(); 
+						 Clazz ParamType= new Clazz(); 
 						
 						 param.setParameterType(param.ParameterType);
 						 
-						 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
+						 Clazz OwnerType= new Clazz(); 
 						
 						 param.setOwnerClass(param.OwnerClass);
 						 
@@ -425,7 +425,7 @@ public class Method2Details {
 				 methoddet2.setMethodrep(methodrep);
 				 
 				 
-				 ClassRepresentation2 classrep= new ClassRepresentation2(); 
+				 Clazz classrep= new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 methoddet2.setOwnerClass(classrep);
@@ -488,12 +488,12 @@ public class Method2Details {
 					 Parameter2 param= new Parameter2(); 	
 					 param.setParameterName(parameters.getString("parametername"));
 					 
-					 ClassRepresentation2 ParamType= new ClassRepresentation2(); 
+					 Clazz ParamType= new Clazz(); 
 					 ParamType.setClassid(parameters.getString("parameterclass"));
 					 ParamType.setClassname(parameters.getString("parametertype"));
 					 param.setParameterType(ParamType);
 					 
-					 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
+					 Clazz OwnerType= new Clazz(); 
 					 OwnerType.setClassid(parameters.getString("classid"));
 					 OwnerType.setClassname(parameters.getString("classname"));
 					 param.setOwnerClass(OwnerType);
@@ -511,12 +511,12 @@ public class Method2Details {
 					 MethodField2 methfield= new MethodField2(); 	
 					 methfield.setFieldName(methodFields.getString("fieldaccess"));
 					 
-					 ClassRepresentation2 FieldType= new ClassRepresentation2(); 
+					 Clazz FieldType= new Clazz(); 
 					 FieldType.setClassid(methodFields.getString("fieldtypeclassid"));
 					 FieldType.setClassname(methodFields.getString("fieldtypeclassname"));
 					 methfield.setMethodFieldType(FieldType);
 					 
-					 ClassRepresentation2 OwnerType= new ClassRepresentation2(); 
+					 Clazz OwnerType= new Clazz(); 
 					 OwnerType.setClassid(methodFields.getString("ownerclassid"));
 					 OwnerType.setClassname(methodFields.getString("ownerclassname"));
 					 methfield.setOwnerClass(OwnerType);
@@ -549,7 +549,7 @@ public class Method2Details {
 						requirement.setRequirementName(methodtracesres.getString("requirement"));
 						MethodTrace.setRequirement(requirement);
 
-						ClassRepresentation2 myclass= new ClassRepresentation2();
+						Clazz myclass= new Clazz();
 						myclass.setClassname(methodtracesres.getString("classname"));
 						myclass.setClassid(methodtracesres.getString("classid"));
 						MethodTrace.setClassRepresentation(myclass);

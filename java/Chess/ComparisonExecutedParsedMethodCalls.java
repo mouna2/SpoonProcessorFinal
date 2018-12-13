@@ -41,7 +41,7 @@ import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
 import mypackage.ClassField2;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -177,11 +177,11 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 			for(Method mymeth: mycalleeslist) {
 				boolean entered1=false; 
 				for(Method mymeth2: mycalleeslistexecuted) {
-					String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+					String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 					if(mapBothParsedAndExec1.get(key2)!=null) {
 						entered1=true; 
 					}
-					else if(mymeth.classrep.classid.equals(mymeth2.classrep.classid) && mymeth.methodid.equals(mymeth2.methodid)) {
+					else if(mymeth.owner.ID.equals(mymeth2.owner.ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC++; 
 						entered1=true; 
 						
@@ -197,7 +197,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.classrep.classid+"-"+mymeth.classrep.classname; 
+				String key=mymeth.owner.ID+"-"+mymeth.owner.classname; 
 //				System.out.println(key);
 				Interface2 val = InterfacesHashMap.get(key); 
 				boolean entered2=false; 
@@ -209,11 +209,11 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //						System.out.println(mymeth2.getMethodname());
 //						System.out.println(val.OwnerClass.classid);
 //						System.out.println(mymeth2.classrep.classid);
-						String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+						String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 						if(mapInterfaceExec.get(key2)!=null && entered2==false) {
 							entered2=true; 
 						}
-						else if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && val.OwnerClass.classid.equals(mymeth2.classrep.classid) && entered2==false) {
+						else if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && val.OwnerClass.ID.equals(mymeth2.owner.ID) && entered2==false) {
 							INTERFACE++; 
 							entered2=true; 
 							System.out.println(key2);
@@ -223,7 +223,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					}
 				}
 		
-				String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+				String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 				if(mapOnlyParsed.get(key2)!=null) {
 					
 				}
@@ -256,11 +256,11 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println(mymeth.methodid);
 //					System.out.println(mymeth2.methodid);
 //					System.out.println("ITERATION "+j);
-					String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+					String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 					if(mapBothParsedAndExec2.get(key2)!=null) {
 						entered1exec=true; 
 					}
-					else if(mymeth.classrep.classid.equals(mymeth2.getClassrep().classid) && mymeth.methodid.equals(mymeth2.methodid)) {
+					else if(mymeth.owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC2++; 
 						entered1exec=true; 
 					
@@ -275,7 +275,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.classrep.classid; 
+				String key=mymeth.owner.ID; 
 //				System.out.println(key);
 				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2exec=false; 
@@ -288,12 +288,12 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //							System.out.println(mymeth2.getMethodname());
 //							System.out.println(inter.OwnerClass.classid);
 //							System.out.println(mymeth2.classrep.classid);
-							String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth2.methodid; 
+							String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth2.ID; 
 							if(mapInterfaceExec.get(key2)!=null && entered2exec==false) {
 								entered2exec=true; 
 							}
 							else
-							if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && inter.InterfaceClass.classid.equals(mymeth2.classrep.classid)&& entered2exec==false) {
+							if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && inter.InterfaceClass.ID.equals(mymeth2.owner.ID)&& entered2exec==false) {
 								INTERFACEEXEC++; 
 								entered2exec=true; 
 								System.out.println(key2);
@@ -304,7 +304,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					}
 					
 				}
-				String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+				String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 				if(mapOnlyExec.get(key2)!=null) {
 					
 				}
@@ -335,11 +335,11 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println(mymeth.methodid);
 //					System.out.println(mymeth2.methodid);
 //					System.out.println("ITERATION "+j);
-					String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+					String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 					if(mapBothParsedAndExecCaller.get(key2)!=null) {
 						entered1execCALLER=true; 
 					}
-					else if(mymeth.classrep.classid.equals(mymeth2.getClassrep().classid) && mymeth.methodid.equals(mymeth2.methodid)) {
+					else if(mymeth.owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC2++; 
 						entered1execCALLER=true; 
 					
@@ -354,7 +354,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.classrep.classid; 
+				String key=mymeth.owner.ID; 
 //				System.out.println(key);
 				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2execCALLER=false; 
@@ -375,13 +375,13 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 							methname2=methname2.replaceAll("\\[", ""); 
 							methname2=methname2.replaceAll("\\]", ""); 
 							methname2=methname2.replaceAll("\\[\\]", ""); 
-							String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth2.methodid; 
+							String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth2.ID; 
 							if(mapInterfaceExecCaller.get(key2)!=null && entered2execCALLER==false) {
 								entered2execCALLER=true; 
 							}
 							else
 							
-							if(methname.equals(methname2) && inter.OwnerClass.classid.equals(mymeth2.classrep.classid)&& entered2execCALLER==false) {
+							if(methname.equals(methname2) && inter.OwnerClass.ID.equals(mymeth2.owner.ID)&& entered2execCALLER==false) {
 								INTERFACEEXEC++; 
 								entered2execCALLER=true; 
 								System.out.println(key2);
@@ -392,7 +392,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					}
 					
 				}
-				String key2= methodtrace.MethodRepresentation.methodid+"-"+mymeth.methodid; 
+				String key2= methodtrace.MethodRepresentation.ID+"-"+mymeth.ID; 
 				if(mapOnlyExecCaller.get(key2)!=null) {
 					
 				}

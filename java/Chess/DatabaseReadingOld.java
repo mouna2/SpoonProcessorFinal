@@ -113,13 +113,13 @@ public class DatabaseReadingOld {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		int index = 0;
-		mypackage.ClassRepresentation2 classrep = new mypackage.ClassRepresentation2();
+		mypackage.Clazz classrep = new mypackage.Clazz();
 
-		HashMap<Integer, mypackage.ClassRepresentation2> ClassRepresentationHashMap = classrep
+		HashMap<Integer, mypackage.Clazz> ClassRepresentationHashMap = classrep
 				.ReadClassesRepresentations(conn);
 		Set<Integer> keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 
@@ -129,7 +129,7 @@ public class DatabaseReadingOld {
 		HashMap<Integer, mypackage.ClassDetails2> ClassDetailsHashMap = classdet.ReadClassesRepresentations(conn);
 		keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 

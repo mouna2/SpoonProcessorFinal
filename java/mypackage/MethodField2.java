@@ -11,8 +11,8 @@ import java.util.List;
 public class MethodField2 {
 	String ID; 
 	 String FieldName;
-	 ClassRepresentation2 MethodFieldType; 
-	 ClassRepresentation2 OwnerClass;
+	 Clazz MethodFieldType; 
+	 Clazz OwnerClass;
 	 Method Method;
 		List<MethodField2> myfieldmethods= new ArrayList<MethodField2>(); 
 	
@@ -45,20 +45,20 @@ public class MethodField2 {
 	public void setFieldName(String fieldName) {
 		FieldName = fieldName;
 	}
-	public ClassRepresentation2 getMethodFieldType() {
+	public Clazz getMethodFieldType() {
 		return MethodFieldType;
 	}
-	public void setMethodFieldType(ClassRepresentation2 methodFieldType) {
+	public void setMethodFieldType(Clazz methodFieldType) {
 		MethodFieldType = methodFieldType;
 	}
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
-	public MethodField2(String iD, String fieldName, ClassRepresentation2 methodFieldType,
-			ClassRepresentation2 ownerClass) {
+	public MethodField2(String iD, String fieldName, Clazz methodFieldType,
+			Clazz ownerClass) {
 		super();
 		ID = iD;
 		FieldName = fieldName;
@@ -89,7 +89,7 @@ public class MethodField2 {
 		 while(myresults.next()) {
 			 	MethodField2 mymethodfield = new MethodField2(); 
 			 
-			 	ClassRepresentation2 FieldType= new ClassRepresentation2();
+			 	Clazz FieldType= new Clazz();
 			     String fieldtypeclassid = myresults.getString("fieldtypeclassid"); 			
 				 String fieldtype = myresults.getString("fieldtypeclassname"); 
 //				 String fieldtype = myresults.getString("fieldtype"); 
@@ -97,7 +97,7 @@ public class MethodField2 {
 				 FieldType.setClassid(fieldtypeclassid);
 				 FieldType.setClassname(fieldtype);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 Clazz OwnerClass= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("ownerclassname"); 
 //				 String classname = myresults.getString("classname"); 

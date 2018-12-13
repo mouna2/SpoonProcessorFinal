@@ -37,7 +37,7 @@ import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
@@ -195,7 +195,7 @@ public class TracesTable extends JFrame {
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassID] = methodtrace.ClassRepresentation.ID;
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
@@ -204,7 +204,7 @@ public class TracesTable extends JFrame {
 
 			for (ClassTrace2 classtrace : classtraces2) {
 
-				if (methodtrace.ClassRepresentation.classid.equals(classtrace.getMyclass().classid)
+				if (methodtrace.ClassRepresentation.ID.equals(classtrace.getMyclass().ID)
 						&& methodtrace.Requirement.getID().equals(classtrace.getRequirement().getID())) {
 					String trace = classtrace.gettrace();
 					if (trace.equals("T")) {
@@ -231,10 +231,10 @@ public class TracesTable extends JFrame {
 
 				for (Method2Details meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(caller.getMethodid()) && count == 0) {
-						classID = meth.getOwnerClass().classid;
+						classID = meth.getOwnerClass().ID;
 						ClassCountCaller++;
 					} else if (meth.getMethodrep().getMethodid().equals(caller.getMethodid())
-							&& (classID.equals(meth.getOwnerClass().classid)) == false) {
+							&& (classID.equals(meth.getOwnerClass().ID)) == false) {
 						ClassCountCaller++;
 					}
 				}
@@ -247,10 +247,10 @@ public class TracesTable extends JFrame {
 
 				for (Method2Details meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(caller.getMethodid()) && count == 0) {
-						classID = meth.getOwnerClass().classid;
+						classID = meth.getOwnerClass().ID;
 						ClassCountCaller++;
 					} else if (meth.getMethodrep().getMethodid().equals(caller.getMethodid())
-							&& (classID.equals(meth.getOwnerClass().classid)) == false) {
+							&& (classID.equals(meth.getOwnerClass().ID)) == false) {
 						ClassCountCaller++;
 					}
 				}
@@ -265,10 +265,10 @@ public class TracesTable extends JFrame {
 
 				for (Method2Details meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(callee.getMethodid()) && count == 0) {
-						classID = meth.getOwnerClass().classid;
+						classID = meth.getOwnerClass().ID;
 						ClassCountCallee++;
 					} else if (meth.getMethodrep().getMethodid().equals(callee.getMethodid())
-							&& (classID.equals(meth.getOwnerClass().classid)) == false) {
+							&& (classID.equals(meth.getOwnerClass().ID)) == false) {
 						ClassCountCallee++;
 					}
 				}
@@ -508,8 +508,8 @@ public class TracesTable extends JFrame {
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
 			for (Method callermeth : CallerMethodListFinal) {
-				ClassRepresentation2 classrep = callermeth.getClassrep();
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
+				Clazz classrep = callermeth.getClassrep();
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.ID,
 						methodtrace.Requirement.getID());
 				mycallerclasses.add(mycallerclass);
 			}
@@ -564,8 +564,8 @@ public class TracesTable extends JFrame {
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
 			for (Method calleemeth : CalleeMethodListFinal) {
-				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,
+				Clazz classrep = calleemeth.getClassrep();
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.ID,
 						methodtrace.Requirement.getID());
 				mycalleeclasses.add(mycalleeclass);
 			}

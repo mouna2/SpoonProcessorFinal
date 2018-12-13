@@ -26,7 +26,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import Tables.tracesmethodscallees;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.Interface2;
 import mypackage.Method;
 import mypackage.MethodTrace2;

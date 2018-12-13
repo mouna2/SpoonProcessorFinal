@@ -1,6 +1,6 @@
 package ALGO;
 
-import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.*;
 
 public class PredictionValues {
 		public int T; 

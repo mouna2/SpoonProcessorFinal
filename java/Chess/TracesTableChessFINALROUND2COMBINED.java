@@ -44,7 +44,7 @@ import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
 import mypackage.ClassField2;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -530,8 +530,8 @@ public class TracesTableChessFINALROUND2COMBINED extends JFrame {
 	PredictionEvaluation NEWPATTERNMethodFields=new PredictionEvaluation();  
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
-	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap  = new HashMap<String, MethodTraceSubjectTSubjectN>();
+	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static HashMap<String, MethodTrace> methodtraces2HashMap  = new HashMap<String, MethodTrace>();
 	static HashMap<String, List<Parameter2>> parameterHashMap  = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
@@ -719,7 +719,7 @@ public class TracesTableChessFINALROUND2COMBINED extends JFrame {
 		
 //		List<LinkedHashMap<String, String>> PredictionHashMaps= new ArrayList<LinkedHashMap<String, String>>(); 
 //		LinkedHashMap<String, String> PredictionHashMap1 = function1(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtraces2); 
-		List<MethodTraceSubjectTSubjectN> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
+		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
 		function1SetToT(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew); 
 		
 		
@@ -1041,11 +1041,11 @@ public class TracesTableChessFINALROUND2COMBINED extends JFrame {
 
 
 
-	public List<MethodTraceSubjectTSubjectN> InitializePredictionsHashMap2(
-			List<MethodTraceSubjectTSubjectN> methodtracesNew) {
+	public List<MethodTrace> InitializePredictionsHashMap2(
+			List<MethodTrace> methodtracesNew) {
 		// TODO Auto-generated method stub
 		
-		for(MethodTraceSubjectTSubjectN meth: methodtracesNew) {
+		for(MethodTrace meth: methodtracesNew) {
 			meth.setPrediction("");
 		}
 		return methodtracesNew;
@@ -1056,24 +1056,24 @@ public class TracesTableChessFINALROUND2COMBINED extends JFrame {
 
 	
 
-public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> parameterlistN, List<Parameter2> parameterlistT, List<MethodField2> methodfieldlistT, List<MethodField2> methodfieldlistN, List<MethodField2> methodfieldlistE, List<String> PredictionFields, List<String> PredictionParams, MethodTraceSubjectTSubjectN methodtrace) {
+public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> parameterlistN, List<Parameter2> parameterlistT, List<MethodField2> methodfieldlistT, List<MethodField2> methodfieldlistN, List<MethodField2> methodfieldlistE, List<String> PredictionFields, List<String> PredictionParams, MethodTrace methodtrace) {
 	// TODO Auto-generated method stub
 	for(MethodField2 methodfield: methodfieldlistE) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionFields.add(predictionvalue); 
 		}
 	}
 	for(MethodField2 methodfield: methodfieldlistN) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionFields.add(predictionvalue); 
 		}
 	}
 	for(MethodField2 methodfield: methodfieldlistT) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionFields.add(predictionvalue); 
@@ -1082,21 +1082,21 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 	
 	for(Parameter2 methodfield: parameterlistT) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionParams.add(predictionvalue); 
 		}
 	}
 	for(Parameter2 methodfield: parameterlistE) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionParams.add(predictionvalue); 
 		}
 	}
 	for(Parameter2 methodfield: parameterlistN) {
-		String key=methodfield.getMethod().methodid+"-"+methodtrace.Requirement.ID; 
+		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
 		if(methodtraces2HashMap.get(key)!=null) {
 			String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
 			PredictionParams.add(predictionvalue); 
@@ -1110,11 +1110,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) throws SQLException {
+	public LinkedHashMap<String, String>  function1SetToT(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTrace> methodtraces22) throws SQLException {
 		// TODO Auto-generated method stub
 		int ITERATION1=0; 
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -1248,7 +1248,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			j++;
 			
 		}
-		 LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCallsSetToT);
 		 System.out.println("===============>PATTERNS 1 SET TO T   ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodCallsSetToT.toString());
 
@@ -1264,7 +1264,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 
 			int k=0; 
 			//PATTERN 3 AND PATTERN 5 MIXED 
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				//PATTERN 3 AND PATTERN 5
 				
 				List<Method> CalleesList = methodtrace.getCalleesList(); 
@@ -1273,7 +1273,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1286,7 +1286,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1348,7 +1348,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			 k=0; 
 			//PATTERN 2 AND PATTERN 4 PURE 
 			// methodtraces2	=	InitializePredictionsHashMapBlankValues(PredictionsOldHashMap, methodtraces22); 
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				
 //				methodtrace.setPrediction("");
 				//PATTERN 2 AND PATTERN 4
@@ -1358,7 +1358,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1372,7 +1372,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1429,7 +1429,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			//PRINT 
 			
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				System.out.println("PREDICTION  "+methodtrace.getPrediction()+"   GOLD2  "+methodtrace.goldfinal);
 //				if(methodtrace.getPrediction().equals("T")){
 //					methodtrace.setPrediction("");
@@ -1473,11 +1473,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public LinkedHashMap<String, String>  function1(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) throws SQLException {
+	public LinkedHashMap<String, String>  function1(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTrace> methodtraces22) throws SQLException {
 		// TODO Auto-generated method stub
-		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		int ITERATION=0; 
-		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 			data[j][Row] = j; 
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getFullmethodname(); 
@@ -1613,7 +1613,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			
 		}
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
+		LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
 		WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodCalls);
 		System.out.println("===============>PATTERN 1 ITERATION "+ITERATION+	"   PREDICTION VALUES "+NEWPATTERNMethodCalls.toString());
 		 MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 
@@ -1639,7 +1639,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 			int k=0; 
 			//PATTERN 3 AND PATTERN 5
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				//PATTERN 3 AND PATTERN 5
 				
 				List<Method> CalleesList = methodtrace.getCalleesList(); 
@@ -1648,7 +1648,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1661,7 +1661,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1699,7 +1699,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			//////////////////////////////////////////////////////////////////////////////////////////
 			 k=0; 
 			//PATTERN 2 AND PATTERN 4
-			for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+			for (MethodTrace methodtrace : methodtraces2) {
 				
 
 				//PATTERN 2 AND PATTERN 4
@@ -1709,7 +1709,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCalleeList=new ArrayList<String>();
 				for(Method callee: CalleesList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= callee.methodid; 
+					String MethodID= callee.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1723,7 +1723,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 				List<String> PredictionCallerList=new ArrayList<String>();
 				for(Method caller: CallersList) {
 					String RequirementID=methodtrace.Requirement.ID; 
-					String MethodID= caller.methodid; 
+					String MethodID= caller.ID; 
 					String key= MethodID+"-"+RequirementID; 
 					if(methodtraces2HashMap.get(key)!=null) {
 						String predictionvalue=methodtraces2HashMap.get(key).getPrediction(); 
@@ -1765,7 +1765,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 			
 		ITERATION++; 
 		}
-		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces2) {
+		for (MethodTrace methodtrace : methodtraces2) {
 				if(methodtrace.getPrediction().trim().equals("E")){
 					methodtrace.setPrediction("T");
 				}
@@ -1788,13 +1788,13 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/	
 	
 	public void WriteInDatabaseAndComputePrecisionAndRecall(
-			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap, PredictionEvaluation nEWPATTERNMethodFields2) throws SQLException {
+			LinkedHashMap<String, MethodTrace> MyfinalHashMap, PredictionEvaluation nEWPATTERNMethodFields2) throws SQLException {
 		// TODO Auto-generated method stub
 		nEWPATTERNMethodFields2.ResetCounters(nEWPATTERNMethodFields2);
 		
 		for(String mykey:MyfinalHashMap.keySet()) {
-			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey); 
-			String methodid=myvalue.getMethodRepresentation().methodid; 
+			MethodTrace myvalue = MyfinalHashMap.get(mykey); 
+			String methodid=myvalue.getMethodRepresentation().ID; 
 			String requirementID= myvalue.getRequirement().ID; 
 			//String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'"; 
 			String likelihood= myvalue.getLikelihood(); 
@@ -1825,10 +1825,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	
-	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTrace> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
+		for(MethodTrace methodtrace: methodtraces22) {
 			String RequirementID=methodtrace.Requirement.ID; 
 			String MethodID= methodtrace.MethodRepresentation.methodid; 
 			String key= MethodID+"-"+RequirementID; 
@@ -1841,10 +1841,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	
-	public List<MethodTraceSubjectTSubjectN> InitializePredictionsHashMapBlankValues(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	public List<MethodTrace> InitializePredictionsHashMapBlankValues(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTrace> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
+		for(MethodTrace methodtrace: methodtraces22) {
 			methodtrace.setPrediction("");
 		}
 		return methodtraces22;
@@ -1852,11 +1852,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public LinkedHashMap<String, MethodTraceSubjectTSubjectN> RetrievePredictionsHashMap( List<MethodTraceSubjectTSubjectN> methodtraces22) {
+	public LinkedHashMap<String, MethodTrace> RetrievePredictionsHashMap( List<MethodTrace> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> predictionsOldHashMap= new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
-		for(MethodTraceSubjectTSubjectN methodtrace: methodtraces22) {
+		LinkedHashMap<String, MethodTrace> predictionsOldHashMap= new LinkedHashMap<String, MethodTrace>();
+		for(MethodTrace methodtrace: methodtraces22) {
 			String RequirementID=methodtrace.Requirement.ID; 
 			String MethodID= methodtrace.MethodRepresentation.methodid; 
 			String key= MethodID+"-"+RequirementID; 
@@ -1867,7 +1867,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 	
 	
-	public void PatternSetVariables(String Prediction, MethodTraceSubjectTSubjectN methodtrace, String Likelihood, String Why) {
+	public void PatternSetVariables(String Prediction, MethodTrace methodtrace, String Likelihood, String Why) {
 		// TODO Auto-generated method stub
 		methodtrace.setPrediction(Prediction);
 		methodtrace.setLikelihood(Likelihood);

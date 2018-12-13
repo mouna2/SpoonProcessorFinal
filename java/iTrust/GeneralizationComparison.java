@@ -23,7 +23,7 @@ import javax.swing.plaf.synth.SynthSplitPaneUI;
 import java.util.Properties;
 
 import Tables.tracesmethodscallees;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.Interface2;
 import mypackage.Method;
 import mypackage.MethodTrace2;
@@ -214,7 +214,7 @@ public class GeneralizationComparison {
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
-				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
+				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
 				methodtrace.setMethodRepresentation(methodrep);
@@ -249,7 +249,7 @@ public class GeneralizationComparison {
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
-				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
+				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
 				methodtrace.setMethodRepresentation(methodrep);

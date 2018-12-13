@@ -11,32 +11,64 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ClassRepresentation2 {
+public class Clazz {
 
-	public String classid; 
+	public String ID; 
 	public String classname;
-	 HashMap<Integer, ClassRepresentation2> ClassRepresentationHashMap= new HashMap<Integer, ClassRepresentation2>(); 
+	public String DeveloperGold; 
+	public String SubjectGold; 
+	 HashMap<Integer, Clazz> ClassRepresentationHashMap= new HashMap<Integer, Clazz>(); 
 
 	
-	public ClassRepresentation2() {
+	public Clazz() {
 		super();
 	}
 
 
-	public ClassRepresentation2(String classid, String classname) {
+	public String getDeveloperGold() {
+		return DeveloperGold;
+	}
+
+
+	public void setDeveloperGold(String developerGold) {
+		DeveloperGold = developerGold;
+	}
+
+
+	public String getSubjectGold() {
+		return SubjectGold;
+	}
+
+
+	public void setSubjectGold(String subjectGold) {
+		SubjectGold = subjectGold;
+	}
+
+
+	public String getGold() {
+		return DeveloperGold;
+	}
+
+
+	public void setGold(String gold) {
+		this.DeveloperGold = gold;
+	}
+
+
+	public Clazz(String classid, String classname) {
 		super();
-		this.classid = classid;
+		this.ID = classid;
 		this.classname = classname;
 	}
 
 
 	public String getClassid() {
-		return classid;
+		return ID;
 	}
 
 
 	public void setClassid(String classid) {
-		this.classid = classid;
+		this.ID = classid;
 	}
 
 
@@ -50,7 +82,7 @@ public class ClassRepresentation2 {
 	public void setClassname(String classname) {
 		this.classname = classname;
 	} 
-	public  HashMap<Integer, ClassRepresentation2> ReadClassesRepresentations(Connection conn) throws SQLException {
+	public  HashMap<Integer, Clazz> ReadClassesRepresentations(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
@@ -71,12 +103,12 @@ public class ClassRepresentation2 {
 			     String id = myresults.getString("id"); 			
 				 String classname = myresults.getString("classname"); 
 				
-				 ClassRepresentation2 classdetails= new ClassRepresentation2(id, classname); 
+				 Clazz classdetails= new Clazz(id, classname); 
 				 ClassRepresentationHashMap.put(index, classdetails); 
 				 index++; 
 		 }
 		 Set<Integer> keys = ClassRepresentationHashMap.keySet();
-			Map<Integer, ClassRepresentation2> resultFieldClasses = ClassRepresentationHashMap.entrySet().stream()
+			Map<Integer, Clazz> resultFieldClasses = ClassRepresentationHashMap.entrySet().stream()
 			                .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
 			                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 			                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
@@ -91,7 +123,7 @@ public class ClassRepresentation2 {
 
 	@Override
 	public String toString() {
-		return "[classid=" + classid + ", classname=" + classname +"]";
+		return "[classid=" + ID + ", classname=" + classname +"]";
 	}
 
 
@@ -99,7 +131,7 @@ public class ClassRepresentation2 {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((classid == null) ? 0 : classid.hashCode());
+		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
 		result = prime * result + ((classname == null) ? 0 : classname.hashCode());
 		return result;
 	}
@@ -113,11 +145,11 @@ public class ClassRepresentation2 {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ClassRepresentation2 other = (ClassRepresentation2) obj;
-		if (classid == null) {
-			if (other.classid != null)
+		Clazz other = (Clazz) obj;
+		if (ID == null) {
+			if (other.ID != null)
 				return false;
-		} else if (!classid.equals(other.classid))
+		} else if (!ID.equals(other.ID))
 			return false;
 		if (classname == null) {
 			if (other.classname != null)

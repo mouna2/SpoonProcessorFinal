@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 
 public class SuperClass2 {
 	String ID; 
-	public ClassRepresentation2 SuperClass; 
-	public ClassRepresentation2 OwnerClass;
+	public Clazz SuperClass; 
+	public Clazz OwnerClass;
 	 List<SuperClass2> SupeClassList= new ArrayList<SuperClass2>(); 
 	 HashMap<String, List<SuperClass2>> superclasshashmap= new HashMap<String, List<SuperClass2>>(); 
 	
@@ -25,7 +25,7 @@ public class SuperClass2 {
 	
 
 
-	public SuperClass2(String iD, ClassRepresentation2 superClass, ClassRepresentation2 ownerClass,
+	public SuperClass2(String iD, Clazz superClass, Clazz ownerClass,
 			List<SuperClass2> SupeClassList) {
 		super();
 		ID = iD;
@@ -54,25 +54,25 @@ public class SuperClass2 {
 
 
 
-	public ClassRepresentation2 getSuperClass() {
+	public Clazz getSuperClass() {
 		return SuperClass;
 	}
 
 
 
-	public void setSuperClass(ClassRepresentation2 superClass) {
+	public void setSuperClass(Clazz superClass) {
 		SuperClass = superClass;
 	}
 
 
 
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
 
 
 
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
 
@@ -109,13 +109,13 @@ public class SuperClass2 {
 		 ResultSet myresults = st.executeQuery("SELECT superclasses.* from superclasses "); 
 		 while(myresults.next()) {
 			 	SuperClass2 mysuperclass= new SuperClass2();
-			 	ClassRepresentation2 superclass= new ClassRepresentation2();
+			 	Clazz superclass= new Clazz();
 			     String superclassid = myresults.getString("superclassid"); 			
 				 String superclassname = myresults.getString("superclassname"); 
 				 superclass.setClassid(superclassid);
 				 superclass.setClassname(superclassname);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 Clazz OwnerClass= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String childclassname = myresults.getString("childclassname"); 
 				 OwnerClass.setClassid(ownerclassid);

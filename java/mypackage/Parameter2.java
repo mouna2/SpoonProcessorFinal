@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Parameter2 {
 	String parameterName; 
-	ClassRepresentation2 ParameterType;
-	ClassRepresentation2 OwnerClass;
+	Clazz ParameterType;
+	Clazz OwnerClass;
 	String isReturn;
 	Method method; 
 	List<Parameter2> myparameters= new ArrayList<Parameter2>(); 
@@ -38,16 +38,16 @@ public class Parameter2 {
 	public void setMethod(Method method) {
 		this.method = method;
 	}
-	public ClassRepresentation2 getParameterType() {
+	public Clazz getParameterType() {
 		return ParameterType;
 	}
-	public void setParameterType(ClassRepresentation2 parameterType) {
+	public void setParameterType(Clazz parameterType) {
 		ParameterType = parameterType;
 	}
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
 	public String getIsReturn() {
@@ -56,7 +56,7 @@ public class Parameter2 {
 	public void setIsReturn(String isReturn) {
 		this.isReturn = isReturn;
 	}
-	public Parameter2(String parameterName, ClassRepresentation2 parameterType, ClassRepresentation2 ownerClass,
+	public Parameter2(String parameterName, Clazz parameterType, Clazz ownerClass,
 			String isReturn) {
 		super();
 		this.parameterName = parameterName;
@@ -96,7 +96,7 @@ public class Parameter2 {
 		 while(myresults.next()) {
 			 	Parameter2 parameter = new Parameter2(); 
 			 
-			 	ClassRepresentation2 ParameterType= new ClassRepresentation2();
+			 	Clazz ParameterType= new Clazz();
 			     String fieldtypeclassid = myresults.getString("parameterclass"); 			
 				 String fieldtype = myresults.getString("parametertype"); 
 //				 String fieldtype = myresults.getString("fieldtype"); 
@@ -104,7 +104,7 @@ public class Parameter2 {
 				 ParameterType.setClassid(fieldtypeclassid);
 				 ParameterType.setClassname(fieldtype);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 Clazz OwnerClass= new Clazz();
 				 String ownerclassid = myresults.getString("classid"); 			
 				 String classname = myresults.getString("classname"); 
 //				 String classname = myresults.getString("classname"); 

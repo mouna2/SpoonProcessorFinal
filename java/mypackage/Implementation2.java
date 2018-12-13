@@ -9,28 +9,28 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Implementation2 {
-	public ClassRepresentation2 InterfaceClass; 
-	public ClassRepresentation2 Implementation;
+	public Clazz InterfaceClass; 
+	public Clazz Implementation;
 	
 	 HashMap<String, List<Implementation2>> ImplementationHashMap= new HashMap<String, List<Implementation2>>(); 
 	 
 	 
-		public ClassRepresentation2 getInterfaceClass() {
+		public Clazz getInterfaceClass() {
 		return InterfaceClass;
 	}
 
 
-	public void setInterfaceClass(ClassRepresentation2 interfaceClass) {
+	public void setInterfaceClass(Clazz interfaceClass) {
 		InterfaceClass = interfaceClass;
 	}
 
 
-	public ClassRepresentation2 getImplementation() {
+	public Clazz getImplementation() {
 		return Implementation;
 	}
 
 
-	public void setImplementation(ClassRepresentation2 implementation) {
+	public void setImplementation(Clazz implementation) {
 		Implementation = implementation;
 	}
 
@@ -64,13 +64,13 @@ public class Implementation2 {
 			 ResultSet myresults = st.executeQuery("SELECT interfaces.* from interfaces "); 
 			 while(myresults.next()) {
 				 	Implementation2 myimplementation= new Implementation2();
-				 	ClassRepresentation2 ImplementationClass= new ClassRepresentation2();
+				 	Clazz ImplementationClass= new Clazz();
 				     String interfaceclassid = myresults.getString("interfaceclassid"); 			
 					 String interfacename = myresults.getString("interfacename"); 
 					 ImplementationClass.setClassid(interfaceclassid);
 					 ImplementationClass.setClassname(interfacename);
 					 
-					 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+					 Clazz OwnerClass= new Clazz();
 					 String ownerclassid = myresults.getString("ownerclassid"); 			
 					 String classname = myresults.getString("classname"); 
 					 OwnerClass.setClassid(ownerclassid);

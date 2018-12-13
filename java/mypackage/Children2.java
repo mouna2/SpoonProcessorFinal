@@ -9,20 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Children2 {
-	public ClassRepresentation2 SuperClass; 
-	public ClassRepresentation2 OwnerClass;
+	public Clazz SuperClass; 
+	public Clazz OwnerClass;
 	 List<Children2> ChildrenList= new ArrayList<Children2>(); 
 	 HashMap<String, List<Children2>> ChildrenHashMap= new HashMap<String, List<Children2>>();
-	public ClassRepresentation2 getSuperClass() {
+	public Clazz getSuperClass() {
 		return SuperClass;
 	}
-	public void setSuperClass(ClassRepresentation2 superClass) {
+	public void setSuperClass(Clazz superClass) {
 		SuperClass = superClass;
 	}
-	public ClassRepresentation2 getOwnerClass() {
+	public Clazz getOwnerClass() {
 		return OwnerClass;
 	}
-	public void setOwnerClass(ClassRepresentation2 ownerClass) {
+	public void setOwnerClass(Clazz ownerClass) {
 		OwnerClass = ownerClass;
 	}
 	public List<Children2> getChildrenList() {
@@ -58,13 +58,13 @@ public class Children2 {
 		 ResultSet myresults = st.executeQuery("SELECT superclasses.* from superclasses "); 
 		 while(myresults.next()) {
 			 	Children2 mysuperclass= new Children2();
-			 	ClassRepresentation2 superclass= new ClassRepresentation2();
+			 	Clazz superclass= new Clazz();
 			     String superclassid = myresults.getString("superclassid"); 			
 				 String superclassname = myresults.getString("superclassname"); 
 				 superclass.setClassid(superclassid);
 				 superclass.setClassname(superclassname);
 				 
-				 ClassRepresentation2 OwnerClass= new ClassRepresentation2();
+				 Clazz OwnerClass= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String childclassname = myresults.getString("childclassname"); 
 				 OwnerClass.setClassid(ownerclassid);

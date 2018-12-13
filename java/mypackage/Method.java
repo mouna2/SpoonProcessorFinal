@@ -5,12 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import ALGO.MethodList;
+import mypackage.*;
 
 public class Method {
-	public String methodid; 
+	public String ID; 
 	public String methodname;
 	public String fullmethodname;
-	public ClassRepresentation2 classrep= new ClassRepresentation2(); 
+	public Clazz owner= new Clazz(); 
 	public MethodList Callees= new MethodList(); 
 	public MethodList Callers= new MethodList(); 
 	public MethodList Interfaces= new MethodList(); 
@@ -21,6 +22,12 @@ public class Method {
 	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
 	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
 	
+	public Clazz getOwner() {
+		return owner;
+	}
+	public void setOwner(Clazz owner) {
+		this.owner = owner;
+	}
 	public MethodList getSuperclasses() {
 		return Superclasses;
 	}
@@ -47,17 +54,17 @@ public class Method {
 	}
 	public Method(String methodid, String methodname) {
 		super();
-		this.methodid = methodid;
+		this.ID = methodid;
 		this.methodname = methodname;
 	}
 	public Method() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getMethodid() {
-		return methodid;
+		return ID;
 	}
 	public void setMethodid(String methodid) {
-		this.methodid = methodid;
+		this.ID = methodid;
 	}
 	public String getMethodname() {
 		return methodname;
@@ -73,14 +80,14 @@ public class Method {
 	}
 	@Override
 	public String toString() {
-		return  methodid + ", methodname=" + methodname + 
+		return  ID + ", methodname=" + methodname + 
 //				", requirementsGold="
 //				+ requirementsGold.toString() + 
-				classrep.toString()+"]";
+				owner.toString()+"]";
 	}
 	
 	public String toString2() {
-		return "["+  methodid + ": methodname=" + methodname  + ": classname=" + classrep.classname + ": classid=" + classrep.classid +"]";
+		return "["+  ID + ": methodname=" + methodname  + ": classname=" + owner.classname + ": classid=" + owner.ID +"]";
 	}
 	
 	public String PrintList(List<Method> methods) {
@@ -93,24 +100,24 @@ public class Method {
 	
 	
 	public Method(String methodid, String methodname, String fullmethodname,
-			ClassRepresentation2 classrep, HashMap<Requirement2, String> finalMethodHashMap) {
+			Clazz classrep, HashMap<Requirement2, String> finalMethodHashMap) {
 		super();
-		this.methodid = methodid;
+		this.ID = methodid;
 		this.methodname = methodname;
 		this.fullmethodname = fullmethodname;
-		this.classrep = classrep;
+		this.owner = classrep;
 		FinalMethodHashMap = finalMethodHashMap;
 	}
 	
 	
 	
 	public Method(String methodid, String methodname, String fullmethodname,
-			ClassRepresentation2 classrep) {
+			Clazz classrep) {
 		super();
-		this.methodid = methodid;
+		this.ID = methodid;
 		this.methodname = methodname;
 		this.fullmethodname = fullmethodname;
-		this.classrep = classrep;
+		this.owner = classrep;
 	}
 	public List<RequirementGold> getRequirementsGold() {
 		return requirementsGold;
@@ -124,11 +131,11 @@ public class Method {
 	public void setRequirements(List<Requirement2> requirements) {
 		this.requirements = requirements;
 	}
-	public ClassRepresentation2 getClassrep() {
-		return classrep;
+	public Clazz getClassrep() {
+		return owner;
 	}
-	public void setClassrep(ClassRepresentation2 classrep) {
-		this.classrep = classrep;
+	public void setClassrep(Clazz classrep) {
+		this.owner = classrep;
 	}
 	public String getFullmethodname() {
 		return fullmethodname;
@@ -155,8 +162,8 @@ public class Method {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((classrep == null) ? 0 : classrep.hashCode());
-		result = prime * result + ((methodid == null) ? 0 : methodid.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
 		result = prime * result + ((methodname == null) ? 0 : methodname.hashCode());
 		return result;
 	}
@@ -169,15 +176,15 @@ public class Method {
 		if (getClass() != obj.getClass())
 			return false;
 		Method other = (Method) obj;
-		if (classrep == null) {
-			if (other.classrep != null)
+		if (owner == null) {
+			if (other.owner != null)
 				return false;
-		} else if (!classrep.equals(other.classrep))
+		} else if (!owner.equals(other.owner))
 			return false;
-		if (methodid == null) {
-			if (other.methodid != null)
+		if (ID == null) {
+			if (other.ID != null)
 				return false;
-		} else if (!methodid.equals(other.methodid))
+		} else if (!ID.equals(other.ID))
 			return false;
 		if (methodname == null) {
 			if (other.methodname != null)

@@ -29,7 +29,7 @@ public class CheckGoldDifferences {
 			List<List<RequirementGold>> CallersList = new ArrayList<List<RequirementGold>>();
 			List<List<RequirementGold>> CalleesListExecuted = new ArrayList<List<RequirementGold>>();
 			List<List<RequirementGold>> CallersListExecuted = new ArrayList<List<RequirementGold>>();
-			String methodID=methodtrace.MethodRepresentation.methodid; 
+			String methodID=methodtrace.Method.ID; 
 			for (Method callee : methodtrace.calleesList) {
 
 				List<RequirementGold> requirementsgold = new ArrayList<RequirementGold>();
@@ -77,8 +77,8 @@ public class CheckGoldDifferences {
 				if (count == 0) {
 					calleecopy = callee;
 				}
-				System.out.println(countmethodtraces + "  " + methodtrace.MethodRepresentation.methodid + " "
-					+ methodtrace.MethodRepresentation.methodname);
+				System.out.println(countmethodtraces + "  " + methodtrace.Method.ID + " "
+					+ methodtrace.Method.methodname);
 				countmethodtraces++;
 				if (reqgoldcopy.EqualsListRequirementsGold(calleecopy, callee)) {
 					System.out.println( calleecopy);
@@ -86,8 +86,8 @@ public class CheckGoldDifferences {
 					System.out.println(callee);
 					System.out.println("********************EQUAL****************");
 					 System.out.println(countmethodtraces+" "+
-					 methodtrace.MethodRepresentation.methodid+
-					 methodtrace.MethodRepresentation.methodname+" "+callee.toString());
+					 methodtrace.Method.ID+
+					 methodtrace.Method.methodname+" "+callee.toString());
 					calleecopy = callee;
 				} else {
 					System.out.println("CALLEE COPY:     " + calleecopy);
@@ -105,15 +105,15 @@ public class CheckGoldDifferences {
 				if (count == 0) {
 					calleecopy = callee;
 				}
-				System.out.println(countmethodtraces + "  " + methodtrace.MethodRepresentation.methodid + " "
-						+ methodtrace.MethodRepresentation.methodname);
+				System.out.println(countmethodtraces + "  " + methodtrace.Method.ID + " "
+						+ methodtrace.Method.methodname);
 				countmethodtraces++;
 				if (reqgoldcopy.EqualsListRequirementsGold(calleecopy, callee)) {
 
 					System.out.println("********************EQUAL****************");
 					 System.out.println(countmethodtraces+" "+
-					 methodtrace.MethodRepresentation.methodid+
-					 methodtrace.MethodRepresentation.methodname+" "+callee.toString());
+					 methodtrace.Method.ID+
+					 methodtrace.Method.methodname+" "+callee.toString());
 					calleecopy = callee;
 				} else {
 					System.out.println("CALLEE COPY:     " + calleecopy);
@@ -131,15 +131,15 @@ public class CheckGoldDifferences {
 				if (count == 0) {
 					calleecopy = callee;
 				}
-				System.out.println(countmethodtraces + "  " + methodtrace.MethodRepresentation.methodid + " "
-						+ methodtrace.MethodRepresentation.methodname);
+				System.out.println(countmethodtraces + "  " + methodtrace.Method.ID + " "
+						+ methodtrace.Method.methodname);
 				countmethodtraces++;
 				if (reqgoldcopy.EqualsListRequirementsGold(calleecopy, callee)) {
 
 					System.out.println("********************EQUAL****************");
 					 System.out.println(countmethodtraces+" "+
-					 methodtrace.MethodRepresentation.methodid+
-					 methodtrace.MethodRepresentation.methodname+" "+callee.toString());
+					 methodtrace.Method.ID+
+					 methodtrace.Method.methodname+" "+callee.toString());
 					calleecopy = callee;
 				} else {
 					System.out.println("CALLEE COPY:     " + calleecopy);
@@ -157,15 +157,15 @@ public class CheckGoldDifferences {
 				if (count == 0) {
 					calleecopy = callee;
 				}
-				System.out.println(countmethodtraces + "  " + methodtrace.MethodRepresentation.methodid + " "
-						+ methodtrace.MethodRepresentation.methodname);
+				System.out.println(countmethodtraces + "  " + methodtrace.Method.ID + " "
+						+ methodtrace.Method.methodname);
 				countmethodtraces++;
 				if (reqgoldcopy.EqualsListRequirementsGold(calleecopy, callee)) {
 
 					System.out.println("********************EQUAL****************");
 					 System.out.println(countmethodtraces+" "+
-					 methodtrace.MethodRepresentation.methodid
-					 +methodtrace.MethodRepresentation.methodname+" "+callee.toString());
+					 methodtrace.Method.ID
+					 +methodtrace.Method.methodname+" "+callee.toString());
 					calleecopy = callee;
 				} else {
 					System.out.println("CALLEE COPY:     " + calleecopy);

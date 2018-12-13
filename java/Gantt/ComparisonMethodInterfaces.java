@@ -27,7 +27,7 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 
 import Tables.tracesmethodscallees;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.Interface2;
 import mypackage.Method;
 import mypackage.MethodTrace2;
@@ -207,8 +207,8 @@ public class ComparisonMethodInterfaces {
 				implementationclassid=res2.getString("ownerclassid"); 
 				implementationclassname=res2.getString("classname"); 
 				
-				ClassRepresentation2 implclass= new ClassRepresentation2(implementationclassid, implementationclassname); 
-				ClassRepresentation2 interfaceclass= new ClassRepresentation2(interfaceclassid, interfacename); 
+				Clazz implclass= new Clazz(implementationclassid, implementationclassname); 
+				Clazz interfaceclass= new Clazz(interfaceclassid, interfacename); 
 				Interface2 myinter= new Interface2(); 
 				myinter.setInterfaceClass(interfaceclass);
 				myinter.setImplementation(implclass);
@@ -248,8 +248,8 @@ public class ComparisonMethodInterfaces {
 				childclassid=res3.getString("ownerclassid"); 
 				childclassname=res3.getString("childclassname"); 
 				
-				ClassRepresentation2 superclass= new ClassRepresentation2(superclassid, superclassname); 
-				ClassRepresentation2 childclass= new ClassRepresentation2(childclassid, childclassname); 
+				Clazz superclass= new Clazz(superclassid, superclassname); 
+				Clazz childclass= new Clazz(childclassid, childclassname); 
 				SuperClass2 mysuperclass= new SuperClass2(); 
 				mysuperclass.setSuperClass(superclass);
 				mysuperclass.setOwnerClass(childclass);
@@ -288,7 +288,7 @@ public class ComparisonMethodInterfaces {
 				MethodTrace2 methodtrace= new MethodTrace2(); 
 				Requirement2 req= new Requirement2(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
-				ClassRepresentation2 classrep = new ClassRepresentation2(classid, classname); 
+				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);
 				methodtrace.setRequirement(req);
 				methodtrace.setMethodRepresentation(methodrep);
@@ -433,8 +433,8 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				String	gold2val=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
-				String	methodID=value.getMethodRepresentation().methodid; 
-				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	methodID=value.getMethodRepresentation().ID; 
+				String	classIDTrace=value.getClassRepresentation().ID; 
 				String	classnameTrace=value.getClassRepresentation().classname; 
 				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
@@ -478,8 +478,8 @@ if(impl.getOwnerClass().getClassid().equals(classid)) {
 				String	gold2val=value.getGoldfinal(); 
 				String	req=value.getRequirement().ID; 
 				String	method=value.getMethodRepresentation().methodname; 
-				String	methodID=value.getMethodRepresentation().methodid; 
-				String	classIDTrace=value.getClassRepresentation().classid; 
+				String	methodID=value.getMethodRepresentation().ID; 
+				String	classIDTrace=value.getClassRepresentation().ID; 
 				String	classnameTrace=value.getClassRepresentation().classname; 
 				String	myinterfaceID=entry.getKey().substring(0, entry.getKey().indexOf("-")); 
 				String	myinterfacename=entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 

@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 
 public class Interface2 {
 	String ID; 
-	public ClassRepresentation2 InterfaceClass; 
-	public ClassRepresentation2 Implementation;
+	public Clazz InterfaceClass; 
+	public Clazz Implementation;
 	 HashMap<String, List<Interface2>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface2>>(); 
 
 	 HashMap<String, Interface2> ClassRepresentationHashMap= new HashMap<String, Interface2>(); 
 	
-	public Interface2(String iD, ClassRepresentation2 interfaceClass, ClassRepresentation2 implementation) {
+	public Interface2(String iD, Clazz interfaceClass, Clazz implementation) {
 		super();
 		ID = iD;
 		InterfaceClass = interfaceClass;
@@ -36,16 +36,16 @@ public class Interface2 {
 	public void setID(String id) {
 		ID = id;
 	}
-	public ClassRepresentation2 getInterfaceClass() {
+	public Clazz getInterfaceClass() {
 		return InterfaceClass;
 	}
-	public void setInterfaceClass(ClassRepresentation2 interfaceClass) {
+	public void setInterfaceClass(Clazz interfaceClass) {
 		InterfaceClass = interfaceClass;
 	}
-	public ClassRepresentation2 getImplementation() {
+	public Clazz getImplementation() {
 		return Implementation;
 	}
-	public void setImplementation(ClassRepresentation2 implementation) {
+	public void setImplementation(Clazz implementation) {
 		Implementation = implementation;
 	}
 	@Override
@@ -73,13 +73,13 @@ public class Interface2 {
 		 ResultSet myresults = st.executeQuery("SELECT interfaces.* from interfaces "); 
 		 while(myresults.next()) {
 			 	Interface2 myinterface= new Interface2();
-			 	ClassRepresentation2 InterfaceClass= new ClassRepresentation2();
+			 	Clazz InterfaceClass= new Clazz();
 			     String interfaceclassid = myresults.getString("interfaceclassid"); 			
 				 String interfacename = myresults.getString("interfacename"); 
 				 InterfaceClass.setClassid(interfaceclassid);
 				 InterfaceClass.setClassname(interfacename);
 				 
-				 ClassRepresentation2 Implementation= new ClassRepresentation2();
+				 Clazz Implementation= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("classname"); 
 				 Implementation.setClassid(ownerclassid);
@@ -135,13 +135,13 @@ public class Interface2 {
 		 ResultSet myresults = st.executeQuery("SELECT interfaces.* from interfaces "); 
 		 while(myresults.next()) {
 			 	Interface2 myinterface= new Interface2();
-			 	ClassRepresentation2 InterfaceClass= new ClassRepresentation2();
+			 	Clazz InterfaceClass= new Clazz();
 			     String interfaceclassid = myresults.getString("interfaceclassid"); 			
 				 String interfacename = myresults.getString("interfacename"); 
 				 InterfaceClass.setClassid(interfaceclassid);
 				 InterfaceClass.setClassname(interfacename);
 				 
-				 ClassRepresentation2 Implementation= new ClassRepresentation2();
+				 Clazz Implementation= new Clazz();
 				 String ownerclassid = myresults.getString("ownerclassid"); 			
 				 String classname = myresults.getString("classname"); 
 				 Implementation.setClassid(ownerclassid);

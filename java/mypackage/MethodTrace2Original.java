@@ -12,7 +12,7 @@ public class MethodTrace2Original {
 	
 	public Method MethodRepresentation; 
 	public Requirement2 Requirement; 
-	public ClassRepresentation2 ClassRepresentation; 
+	public Clazz ClassRepresentation; 
 	public String gold; 
 	public String subject;
 	public String goldprediction; 
@@ -147,11 +147,11 @@ public class MethodTrace2Original {
 		Requirement = requirement;
 	}
 
-	public ClassRepresentation2 getClassRepresentation() {
+	public Clazz getClassRepresentation() {
 		return ClassRepresentation;
 	}
 
-	public void setClassRepresentation(ClassRepresentation2 classRepresentation) {
+	public void setClassRepresentation(Clazz classRepresentation) {
 		ClassRepresentation = classRepresentation;
 	}
 
@@ -172,7 +172,7 @@ public class MethodTrace2Original {
 	}
 
 	public MethodTrace2Original(Method methodRepresentation, Requirement2 requirement,
-			ClassRepresentation2 classRepresentation, String gold, String subject) {
+			Clazz classRepresentation, String gold, String subject) {
 		super();
 		MethodRepresentation = methodRepresentation;
 		Requirement = requirement;
@@ -203,7 +203,7 @@ public class MethodTrace2Original {
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 mytrace.setRequirement(requirement);
 				 
-				 ClassRepresentation2 classrep = new ClassRepresentation2(); 
+				 Clazz classrep = new Clazz(); 
 				 classrep.setClassid(myresults.getString("classid"));
 				 classrep.setClassname(myresults.getString("classname"));
 				 
@@ -217,10 +217,10 @@ public class MethodTrace2Original {
 				 
 				 mytrace.setClassRepresentation(classrep);
 				 
-				 List<ClassRepresentation2> interfaceclassreps= new ArrayList<ClassRepresentation2>(); 
-				 ResultSet myinterfaces=st2.executeQuery("select interfaces.* from interfaces where ownerclassid='" + mytrace.getClassRepresentation().classid+"'"); 
+				 List<Clazz> interfaceclassreps= new ArrayList<Clazz>(); 
+				 ResultSet myinterfaces=st2.executeQuery("select interfaces.* from interfaces where ownerclassid='" + mytrace.getClassRepresentation().ID+"'"); 
 				 while(myinterfaces.next()) {
-					 ClassRepresentation2 myclassrepinterface= new ClassRepresentation2(); 
+					 Clazz myclassrepinterface= new Clazz(); 
 					 myclassrepinterface.setClassid(myinterfaces.getString("interfaceclassid"));
 					 myclassrepinterface.setClassname(myinterfaces.getString("interfacename"));
 					 interfaceclassreps.add(myclassrepinterface); 
@@ -232,7 +232,7 @@ public class MethodTrace2Original {
 				 mytrace.setSubject(myresults.getString("subject"));
 				 
 				 mytrace.setGold2(myresults.getString("gold2"));
-				 String id= mytrace.getMethodRepresentation().methodid; 
+				 String id= mytrace.getMethodRepresentation().ID; 
 				 String tracename= mytrace.getMethodRepresentation().fullmethodname; 
 				 ResultSet callers=st.executeQuery("select methodcalls.* from methodcalls where fullcallee='" + tracename+"'"); 
 				 this.callersList= new  ArrayList<Method>(); 
@@ -244,7 +244,7 @@ public class MethodTrace2Original {
 					
 					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
 					 while(myclass.next()) {
-						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 Clazz myclassrep= new Clazz(); 
 						 myclassrep.setClassid(myclass.getString("classid"));
 						 myclassrep.setClassname(myclass.getString("classname"));
 						 meth.setClassrep(myclassrep);
@@ -271,7 +271,7 @@ public class MethodTrace2Original {
 					 
 					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
 					 while(myclass.next()) {
-						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 Clazz myclassrep= new Clazz(); 
 						 myclassrep.setClassid(myclass.getString("classid"));
 						 myclassrep.setClassname(myclass.getString("classname"));
 						 meth.setClassrep(myclassrep); 
@@ -297,7 +297,7 @@ public class MethodTrace2Original {
 					 
 					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
 					 while(myclass.next()) {
-						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 Clazz myclassrep= new Clazz(); 
 						 myclassrep.setClassid(myclass.getString("classid"));
 						 myclassrep.setClassname(myclass.getString("classname"));
 						 meth.setClassrep(myclassrep); 
@@ -404,7 +404,7 @@ public class MethodTrace2Original {
 					 
 					 ResultSet myclass=st2.executeQuery("select methods.* from methods where id='" + meth.getMethodid()+"'"); 
 					 while(myclass.next()) {
-						 ClassRepresentation2 myclassrep= new ClassRepresentation2(); 
+						 Clazz myclassrep= new Clazz(); 
 						 myclassrep.setClassid(myclass.getString("classid"));
 						 myclassrep.setClassname(myclass.getString("classname"));
 						 meth.setClassrep(myclassrep); 
@@ -433,7 +433,7 @@ public class MethodTrace2Original {
 	
 	public List<MethodTrace2> getElement(List<MethodTrace2> methodtraces2, String ID, String goldpred, String goldprediction2, String RequirementID) {
 		for(MethodTrace2 methodtrace: methodtraces2) {
-			if(methodtrace.getMethodRepresentation().methodid.equals(ID) && methodtrace.Requirement.ID.equals(RequirementID)) {
+			if(methodtrace.getMethodRepresentation().ID.equals(ID) && methodtrace.Requirement.ID.equals(RequirementID)) {
 				if(goldprediction2.equals("goldpredictionCallee")){
 					methodtrace.setGoldpredictionCallee(goldpred);
 				}

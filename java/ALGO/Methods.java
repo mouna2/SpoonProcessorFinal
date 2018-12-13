@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import mypackage.Method;
-import mypackage.MethodTraceSubjectTSubjectN;
+import mypackage.*;
 import mypackage.Requirement2;
 
 public class Methods<String> extends ArrayList<String>{
@@ -63,7 +63,7 @@ public class Methods<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AtLeast1T(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
+	public boolean AtLeast1T(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
@@ -71,7 +71,7 @@ public class Methods<String> extends ArrayList<String>{
 		List<String> PredictionList = new ArrayList<String>();
 		for (Method call : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) call.methodid;
+			String MethodID = (String) call.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) != null) {
 				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
@@ -83,7 +83,7 @@ public class Methods<String> extends ArrayList<String>{
 		}
 		return false;
 	}
-	public boolean AtLeast1N(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement, List<Method> calls) {
+	public boolean AtLeast1N(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
@@ -91,7 +91,7 @@ public class Methods<String> extends ArrayList<String>{
 		List<String> PredictionList = new ArrayList<String>();
 		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) callee.methodid;
+			String MethodID = (String) callee.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) != null) {
 				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
@@ -132,13 +132,13 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllNs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllNs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		List<String> PredictionList = new ArrayList<String>();
 		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) callee.methodid;
+			String MethodID = (String) callee.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) != null) {
 				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
@@ -153,7 +153,7 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllCallersN(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCallersN(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -162,7 +162,7 @@ public class Methods<String> extends ArrayList<String>{
 		List<String> PredictionList = new ArrayList<String>();
 		for (Method callee : CallersList) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) callee.methodid;
+			String MethodID = (String) callee.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) != null) {
 				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
@@ -178,7 +178,7 @@ public class Methods<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllCalleesT(MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCalleesT(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -187,7 +187,7 @@ public class Methods<String> extends ArrayList<String>{
 		List<String> PredictionList = new ArrayList<String>();
 		for (Method callee : CalleesList) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) callee.methodid;
+			String MethodID = (String) callee.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) != null) {
 				String predictionvalue = (String) methodtraces2HashMap.get(key).getPrediction();
@@ -202,13 +202,13 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllTs(Requirement2 requirement, MethodTraceSubjectTSubjectN methodtrace, HashMap<java.lang.String, MethodTraceSubjectTSubjectN> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllTs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		 
 		for (Method callee : calls) {
 			String RequirementID = (String) methodtrace.Requirement.ID;
-			String MethodID = (String) callee.methodid;
+			String MethodID = (String) callee.ID;
 			String key = (String) (RequirementID + "-" + MethodID);
 			if (methodtraces2HashMap.get(key) == null) {
 				try {
@@ -235,7 +235,7 @@ public class Methods<String> extends ArrayList<String>{
 
 
 
-	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
@@ -254,7 +254,7 @@ public class Methods<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTraceSubjectTSubjectN methodtrace) {
+	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")

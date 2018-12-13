@@ -42,7 +42,7 @@ import spoon.reflect.factory.ClassFactory;
 public class DatabaseReading2itrustfinal {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace2> methodtraces2 = null;
-	public static List<MethodTraceSubjectTSubjectN> methodtraces2SubjectTSubjectN = null;
+	public static List<MethodTrace> methodtraces2SubjectTSubjectN = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Interface2> interfaces2 = null;
 	public static List<Method2Details> methodlist = null;
@@ -56,7 +56,7 @@ public class DatabaseReading2itrustfinal {
 	public static HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINAL=null; 
 	public static HashMap<String, List<Children2>> childrenHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
-	static LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = null; 
+	static LinkedHashMap<String, MethodTrace> methodtracehashmap = null; 
 	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
 
 	/** The name of the MySQL account to use (or empty for anonymous) */
@@ -116,7 +116,7 @@ public class DatabaseReading2itrustfinal {
 		DatabaseReading2itrustfinal.childrenHashMap = childrenHashMap;
 	}
 
-	public static void setMethodtracehashmap(LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap) {
+	public static void setMethodtracehashmap(LinkedHashMap<String, MethodTrace> methodtracehashmap) {
 		DatabaseReading2itrustfinal.methodtracehashmap = methodtracehashmap;
 	}
 
@@ -190,13 +190,13 @@ public class DatabaseReading2itrustfinal {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 		int index = 0;
-		mypackage.ClassRepresentation2 classrep = new mypackage.ClassRepresentation2();
+		mypackage.Clazz classrep = new mypackage.Clazz();
 
-		HashMap<Integer, mypackage.ClassRepresentation2> ClassRepresentationHashMap = classrep
+		HashMap<Integer, mypackage.Clazz> ClassRepresentationHashMap = classrep
 				.ReadClassesRepresentations(conn);
 		Set<Integer> keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 
@@ -206,7 +206,7 @@ public class DatabaseReading2itrustfinal {
 		HashMap<Integer, mypackage.ClassDetails2> ClassDetailsHashMap = classdet.ReadClassesRepresentations(conn);
 		keys = ClassRepresentationHashMap.keySet();
 		for (Integer key : keys) {
-			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).classid + "   "
+			System.out.println("Value of " + key + " is: " + ClassRepresentationHashMap.get(key).ID + "   "
 					+ ClassRepresentationHashMap.get(key).classname + "   ");
 		}
 
@@ -247,9 +247,9 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 //		setMethodtraces2(methodtraces);
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
-		MethodTraceSubjectTSubjectN methodtrace2 = new MethodTraceSubjectTSubjectN();
-		LinkedHashMap<String, MethodTraceSubjectTSubjectN> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn, ClassMethodsHashMap);
-		List<MethodTraceSubjectTSubjectN> methodtraces = new ArrayList<MethodTraceSubjectTSubjectN>(methodtracehashmap.values());
+		MethodTrace methodtrace2 = new MethodTrace();
+		LinkedHashMap<String, MethodTrace> methodtracehashmap = methodtrace2.ReadClassesRepresentationsVersion2(conn, ClassMethodsHashMap);
+		List<MethodTrace> methodtraces = new ArrayList<MethodTrace>(methodtracehashmap.values());
 		setMethodtraces2SubjectTSubjectN(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 
 		///////////////////////////////////////////////////////////////////////////////////////
@@ -528,7 +528,7 @@ setChildrenHashMap(mychildren);
 
 	
 
-	public static LinkedHashMap<String, MethodTraceSubjectTSubjectN> getMethodtracehashmap() {
+	public static LinkedHashMap<String, MethodTrace> getMethodtracehashmap() {
 		return methodtracehashmap;
 	}
 
@@ -561,11 +561,11 @@ setChildrenHashMap(mychildren);
 	}
 	
 	
-	public static List<MethodTraceSubjectTSubjectN> getMethodtraces2SubjectTSubjectN() {
+	public static List<MethodTrace> getMethodtraces2SubjectTSubjectN() {
 		return methodtraces2SubjectTSubjectN;
 	}
 
-	public static void setMethodtraces2SubjectTSubjectN(List<MethodTraceSubjectTSubjectN> methodtraces) {
+	public static void setMethodtraces2SubjectTSubjectN(List<MethodTrace> methodtraces) {
 		DatabaseReading2itrustfinal.methodtraces2SubjectTSubjectN = methodtraces;
 	}
 

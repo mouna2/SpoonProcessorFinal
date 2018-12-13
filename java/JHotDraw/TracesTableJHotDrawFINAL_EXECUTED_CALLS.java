@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Table;
 
 import Chess.PredictionEvaluation;
 import Gantt.DatabaseReading2Gantt;
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
@@ -748,7 +748,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			data[j][MethodName] = data[j][MethodName].toString().replaceAll(",", "/"); 
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassID] = methodtrace.ClassRepresentation.ID;
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold.trim(); 
 			data[j][Subject] = methodtrace.subject;
@@ -894,7 +894,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			int counterParameterNGOLD4=0; 
 			int counterParameterEGOLD4=0; 
 			 myparameters = new String[methodtraces2.size()];
-			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
+			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 			String ParametersAppended=""; 
 			for ( Parameter2 myparam : mymethodobje.getParameters()) {
 				myparameters[myparametercount] = myparam.toString(); 
@@ -902,7 +902,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 				myparametercount++;
 				
 				
-				String ParameterClassid = myparam.getParameterType().classid; 
+				String ParameterClassid = myparam.getParameterType().ID; 
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
@@ -1255,7 +1255,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1310,7 +1310,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.classrep.classid+"-"+item.methodname;
+				String val= item.owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1376,10 +1376,10 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
 			for (Method callermeth : CallerMethodListFinal) {
-				ClassRepresentation2 classrep = callermeth.getClassrep();
+				Clazz classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
 					mycallerclasses.add(mycallerclass);
 				}
@@ -1499,7 +1499,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			int CountMethodNACHRAFGold4 = 0; 
 			int CountMethodEACHRAFGold4 = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1526,7 +1526,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1552,7 +1552,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 		
 		
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1578,7 +1578,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			int CountMethodNACHRAFCalleeGold3 = 0; 
 			int CountMethodEACHRAFCalleeGold3 = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1597,7 +1597,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			}
 			
 			for (Method mycaller: methodtrace.getCallersListExecuted()) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1623,7 +1623,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			int CountMethodNACHRAFCalleeGold4 = 0; 
 			int CountMethodEACHRAFCalleeGold4 = 0; 
 			for (Method mycaller: methodtrace.getCalleesListExecuted()) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 Method2Details methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1656,8 +1656,8 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
 			for (Method calleemeth : CalleeMethodListFinal) {
-				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				Clazz classrep = calleemeth.getClassrep();
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 
 				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				if(mycalleeclass!=null) {

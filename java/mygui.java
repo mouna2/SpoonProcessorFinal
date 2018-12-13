@@ -160,7 +160,7 @@ public class mygui {
 			List<Method> callers = meth.getCallersList(); 
 			List<Method> callersExecuted = meth.getCallersListExecuted(); 
 			List<Method> calleesExecuted = meth.getCalleesListExecuted(); 
-		    item1.setText(new String[] { meth.MethodRepresentation.getMethodid(), meth.MethodRepresentation.getMethodname(), meth.Requirement.getID(), meth.Requirement.RequirementName, meth.ClassRepresentation.classid, meth.ClassRepresentation.classname, meth.gold
+		    item1.setText(new String[] { meth.MethodRepresentation.getMethodid(), meth.MethodRepresentation.getMethodname(), meth.Requirement.getID(), meth.Requirement.RequirementName, meth.ClassRepresentation.ID, meth.ClassRepresentation.classname, meth.gold
 		    		, meth.subject, meth.goldpredictionCaller, meth.goldpredictionCallee});
 		  //  Method2Representation methrep= new Method2Representation(); 
 		    /*item1.setText(10, callees.toString());

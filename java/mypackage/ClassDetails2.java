@@ -17,9 +17,9 @@ import mypackage.*;
 
 
 public class ClassDetails2 {
-	ClassRepresentation2 classrep; 
-	List<ClassRepresentation2> ChildClasses= new ArrayList<ClassRepresentation2>(); 
-	List<ClassRepresentation2> ParentClasses=new ArrayList<ClassRepresentation2>(); 
+	Clazz classrep; 
+	List<Clazz> ChildClasses= new ArrayList<Clazz>(); 
+	List<Clazz> ParentClasses=new ArrayList<Clazz>(); 
 	List<Interface2> Interfaces=new ArrayList<Interface2>(); 
 	List<ClassField2> ClassFields=new ArrayList<ClassField2>(); ; 
 	HashMap<Requirement2, ClassTrace2> ClassTraces= new HashMap<Requirement2, ClassTrace2> ();
@@ -32,22 +32,22 @@ public class ClassDetails2 {
 	
 	
 
-	public ClassRepresentation2 getClassrep() {
+	public Clazz getClassrep() {
 		return classrep;
 	}
-	public void setClassrep(ClassRepresentation2 classrep) {
+	public void setClassrep(Clazz classrep) {
 		this.classrep = classrep;
 	}
-	public List<ClassRepresentation2> getChildClasses() {
+	public List<Clazz> getChildClasses() {
 		return ChildClasses;
 	}
-	public void setChildClasses(List<ClassRepresentation2> childClasses) {
+	public void setChildClasses(List<Clazz> childClasses) {
 		ChildClasses = childClasses;
 	}
-	public List<ClassRepresentation2> getParentClasses() {
+	public List<Clazz> getParentClasses() {
 		return ParentClasses;
 	}
-	public void setParentClasses(List<ClassRepresentation2> parentClasses) {
+	public void setParentClasses(List<Clazz> parentClasses) {
 		ParentClasses = parentClasses;
 	}
 	public List<Interface2> getInterfaces() {
@@ -70,8 +70,8 @@ public class ClassDetails2 {
 	}
 	
 	
-	public ClassDetails2(ClassRepresentation2 classrep, List<ClassRepresentation2> childClasses,
-			List<ClassRepresentation2> parentClasses, List<Interface2> interfaces, List<ClassField2> classFields,
+	public ClassDetails2(Clazz classrep, List<Clazz> childClasses,
+			List<Clazz> parentClasses, List<Interface2> interfaces, List<ClassField2> classFields,
 			HashMap<Requirement2, ClassTrace2> classTraces, HashMap<Integer, ClassDetails2> classDetailsHashMap) {
 		super();
 		this.classrep = classrep;
@@ -107,37 +107,37 @@ public class ClassDetails2 {
 			     String id = myresults.getString("id"); 			
 				 String classname = myresults.getString("classname"); 
 				
-				 ClassRepresentation2 classrep= new ClassRepresentation2(id, classname); 
+				 Clazz classrep= new Clazz(id, classname); 
 				 classdet.setClassrep(classrep);
 				 
-				 this.ChildClasses= new ArrayList<ClassRepresentation2>(); 
-				 ResultSet superclasses=st.executeQuery("select superclasses.* from superclasses where superclassid='" + classrep.classid+"'"); 
+				 this.ChildClasses= new ArrayList<Clazz>(); 
+				 ResultSet superclasses=st.executeQuery("select superclasses.* from superclasses where superclassid='" + classrep.ID+"'"); 
 				 while(superclasses.next()) {
-					 ClassRepresentation2 childclass= new ClassRepresentation2(); 
+					 Clazz childclass= new Clazz(); 
 					 childclass.setClassid(superclasses.getString("ownerclassid"));
 					 childclass.setClassname(superclasses.getString("childclassname"));
 					 ChildClasses.add(childclass); 
 					 classdet.setChildClasses(ChildClasses);
 				 }
-				 this.ParentClasses= new ArrayList<ClassRepresentation2>(); 
-				  superclasses=st.executeQuery("select superclasses.* from superclasses where ownerclassid='" + classrep.classid+"'"); 
+				 this.ParentClasses= new ArrayList<Clazz>(); 
+				  superclasses=st.executeQuery("select superclasses.* from superclasses where ownerclassid='" + classrep.ID+"'"); 
 				 while(superclasses.next()) {
-				 ClassRepresentation2 superclass= new ClassRepresentation2(); 
+				 Clazz superclass= new Clazz(); 
 				 superclass.setClassid(superclasses.getString("superclassid"));
 				 superclass.setClassname(superclasses.getString("superclassname"));
 				 ParentClasses.add(superclass); 
 				 classdet.setParentClasses(ParentClasses);
 				 }
 				 this.Interfaces= new ArrayList<Interface2>(); 
-				 ResultSet interfaces=st.executeQuery("select interfaces.* from interfaces where ownerclassid='" + classrep.classid+"'"); 
+				 ResultSet interfaces=st.executeQuery("select interfaces.* from interfaces where ownerclassid='" + classrep.ID+"'"); 
 				 while(interfaces.next()) {
 					 Interface2 myinterface=new Interface2(); 
-					 ClassRepresentation2 interfaceclass= new ClassRepresentation2(); 
+					 Clazz interfaceclass= new Clazz(); 
 					 interfaceclass.setClassid(interfaces.getString("interfaceclassid"));
 					 interfaceclass.setClassname(interfaces.getString("interfacename"));
 					 myinterface.setInterfaceClass(interfaceclass);
 					 
-					 ClassRepresentation2 ownerclass= new ClassRepresentation2(); 
+					 Clazz ownerclass= new Clazz(); 
 					 ownerclass.setClassid(interfaces.getString("ownerclassid"));
 					 ownerclass.setClassname(interfaces.getString("classname"));
 					 myinterface.setImplementation(ownerclass);
@@ -146,10 +146,10 @@ public class ClassDetails2 {
 					
 				 }
 				 this.ClassFields= new ArrayList<ClassField2>(); 
-				 ResultSet classfields=st.executeQuery("select fieldclasses.* from fieldclasses where ownerclassid='" + classrep.classid+"'"); 
+				 ResultSet classfields=st.executeQuery("select fieldclasses.* from fieldclasses where ownerclassid='" + classrep.ID+"'"); 
 				 while(classfields.next()) {
 					 ClassField2 classfield= new ClassField2(); 
-					 ClassRepresentation2 fieldtype= new ClassRepresentation2(); 
+					 Clazz fieldtype= new Clazz(); 
 					 
 					 classfield.setFieldName(classfields.getString("fieldname"));
 					 classfield.setFieldName(classfields.getString("fieldname"));
@@ -157,7 +157,7 @@ public class ClassDetails2 {
 					 fieldtype.setClassname(classfields.getString("fieldtype"));
 					 classfield.setFieldType(fieldtype);
 					 
-					 ClassRepresentation2 ownerclass= new ClassRepresentation2(); 
+					 Clazz ownerclass= new Clazz(); 
 					 ownerclass.setClassid(classfields.getString("ownerclassid"));
 					 ownerclass.setClassname(classfields.getString("classname"));
 					 classfield.setOwnerClass(ownerclass);
@@ -167,7 +167,7 @@ public class ClassDetails2 {
 					
 				 }
 				 this.ClassTraces= new HashMap<Requirement2, ClassTrace2> ();
-				 ResultSet classtraces = st.executeQuery("SELECT tracesclasses.* from tracesclasses where classid ='"+classrep.classid+"'"); 
+				 ResultSet classtraces = st.executeQuery("SELECT tracesclasses.* from tracesclasses where classid ='"+classrep.ID+"'"); 
 					//populateTables(classtraces, conn);
 					while(classtraces.next()) {
 						ClassTrace2 classtrace= new ClassTrace2();
@@ -181,7 +181,7 @@ public class ClassDetails2 {
 						r.setRequirementName(classtraces.getString("requirement"));
 						classtrace.setRequirement(r);
 
-						ClassRepresentation2 myclass= new ClassRepresentation2();
+						Clazz myclass= new Clazz();
 						myclass.setClassname(classtraces.getString("classname"));
 						myclass.setClassid(classtraces.getString("classid"));
 						classtrace.setMyclass(myclass);

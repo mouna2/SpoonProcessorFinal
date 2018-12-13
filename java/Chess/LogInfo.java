@@ -118,6 +118,7 @@ public class LogInfo {
 	
 	@Override
 	public String toString() {
+		System.out.println(MethodName);
 		MethodName=MethodName.replaceAll(",", "/"); 
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+OwnerClassPrediction
 				+","+PrecisionRecall	+","+toString2(IterationValues); 

@@ -39,7 +39,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.maven.model.Model;
 import org.eclipse.swt.widgets.Table;
 
-import mypackage.ClassRepresentation2;
+import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
@@ -224,7 +224,7 @@ public class TracesTableChessExecutedCallers extends JFrame {
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
 			data[j][RequirementName] = methodtrace.Requirement.getRequirementName();
-			data[j][ClassID] = methodtrace.ClassRepresentation.classid;
+			data[j][ClassID] = methodtrace.ClassRepresentation.ID;
 			data[j][ClassName] = methodtrace.ClassRepresentation.classname;
 			data[j][Gold] = methodtrace.gold;
 			data[j][Subject] = methodtrace.subject;
@@ -341,7 +341,7 @@ public class TracesTableChessExecutedCallers extends JFrame {
 			int counterParameterN=0; 
 			int counterParameterE=0; 
 			 myparameters = new String[methodtraces2.size()];
-			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.methodid); 
+			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 			String ParametersAppended=""; 
 			for ( Parameter2 myparam : mymethodobje.getParameters()) {
 				myparameters[myparametercount] = myparam.toString(); 
@@ -349,7 +349,7 @@ public class TracesTableChessExecutedCallers extends JFrame {
 				myparametercount++;
 				
 				
-				String ParameterClassid = myparam.getParameterType().classid; 
+				String ParameterClassid = myparam.getParameterType().ID; 
 				
 				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, ParameterClassid,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
@@ -663,10 +663,10 @@ public class TracesTableChessExecutedCallers extends JFrame {
 			List<ClassTrace2> mycallerclasses = new ArrayList<ClassTrace2>();
 
 			for (Method callermeth : CallerMethodListFinal) {
-				ClassRepresentation2 classrep = callermeth.getClassrep();
+				Clazz classrep = callermeth.getClassrep();
 			//	ClassTrace2 mycallerclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				//Sometimes, mycallerclass is null and cannot be found in the traces classes table 
-				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				ClassTrace2 mycallerclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 				if(mycallerclass!=null) {
 					mycallerclasses.add(mycallerclass);
 				}
@@ -725,8 +725,8 @@ public class TracesTableChessExecutedCallers extends JFrame {
 			List<ClassTrace2> mycalleeclasses = new ArrayList<ClassTrace2>();
 
 			for (Method calleemeth : CalleeMethodListFinal) {
-				ClassRepresentation2 classrep = calleemeth.getClassrep();
-				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.classid,	methodtrace.Requirement.getID());
+				Clazz classrep = calleemeth.getClassrep();
+				ClassTrace2 mycalleeclass = myclasstrace.FindTrace2(methodtracesRequirementClass, classrep.ID,	methodtrace.Requirement.getID());
 
 				//ClassTrace2 mycalleeclass = myclasstrace.FindTrace(classtraces2, classrep.classid,methodtrace.Requirement.getID());
 				if(mycalleeclass!=null) {
