@@ -452,7 +452,7 @@ public class AlgoFinalRefactored extends JFrame {
 						
 
 				) {
-					methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 							LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,PureT", methodtraces2HashMap); 
 
 					
@@ -464,7 +464,7 @@ public class AlgoFinalRefactored extends JFrame {
 						&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtraces2HashMap)
 
 				) {
-					methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 							LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,PureN", methodtraces2HashMap); 
 				
 
@@ -476,7 +476,7 @@ public class AlgoFinalRefactored extends JFrame {
 						 && methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement,methodtraces2HashMap)
 
 				) {
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,PureTLeaf", methodtraces2HashMap); 
 
 				}
@@ -486,7 +486,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,PureNLeaf", methodtraces2HashMap); 
 				}
 
@@ -511,7 +511,7 @@ public class AlgoFinalRefactored extends JFrame {
 					&& methodtrace.getMethod().getCallers().AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
 
 				) {
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedT", methodtraces2HashMap); 
 
 				}
@@ -524,7 +524,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,MixedN", methodtraces2HashMap); 
 
 				}
@@ -537,7 +537,7 @@ public class AlgoFinalRefactored extends JFrame {
 						 && methodtrace.getMethod().getCallers().AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
 
 				) {
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf", methodtraces2HashMap); 
 
 				}// MIXED N LEAF PATTERN
@@ -545,7 +545,7 @@ public class AlgoFinalRefactored extends JFrame {
 						 && methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtraces2HashMap) 
 
 				) {
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,MixedNLeaf", methodtraces2HashMap); 
 
 				}
@@ -604,7 +604,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 						
 						
-						 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+						 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance", methodtraces2HashMap); 
 
 					}
@@ -620,7 +620,7 @@ public class AlgoFinalRefactored extends JFrame {
 					{
 						
 						
-						 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+						 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining,"N", "N,AllNInheritance", methodtraces2HashMap); 
 					
 						 //DEBUGGING PURPOSES 
@@ -714,21 +714,21 @@ public class AlgoFinalRefactored extends JFrame {
 				// ALL T CALLERS 
 				 if (!methodtrace.getMethod().getCallers().isEmpty() 
 					&& methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement, methodtraces2HashMap) 
-					&& methodtrace.getPrediction().trim().equals("E")
+					
 
 				) {
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
 
 				}
 				// ALL N CALLERS
 				 else if (!methodtrace.getMethod().getCallers().isEmpty() 
 							&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtraces2HashMap) 
-							&& methodtrace.getPrediction().trim().equals("E")
+							
 
 						) {
 
-					 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+					 methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
 
 
@@ -767,10 +767,10 @@ public class AlgoFinalRefactored extends JFrame {
 				//ALL T CALLEES 
 				if (!methodtrace.getMethod().getCallees().isEmpty() 
 				&& methodtrace.getMethod().getCallees().AllTs(methodtrace.Requirement, methodtraces2HashMap) 
-				&& methodtrace.getPrediction().trim().equals("E")
+				
 				
 				) {
-				methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+				methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
 				
 				
@@ -778,11 +778,11 @@ public class AlgoFinalRefactored extends JFrame {
 				//ALL N CALLEES
 				else if (!methodtrace.getMethod().getCallees().isEmpty() 
 				&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtraces2HashMap) 
-				&& methodtrace.getPrediction().trim().equals("E")
+				
 				
 				) {
 				
-				methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+				methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
 				
 				
@@ -827,7 +827,7 @@ public class AlgoFinalRefactored extends JFrame {
 			if( methodtrace.getPrediction().equals("E") && methodtrace.Method.owner.DeveloperGold.equals("T") ) {
 				LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
 				
-				methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+				methodtrace.SetPredictionNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 						LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,Remaining", methodtraces2HashMap); 
 				LogInfoHashMap.put(reqMethod, loginfo); 
 			}
@@ -838,6 +838,25 @@ public class AlgoFinalRefactored extends JFrame {
 		
 		
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

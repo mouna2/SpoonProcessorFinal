@@ -2157,7 +2157,7 @@ public class MethodTrace {
 	}
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public void SetPredictionFinalNonOwner(LogInfo LogInfo, MethodTrace methodtrace,
+	public void SetPredictionNonOwner(LogInfo LogInfo, MethodTrace methodtrace,
 			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod, 
 			 List<String> iterationValues,
 			LinkedHashMap<String, String> LogHashMapRemainingNewVals,
