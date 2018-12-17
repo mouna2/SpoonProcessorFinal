@@ -185,26 +185,54 @@ public class LogInfo {
 			loginfo.setTraceValue(methodtrace.getGoldfinal());
 			loginfo.setGoldFinal(methodtrace.Method.owner.DeveloperGold);
 			loginfo.setSubjectGold(methodtrace.Method.owner.SubjectGold);
-
+			loginfo.setPrecisionRecall("E");
 
 			
-			LogInfoHashMap.put(reqMethod, loginfo); 
+		
 			LogInfoHashMap.put(Req+"-"+Method, loginfo); 
 			methodtrace.SetPredictionOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "E", methodtraces2HashMap); 
 
 			String traceClassOldValue= methodtrace.Method.owner.DeveloperGold; 
 
 			
-			LogInfo LogInfo= new LogInfo(); 
-			 if(LogInfoHashMap.get(reqMethod)!=null) {
-				  LogInfo= LogInfoHashMap.get(reqMethod); 
-			 }else {
-				 LogInfo= new LogInfo(); 
-			 }
-			LogInfo.setTraceClassOldValue(traceClassOldValue);
-			LogInfoHashMap.put(reqMethod, LogInfo); 
+		
+			loginfo.setTraceClassOldValue(traceClassOldValue);
+			LogInfoHashMap.put(reqMethod, loginfo); 
 		}
 		return LogInfoHashMap; 
 	}
+	public LinkedHashMap<String, LogInfo> InitializeLogInfoHashMapTraceClassNewValue(
+			LinkedHashMap<String, LogInfo> LogInfoHashMap, Collection<MethodTrace> methodTracesHashmapValues,
+			HashMap<String, MethodTrace> methodtraces2HashMap) {
+		// TODO Auto-generated method stub
+		for(MethodTrace methodtrace: methodTracesHashmapValues) {
+			String Req= methodtrace.getRequirement().ID; 
+			String Method= methodtrace.getMethod().ID; 
+			
+			String reqMethod= Req+"-"+Method; 
+		
+			
+			
+
+			
+		
+			
+			if(LogInfoHashMap.get(reqMethod)!=null) {
+				LogInfo	  LogInfo= LogInfoHashMap.get(reqMethod); 
+				
+				
+				if(LogInfo.getTraceClassOldValue().equals("E") && !methodtrace.Method.owner.DeveloperGold.equals("E")) {
+					String traceClassNewValue= methodtrace.Method.owner.DeveloperGold; 
+					LogInfo.setTraceClassNewValue(traceClassNewValue);
+					LogInfoHashMap.put(reqMethod, LogInfo); 
+				}
+				
+				
+			 }
+			
+		}
+		return LogInfoHashMap;
+	}
+	
 	
 }

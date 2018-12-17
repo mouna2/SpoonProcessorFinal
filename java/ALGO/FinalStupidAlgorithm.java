@@ -1702,18 +1702,18 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
-//		String ProgramName = "chess";
-//		FinalStupidAlgorithm frame = new FinalStupidAlgorithm(
-//				ProgramName);
-//
-//		String ProgramName2 = "gantt";
-//			 frame = new FinalStupidAlgorithm(ProgramName2);
-//
-//		String ProgramName3 = "itrust";
-//			 frame = new FinalStupidAlgorithm(ProgramName3);
+		String ProgramName = "chess";
+		FinalStupidAlgorithm frame = new FinalStupidAlgorithm(
+				ProgramName);
+
+		String ProgramName2 = "gantt";
+			 frame = new FinalStupidAlgorithm(ProgramName2);
+
+		String ProgramName3 = "itrust";
+			 frame = new FinalStupidAlgorithm(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-		FinalStupidAlgorithm	frame = new FinalStupidAlgorithm(ProgramName4);
+			frame = new FinalStupidAlgorithm(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);

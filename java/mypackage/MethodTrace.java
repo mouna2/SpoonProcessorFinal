@@ -2187,6 +2187,7 @@ public class MethodTrace {
 	public void SetPredictionOwner(LogInfo loginfo, MethodTrace methodtrace,
 			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqmethod,  String value, HashMap<String, MethodTrace> methodtraces2HashMap2) {
 		// TODO Auto-generated method stub
+		loginfo	=LogInfoHashMap.get(reqmethod); 
 		loginfo.setOwnerClassPrediction(value);
 		methodtrace.setPrediction(value);
 		loginfo.setPrediction(value);

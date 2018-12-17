@@ -15,7 +15,7 @@ public class PrecisionRecall {
 	/**
 	 * @param ownerClassPredictionValues **********************************************************************************************************************************************/
 
-	public void WriteInDatabaseAndComputePrecisionAndRecallOwner(
+	public void ComputePrecisionAndRecall(
 			HashMap<String, MethodTrace> methodtraces2HashMap2,
 			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues) throws SQLException {
 		// TODO Auto-generated method stub

@@ -104,7 +104,7 @@ public class AlgoFinalRefactored extends JFrame {
 	
 	
 	
-	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static List<MethodTrace> methodtraces = new ArrayList<MethodTrace>();
 	HashMap<String, List<String>> classMethodsHashMap = new HashMap<String, List<String>>();
 	static HashMap<String, MethodTrace> methodtraces2HashMap = new HashMap<String, MethodTrace>();
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new LinkedHashMap<String, ClassTrace2>();
@@ -246,16 +246,8 @@ public class AlgoFinalRefactored extends JFrame {
 			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
+			System.out.println("yes");
 			
-			db = new DatabaseReading2();
-			DatabaseReading2.MakePredictions();
-		
-			methodtraces2HashMap = db.getMethodtracehashmap();
-		
-			methodtracesRequirementClass = db.getClassesRequirementtraceshashmap();
-			
-
-			methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
 			
 		
 
@@ -271,13 +263,6 @@ public class AlgoFinalRefactored extends JFrame {
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
-			dbgantt = new DatabaseReading2Gantt();
-			DatabaseReading2Gantt.MakePredictions();
-
-			methodtraces2 = dbgantt.getMethodtraces2SubjectTSubjectN();
-			methodtraces2HashMap = dbgantt.getMethodtracehashmap();
-		
-			methodtracesRequirementClass = dbgantt.getClassesRequirementtraceshashmap();
 		
 		} else if (ProgramName.equals("jhotdraw")) {
 
@@ -291,14 +276,8 @@ public class AlgoFinalRefactored extends JFrame {
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
-			dbjhotdraw = new DatabaseReading2JHotDraw3();
-			DatabaseReading2JHotDraw3.MakePredictions();
+		
 			
-
-			methodtraces2 = dbjhotdraw.getMethodtraces2SubjectTSubjectN();
-			methodtraces2HashMap = dbjhotdraw.getMethodtracehashmap();
-			
-			methodtracesRequirementClass = dbjhotdraw.getClassesRequirementtraceshashmap();
 			
 		} else if (ProgramName.equals("itrust")) {
 
@@ -312,16 +291,17 @@ public class AlgoFinalRefactored extends JFrame {
 			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
-			dbitrust = new DatabaseReading2itrustfinal();
-			DatabaseReading2itrustfinal.MakePredictions();
-
-			methodtraces2 = dbitrust.getMethodtraces2SubjectTSubjectN();
-		
-			methodtracesRequirementClass = dbitrust.getClassesRequirementtraceshashmap();
 			
-			methodtraces2HashMap = dbitrust.getMethodtracehashmap();
+
+			
 			
 		}
+		DatabaseReading DatabaseReading= new DatabaseReading(ProgramName); 
+		
+		methodtraces2HashMap = DatabaseReading.getMethodtracehashmap();
+		methodtraces = DatabaseReading.getMethodtracesList(); 
+
+		
 
 		LinkedHashMap<String, LogInfo> LogInfoHashMap = new LinkedHashMap<String, LogInfo>();
 		LinkedHashMap<String, LogInfo> LogHashMapRemaining = new LinkedHashMap<String, LogInfo>();
@@ -339,6 +319,9 @@ public class AlgoFinalRefactored extends JFrame {
 		PredictionValues PredictionClassTraceAfter = new PredictionValues(); 
 
 		CountTracesClassesValues(PredictionClassTraceBefore, methodtracesRequirementClass, methodtraces2HashMap); 
+		LogInfo log= new LogInfo(); 
+		LogInfoHashMap=log.InitializeLogInfoHashMap(LogInfoHashMap,MethodTracesHashmapValues, methodtraces2HashMap ); 
+
 		bwTraceClass.write("BEFORE PATTERN 0 "+PredictionClassTraceBefore.toString());
 		bwTraceClass.newLine();
 
@@ -348,16 +331,14 @@ public class AlgoFinalRefactored extends JFrame {
 		bwTraceClass.write("AFTER PATTERN 0 "+PredictionClassTraceAfter.toString());
 		bwTraceClass.close();
 		j = 0;
+		LogInfoHashMap=log.InitializeLogInfoHashMapTraceClassNewValue(LogInfoHashMap,MethodTracesHashmapValues, methodtraces2HashMap ); 
 
-		LogInfoHashMap = IntroduceNewValuesWithinLogInfoHashMap(RequirementClassHashMapNewValues, classMethodsHashMap,
-				LogInfoHashMap);
-
+//		LogInfoHashMap = IntroduceNewValuesWithinLogInfoHashMap(RequirementClassHashMapNewValues, classMethodsHashMap,LogInfoHashMap);
+	
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
-//		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
 		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap);
 	
-		LogInfo log= new LogInfo(); 
-		LogInfoHashMap=log.InitializeLogInfoHashMap(LogInfoHashMap,MethodTracesHashmapValues, methodtraces2HashMap ); 
+		
 
 	
 		
@@ -386,7 +367,7 @@ public class AlgoFinalRefactored extends JFrame {
 				
 				if (methodtrace.Method.owner.DeveloperGold.equals("T") ) {
 						
-
+					//DO NOTHING 
 					
 				
 
@@ -398,7 +379,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				else {
 
-
+					//DO NOTHING 
 				}
 			
 
@@ -408,12 +389,12 @@ public class AlgoFinalRefactored extends JFrame {
 		}
 		}
 		System.out.println(counter);
-		LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+		LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces);
 		SetSubjectGoldDeveloperGoldEqualityFlag(methodtraces2HashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
 			PrecisionRecall PrecisionRecall= new PrecisionRecall(); 
 
-			PrecisionRecall.WriteInDatabaseAndComputePrecisionAndRecallOwner(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues);
+			PrecisionRecall.ComputePrecisionAndRecall(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues);
 		 bwfile1.write("OWNER CLASS PRED 				"+ProgramName+" "+TotalPattern.toString());
 		 bwfile1.newLine();
 		 bwfile1.write("owner class prediction values	"+ProgramName+" "+OwnerClassPredictionValues.toString());
@@ -589,10 +570,8 @@ public class AlgoFinalRefactored extends JFrame {
 			
 		
 			//the following line should not be moved when putting 3 before 1-2 (3-1-2 combination)
-			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
-			// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
-			// NEWPATTERNMethodCallsSetToT);
-			//System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION " + ITERATION+ "   PREDICTION VALUES " + TotalPattern.toString());
+			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces);
+			
 			// END PRINT
 			
 			//////////////////////////////////////////////////////////////////////////////////////////
@@ -639,10 +618,40 @@ public class AlgoFinalRefactored extends JFrame {
 					)
 
 					{
-
-							System.out.println(methodtrace.getPrediction());
+						
+						
 						 methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining,"N", "N,AllNInheritance", methodtraces2HashMap); 
+					
+						 //DEBUGGING PURPOSES 
+//						 if(methodtrace.getGoldfinal().equals("T") && methodtrace.Method.owner.DeveloperGold.equals(methodtrace.Method.owner.SubjectGold)) {
+//								System.out.println("fullmethodname   "+methodtrace.Method.fullmethodname+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGoldfinal()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGoldfinal());
+//								if(methodtrace.getMethod().getInterfaces().AllNs(methodtrace.Requirement,methodtraces2HashMap)){
+//									System.out.println("interfaces");
+//									System.out.println(methodtrace.getMethod().getInterfaces());
+//									System.out.println();
+//								}
+//								if(methodtrace.getMethod().getImplementations().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+//									System.out.println("implementations");
+//									System.out.println(methodtrace.getMethod().getImplementations());
+//									System.out.println();
+//
+//								}
+//								if(methodtrace.getMethod().getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+//									System.out.println("superclasses");
+//									System.out.println(methodtrace.getMethod().getSuperclasses());
+//									System.out.println();
+//
+//
+//								}
+//								if(methodtrace.getMethod().getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+//									System.out.println("children");
+//									System.out.println(methodtrace.getMethod().getChildren());
+//									System.out.println();
+//
+//								}
+//							}
+					
 					}
 
 			}
@@ -683,7 +692,7 @@ public class AlgoFinalRefactored extends JFrame {
 				
 				
 			
-				
+				System.out.println("yes");
 				
 
 				
@@ -796,42 +805,31 @@ public class AlgoFinalRefactored extends JFrame {
 			
 			
 			// PRINT
-
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
-				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
-				List<String> myits = LogInfo.getIterationValues();
-				if (myits.size() == ITERATION + 1) {
-					//System.out.println(myits.get(ITERATION));
-
-				} else {
-					myits.add(" ");
-					LogInfo.setIterationValues(myits);
-				}
-
-				for (String it : myits) {
-					//System.out.println("it" + it + " it");
-				}
-				LogInfoHashMap.put(ReqMethod, LogInfo);
-			}
-			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
+			
+			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces);
 
 			// END PRINT
 			ITERATION++;
-			//System.out.println("HEEEEEEY  " + ITERATION);
 
 			PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
 		}
 		
+		
+		
+		
+		
+		
 		//SET EVERYTHING ELSE TO T IF THE OWNER CLASS IS T 
 		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-			String reqclass = methodtrace.Requirement.ID + "-" + methodtrace.Clazz.ID;
 			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
-
-			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
+			
 			if( methodtrace.getPrediction().equals("E") && methodtrace.Method.owner.DeveloperGold.equals("T") ) {
+				LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+				
 				methodtrace.SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
-						LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "Remaining", methodtraces2HashMap); 
+						LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,Remaining", methodtraces2HashMap); 
+				LogInfoHashMap.put(reqMethod, loginfo); 
 			}
 			
 			
@@ -860,7 +858,7 @@ public class AlgoFinalRefactored extends JFrame {
 		
 		LogInfoHashMap=SetFlagTotalPattern(LogInfoHashMap, RemainingPattern, ProgramName); 
 		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
-		PrecisionRecall.WriteInDatabaseAndComputePrecisionAndRecallOwner(methodtraces2HashMap, RemainingPattern, ProgramName, RemainingpredictionValues);
+		PrecisionRecall.ComputePrecisionAndRecall(methodtraces2HashMap, RemainingPattern, ProgramName, RemainingpredictionValues);
 		System.out.println("RemainingpredictionValues"+TotalPattern);
 
 		//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
@@ -870,7 +868,7 @@ public class AlgoFinalRefactored extends JFrame {
 		 TotalPredictionValues = new PredictionValues(); 
 //		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, TotalPattern, LogInfoHashMap, ProgramName, TotalPredictionValues);
 		 TotalPattern = new PredictionEvaluation();
-		PrecisionRecall.WriteInDatabaseAndComputePrecisionAndRecallOwner(methodtraces2HashMap, TotalPattern, ProgramName, TotalPredictionValues);
+		PrecisionRecall.ComputePrecisionAndRecall(methodtraces2HashMap, TotalPattern, ProgramName, TotalPredictionValues);
 		 RemainingpredictionValues = new PredictionValues(); 
 		
 		RemainingpredictionValues=SubstractPredictionValues(TotalPredictionValues, OwnerClassPredictionValues); 
@@ -907,9 +905,10 @@ public class AlgoFinalRefactored extends JFrame {
 			bwfile4.newLine();
 		}
 
-		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2);
+		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces);
 		 counter=0; 
 		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+			System.out.println(counter);
 			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
 			LogInfoHashMap.get(reqmethod);
 			
@@ -979,6 +978,30 @@ public class AlgoFinalRefactored extends JFrame {
 		}
 		return PredictionsNewHashMap;
 	}
+	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	public void SetLogFileIterations(Collection<MethodTrace> methodTracesHashmapValues, List<MethodTrace> methodtraces22, LinkedHashMap<String, LogInfo> LogInfoHashMap, int ITERATION ) {
+		// TODO Auto-generated method stub
+		for (MethodTrace methodtrace : methodTracesHashmapValues) {
+			String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
+			LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
+			List<String> myits = LogInfo.getIterationValues();
+			if (myits.size() == ITERATION + 1) {
+				//System.out.println(myits.get(ITERATION));
+
+			} else {
+				myits.add(" ");
+				LogInfo.setIterationValues(myits);
+			}
+
+			for (String it : myits) {
+				//System.out.println("it" + it + " it");
+			}
+			LogInfoHashMap.put(ReqMethod, LogInfo);
+		}
+	}
+
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public PredictionValues SubstractPredictionValues(PredictionValues totalPredictionValues,
@@ -1062,11 +1085,7 @@ public class AlgoFinalRefactored extends JFrame {
 			String methodID= methodtrace.getMethod().ID; 
 			String key= reqID+"-"+methodID; 
 			//System.out.println("Key "+ key);
-			LogInfo log = new LogInfo(); 
-			log.setPrecisionRecall("E");
-			log.setPrediction("E");
 			
-			logHashMapRemaining.put(key, log); 
 		}
 	
 		return logHashMapRemaining;

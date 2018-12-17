@@ -57,6 +57,15 @@ public class DatabaseReading2 {
 
 	
 
+	public DatabaseReading2(String ProgramName) {
+		// TODO Auto-generated constructor stub
+		this.dbName=ProgramName; 
+	}
+
+	public DatabaseReading2() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public static HashMap<String, List<String>> getClassMethodsHashMap() {
 		return ClassMethodsHashMap;
 	}
@@ -119,7 +128,7 @@ public class DatabaseReading2 {
 	 * The name of the database we are testing with (this default is installed with
 	 * MySQL)
 	 */
-	private final String dbName = "databasechess";
+	private String dbName = "databasechess";
 
 	public Connection getConnection() throws SQLException {
 		Connection conn = null;
