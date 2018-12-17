@@ -1,7 +1,12 @@
 package Chess;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+
+import mypackage.MethodTrace;
 
 public class LogInfo {
 	String MethodID; 
@@ -19,14 +24,14 @@ public class LogInfo {
 	String GoldFinal; 
 	String SubjectGold; 
 	List<String> IterationValues= new ArrayList<String>();
-	boolean myFlag; 
+	boolean SubjectDeveloperEqualityFlag; 
 	
 	
-	public boolean isMyFlag() {
-		return myFlag;
+	public boolean isSubjectDeveloperEqual() {
+		return SubjectDeveloperEqualityFlag;
 	}
-	public void setMyFlag(boolean myFlag) {
-		this.myFlag = myFlag;
+	public void setSubjectDeveloperEqualityFlag(boolean myFlag) {
+		this.SubjectDeveloperEqualityFlag = myFlag;
 	}
 	public String getGoldFinal() {
 		return GoldFinal;
@@ -156,6 +161,50 @@ public class LogInfo {
 	}
 	
 	
-	
+	/************************************************************************************************************************************************/
+	/**
+	 * @param methodtraces2HashMap **********************************************************************************************************************************************/
+	public LinkedHashMap<String, LogInfo> InitializeLogInfoHashMap(LinkedHashMap<String, LogInfo> LogInfoHashMap,
+			Collection<MethodTrace> methodTracesHashmapValues, HashMap<String, MethodTrace> methodtraces2HashMap) {
+		// TODO Auto-generated method stub
+		for(MethodTrace methodtrace: methodTracesHashmapValues) {
+			String Req= methodtrace.getRequirement().ID; 
+			String Method= methodtrace.getMethod().ID; 
+			LogInfo loginfo= new LogInfo(); 
+			String reqMethod= Req+"-"+Method; 
+			if (LogInfoHashMap.get(reqMethod) != null) {
+				loginfo = LogInfoHashMap.get(reqMethod);
+			}
+
+			loginfo.setRequirementID(methodtrace.getRequirement().ID);
+			loginfo.setRequirementName(methodtrace.getRequirement().RequirementName);
+			loginfo.setMethodID(methodtrace.getMethod().ID);
+			loginfo.setMethodName(methodtrace.getMethod().methodname);
+			loginfo.setClassID(methodtrace.getClassRepresentation().ID);
+			loginfo.setClassName(methodtrace.getClassRepresentation().classname);
+			loginfo.setTraceValue(methodtrace.getGoldfinal());
+			loginfo.setGoldFinal(methodtrace.Method.owner.DeveloperGold);
+			loginfo.setSubjectGold(methodtrace.Method.owner.SubjectGold);
+
+
+			
+			LogInfoHashMap.put(reqMethod, loginfo); 
+			LogInfoHashMap.put(Req+"-"+Method, loginfo); 
+			methodtrace.SetPredictionOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "E", methodtraces2HashMap); 
+
+			String traceClassOldValue= methodtrace.Method.owner.DeveloperGold; 
+
+			
+			LogInfo LogInfo= new LogInfo(); 
+			 if(LogInfoHashMap.get(reqMethod)!=null) {
+				  LogInfo= LogInfoHashMap.get(reqMethod); 
+			 }else {
+				 LogInfo= new LogInfo(); 
+			 }
+			LogInfo.setTraceClassOldValue(traceClassOldValue);
+			LogInfoHashMap.put(reqMethod, LogInfo); 
+		}
+		return LogInfoHashMap; 
+	}
 	
 }

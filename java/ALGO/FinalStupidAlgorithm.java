@@ -901,7 +901,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			
 //			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
-				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
+				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isSubjectDeveloperEqual()
 						&& logHashMapRemaining.get(mykey)!=null) {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							logHashMapRemaining.get(mykey).getPrediction().trim());
@@ -1250,7 +1250,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			 
 			if( programName.equals("gantt")||programName.equals("jhotdraw") ) {
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()) ) {
-					loginfo.setMyFlag(true);
+					loginfo.setSubjectDeveloperEqualityFlag(true);
 					logInfoHashMap.put(mykey, loginfo); 
 					MethodTrace myval = logHashMapRemaining.get(mykey); 
 					myval.setMyflag(true);
@@ -1279,7 +1279,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			if(programName.equals("gantt")||programName.equals("jhotdraw")){
 				System.out.println("loginfo.getGoldFinal()  "+loginfo.getGoldFinal()+"loginfo.getSubjectGold()  "+loginfo.getSubjectGold());
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()))  {
-				loginfo.setMyFlag(true);
+				loginfo.setSubjectDeveloperEqualityFlag(true);
 				loginfohash.put(mykey, loginfo); 
 				
 			}
@@ -1303,7 +1303,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			
 				
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()) && loginfo.getPrediction()!=null)  {
-				loginfo.setMyFlag(true);
+				loginfo.setSubjectDeveloperEqualityFlag(true);
 				logHashMapRemaining2.put(mykey, loginfo); 
 				
 			}
@@ -1560,7 +1560,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			String why = mykey.getWhy();
 
 		if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")) {
-			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null && logInfo.isMyFlag()) {
+			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null && logInfo.isSubjectDeveloperEqual()) {
 				String Result = nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGoldfinal().trim(),
 						logInfo.getPrediction().trim());
 				logInfo.setPrecisionRecall(Result);
@@ -1612,7 +1612,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
-				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
+				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isSubjectDeveloperEqual()
 						) {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());

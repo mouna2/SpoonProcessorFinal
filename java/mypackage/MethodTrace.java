@@ -63,9 +63,17 @@ public class MethodTrace {
 	Methods<String> Implementations;
 	Methods<String> Superclasses;
 	Methods<String> Children;
-
+	boolean TraceSet; 
 	public boolean isMyflag() {
 		return myflag;
+	}
+
+	public boolean isTraceSet() {
+		return TraceSet;
+	}
+
+	public void setTraceSet(boolean traceSet) {
+		TraceSet = traceSet;
 	}
 
 	public void setMyflag(boolean myflag) {
@@ -2157,7 +2165,6 @@ public class MethodTrace {
 		// TODO Auto-generated method stub
 		
 		if(methodtrace.getPrediction().trim().equals("E")) {
-			PatternSetVariables(Pred, methodtrace, "90%", "P2");
 			
 			iterationValues.add(Reason);
 			LogInfo.setPrediction(Pred);
@@ -2172,8 +2179,22 @@ public class MethodTrace {
 		
 	}
 	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 	
-	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	public void SetPredictionOwner(LogInfo loginfo, MethodTrace methodtrace,
+			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqmethod,  String value, HashMap<String, MethodTrace> methodtraces2HashMap2) {
+		// TODO Auto-generated method stub
+		loginfo.setOwnerClassPrediction(value);
+		methodtrace.setPrediction(value);
+		loginfo.setPrediction(value);
+		LogInfoHashMap.put(reqmethod, loginfo);
+		methodtraces2HashMap2.put(reqmethod, methodtrace); 
+	}
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
 	
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
@@ -2185,5 +2206,5 @@ public class MethodTrace {
 		methodtrace.setLikelihood(Likelihood);
 		methodtrace.setWhy(Why);
 	}
-
+	
 }
