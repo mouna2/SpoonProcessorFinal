@@ -1063,17 +1063,17 @@ public class MethodTrace {
 			classrep.setClassid(myresults.getString("classid"));
 			classrep.setClassname(myresults.getString("classname"));
 
-			Method methodrep = new Method();
-			methodrep.setMethodid(myresults.getString("methodid"));
-			methodrep.setMethodname(myresults.getString("method"));
-			methodrep.setMethodname(myresults.getString("methodname"));
-			methodrep.setFullmethodname(myresults.getString("fullmethod"));
+			Method method = new Method();
+			method.setMethodid(myresults.getString("methodid"));
+			method.setMethodname(myresults.getString("method"));
+			method.setMethodname(myresults.getString("methodname"));
+			method.setFullmethodname(myresults.getString("fullmethod"));
 //			System.out.println(requirement.ID.trim()+"-"+classrep.ID.trim());
 			
 			Clazz OwnerClass = classTraceHashMap.get(requirement.ID.trim()+"-"+classrep.ID.trim()); 
 //			System.out.println(OwnerClass.DeveloperGold);
-			methodrep.setOwner(OwnerClass);
-			mytrace.setMethod(methodrep);
+			method.setOwner(OwnerClass);
+			mytrace.setMethod(method);
 
 			mytrace.setClassRepresentation(classrep);
 			if (classMethodsHashMap.get(mytrace.getClassRepresentation().ID) != null) {
@@ -1228,11 +1228,11 @@ public class MethodTrace {
 			
 			
 		
-			methodrep.setImplementations(methodrepImplementations);
-			methodrep.setInterfaces(methodrepinterfaces); 
-			methodrep.setChildren(methodrepChildren);
-			methodrep.setSuperclasses(methodrepsuperclasses);
-			mytrace.setMethod(methodrep);
+			method.setImplementations(methodrepImplementations);
+			method.setInterfaces(methodrepinterfaces); 
+			method.setChildren(methodrepChildren);
+			method.setSuperclasses(methodrepsuperclasses);
+			mytrace.setMethod(method);
 			
 			
 			
@@ -1265,7 +1265,7 @@ public class MethodTrace {
 				}
 
 				mytrace.setCalleesList(mycalleelistrep);
-				methodrep.setCallees(mycalleelistrep);
+				method.setCallees(mycalleelistrep);
 			}
 
 			List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id);
@@ -1280,10 +1280,10 @@ public class MethodTrace {
 					mycallerlistrep.add(meth);
 				}
 				mytrace.setCallersList(mycallerlistrep);
-				methodrep.setCallers(mycallerlistrep);
+				method.setCallers(mycallerlistrep);
 			}
 
-			mytrace.setMethod(methodrep);
+			mytrace.setMethod(method);
 
 			
 
