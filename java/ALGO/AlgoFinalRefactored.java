@@ -471,7 +471,7 @@ public class AlgoFinalRefactored extends JFrame {
 						
 
 				) {
-
+//						PREDICTION SHOULD BE SET TO E 
 //						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
 
 
