@@ -323,7 +323,8 @@ public class AlgoFinalRefactored extends JFrame {
 			
 				
 				if (methodtrace.Method.Owner.DeveloperGold.equals("T") ) {
-						
+					methodtrace.SetPrediction(LogInfoHashMap, "E","E,Owner");
+
 					//DO NOTHING 
 					
 				
@@ -335,6 +336,7 @@ public class AlgoFinalRefactored extends JFrame {
 				}
 
 				else {
+					methodtrace.SetPrediction(LogInfoHashMap, "E","E,Owner");
 
 					//DO NOTHING 
 				}
@@ -470,7 +472,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 
-						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
+//						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
 
 
 				}
