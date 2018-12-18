@@ -885,12 +885,12 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CallerMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CallerMethodListFinal.remove(item); 
 									}
 									}
@@ -910,7 +910,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -939,12 +939,12 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CalleeMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CalleeMethodListFinal.remove(item); 
 									}
 									}
@@ -962,7 +962,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -2297,10 +2297,10 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 									for(Method call: methodtrace.getCallersList()) {
 										bwlog.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2309,11 +2309,11 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 									for(Method call: methodtrace.getCallersListExecuted()) {
 										bwlog.write("callerlistEXEC "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2322,11 +2322,11 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 									for(Method call: methodtrace.getCalleesList()) {
 										bwlog.write("calleelist "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2335,11 +2335,11 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEntered extends JFrame {
 									for(Method call: methodtrace.getCalleesListExecuted()) {
 										bwlog.write("calleelistEXEC "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }

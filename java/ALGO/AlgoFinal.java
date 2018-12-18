@@ -597,17 +597,17 @@ public class AlgoFinal extends JFrame {
 			LogInfoHashMap.put(reqMethod, loginfo); 
 			
 		
-			if (methodtrace.Method.owner.DeveloperGold != null) {
+			if (methodtrace.Method.Owner.DeveloperGold != null) {
 				
 			
 				
-				if (methodtrace.Method.owner.DeveloperGold.equals("T") ) {
+				if (methodtrace.Method.Owner.DeveloperGold.equals("T") ) {
 						
 
 					
 				
 
-				} else if (methodtrace.Method.owner.DeveloperGold.equals("N")) {
+				} else if (methodtrace.Method.Owner.DeveloperGold.equals("N")) {
 					SetPredictionFinal(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "N", methodtraces2HashMap); 
 					
 
@@ -1050,7 +1050,7 @@ public class AlgoFinal extends JFrame {
 			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
 
 			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
-			if( methodtrace.getPrediction().equals("E") && methodtrace.Method.owner.DeveloperGold.equals("T") ) {
+			if( methodtrace.getPrediction().equals("E") && methodtrace.Method.Owner.DeveloperGold.equals("T") ) {
 				SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
 						LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "Remaining", methodtraces2HashMap); 
 			}

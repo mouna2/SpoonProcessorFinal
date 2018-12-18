@@ -181,7 +181,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					if(mapBothParsedAndExec1.get(key2)!=null) {
 						entered1=true; 
 					}
-					else if(mymeth.owner.ID.equals(mymeth2.owner.ID) && mymeth.ID.equals(mymeth2.ID)) {
+					else if(mymeth.Owner.ID.equals(mymeth2.Owner.ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC++; 
 						entered1=true; 
 						
@@ -197,7 +197,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.owner.ID+"-"+mymeth.owner.classname; 
+				String key=mymeth.Owner.ID+"-"+mymeth.Owner.classname; 
 //				System.out.println(key);
 				Interface2 val = InterfacesHashMap.get(key); 
 				boolean entered2=false; 
@@ -213,7 +213,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 						if(mapInterfaceExec.get(key2)!=null && entered2==false) {
 							entered2=true; 
 						}
-						else if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && val.OwnerClass.ID.equals(mymeth2.owner.ID) && entered2==false) {
+						else if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && val.OwnerClass.ID.equals(mymeth2.Owner.ID) && entered2==false) {
 							INTERFACE++; 
 							entered2=true; 
 							System.out.println(key2);
@@ -260,7 +260,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					if(mapBothParsedAndExec2.get(key2)!=null) {
 						entered1exec=true; 
 					}
-					else if(mymeth.owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
+					else if(mymeth.Owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC2++; 
 						entered1exec=true; 
 					
@@ -275,7 +275,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.owner.ID; 
+				String key=mymeth.Owner.ID; 
 //				System.out.println(key);
 				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2exec=false; 
@@ -293,7 +293,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 								entered2exec=true; 
 							}
 							else
-							if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && inter.InterfaceClass.ID.equals(mymeth2.owner.ID)&& entered2exec==false) {
+							if(mymeth.getMethodname().equals(mymeth2.getMethodname()) && inter.InterfaceClass.ID.equals(mymeth2.Owner.ID)&& entered2exec==false) {
 								INTERFACEEXEC++; 
 								entered2exec=true; 
 								System.out.println(key2);
@@ -339,7 +339,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 					if(mapBothParsedAndExecCaller.get(key2)!=null) {
 						entered1execCALLER=true; 
 					}
-					else if(mymeth.owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
+					else if(mymeth.Owner.ID.equals(mymeth2.getClassrep().ID) && mymeth.ID.equals(mymeth2.ID)) {
 						BOTHPARSEDANDEXEC2++; 
 						entered1execCALLER=true; 
 					
@@ -354,7 +354,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println("METHOD  "+methodtrace);
 //					System.out.println(mymeth.classrep.classid);
 //					System.out.println(mymeth.classrep.classname);
-				String key=mymeth.owner.ID; 
+				String key=mymeth.Owner.ID; 
 //				System.out.println(key);
 				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2execCALLER=false; 
@@ -381,7 +381,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 							}
 							else
 							
-							if(methname.equals(methname2) && inter.OwnerClass.ID.equals(mymeth2.owner.ID)&& entered2execCALLER==false) {
+							if(methname.equals(methname2) && inter.OwnerClass.ID.equals(mymeth2.Owner.ID)&& entered2execCALLER==false) {
 								INTERFACEEXEC++; 
 								entered2execCALLER=true; 
 								System.out.println(key2);

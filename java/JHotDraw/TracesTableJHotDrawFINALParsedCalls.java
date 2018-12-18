@@ -2186,10 +2186,10 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 									for(Method call: CallerMethodListFinal) {
 										bwlog.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace2!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2199,11 +2199,11 @@ public class TracesTableJHotDrawFINALParsedCalls extends JFrame {
 									for(Method call: CalleeMethodListFinal) {
 										bwlog.write("calleelist "+ call.toString2());
 										bwlog.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog.newLine();
-											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }

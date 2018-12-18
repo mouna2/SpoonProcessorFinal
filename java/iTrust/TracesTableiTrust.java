@@ -727,12 +727,12 @@ public class TracesTableiTrust extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CallerMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CallerMethodListFinal.remove(item); 
 									}
 									}
@@ -752,7 +752,7 @@ public class TracesTableiTrust extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -781,12 +781,12 @@ public class TracesTableiTrust extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CalleeMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CalleeMethodListFinal.remove(item); 
 									}
 									}
@@ -804,7 +804,7 @@ public class TracesTableiTrust extends JFrame {
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }

@@ -1429,7 +1429,7 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1484,7 +1484,7 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1561,13 +1561,13 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 				
 				
 				
-				if(mycallerclass==null && callermeth!=null && callermeth.owner.ID!=null) {
-					if(callermeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+				if(mycallerclass==null && callermeth!=null && callermeth.Owner.ID!=null) {
+					if(callermeth.Owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
 					mylistACROSSCallerGOLD2.add(mycallerclass); 
 				}
-				if(mycallerclass==null && callermeth!=null && callermeth.owner.ID!=null){
-					if( callermeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
-					mymapACROSSCallerGOLD2.put(callermeth.owner.ID, callermeth) ; 
+				if(mycallerclass==null && callermeth!=null && callermeth.Owner.ID!=null){
+					if( callermeth.Owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+					mymapACROSSCallerGOLD2.put(callermeth.Owner.ID, callermeth) ; 
 				}
 				
 				
@@ -1727,15 +1727,15 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 				if(mycalleeclass!=null) {
 					mycalleeclasses.add(mycalleeclass);
 				}else if(calleemeth!=null){
-					mymap.put(calleemeth.owner.ID, calleemeth) ; 
+					mymap.put(calleemeth.Owner.ID, calleemeth) ; 
 				}
-				if(mycalleeclass==null && calleemeth!=null && calleemeth.owner.ID!=null) {
-					if(calleemeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+				if(mycalleeclass==null && calleemeth!=null && calleemeth.Owner.ID!=null) {
+					if(calleemeth.Owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
 					mylistACROSSCalleeGOLD2.add(mycalleeclass); 
 				}
-				if(mycalleeclass==null && calleemeth!=null && calleemeth.owner.ID!=null){
-					if( calleemeth.owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
-					mymapACROSSCalleeGOLD2.put(calleemeth.owner.ID, calleemeth) ; 
+				if(mycalleeclass==null && calleemeth!=null && calleemeth.Owner.ID!=null){
+					if( calleemeth.Owner.ID.equals(methodtrace.ClassRepresentation.classid)==false)
+					mymapACROSSCalleeGOLD2.put(calleemeth.Owner.ID, calleemeth) ; 
 				}
 				
 			}
@@ -5183,10 +5183,10 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 					for(Method call: CallerMethodListFinal) {
 						bwlog2.write("callerlist "+ call.toString2());
 						
-						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 						 if(Trace4!=null) {
 							 bwlog2.newLine();
-							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 							
 							
 						 }
@@ -5196,11 +5196,11 @@ public class TracesTableGanttFINALGeneticAlgorithm extends JFrame {
 					for(Method call: CalleeMethodListFinal) {
 						bwlog2.write("calleelist "+ call.toString2());
 						bwlog2.newLine();
-						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+						 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 						 if(Trace4!=null) {
 							 bwlog2.newLine();
-							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
+							 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 							
 							
 						 }
@@ -5382,10 +5382,10 @@ if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 				for(Method call: CallerMethodListFinal) {
 					bwlog3.write("callerlist "+ call.toString2());
 					
-					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 					 if(Trace4!=null) {
 						 bwlog3.newLine();
-						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 						
 						
 					 }
@@ -5395,11 +5395,11 @@ if(CounterTraceClassCallerT>0 && CounterTraceClassCalleeT>0) {
 				for(Method call: CalleeMethodListFinal) {
 					bwlog3.write("calleelist "+ call.toString2());
 					bwlog3.newLine();
-					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 Trace4 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 					 if(Trace4!=null) {
 						 bwlog3.newLine();
-						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
+						 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace().trim());
 						
 						
 					 }

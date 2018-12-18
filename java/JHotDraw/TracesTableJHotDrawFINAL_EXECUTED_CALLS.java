@@ -1255,7 +1255,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1310,7 +1310,7 @@ public class TracesTableJHotDrawFINAL_EXECUTED_CALLS extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }

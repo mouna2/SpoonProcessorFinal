@@ -59,8 +59,8 @@ public class DatabaseReading {
 
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
-		MethodTrace methodtrace2 = new MethodTrace();
-		LinkedHashMap<String, MethodTrace> methodtracehashmap = methodtrace2.ReadMethodTraces(conn, ClassMethodsHashMap, FinalMethodHashMapReqGolds);
+		MethodTrace methodtrace = new MethodTrace();
+		LinkedHashMap<String, MethodTrace> methodtracehashmap = methodtrace.ReadMethodTraces(conn, ClassMethodsHashMap, FinalMethodHashMapReqGolds);
 		List<MethodTrace> methodtraces = new ArrayList<MethodTrace>(methodtracehashmap.values());
 		setMethodtracesList(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 

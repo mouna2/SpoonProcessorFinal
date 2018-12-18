@@ -834,12 +834,12 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CallerMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CallerMethodListFinal.remove(item); 
 									}
 									}
@@ -859,7 +859,7 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -888,12 +888,12 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 							boolean flag=false; 
 							
 								for(Method item: CalleeMethodsList) {
-									String key =methcaller.owner.getClassid()+"-"+methcaller.owner.getClassname();
+									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
 									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
-									if(item.owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
+									if(item.Owner.ID.equals(ownerclassid) && item.getMethodname().equals(methcaller.methodname)) {
 										CalleeMethodListFinal.remove(item); 
 									}
 									}
@@ -914,7 +914,7 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1358,10 +1358,10 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCallersList()) {
 									bwlog3.write("callerlist "+ call.toString2());
 									
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 									 if(trace2!=null) {
 										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -1370,11 +1370,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCallersListExecuted()) {
 									bwlog3.write("callerlistEXEC "+ call.toString2());
 									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -1383,11 +1383,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCalleesList()) {
 									bwlog3.write("calleelist "+ call.toString2());
 									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -1396,11 +1396,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCalleesListExecuted()) {
 									bwlog3.write("calleelistEXEC "+ call.toString2());
 									bwlog3.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog3.newLine();
-										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -2058,10 +2058,10 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCallersList()) {
 									bwlog2.write("callerlist "+ call.toString2());
 									
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 									 if(trace2!=null) {
 										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -2070,11 +2070,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCallersListExecuted()) {
 									bwlog2.write("callerlistEXEC "+ call.toString2());
 									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -2083,11 +2083,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCalleesList()) {
 									bwlog2.write("calleelist "+ call.toString2());
 									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -2096,11 +2096,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 								for(Method call: methodtrace.getCalleesListExecuted()) {
 									bwlog2.write("calleelistEXEC "+ call.toString2());
 									bwlog2.newLine();
-									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+									 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 									 if(trace2!=null) {
 										 bwlog2.newLine();
-										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+										 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 										
 										
 									 }
@@ -2488,10 +2488,10 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCallersList()) {
 										bwlog3.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace2!=null) {
 											 bwlog3.newLine();
-											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2500,11 +2500,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCallersListExecuted()) {
 										bwlog3.write("callerlistEXEC "+ call.toString2());
 										bwlog3.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog3.newLine();
-											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2513,11 +2513,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCalleesList()) {
 										bwlog3.write("calleelist "+ call.toString2());
 										bwlog3.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog3.newLine();
-											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -2526,11 +2526,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCalleesListExecuted()) {
 										bwlog3.write("calleelistEXEC "+ call.toString2());
 										bwlog3.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog3.newLine();
-											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog3.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -3188,10 +3188,10 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCallersList()) {
 										bwlog2.write("callerlist "+ call.toString2());
 										
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 										 if(trace2!=null) {
 											 bwlog2.newLine();
-											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -3200,11 +3200,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCallersListExecuted()) {
 										bwlog2.write("callerlistEXEC "+ call.toString2());
 										bwlog2.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog2.newLine();
-											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -3213,11 +3213,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCalleesList()) {
 										bwlog2.write("calleelist "+ call.toString2());
 										bwlog2.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog2.newLine();
-											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }
@@ -3226,11 +3226,11 @@ public class TracesTableiTrustGold2PredictionFINAL2 extends JFrame {
 									for(Method call: methodtrace.getCalleesListExecuted()) {
 										bwlog2.write("calleelistEXEC "+ call.toString2());
 										bwlog2.newLine();
-										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+										 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 										 if(trace2!=null) {
 											 bwlog2.newLine();
-											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).gettrace());
+											 bwlog2.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).gettrace());
 											
 											
 										 }

@@ -1570,7 +1570,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 			Set<String> CallerMethodsListNoDuplicates = new HashSet<String>();
 
 			for( Method item : CallerMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CallerMethodsListNoDuplicates.add( val )) {
 			    	CallerMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -1625,7 +1625,7 @@ public class TracesTableJHotDrawFINAL extends JFrame {
 
 			Set<String> CalleeMethodsListNoDuplicates = new HashSet<String>();
 			for( Method item : CalleeMethodListFinal ) {
-				String val= item.owner.ID+"-"+item.methodname;
+				String val= item.Owner.ID+"-"+item.methodname;
 			    if( CalleeMethodsListNoDuplicates.add( val )) {
 			    	CalleeMethodsListFinalNoDuplicates.add( item );
 			    }
@@ -6416,10 +6416,10 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 				for(Method call: methodtrace.getCallersList()) {
 					bwlog.write("callerlist "+ call.toString2());
 					
-					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 					 if(trace2!=null) {
 						 bwlog.newLine();
-						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).getTrace4().trim());
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).getTrace4().trim());
 						
 						
 					 }
@@ -6428,11 +6428,11 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 				for(Method call: methodtrace.getCallersListExecuted()) {
 					bwlog.write("callerlistEXEC "+ call.toString2());
 					bwlog.newLine();
-					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 					 if(trace2!=null) {
 						 bwlog.newLine();
-						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).getTrace4());
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).getTrace4());
 						
 						
 					 }
@@ -6441,11 +6441,11 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 				for(Method call: methodtrace.getCalleesList()) {
 					bwlog.write("calleelist "+ call.toString2());
 					bwlog.newLine();
-					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 					 if(trace2!=null) {
 						 bwlog.newLine();
-						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).getTrace4());
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).getTrace4());
 						
 						
 					 }
@@ -6454,11 +6454,11 @@ if(CountMethodTGOLD4>0 && CountMethodTCalleeGOLD4>0) {
 				for(Method call: methodtrace.getCalleesListExecuted()) {
 					bwlog.write("calleelistEXEC "+ call.toString2());
 					bwlog.newLine();
-					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()); 
+					 ClassTrace2 trace2 = myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()); 
 
 					 if(trace2!=null) {
 						 bwlog.newLine();
-						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.owner.ID,methodtrace.Requirement.getID()).getTrace4());
+						 bwlog.write("trace value "+myclasstrace.FindTrace2(methodtracesRequirementClass, call.Owner.ID,methodtrace.Requirement.getID()).getTrace4());
 						
 						
 					 }

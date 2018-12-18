@@ -11,22 +11,22 @@ public class Method {
 	public String ID; 
 	public String methodname;
 	public String fullmethodname;
-	public Clazz owner= new Clazz(); 
+	public Clazz Owner= new Clazz(); 
 	public MethodList Callees= new MethodList(); 
 	public MethodList Callers= new MethodList(); 
 	public MethodList Interfaces= new MethodList(); 
-	public MethodList implementations= new MethodList(); 
+	public MethodList Implementations= new MethodList(); 
 	public MethodList Superclasses= new MethodList(); 
 	public MethodList Children= new MethodList(); 
-	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
-	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
-	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
+//	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
+//	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
+//	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
 	
 	public Clazz getOwner() {
-		return owner;
+		return Owner;
 	}
 	public void setOwner(Clazz owner) {
-		this.owner = owner;
+		this.Owner = owner;
 	}
 	public MethodList getSuperclasses() {
 		return Superclasses;
@@ -47,10 +47,10 @@ public class Method {
 		Interfaces = interfaces;
 	}
 	public MethodList getImplementations() {
-		return implementations;
+		return Implementations;
 	}
 	public void setImplementations(MethodList implementations) {
-		this.implementations = implementations;
+		this.Implementations = implementations;
 	}
 	public Method(String methodid, String methodname) {
 		super();
@@ -72,22 +72,17 @@ public class Method {
 	public void setMethodname(String methodname) {
 		this.methodname = methodname;
 	}
-	public HashMap<Requirement2, String> getFinalMethodHashMap() {
-		return FinalMethodHashMap;
-	}
-	public void setFinalMethodHashMap(HashMap<Requirement2, String> finalMethodHashMap) {
-		FinalMethodHashMap = finalMethodHashMap;
-	}
+	
 	@Override
 	public String toString() {
 		return  ID + ", methodname=" + methodname + 
 //				", requirementsGold="
 //				+ requirementsGold.toString() + 
-				owner.toString()+"]";
+				Owner.toString()+"]";
 	}
 	
 	public String toString2() {
-		return "["+  ID + ": methodname=" + methodname  + ": classname=" + owner.classname + ": classid=" + owner.ID +"]";
+		return "["+  ID + ": methodname=" + methodname  + ": classname=" + Owner.classname + ": classid=" + Owner.ID +"]";
 	}
 	
 	public String PrintList(List<Method> methods) {
@@ -105,8 +100,7 @@ public class Method {
 		this.ID = methodid;
 		this.methodname = methodname;
 		this.fullmethodname = fullmethodname;
-		this.owner = classrep;
-		FinalMethodHashMap = finalMethodHashMap;
+		this.Owner = classrep;
 	}
 	
 	
@@ -117,25 +111,14 @@ public class Method {
 		this.ID = methodid;
 		this.methodname = methodname;
 		this.fullmethodname = fullmethodname;
-		this.owner = classrep;
+		this.Owner = classrep;
 	}
-	public List<RequirementGold> getRequirementsGold() {
-		return requirementsGold;
-	}
-	public void setRequirementsGold(List<RequirementGold> requirementsGold) {
-		this.requirementsGold = requirementsGold;
-	}
-	public List<Requirement2> getRequirements() {
-		return requirements;
-	}
-	public void setRequirements(List<Requirement2> requirements) {
-		this.requirements = requirements;
-	}
+	
 	public Clazz getClassrep() {
-		return owner;
+		return Owner;
 	}
 	public void setClassrep(Clazz classrep) {
-		this.owner = classrep;
+		this.Owner = classrep;
 	}
 	public String getFullmethodname() {
 		return fullmethodname;
@@ -162,7 +145,7 @@ public class Method {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + ((Owner == null) ? 0 : Owner.hashCode());
 		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
 		result = prime * result + ((methodname == null) ? 0 : methodname.hashCode());
 		return result;
@@ -176,10 +159,10 @@ public class Method {
 		if (getClass() != obj.getClass())
 			return false;
 		Method other = (Method) obj;
-		if (owner == null) {
-			if (other.owner != null)
+		if (Owner == null) {
+			if (other.Owner != null)
 				return false;
-		} else if (!owner.equals(other.owner))
+		} else if (!Owner.equals(other.Owner))
 			return false;
 		if (ID == null) {
 			if (other.ID != null)
