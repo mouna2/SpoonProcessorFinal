@@ -43,7 +43,7 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTraceOld;
 import mypackage.Parameter2;
@@ -163,9 +163,9 @@ public class TracesTableChessOld extends JFrame {
 	static List<MethodTraceOld> methodtraces2 = new ArrayList<MethodTraceOld>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
-	 LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
+	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
 	JTable table = new JTable(); 
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
@@ -366,7 +366,7 @@ public class TracesTableChessOld extends JFrame {
 			int counterParameterN=0; 
 			int counterParameterE=0; 
 			 myparameters = new String[methodtraces2.size()];
-			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
+			MethodDetails mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 			String ParametersAppended=""; 
 			for ( Parameter2 myparam : mymethodobje.getParameters()) {
 				myparameters[myparametercount] = myparam.toString(); 

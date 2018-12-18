@@ -47,7 +47,7 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
@@ -664,7 +664,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
 	File fout = new File("C:\\Users\\mouna\\dumps\\TableLogGantt.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
@@ -824,7 +824,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 	//	methodlist = db.getMethodlist();
 		 methodtracesRequirementClass = db.getClassesRequirementtraceshashmap(); 
 		 HashMap InterfacesHashMap = db.getInterfaces();
-		  LinkedHashMap<String, Method2Details> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
+		  LinkedHashMap<String, MethodDetails> linkedmethodhashmap = db.getLinkedmethodhashmap(); 
 		  
 		  //INTERFACES 
 		  InterfacesOwnerClassHashMap = db.getInterfacehashmapOwnerClass(); 
@@ -1045,7 +1045,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int counterParameterNGOLD4=0; 
 			int counterParameterEGOLD4=0; 
 			 myparameters = new String[methodtraces2.size()];
-			Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
+			MethodDetails mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 			String ParametersAppended=""; 
 			for ( Parameter2 myparam : mymethodobje.getParameters()) {
 				myparameters[myparametercount] = myparam.toString(); 
@@ -1860,7 +1860,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodNACHRAFGold4 = 0; 
 			int CountMethodEACHRAFGold4 = 0; 
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1893,7 +1893,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodNACHRAFCallee = 0; 
 			int CountMethodEACHRAFCallee = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1926,7 +1926,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 		
 		
 			for (Method mycaller: CallerMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1956,7 +1956,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodNACHRAFCalleeGold3 = 0; 
 			int CountMethodEACHRAFCalleeGold3 = 0; 
 			for (Method mycaller: CalleeMethodListFinal) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -1982,7 +1982,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			}
 			
 			for (Method mycaller: methodtrace.getCallersListExecuted()) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
@@ -2013,7 +2013,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int CountMethodNACHRAFCalleeGold4 = 0; 
 			int CountMethodEACHRAFCalleeGold4 = 0; 
 			for (Method mycaller: methodtrace.getCalleesListExecuted()) {
-				 Method2Details methdet = linkedmethodhashmap.get(mycaller.methodid); 
+				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
 				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 

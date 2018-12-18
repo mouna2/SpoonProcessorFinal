@@ -59,7 +59,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
@@ -117,7 +117,7 @@ public class AlgoFinalRefactored extends JFrame {
 	
 	
 	JTable table = new JTable();
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	// File fout = new
 	// File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 
@@ -145,7 +145,6 @@ public class AlgoFinalRefactored extends JFrame {
 	public AlgoFinalRefactored(String ProgramName) throws Exception {
 
 	
-		int j = 0;
 //		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2);
 		TracePredictionFunction( ProgramName);
 
@@ -189,7 +188,6 @@ public class AlgoFinalRefactored extends JFrame {
 		LinkedHashMap<String, LogInfo> LogInfoHashMap = new LinkedHashMap<String, LogInfo>();
 		
 
-		LinkedHashMap<String, String> RequirementClassHashMapNewValues = new LinkedHashMap<String, String>();
 		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
 
 
@@ -199,15 +197,95 @@ public class AlgoFinalRefactored extends JFrame {
 		PredictionValues RemainingpredictionValues = new PredictionValues(); 
 		PredictionValues PredictionClassTraceBefore = new PredictionValues(); 
 		PredictionValues PredictionClassTraceAfter = new PredictionValues(); 
+		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
 
-		CountTracesClassesValues(PredictionClassTraceBefore, methodtracesRequirementClass, methodtraces2HashMap);
+		CountTracesClassesValues(PredictionClassTraceBefore, methodtraces2HashMap);
 		LogInfo.InitializeLogInfoHashMap(LogInfoHashMap,MethodTracesHashmapValues, methodtraces2HashMap ); 
 
 		LogInfo.bwTraceClass.write("BEFORE PATTERN 0 "+PredictionClassTraceBefore.toString());
 		LogInfo.bwTraceClass.newLine();
 
-		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues, methodtracesRequirementClass);
-		CountTracesClassesValues(PredictionClassTraceAfter, methodtracesRequirementClass, methodtraces2HashMap);
+		 
+//		GenerateNewValuesInTracesClasses(methodtracesRequirementClass);
+			// TODO Auto-generated method stub
+			
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		// PATTERN 0
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//
+//
+//				
+//				
+//				MethodList children = methodtrace.Method.Children; 
+//				MethodList parents = methodtrace.Method.Superclasses; 
+//				MethodList implementations = methodtrace.Method.Implementations; 
+//				MethodList interfaces = methodtrace.Method.Interfaces; 
+//				ClassTraceList ChilrenGold= new ClassTraceList(); 
+//				ClassTraceList ParentsGold= new ClassTraceList(); 
+//				ClassTraceList ImplementationsGold= new ClassTraceList(); 
+//				ClassTraceList InterfacesGold= new ClassTraceList(); 
+//				for(Method child:children) {
+//					String ChildGold = child.Owner.DeveloperGold; 
+//					ChilrenGold.add(ChildGold); 
+//				}
+//				
+//				
+//				for(Method parent:parents) {
+//					String ParentGold = parent.Owner.DeveloperGold; 
+//					ParentsGold.add(ParentGold); 
+//				}
+//				for(Method myinterface:interfaces) {
+//					String InterfaceGold = myinterface.Owner.DeveloperGold; 
+//					InterfacesGold.add(InterfaceGold); 
+//
+//				}
+//				for(Method implementation:implementations) {
+//					String ImplementationGold = implementation.Owner.DeveloperGold; 
+//					ImplementationsGold.add(ImplementationGold); 
+//				}
+//				
+//				
+//				
+//				if(methodtrace.Method.Owner.DeveloperGold.equals("E") ) {
+//					if(ImplementationsGold.AllTs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("T");
+//					}else if(InterfacesGold.AllTs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("T");
+//
+//					}else if(ParentsGold.AllTs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("T");
+//
+//					}else if(ChilrenGold.AllTs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("T");
+//
+//					}
+//					
+//					
+//					 if(ImplementationsGold.AllNs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("N");
+//					}else if(InterfacesGold.AllNs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("N");
+//
+//					}else if(ParentsGold.AllNs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("N");
+//
+//					}else if(ChilrenGold.AllNs()) {
+//						methodtrace.Method.Owner.setDeveloperGold("N");
+//
+//					}
+//				}
+//				
+//			}
+//		
+		CountTracesClassesValues(PredictionClassTraceAfter, methodtraces2HashMap);
 
 		LogInfo.bwTraceClass.write("AFTER PATTERN 0 "+PredictionClassTraceAfter.toString());
 		LogInfo.bwTraceClass.close();
@@ -269,7 +347,6 @@ public class AlgoFinalRefactored extends JFrame {
 		}
 		System.out.println(counter);
 		SetSubjectGoldDeveloperGoldEqualityFlag(methodtraces2HashMap, TotalPattern, LogInfoHashMap, ProgramName); 
-		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
 			
 
 			LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues);
@@ -348,7 +425,10 @@ public class AlgoFinalRefactored extends JFrame {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
 
 				}
+				 
+				 
 				// PURE N LEAF PATTERN
+				 
 				 else if (methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty()
 						 && methodtrace.Method.Callers.AllNs(methodtrace.Requirement, methodtraces2HashMap)
 
@@ -384,8 +464,8 @@ public class AlgoFinalRefactored extends JFrame {
 				// MIXED N PATTERN
 				 else if (!methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty()
 						
-						&& methodtrace.Method.Callees.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
-						&& methodtrace.Method.Callers.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+						&&( !methodtrace.Method.Callees.AllNs(methodtrace.Requirement, methodtraces2HashMap) 
+						|| !methodtrace.Method.Callers.AllNs(methodtrace.Requirement, methodtraces2HashMap) )
 						
 
 				) {
@@ -406,15 +486,18 @@ public class AlgoFinalRefactored extends JFrame {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeaf");
 
 
-				}// MIXED N LEAF PATTERN
-				 else if(methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty() 
-						 && methodtrace.Method.Callers.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
-
-				) {
-						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedNLeaf");
-
-
 				}
+				 //COMMENTED OUT BECAUSE THIS CASE NEVER HAPPENS 
+				 // MIXED N LEAF PATTERN
+				
+//				 else if(methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty() 
+//						 && methodtrace.Method.Callers.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+//
+//				) {
+//						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedNLeaf");
+//
+//
+//				}
 			}
 			
 			// PRINT
@@ -738,13 +821,13 @@ public class AlgoFinalRefactored extends JFrame {
 		 TotalPattern = new PredictionEvaluation();
 		 RemainingpredictionValues = new PredictionValues(); 
 		
-		RemainingpredictionValues=SubstractPredictionValues(TotalPredictionValues, OwnerClassPredictionValues); 
 
 		
-		LogInfo.updateResultsLog(RemainingPattern, RemainingpredictionValues, ProgramName, "NON OWNER CLASS PRED", "non owner class prediction values");
 
 		ResetAllTraceSetFlags(methodtraces2HashMap);
 		 LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, TotalPattern, ProgramName, TotalPredictionValues);
+			RemainingpredictionValues=SubstractPredictionValues(TotalPredictionValues, OwnerClassPredictionValues); 
+			LogInfo.updateResultsLog(RemainingPattern, RemainingpredictionValues, ProgramName, "NON OWNER CLASS PRED", "non owner class prediction values");
 
 		LogInfo.updateResultsLog(TotalPattern, TotalPredictionValues, ProgramName,"TOTAL  PREDICTION", "total prediction values");
 		LogInfo.closeLogFile(); 
@@ -798,7 +881,7 @@ public class AlgoFinalRefactored extends JFrame {
 		
 		int remainingT= totalT-ownerT; 
 		int remainingN= totalN-ownerN;
-		int remainingE= totalE-ownerE;
+		int remainingE= totalE;
 		PredictionValues RemainingPredictionValues= new PredictionValues(); 
 		RemainingPredictionValues.setT(remainingT);
 		RemainingPredictionValues.setN(remainingN);
@@ -826,7 +909,7 @@ public class AlgoFinalRefactored extends JFrame {
 	/************************************************************************************************************************************************/
 	/**
 	 * @param methodtraces2HashMap2 **********************************************************************************************************************************************/
-	public void CountTracesClassesValues(PredictionValues PredictionClassTraceBefore, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2, HashMap<String, MethodTrace> methodtraces2HashMap2) {
+	public void CountTracesClassesValues(PredictionValues PredictionClassTraceBefore,  HashMap<String, MethodTrace> methodtraces2HashMap2) {
 		// TODO Auto-generated method stub
 		HashMap<String, String> myhashmap= new HashMap<String, String> (); 
 		
@@ -872,29 +955,30 @@ public class AlgoFinalRefactored extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/**
-	 * @param requirementClassHashMapNewValues
 	 * @param methodtracesRequirementClass2 
 	 * @return
+	 * @throws Exception 
 	 **********************************************************************************************************************************************/
 
-	private LinkedHashMap<String, String> GenerateNewValuesInTracesClasses(
-			LinkedHashMap<String, String> requirementClassHashMapNewValues, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
+	private void GenerateNewValuesInTracesClasses(
+			LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) throws Exception {
 		// TODO Auto-generated method stub
+		
 		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
 
 		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 
 
-			// PATTERN 1
+			// PATTERN 0
 			
 			MethodList children = methodtrace.Method.Children; 
 			MethodList parents = methodtrace.Method.Superclasses; 
 			MethodList implementations = methodtrace.Method.Implementations; 
 			MethodList interfaces = methodtrace.Method.Interfaces; 
-			List<String> ChilrenGold= new ArrayList<String>(); 
-			List<String> ParentsGold= new ArrayList<String>(); 
-			List<String> ImplementationsGold= new ArrayList<String>(); 
-			List<String> InterfacesGold= new ArrayList<String>(); 
+			ClassTraceList ChilrenGold= new ClassTraceList(); 
+			ClassTraceList ParentsGold= new ClassTraceList(); 
+			ClassTraceList ImplementationsGold= new ClassTraceList(); 
+			ClassTraceList InterfacesGold= new ClassTraceList(); 
 			for(Method child:children) {
 				String ChildGold = child.Owner.DeveloperGold; 
 				ChilrenGold.add(ChildGold); 
@@ -918,36 +1002,35 @@ public class AlgoFinalRefactored extends JFrame {
 			
 			
 			if(methodtrace.Method.Owner.DeveloperGold.equals("E") ) {
-				if(!ImplementationsGold.contains("N") && !ImplementationsGold.contains("E")  &&  ImplementationsGold.contains("T") && !ImplementationsGold.isEmpty()) {
+				if(ImplementationsGold.AllTs()) {
 					methodtrace.Method.Owner.setDeveloperGold("T");
-				}else if(!InterfacesGold.contains("N") && !InterfacesGold.contains("E")  &&  InterfacesGold.contains("T") && !InterfacesGold.isEmpty()) {
-					methodtrace.Method.Owner.setDeveloperGold("T");
-
-				}else if(!ParentsGold.contains("N") && !ParentsGold.contains("E")  &&  ParentsGold.contains("T") && !ParentsGold.isEmpty()) {
+				}else if(InterfacesGold.AllTs()) {
 					methodtrace.Method.Owner.setDeveloperGold("T");
 
-				}else if(!ChilrenGold.contains("N") && !ChilrenGold.contains("E")  &&  ChilrenGold.contains("T") && !ChilrenGold.isEmpty()) {
+				}else if(ParentsGold.AllTs()) {
+					methodtrace.Method.Owner.setDeveloperGold("T");
+
+				}else if(ChilrenGold.AllTs()) {
 					methodtrace.Method.Owner.setDeveloperGold("T");
 
 				}
 				
 				
-				 if(!ImplementationsGold.contains("T") && !ImplementationsGold.contains("E") && ImplementationsGold.contains("N") && !ImplementationsGold.isEmpty()) {
+				 if(ImplementationsGold.AllNs()) {
 					methodtrace.Method.Owner.setDeveloperGold("N");
-				}else if(!InterfacesGold.contains("T") && !InterfacesGold.contains("E")&& InterfacesGold.contains("N") && !InterfacesGold.isEmpty()) {
-					methodtrace.Method.Owner.setDeveloperGold("N");
-
-				}else if(!ParentsGold.contains("T") && !ParentsGold.contains("E")&& ParentsGold.contains("N") &&  !ParentsGold.isEmpty()) {
+				}else if(InterfacesGold.AllNs()) {
 					methodtrace.Method.Owner.setDeveloperGold("N");
 
-				}else if(!ChilrenGold.contains("T") && !ChilrenGold.contains("E")&&  !ChilrenGold.contains("N") && !ChilrenGold.isEmpty()) {
+				}else if(ParentsGold.AllNs()) {
+					methodtrace.Method.Owner.setDeveloperGold("N");
+
+				}else if(ChilrenGold.AllNs()) {
 					methodtrace.Method.Owner.setDeveloperGold("N");
 
 				}
 			}
 			
 		}
-		return requirementClassHashMapNewValues;
 	}
 	
 	

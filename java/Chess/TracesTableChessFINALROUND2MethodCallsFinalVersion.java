@@ -57,7 +57,7 @@ import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
@@ -105,7 +105,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new LinkedHashMap<String, ClassTrace2>();
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassgold2 = new LinkedHashMap<String, ClassTrace2>();
 
-	LinkedHashMap<String, Method2Details> linkedmethodhashmap = new LinkedHashMap<String, Method2Details>();
+	LinkedHashMap<String, MethodDetails> linkedmethodhashmap = new LinkedHashMap<String, MethodDetails>();
 	HashMap<String, Interface2> InterfacesHashMap = new HashMap<String, Interface2>();
 	HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = new HashMap<String, Interface2>();
 	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMap = new HashMap<String, List<Interface2>>();
@@ -125,7 +125,7 @@ public class TracesTableChessFINALROUND2MethodCallsFinalVersion extends JFrame {
 	
 	
 	JTable table = new JTable();
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	// File fout = new
 	// File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 

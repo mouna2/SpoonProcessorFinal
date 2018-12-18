@@ -13,7 +13,7 @@ import mypackage.ClassDetails2;
 import mypackage.Clazz;
 import mypackage.DatabaseReading2;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodCalls;
 import mypackage.MethodField2;
@@ -96,7 +96,7 @@ public class MethodTrace {
 	List<Method> calleesListExecuted= new ArrayList<Method>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapOwner= new HashMap<String, List<Interface2>>(); 
 	HashMap<String, List<Interface2>> InterfaceHashMapInterface= new HashMap<String, List<Interface2>>(); 
-	HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
+	HashMap<String, MethodDetails> MethodHashMap= new HashMap<String, MethodDetails>(); 
 	HashMap<String, Clazz> ClassHashMap= new HashMap<String, Clazz>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
 	HashMap<String, List<Parameter2>> ParameterHashMap= new HashMap<String, List<Parameter2>>(); 
@@ -986,7 +986,7 @@ public class MethodTrace {
 		
 		
 	}
-	public HashMap<String, Method2Details> CreateMethodHashMap(Connection conn) throws SQLException {
+	public HashMap<String, MethodDetails> CreateMethodHashMap(Connection conn) throws SQLException {
 		Statement st = conn.createStatement();
 		int index=1; 
 		
@@ -1013,7 +1013,7 @@ public class MethodTrace {
 			 
 			 methodrep.setMethodid(methodid);
 			 methodrep.setMethodname(methodname);
-			 Method2Details methdetails = new Method2Details(); 
+			 MethodDetails methdetails = new MethodDetails(); 
 			 methdetails.setOwnerClass(classrep);
 			 methdetails.setMethodrep(methodrep);
 			 
@@ -1180,7 +1180,7 @@ if(myinterfacelist!=null) {
 					 Method meth= new Method(); 	
 					 meth.setMethodid(mycallee.Callee.ID);
 					 meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+					MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 					 meth.setClassrep(val.OwnerClass);
 					 mycalleelistrep.add(meth); 
 				 }
@@ -1195,7 +1195,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycallerlistrep.add(meth); 
 					 }
@@ -1213,7 +1213,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						if(val!=null) {
 							 meth.setClassrep(val.OwnerClass);
 							 mycallerlistrepexecuted.add(meth); 
@@ -1233,7 +1233,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycallee.Callee.ID);
 						 meth.setMethodname(mycallee.Callee.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycalleelistrepexecuted.add(meth); 
 					 }
@@ -1390,7 +1390,7 @@ if(myinterfacelist!=null) {
 					 Method meth= new Method(); 	
 					 meth.setMethodid(mycallee.Callee.ID);
 					 meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+					MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 					 meth.setClassrep(val.OwnerClass);
 					 mycalleelistrep.add(meth); 
 				 }
@@ -1405,7 +1405,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycallerlistrep.add(meth); 
 					 }
@@ -1423,7 +1423,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycallerlistrepexecuted.add(meth); 
 					 }
@@ -1440,7 +1440,7 @@ if(myinterfacelist!=null) {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycallee.Callee.ID);
 						 meth.setMethodname(mycallee.Callee.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycalleelistrepexecuted.add(meth); 
 					 }

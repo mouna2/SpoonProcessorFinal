@@ -28,7 +28,7 @@ import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.Implementation2;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
@@ -45,9 +45,9 @@ public class DatabaseReading2itrustfinal {
 	public static List<MethodTrace> methodtraces2SubjectTSubjectN = null;
 	public static List<ClassTrace2> classestraces2 = null;
 	public static List<Interface2> interfaces2 = null;
-	public static List<Method2Details> methodlist = null;
+	public static List<MethodDetails> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
-	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
+	public static LinkedHashMap<String, MethodDetails> linkedmethodhashmap=null; 
 	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
 	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
@@ -120,19 +120,19 @@ public class DatabaseReading2itrustfinal {
 		DatabaseReading2itrustfinal.methodtracehashmap = methodtracehashmap;
 	}
 
-	public static List<Method2Details> getMethodlist() {
+	public static List<MethodDetails> getMethodlist() {
 		return methodlist;
 	}
 
-	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
+	public static LinkedHashMap<String, MethodDetails> getLinkedmethodhashmap() {
 		return linkedmethodhashmap;
 	}
 
-	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
+	public static void setLinkedmethodhashmap(LinkedHashMap<String, MethodDetails> linkedmethodhashmap) {
 		DatabaseReading2itrustfinal.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
-	public static void setMethodlist(List<Method2Details> methodlist) {
+	public static void setMethodlist(List<MethodDetails> methodlist) {
 		DatabaseReading2itrustfinal.methodlist = methodlist;
 	}
 
@@ -220,14 +220,14 @@ public class DatabaseReading2itrustfinal {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		Method2Details methoddet2 = new Method2Details();
-		HashMap<String, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
+		MethodDetails methoddet2 = new MethodDetails();
+		HashMap<String, MethodDetails> methodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+		List<MethodDetails> methodlist = new ArrayList<MethodDetails>(methodhashmap.values());
 		setMethodlist(methodlist);
 		
 ///////////////////////////////////////////////////////////////////////////////////////
- LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+ LinkedHashMap<String, MethodDetails> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+List<MethodDetails> methodlistlinked = new ArrayList<MethodDetails>(linkedmethodhashmap.values());
 setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassDetails2 classdet2 = new ClassDetails2();

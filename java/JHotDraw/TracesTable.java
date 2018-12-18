@@ -41,7 +41,7 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.RequirementGold;
@@ -122,7 +122,7 @@ public class TracesTable extends JFrame {
 	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	JTable table = new JTable(); 
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\JHotDrawFiles\\TableLog.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
 	
@@ -229,7 +229,7 @@ public class TracesTable extends JFrame {
 			int ClassCountCaller = 0;
 			for (Method caller : methodtrace.getCallersList()) {
 
-				for (Method2Details meth : methodlist) {
+				for (MethodDetails meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(caller.getMethodid()) && count == 0) {
 						classID = meth.getOwnerClass().ID;
 						ClassCountCaller++;
@@ -245,7 +245,7 @@ public class TracesTable extends JFrame {
 
 			for (Method caller : methodtrace.getCallersListExecuted()) {
 
-				for (Method2Details meth : methodlist) {
+				for (MethodDetails meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(caller.getMethodid()) && count == 0) {
 						classID = meth.getOwnerClass().ID;
 						ClassCountCaller++;
@@ -263,7 +263,7 @@ public class TracesTable extends JFrame {
 			int ClassCountCallee = 0;
 			for (Method callee : methodtrace.getCalleesList()) {
 
-				for (Method2Details meth : methodlist) {
+				for (MethodDetails meth : methodlist) {
 					if (meth.getMethodrep().getMethodid().equals(callee.getMethodid()) && count == 0) {
 						classID = meth.getOwnerClass().ID;
 						ClassCountCallee++;

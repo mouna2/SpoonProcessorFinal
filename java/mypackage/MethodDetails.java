@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class Method2Details {
+public class MethodDetails {
 	public Method methodrep; 
 	public Clazz OwnerClass; 
 	public List<Method> callersList= new ArrayList<Method>(); 
@@ -27,8 +27,8 @@ public class Method2Details {
 	HashMap<String, List<Parameter2>> ParameterHashMap= new HashMap<String, List<Parameter2>>(); 
 	HashMap<String, List<MethodField2>> MethodFieldsHashMap= new HashMap<String, List<MethodField2>>(); 
 	HashMap<String, List<MethodTrace2>> MethodTrace2HashMap= new HashMap<String, List<MethodTrace2>>(); 
-	HashMap<Integer, Method2Details> MethodDetailsHashMap= new HashMap<Integer, Method2Details>(); 
-	LinkedHashMap<String, Method2Details> MethodDetailsLinkedHashMap= new LinkedHashMap<String, Method2Details>(); 
+	HashMap<Integer, MethodDetails> MethodDetailsHashMap= new HashMap<Integer, MethodDetails>(); 
+	LinkedHashMap<String, MethodDetails> MethodDetailsLinkedHashMap= new LinkedHashMap<String, MethodDetails>(); 
 	MethodTraceOld methodtraceold= new MethodTraceOld(); 
 	public List<Method> getCallersListExecuted() {
 		return callersListExecuted;
@@ -85,7 +85,7 @@ public class Method2Details {
 	public void setMethodtraces(HashMap<String, MethodTrace2> methodtraces) {
 		this.methodtraces = methodtraces;
 	}
-	public Method2Details(Method methodrep, Clazz ownerClass,
+	public MethodDetails(Method methodrep, Clazz ownerClass,
 			List<Method> callers, List<Method> callees, List<Parameter2> parameters,
 			List<MethodField2> methodfields, HashMap<String, MethodTrace2> methodtraces) {
 		super();
@@ -99,11 +99,11 @@ public class Method2Details {
 	} 
 	
 	
-	public Method2Details(Method methodrep, Clazz ownerClass,
+	public MethodDetails(Method methodrep, Clazz ownerClass,
 			List<Method> callersList, List<Method> calleesList,
 			List<Method> callersListExecuted, List<Method> calleesListExecuted,
 			List<Parameter2> parametersList, List<MethodField2> methodfieldsList,
-			HashMap<String, MethodTrace2> methodtraces, HashMap<Integer, Method2Details> methodDetailsHashMap) {
+			HashMap<String, MethodTrace2> methodtraces, HashMap<Integer, MethodDetails> methodDetailsHashMap) {
 		super();
 		this.methodrep = methodrep;
 		OwnerClass = ownerClass;
@@ -116,7 +116,7 @@ public class Method2Details {
 		this.methodtraces = methodtraces;
 		MethodDetailsHashMap = methodDetailsHashMap;
 	}
-	public Method2Details() {
+	public MethodDetails() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -141,7 +141,7 @@ public class Method2Details {
 	
 	
 	
-	public  LinkedHashMap<String, Method2Details> ReadClassesRepresentations2(Connection conn) throws SQLException {
+	public  LinkedHashMap<String, MethodDetails> ReadClassesRepresentations2(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 //		MethodCallsEXECHashMapCallee=methodtraceold.CreateMethodCallsHashMapCalleeEXEC(conn); 
@@ -150,13 +150,13 @@ public class Method2Details {
 //		MethodTrace2HashMap=methodtraceold.CreateClassTraceHashMap(conn); 
 //
 //		MethodCallsEXECHashMapCaller=methodtraceold.CreateMethodCallsHashMapCallerEXEC(conn); 
-		HashMap<String, Method2Details> MethodHashMap= new HashMap<String, Method2Details>(); 
+		HashMap<String, MethodDetails> MethodHashMap= new HashMap<String, MethodDetails>(); 
 
 		MethodHashMap=methodtraceold.CreateMethodHashMap(conn); 
 //		MethodCallsHashMapCaller=methodtraceold.CreateMethodCallsHashMapCaller(conn); 
 //		MethodCallsHashMapCallee=methodtraceold.CreateMethodCallsHashMapCallee(conn); 
 		DatabaseReading2 db = new DatabaseReading2(); 
-		Method2Details methoddet2= new Method2Details(); 
+		MethodDetails methoddet2= new MethodDetails(); 
 		HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
 		//CLASSESHASHMAP
 		String rowcount = null; 
@@ -176,7 +176,7 @@ public class Method2Details {
 		 ResultSet myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
 		 System.out.println(index);
 		 while(myresults.next() ) {
-			 	methoddet2= new Method2Details(); 
+			 	methoddet2= new MethodDetails(); 
 			     String id = myresults.getString("id"); 			
 				 String methodname = myresults.getString("methodname"); 
 				
@@ -201,7 +201,7 @@ public class Method2Details {
 					 Method meth= new Method(); 	
 					 meth.setMethodid(mycallee.Callee.ID);
 					 meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+					MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 					 meth.setClassrep(val.OwnerClass);
 					 mycalleelistrep.add(meth); 
 				 }
@@ -216,7 +216,7 @@ public class Method2Details {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycallerlistrep.add(meth); 
 					 }
@@ -234,7 +234,7 @@ public class Method2Details {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycaller.Caller.ID);
 						 meth.setMethodname(mycaller.Caller.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						if(val!=null) {
 							meth.setClassrep(val.OwnerClass);
 							 mycallerlistrepexecuted.add(meth); 
@@ -254,7 +254,7 @@ public class Method2Details {
 						 Method meth= new Method(); 	
 						 meth.setMethodid(mycallee.Callee.ID);
 						 meth.setMethodname(mycallee.Callee.methodname);
-						Method2Details val = MethodHashMap.get(meth.getMethodid()); 
+						MethodDetails val = MethodHashMap.get(meth.getMethodid()); 
 						 meth.setClassrep(val.OwnerClass);
 						 mycalleelistrepexecuted.add(meth); 
 					 }
@@ -396,11 +396,11 @@ public class Method2Details {
 	
 	
 	
-	public  HashMap<Integer, Method2Details> ReadClassesRepresentations(Connection conn) throws SQLException {
+	public  HashMap<Integer, MethodDetails> ReadClassesRepresentations(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
-		Method2Details methoddet2= new Method2Details(); 
+		MethodDetails methoddet2= new MethodDetails(); 
 		HashMap<String, MethodTrace2> methodtraces= new HashMap <String, MethodTrace2>();
 		//CLASSESHASHMAP
 		String rowcount = null; 
@@ -417,7 +417,7 @@ public class Method2Details {
 		
 		 ResultSet myresults = st.executeQuery("SELECT methods.* from methods where id='"+ index +"'"); 
 		 while(myresults.next() ) {
-			 	methoddet2= new Method2Details(); 
+			 	methoddet2= new MethodDetails(); 
 			     String id = myresults.getString("id"); 			
 				 String methodname = myresults.getString("methodname"); 
 				

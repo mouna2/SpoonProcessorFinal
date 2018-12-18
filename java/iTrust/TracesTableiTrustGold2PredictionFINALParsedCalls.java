@@ -45,7 +45,7 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceOld;
@@ -214,7 +214,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
-	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
+	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
 	//File fout = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\src\\main\\java\\GanttFiles\\TableLog.txt");
 	File fout = new File("C:\\Users\\mouna\\ownCloud\\Share\\logs\\logsParsed\\TableLogiTrustPARSED.txt");
 	FileOutputStream fos = new FileOutputStream(fout);
@@ -361,7 +361,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 			// data[j][CallerPrediction]= methodtrace.goldpredictionCallee;
 			String reqclass= data[j][RequirementID].toString()+"-"+ data[j][ClassID].toString(); 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass); 
-			LinkedHashMap<String, Method2Details> linkedmethodhashmap= new LinkedHashMap<String, Method2Details>(); 
+			LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
 			 linkedmethodhashmap = db.getLinkedmethodhashmap(); 
 			/*for (ClassTrace2 classtrace : classtraces2) {
 				System.out.println("METHOD TRACE CLASS REPRESENTATION CLASS ID "+methodtrace.ClassRepresentation.classid);
@@ -500,7 +500,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls extends JFrame {
 				int counterParameterE=0; 
 				 myparameters = new String[methodtraces2.size()];
 				 String ParametersAppended=""; 
-				Method2Details mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
+				MethodDetails mymethodobje = linkedmethodhashmap.get(methodtrace.MethodRepresentation.ID); 
 				for ( Parameter2 myparam : mymethodobje.getParameters()) {
 					myparameters[myparametercount] = myparam.toString(); 
 					

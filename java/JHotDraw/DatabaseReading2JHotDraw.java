@@ -28,7 +28,7 @@ import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
 import mypackage.Interface2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
@@ -45,9 +45,9 @@ public class DatabaseReading2JHotDraw {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
-	public static List<Method2Details> methodlist = null;
+	public static List<MethodDetails> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
-	public static LinkedHashMap<String, Method2Details> linkedmethodhashmap=null; 
+	public static LinkedHashMap<String, MethodDetails> linkedmethodhashmap=null; 
 	public static HashMap<String, Interface2> interfacehashmap=null; 
 	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
@@ -81,25 +81,25 @@ public class DatabaseReading2JHotDraw {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
-	public static List<Method2Details> getMethodlist() {
+	public static List<MethodDetails> getMethodlist() {
 		return methodlist;
 	}
 
 
 
-	public static LinkedHashMap<String, Method2Details> getLinkedmethodhashmap() {
+	public static LinkedHashMap<String, MethodDetails> getLinkedmethodhashmap() {
 		return linkedmethodhashmap;
 	}
 
 
 
-	public static void setLinkedmethodhashmap(LinkedHashMap<String, Method2Details> linkedmethodhashmap) {
+	public static void setLinkedmethodhashmap(LinkedHashMap<String, MethodDetails> linkedmethodhashmap) {
 		DatabaseReading2JHotDraw.linkedmethodhashmap = linkedmethodhashmap;
 	}
 
 
 
-	public static void setMethodlist(List<Method2Details> methodlist) {
+	public static void setMethodlist(List<MethodDetails> methodlist) {
 		DatabaseReading2JHotDraw.methodlist = methodlist;
 	}
 
@@ -202,7 +202,7 @@ public class DatabaseReading2JHotDraw {
 		List<ClassTrace2> classtraces = new ArrayList<ClassTrace2>(classtracehashmap.values());*/
 		System.out.println("***************0");
 
-		Method2Details methoddet2 = new Method2Details();
+		MethodDetails methoddet2 = new MethodDetails();
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		MethodTraceSubjectTSubjectNOriginal methodtrace2 = new MethodTraceSubjectTSubjectNOriginal();
@@ -216,8 +216,8 @@ public class DatabaseReading2JHotDraw {
 		List<ClassTrace2> classestraces = new ArrayList<ClassTrace2>(classestraceshashmap.values());
 		setClassestraces2(classestraces);*/
 		///////////////////////////////////////////////////////////////////////////////////////
-		LinkedHashMap<String, Method2Details> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
-		List<Method2Details> methodlistlinked = new ArrayList<Method2Details>(linkedmethodhashmap.values());
+		LinkedHashMap<String, MethodDetails> linkedmethodhashmap = methoddet2.ReadClassesRepresentations2(conn);
+		List<MethodDetails> methodlistlinked = new ArrayList<MethodDetails>(linkedmethodhashmap.values());
 		setLinkedmethodhashmap(linkedmethodhashmap);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassTrace2 classtrace2= new ClassTrace2(); 

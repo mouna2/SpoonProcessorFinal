@@ -13,7 +13,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import ALGO.MethodList;
 import ALGO.PredictionValues;
+import mypackage.ClassTrace2;
+import mypackage.Method;
 import mypackage.MethodTrace;
 
 public class LogInfo {
@@ -363,8 +366,7 @@ public class LogInfo {
 				if (methodTrace.getGoldfinal() != null && methodTrace.getPrediction() != null 
 						&& methodTraceHashMap.get(mykey).isSubjectDeveloperEqualityFlag()
 						&& !methodTrace.isTraceSet() ) {
-					String Result = Pattern.ComparePredictionToGold(methodTrace.getGoldfinal().trim(),
-							methodTrace.getPrediction().trim());
+					String Result = Pattern.ComparePredictionToGold(methodTrace.getGoldfinal().trim(),methodTrace.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {
 						methodTrace.setTraceSet(true);
@@ -534,5 +536,6 @@ public class LogInfo {
 		LogInfo.bwfile1.close(); 
 	}
 
-	
+
+
 }

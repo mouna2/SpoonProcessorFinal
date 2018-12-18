@@ -16,7 +16,7 @@ import mypackage.ClassTrace2;
 import mypackage.Implementation2;
 import mypackage.Interface2;
 import mypackage.Method;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.MethodField2;
 import mypackage.MethodTrace;
 import mypackage.MethodTrace2;

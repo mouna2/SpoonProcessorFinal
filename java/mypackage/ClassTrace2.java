@@ -255,8 +255,8 @@ public class ClassTrace2 {
 					+ ", classtraceHashMapRequirementClass=" + classtraceHashMapRequirementClass + "]";
 		}
 
-		public Method2Details FindTraceLinkedMethodHashMap(LinkedHashMap<String, Method2Details> linkedmethodhashmap, String ClassID, String RequirementID) {
-				Method2Details mymethod = linkedmethodhashmap.get(RequirementID+"-"+ClassID); 
+		public MethodDetails FindTraceLinkedMethodHashMap(LinkedHashMap<String, MethodDetails> linkedmethodhashmap, String ClassID, String RequirementID) {
+				MethodDetails mymethod = linkedmethodhashmap.get(RequirementID+"-"+ClassID); 
 				return mymethod;
 		}
 		

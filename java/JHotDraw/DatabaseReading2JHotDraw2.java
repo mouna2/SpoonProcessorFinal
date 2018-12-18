@@ -25,7 +25,7 @@ import Tables.tracesmethodscallees;
 import mainPackage.ClassRepresentation;
 import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
-import mypackage.Method2Details;
+import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.MethodTraceSubjectTSubjectN;
@@ -40,15 +40,15 @@ public class DatabaseReading2JHotDraw2 {
 	public static HashMap<Integer, String> classesHashMap = new HashMap<Integer, String>();
 	public static List<MethodTrace> methodtraces2 = null;
 	public static List<ClassTrace2> classestraces2 = null;
-	public static List<Method2Details> methodlist = null;
+	public static List<MethodDetails> methodlist = null;
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 
-	public static List<Method2Details> getMethodlist() {
+	public static List<MethodDetails> getMethodlist() {
 		return methodlist;
 	}
 
-	public static void setMethodlist(List<Method2Details> methodlist) {
+	public static void setMethodlist(List<MethodDetails> methodlist) {
 		DatabaseReading2JHotDraw2.methodlist = methodlist;
 	}
 
@@ -136,9 +136,9 @@ public class DatabaseReading2JHotDraw2 {
 					+ RequirementHashMap.get(key).RequirementName + "   ");
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
-		Method2Details methoddet2 = new Method2Details();
-		HashMap<Integer, Method2Details> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
-		List<Method2Details> methodlist = new ArrayList<Method2Details>(methodhashmap.values());
+		MethodDetails methoddet2 = new MethodDetails();
+		HashMap<Integer, MethodDetails> methodhashmap = methoddet2.ReadClassesRepresentations(conn);
+		List<MethodDetails> methodlist = new ArrayList<MethodDetails>(methodhashmap.values());
 		setMethodlist(methodlist);
 		///////////////////////////////////////////////////////////////////////////////////////
 		ClassDetails2 classdet2 = new ClassDetails2();

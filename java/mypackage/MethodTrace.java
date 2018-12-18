@@ -153,8 +153,8 @@ public class MethodTrace {
 	HashMap<String, List<SuperClass2>> SuperClassHashMap= new HashMap<String, List<SuperClass2> >(); 
 	HashMap<String, List<SuperClass2>> ChildrenHashMap= new HashMap<String, List<SuperClass2>>(); 
 
-	HashMap<String, Method2Details> MethodHashMap = new HashMap<String, Method2Details>();
-	HashMap<String, HashMap<String, Method2Details>> MethodHashMapNameKey = new HashMap<String,HashMap<String, Method2Details>>();
+	HashMap<String, MethodDetails> MethodHashMap = new HashMap<String, MethodDetails>();
+	HashMap<String, HashMap<String, MethodDetails>> MethodHashMapNameKey = new HashMap<String,HashMap<String, MethodDetails>>();
 
 	HashMap<String, Clazz> ClassHashMap = new HashMap<String, Clazz>();
 	HashMap<String, Clazz> classTraceHashMap = new HashMap<String, Clazz>();
@@ -916,7 +916,7 @@ public class MethodTrace {
 
 	
 
-	public HashMap<String, Method2Details> CreateMethodHashMap(Connection conn) throws SQLException {
+	public HashMap<String, MethodDetails> CreateMethodHashMap(Connection conn) throws SQLException {
 		Statement st = conn.createStatement();
 		int index = 1;
 		List<String> MethodIDs= new ArrayList<String>(); 
@@ -939,17 +939,17 @@ public class MethodTrace {
 
 			methodrep.setMethodid(methodid);
 			methodrep.setMethodname(methodname);
-			Method2Details methdetails = new Method2Details();
+			MethodDetails methdetails = new MethodDetails();
 			methdetails.setOwnerClass(classrep);
 			methdetails.setMethodrep(methodrep);
 
 			MethodHashMap.put(key, methdetails);
-			HashMap<String, Method2Details> methdetailsList;
+			HashMap<String, MethodDetails> methdetailsList;
 			if(MethodHashMapNameKey.get(methodrep.getMethodname())!=null) {
 				methdetailsList = MethodHashMapNameKey.get(methodrep.getMethodname()); 
 			}else {
 				
-				methdetailsList= new HashMap<String, Method2Details> (); 
+				methdetailsList= new HashMap<String, MethodDetails> (); 
 			}
 			methdetailsList.put(methdetails.getOwnerClass().ID, methdetails); 
 			MethodHashMapNameKey.put(methodrep.getMethodname(), methdetailsList); 
@@ -1063,17 +1063,17 @@ public class MethodTrace {
 			classrep.setClassid(myresults.getString("classid"));
 			classrep.setClassname(myresults.getString("classname"));
 
-			Method method = new Method();
-			method.setMethodid(myresults.getString("methodid"));
-			method.setMethodname(myresults.getString("method"));
-			method.setMethodname(myresults.getString("methodname"));
-			method.setFullmethodname(myresults.getString("fullmethod"));
+			Method methodrep = new Method();
+			methodrep.setMethodid(myresults.getString("methodid"));
+			methodrep.setMethodname(myresults.getString("method"));
+			methodrep.setMethodname(myresults.getString("methodname"));
+			methodrep.setFullmethodname(myresults.getString("fullmethod"));
 //			System.out.println(requirement.ID.trim()+"-"+classrep.ID.trim());
 			
 			Clazz OwnerClass = classTraceHashMap.get(requirement.ID.trim()+"-"+classrep.ID.trim()); 
 //			System.out.println(OwnerClass.DeveloperGold);
-			method.setOwner(OwnerClass);
-			mytrace.setMethod(method);
+			methodrep.setOwner(OwnerClass);
+			mytrace.setMethod(methodrep);
 
 			mytrace.setClassRepresentation(classrep);
 			if (classMethodsHashMap.get(mytrace.getClassRepresentation().ID) != null) {
@@ -1167,9 +1167,9 @@ public class MethodTrace {
 			MethodList methodrepinterfaces= new MethodList(); 
 			for(Clazz myinterface: interfaces) {
 				//the classes to which this methodname belongs 
-				 HashMap<String, Method2Details> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
+				 HashMap<String, MethodDetails> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
 				if(CorrespondingClasses!=null) {
-					Method2Details methodDetails = CorrespondingClasses.get(myinterface.ID); 
+					MethodDetails methodDetails = CorrespondingClasses.get(myinterface.ID); 
 					if(CorrespondingClasses.get(myinterface.ID)!=null) {
 						Method m = new Method(); 
 						m.setMethodid(methodDetails.methodrep.ID); 
@@ -1181,9 +1181,9 @@ public class MethodTrace {
 			
 			MethodList methodrepImplementations= new MethodList(); 
 			for(Clazz myimplementation: implementations) {
-				 HashMap<String, Method2Details> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
+				 HashMap<String, MethodDetails> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
 				if(CorrespondingClasses!=null) {
-					Method2Details methodDetails = CorrespondingClasses.get(myimplementation.ID); 
+					MethodDetails methodDetails = CorrespondingClasses.get(myimplementation.ID); 
 					if(CorrespondingClasses.get(myimplementation.ID)!=null) {
 						Method m = new Method(); 
 						m.setMethodid(methodDetails.methodrep.ID); 
@@ -1199,9 +1199,9 @@ public class MethodTrace {
 			MethodList methodrepsuperclasses= new MethodList(); 
 			for(Clazz mysuperclass: superclasses) {
 				//the classes to which this methodname belongs 
-				 HashMap<String, Method2Details> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
+				 HashMap<String, MethodDetails> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
 				if(CorrespondingClasses!=null) {
-					Method2Details methodDetails = CorrespondingClasses.get(mysuperclass.ID); 
+					MethodDetails methodDetails = CorrespondingClasses.get(mysuperclass.ID); 
 					if(CorrespondingClasses.get(mysuperclass.ID)!=null) {
 						Method m = new Method(); 
 						m.setMethodid(methodDetails.methodrep.ID); 
@@ -1214,9 +1214,9 @@ public class MethodTrace {
 			MethodList methodrepChildren= new MethodList(); 
 			for(Clazz child: children) {
 				//the classes to which this methodname belongs 
-				 HashMap<String, Method2Details> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
+				 HashMap<String, MethodDetails> CorrespondingClasses = MethodHashMapNameKey.get(mytrace.Method.methodname); 
 				if(CorrespondingClasses!=null) {
-					Method2Details methodDetails = CorrespondingClasses.get(child.ID); 
+					MethodDetails methodDetails = CorrespondingClasses.get(child.ID); 
 					if(CorrespondingClasses.get(child.ID)!=null) {
 						Method m = new Method(); 
 						m.setOwner(child);
@@ -1228,11 +1228,11 @@ public class MethodTrace {
 			
 			
 		
-			method.setImplementations(methodrepImplementations);
-			method.setInterfaces(methodrepinterfaces); 
-			method.setChildren(methodrepChildren);
-			method.setSuperclasses(methodrepsuperclasses);
-			mytrace.setMethod(method);
+			methodrep.setImplementations(methodrepImplementations);
+			methodrep.setInterfaces(methodrepinterfaces); 
+			methodrep.setChildren(methodrepChildren);
+			methodrep.setSuperclasses(methodrepsuperclasses);
+			mytrace.setMethod(methodrep);
 			
 			
 			
@@ -1259,13 +1259,13 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycallee.Callee.ID);
 					meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycalleelistrep.add(meth);
 				}
 
 				mytrace.setCalleesList(mycalleelistrep);
-				method.setCallees(mycalleelistrep);
+				methodrep.setCallees(mycalleelistrep);
 			}
 
 			List<MethodCalls> mycallerlist = MethodCallsHashMapCaller.get(id);
@@ -1275,15 +1275,15 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycaller.Caller.ID);
 					meth.setMethodname(mycaller.Caller.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycallerlistrep.add(meth);
 				}
 				mytrace.setCallersList(mycallerlistrep);
-				method.setCallers(mycallerlistrep);
+				methodrep.setCallers(mycallerlistrep);
 			}
 
-			mytrace.setMethod(method);
+			mytrace.setMethod(methodrep);
 
 			
 
@@ -1390,7 +1390,7 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycallee.Callee.ID);
 					meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycalleelistrep.add(meth);
 				}
@@ -1405,7 +1405,7 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycaller.Caller.ID);
 					meth.setMethodname(mycaller.Caller.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycallerlistrep.add(meth);
 				}
@@ -1419,7 +1419,7 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycaller.Caller.ID);
 					meth.setMethodname(mycaller.Caller.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycallerlistrepexecuted.add(meth);
 				}
@@ -1433,7 +1433,7 @@ public class MethodTrace {
 					Method meth = new Method();
 					meth.setMethodid(mycallee.Callee.ID);
 					meth.setMethodname(mycallee.Callee.methodname);
-					Method2Details val = MethodHashMap.get(meth.getMethodid());
+					MethodDetails val = MethodHashMap.get(meth.getMethodid());
 					meth.setClassrep(val.OwnerClass);
 					mycalleelistrepexecuted.add(meth);
 				}
