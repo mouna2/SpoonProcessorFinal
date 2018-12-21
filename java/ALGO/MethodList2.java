@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import mypackage.*;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.*;
 public class MethodList2 extends ArrayList<Method>{
 
@@ -56,7 +56,7 @@ public class MethodList2 extends ArrayList<Method>{
 		return false;
 	}
 	
-	public boolean AtLeast1T(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AtLeast1T(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 //		for (Method2Representation callee : this) {
@@ -102,7 +102,7 @@ public class MethodList2 extends ArrayList<Method>{
 		}
 		return false;
 	}
-	public boolean AtLeast1N(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement, List<Method> calls) {
+	public boolean AtLeast1N(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 //		for (Method2Representation callee : this) {
@@ -174,7 +174,7 @@ public class MethodList2 extends ArrayList<Method>{
 	}
 	
 	
-	public boolean AllNs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllNs(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 //		for (Method2Representation callee : this) {
@@ -216,7 +216,7 @@ public class MethodList2 extends ArrayList<Method>{
 	}
 	
 	
-	public boolean AllCallersN(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCallersN(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -241,7 +241,7 @@ public class MethodList2 extends ArrayList<Method>{
 	
 	
 	
-	public boolean AllCalleesT(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCalleesT(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -265,7 +265,7 @@ public class MethodList2 extends ArrayList<Method>{
 	}
 	
 	
-	public boolean AllTs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllTs(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 //		for (Method2Representation callee : this) {
@@ -320,7 +320,7 @@ public class MethodList2 extends ArrayList<Method>{
 
 
 
-	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
+	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, DatabaseInput methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
@@ -339,7 +339,7 @@ public class MethodList2 extends ArrayList<Method>{
 	
 	
 	
-	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
+	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, DatabaseInput methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")

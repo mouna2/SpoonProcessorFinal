@@ -10,19 +10,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ClassTrace2 {
-	String ID; 
-		Requirement2 requirement; 
-		Clazz myclass; 
+	public String ID; 
+	public	Requirement requirement; 
+		public	Clazz myclass; 
 		String trace; 
 		String trace2; 
 		String traceFinal; 
 		String trace3; 
 		String trace4; 
 		String trace5; 
-		String goldFinal; 
+		public String DeveloperGold; 
 		String trace6; 
 		String subject;
-		String SubjectGold; 
+		public String SubjectGold; 
 		
 		
 		
@@ -30,11 +30,11 @@ public class ClassTrace2 {
 
 	
 		public String getGoldfinal() {
-			return goldFinal;
+			return DeveloperGold;
 		}
 
 		public void setGoldFinal(String goldFinal) {
-			this.goldFinal = goldFinal;
+			this.DeveloperGold = goldFinal;
 		}
 
 		public String getTraceFinal() {
@@ -96,7 +96,7 @@ public class ClassTrace2 {
 		HashMap<Integer, ClassTrace2> classtraceHashMap= new HashMap<Integer, ClassTrace2> (); 
 		LinkedHashMap<String, ClassTrace2> classtraceHashMapRequirementClass= new LinkedHashMap<String, ClassTrace2> (); 
 		
-		public ClassTrace2(String iD, Requirement2 requirement, Clazz myclass, String trace, String subject) {
+		public ClassTrace2(String iD, Requirement requirement, Clazz myclass, String trace, String subject) {
 			super();
 			ID = iD;
 			this.requirement = requirement;
@@ -114,10 +114,10 @@ public class ClassTrace2 {
 		public void setID(String iD) {
 			ID = iD;
 		}
-		public Requirement2 getRequirement() {
+		public Requirement getRequirement() {
 			return requirement;
 		}
-		public void setRequirement(Requirement2 requirement) {
+		public void setRequirement(Requirement requirement) {
 			this.requirement = requirement;
 		}
 		public Clazz getMyclass() {
@@ -157,7 +157,7 @@ public class ClassTrace2 {
 			 ResultSet myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses where id='"+ index +"'"); 
 			 while(myresults.next()) {
 				 ClassTrace2 myclasstrace= new ClassTrace2(); 
-				 Requirement2 requirement = new Requirement2(); 
+				 Requirement requirement = new Requirement(); 
 				 requirement.setID(myresults.getString("requirementid"));
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 myclasstrace.setRequirement(requirement);
@@ -197,7 +197,7 @@ public class ClassTrace2 {
 			 ResultSet myresults = st.executeQuery("SELECT tracesclasses.* from tracesclasses "); 
 			 while(myresults.next()) {
 				 ClassTrace2 myclasstrace= new ClassTrace2(); 
-				 Requirement2 requirement = new Requirement2(); 
+				 Requirement requirement = new Requirement(); 
 				 requirement.setID(myresults.getString("requirementid"));
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 myclasstrace.setRequirement(requirement);
@@ -251,7 +251,7 @@ public class ClassTrace2 {
 		@Override
 		public String toString() {
 			return "ClassTrace2 [ID=" + ID + ", requirement=" + requirement + ", myclass=" + myclass + ", trace="
-					+ trace + ", subject=" + subject + ", classtraceHashMap=" + classtraceHashMap
+					+ trace + ", goldfinal=" + DeveloperGold + ", classtraceHashMap=" + classtraceHashMap
 					+ ", classtraceHashMapRequirementClass=" + classtraceHashMapRequirementClass + "]";
 		}
 

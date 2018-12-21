@@ -46,7 +46,7 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
@@ -54,7 +54,7 @@ import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
@@ -649,7 +649,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelPureGoldACROSS=new PredictionEvaluation();   
 	PredictionEvaluation PredictionCLASSNOTRACEClassLevelMixedGoldACROSS=new PredictionEvaluation();  
 		
-	  HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+	  HashMap<String, List<Interface>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface>>(); 
 		 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 		 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 		 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
@@ -1161,9 +1161,9 @@ public class TracesTableGantt2FINAL extends JFrame {
 			int InterfacesNMethodLevelGOLD4=0; 
 			int InterfacesTMethodLevelGOLD4=0; 
 			int InterfacesEMethodLevelGOLD4=0; 
-			List<Interface2> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID); 
+			List<Interface> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID); 
 			if(InterfacesList!=null) {
-				for(Interface2 myinter: InterfacesList) {
+				for(Interface myinter: InterfacesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.ID,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace4()!=null) {
 					if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("T")) {
@@ -1201,20 +1201,20 @@ public class TracesTableGantt2FINAL extends JFrame {
 			for(SuperClass2 superclass: SuperclassesList) {
 				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.ID,	methodtrace.Requirement.getID().trim());
 				if(myinfo!=null&& myinfo.getTrace4()!=null) {
-				if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("T")) {
+				if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("T")) {
 					SuperclassesTMethodLevelGOLD4++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("N")) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("N")) {
 					SuperclassesNMethodLevelGOLD4++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("E")) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.ID) && myinfo.getTrace4().trim().equals("E")) {
 					SuperclassesEMethodLevelGOLD4++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.ID)) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.ID)) {
 					SuperclassesEMethodLevelGOLD4++; 
 				}
 			}
-				else if(superclass.getOwnerClass().ID.equals(methodtrace.ClassRepresentation.ID)){
+				else if(superclass.getChildClass().ID.equals(methodtrace.ClassRepresentation.ID)){
 					SuperclassesEMethodLevelGOLD4++; 
 				}
 			}
@@ -1863,7 +1863,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if (methtrace.gold.trim()!=null) {
@@ -1896,7 +1896,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
 							if (methtrace.gold.trim()!=null) {
@@ -1929,7 +1929,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold3!=null) {
@@ -1959,7 +1959,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold3!=null) {
@@ -1985,7 +1985,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null ) {
@@ -2016,7 +2016,7 @@ public class TracesTableGantt2FINAL extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold4!=null ) {

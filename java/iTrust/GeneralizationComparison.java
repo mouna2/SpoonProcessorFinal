@@ -24,10 +24,10 @@ import java.util.Properties;
 
 import Tables.tracesmethodscallees;
 import mypackage.Clazz;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.Method;
 import mypackage.MethodTrace2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -68,7 +68,7 @@ public class GeneralizationComparison {
 	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
 	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
+	public static LinkedHashMap <String, List<Interface>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface>>(); 
 	public static LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 
 	static File fout = null; 
@@ -152,7 +152,7 @@ public class GeneralizationComparison {
 
 		// Create a table
 		try {
-			List<Interface2> implementationList = new ArrayList<Interface2>(); 
+			List<Interface> implementationList = new ArrayList<Interface>(); 
 			List<SuperClass2> superclassList = new ArrayList<SuperClass2>(); 
 
 			Statement st= conn.createStatement();
@@ -212,7 +212,7 @@ public class GeneralizationComparison {
 				classid=res.getString("classid"); 
 				gold2=res.getString("gold2"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
-				Requirement2 req= new Requirement2(requirementid, requirement); 
+				Requirement req= new Requirement(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
 				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);
@@ -247,7 +247,7 @@ public class GeneralizationComparison {
 				classid=res2.getString("classid"); 
 				gold2=res2.getString("gold2V2"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
-				Requirement2 req= new Requirement2(requirementid, requirement); 
+				Requirement req= new Requirement(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
 				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);

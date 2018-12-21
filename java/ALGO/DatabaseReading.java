@@ -14,14 +14,14 @@ import mypackage.ClassDetails2;
 import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.Implementation2;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.Method;
 import mypackage.MethodDetails;
 import mypackage.MethodField2;
 import mypackage.MethodTrace;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -34,7 +34,7 @@ public class DatabaseReading {
 
 	static LinkedHashMap<String, MethodTrace> methodtracehashmap = null; 
 	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
-	public static HashMap<Method, HashMap<Requirement2, String>> FinalMethodHashMapReqGolds= new HashMap<Method, HashMap<Requirement2, String>>() ; 
+	public static HashMap<Method, HashMap<Requirement, String>> FinalMethodHashMapReqGolds= new HashMap<Method, HashMap<Requirement, String>>() ; 
 	public Connection getConnection(String programName) throws SQLException {
 		Connection conn = null;
 		Properties connectionProps = new Properties();
@@ -59,8 +59,8 @@ public class DatabaseReading {
 
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
-		MethodTrace methodtrace = new MethodTrace();
-		LinkedHashMap<String, MethodTrace> methodtracehashmap = methodtrace.ReadMethodTraces(conn, ClassMethodsHashMap, FinalMethodHashMapReqGolds);
+		
+		LinkedHashMap<String, MethodTrace> methodtracehashmap = DatabaseInput.ReadMethodTraces(conn, ClassMethodsHashMap, FinalMethodHashMapReqGolds);
 		List<MethodTrace> methodtraces = new ArrayList<MethodTrace>(methodtracehashmap.values());
 		setMethodtracesList(methodtraces);
 		setMethodtracehashmap(methodtracehashmap); 
@@ -114,13 +114,13 @@ public class DatabaseReading {
 	}
 
 
-	public static HashMap<Method, HashMap<Requirement2, String>> getFinalMethodHashMapReqGolds() {
+	public static HashMap<Method, HashMap<Requirement, String>> getFinalMethodHashMapReqGolds() {
 		return FinalMethodHashMapReqGolds;
 	}
 
 
 	public static void setFinalMethodHashMapReqGolds(
-			HashMap<Method, HashMap<Requirement2, String>> finalMethodHashMapReqGolds) {
+			HashMap<Method, HashMap<Requirement, String>> finalMethodHashMapReqGolds) {
 		FinalMethodHashMapReqGolds = finalMethodHashMapReqGolds;
 	}
 

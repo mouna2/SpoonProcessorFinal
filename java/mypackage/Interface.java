@@ -13,21 +13,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Interface2 {
+public class Interface {
 	String ID; 
 	public Clazz InterfaceClass; 
 	public Clazz Implementation;
-	 HashMap<String, List<Interface2>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface2>>(); 
+	 HashMap<String, List<Interface>> ClassRepresentationHashMapOwnerClass= new HashMap<String, List<Interface>>(); 
 
-	 HashMap<String, Interface2> ClassRepresentationHashMap= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> ClassRepresentationHashMap= new HashMap<String, Interface>(); 
 	
-	public Interface2(String iD, Clazz interfaceClass, Clazz implementation) {
+	public Interface(String iD, Clazz interfaceClass, Clazz implementation) {
 		super();
 		ID = iD;
 		InterfaceClass = interfaceClass;
 		Implementation = implementation;
 	}
-	public Interface2() {
+	public Interface() {
 		// TODO Auto-generated constructor stub
 	}
 	public String getID() {
@@ -54,7 +54,7 @@ public class Interface2 {
 	}
 	 
 	
-	public  HashMap<String, List<Interface2>> ReadInterfacesRepresentations(Connection conn) throws SQLException {
+	public  HashMap<String, List<Interface>> ReadInterfacesRepresentations(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
@@ -72,7 +72,7 @@ public class Interface2 {
 		int index=1; 
 		 ResultSet myresults = st.executeQuery("SELECT interfaces.* from interfaces "); 
 		 while(myresults.next()) {
-			 	Interface2 myinterface= new Interface2();
+			 	Interface myinterface= new Interface();
 			 	Clazz InterfaceClass= new Clazz();
 			     String interfaceclassid = myresults.getString("interfaceclassid"); 			
 				 String interfacename = myresults.getString("interfacename"); 
@@ -90,11 +90,11 @@ public class Interface2 {
 				 
 				 String key=ownerclassid;
 				 if(ClassRepresentationHashMapOwnerClass.get(key)!=null) {
-					 List<Interface2> myinterfaceslist= ClassRepresentationHashMapOwnerClass.get(key); 
+					 List<Interface> myinterfaceslist= ClassRepresentationHashMapOwnerClass.get(key); 
 					 myinterfaceslist.add(myinterface); 
 					 ClassRepresentationHashMapOwnerClass.put(key, myinterfaceslist); 
 				 }else {
-					 List<Interface2> myinterfaceslist= new ArrayList<Interface2>(); 
+					 List<Interface> myinterfaceslist= new ArrayList<Interface>(); 
 					 myinterfaceslist.add(myinterface); 
 					 ClassRepresentationHashMapOwnerClass.put(key, myinterfaceslist); 
 				 }
@@ -116,7 +116,7 @@ public class Interface2 {
 	
 	
 	
-	public  HashMap<String, Interface2> ReadInterfacesRepresentationsAlreadyImpl(Connection conn) throws SQLException {
+	public  HashMap<String, Interface> ReadInterfacesRepresentationsAlreadyImpl(Connection conn) throws SQLException {
 		// Rule: if method A calls method B and method A implements requirement X, then I can just assume that method B implements requirement X as well 
 		// Retrieving the calleeid
 		DatabaseReading2 db = new DatabaseReading2(); 
@@ -134,7 +134,7 @@ public class Interface2 {
 		int index=1; 
 		 ResultSet myresults = st.executeQuery("SELECT interfaces.* from interfaces "); 
 		 while(myresults.next()) {
-			 	Interface2 myinterface= new Interface2();
+			 	Interface myinterface= new Interface();
 			 	Clazz InterfaceClass= new Clazz();
 			     String interfaceclassid = myresults.getString("interfaceclassid"); 			
 				 String interfacename = myresults.getString("interfacename"); 

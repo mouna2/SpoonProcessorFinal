@@ -43,14 +43,14 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
@@ -273,8 +273,8 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation ACHRAFGold4Trace= new PredictionEvaluation(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 		PredictionEvaluation AllNMethodLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
 		PredictionEvaluation AllTMethodLevelCallersCalleesClassGold4= new PredictionEvaluation(); 
 		PredictionEvaluation AllNClassLevelsCallersCalleesClassGold4= new PredictionEvaluation(); 
@@ -886,7 +886,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 							
 								for(Method item: CallerMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -940,7 +940,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 							
 								for(Method item: CalleeMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -985,7 +985,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CallerMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 				if (methtrace.gold.trim().equals("T")) {
@@ -1004,7 +1004,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CalleeMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if (methtrace.gold.trim().equals("T")) {
@@ -1026,7 +1026,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CallerMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold3!=null) {
@@ -1048,7 +1048,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CalleeMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold3!=null) {
@@ -1070,7 +1070,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CallerMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null) {
@@ -1090,7 +1090,7 @@ public class TracesTableGantt2FINAL_ACHRAF_AllEnteredGold4 extends JFrame {
 			for (Method mycaller: CalleeMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null) {

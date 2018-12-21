@@ -13,7 +13,7 @@ import ALGO.MethodList;
 public class MethodTraceOld {
 	
 	public Method Method; 
-	public Requirement2 Requirement; 
+	public Requirement Requirement; 
 	public Clazz ClassRepresentation; 
 	public String gold; 
 	public String subject;
@@ -29,8 +29,8 @@ public class MethodTraceOld {
 	List<Method> calleesListExecuted= new ArrayList<Method>(); 
 	
 	
-	HashMap<String, List<Interface2>> InterfaceHashMapOwner= new HashMap<String, List<Interface2>>(); 
-	HashMap<String, List<Interface2>> InterfaceHashMapInterface= new HashMap<String, List<Interface2>>(); 
+	HashMap<String, List<Interface>> InterfaceHashMapOwner= new HashMap<String, List<Interface>>(); 
+	HashMap<String, List<Interface>> InterfaceHashMapInterface= new HashMap<String, List<Interface>>(); 
 	HashMap<String, MethodDetails> MethodHashMap= new HashMap<String, MethodDetails>(); 
 	HashMap<String, Clazz> ClassHashMap= new HashMap<String, Clazz>(); 
 	HashMap<String, List<MethodCalls>> MethodCallsHashMapCaller= new HashMap<String, List<MethodCalls>>(); 
@@ -162,11 +162,11 @@ public class MethodTraceOld {
 		Method = Method;
 	}
 
-	public Requirement2 getRequirement() {
+	public Requirement getRequirement() {
 		return Requirement;
 	}
 
-	public void setRequirement(Requirement2 requirement) {
+	public void setRequirement(Requirement requirement) {
 		Requirement = requirement;
 	}
 
@@ -194,7 +194,7 @@ public class MethodTraceOld {
 		this.subject = subject;
 	}
 
-	public MethodTraceOld(Method Method, Requirement2 requirement,
+	public MethodTraceOld(Method Method, Requirement requirement,
 			Clazz classRepresentation, String gold, String subject) {
 		super();
 		Method = Method;
@@ -236,7 +236,7 @@ public class MethodTraceOld {
 //					MethodTrace.setGold3(traces.getString("gold3"));
 					//System.out.println("Method Trace Gold3: "+MethodTrace.getGold3());
 					MethodTrace.setSubject(traces.getString("subject"));
-					Requirement2 requirement= new Requirement2();
+					Requirement requirement= new Requirement();
 					requirement.setID(traces.getString("requirementid"));
 					requirement.setRequirementName(traces.getString("requirement"));
 					MethodTrace.setRequirement(requirement);
@@ -273,7 +273,7 @@ public class MethodTraceOld {
 	
 	
 	
-	public HashMap<String, List<Interface2>> CreateOwnerHashMapInterface(Connection conn) throws SQLException {
+	public HashMap<String, List<Interface>> CreateOwnerHashMapInterface(Connection conn) throws SQLException {
 		Statement st = conn.createStatement();
 		int index=1; 
 		int count=1; 
@@ -284,10 +284,10 @@ public class MethodTraceOld {
 		ResultSet myinterfaces=st.executeQuery("select interfaces.* from interfaces where id='" + index+"'"); 
 		while(index<count) {
 			
-			List<Interface2> mylist= new ArrayList<Interface2>(); 
+			List<Interface> mylist= new ArrayList<Interface>(); 
 
 			 while(myinterfaces.next()) {
-				 Interface2 myinterface = new Interface2(); 
+				 Interface myinterface = new Interface(); 
 				 Clazz myclassrepinterface= new Clazz(); 
 				 Clazz ownerclass= new Clazz(); 
 				 myclassrepinterface.setClassid(myinterfaces.getString("interfaceclassid"));
@@ -316,7 +316,7 @@ public class MethodTraceOld {
 	
 	
 	
-	public HashMap<String, List<Interface2>> CreateInterfaceHashMapInterface(Connection conn) throws SQLException {
+	public HashMap<String, List<Interface>> CreateInterfaceHashMapInterface(Connection conn) throws SQLException {
 		Statement st = conn.createStatement();
 		int index=1; 
 		int count=1; 
@@ -327,10 +327,10 @@ public class MethodTraceOld {
 		ResultSet myinterfaces=st.executeQuery("select interfaces.* from interfaces where id='" + index+"'"); 
 
 		while(index<count) {
-			List<Interface2> mylist= new ArrayList<Interface2>(); 
+			List<Interface> mylist= new ArrayList<Interface>(); 
 
 			 while(myinterfaces.next()) {
-				 Interface2 myinterface = new Interface2(); 
+				 Interface myinterface = new Interface(); 
 				 Clazz myclassrepinterface= new Clazz(); 
 				 Clazz ownerclass= new Clazz(); 
 				 myclassrepinterface.setClassid(myinterfaces.getString("interfaceclassid"));
@@ -805,7 +805,7 @@ public class MethodTraceOld {
 			 while(myresults.next() ) {
 				 MethodTraceOld mytrace= new MethodTraceOld(); 
 				 RequirementGold RequirementGold = new RequirementGold(); 
-				 Requirement2 requirement = new Requirement2(); 
+				 Requirement requirement = new Requirement(); 
 				 requirement.setID(myresults.getString("requirementid"));
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 mytrace.setRequirement(requirement);
@@ -826,12 +826,12 @@ public class MethodTraceOld {
 				 mytrace.setClassRepresentation(classrep);
 				 
 				 
-				 List<Interface2> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().ID);
+				 List<Interface> myownerinterfaceList = InterfaceHashMapOwner.get(mytrace.getClassRepresentation().ID);
 				 
-				 List<Interface2> myinterfacelist = InterfaceHashMapInterface.get(mytrace.getClassRepresentation().ID);
+				 List<Interface> myinterfacelist = InterfaceHashMapInterface.get(mytrace.getClassRepresentation().ID);
 				 List<Clazz> interfaceclassreps= new ArrayList<Clazz>(); 
 if(myinterfacelist!=null) {
-	 for(Interface2 myinterface: myinterfacelist) {
+	 for(Interface myinterface: myinterfacelist) {
 		 Clazz myclassrepinterface= new Clazz(); 
 		 myclassrepinterface.setClassid(myinterface.getInterfaceClass().ID);
 		 myclassrepinterface.setClassname(myinterface.getInterfaceClass().classname);
@@ -844,7 +844,7 @@ if(myinterfacelist!=null) {
 				 List<Clazz> interfaceclassrepsOwner= new ArrayList<Clazz>(); 
 
 				 	if(myownerinterfaceList!=null) {
-				 		 for(Interface2 myinterface: myownerinterfaceList) {
+				 		 for(Interface myinterface: myownerinterfaceList) {
 							 Clazz myclassrepinterface= new Clazz(); 
 							 myclassrepinterface.setClassid(myinterface.getImplementation().ID);
 							 myclassrepinterface.setClassname(myinterface.getImplementation().classname);

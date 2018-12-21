@@ -29,7 +29,7 @@ import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
 import mypackage.Implementation2;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
@@ -38,7 +38,7 @@ import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
@@ -53,12 +53,12 @@ public class DatabaseReading2Gantt {
 	public static List<MethodTraceSubjectTSubjectNOriginal> methodtraces2 = null;
 	public static List<MethodTrace> methodtraces2SubjectTSubjectN = null;
 	public static List<ClassTrace2> classestraces2 = null;
-	public static List<Interface2> interfaces2 = null;
+	public static List<Interface> interfaces2 = null;
 	public static List<MethodDetails> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, MethodDetails> linkedmethodhashmap=null; 
-	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
-	public static HashMap<String,Interface2> interfacehashmapAlreadyImpl=null; 
+	public static HashMap<String, List<Interface>> interfacehashmapOwnerClass=null; 
+	public static HashMap<String,Interface> interfacehashmapAlreadyImpl=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
 	public static HashMap<String, List<Parameter2>>  ParameterhashMap=null; 
@@ -67,7 +67,7 @@ public class DatabaseReading2Gantt {
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
 	static LinkedHashMap<String, MethodTrace> methodtracehashmap = null; 
 	static HashMap<String, List<String>> ClassMethodsHashMap= new HashMap<String, List<String>>(); 
-	public static HashMap<Method, HashMap<Requirement2, String>> FinalMethodHashMapReqGolds= new HashMap<Method, HashMap<Requirement2, String>>() ; 
+	public static HashMap<Method, HashMap<Requirement, String>> FinalMethodHashMapReqGolds= new HashMap<Method, HashMap<Requirement, String>>() ; 
 
 	
 	public static HashMap<String, List<String>> getClassMethodsHashMap() {
@@ -80,12 +80,12 @@ public class DatabaseReading2Gantt {
 
 	private final String userName = "root";
 
-	public static HashMap<Method, HashMap<Requirement2, String>> getFinalMethodHashMapReqGolds() {
+	public static HashMap<Method, HashMap<Requirement, String>> getFinalMethodHashMapReqGolds() {
 		return FinalMethodHashMapReqGolds;
 	}
 
 	public static void setFinalMethodHashMapReqGolds(
-			HashMap<Method, HashMap<Requirement2, String>> finalMethodHashMapReqGolds) {
+			HashMap<Method, HashMap<Requirement, String>> finalMethodHashMapReqGolds) {
 		FinalMethodHashMapReqGolds = finalMethodHashMapReqGolds;
 	}
 
@@ -98,11 +98,11 @@ public class DatabaseReading2Gantt {
 		DatabaseReading2Gantt.classesHashMap = classesHashMap;
 	}
 
-	public static List<Interface2> getInterfaces2() {
+	public static List<Interface> getInterfaces2() {
 		return interfaces2;
 	}
 
-	public static void setInterfaces2(List<Interface2> interfaces2) {
+	public static void setInterfaces2(List<Interface> interfaces2) {
 		DatabaseReading2Gantt.interfaces2 = interfaces2;
 	}
 
@@ -282,7 +282,7 @@ setLinkedmethodhashmap(linkedmethodhashmap);
 		setClassestraces2(classestracesRequirementClass);
 		///////////////////////////////////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////
-		Interface2 myinterface2= new Interface2(); 
+		Interface myinterface2= new Interface(); 
 		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
 //		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
 		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
@@ -587,19 +587,19 @@ setChildrenHashMap(mychildren);
 		return classesRequirementtraceshashmap;
 	}
 
-	public static HashMap<String, Interface2> getInterfacehashmapAlreadyImpl() {
+	public static HashMap<String, Interface> getInterfacehashmapAlreadyImpl() {
 		return interfacehashmapAlreadyImpl;
 	}
 
-	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface2> interfacehashmapAlreadyImpl) {
+	public static void setInterfacehashmapAlreadyImpl(HashMap<String, Interface> interfacehashmapAlreadyImpl) {
 		DatabaseReading2Gantt.interfacehashmapAlreadyImpl = interfacehashmapAlreadyImpl;
 	}
 
-	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+	public static HashMap<String, List<Interface>> getInterfacehashmapOwnerClass() {
 		return interfacehashmapOwnerClass;
 	}
 
-	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface>> interfacehashmapOwnerClass) {
 		DatabaseReading2Gantt.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
 	}
 

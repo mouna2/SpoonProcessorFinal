@@ -45,7 +45,7 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
@@ -209,8 +209,8 @@ public class TracesTableChessParsedCalls extends JFrame {
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 
 
 	JTable table = new JTable(); 
@@ -790,7 +790,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 							
 								for(Method item: CallerMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -844,7 +844,7 @@ public class TracesTableChessParsedCalls extends JFrame {
 							
 								for(Method item: CalleeMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;

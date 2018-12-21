@@ -54,14 +54,14 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import ALGOWorked.*;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
@@ -106,9 +106,9 @@ public class AlgoFinal extends JFrame {
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassgold2 = new LinkedHashMap<String, ClassTrace2>();
 
 	LinkedHashMap<String, MethodDetails> linkedmethodhashmap = new LinkedHashMap<String, MethodDetails>();
-	HashMap<String, Interface2> InterfacesHashMap = new HashMap<String, Interface2>();
-	HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = new HashMap<String, Interface2>();
-	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMap = new HashMap<String, List<Interface2>>();
+	HashMap<String, Interface> InterfacesHashMap = new HashMap<String, Interface>();
+	HashMap<String, Interface> InterfacesHashMapAlreadyImpl = new HashMap<String, Interface>();
+	HashMap<String, List<Interface>> InterfacesOwnerClassHashMap = new HashMap<String, List<Interface>>();
 	HashMap<String, List<MethodField2>> FieldMethodsHashMap = new HashMap<String, List<MethodField2>>();
 	HashMap<String, List<ClassField2>> FieldClassesHashMap = new HashMap<String, List<ClassField2>>();
 	HashMap<String, List<SuperClass2>> SuperclassesHashMap = new HashMap<String, List<SuperClass2>>();
@@ -117,7 +117,7 @@ public class AlgoFinal extends JFrame {
 	HashMap<String, String> RequirementMethodNameClassIDHashMap = new HashMap<String, String>(); 
 	
 	
-	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMapMethodTraces = new HashMap<String, List<Interface2>>();
+	HashMap<String, List<Interface>> InterfacesOwnerClassHashMapMethodTraces = new HashMap<String, List<Interface>>();
 	HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINALMethodTraces = new HashMap<String, List<Implementation2>>();
 	HashMap<String, List<SuperClass2>> SuperclassesHashMapMethodTraces = new HashMap<String, List<SuperClass2>>();
 	HashMap<String, List<Children2>> ChildrenHashMapMethodTraces = new HashMap<String, List<Children2>>();
@@ -1905,7 +1905,7 @@ public class AlgoFinal extends JFrame {
 			
 			
 			
-			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID);
+			List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID);
 			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.ID);
 			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.ID);
 			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.ID);
@@ -1913,7 +1913,7 @@ public class AlgoFinal extends JFrame {
 			
 			System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.ID);
 			if (myinterfaces != null)
-				for (Interface2 myinterface : myinterfaces) {
+				for (Interface myinterface : myinterfaces) {
 					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethodRepresentation().methodname+"-"+myinterface.InterfaceClass.ID; 
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 					
@@ -2034,14 +2034,14 @@ public class AlgoFinal extends JFrame {
 			System.out.println(j);
 			System.out.println(methodtraces2HashMap.size());
 
-			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID);
+			List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.ID);
 			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.ID);
 			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL
 					.get(methodtrace.ClassRepresentation.ID);
 			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.ID);
 			System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.ID);
 			if (myinterfaces != null)
-				for (Interface2 myinterface : myinterfaces) {
+				for (Interface myinterface : myinterfaces) {
 					String reqclass = methodtrace.Requirement.ID + "-" + myinterface.getInterfaceClass().getClassid();
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)

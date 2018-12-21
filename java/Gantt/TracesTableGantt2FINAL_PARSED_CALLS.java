@@ -45,14 +45,14 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
@@ -1520,7 +1520,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 				if (methtrace.gold.trim().equals("T")) {
@@ -1547,7 +1547,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
 							if (methtrace.gold.trim().equals("T")) {
@@ -1573,7 +1573,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold3!=null) {
@@ -1599,7 +1599,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold3!=null) {
@@ -1621,7 +1621,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null ) {
@@ -1648,7 +1648,7 @@ public class TracesTableGantt2FINAL_PARSED_CALLS extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.methodid); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null ) {
 					if(methtrace.gold4!=null ) {

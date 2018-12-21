@@ -27,7 +27,7 @@ import mypackage.ClassDetails2;
 import mypackage.ClassTrace2;
 import mypackage.MethodDetails;
 import mypackage.MethodTraceOld;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;
@@ -134,9 +134,9 @@ public class DatabaseReadingOld {
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////
-		Requirement2 req = new Requirement2();
+		Requirement req = new Requirement();
 
-		HashMap<String, Requirement2> RequirementHashMap = req.ReadClassesRepresentations(conn);
+		HashMap<String, Requirement> RequirementHashMap = req.ReadClassesRepresentations(conn);
 		Set<String> keys2 = RequirementHashMap.keySet();
 		for (String key : keys2) {
 			System.out.println("Value of " + key + " is: " + RequirementHashMap.get(key).ID + "   "

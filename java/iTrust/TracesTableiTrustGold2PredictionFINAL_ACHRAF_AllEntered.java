@@ -44,14 +44,14 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceOld;
 import mypackage.MethodTraceOld;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 
@@ -271,8 +271,8 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceOld> methodtraces2 = new ArrayList<MethodTraceOld>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
 	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
@@ -859,7 +859,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 							
 								for(Method item: CallerMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -913,7 +913,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 							
 								for(Method item: CalleeMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -953,7 +953,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			for (Method mycaller: CallerMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 				if (methtrace.gold.trim().equals("T")) {
@@ -973,7 +973,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
 							if (methtrace.gold.trim().equals("T")) {
@@ -996,7 +996,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 			for (Method mycaller: CallerMethodListFinal) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.goldfinal!=null && methtrace.goldfinal!=null) {
@@ -1019,7 +1019,7 @@ public class TracesTableiTrustGold2PredictionFINAL_ACHRAF_AllEntered extends JFr
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 						HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null && methtrace.goldfinal!=null) {
 							

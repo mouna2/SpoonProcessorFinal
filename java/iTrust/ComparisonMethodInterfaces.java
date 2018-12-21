@@ -27,10 +27,10 @@ import java.util.Set;
 
 import Tables.tracesmethodscallees;
 import mypackage.Clazz;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.Method;
 import mypackage.MethodTrace2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -71,7 +71,7 @@ public class ComparisonMethodInterfaces {
 	public static HashMap <String, List<String>> methodcallsinparsednotexecallercallee = new HashMap <String, List<String>>(); 
 	public static HashMap <String, List<String>> methodcallsinparsednotexecalleecaller = new HashMap <String, List<String>>(); 
 	public static LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-	public static LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
+	public static LinkedHashMap <String, List<Interface>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface>>(); 
 	public static LinkedHashMap <String, String> InterfacesTracesHashMap = new LinkedHashMap <String, String>(); 
 
 	public static LinkedHashMap <String, List<MethodTrace2>> SuperclassesChildrenTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
@@ -173,7 +173,7 @@ public class ComparisonMethodInterfaces {
 
 		// Create a table
 		try {
-			List<Interface2> implementationList = new ArrayList<Interface2>(); 
+			List<Interface> implementationList = new ArrayList<Interface>(); 
 			List<SuperClass2> superclassList = new ArrayList<SuperClass2>(); 
 
 			Statement st= conn.createStatement();
@@ -205,7 +205,7 @@ public class ComparisonMethodInterfaces {
 				
 				Clazz implclass= new Clazz(implementationclassid, implementationclassname); 
 				Clazz interfaceclass= new Clazz(interfaceclassid, interfacename); 
-				Interface2 myinter= new Interface2(); 
+				Interface myinter= new Interface(); 
 				myinter.setInterfaceClass(interfaceclass);
 				myinter.setImplementation(implclass);
 //				System.out.println("INTERFACE CLASS ID    "+ interfaceclassid);
@@ -214,7 +214,7 @@ public class ComparisonMethodInterfaces {
 					implementationList.add(myinter); 
 					InterfacesImplementationsHashMap.put(interfaceclassid+"-"+interfacename, implementationList); 
 				}else {
-					implementationList = new ArrayList<Interface2>(); 
+					implementationList = new ArrayList<Interface>(); 
 					implementationList.add(myinter); 
 					InterfacesImplementationsHashMap.put(interfaceclassid+"-"+interfacename, implementationList); 
 				}
@@ -248,7 +248,7 @@ public class ComparisonMethodInterfaces {
 				Clazz childclass= new Clazz(childclassid, childclassname); 
 				SuperClass2 mysuperclass= new SuperClass2(); 
 				mysuperclass.setSuperClass(superclass);
-				mysuperclass.setOwnerClass(childclass);
+				mysuperclass.setChildClass(childclass);
 //				System.out.println("INTERFACE CLASS ID    "+ interfaceclassid);
 				if(SuperclassesChildrenHashMap.get(superclassid+"-"+superclassname)!=null) {
 					superclassList= SuperclassesChildrenHashMap.get(superclassid+"-"+superclassname); 
@@ -282,7 +282,7 @@ public class ComparisonMethodInterfaces {
 				classid=res.getString("classid"); 
 				gold2=res.getString("gold2"); 
 				MethodTrace2 methodtrace= new MethodTrace2(); 
-				Requirement2 req= new Requirement2(requirementid, requirement); 
+				Requirement req= new Requirement(requirementid, requirement); 
 				Method methodrep = new Method(methodid, methodname); 
 				Clazz classrep = new Clazz(classid, classname); 
 				methodtrace.setID(rowID);
@@ -300,7 +300,7 @@ public class ComparisonMethodInterfaces {
 						InterfacesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+classname, gold2); 
 					}
 					
-					for(Interface2 impl: InterfacesImplementationsHashMap.get(mykey)) {
+					for(Interface impl: InterfacesImplementationsHashMap.get(mykey)) {
 						
 
 						if(impl.getImplementation().getClassid().equals(classid)) {
@@ -354,7 +354,7 @@ SuperclassesTracesHashMap.put(requirementid+"/"+methodname+"/"+classid+"/"+class
 for(SuperClass2 impl: SuperclassesChildrenHashMap.get(mykey)) {
 
 
-if(impl.getOwnerClass().getClassid().equals(classid)) {
+if(impl.getChildClass().getClassid().equals(classid)) {
 	if(SuperclassesChildrenHashMap.get(mykey)!=null) {
 	System.out.println(counter);
 			List<MethodTrace2> 	mysuperclasses= new ArrayList<MethodTrace2>(); 

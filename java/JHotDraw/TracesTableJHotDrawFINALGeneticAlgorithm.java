@@ -56,14 +56,14 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
@@ -568,16 +568,16 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 	LinkedHashMap<String, String> PredictionStandardHashMap=new LinkedHashMap<String, String>();  
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
-	static HashMap<String, MethodTrace> methodtraces2HashMap  = new HashMap<String, MethodTrace>();
+	static List<DatabaseInput> methodtraces2 = new ArrayList<DatabaseInput>();
+	static HashMap<String, DatabaseInput> methodtraces2HashMap  = new HashMap<String, DatabaseInput>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
 		static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 
 	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
-	 HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
+	 HashMap<String, List<Interface>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface>>(); 
 	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
@@ -768,8 +768,8 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 		int ClassTraceCount=0; 
 		int MethodTraceCountGold2=0; 
 		// Create the editors to be used for each row
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		Collection<DatabaseInput> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 			
 		
 			
@@ -926,9 +926,9 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			int InterfacesNMethodLevelGold2=0; 
 			int InterfacesTMethodLevelGold2=0; 
 			int InterfacesEMethodLevelGold2=0; 
-			List<Interface2> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
+			List<Interface> InterfacesList = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid); 
 			if(InterfacesList!=null) {
-				for(Interface2 myinter: InterfacesList) {
+				for(Interface myinter: InterfacesList) {
 					ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, myinter.InterfaceClass.ID,	methodtrace.Requirement.getID().trim());
 					if(myinfo!=null && myinfo.getTrace4()!=null) {
 					if(myinter.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
@@ -965,16 +965,16 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 			for(SuperClass2 superclass: SuperclassesList) {
 				ClassTrace2 myinfo = myclasstrace.FindTrace2(methodtracesRequirementClass, superclass.SuperClass.ID,	methodtrace.Requirement.getID().trim());
 				if(myinfo!=null&& myinfo.getTrace4()!=null) {
-				if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
+				if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("T")) {
 					SuperclassesTMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("N")) {
 					SuperclassesNMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.classid) && myinfo.getTrace4().trim().trim().equals("E")) {
 					SuperclassesEMethodLevelGold2++; 
 				}
-				else if(superclass.OwnerClass.ID.equals(methodtrace.ClassRepresentation.classid)) {
+				else if(superclass.ChildClass.ID.equals(methodtrace.ClassRepresentation.classid)) {
 					SuperclassesEMethodLevelGold2++; 
 				}
 			}else {
@@ -1610,7 +1610,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
 						if (methtrace.gold.trim().equals("T")) {
@@ -1634,7 +1634,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 					 HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-						Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+						Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 						MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 						if(methtrace!=null) {
 							if (methtrace.gold.trim().equals("T")) {
@@ -1665,7 +1665,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.gold4!=null) {
@@ -1694,7 +1694,7 @@ public class TracesTableJHotDrawFINALGeneticAlgorithm extends JFrame {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				 if(methdet!=null) {
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null && methtrace.gold4!=null) {
 					if (methtrace.gold4.equals("T")) {

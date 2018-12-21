@@ -27,12 +27,12 @@ import mypackage.ClassDetails2;
 import mypackage.ClassField2;
 import mypackage.ClassTrace2;
 import mypackage.DatabaseReading2;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTraceSubjectTSubjectNOriginal;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementClass;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
@@ -48,8 +48,8 @@ public class DatabaseReading2JHotDraw {
 	public static List<MethodDetails> methodlist = null;
 	public static LinkedHashMap<String, ClassTrace2> classesRequirementtraceshashmap=null; 
 	public static LinkedHashMap<String, MethodDetails> linkedmethodhashmap=null; 
-	public static HashMap<String, Interface2> interfacehashmap=null; 
-	public static HashMap<String, List<Interface2>> interfacehashmapOwnerClass=null; 
+	public static HashMap<String, Interface> interfacehashmap=null; 
+	public static HashMap<String, List<Interface>> interfacehashmapOwnerClass=null; 
 	public static HashMap<String, List<ClassField2>>  ClassFieldHashMap=null; 
 	public static HashMap<String, List<MethodField2>>  MethodFieldHashMap=null; 
 	public static HashMap<String, List<SuperClass2>>  SuperclassesHashMap=null; 
@@ -178,9 +178,9 @@ public class DatabaseReading2JHotDraw {
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////
-		Requirement2 req = new Requirement2();
+		Requirement req = new Requirement();
 
-		HashMap<String, Requirement2> RequirementHashMap = req.ReadClassesRepresentations(conn);
+		HashMap<String, Requirement> RequirementHashMap = req.ReadClassesRepresentations(conn);
 		Set<String> keys2 = RequirementHashMap.keySet();
 		for (String key : keys2) {
 			System.out.println("Value of " + key + " is: " + RequirementHashMap.get(key).ID + "   "
@@ -226,7 +226,7 @@ public class DatabaseReading2JHotDraw {
 		setClassestraces2(classestracesRequirementClass);
 //		setClassesRequirementtraceshashmap(classesRequirementtraceshashmap); 
 		///////////////////////////////////////////////////////////////////////////////////////
-		Interface2 myinterface2= new Interface2(); 
+		Interface myinterface2= new Interface(); 
 		interfacehashmapOwnerClass = myinterface2.ReadInterfacesRepresentations(conn);
 //		List<Interface2>  myinterfaces = new ArrayList<Interface2>(interfacehashmapOwnerClass.values());
 		setInterfacehashmapOwnerClass(interfacehashmapOwnerClass);
@@ -488,25 +488,25 @@ System.out.println("MOUNA");
 
 
 
-	public static HashMap<String, Interface2> getInterfacehashmap() {
+	public static HashMap<String, Interface> getInterfacehashmap() {
 		return interfacehashmap;
 	}
 
 
 
-	public static void setInterfacehashmap(HashMap<String, Interface2> interfacehashmap) {
+	public static void setInterfacehashmap(HashMap<String, Interface> interfacehashmap) {
 		DatabaseReading2JHotDraw.interfacehashmap = interfacehashmap;
 	}
 
 
 
-	public static HashMap<String, List<Interface2>> getInterfacehashmapOwnerClass() {
+	public static HashMap<String, List<Interface>> getInterfacehashmapOwnerClass() {
 		return interfacehashmapOwnerClass;
 	}
 
 
 
-	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface2>> interfacehashmapOwnerClass) {
+	public static void setInterfacehashmapOwnerClass(HashMap<String, List<Interface>> interfacehashmapOwnerClass) {
 		DatabaseReading2JHotDraw.interfacehashmapOwnerClass = interfacehashmapOwnerClass;
 	}
 

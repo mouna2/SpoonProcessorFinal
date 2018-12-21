@@ -49,14 +49,14 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
@@ -533,17 +533,17 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 	PredictionEvaluation NEWPATTERNMethodFieldsMixedOWNERType=new PredictionEvaluation();
 	PredictionEvaluation NEWPATTERNMethodFieldsPureOWNERType=new PredictionEvaluation();  
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
-	static LinkedHashMap<String, MethodTrace> methodtraces2HashMap  = new LinkedHashMap<String, MethodTrace>();
+	static List<DatabaseInput> methodtraces2 = new ArrayList<DatabaseInput>();
+	static LinkedHashMap<String, DatabaseInput> methodtraces2HashMap  = new LinkedHashMap<String, DatabaseInput>();
 	static HashMap<String, List<Parameter2>> parameterHashMap  = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGold2V2 = new  LinkedHashMap<String, ClassTrace2>(); 
 
 	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
-	 HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
+	 HashMap<String, List<Interface>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface>>(); 
 	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
@@ -718,7 +718,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		// Create the editors to be used for each row
 		
 		
-		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
+		List<DatabaseInput> methodtracesNew = InitializePredictionsHashMap2(methodtraces2); 
 		LinkedHashMap<String, String> PredictionHashMap2 = function2(data, j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew); 
 		
 //		PredictionHashMaps.add(PredictionHashMap1); 
@@ -1048,11 +1048,11 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 
 
 
-	public List<MethodTrace> InitializePredictionsHashMap2(
-			List<MethodTrace> methodtracesNew) {
+	public List<DatabaseInput> InitializePredictionsHashMap2(
+			List<DatabaseInput> methodtracesNew) {
 		// TODO Auto-generated method stub
 		
-		for(MethodTrace meth: methodtracesNew) {
+		for(DatabaseInput meth: methodtracesNew) {
 			meth.setPrediction("");
 		}
 		return methodtracesNew;
@@ -1062,9 +1062,9 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 /************************************************************************************************************************************************/
 
 	public LinkedHashMap<String, String> function2(Object[][] data, int j, LinkedHashMap<String, String> PredictionsOldHashMap,
-			LinkedHashMap<String, String> PredictionsNewHashMap, List<MethodTrace> methodtracesNew) throws SQLException {
+			LinkedHashMap<String, String> PredictionsNewHashMap, List<DatabaseInput> methodtracesNew) throws SQLException {
 		
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
+		Collection<DatabaseInput> MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 //		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 //			
 //			String reqclass= methodtrace.Requirement.ID+"-"+ methodtrace.ClassRepresentation.classid; 
@@ -1123,7 +1123,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		// TODO Auto-generated method stub
 		MethodTracesHashmapValues = methodtraces2HashMap.values(); 
 		
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 			List<String> PredictionParams= new ArrayList<String>(); 
 			List<String> PredictionParamsOwnerClass= new ArrayList<String>(); 
 			List<String> PredictionFields= new ArrayList<String>(); 
@@ -1195,7 +1195,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 	
 			
 			 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+			for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 			
 				List<String> methodfields = methodtrace.getPredictionFields(); 
@@ -1225,7 +1225,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 					
 		
 		
-		 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+		 LinkedHashMap<String, DatabaseInput> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixed);
 	//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
@@ -1244,7 +1244,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 		
 				
 				 MethodTracesHashmapValues = methodtraces2HashMap.values(); 
-				for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+				for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 					methodtrace.setPrediction("");
 				
 					List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
@@ -1274,7 +1274,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 						
 			
 			
-			 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 LinkedHashMap<String, DatabaseInput> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNER);
 		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
@@ -1283,7 +1283,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			
 				
 				
-				for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+				for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 					methodtrace.setPrediction("");
 				
 					List<String> methodfields = methodtrace.getPredictionFields(); 
@@ -1324,7 +1324,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 						
 			
 			
-			 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 LinkedHashMap<String, DatabaseInput> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsMixedOWNERType);
 		//	 System.out.println("===============>PATTERNS 1 AND 2 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
@@ -1334,7 +1334,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			
 			//PURE PATTERN 
 	
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+			for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 				List<String> methodfields = methodtrace.getPredictionFields(); 
 				List<String> methodparams = methodtrace.getPredictionParams(); 
@@ -1364,7 +1364,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 							PatternSetVariables("T", methodtrace,"100%","P4"); 
 						}
 		
-		 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+		 LinkedHashMap<String, DatabaseInput> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
 		 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPure);
 	//	 System.out.println("===============>PATTERNS 3 AND  4 METHOD FIELDS MIXED  ITERATION "+ITERATION1  +	"   PREDICTION VALUES "+NEWPATTERNMethodFields.toString());
 
@@ -1373,7 +1373,7 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			
 			
 			
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+			for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 				List<String> methodfields = methodtrace.getPredictionFields(); 
 				List<String> methodparams = methodtrace.getPredictionParams(); 
@@ -1413,14 +1413,14 @@ public class TracesTableChessFINALROUND2Fields extends JFrame {
 			}
 			
 			
-			 LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
+			 LinkedHashMap<String, DatabaseInput> MyfinalHashMap = RetrievePredictionsHashMap( methodtraces2); 		
 			 WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap, NEWPATTERNMethodFieldsPureOWNERType);
 			
 			
 			
 			//PURE PATTERN 
 			
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+			for (DatabaseInput methodtrace : MethodTracesHashmapValues) {
 				methodtrace.setPrediction("");
 				List<String> methodfields = methodtrace.getPredictionFieldsOwnerClass(); 
 				List<String> methodparams = methodtrace.getPredictionParamsOwnerClass(); 
@@ -1518,7 +1518,7 @@ public CountTNE GenerateCounts(List<String> methodparams) {
 
 
 
-public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> parameterlistN, List<Parameter2> parameterlistT, List<MethodField2> methodfieldlistT, List<MethodField2> methodfieldlistN, List<MethodField2> methodfieldlistE, List<String> PredictionFields, List<String> PredictionParams, MethodTrace methodtrace) {
+public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> parameterlistN, List<Parameter2> parameterlistT, List<MethodField2> methodfieldlistT, List<MethodField2> methodfieldlistN, List<MethodField2> methodfieldlistE, List<String> PredictionFields, List<String> PredictionParams, DatabaseInput methodtrace) {
 	// TODO Auto-generated method stub
 	for(MethodField2 methodfield: methodfieldlistE) {
 		String key=methodfield.getMethod().ID+"-"+methodtrace.Requirement.ID; 
@@ -1577,12 +1577,12 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 	
 	public void WriteInDatabaseAndComputePrecisionAndRecall(
-			LinkedHashMap<String, MethodTrace> MyfinalHashMap, PredictionEvaluation nEWPATTERNMethodFields2) throws SQLException {
+			LinkedHashMap<String, DatabaseInput> MyfinalHashMap, PredictionEvaluation nEWPATTERNMethodFields2) throws SQLException {
 		// TODO Auto-generated method stub
 		nEWPATTERNMethodFields2.ResetCounters(nEWPATTERNMethodFields2);
 		
 		for(String mykey:MyfinalHashMap.keySet()) {
-			MethodTrace myvalue = MyfinalHashMap.get(mykey); 
+			DatabaseInput myvalue = MyfinalHashMap.get(mykey); 
 			String methodid=myvalue.getMethodRepresentation().ID; 
 			String requirementID= myvalue.getRequirement().ID; 
 			//String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction() +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'"; 
@@ -1612,7 +1612,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 	
 	
-	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, LinkedHashMap<String, MethodTrace> methodtraces2HashMap2) {
+	public LinkedHashMap<String, String> InitializePredictionsHashMap(LinkedHashMap<String, String> predictionsOldHashMap, LinkedHashMap<String, DatabaseInput> methodtraces2HashMap2) {
 		// TODO Auto-generated method stub
 
 		
@@ -1628,10 +1628,10 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	
-	public List<MethodTrace> InitializePredictionsHashMapBlankValues(LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTrace> methodtraces22) {
+	public List<DatabaseInput> InitializePredictionsHashMapBlankValues(LinkedHashMap<String, String> predictionsOldHashMap, List<DatabaseInput> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for(MethodTrace methodtrace: methodtraces22) {
+		for(DatabaseInput methodtrace: methodtraces22) {
 			methodtrace.setPrediction("");
 		}
 		return methodtraces22;
@@ -1639,11 +1639,11 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public LinkedHashMap<String, MethodTrace> RetrievePredictionsHashMap( List<MethodTrace> methodtraces22) {
+	public LinkedHashMap<String, DatabaseInput> RetrievePredictionsHashMap( List<DatabaseInput> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		LinkedHashMap<String, MethodTrace> predictionsOldHashMap= new LinkedHashMap<String, MethodTrace>();
-		for(MethodTrace methodtrace: methodtraces22) {
+		LinkedHashMap<String, DatabaseInput> predictionsOldHashMap= new LinkedHashMap<String, DatabaseInput>();
+		for(DatabaseInput methodtrace: methodtraces22) {
 			String RequirementID=methodtrace.Requirement.ID; 
 			String MethodID= methodtrace.MethodRepresentation.methodid; 
 			String key= MethodID+"-"+RequirementID; 
@@ -1654,7 +1654,7 @@ public void SecondIteration(List<Parameter2> parameterlistE, List<Parameter2> pa
 	
 	
 	
-	public void PatternSetVariables(String Prediction, MethodTrace methodtrace, String Likelihood, String Why) {
+	public void PatternSetVariables(String Prediction, DatabaseInput methodtrace, String Likelihood, String Why) {
 		// TODO Auto-generated method stub
 		methodtrace.setPrediction(Prediction);
 		methodtrace.setLikelihood(Likelihood);

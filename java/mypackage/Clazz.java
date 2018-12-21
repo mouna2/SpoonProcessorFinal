@@ -4,22 +4,42 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import ALGO.MethodList;
 
 public class Clazz {
 
 	public String ID; 
 	public String classname;
-	public String DeveloperGold; 
+	public String DeveloperGold=new String(); 
 	public String SubjectGold; 
+	public List<Clazz> Children= new ArrayList<Clazz>(); 
+	public List<Clazz> Parents= new ArrayList<Clazz>();  
+	public List<Clazz> Interfaces= new ArrayList<Clazz>();  
+	public List<Clazz> Implementations= new ArrayList<Clazz>(); 
+	public MethodList methods = new MethodList(); 
 	 HashMap<Integer, Clazz> ClassRepresentationHashMap= new HashMap<Integer, Clazz>(); 
 
 	
+	public void setDeveloperGold( String developerGold) {
+		DeveloperGold = developerGold;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Clazz [ID=" + ID + ", classname=" + classname + ", DeveloperGold=" + DeveloperGold+"]";
+	}
+
+
 	public Clazz() {
 		super();
 	}
@@ -30,9 +50,7 @@ public class Clazz {
 	}
 
 
-	public void setDeveloperGold(String developerGold) {
-		DeveloperGold = developerGold;
-	}
+	
 
 
 	public String getSubjectGold() {
@@ -50,9 +68,7 @@ public class Clazz {
 	}
 
 
-	public void setGold(String gold) {
-		this.DeveloperGold = gold;
-	}
+	
 
 
 	public Clazz(String classid, String classname) {
@@ -121,42 +137,9 @@ public class Clazz {
 	}
 
 
-	@Override
-	public String toString() {
-		return "[classid=" + ID + ", classname=" + classname +"]";
-	}
+	
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + ((classname == null) ? 0 : classname.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Clazz other = (Clazz) obj;
-		if (ID == null) {
-			if (other.ID != null)
-				return false;
-		} else if (!ID.equals(other.ID))
-			return false;
-		if (classname == null) {
-			if (other.classname != null)
-				return false;
-		} else if (!classname.equals(other.classname))
-			return false;
-		return true;
-	}
+	
 	
 }

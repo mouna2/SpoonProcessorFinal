@@ -544,7 +544,7 @@ public class MethodDetails {
 						MethodTrace.setGold4(methodtracesres.getString("gold4")); 
 						MethodTrace.setSubject(methodtracesres.getString("subject"));
 						
-						Requirement2 requirement= new Requirement2();
+						Requirement requirement= new Requirement();
 						requirement.setID(methodtracesres.getString("requirementid"));
 						requirement.setRequirementName(methodtracesres.getString("requirement"));
 						MethodTrace.setRequirement(requirement);

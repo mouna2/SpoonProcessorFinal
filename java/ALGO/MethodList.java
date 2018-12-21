@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import mypackage.MethodTrace;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.*;
 public class MethodList extends ArrayList<Method>{
 
@@ -26,7 +26,7 @@ public class MethodList extends ArrayList<Method>{
 	
 
 	
-	public boolean AtLeast1T(Requirement2 requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
+	public boolean AtLeast1T(Requirement requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
 		// TODO Auto-generated method stub
 		if(!this.isEmpty()) {
 		for (Method method : this) {
@@ -52,7 +52,7 @@ public class MethodList extends ArrayList<Method>{
 	
 	
 	
-	public boolean AtLeast1N(Requirement2 requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
+	public boolean AtLeast1N(Requirement requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
 		// TODO Auto-generated method stub
 		if(!this.isEmpty()) {
 			for (Method method : this) {
@@ -83,7 +83,7 @@ public class MethodList extends ArrayList<Method>{
 	
 	
 	
-	public boolean AllNs(Requirement2 requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
+	public boolean AllNs(Requirement requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
 		// TODO Auto-generated method stub
 		if(!this.isEmpty()) {
 			for (Method method : this) {
@@ -107,7 +107,7 @@ public class MethodList extends ArrayList<Method>{
 	
 	
 	
-	public boolean AllTs(Requirement2 requirement, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
+	public boolean AllTs(Requirement requirement, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
 		// TODO Auto-generated method stub
 		if(!this.isEmpty()) {
 			for (Method method : this) {

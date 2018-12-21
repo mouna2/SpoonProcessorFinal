@@ -49,29 +49,28 @@ import Chess.LogInfo;
 import Chess.PredictionEvaluation;
 import Gantt.DatabaseReading2Gantt;
 import JHotDraw.DatabaseReading2JHotDraw3;
-import iTrust.*;
+import iTrust.DatabaseReading2itrust;
 import iTrust.DatabaseReading2itrustfinal;
 import mypackage.Children2;
 import mypackage.ClassField2;
-import mypackage.Clazz;
+import mypackage.ClassRepresentation2;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
 import mypackage.Implementation2;
-import mypackage.Interface;
-import mypackage.MethodDetails;
+import mypackage.Interface2;
+import mypackage.Method2Details;
 import mypackage.Method;
 import mypackage.MethodField2;
-import mypackage.MethodTrace;
 import mypackage.MethodTrace2;
-import mypackage.*;
+import mypackage.MethodTraceSubjectTSubjectN;
 import mypackage.Parameter2;
-import mypackage.Requirement;
+import mypackage.Requirement2;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class FinalStupidAlgorithm extends JFrame {
+public class AlgoFinal extends JFrame {
 
 	/**
 	 * Run a SQL command which does not return a recordset:
@@ -103,18 +102,18 @@ public class FinalStupidAlgorithm extends JFrame {
 	PredictionEvaluation NonOwnerClassPattern = new PredictionEvaluation();
 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static List<MethodTraceSubjectTSubjectN> methodtraces2 = new ArrayList<MethodTraceSubjectTSubjectN>();
 	HashMap<String, List<String>> classMethodsHashMap = new HashMap<String, List<String>>();
-	static HashMap<String, MethodTrace> methodtraces2HashMap = new HashMap<String, MethodTrace>();
+	static HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap = new HashMap<String, MethodTraceSubjectTSubjectN>();
 	static HashMap<String, List<Parameter2>> parameterHashMap = new HashMap<String, List<Parameter2>>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new LinkedHashMap<String, ClassTrace2>();
 	LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassgold2 = new LinkedHashMap<String, ClassTrace2>();
 
-	LinkedHashMap<String, MethodDetails> linkedmethodhashmap = new LinkedHashMap<String, MethodDetails>();
-	HashMap<String, Interface> InterfacesHashMap = new HashMap<String, Interface>();
-	HashMap<String, Interface> InterfacesHashMapAlreadyImpl = new HashMap<String, Interface>();
-	HashMap<String, List<Interface>> InterfacesOwnerClassHashMap = new HashMap<String, List<Interface>>();
+	LinkedHashMap<String, Method2Details> linkedmethodhashmap = new LinkedHashMap<String, Method2Details>();
+	HashMap<String, Interface2> InterfacesHashMap = new HashMap<String, Interface2>();
+	HashMap<String, Interface2> InterfacesHashMapAlreadyImpl = new HashMap<String, Interface2>();
+	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMap = new HashMap<String, List<Interface2>>();
 	HashMap<String, List<MethodField2>> FieldMethodsHashMap = new HashMap<String, List<MethodField2>>();
 	HashMap<String, List<ClassField2>> FieldClassesHashMap = new HashMap<String, List<ClassField2>>();
 	HashMap<String, List<SuperClass2>> SuperclassesHashMap = new HashMap<String, List<SuperClass2>>();
@@ -123,7 +122,7 @@ public class FinalStupidAlgorithm extends JFrame {
 	HashMap<String, String> RequirementMethodNameClassIDHashMap = new HashMap<String, String>(); 
 	
 	
-	HashMap<String, List<Interface>> InterfacesOwnerClassHashMapMethodTraces = new HashMap<String, List<Interface>>();
+	HashMap<String, List<Interface2>> InterfacesOwnerClassHashMapMethodTraces = new HashMap<String, List<Interface2>>();
 	HashMap<String, List<Implementation2>> INTERFACEHASHMAPFINALMethodTraces = new HashMap<String, List<Implementation2>>();
 	HashMap<String, List<SuperClass2>> SuperclassesHashMapMethodTraces = new HashMap<String, List<SuperClass2>>();
 	HashMap<String, List<Children2>> ChildrenHashMapMethodTraces = new HashMap<String, List<Children2>>();
@@ -131,7 +130,7 @@ public class FinalStupidAlgorithm extends JFrame {
 	
 	
 	JTable table = new JTable();
-	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
+	static List<Method2Details> methodlist = new ArrayList<Method2Details>();
 	// File fout = new
 	// File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\TableLog.txt");
 
@@ -156,22 +155,22 @@ public class FinalStupidAlgorithm extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public FinalStupidAlgorithm(String ProgramName) throws SQLException, IOException {
+	public AlgoFinal(String ProgramName) throws SQLException, IOException {
 
 		LinkedHashMap<String, String> PredictionsOldHashMap = new LinkedHashMap<String, String>();
 		LinkedHashMap<String, String> PredictionsNewHashMap = new LinkedHashMap<String, String>();
 
 		int j = 0;
-		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2);
+		List<MethodTraceSubjectTSubjectN> methodtracesNew = InitializePredictionsHashMap2(methodtraces2);
 		TracePredictionFunction(j, PredictionsOldHashMap, PredictionsNewHashMap, methodtracesNew, ProgramName);
 
 	}
 
-	public List<MethodTrace> InitializePredictionsHashMap2(
-			List<MethodTrace> methodtracesNew) {
+	public List<MethodTraceSubjectTSubjectN> InitializePredictionsHashMap2(
+			List<MethodTraceSubjectTSubjectN> methodtracesNew) {
 		// TODO Auto-generated method stub
 
-		for (MethodTrace meth : methodtracesNew) {
+		for (MethodTraceSubjectTSubjectN meth : methodtracesNew) {
 			meth.setPrediction("");
 		}
 		return methodtracesNew;
@@ -187,7 +186,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 	public LinkedHashMap<String, String> TracePredictionFunction(int j,
 			LinkedHashMap<String, String> PredictionsOldHashMap, LinkedHashMap<String, String> PredictionsNewHashMap,
-			List<MethodTrace> methodtraces22, String ProgramName) throws SQLException, IOException {
+			List<MethodTraceSubjectTSubjectN> methodtraces22, String ProgramName) throws SQLException, IOException {
 		// TODO Auto-generated method stub
 		int ITERATION1 = 0;
 
@@ -212,61 +211,63 @@ public class FinalStupidAlgorithm extends JFrame {
 	
 
 		if (ProgramName.equals("chess")) {
-			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogChess.txt");
+			File filelogChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogChess.txt");
 			FileOutputStream fosfilChess = new FileOutputStream(filelogChess);
 			bwfileChess = new BufferedWriter(new OutputStreamWriter(fosfilChess));
 			
-			File filelogFPChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsChess.txt");
+			File filelogFPChess = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsChess.txt");
 			FileOutputStream fosfilaFPChess = new FileOutputStream(filelogFPChess);
 			 bwfile3Chess = new BufferedWriter(new OutputStreamWriter(fosfilaFPChess));
 		}
 
 		if (ProgramName.equals("gantt")) {
-			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogGantt.txt");
+			File filelog2 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogGantt.txt");
 			FileOutputStream fosfila2 = new FileOutputStream(filelog2);
 			bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 			
-			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsGantt.txt");
+			File filelogFP = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsGantt.txt");
 			FileOutputStream fosfilaFP = new FileOutputStream(filelogFP);
 			 bwfileFP = new BufferedWriter(new OutputStreamWriter(fosfilaFP));
 		}
 
 		if (ProgramName.equals("itrust")) {
-			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogiTrust.txt");
+			File filelog3 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogiTrust.txt");
 			FileOutputStream fosfila5 = new FileOutputStream(filelog3);
 			bwfile3 = new BufferedWriter(new OutputStreamWriter(fosfila5));
 			
-			File filelog3iTrust = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsiTrust.txt");
+			File filelog3iTrust = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsiTrust.txt");
 			FileOutputStream fosfila5iTrust = new FileOutputStream(filelog3iTrust);
 			bwfile3iTrust = new BufferedWriter(new OutputStreamWriter(fosfila5iTrust));
 		}
 
 		if (ProgramName.equals("jhotdraw")) {
-			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\TableLogJHotDraw.txt");
+			File filelog4 = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TableLogJHotDraw.txt");
 			FileOutputStream fosfila4 = new FileOutputStream(filelog4);
 			bwfile4 = new BufferedWriter(new OutputStreamWriter(fosfila4));
 			
-			File filelogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalseNegativeDetailsJHotDraw.txt");
+			File filelogFN = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalseNegativeDetailsJHotDraw.txt");
 			FileOutputStream fosfilaFN = new FileOutputStream(filelogFN);
 			 bwfileFN = new BufferedWriter(new OutputStreamWriter(fosfilaFN));
 			 
-			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\FalsePositiveDetailsJHotDraw.txt");
+			 File filelog3JHotDraw = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\FalsePositiveDetailsJHotDraw.txt");
 				FileOutputStream fosfila5JHotDraw = new FileOutputStream(filelog3JHotDraw);
 				bwfile3jHotDraw = new BufferedWriter(new OutputStreamWriter(fosfila5JHotDraw));
 		}
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
 		// bwfile2.newLine();
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			methodtrace.setPrediction("E");
 		}
 		if (ProgramName.equals("chess")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallStupidChess.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallChess.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesChess.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
 			db = new DatabaseReading2();
@@ -275,7 +276,7 @@ public class FinalStupidAlgorithm extends JFrame {
 			methodtraces2 = db.getMethodtraces2SubjectTSubjectN();
 			methodtraces2HashMap = db.getMethodtracehashmap();
 			classtraces2 = db.getClassestraces2();
-			System.out.println("yes");
+			//System.out.println("yes");
 			// methodlist = db.getMethodlist();
 			methodtracesRequirementClass = db.getClassesRequirementtraceshashmap();
 			InterfacesHashMap = db.getInterfaces();
@@ -319,12 +320,14 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		} else if (ProgramName.equals("gantt")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallStupidGantt.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallGantt.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesGantt.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
 			dbgantt = new DatabaseReading2Gantt();
@@ -376,12 +379,14 @@ public class FinalStupidAlgorithm extends JFrame {
 			parameterHashMap = dbgantt.getParameterhashMap();
 		} else if (ProgramName.equals("jhotdraw")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallStupidJHotDraw.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecallJHotDraw.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesJHotDraw.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
 			dbjhotdraw = new DatabaseReading2JHotDraw3();
@@ -433,12 +438,14 @@ public class FinalStupidAlgorithm extends JFrame {
 			parameterHashMap = dbjhotdraw.getParameterhashMap();
 		} else if (ProgramName.equals("itrust")) {
 
-			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\PrecisionRecallStupidiTrust.txt");
+			File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\PrecisionRecalliTrust.txt");
 			FileOutputStream fosfila1 = new FileOutputStream(file1log);
 			bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 
 			
-			
+			File mytraceClass = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\FinalLogFiles\\TracesClassesiTrust.txt");
+			FileOutputStream fosTraceClass = new FileOutputStream(mytraceClass);
+			bwTraceClass = new BufferedWriter(new OutputStreamWriter(fosTraceClass));
 			
 			
 			dbitrust = new DatabaseReading2itrustfinal();
@@ -500,14 +507,14 @@ public class FinalStupidAlgorithm extends JFrame {
 
 		LogInfoHashMap=InitializeLogInfoHashMap(LogInfoHashMap,MethodTracesHashmapValues ); 
 
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
-			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID;
-			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.Method.ID;
-			System.out.println(reqclass);
+			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
+			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethod().methodid;
+			//System.out.println(reqclass);
 
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
-			System.out.println(myclasstraceHashMap);
+			//System.out.println(myclasstraceHashMap);
 
 			String traceClassOldValue = myclasstraceHashMap.getTraceFinal(); 
 			LogInfo LogInfo= new LogInfo(); 
@@ -526,9 +533,15 @@ public class FinalStupidAlgorithm extends JFrame {
 		PredictionValues PredictionClassTraceBefore = new PredictionValues(); 
 		PredictionValues PredictionClassTraceAfter = new PredictionValues(); 
 
+		CountTracesClassesValues(PredictionClassTraceBefore, methodtracesRequirementClass); 
+		bwTraceClass.write("BEFORE PATTERN 0 "+PredictionClassTraceBefore.toString());
+		bwTraceClass.newLine();
 
 		RequirementClassHashMapNewValues = GenerateNewValuesInTracesClasses(RequirementClassHashMapNewValues, methodtracesRequirementClass);
+		CountTracesClassesValues(PredictionClassTraceAfter, methodtracesRequirementClass); 
 
+		bwTraceClass.write("AFTER PATTERN 0 "+PredictionClassTraceAfter.toString());
+		bwTraceClass.close();
 		j = 0;
 
 		LogInfoHashMap = IntroduceNewValuesWithinLogInfoHashMap(RequirementClassHashMapNewValues, classMethodsHashMap,
@@ -537,44 +550,43 @@ public class FinalStupidAlgorithm extends JFrame {
 		MethodTracesHashmapValues = methodtraces2HashMap.values();
 		RequirementMethodNameClassIDHashMap=InitializeRequirementMethodNameClassIDHashMap(RequirementMethodNameClassIDHashMap, MethodTracesHashmapValues); 
 		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap);
-		
+		HashMap<String, HashMap<String, String>> mystorageValues= new HashMap<String, HashMap<String, String>>(); 
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// OWNER CLASS PATTERN
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+	int counter=0;
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
-			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID;
+			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.getClassRepresentation().classid;
 			ClassTrace2 myclasstrace = methodtracesRequirementClass.get(reqclass);
-			String reqmethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethod().ID;
+			String reqMethod = methodtrace.Requirement.getID() + "-" + methodtrace.getMethod().methodid;
 			ITERATION1 = 0;
 			LogInfo loginfo = new LogInfo();
-			if (LogInfoHashMap.get(reqmethod) != null) {
-				loginfo = LogInfoHashMap.get(reqmethod);
+			if (LogInfoHashMap.get(reqMethod) != null) {
+				loginfo = LogInfoHashMap.get(reqMethod);
 			}
 
 			loginfo.setRequirementID(methodtrace.getRequirement().ID);
 			loginfo.setRequirementName(methodtrace.getRequirement().RequirementName);
-			loginfo.setMethodID(methodtrace.getMethod().ID);
+			loginfo.setMethodID(methodtrace.getMethod().methodid);
 			loginfo.setMethodName(methodtrace.getMethod().methodname);
-			loginfo.setClassID(methodtrace.Method.Owner.ID);
-			loginfo.setClassName(methodtrace.Method.Owner.classname);
-			loginfo.setTraceValue(methodtrace.getGold());
+			loginfo.setClassID(methodtrace.getClassRepresentation().classid);
+			loginfo.setClassName(methodtrace.getClassRepresentation().classname);
+			loginfo.setTraceValue(methodtrace.getGoldfinal());
 			loginfo.setGoldFinal(myclasstrace.getGoldfinal());
 			loginfo.setSubjectGold(myclasstrace.getSubjectGold());
 
-			System.out.println("Trace Class New Value "+loginfo.getTraceClassNewValue());
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.Method.Owner.ID; 
-			System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstrace.getTraceFinal());
-			System.out.println("REQ METHOD ==========================="+reqmethod);
-			
-			System.out.println("REQ class ==========================="+methodtrace.getRequirement().ID+"-"+methodtrace.Method.Owner.ID);
-			LogInfoHashMap.put(reqmethod, loginfo); 
+			//System.out.println("Trace Class New Value "+loginfo.getTraceClassNewValue());
+			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+			//System.out.println("myclasstraceHashMap.getTraceFinal()"+myclasstrace.getTraceFinal());
+			//System.out.println("REQ METHOD ==========================="+reqmethod);
+			LogInfoHashMap.put(reqMethod, loginfo); 
 			if (myclasstrace.getTraceFinal() != null) {
 				
 			
-				System.out.println("goldfinal"+methodtrace.getGold()+"--gold"+methodtrace.getGold());
+				//System.out.println("goldfinal"+methodtrace.getGoldfinal()+"--gold"+methodtrace.getGold());
 			// PATTERN 1
 		
 				
@@ -582,35 +594,37 @@ public class FinalStupidAlgorithm extends JFrame {
 				
 				String tracegold2 = myclasstrace.getTraceFinal();
 				tracegold2 = tracegold2.trim();
-
+//				System.out.println(tracegold2);
 				if (tracegold2.equals("T") ) {
 						
-						SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "T"); 
+						SetPredictionFinal(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "E", methodtraces2HashMap); 
 						
 						
 					
 				
 
 				} else if (tracegold2.equals("N")) {
-
-					SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "N"); 
-
+//					System.out.println("ReqMethod "+reqmethod);
+					SetPredictionFinal(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "N", methodtraces2HashMap); 
+					counter++; 
 
 				}
 
 				else {
-					SetPredictionFinal(loginfo, methodtrace, LogInfoHashMap, reqmethod, ReqMethodClasskey, RequirementMethodNameClassIDHashMap, "E"); 
+					SetPredictionFinal(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, "E", methodtraces2HashMap); 
 
 
 				}
 				ITERATION1++;
 			
-				System.out.println("======MY TRACE FINAL "+ tracegold2+" MY FINAL PREDICTION "+methodtrace.getPrediction());
+
 			j++;
+			
 			
 		}
 		}
-		LinkedHashMap<String, MethodTrace> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+		System.out.println(counter);
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
 		MyfinalHashMap=SetFlagOwnerClassPattern(MyfinalHashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 		 PredictionValues OwnerClassPredictionValues = new PredictionValues(); 
 
@@ -619,22 +633,482 @@ public class FinalStupidAlgorithm extends JFrame {
 		 bwfile1.newLine();
 		 bwfile1.write("owner class prediction values	"+ProgramName+" "+OwnerClassPredictionValues.toString());
 		 bwfile1.newLine();
-		 bwfile1.close();
 		
-		System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "
-				+ TotalPattern.toString());
+		
+		//System.out.println("===============>PATTERNS 1 SET TO T   ITERATION " + ITERATION1 + "   PREDICTION VALUES "+ TotalPattern.toString());
 
 		int ITERATION = 0;
+		MethodTracesHashmapValues=methodtraces2HashMap.values(); 
 
+		SetPredictionCallersCallees(MethodTracesHashmapValues, LogInfoHashMap); 
 		
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
 		
 		
 
-		
 		 LogHashMapRemaining = new LinkedHashMap<String, LogInfo>();
 		LogHashMapRemaining=InitializeHashMapWithPrecisionRecallRemaining(MethodTracesHashmapValues, LogHashMapRemaining, LogInfoHashMap); 
 		
+		while (Equals(PredictionsOldHashMap, PredictionsNewHashMap) == false) {
+
+			PredictionsOldHashMap = InitializePredictionsHashMap(PredictionsOldHashMap, MethodTracesHashmapValues);
+
+			//System.out.println("-------------------------------------------");
+			////////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// PURE AND MIXED PATTERNS	PATTERN 1-2
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+
+			//////////////////////////////////////////////////////////////////////////////////////////
+			int k = 0;
+			
+
+			MethodTracesHashmapValues=methodtraces2HashMap.values(); 
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// PURE PATTERNS
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+
+
+				// PURE T PATTERN
+
+
+				if (    !methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty()
+						&& methodtrace.getMethod().getCallees().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap)
+						&& methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap)					
+						
+
+				) {
+					SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+							LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,PureT", methodtraces2HashMap); 
+
+					
+
+				}
+				// PURE N PATTERN
+				else if ( !methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty()
+						&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap)
+						&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap)
+
+				) {
+					SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+							LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,PureN", methodtraces2HashMap); 
+				
+
+				}
+
+				 
+				// PURE T LEAF PATTERN
+				 if (	methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty()
+						 && methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+
+				) {
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,PureTLeaf", methodtraces2HashMap); 
+
+				}
+				// PURE N LEAF PATTERN
+				 else if (methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty()
+						 && methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap)
+
+				) {
+
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,PureNLeaf", methodtraces2HashMap); 
+				}
+
+				
+				k++;
+
+			}
+
+			k = 0;
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+				//System.out.println();
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// MIXED PATTERNS
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// MIXED T PATTERN
+				 if (!methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty() 
+					&& methodtrace.getMethod().getCallees().AtLeast1T(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+					&& methodtrace.getMethod().getCallers().AtLeast1T(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+
+				) {
+					// methodtrace.setPrediction("N");
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedT", methodtraces2HashMap); 
+
+					// //System.out.println("yes");
+				}
+				// MIXED N PATTERN
+				 else if (!methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty()
+						
+						&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+						&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+						
+
+				) {
+
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,MixedN", methodtraces2HashMap); 
+
+					// //System.out.println("yes");
+				}
+				
+
+				
+				 
+				// MIXED T LEAF PATTERN
+				 if (methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty() 
+						 && methodtrace.getMethod().getCallers().AtLeast1T(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+
+				) {
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf", methodtraces2HashMap); 
+
+				}// MIXED N LEAF PATTERN
+				 else if(methodtrace.getMethod().getCallees().isEmpty() && !methodtrace.getMethod().getCallers().isEmpty() 
+						 && methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+
+				) {
+					 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,MixedNLeaf", methodtraces2HashMap); 
+
+				}
+				k++;
+			}
+			
+			// PRINT
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+			//the following line should not be moved when putting 3 before 1-2 (3-1-2 combination)
+			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+			// WriteInDatabaseAndComputePrecisionAndRecall(MyfinalHashMap,
+			// NEWPATTERNMethodCallsSetToT);
+			//System.out.println("===============>PATTERNS 3 AND 5 ITERATION SET TO T  ITERATION " + ITERATION+ "   PREDICTION VALUES " + TotalPattern.toString());
+			// END PRINT
+			CalculateChildrenInterfacesMethodTraces(RequirementMethodNameClassIDHashMap);
+			
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.methodid;
+//				LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+//				List<String> IterationValues = LogInfo.getIterationValues();
+//				Methods<String> interfaces = methodtrace.getInterfacesFinalList();
+//				Methods<String> implementations = methodtrace.getImplementationFinalList(); 
+//				Methods<String> superclasses = methodtrace.getSuperClassesFinalList(); 
+//				Methods<String> children = methodtrace.getChildrenFinalList(); 
+//				String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.ClassRepresentation.classid; 
+//				List<String> interfaceTraceValues = new ArrayList<String>();
+//				List<String> implementationsTraceValues = new ArrayList<String>();
+//				List<String> superclassesTraceValues = new ArrayList<String>();
+//				List<String> childrenTraceValues = new ArrayList<String>();
+//				boolean InterfacesFlag=false, ImplementationsFlag=false, SuperclassesFlag=false, ChildrenFlag=false; 
+//
+//				
+//				computeVariables(InterfacesFlag, ImplementationsFlag, SuperclassesFlag, ChildrenFlag, interfaces, implementations, superclasses, children, implementationsTraceValues, childrenTraceValues, superclassesTraceValues, interfaceTraceValues); 
+//			
+//				System.out.println(implementationsTraceValues);
+//
+//				InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
+//					&& interfaceTraceValues.size() >= 1;
+//			 ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
+//					&& implementationsTraceValues.size() >= 1;
+//			SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
+//					&& superclassesTraceValues.size() >= 1;
+//			 ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
+//					&& childrenTraceValues.size() >= 1;
+					
+					
+					
+					
+				
+					
+					
+//				if (
+//						methodtrace.getInterfacesFinalList().AllTs(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.getImplementationFinalList().AllTs(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.getSuperClassesFinalList().AllTs(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.getChildrenFinalList().AllTs(ChildrenFlag, childrenTraceValues, methodtrace))
+//						
+//					
+//
+//				{
+//					System.out.println("==========T  "+reqMethod);
+//					 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
+//								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
+//					
+//
+//				}
+//				else if (methodtrace.getInterfacesFinalList().AllNs(InterfacesFlag, interfaceTraceValues, methodtrace) 
+//						||methodtrace.getImplementationFinalList().AllNs(ImplementationsFlag, implementationsTraceValues, methodtrace)
+//						||methodtrace.getSuperClassesFinalList().AllNs(SuperclassesFlag, superclassesTraceValues, methodtrace)
+//						||methodtrace.getChildrenFinalList().AllNs(ChildrenFlag, childrenTraceValues, methodtrace)
+//
+//				)
+//
+//				{
+//					System.out.println("==========N  "+reqMethod);
+//					 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, RequirementMethodNameClassIDHashMap, 
+//								LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
+//					
+//
+//				}
+
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				// SUPERCLASSES , CHILDREN , INTERFACES , IMPLEMENTATIONS  PATTERN 3
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+					
+					if (
+							methodtrace.getMethod().getInterfaces().AllTs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getImplementations().AllTs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getSuperclasses().AllTs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getChildren().AllTs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							
+							)
+							
+						
+
+					{
+//						System.out.println("==========T  "+reqMethod);
+						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,  
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTInheritance"); 
+						
+
+					}
+					else if (
+							
+							methodtrace.getMethod().getInterfaces().AllNs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getImplementations().AllNs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getSuperclasses().AllNs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+							||methodtrace.getMethod().getChildren().AllNs(methodtrace.Requirement,methodtrace, methodtraces2HashMap)
+
+					)
+
+					{
+//						System.out.println("==========N  "+reqMethod);
+						 SetPredictionFinalNonOwnerInheritance(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod,
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNInheritance"); 
+						
+
+					}
+
+			}
+	
+			
+			
+			
+			
+			
+			
+				
+			
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			/////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+				
+				for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+					//System.out.println();
+					
+					
+					//////////////////////////////////////////////////////////////////////////////////////////
+					//////////////////////////////////////////////////////////////////////////////////////////
+					// ALL CALLERS PATTERN 4.1
+					//////////////////////////////////////////////////////////////////////////////////////////
+					//////////////////////////////////////////////////////////////////////////////////////////
+				
+					
+					// ALL T CALLERS 
+					 if (!methodtrace.getMethod().getCallers().isEmpty() 
+						&& methodtrace.getMethod().getCallers().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+						&& methodtrace.getPrediction().trim().equals("E")
+	
+					) {
+						// methodtrace.setPrediction("N");
+						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallers", methodtraces2HashMap); 
+
+						// //System.out.println("yes");
+					}
+					// ALL N CALLERS
+					 else if (!methodtrace.getMethod().getCallers().isEmpty() 
+								&& methodtrace.getMethod().getCallers().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+								&& methodtrace.getPrediction().trim().equals("E")
+	
+							) {
+	
+						 SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+									LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallers", methodtraces2HashMap); 
+
+	
+						// //System.out.println("yes");
+					}
+					
+	
+					
+					 
+				
+					k++;
+				}
+				
+
+				
+			
+			
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.getClassRepresentation().classid; 
+				
+				
+				
+				
+				
+				
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//ALL CALLEES PATTERN 5
+				//////////////////////////////////////////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////////////////
+				
+				
+				
+				
+				//ALL T CALLEES 
+				if (!methodtrace.getMethod().getCallees().isEmpty() 
+				&& methodtrace.getMethod().getCallees().AllTs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+				&& methodtrace.getPrediction().trim().equals("E")
+				
+				) {
+				//methodtrace.setPrediction("N");
+				SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,AllTCallees", methodtraces2HashMap); 
+				
+				
+				////System.out.println("yes");
+				}
+				//ALL N CALLEES
+				else if (!methodtrace.getMethod().getCallees().isEmpty() 
+				&& methodtrace.getMethod().getCallees().AllNs(methodtrace.Requirement, methodtrace, methodtraces2HashMap) 
+				&& methodtrace.getPrediction().trim().equals("E")
+				
+				) {
+				
+				SetPredictionFinalNonOwner(LogInfoHashMap.get(reqMethod), methodtrace, LogInfoHashMap, reqMethod, 
+				LogInfoHashMap.get(reqMethod).getIterationValues(), LogHashMapRemainingNewVals,LogHashMapRemaining, "N", "N,AllNCallees", methodtraces2HashMap); 
+				
+				
+				////System.out.println("yes");
+				}
+				k++;
+				}	
+		
+		
+				
+
+		
+				
+				
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				
+
+				
+				
+				
+				
+			
+				
+		
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// END PATTERNS 
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// PRINT
+
+			for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+				String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.methodid;
+				LogInfo LogInfo = LogInfoHashMap.get(ReqMethod);
+				List<String> myits = LogInfo.getIterationValues();
+				if (myits.size() == ITERATION + 1) {
+					//System.out.println(myits.get(ITERATION));
+
+				} else {
+					myits.add(" ");
+					LogInfo.setIterationValues(myits);
+				}
+
+				for (String it : myits) {
+					//System.out.println("it" + it + " it");
+				}
+				LogInfoHashMap.put(ReqMethod, LogInfo);
+			}
+			MyfinalHashMap = RetrievePredictionsHashMap(methodtraces2);
+
+			// END PRINT
+			ITERATION++;
+			//System.out.println("HEEEEEEY  " + ITERATION);
+
+			PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
+		}
 		
 		
 		
@@ -683,24 +1157,31 @@ public class FinalStupidAlgorithm extends JFrame {
 //			String keyent = ent.getKey(); 
 //			if( LogInfoHashMap.get(keyent).getPrediction()!=null)
 //			if(!LogHashMapRemaining.get(keyent).getPrediction().equals(LogInfoHashMap.get(keyent).getPrediction())) {
-//				System.out.println("here");
+//				//System.out.println("here");
 //			}
 //		
 //		}
-	System.out.println("here 1");
+	//System.out.println("here 1");
 	LinkedHashMap<String, LogInfo> LogHashMapRemaining3 = SetFlagRemainingPattern(LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining); 
 
 		
 
 		LogInfoHashMap=SetFlagTotalPattern(LogInfoHashMap, TotalPattern, ProgramName); 
-
+		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
 		WriteInDatabaseAndComputePrecisionAndRecallRemaining(MyfinalHashMap, LogHashMapRemaining, RemainingPattern, ProgramName, LogHashMapRemaining3, LogHashMapRemainingNewVals, RemainingpredictionValues);
-//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
-		System.out.println("here 2");
-		
+		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
+
+		//		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, RemainingPattern, LogHashMapRemaining, ProgramName);
+		//System.out.println("here 2");
+		bwfile1.write("NON OWNER CLASS PREDICTION 		"+ProgramName+" "+RemainingPattern.toString());
+		bwfile1.newLine();
+		bwfile1.write("Remaining Prediction Values 	"+ProgramName+" "+RemainingpredictionValues.toString());
+		bwfile1.newLine();
 		WriteInDatabaseAndComputePrecisionAndRecall(methodtraces2, TotalPattern, LogInfoHashMap, ProgramName, TotalPredictionValues);
-		System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION
-				+ "   PREDICTION VALUES " + TotalPattern.toString());
+		//System.out.println("===============>PATTERNS 2 AND 4 ITERATION SET TO T   ITERATION  " + ITERATION+ "   PREDICTION VALUES " + RemainingPattern.toString());
+		bwfile1.write("TOTAL PREDICTION 				"+ProgramName+" "+TotalPattern.toString());
+		bwfile1.newLine();
+		bwfile1.write("Prediction Values 				"+ProgramName+" "+TotalPredictionValues.toString());
 		bwfile1.close();
 		if (ProgramName.equals("chess")) {
 			bwfileChess.write(
@@ -724,9 +1205,9 @@ public class FinalStupidAlgorithm extends JFrame {
 		}
 
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, methodtraces2);
-		int counter=0; 
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
+		 counter=0; 
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			String reqmethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.methodid;
 			LogInfoHashMap.get(reqmethod);
 			
 			if (ProgramName.equals("gantt")) {
@@ -797,14 +1278,75 @@ public class FinalStupidAlgorithm extends JFrame {
 	}
 
 
+	public void computeFlags(boolean InterfacesFlag, boolean ImplementationsFlag, boolean SuperclassesFlag,
+			boolean ChildrenFlag, List<String> implementationsTraceValues, List<String> childrenTraceValues, List<String> superclassesTraceValues, List<String> interfaceTraceValues) {
+		// TODO Auto-generated method stub
+		InterfacesFlag = interfaceTraceValues.stream().distinct().limit(2).count() <= 1
+				&& interfaceTraceValues.size() >= 1;
+		 ImplementationsFlag = implementationsTraceValues.stream().distinct().limit(2).count() <= 1
+				&& implementationsTraceValues.size() >= 1;
+		SuperclassesFlag = superclassesTraceValues.stream().distinct().limit(2).count() <= 1
+				&& superclassesTraceValues.size() >= 1;
+		 ChildrenFlag = childrenTraceValues.stream().distinct().limit(2).count() <= 1
+				&& childrenTraceValues.size() >= 1;
+	}
 
+	public void computeVariables(boolean InterfacesFlag, boolean ImplementationsFlag, boolean SuperclassesFlag,
+			boolean ChildrenFlag, Methods<String> interfaces, Methods<String> implementations,
+			Methods<String> superclasses, Methods<String> children, List<String> implementationsTraceValues, List<String> childrenTraceValues, List<String> superclassesTraceValues, List<String> interfaceTraceValues) {
+		// TODO Auto-generated method stub
+		for (String inter : interfaces) {
+			String[] inters = inter.split("-");
+			String interVal = inters[0];
+			
+			interfaceTraceValues.add(interVal);
+		}
 
-	private void SetPredictionFinalNonOwnerInheritance(LogInfo LogInfo, MethodTrace methodtrace,
+		for (String inter : implementations) {
+			String[] inters = inter.split("-");
+			String interVal = inters[0];
+			
+			implementationsTraceValues.add(interVal);
+		}
+
+		for (String inter : superclasses) {
+			String[] inters = inter.split("-");
+			String interVal = inters[0];
+			
+			superclassesTraceValues.add(interVal);
+		}
+
+		for (String inter : children) {
+			String[] inters = inter.split("-");
+			String interVal = inters[0];
+		
+			childrenTraceValues.add(interVal);
+		}
+		 
+	}
+
+	public void CountTracesClassesValues(PredictionValues PredictionClassTraceBefore, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
+		// TODO Auto-generated method stub
+		
+			for(String mykey: methodtracesRequirementClass.keySet()) {
+				ClassTrace2 classtrace = methodtracesRequirementClass.get(mykey); 
+				
+				PredictionClassTraceBefore.ComputePredictionValues(PredictionClassTraceBefore, classtrace.getTraceFinal().trim());
+			}
+		
+		
+		
+		
+	}
+
+	private void SetPredictionFinalNonOwnerInheritance(LogInfo LogInfo, MethodTraceSubjectTSubjectN methodtrace,
 			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod,
-			HashMap<String, String> requirementMethodNameClassIDHashMap2, List<String> IterationValues,
+			 List<String> IterationValues,
 			LinkedHashMap<String, String> LogHashMapRemainingNewVals,
 			LinkedHashMap<String, LogInfo> LogHashMapRemaining, String pred, String reason) {
 		// TODO Auto-generated method stub
+		if(methodtrace.getPrediction().trim().equals("E")) {
+
 		if (IterationValues != null) {
 			IterationValues.add(reason);
 			LogInfo.setIterationValues(IterationValues);
@@ -827,41 +1369,48 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			LogInfoHashMap.put(reqMethod, LogInfo);
 		}
-		PatternSetVariables(pred, methodtrace, "90%", "P2");
+			PatternSetVariables(pred, methodtrace, "90%", "P2");
+
+		}
 	}
 
-	private void SetPredictionFinalNonOwner(LogInfo LogInfo, MethodTrace methodtrace,
-			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod, String ReqMethodClasskey,
-			HashMap<String, String> requirementMethodNameClassIDHashMap2, List<String> iterationValues,
+	private void SetPredictionFinalNonOwner(LogInfo LogInfo, MethodTraceSubjectTSubjectN methodtrace,
+			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqMethod, 
+			 List<String> iterationValues,
 			LinkedHashMap<String, String> LogHashMapRemainingNewVals,
-			LinkedHashMap<String, LogInfo> LogHashMapRemaining, String Pred, String Reason) {
+			LinkedHashMap<String, LogInfo> LogHashMapRemaining, String Pred, String Reason, HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap2) {
 		// TODO Auto-generated method stub
-		PatternSetVariables(Pred, methodtrace, "90%", "P2");
+		
+		if(methodtrace.getPrediction().trim().equals("E")) {
+			PatternSetVariables(Pred, methodtrace, "90%", "P2");
 
-		iterationValues.add(Reason);
-		LogInfo.setPrediction(Pred);
-
-		LogInfo.setIterationValues(iterationValues);
-		LogInfoHashMap.put(reqMethod, LogInfo);
-		LogHashMapRemaining.put(reqMethod, LogInfo);
-		LogHashMapRemainingNewVals.put(reqMethod, Pred);
-		RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, Pred); 
+			iterationValues.add(Reason);
+			LogInfo.setPrediction(Pred);
+			methodtrace.setPrediction(Pred);
+			LogInfo.setIterationValues(iterationValues);
+			LogInfoHashMap.put(reqMethod, LogInfo);
+			LogHashMapRemaining.put(reqMethod, LogInfo);
+			LogHashMapRemainingNewVals.put(reqMethod, Pred);
+//			RequirementMethodNameClassIDHashMap.put(ReqMethodClasskey, Pred); 
+			methodtraces2HashMap2.put(reqMethod, methodtrace); 
+		}
+		
 	}
 
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	private LinkedHashMap<String, LogInfo> InitializeHashMapWithPrecisionRecallRemaining(
-			Collection<MethodTrace> methodTracesHashmapValues,
+			Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues,
 			LinkedHashMap<String, LogInfo> logHashMapRemaining, LinkedHashMap<String, LogInfo> logInfoHashMap) {
 
 		// TODO Auto-generated method stub
 		
-		for (MethodTrace methodtrace : methodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodTracesHashmapValues) {
 			
 			String reqID= methodtrace.getRequirement().ID; 
-			String methodID= methodtrace.getMethod().ID; 
+			String methodID= methodtrace.getMethod().methodid; 
 			String key= reqID+"-"+methodID; 
-			System.out.println("Key "+ key);
+			//System.out.println("Key "+ key);
 			LogInfo log = new LogInfo(); 
 			log.setPrecisionRecall("E");
 			log.setPrediction("E");
@@ -878,7 +1427,7 @@ public class FinalStupidAlgorithm extends JFrame {
 	/**
 	 * @param remainingpredictionValues **********************************************************************************************************************************************/
 	private void WriteInDatabaseAndComputePrecisionAndRecallRemaining(
-			LinkedHashMap<String, MethodTrace> MyfinalHashMap,
+			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
 			LinkedHashMap<String, LogInfo> logHashMapRemaining, PredictionEvaluation Pattern,
 			String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, LinkedHashMap<String, String>loghashmapNewVals, PredictionValues remainingpredictionValues) {
 		// TODO Auto-generated method stub
@@ -886,75 +1435,80 @@ public class FinalStupidAlgorithm extends JFrame {
 		Pattern.ResetCounters(Pattern);
 
 		for (String mykey : logHashMapRemaining.keySet()) {
-			MethodTrace myvalue = MyfinalHashMap.get(mykey);
-			String methodid = myvalue.getMethod().ID;
+			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
+			String methodid = myvalue.getMethod().methodid;
 			String requirementID = myvalue.getRequirement().ID;
 			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
 			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
-			String likelihood = myvalue.likelihood; 
-			String why = myvalue.why; 
+			String likelihood = myvalue.getLikelihood();
+			String why = myvalue.getWhy();
+			String reqMethod= requirementID+"-"+methodid; 
+			
+			
+		//	System.out.println(Pattern.toString());
 
 			
-			
-			
-			
-//			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
+			//System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
-				if (myvalue.gold != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isSubjectDeveloperEqual()
+				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
 						&& logHashMapRemaining.get(mykey)!=null) {
-					String Result = Pattern.ComparePredictionToGold(myvalue.gold.trim(),
+					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							logHashMapRemaining.get(mykey).getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
+				//	System.out.println(Pattern.toString());
+					if(Result.equals("TN")) {
+						System.out.println("REQMETHOD========>"+reqMethod);
+
+					}
 					
 					
-					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, logHashMapRemaining.get(mykey).getPrediction().trim()); 
 				
 				}
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust")) {
-				if (myvalue.gold != null && myvalue.getPrediction() != null 
+				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null 
 						&& loghashmapNewVals.get(mykey)!=null) {
-					String Result = Pattern.ComparePredictionToGold(myvalue.gold.trim(),
+					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
 					
 					
 					
-					remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, myvalue.getPrediction().trim()); 
 
 				}
 			}
 			
+			remainingpredictionValues.ComputePredictionValues(remainingpredictionValues, logHashMapRemaining.get(mykey).getPrediction().trim()); 
 
 		}
 		Pattern.toString();
 
-		System.out.println("FINAL RESULT ====== " + Pattern.toString());
+		//System.out.println("FINAL RESULT ====== " + Pattern.toString());
 	}
 	/************************************************************************************************************************************************/
-	/************************************************************************************************************************************************/
-	public void SetPredictionFinal(LogInfo loginfo, MethodTrace methodtrace,
-			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqmethod, String reqMethodClasskey,
-			HashMap<String, String> requirementMethodNameClassIDHashMap2, String value) {
+	/**
+	 * @param methodtraces2HashMap2 **********************************************************************************************************************************************/
+	public void SetPredictionFinal(LogInfo loginfo, MethodTraceSubjectTSubjectN methodtrace,
+			LinkedHashMap<String, LogInfo> LogInfoHashMap, String reqmethod,  String value, HashMap<String, MethodTraceSubjectTSubjectN> methodtraces2HashMap2) {
 		// TODO Auto-generated method stub
-		loginfo.setPrediction(value);
+		loginfo.setOwnerClassPrediction(value);
 		methodtrace.setPrediction(value);
 		loginfo.setPrediction(value);
 		LogInfoHashMap.put(reqmethod, loginfo);
-		RequirementMethodNameClassIDHashMap.put(reqMethodClasskey, value); 
+		methodtraces2HashMap.put(reqmethod, methodtrace); 
 		PatternSetVariables(value, methodtrace, "90%", "P2");
 	}
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	private LinkedHashMap<String, LogInfo> InitializeHashMapWithPrecisionRecall(
-			Collection<MethodTrace> methodTracesHashmapValues, LinkedHashMap<String, LogInfo> logHashMapRemaining) {
+			Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues, LinkedHashMap<String, LogInfo> logHashMapRemaining) {
 		// TODO Auto-generated method stub
 		
-		for (MethodTrace methodtrace : methodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodTracesHashmapValues) {
 			
 			String reqID= methodtrace.getRequirement().ID; 
-			String methodID= methodtrace.getMethod().ID; 
+			String methodID= methodtrace.getMethod().methodid; 
 			String key= reqID+"-"+methodID; 
-			System.out.println("Key "+ key);
+			//System.out.println("Key "+ key);
 			LogInfo log = new LogInfo(); 
 			log.setPrecisionRecall("E");
 			log.setPrediction("E");
@@ -964,17 +1518,64 @@ public class FinalStupidAlgorithm extends JFrame {
 	
 		return logHashMapRemaining;
 	}
-	
+	/************************************************************************************************************************************************/
+	/************************************************************************************************************************************************/
+	private void SetPredictionCallersCallees(Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues, HashMap<String, LogInfo> LogInfoHashMap) {
+		// TODO Auto-generated method stub
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.getMethod().methodid;
+			LogInfo LogInfo = LogInfoHashMap.get(reqMethod);
+			// methodtrace.setPrediction("");
+			MethodList  CalleesList = methodtrace.getCalleesList();
+			MethodList CallersList = methodtrace.getCallersList();
+
+//			MethodList MethodPredictionCalleeList = new MethodList();
+//			for (Method2Representation callee : CalleesList) {
+//				String RequirementID = methodtrace.getRequirement().ID; 
+//				String MethodID = callee.methodid; 
+//				String key = RequirementID+ "-" +MethodID  ;
+//				if (methodtraces2HashMap.get(key) != null) {
+//					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//					MethodPredictionCalleeList.add(predictionvalue);
+//				}
+//
+//			}
+//
+//			MethodList<String> MethodPredictionCallerList = new MethodList<String>();
+//			for (Method2Representation caller : CallersList) {
+//				String RequirementID = methodtrace.getRequirement().ID; 
+//				String MethodID = caller.methodid; 
+//				String key = RequirementID+ "-" +MethodID  ;
+//				if (methodtraces2HashMap.get(key) != null) {
+//					String predictionvalue = methodtraces2HashMap.get(key).getPrediction();
+//					MethodPredictionCallerList.add(predictionvalue);
+//				}
+//			}
+			MethodList ml = new MethodList(); 
+			methodtrace.setPredictionCalleeList(CalleesList);
+			//System.out.println(methodtrace.getCalleeList());
+			methodtrace.setPredictionCallerList(CallersList);
+			//System.out.println(methodtrace.getCallerList());
+
+			
+		}
+		
+		for(MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
+			//System.out.println(methodtrace.Method.methodid+"-"+methodtrace.Requirement.ID);
+			//System.out.println(methodtrace.getCalleeList());
+			//System.out.println(methodtrace.getCallerList());
+		}
+	}
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	private LinkedHashMap<String, LogInfo> InitializeLogInfoHashMap(LinkedHashMap<String, LogInfo> logInfoHashMap,
-			Collection<MethodTrace> methodTracesHashmapValues) {
+			Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues) {
 		// TODO Auto-generated method stub
-		for(MethodTrace methval: methodTracesHashmapValues) {
+		for(MethodTraceSubjectTSubjectN methval: methodTracesHashmapValues) {
 			String Req= methval.getRequirement().ID; 
-			String Method= methval.getMethod().ID; 
+			String Method= methval.getMethod().methodid; 
 			LogInfo loginfo= new LogInfo(); 
-			System.out.println(Req+"-"+Method);
+			//System.out.println(Req+"-"+Method);
 			logInfoHashMap.put(Req+"-"+Method, loginfo); 
 		}
 		return logInfoHashMap; 
@@ -982,10 +1583,10 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	public HashMap<String, String> InitializeRequirementMethodNameClassIDHashMap(
-			HashMap<String, String> requirementMethodNameClassIDHashMap2, Collection<MethodTrace> methodTracesHashmapValues) {
+			HashMap<String, String> requirementMethodNameClassIDHashMap2, Collection<MethodTraceSubjectTSubjectN> methodTracesHashmapValues) {
 		
-		for(MethodTrace methodtrace: methodTracesHashmapValues){
-			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.Method.Owner.ID; 
+		for(MethodTraceSubjectTSubjectN methodtrace: methodTracesHashmapValues){
+			String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+methodtrace.ClassRepresentation.classid; 
 
 			requirementMethodNameClassIDHashMap2.put(ReqMethodClasskey, "E"); 
 		}
@@ -1034,11 +1635,11 @@ public class FinalStupidAlgorithm extends JFrame {
 			LinkedHashMap<String, String> requirementClassHashMapNewValues, LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass2) {
 		// TODO Auto-generated method stub
 		int j = 0;
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
 
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 
-			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID;
+			String reqclass = methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid;
 			ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 
 			// PATTERN 1
@@ -1078,14 +1679,14 @@ public class FinalStupidAlgorithm extends JFrame {
 			if (allEqual) {
 
 				ClassTrace2 myclasstraceNew = methodtracesRequirementClass
-						.get(methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID);
+						.get(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid);
 				if ((myclasstraceNew.getTraceFinal() == null || myclasstraceNew.getTraceFinal().equals("E")
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValues.get(0).equals("T") || TraceValues.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValues.get(0));
-					methodtracesRequirementClass.put(methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,myclasstraceNew);
+					methodtracesRequirementClass.put(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,myclasstraceNew);
 					requirementClassHashMapNewValues.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
 				}
 
@@ -1107,16 +1708,16 @@ public class FinalStupidAlgorithm extends JFrame {
 			if (allEqual) {
 
 				ClassTrace2 myclasstraceNew = methodtracesRequirementClass
-						.get(methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID);
+						.get(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid);
 				if ((myclasstraceNew.getTraceFinal() == null || myclasstraceNew.getTraceFinal().equals("E")
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValues2.get(0).equals("T") || TraceValues2.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValues2.get(0));
 					methodtracesRequirementClass.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew);
 					requirementClassHashMapNewValues.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
 
 				}
@@ -1140,16 +1741,16 @@ public class FinalStupidAlgorithm extends JFrame {
 			if (allEqual) {
 
 				ClassTrace2 myclasstraceNew = methodtracesRequirementClass
-						.get(methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID);
+						.get(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid);
 				if ((myclasstraceNew.getTraceFinal() == null || myclasstraceNew.getTraceFinal().equals("E")
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValuesInterfaces.get(0).equals("T") || TraceValuesInterfaces.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValuesInterfaces.get(0));
 					methodtracesRequirementClass.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew);
 					requirementClassHashMapNewValues.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
 
 				}
@@ -1172,16 +1773,16 @@ public class FinalStupidAlgorithm extends JFrame {
 			if (allEqual) {
 
 				ClassTrace2 myclasstraceNew = methodtracesRequirementClass
-						.get(methodtrace.Requirement.getID() + "-" + methodtrace.Method.Owner.ID);
+						.get(methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid);
 				if ((myclasstraceNew.getTraceFinal() == null || myclasstraceNew.getTraceFinal().equals("E")
 						|| myclasstraceNew.getTraceFinal().equals("null"))
 						&& (TraceValuesInterfaces2.get(0).equals("T") || TraceValuesInterfaces2.get(0).equals("N"))) {
 					myclasstraceNew.setTraceFinal(TraceValuesInterfaces2.get(0));
 					methodtracesRequirementClass.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Clazz.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew);
 					requirementClassHashMapNewValues.put(
-							methodtrace.Requirement.getID() + "-" + methodtrace.Clazz.ID,
+							methodtrace.Requirement.getID() + "-" + methodtrace.ClassRepresentation.classid,
 							myclasstraceNew.getTraceFinal());
 
 				}
@@ -1204,16 +1805,16 @@ public class FinalStupidAlgorithm extends JFrame {
 	/**
 	 * @param logInfoHashMap 
 	 * @param programName **********************************************************************************************************************************************/
-	public LinkedHashMap<String, MethodTrace> SetFlagOwnerClassPattern(LinkedHashMap<String, MethodTrace> logHashMapRemaining,
+	public LinkedHashMap<String, MethodTraceSubjectTSubjectN> SetFlagOwnerClassPattern(LinkedHashMap<String, MethodTraceSubjectTSubjectN> logHashMapRemaining,
 			PredictionEvaluation nEWPATTERNMethodFields2, LinkedHashMap<String, LogInfo> logInfoHashMap, String programName) {
 		for (String mykey : logInfoHashMap.keySet()) {
 			 LogInfo loginfo = logInfoHashMap.get(mykey);
 			 
 			if( programName.equals("gantt")||programName.equals("jhotdraw") ) {
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()) ) {
-					loginfo.setSubjectDeveloperEqualityFlag(true);
+					loginfo.setMyFlag(true);
 					logInfoHashMap.put(mykey, loginfo); 
-					MethodTrace myval = logHashMapRemaining.get(mykey); 
+					MethodTraceSubjectTSubjectN myval = logHashMapRemaining.get(mykey); 
 					myval.setMyflag(true);
 					logHashMapRemaining.put(mykey, myval); 
 				}
@@ -1236,11 +1837,11 @@ public class FinalStupidAlgorithm extends JFrame {
 			PredictionEvaluation nEWPATTERNMethodFields2, String programName) {
 		for (String mykey : loginfohash.keySet()) {
 			 LogInfo loginfo = loginfohash.get(mykey);
-			 System.out.println("mykey "+mykey);
+			 //System.out.println("mykey "+mykey);
 			if(programName.equals("gantt")||programName.equals("jhotdraw")){
-				System.out.println("loginfo.getGoldFinal()  "+loginfo.getGoldFinal()+"loginfo.getSubjectGold()  "+loginfo.getSubjectGold());
+				//System.out.println("loginfo.getGoldFinal()  "+loginfo.getGoldFinal()+"loginfo.getSubjectGold()  "+loginfo.getSubjectGold());
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()))  {
-				loginfo.setSubjectDeveloperEqualityFlag(true);
+				loginfo.setMyFlag(true);
 				loginfohash.put(mykey, loginfo); 
 				
 			}
@@ -1258,13 +1859,13 @@ public class FinalStupidAlgorithm extends JFrame {
 			PredictionEvaluation nEWPATTERNMethodFields2, String programName, LinkedHashMap<String, LogInfo> logHashMapRemaining2) {
 		for (String mykey : loginfohash.keySet()) {
 			 LogInfo loginfo = loginfohash.get(mykey);
-			 System.out.println("mykey "+mykey);
+			 //System.out.println("mykey "+mykey);
 			if(programName.equals("gantt")||programName.equals("jhotdraw")){
-				System.out.println("loginfo.getGoldFinal()  "+loginfo.getGoldFinal()+"loginfo.getSubjectGold()  "+loginfo.getSubjectGold());
+				//System.out.println("loginfo.getGoldFinal()  "+loginfo.getGoldFinal()+"loginfo.getSubjectGold()  "+loginfo.getSubjectGold());
 			
 				
 				if (loginfo.getGoldFinal().equals(loginfo.getSubjectGold()) && loginfo.getPrediction()!=null)  {
-				loginfo.setSubjectDeveloperEqualityFlag(true);
+				loginfo.setMyFlag(true);
 				logHashMapRemaining2.put(mykey, loginfo); 
 				
 			}
@@ -1281,17 +1882,17 @@ public class FinalStupidAlgorithm extends JFrame {
 	public void CalculateChildrenInterfacesMethodTraces(HashMap<String, String> requirementMethodNameClassIDHashMap2) {
 		// TODO Auto-generated method stub
 		int j = 0;
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 		
 
 			List<String> SuperClassesList = new ArrayList<String>();
 			List<String> InterfaceList = new ArrayList<String>();
 			List<String> ChildrenList = new ArrayList<String>();
 			List<String> ImplementationList = new ArrayList<String>();
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(methodtraces2HashMap.size());
+			//System.out.println(methodtraces2.size());
+			//System.out.println(j);
+			//System.out.println(methodtraces2HashMap.size());
 			String ReqID= methodtrace.Requirement.ID; 
 			String MethodName= methodtrace.Method.methodname; 
 
@@ -1311,52 +1912,52 @@ public class FinalStupidAlgorithm extends JFrame {
 			
 			
 			
-			List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.Clazz.ID);
-			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.Clazz.ID);
-			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.Clazz.ID);
-			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.Clazz.ID);
+			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid);
+			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid);
+			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL.get(methodtrace.ClassRepresentation.classid);
+			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid);
 			
 			
-			System.out.println("Methodtrace class id " + methodtrace.Clazz.ID);
+			//System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.classid);
 			if (myinterfaces != null)
-				for (Interface myinterface : myinterfaces) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myinterface.InterfaceClass.ID; 
+				for (Interface2 myinterface : myinterfaces) {
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myinterface.InterfaceClass.classid; 
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 					
 					InterfaceList.add(TraceValue + "-" + myinterface.getInterfaceClass().getClassid() + "-"
-									+ methodtrace.Clazz.ID);
+									+ methodtrace.ClassRepresentation.classid);
 						
 				}
 			if (mysuperclasses != null)
 				for (SuperClass2 mysuperclass : mysuperclasses) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mysuperclass.SuperClass.ID; 
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mysuperclass.SuperClass.classid; 
 							
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 					
-					SuperClassesList.add(TraceValue + "-" + mysuperclass.getSuperClass().ID + "-"
-									+ methodtrace.Clazz.ID);
+					SuperClassesList.add(TraceValue + "-" + mysuperclass.getSuperClass().classid + "-"
+									+ methodtrace.ClassRepresentation.classid);
 					
 					
 					
 				}
 			if (mychildren != null)
 				for (Children2 mychild : mychildren) {
-				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mychild.OwnerClass.ID; 
+				String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+mychild.OwnerClass.classid; 
 				
 				String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 		
-				ChildrenList.add(TraceValue + "-" + mychild.getOwnerClass().ID + "-"
-						+ methodtrace.Clazz.ID);
+				ChildrenList.add(TraceValue + "-" + mychild.getOwnerClass().classid + "-"
+						+ methodtrace.ClassRepresentation.classid);
 				
 				}
 			if (myimplementations != null)
 				for (Implementation2 myimplementation : myimplementations) {
-					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myimplementation.Implementation.ID;  
+					String ReqMethodClasskey=methodtrace.Requirement.ID+"-"+methodtrace.getMethod().methodname+"-"+myimplementation.Implementation.classid;  
 					
 					String TraceValue = requirementMethodNameClassIDHashMap2.get(ReqMethodClasskey);
 			
-					ImplementationList.add(TraceValue + "-" + myimplementation.getImplementation().ID + "-"
-							+ methodtrace.Clazz.ID);
+					ImplementationList.add(TraceValue + "-" + myimplementation.getImplementation().classid + "-"
+							+ methodtrace.ClassRepresentation.classid);
 				}
 			methodtrace.setSuperClassesListMethodTraces(SuperClassesList);
 			methodtrace.setInterfaceListMethodTraces(InterfaceList);
@@ -1371,21 +1972,21 @@ public class FinalStupidAlgorithm extends JFrame {
 	public void CalculateChildrenInterfacesTracesClasses() {
 		// TODO Auto-generated method stub
 		int j = 0;
-		Collection<MethodTrace> MethodTracesHashmapValues = methodtraces2HashMap.values();
-		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+		Collection<MethodTraceSubjectTSubjectN> MethodTracesHashmapValues = methodtraces2HashMap.values();
+		for (MethodTraceSubjectTSubjectN methodtrace : MethodTracesHashmapValues) {
 			List<String> PredictionParams = new ArrayList<String>();
 			List<String> PredictionParamsOwnerClass = new ArrayList<String>();
 			List<String> PredictionFields = new ArrayList<String>();
 			List<String> PredictionFieldsOwnerClass = new ArrayList<String>();
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(methodtraces2HashMap.size());
+			//System.out.println(methodtraces2.size());
+			//System.out.println(j);
+			//System.out.println(methodtraces2HashMap.size());
 
-			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.Method.ID);
-			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.Method.ID);
+			List<MethodField2> mymethodfields = FieldMethodsHashMap.get(methodtrace.Method.methodid);
+			List<Parameter2> paramlist = parameterHashMap.get(methodtrace.Method.methodid);
 			if (mymethodfields != null)
 				for (MethodField2 mymeth : mymethodfields) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getMethodFieldType().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getMethodFieldType().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
@@ -1395,7 +1996,7 @@ public class FinalStupidAlgorithm extends JFrame {
 				}
 			if (paramlist != null) {
 				for (Parameter2 mymeth : paramlist) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getParameterType().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getParameterType().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
@@ -1407,7 +2008,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			if (paramlist != null) {
 				for (Parameter2 mymeth : paramlist) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getOwnerClass().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getOwnerClass().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
@@ -1419,7 +2020,7 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			if (mymethodfields != null)
 				for (MethodField2 mymeth : mymethodfields) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getOwnerClass().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mymeth.getOwnerClass().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
@@ -1436,58 +2037,58 @@ public class FinalStupidAlgorithm extends JFrame {
 			List<String> InterfaceList = new ArrayList<String>();
 			List<String> ChildrenList = new ArrayList<String>();
 			List<String> ImplementationList = new ArrayList<String>();
-			System.out.println(methodtraces2.size());
-			System.out.println(j);
-			System.out.println(methodtraces2HashMap.size());
+			//System.out.println(methodtraces2.size());
+			//System.out.println(j);
+			//System.out.println(methodtraces2HashMap.size());
 
-			List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.Clazz.ID);
-			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.Clazz.ID);
+			List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(methodtrace.ClassRepresentation.classid);
+			List<SuperClass2> mysuperclasses = SuperclassesHashMap.get(methodtrace.ClassRepresentation.classid);
 			List<Implementation2> myimplementations = INTERFACEHASHMAPFINAL
-					.get(methodtrace.Clazz.ID);
-			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.Clazz.ID);
-			System.out.println("Methodtrace class id " + methodtrace.Clazz.ID);
+					.get(methodtrace.ClassRepresentation.classid);
+			List<Children2> mychildren = ChildrenHashMap.get(methodtrace.ClassRepresentation.classid);
+			//System.out.println("Methodtrace class id " + methodtrace.ClassRepresentation.classid);
 			if (myinterfaces != null)
-				for (Interface myinterface : myinterfaces) {
+				for (Interface2 myinterface : myinterfaces) {
 					String reqclass = methodtrace.Requirement.ID + "-" + myinterface.getInterfaceClass().getClassid();
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
 							String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
 							InterfaceList.add(traceGold2V2 + "-" + myinterface.getInterfaceClass().getClassid() + "-"
-									+ methodtrace.Clazz.ID);
+									+ methodtrace.ClassRepresentation.classid);
 						}
 				}
 			if (mysuperclasses != null)
 				for (SuperClass2 mysuperclass : mysuperclasses) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mysuperclass.getSuperClass().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mysuperclass.getSuperClass().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
 							String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
-							SuperClassesList.add(traceGold2V2 + "-" + mysuperclass.getSuperClass().ID + "-"
-									+ methodtrace.Clazz.ID);
+							SuperClassesList.add(traceGold2V2 + "-" + mysuperclass.getSuperClass().classid + "-"
+									+ methodtrace.ClassRepresentation.classid);
 						}
 				}
 			if (mychildren != null)
 				for (Children2 mychild : mychildren) {
-					String reqclass = methodtrace.Requirement.ID + "-" + mychild.getOwnerClass().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + mychild.getOwnerClass().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
 							String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
-							ChildrenList.add(traceGold2V2 + "-" + mychild.getOwnerClass().ID + "-"
-									+ methodtrace.Clazz.ID);
+							ChildrenList.add(traceGold2V2 + "-" + mychild.getOwnerClass().classid + "-"
+									+ methodtrace.ClassRepresentation.classid);
 						}
 				}
 			if (myimplementations != null)
 				for (Implementation2 myimplementation : myimplementations) {
-					String reqclass = methodtrace.Requirement.ID + "-" + myimplementation.getImplementation().ID;
+					String reqclass = methodtrace.Requirement.ID + "-" + myimplementation.getImplementation().classid;
 					ClassTrace2 myclasstraceHashMap = methodtracesRequirementClass.get(reqclass);
 					if (myclasstraceHashMap != null)
 						if (myclasstraceHashMap.getTraceFinal() != null) {
 							String traceGold2V2 = myclasstraceHashMap.getTraceFinal().trim();
-							ImplementationList.add(traceGold2V2 + "-" + myimplementation.getImplementation().ID
-									+ "-" + methodtrace.Clazz.ID);
+							ImplementationList.add(traceGold2V2 + "-" + myimplementation.getImplementation().classid
+									+ "-" + methodtrace.ClassRepresentation.classid);
 						}
 				}
 			methodtrace.setSuperClassesList(SuperClassesList);
@@ -1504,30 +2105,30 @@ public class FinalStupidAlgorithm extends JFrame {
 	 * @param logInfoHashMap
 	 * @param totalPredictionValues 
 	 **********************************************************************************************************************************************/
-	public void WriteInDatabaseAndComputePrecisionAndRecall(List<MethodTrace> methodtraces22,
+	public void WriteInDatabaseAndComputePrecisionAndRecall(List<MethodTraceSubjectTSubjectN> methodtraces22,
 			PredictionEvaluation nEWPATTERNMethodCallsSetToT2, HashMap<String, LogInfo> logInfoHashMap, String ProgramName, PredictionValues totalPredictionValues) {
 		// TODO Auto-generated method stub
 
 		// TODO Auto-generated method stub
 		nEWPATTERNMethodCallsSetToT2.ResetCounters(nEWPATTERNMethodCallsSetToT2);
 
-		for (MethodTrace mykey : methodtraces22) {
-			String methodid = mykey.getMethod().ID;
+		for (MethodTraceSubjectTSubjectN mykey : methodtraces22) {
+			String methodid = mykey.getMethod().methodid;
 			String requirementID = mykey.getRequirement().ID;
 			String ReqMethod = requirementID + "-" + methodid;
 			LogInfo logInfo = logInfoHashMap.get(ReqMethod);
 			
 			String likelihood = mykey.getLikelihood();
 			String why = mykey.getWhy();
+			System.out.println("gold  " + mykey.getGoldfinal().trim() + " ------------  prediction  " + logInfo.getPrediction().trim());
 
 		if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")) {
-			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null && logInfo.isSubjectDeveloperEqual()) {
+			if (mykey.getGoldfinal() != null && logInfo.getPrediction() != null && logInfo.isMyFlag()) {
 				String Result = nEWPATTERNMethodCallsSetToT2.ComparePredictionToGold(mykey.getGoldfinal().trim(),
 						logInfo.getPrediction().trim());
 				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
 				logInfoHashMap.put(ReqMethod, logInfo);
-				totalPredictionValues.ComputePredictionValues(totalPredictionValues, logInfo.getPrediction().trim());
 			}
 		}
 		else if(ProgramName.equals("itrust")|| ProgramName.equals("chess")) {
@@ -1537,15 +2138,17 @@ public class FinalStupidAlgorithm extends JFrame {
 				logInfo.setPrecisionRecall(Result);
 				nEWPATTERNMethodCallsSetToT2.UpdateCounters(Result, nEWPATTERNMethodCallsSetToT2);
 				logInfoHashMap.put(ReqMethod, logInfo);
-				totalPredictionValues.ComputePredictionValues(totalPredictionValues, logInfo.getPrediction().trim());
 
 			}
 		}
+		
+		totalPredictionValues.ComputePredictionValues(totalPredictionValues, logInfo.getPrediction().trim());
+
+		System.out.println("MY PRED====>"+logInfo.getPrediction().trim());
 
 		}
 		nEWPATTERNMethodCallsSetToT2.toString();
-
-		System.out.println("FINAL RESULT ====== " + nEWPATTERNMethodCallsSetToT2.toString());
+		//System.out.println("FINAL RESULT ====== " + nEWPATTERNMethodCallsSetToT2.toString());
 
 	}
 
@@ -1555,14 +2158,14 @@ public class FinalStupidAlgorithm extends JFrame {
 	 * @param ownerClassPredictionValues **********************************************************************************************************************************************/
 
 	public void WriteInDatabaseAndComputePrecisionAndRecallOwner(
-			LinkedHashMap<String, MethodTrace> MyfinalHashMap,
+			LinkedHashMap<String, MethodTraceSubjectTSubjectN> MyfinalHashMap,
 			PredictionEvaluation Pattern, String ProgramName, LinkedHashMap<String, LogInfo> logHashMapRemaining3, PredictionValues ownerClassPredictionValues) throws SQLException {
 		// TODO Auto-generated method stub
 		Pattern.ResetCounters(Pattern);
 
 		for (String mykey : MyfinalHashMap.keySet()) {
-			MethodTrace myvalue = MyfinalHashMap.get(mykey);
-			String methodid = myvalue.getMethod().ID;
+			MethodTraceSubjectTSubjectN myvalue = MyfinalHashMap.get(mykey);
+			String methodid = myvalue.getMethod().methodid;
 			String requirementID = myvalue.getRequirement().ID;
 			// String query= "UPDATE `traces` SET `prediction` ='"+ myvalue.getPrediction()
 			// +"'WHERE requirementid='"+RequirementID+"' AND methodid ='"+methodid+"'";
@@ -1571,9 +2174,9 @@ public class FinalStupidAlgorithm extends JFrame {
 
 			
 
-			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
+//			System.out.println("PREDICTION  " + myvalue.getPrediction() + " ------------  gold2  " + myvalue.goldfinal);
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
-				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isSubjectDeveloperEqual()
+				if (myvalue.getGoldfinal() != null && myvalue.getPrediction() != null && logHashMapRemaining3.get(mykey).isMyFlag()
 						) {
 					String Result = Pattern.ComparePredictionToGold(myvalue.getGoldfinal().trim(),
 							myvalue.getPrediction().trim());
@@ -1587,16 +2190,15 @@ public class FinalStupidAlgorithm extends JFrame {
 					Pattern.UpdateCounters(Result, Pattern);
 
 				}
+
 			}
 			ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, myvalue.getPrediction().trim());
-
-			System.out.println("PREDICTION "+myvalue.getPrediction().trim()+"   REAL GOLD FINAL "+myvalue.getGoldfinal().trim());
 
 
 		}
 		Pattern.toString();
 
-		System.out.println("FINAL RESULT ====== " + Pattern.toString());
+		//System.out.println("FINAL RESULT ====== " + Pattern.toString());
 	}
 
 	/************************************************************************************************************************************************/
@@ -1605,12 +2207,12 @@ public class FinalStupidAlgorithm extends JFrame {
 
 	public LinkedHashMap<String, String> InitializePredictionsHashMap(
 			LinkedHashMap<String, String> predictionsOldHashMap,
-			Collection<MethodTrace> methodtraces22) {
+			Collection<MethodTraceSubjectTSubjectN> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for (MethodTrace methodtrace : methodtraces22) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
 			String RequirementID = methodtrace.Requirement.ID;
-			String MethodID = methodtrace.Method.ID;
+			String MethodID = methodtrace.Method.methodid;
 			String key = MethodID + "-" + RequirementID;
 			predictionsOldHashMap.put(key, methodtrace.getPrediction());
 		}
@@ -1621,11 +2223,11 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 
-	public List<MethodTrace> InitializePredictionsHashMapBlankValues(
-			LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTrace> methodtraces22) {
+	public List<MethodTraceSubjectTSubjectN> InitializePredictionsHashMapBlankValues(
+			LinkedHashMap<String, String> predictionsOldHashMap, List<MethodTraceSubjectTSubjectN> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		for (MethodTrace methodtrace : methodtraces22) {
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
 			methodtrace.setPrediction("");
 		}
 		return methodtraces22;
@@ -1634,14 +2236,14 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public LinkedHashMap<String, MethodTrace> RetrievePredictionsHashMap(
-			List<MethodTrace> methodtraces22) {
+	public LinkedHashMap<String, MethodTraceSubjectTSubjectN> RetrievePredictionsHashMap(
+			List<MethodTraceSubjectTSubjectN> methodtraces22) {
 		// TODO Auto-generated method stub
 
-		LinkedHashMap<String, MethodTrace> predictionsOldHashMap = new LinkedHashMap<String, MethodTrace>();
-		for (MethodTrace methodtrace : methodtraces22) {
+		LinkedHashMap<String, MethodTraceSubjectTSubjectN> predictionsOldHashMap = new LinkedHashMap<String, MethodTraceSubjectTSubjectN>();
+		for (MethodTraceSubjectTSubjectN methodtrace : methodtraces22) {
 			String RequirementID = methodtrace.Requirement.ID;
-			String MethodID = methodtrace.Method.ID;
+			String MethodID = methodtrace.Method.methodid;
 			String key = RequirementID+"-"+MethodID  ;
 			predictionsOldHashMap.put(key, methodtrace);
 		}
@@ -1651,7 +2253,7 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public void PatternSetVariables(String Prediction, MethodTrace methodtrace, String Likelihood,
+	public void PatternSetVariables(String Prediction, MethodTraceSubjectTSubjectN methodtrace, String Likelihood,
 			String Why) {
 		// TODO Auto-generated method stub
 		methodtrace.setPrediction(Prediction);
@@ -1664,17 +2266,17 @@ public class FinalStupidAlgorithm extends JFrame {
 	/************************************************************************************************************************************************/
 	public static void main(String[] args) throws SQLException, IOException {
 		String ProgramName = "chess";
-		FinalStupidAlgorithm frame = new FinalStupidAlgorithm(
+		AlgoFinal frame = new AlgoFinal(
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new FinalStupidAlgorithm(ProgramName2);
+			 frame = new AlgoFinal(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new FinalStupidAlgorithm(ProgramName3);
+			 frame = new AlgoFinal(ProgramName3);
 
 		String ProgramName4 = "jhotdraw";
-			frame = new FinalStupidAlgorithm(ProgramName4);
+			frame = new AlgoFinal(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
@@ -1691,7 +2293,7 @@ public class FinalStupidAlgorithm extends JFrame {
 					if (OldHashMap.get(s) != null && newHashMap.get(s) != null)
 						if (OldHashMap.get(s).equals(newHashMap.get(s)) == false) {
 							if (OldHashMap.get(s).equals("T") || OldHashMap.get(s).equals("N")) {
-								System.out.println("YEEEEEEEEEEEEEEEEEEEEEES IT IS EQUAL");
+								//System.out.println("YEEEEEEEEEEEEEEEEEEEEEES IT IS EQUAL");
 							}
 							return false;
 						}

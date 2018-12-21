@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class SuperClass2 {
 	String ID; 
 	public Clazz SuperClass; 
-	public Clazz OwnerClass;
+	public Clazz ChildClass;
 	 List<SuperClass2> SupeClassList= new ArrayList<SuperClass2>(); 
 	 HashMap<String, List<SuperClass2>> superclasshashmap= new HashMap<String, List<SuperClass2>>(); 
 	
@@ -30,7 +30,7 @@ public class SuperClass2 {
 		super();
 		ID = iD;
 		SuperClass = superClass;
-		OwnerClass = ownerClass;
+		ChildClass = ownerClass;
 		SupeClassList = SupeClassList;
 	}
 
@@ -66,14 +66,14 @@ public class SuperClass2 {
 
 
 
-	public Clazz getOwnerClass() {
-		return OwnerClass;
+	public Clazz getChildClass() {
+		return ChildClass;
 	}
 
 
 
-	public void setOwnerClass(Clazz ownerClass) {
-		OwnerClass = ownerClass;
+	public void setChildClass(Clazz ownerClass) {
+		ChildClass = ownerClass;
 	}
 
 
@@ -122,7 +122,7 @@ public class SuperClass2 {
 				 OwnerClass.setClassname(childclassname);
 				 
 				 mysuperclass.setSuperClass(superclass);
-				 mysuperclass.setOwnerClass(OwnerClass);
+				 mysuperclass.setChildClass(OwnerClass);
 				 
 				 String key=ownerclassid;
 				 if(superclasshashmap.get(key)!=null) {

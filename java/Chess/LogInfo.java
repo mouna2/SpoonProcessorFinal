@@ -198,9 +198,9 @@ public class LogInfo {
 			loginfo.setRequirementName(methodtrace.getRequirement().RequirementName);
 			loginfo.setMethodID(methodtrace.getMethod().ID);
 			loginfo.setMethodName(methodtrace.getMethod().methodname);
-			loginfo.setClassID(methodtrace.getClassRepresentation().ID);
-			loginfo.setClassName(methodtrace.getClassRepresentation().classname);
-			loginfo.setTraceValue(methodtrace.getGoldfinal());
+			loginfo.setClassID(methodtrace.Method.Owner.ID);
+			loginfo.setClassName(methodtrace.Method.Owner.classname);
+			loginfo.setTraceValue(methodtrace.getGold());
 			loginfo.setGoldFinal(methodtrace.Method.Owner.DeveloperGold);
 			loginfo.setSubjectGold(methodtrace.Method.Owner.SubjectGold);
 			loginfo.setPrecisionRecall("E");
@@ -357,16 +357,16 @@ public class LogInfo {
 			HashMap<String, MethodTrace> methodTraceHashMap,
 			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues) throws SQLException {
 		// TODO Auto-generated method stub
-//		Pattern.ResetCounters(Pattern);
+	Pattern.ResetCounters(Pattern);
 
 		for (String mykey : methodTraceHashMap.keySet()) {
 			MethodTrace methodTrace = methodTraceHashMap.get(mykey);
 			
 			if(ProgramName.equals("gantt")|| ProgramName.equals("jhotdraw")){
-				if (methodTrace.getGoldfinal() != null && methodTrace.getPrediction() != null 
+				if (methodTrace.getGold() != null && methodTrace.getPrediction() != null 
 						&& methodTraceHashMap.get(mykey).isSubjectDeveloperEqualityFlag()
 						&& !methodTrace.isTraceSet() ) {
-					String Result = Pattern.ComparePredictionToGold(methodTrace.getGoldfinal().trim(),methodTrace.getPrediction().trim());
+					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),methodTrace.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {
 						methodTrace.setTraceSet(true);
@@ -378,12 +378,10 @@ public class LogInfo {
 				ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, methodTrace.getPrediction().trim());
 
 			}else if(ProgramName.equals("chess")|| ProgramName.equals("itrust") ) {
-				System.out.println(methodTrace.getPrediction());
-				System.out.println(methodTrace.getGoldfinal());
-				System.out.println(methodTrace.isTraceSet());
-				if (methodTrace.getGoldfinal() != null && methodTrace.getPrediction() != null 
+			
+				if (methodTrace.getGold() != null && methodTrace.getPrediction() != null 
 						&& !methodTrace.isTraceSet()) {
-					String Result = Pattern.ComparePredictionToGold(methodTrace.getGoldfinal().trim(),
+					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),
 							methodTrace.getPrediction().trim());
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {
@@ -397,14 +395,14 @@ public class LogInfo {
 				ownerClassPredictionValues.ComputePredictionValues(ownerClassPredictionValues, methodTrace.getPrediction().trim());
 
 			}
-			methodTraceHashMap.put(mykey, methodTrace); 
+
 		
 
 			
 
 
 		}
-		Pattern.toString();
+		System.out.println(Pattern.toString());
 
 	}
 	

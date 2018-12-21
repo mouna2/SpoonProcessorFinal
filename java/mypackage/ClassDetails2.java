@@ -20,9 +20,9 @@ public class ClassDetails2 {
 	Clazz classrep; 
 	List<Clazz> ChildClasses= new ArrayList<Clazz>(); 
 	List<Clazz> ParentClasses=new ArrayList<Clazz>(); 
-	List<Interface2> Interfaces=new ArrayList<Interface2>(); 
+	List<Interface> Interfaces=new ArrayList<Interface>(); 
 	List<ClassField2> ClassFields=new ArrayList<ClassField2>(); ; 
-	HashMap<Requirement2, ClassTrace2> ClassTraces= new HashMap<Requirement2, ClassTrace2> ();
+	HashMap<Requirement, ClassTrace2> ClassTraces= new HashMap<Requirement, ClassTrace2> ();
 	
 	
 	
@@ -50,10 +50,10 @@ public class ClassDetails2 {
 	public void setParentClasses(List<Clazz> parentClasses) {
 		ParentClasses = parentClasses;
 	}
-	public List<Interface2> getInterfaces() {
+	public List<Interface> getInterfaces() {
 		return Interfaces;
 	}
-	public void setInterfaces(List<Interface2> interfaces) {
+	public void setInterfaces(List<Interface> interfaces) {
 		Interfaces = interfaces;
 	}
 	public List<ClassField2> getClassFields() {
@@ -62,17 +62,17 @@ public class ClassDetails2 {
 	public void setClassFields(List<ClassField2> classFields) {
 		ClassFields = classFields;
 	}
-	public HashMap<Requirement2, ClassTrace2> getClassTraces() {
+	public HashMap<Requirement, ClassTrace2> getClassTraces() {
 		return ClassTraces;
 	}
-	public void setClassTraces(HashMap<Requirement2, ClassTrace2> classTraces) {
+	public void setClassTraces(HashMap<Requirement, ClassTrace2> classTraces) {
 		ClassTraces = classTraces;
 	}
 	
 	
 	public ClassDetails2(Clazz classrep, List<Clazz> childClasses,
-			List<Clazz> parentClasses, List<Interface2> interfaces, List<ClassField2> classFields,
-			HashMap<Requirement2, ClassTrace2> classTraces, HashMap<Integer, ClassDetails2> classDetailsHashMap) {
+			List<Clazz> parentClasses, List<Interface> interfaces, List<ClassField2> classFields,
+			HashMap<Requirement, ClassTrace2> classTraces, HashMap<Integer, ClassDetails2> classDetailsHashMap) {
 		super();
 		this.classrep = classrep;
 		ChildClasses = childClasses;
@@ -128,10 +128,10 @@ public class ClassDetails2 {
 				 ParentClasses.add(superclass); 
 				 classdet.setParentClasses(ParentClasses);
 				 }
-				 this.Interfaces= new ArrayList<Interface2>(); 
+				 this.Interfaces= new ArrayList<Interface>(); 
 				 ResultSet interfaces=st.executeQuery("select interfaces.* from interfaces where ownerclassid='" + classrep.ID+"'"); 
 				 while(interfaces.next()) {
-					 Interface2 myinterface=new Interface2(); 
+					 Interface myinterface=new Interface(); 
 					 Clazz interfaceclass= new Clazz(); 
 					 interfaceclass.setClassid(interfaces.getString("interfaceclassid"));
 					 interfaceclass.setClassname(interfaces.getString("interfacename"));
@@ -166,7 +166,7 @@ public class ClassDetails2 {
 				
 					
 				 }
-				 this.ClassTraces= new HashMap<Requirement2, ClassTrace2> ();
+				 this.ClassTraces= new HashMap<Requirement, ClassTrace2> ();
 				 ResultSet classtraces = st.executeQuery("SELECT tracesclasses.* from tracesclasses where classid ='"+classrep.ID+"'"); 
 					//populateTables(classtraces, conn);
 					while(classtraces.next()) {
@@ -176,7 +176,7 @@ public class ClassDetails2 {
 						classtrace.setTraceFinal(classtraces.getString("goldfinal"));
 
 						classtrace.setSubject(classtraces.getString("subject"));
-						Requirement2 r= new Requirement2();
+						Requirement r= new Requirement();
 						r.setID(classtraces.getString("requirementid"));
 						r.setRequirementName(classtraces.getString("requirement"));
 						classtrace.setRequirement(r);

@@ -43,7 +43,7 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
@@ -237,8 +237,8 @@ public class TracesTableGantt2FINALParsedCalls extends JFrame {
 	PredictionEvaluation AtLeast2TParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllNParameterClassGold4= new PredictionEvaluation(); 
 	PredictionEvaluation AllTParameterClassGold4= new PredictionEvaluation(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 	
 	
 	ClassTrace2 myclasstrace = new ClassTrace2();

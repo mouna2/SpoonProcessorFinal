@@ -95,7 +95,7 @@ public class Method {
 	
 	
 	public Method(String methodid, String methodname, String fullmethodname,
-			Clazz classrep, HashMap<Requirement2, String> finalMethodHashMap) {
+			Clazz classrep, HashMap<Requirement, String> finalMethodHashMap) {
 		super();
 		this.ID = methodid;
 		this.methodname = methodname;
@@ -141,41 +141,7 @@ public class Method {
 	public void setCallers(MethodList callers) {
 		Callers = callers;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Owner == null) ? 0 : Owner.hashCode());
-		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + ((methodname == null) ? 0 : methodname.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Method other = (Method) obj;
-		if (Owner == null) {
-			if (other.Owner != null)
-				return false;
-		} else if (!Owner.equals(other.Owner))
-			return false;
-		if (ID == null) {
-			if (other.ID != null)
-				return false;
-		} else if (!ID.equals(other.ID))
-			return false;
-		if (methodname == null) {
-			if (other.methodname != null)
-				return false;
-		} else if (!methodname.equals(other.methodname))
-			return false;
-		return true;
-	}
+	
 	
 	
 	

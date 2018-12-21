@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import mypackage.Method;
 import mypackage.MethodTrace;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 
 public class ClassTraceList extends ArrayList<String>{
 

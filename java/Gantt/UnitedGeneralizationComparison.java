@@ -27,10 +27,10 @@ import java.util.Set;
 
 import Tables.tracesmethodscallees;
 import mypackage.Clazz;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.Method;
 import mypackage.MethodTrace2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.SuperClass2;
 import spoon.Launcher;
 import spoon.SpoonAPI;
@@ -124,7 +124,7 @@ public class UnitedGeneralizationComparison {
 		
 		
 		LinkedHashMap <String, List<MethodTrace2>> ImplementationsTracesHashMap = new LinkedHashMap <String, List<MethodTrace2>>(); 
-		LinkedHashMap <String, List<Interface2>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface2>>(); 
+		LinkedHashMap <String, List<Interface>> InterfacesImplementationsHashMap = new LinkedHashMap <String, List<Interface>>(); 
 	LinkedHashMap <String, List<SuperClass2>> SuperclassesChildrenHashMap = new LinkedHashMap <String, List<SuperClass2>>(); 
 		ResultSet rs = null; 
 		BufferedWriter bwfile2 =null; 
@@ -157,7 +157,7 @@ public class UnitedGeneralizationComparison {
 
 		// Create a table
 		try {
-			List<Interface2> implementationList = new ArrayList<Interface2>(); 
+			List<Interface> implementationList = new ArrayList<Interface>(); 
 			List<SuperClass2> superclassList = new ArrayList<SuperClass2>(); 
 			HashMap<String, String> myhashmap= new 	HashMap<String, String>(); 
 			Statement st= conn.createStatement();

@@ -10,7 +10,7 @@ import java.util.ListIterator;
 
 import mypackage.Method;
 import mypackage.*;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 
 public class Methods<String> extends ArrayList<String>{
 
@@ -63,7 +63,7 @@ public class Methods<String> extends ArrayList<String>{
 		return false;
 	}
 	
-	public boolean AtLeast1T(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AtLeast1T(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
@@ -83,7 +83,7 @@ public class Methods<String> extends ArrayList<String>{
 		}
 		return false;
 	}
-	public boolean AtLeast1N(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement, List<Method> calls) {
+	public boolean AtLeast1N(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement, List<Method> calls) {
 		// TODO Auto-generated method stub
 	
 		 
@@ -132,7 +132,7 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllNs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllNs(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		List<String> PredictionList = new ArrayList<String>();
@@ -153,7 +153,7 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllCallersN(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCallersN(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -178,7 +178,7 @@ public class Methods<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllCalleesT(MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, Requirement2 requirement) {
+	public boolean AllCalleesT(DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, Requirement requirement) {
 		// TODO Auto-generated method stub
 		List<Method> CalleesList = methodtrace.getCalleesList();
 		List<Method> CallersList = methodtrace.getCallersList();
@@ -202,7 +202,7 @@ public class Methods<String> extends ArrayList<String>{
 	}
 	
 	
-	public boolean AllTs(Requirement2 requirement, MethodTrace methodtrace, HashMap<java.lang.String, MethodTrace> methodtraces2HashMap, List<Method> calls) {
+	public boolean AllTs(Requirement requirement, DatabaseInput methodtrace, HashMap<java.lang.String, DatabaseInput> methodtraces2HashMap, List<Method> calls) {
 		// TODO Auto-generated method stub
 		
 		 
@@ -235,7 +235,7 @@ public class Methods<String> extends ArrayList<String>{
 
 
 
-	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
+	public boolean AllTs(boolean InterfacesFlag, List<String> interfaceTraceValues, DatabaseInput methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("T")
@@ -254,7 +254,7 @@ public class Methods<String> extends ArrayList<String>{
 	
 	
 	
-	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, MethodTrace methodtrace) {
+	public boolean AllNs(boolean InterfacesFlag, List<String> interfaceTraceValues, DatabaseInput methodtrace) {
 		// TODO Auto-generated method stub
 		
 		if(InterfacesFlag == true && interfaceTraceValues.get(0).equals("N")

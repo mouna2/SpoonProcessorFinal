@@ -11,7 +11,7 @@ import java.util.List;
 public class MethodTrace2Original {
 	
 	public Method MethodRepresentation; 
-	public Requirement2 Requirement; 
+	public Requirement Requirement; 
 	public Clazz ClassRepresentation; 
 	public String gold; 
 	public String subject;
@@ -139,11 +139,11 @@ public class MethodTrace2Original {
 		MethodRepresentation = methodRepresentation;
 	}
 
-	public Requirement2 getRequirement() {
+	public Requirement getRequirement() {
 		return Requirement;
 	}
 
-	public void setRequirement(Requirement2 requirement) {
+	public void setRequirement(Requirement requirement) {
 		Requirement = requirement;
 	}
 
@@ -171,7 +171,7 @@ public class MethodTrace2Original {
 		this.subject = subject;
 	}
 
-	public MethodTrace2Original(Method methodRepresentation, Requirement2 requirement,
+	public MethodTrace2Original(Method methodRepresentation, Requirement requirement,
 			Clazz classRepresentation, String gold, String subject) {
 		super();
 		MethodRepresentation = methodRepresentation;
@@ -198,7 +198,7 @@ public class MethodTrace2Original {
 			 while(myresults.next() ) {
 				 MethodTrace2Original mytrace= new MethodTrace2Original(); 
 				 RequirementGold RequirementGold = new RequirementGold(); 
-				 Requirement2 requirement = new Requirement2(); 
+				 Requirement requirement = new Requirement(); 
 				 requirement.setID(myresults.getString("requirementid"));
 				 requirement.setRequirementName(myresults.getString("requirement"));
 				 mytrace.setRequirement(requirement);

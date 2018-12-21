@@ -44,7 +44,7 @@ import mypackage.Clazz;
 import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
@@ -210,8 +210,8 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls2 extends JFrame {
 	ClassTrace2 myclasstrace = new ClassTrace2();
 	static List<MethodTraceOld> methodtraces2 = new ArrayList<MethodTraceOld>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClass = new  LinkedHashMap<String, ClassTrace2>(); 
 	JTable table = new JTable(); 
 	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
@@ -798,7 +798,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls2 extends JFrame {
 							
 								for(Method item: CallerMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;
@@ -852,7 +852,7 @@ public class TracesTableiTrustGold2PredictionFINALParsedCalls2 extends JFrame {
 							
 								for(Method item: CalleeMethodsList) {
 									String key =methcaller.Owner.getClassid()+"-"+methcaller.Owner.getClassname();
-									Interface2 value = InterfacesHashMapAlreadyImpl.get(key);
+									Interface value = InterfacesHashMapAlreadyImpl.get(key);
 									
 									if(value!=null) {
 										String ownerclassid=value.InterfaceClass.ID;

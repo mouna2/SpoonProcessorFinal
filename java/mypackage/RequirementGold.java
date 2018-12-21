@@ -3,12 +3,12 @@ package mypackage;
 import java.util.List;
 
 public class RequirementGold {
-	public Requirement2 Requirement=new Requirement2(); 
+	public Requirement Requirement=new Requirement(); 
 	public String gold="";
-	public Requirement2 getRequirement() {
+	public Requirement getRequirement() {
 		return Requirement;
 	}
-	public void setRequirement(Requirement2 requirement) {
+	public void setRequirement(Requirement requirement) {
 		Requirement = requirement;
 	}
 	public String getGold() {
@@ -17,7 +17,7 @@ public class RequirementGold {
 	public void setGold(String gold) {
 		this.gold = gold;
 	}
-	public RequirementGold(Requirement2 requirement, String gold) {
+	public RequirementGold(Requirement requirement, String gold) {
 		super();
 		Requirement = requirement;
 		this.gold = gold;

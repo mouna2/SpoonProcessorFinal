@@ -46,13 +46,13 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodField2;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
@@ -67,9 +67,9 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
 
 	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
-	 HashMap<String, List<Interface2>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface2>>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
+	 HashMap<String, List<Interface>>  InterfacesOwnerClassHashMap= new HashMap<String, List<Interface>>(); 
 	 HashMap<String, List< MethodField2>>  FieldMethodsHashMap= new HashMap<String, List< MethodField2>>(); 
 	 HashMap<String, List< ClassField2>> FieldClassesHashMap=  new HashMap<String, List< ClassField2>>(); 
 	 HashMap<String, List< SuperClass2>> SuperclassesHashMap=  new HashMap<String, List< SuperClass2>>(); 
@@ -199,7 +199,7 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println(mymeth.classrep.classname);
 				String key=mymeth.Owner.ID+"-"+mymeth.Owner.classname; 
 //				System.out.println(key);
-				Interface2 val = InterfacesHashMap.get(key); 
+				Interface val = InterfacesHashMap.get(key); 
 				boolean entered2=false; 
 				if(val!=null) {
 					for(Method mymeth2: mycalleeslistexecuted) {
@@ -277,10 +277,10 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println(mymeth.classrep.classname);
 				String key=mymeth.Owner.ID; 
 //				System.out.println(key);
-				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
+				 List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2exec=false; 
 				if(myinterfaces!=null) {
-					for(Interface2 inter: myinterfaces) {
+					for(Interface inter: myinterfaces) {
 						for(Method mymeth2: mycalleeslist) {
 //							System.out.println("hey");
 //							System.out.println("hey");
@@ -356,10 +356,10 @@ public class ComparisonExecutedParsedMethodCalls extends JFrame {
 //					System.out.println(mymeth.classrep.classname);
 				String key=mymeth.Owner.ID; 
 //				System.out.println(key);
-				 List<Interface2> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
+				 List<Interface> myinterfaces = InterfacesOwnerClassHashMap.get(key); 
 				boolean entered2execCALLER=false; 
 				if(myinterfaces!=null) {
-					for(Interface2 inter: myinterfaces) {
+					for(Interface inter: myinterfaces) {
 						for(Method mymeth2: mycallerslist) {
 //							System.out.println("hey");
 //							System.out.println("hey");

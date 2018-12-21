@@ -40,7 +40,7 @@ import Tables.methods;
 import Tables.tracesmethods;
 import Tables.tracesmethodscallees;
 import mypackage.Clazz;
-import mypackage.Interface2;
+import mypackage.Interface;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 import spoon.reflect.CtModel;

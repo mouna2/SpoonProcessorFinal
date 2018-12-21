@@ -45,12 +45,12 @@ import mypackage.ClassTrace2;
 import mypackage.ColumnGroup;
 import mypackage.DatabaseReading2;
 import mypackage.GroupableTableHeader;
-import mypackage.Interface2;
+import mypackage.Interface;
 import mypackage.MethodDetails;
 import mypackage.Method;
 import mypackage.MethodTrace2;
 import mypackage.Parameter2;
-import mypackage.Requirement2;
+import mypackage.Requirement;
 import mypackage.RequirementGold;
 
 public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
@@ -398,8 +398,8 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 	 LinkedHashMap<String, ClassTrace2> methodtracesRequirementClassGOLD2 = new  LinkedHashMap<String, ClassTrace2>(); 
 
 	 LinkedHashMap<String, MethodDetails> linkedmethodhashmap= new LinkedHashMap<String, MethodDetails>(); 
-	 HashMap<String, Interface2> InterfacesHashMap= new HashMap<String, Interface2>();
-	 HashMap<String, Interface2> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface2>(); 
+	 HashMap<String, Interface> InterfacesHashMap= new HashMap<String, Interface>();
+	 HashMap<String, Interface> InterfacesHashMapAlreadyImpl= new HashMap<String, Interface>(); 
 
 
 	JTable table = new JTable(); 
@@ -1245,7 +1245,7 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 			for (Method mycaller: methodtrace.getCallersList()) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 				if (methtrace.gold.trim().equals("T")) {
@@ -1264,7 +1264,7 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 			for (Method mycaller: methodtrace.getCalleesList()) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if (methtrace.gold.trim().equals("T")) {
@@ -1289,7 +1289,7 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 			for (Method mycaller: methodtrace.getCallersList()) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null) {
 					if(methtrace.goldfinal!=null) {
@@ -1313,7 +1313,7 @@ public class TracesTableChessFINAL_PARSED_CALLS extends JFrame {
 			for (Method mycaller: methodtrace.getCalleesList()) {
 				 MethodDetails methdet = linkedmethodhashmap.get(mycaller.ID); 
 				HashMap<String, MethodTrace2> myhashmap = methdet.methodtraces; 
-				Requirement2 r= new Requirement2(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
+				Requirement r= new Requirement(methodtrace.Requirement.ID, methodtrace.Requirement.RequirementName); 
 				MethodTrace2 methtrace = myhashmap.get(methodtrace.Requirement.ID); 
 				if(methtrace!=null && methtrace.goldfinal!=null) {
 					if (methtrace.goldfinal.equals("T")) {

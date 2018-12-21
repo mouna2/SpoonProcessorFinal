@@ -119,7 +119,7 @@ public class TracesTable extends JFrame {
 	PredictionEvaluation AllTMethodLevelCallersClass= new PredictionEvaluation(); 
 	PredictionEvaluation AllTMethodLevelCalleesClass= new PredictionEvaluation(); 
 	ClassTrace2 myclasstrace = new ClassTrace2();
-	static List<MethodTrace> methodtraces2 = new ArrayList<MethodTrace>();
+	static List<DatabaseInput> methodtraces2 = new ArrayList<DatabaseInput>();
 	static List<ClassTrace2> classtraces2 = new ArrayList<ClassTrace2>();
 	JTable table = new JTable(); 
 	static List<MethodDetails> methodlist = new ArrayList<MethodDetails>();
@@ -190,7 +190,7 @@ public class TracesTable extends JFrame {
 		Method[] calleesex = new Method[methodtraces2.size()];
 		Object[][] data = new Object[methodtraces2.size()][10000];
 		// Create the editors to be used for each row
-		for (MethodTrace methodtrace : methodtraces2) {
+		for (DatabaseInput methodtrace : methodtraces2) {
 			data[j][MethodID] = methodtrace.MethodRepresentation.getMethodid();
 			data[j][MethodName] = methodtrace.MethodRepresentation.getMethodname();
 			data[j][RequirementID] = methodtrace.Requirement.getID();
