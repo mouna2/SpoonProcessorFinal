@@ -350,12 +350,13 @@ public class LogInfo {
 	/************************************************************************************************************************************************/
 	/**
 	 * @param ownerClassPredictionValues 
+	 * @param logInfoHashMap 
 	 * @param string2 
 	 * @param string **********************************************************************************************************************************************/
 
 	public static void ComputePrecisionAndRecall(
 			HashMap<String, MethodTrace> methodTraceHashMap,
-			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues) throws SQLException {
+			PredictionEvaluation Pattern, String ProgramName,  PredictionValues ownerClassPredictionValues, LinkedHashMap<String, LogInfo> logInfoHashMap) throws SQLException {
 		// TODO Auto-generated method stub
 	Pattern.ResetCounters(Pattern);
 
@@ -367,6 +368,7 @@ public class LogInfo {
 						&& methodTraceHashMap.get(mykey).isSubjectDeveloperEqualityFlag()
 						&& !methodTrace.isTraceSet() ) {
 					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),methodTrace.getPrediction().trim());
+					logInfoHashMap.get(mykey).setPrecisionRecall(Result);
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {
 						methodTrace.setTraceSet(true);
@@ -383,6 +385,7 @@ public class LogInfo {
 						&& !methodTrace.isTraceSet()) {
 					String Result = Pattern.ComparePredictionToGold(methodTrace.getGold().trim(),
 							methodTrace.getPrediction().trim());
+					logInfoHashMap.get(mykey).setPrecisionRecall(Result);
 					Pattern.UpdateCounters(Result, Pattern);
 					if(!Result.equals("E")) {
 						methodTrace.setTraceSet(true);

@@ -371,7 +371,7 @@ public class AlgoFinalRefactored extends JFrame {
 		SetSubjectGoldDeveloperGoldEqualityFlag(methodtraces2HashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 			
 
-			LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues);
+			LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap,TotalPattern, ProgramName, OwnerClassPredictionValues, LogInfoHashMap);
 			
 			LogInfo.updateResultsLog(TotalPattern, OwnerClassPredictionValues, ProgramName, "OWNER CLASS PRED", "owner class prediction values");
 		
@@ -837,7 +837,7 @@ public class AlgoFinalRefactored extends JFrame {
 		
 		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
 		System.out.println("OWNERRRRRRRRRR");
-		LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, RemainingPattern, ProgramName, RemainingpredictionValues);
+		LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, RemainingPattern, ProgramName, RemainingpredictionValues, LogInfoHashMap);
 		System.out.println("RemainingpredictionValues"+TotalPattern);
 		LogInfo.updateResultsLog(RemainingPattern, RemainingpredictionValues, ProgramName, "NON OWNER CLASS PRED", "non owner class prediction values");
 
@@ -851,7 +851,7 @@ public class AlgoFinalRefactored extends JFrame {
 		
 
 		ResetAllTraceSetFlags(methodtraces2HashMap);
-		 LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, TotalPattern, ProgramName, TotalPredictionValues);
+		 LogInfo.ComputePrecisionAndRecall(methodtraces2HashMap, TotalPattern, ProgramName, TotalPredictionValues, LogInfoHashMap);
 			RemainingpredictionValues=SubstractPredictionValues(TotalPredictionValues, OwnerClassPredictionValues); 
 			LogInfo.updateTableLog(ProgramName, MethodTracesHashmapValues, LogInfoHashMap);
 		LogInfo.updateResultsLog(TotalPattern, TotalPredictionValues, ProgramName,"TOTAL  PREDICTION", "total prediction values");
