@@ -347,7 +347,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				} 
 //				else	if (methodtrace.Method.Owner.DeveloperGold.equals("N") )
-
+					
 					else if (DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("N") ) 
 					{
 					methodtrace.SetPrediction(LogInfoHashMap, "N","N,Owner");
@@ -423,7 +423,7 @@ public class AlgoFinalRefactored extends JFrame {
 				) {
 					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureT");
 
-					
+				
 
 				}
 				// PURE N PATTERN
@@ -554,9 +554,9 @@ public class AlgoFinalRefactored extends JFrame {
 			//////////////////////////////////////////////////////////////////////////////////////////
 			
 			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-
-				
-					
+//				String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
+//				System.out.println(reqMethod); 
+			
 					if (
 							methodtrace.Method.Interfaces.AllTs(methodtrace.Requirement,methodtraces2HashMap)
 							||methodtrace.Method.Implementations.AllTs(methodtrace.Requirement,methodtraces2HashMap)
@@ -587,36 +587,69 @@ public class AlgoFinalRefactored extends JFrame {
 					{
 						
 						
-						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,AllNInheritance");
+						
+						String reqClass= methodtrace.Requirement.ID+"-"+methodtrace.Method.Owner.ID; 
+					//	 DEBUGGING PURPOSES 
+						 if(methodtrace.getGold().equals("T") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals(DatabaseInput.SubjectTraceHashMap.get(reqClass))&& methodtrace.getPrediction().trim().equals("E")) {
+								System.out.println("fullmethodname   "+methodtrace.Method.fullmethodname+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGold()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGold());
+								if(methodtrace.Method.Interfaces.AllNs(methodtrace.Requirement,methodtraces2HashMap)){
+									System.out.println("interfaces");
+									System.out.println(methodtrace.Method.Interfaces);
+									System.out.println();
+								}
+								if(methodtrace.Method.Implementations.AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("implementations");
+									System.out.println(methodtrace.Method.Implementations);
+									System.out.println();
 
-						 //DEBUGGING PURPOSES 
-//						 if(methodtrace.getGoldfinal().equals("T") && methodtrace.Method.owner.DeveloperGold.equals(methodtrace.Method.owner.SubjectGold)) {
-//								System.out.println("fullmethodname   "+methodtrace.Method.fullmethodname+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGoldfinal()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGoldfinal());
-//								if(methodtrace.Method.Interfaces.AllNs(methodtrace.Requirement,methodtraces2HashMap)){
-//									System.out.println("interfaces");
-//									System.out.println(methodtrace.Method.Interfaces);
-//									System.out.println();
-//								}
-//								if(methodtrace.Method.Implementations.AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-//									System.out.println("implementations");
-//									System.out.println(methodtrace.Method.Implementations);
-//									System.out.println();
-//
-//								}
-//								if(methodtrace.Method.getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-//									System.out.println("superclasses");
-//									System.out.println(methodtrace.Method.getSuperclasses());
-//									System.out.println();
-//
-//
-//								}
-//								if(methodtrace.Method.getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-//									System.out.println("children");
-//									System.out.println(methodtrace.Method.getChildren());
-//									System.out.println();
-//
-//								}
-//							}
+								}
+								if(methodtrace.Method.getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("superclasses");
+									System.out.println(methodtrace.Method.getSuperclasses());
+									System.out.println();
+
+
+								}
+								if(methodtrace.Method.getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("children");
+									System.out.println(methodtrace.Method.getChildren());
+									System.out.println();
+									
+									
+								}
+							}
+						 else 
+							 
+							 if(methodtrace.getGold().equals("T") && methodtrace.getPrediction().trim().equals("E")) {
+							 System.out.println("fullmethodname   "+methodtrace.Method.methodname+"classname   "+methodtrace.Method.Owner.ID+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGold()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGold());
+								if(methodtrace.Method.Interfaces.AllNs(methodtrace.Requirement,methodtraces2HashMap)){
+									System.out.println("interfaces");
+									System.out.println(methodtrace.Method.Interfaces);
+									System.out.println();
+								}
+								if(methodtrace.Method.Implementations.AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("implementations");
+									System.out.println(methodtrace.Method.Implementations);
+									System.out.println();
+
+								}
+								if(methodtrace.Method.getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("superclasses");
+									System.out.println(methodtrace.Method.getSuperclasses());
+									System.out.println();
+
+
+								}
+								if(methodtrace.Method.getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
+									System.out.println("CHILDRENN");
+									System.out.println(methodtrace.Method.getChildren());
+									System.out.println();
+
+								}
+						 }
+						 
+						 
+						 methodtrace.SetPrediction(LogInfoHashMap,"N", "N,AllNInheritance");
 					
 					}
 
