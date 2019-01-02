@@ -14,6 +14,7 @@ public class Method {
 	public Clazz Owner= new Clazz(); 
 	public MethodList Callees= new MethodList(); 
 	public MethodList Callers= new MethodList(); 
+	public MethodList CallersofCallers= new MethodList(); 
 	public MethodList Interfaces= new MethodList(); 
 	public MethodList Implementations= new MethodList(); 
 	public MethodList Superclasses= new MethodList(); 
@@ -21,6 +22,7 @@ public class Method {
 //	public List<RequirementGold> requirementsGold= new ArrayList<RequirementGold>(); 
 //	public List<Requirement2> requirements= new ArrayList<Requirement2>(); 
 //	public	HashMap<Requirement2, String> FinalMethodHashMap= new HashMap<Requirement2, String>(); 
+	
 	
 	public Clazz getOwner() {
 		return Owner;

@@ -441,6 +441,7 @@ public class AlgoFinalRefactored extends JFrame {
 				// PURE T LEAF PATTERN
 				 if (	methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty()
 						 && methodtrace.Method.Callers.AllTs(methodtrace.Requirement,methodtraces2HashMap)
+						
 
 				) {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
@@ -452,6 +453,7 @@ public class AlgoFinalRefactored extends JFrame {
 				 
 				 else if (methodtrace.Method.Callees.isEmpty() && !methodtrace.Method.Callers.isEmpty()
 						 && methodtrace.Method.Callers.AllNs(methodtrace.Requirement, methodtraces2HashMap)
+//						 && methodtrace.Method.CallersofCallers.AllNs(methodtrace.Requirement, methodtraces2HashMap)
 
 				) {
 
