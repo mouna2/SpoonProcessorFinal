@@ -9,8 +9,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import mypackage.MethodTrace;
-import mypackage.Requirement;
 import mypackage.*;
 public class MethodList extends ArrayList<Method>{
 
@@ -138,10 +136,37 @@ public class MethodList extends ArrayList<Method>{
 
 
 
+	public MethodList addAll(MethodList MethodList) {
+		
+		for(Method meth: MethodList) {
+			this.add(meth); 
+		}
+		MethodList NewMethodList = removeDuplicates(this); 
+		return NewMethodList; 
+	}
 
 
-
-
+	 // Function to remove duplicates from an ArrayList 
+    public static MethodList removeDuplicates(MethodList list) 
+    { 
+  
+        // Create a new ArrayList 
+    	MethodList newList = new MethodList(); 
+  
+        // Traverse through the first list 
+        for (Method element : list) { 
+  
+            // If this element is not present in newList 
+            // then add it 
+            if (!newList.contains(element)) { 
+  
+                newList.add(element); 
+            } 
+        } 
+  
+        // return the new list 
+        return newList; 
+    } 
 
 
 

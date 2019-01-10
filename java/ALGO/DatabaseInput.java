@@ -153,7 +153,7 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 					
 					ResultSet methodcalls = st.executeQuery("select methodcalls.* from methodcalls ");
 					
-					
+					//comment out 
 //					HashMap<String, MethodList> CalleeIndexedHashMap= new HashMap<String, MethodList>(); 
 					while (methodcalls.next()) {
 	
@@ -166,14 +166,14 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 						
 						callerMethod.Callees.add(calleeMethod);
 						calleeMethod.Callers.add(callerMethod);
-										
+						//comment out 				
 //						CalleeIndexedHashMap.put(calleeid, calleeMethod.Callers); 
 					} 
 
 
 					
-					
-//					// CODE BELOW IS FOR COMPUTING CALLERS OF CALLERS 
+					//comment out 
+					// CODE BELOW IS FOR COMPUTING CALLERS OF CALLERS 
 //					for(Method method: MethodHashMap.values()) {
 //						for(Method methodCaller: method.Callers) {
 //							MethodList CallerofCallers = CalleeIndexedHashMap.get(methodCaller.ID); 

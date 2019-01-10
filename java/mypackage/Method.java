@@ -2,19 +2,27 @@ package mypackage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import ALGO.MethodList;
 import mypackage.*;
 
 public class Method {
 	public String ID; 
+	public boolean NewPatternFlag= false; 
+	public boolean CalleeImplementationFlag= false; 
+	public boolean CalleeChildFlag= false; 
+	public boolean CallerInterfaceFlag= false; 
+	public boolean CallerSuperclassFlag= false; 
+
 	public String methodname;
 	public String fullmethodname;
 	public Clazz Owner= new Clazz(); 
 	public MethodList Callees= new MethodList(); 
 	public MethodList Callers= new MethodList(); 
-	public MethodList CallersofCallers= new MethodList(); 
+//	public MethodList CallersofCallers= new MethodList(); 
 	public MethodList Interfaces= new MethodList(); 
 	public MethodList Implementations= new MethodList(); 
 	public MethodList Superclasses= new MethodList(); 
@@ -132,20 +140,89 @@ public class Method {
 	
 	
 	public MethodList getCallees() {
-		return Callees;
+		 MethodList NewCallees= new MethodList(); 
+
+		if(!this.Implementations.isEmpty()) {
+			for(Method imp: this.Implementations) {
+
+				if(!imp.Callees.isEmpty()) {
+					NewCallees=NewCallees.addAll(imp.Callees); 
+					imp.CalleeImplementationFlag=true; 
+				}
+
+			
+			}
+			
+			
+		}
+		
+			if(!this.Children.isEmpty()) {
+				
+
+			for(Method child: this.Children) {
+				if(!child.Callees.isEmpty()) {
+					child.CalleeChildFlag=true; 
+					NewCallees=	NewCallees.addAll(child.Callees); 
+
+				}
+
+			
+			}
+		}
+			
+			
+			if(!NewCallees.isEmpty()) {	
+				return NewCallees;
+			}
+			else {
+				return Callees; 
+			}
 	}
 	public void setCallees(MethodList callees) {
 		Callees = callees;
 	}
+	
+	
 	public MethodList getCallers() {
-		return Callers;
+		MethodList NewCallers= new MethodList(); 
+		if(!this.Interfaces.isEmpty()) {
+			for(Method inter: this.Interfaces) {
+				if(!inter.Callers.isEmpty()) {
+					inter.CallerInterfaceFlag=true; 
+
+
+					NewCallers=NewCallers.addAll(inter.Callers); 
+
+				}
+			}
 	}
+		
+			if(!this.Superclasses.isEmpty()) {
+			for(Method superclass: this.Superclasses) {
+				if(!superclass.Callers.isEmpty()) {
+					superclass.CallerSuperclassFlag=true; 
+
+					NewCallers=NewCallers.addAll(superclass.Callers); 
+
+				}
+			}
+	}
+			if(!NewCallers.isEmpty()) {	
+				return NewCallers;
+			}
+			else {
+				return Callers; 
+			}
+	}
+	
+	
 	public void setCallers(MethodList callers) {
 		Callers = callers;
 	}
 	
 	
 	
+
 	
 	
 	

@@ -35,6 +35,9 @@ public class LogInfo {
 	String SubjectGold; 
 	List<String> IterationValues= new ArrayList<String>();
 	boolean SubjectDeveloperEqualityFlag; 
+	String Reason; 
+	
+	
 	public static BufferedWriter bwfile4 = null;
 	public static BufferedWriter bwfile3 = null;
 	public static BufferedWriter bwfile2 = null;
@@ -144,7 +147,9 @@ public class LogInfo {
 		System.out.println(MethodName);
 		MethodName=MethodName.replaceAll(",", "/"); 
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
-				PrecisionRecall	+","+toString2(IterationValues); 
+		PrecisionRecall	+","+toString2(IterationValues); 
+//		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
+//				PrecisionRecall	+","+toString2(IterationValues)+","+TraceValue+"-"+Reason+"-" +PrecisionRecall;
 		
 	}
 	
@@ -163,16 +168,21 @@ public class LogInfo {
 	public String toString2(List<String> IterationValues) {
 		 String FinalString=""; 
 		 int it=0; 
+		 Reason=""; 
 		for(String s: IterationValues) {
 			if(it+1<IterationValues.size()) {
 				FinalString=FinalString+s+","; 
+				
 				it++; 	
 			}
 			
 			else if(it+1==IterationValues.size()) {
 				FinalString=FinalString+s; 
+				
 			}
-			
+			if(!s.equals(" ")) {
+				Reason=s; 
+			}
 		}
 		return FinalString;
 		
