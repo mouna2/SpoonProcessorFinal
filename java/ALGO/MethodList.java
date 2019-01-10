@@ -136,11 +136,12 @@ public class MethodList extends ArrayList<Method>{
 
 
 
-	public MethodList addAll(MethodList MethodList) {
+	public MethodList AddAll(MethodList MethodList) {
 		
-		for(Method meth: MethodList) {
-			this.add(meth); 
-		}
+		this.addAll(MethodList); 
+//		for(Method meth: MethodList) {
+//			this.add(meth); 
+//		}
 		MethodList NewMethodList = removeDuplicates(this); 
 		return NewMethodList; 
 	}

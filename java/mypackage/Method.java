@@ -146,7 +146,7 @@ public class Method {
 			for(Method imp: this.Implementations) {
 
 				if(!imp.Callees.isEmpty()) {
-					NewCallees=NewCallees.addAll(imp.Callees); 
+					NewCallees=NewCallees.AddAll(imp.Callees); 
 					imp.CalleeImplementationFlag=true; 
 				}
 
@@ -162,7 +162,7 @@ public class Method {
 			for(Method child: this.Children) {
 				if(!child.Callees.isEmpty()) {
 					child.CalleeChildFlag=true; 
-					NewCallees=	NewCallees.addAll(child.Callees); 
+					NewCallees=	NewCallees.AddAll(child.Callees); 
 
 				}
 
@@ -191,7 +191,7 @@ public class Method {
 					inter.CallerInterfaceFlag=true; 
 
 
-					NewCallers=NewCallers.addAll(inter.Callers); 
+					NewCallers=NewCallers.AddAll(inter.Callers); 
 
 				}
 			}
@@ -202,7 +202,7 @@ public class Method {
 				if(!superclass.Callers.isEmpty()) {
 					superclass.CallerSuperclassFlag=true; 
 
-					NewCallers=NewCallers.addAll(superclass.Callers); 
+					NewCallers=NewCallers.AddAll(superclass.Callers); 
 
 				}
 			}

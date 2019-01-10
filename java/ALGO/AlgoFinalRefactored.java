@@ -165,11 +165,13 @@ public class AlgoFinalRefactored extends JFrame {
 		// TODO Auto-generated method stub
 		
 	
-		File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\MyLogFile.txt");
+		File file1log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\InterfacesNewRule.txt");
 		FileOutputStream fosfila1 = new FileOutputStream(file1log);
 		BufferedWriter bwfile1 = new BufferedWriter(new OutputStreamWriter(fosfila1));
 		
-		
+		File file2log = new File("C:\\Users\\mouna\\ownCloud\\Share\\dumps\\LatestLogFiles\\LogFileUnderstandFP.txt");
+		FileOutputStream fosfila2 = new FileOutputStream(file2log);
+		BufferedWriter bwfile2 = new BufferedWriter(new OutputStreamWriter(fosfila2));
 
 		// TODO Auto-generated method stub
 		LogInfo.CreateLogFiles(ProgramName);
@@ -971,59 +973,68 @@ public class AlgoFinalRefactored extends JFrame {
 			if(methodtrace.getGold().trim().equals("N") && methodtrace.getPrediction().trim().equals("T")) {
 				
 				
-				System.out.println("-------------------------------"+methodtrace+"-------------------------------");
-				System.out.println("************CALLERS************");
-	
+				bwfile2.write("-------------------------------"+methodtrace+"-------------------------------");
+				bwfile2.newLine();
+				bwfile2.write("************CALLERS************");
+				bwfile2.newLine();
 				for(Method caller: methodtrace.Method.getCallers()) {
 							
-							System.out.println(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID));
-						}
-						System.out.println("**********END CALLERS**************");
-						
-						System.out.println("************CALLEES************");
-
+							bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID));
+							bwfile2.newLine();		
+				}
+						bwfile2.write("**********END CALLERS**************");
+						bwfile2.newLine();
+						bwfile2.write("************CALLEES************");
+						bwfile2.newLine();
 						for(Method callee: methodtrace.Method.getCallees()) {
 							
-							System.out.println( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID));
+							bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID));
+							bwfile2.newLine();
 						}
 						
-						System.out.println("**********END CALLEES**************");
-						System.out.println("************IMPLEMENTATIONS************");
-
+						bwfile2.write("**********END CALLEES**************");
+						bwfile2.newLine();
+						bwfile2.write("************IMPLEMENTATIONS************");
+						bwfile2.newLine();
 							for(Method imp: methodtrace.Method.Implementations) {
 							
-							System.out.println(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"    "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-						}
+							bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"    "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
+							bwfile2.newLine();
+							}
 						
-						System.out.println("**********END IMPLEMENTATIONS**************");
-						
-						System.out.println("************INTERFACES************");
-
+						bwfile2.write("**********END IMPLEMENTATIONS**************");
+						bwfile2.newLine();
+						bwfile2.write("************INTERFACES************");
+						bwfile2.newLine();
 						for(Method inter: methodtrace.Method.Interfaces) {
 						
-						System.out.println( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-					}
+						bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
+						bwfile2.newLine();
+						}
 					
-					System.out.println("**********END INTERFACES**************");
-					
-					System.out.println("************SUPERCLASSES************");
-
+					bwfile2.write("**********END INTERFACES**************");
+					bwfile2.newLine();
+					bwfile2.write("************SUPERCLASSES************");
+					bwfile2.newLine();
 					for(Method imp: methodtrace.Method.Superclasses) {
 					
-					System.out.println(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"      "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-				}
+					bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"      "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
+					bwfile2.newLine();
+					}
 				
-				System.out.println("**********END SUPERCLASSES**************");
-				
-				System.out.println("************CHILDREN************");
-
+				bwfile2.write("**********END SUPERCLASSES**************");
+				bwfile2.newLine();
+				bwfile2.write("************CHILDREN************");
+				bwfile2.newLine();
 				for(Method inter: methodtrace.Method.Children) {
 				
-				System.out.println( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-			}
-			
-			System.out.println("**********END CHILDREN**************");
+				bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
+				bwfile2.newLine();
 				}
+			
+			bwfile2.write("**********END CHILDREN**************");
+			bwfile2.newLine();	
+			}
 		}
 		
 	
@@ -1059,7 +1070,7 @@ public class AlgoFinalRefactored extends JFrame {
 	
 
 
-		
+		bwfile2.close(); 
 		bwfile1.close(); 
 		System.out.println("RemainingpredictionValues"+RemainingpredictionValues);
 		System.out.println("OWNERRRRRRRRRR");
