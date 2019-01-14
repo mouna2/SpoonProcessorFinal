@@ -153,8 +153,10 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 					
 					ResultSet methodcalls = st.executeQuery("select methodcalls.* from methodcalls ");
 					
-					//comment out 
+//					//comment out 
 //					HashMap<String, MethodList> CalleeIndexedHashMap= new HashMap<String, MethodList>(); 
+//					HashMap<String, MethodList> CallerIndexedHashMap= new HashMap<String, MethodList>(); 
+
 					while (methodcalls.next()) {
 	
 						String callerid = methodcalls.getString("callermethodid");
@@ -168,6 +170,7 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 						calleeMethod.Callers.add(callerMethod);
 						//comment out 				
 //						CalleeIndexedHashMap.put(calleeid, calleeMethod.Callers); 
+//						CallerIndexedHashMap.put(callerid, callerMethod.Callees); 
 					} 
 
 
@@ -189,7 +192,22 @@ public static void CreateMethodCallsHashMapCallersCallees(Connection conn) throw
 //							System.out.println("yes");
 //						}
 //					}
-
+//					// CODE BELOW IS FOR COMPUTING CALLEES OF CALLEES 
+//					for(Method method: MethodHashMap.values()) {
+//						for(Method methodCallee: method.Callees) {
+//							MethodList CalleeofCallees = CallerIndexedHashMap.get(methodCallee.ID); 
+//							if(CalleeofCallees!=null)
+//							for(Method calleeofcallee: CalleeofCallees) {
+//								method.CalleesofCallees.add(calleeofcallee); 
+//								
+//							}
+//							
+//						}
+//						if(!method.CalleesofCallees.isEmpty()) {
+//							System.out.println(method.CalleesofCallees);
+//							System.out.println("yes");
+//						}
+//					}
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
