@@ -36,7 +36,8 @@ public class Clazz {
 
 	@Override
 	public String toString() {
-		return "Clazz [ID=" + ID + ", classname=" + classname + ", DeveloperGold=" + DeveloperGold+"]";
+//		return "Clazz [ID=" + ID + ", classname=" + classname + ", DeveloperGold=" + DeveloperGold+"]";
+		return "Clazz [ID=" + ID + ", classname=" + classname +"]";
 	}
 
 

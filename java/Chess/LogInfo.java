@@ -36,7 +36,10 @@ public class LogInfo {
 	List<String> IterationValues= new ArrayList<String>();
 	boolean SubjectDeveloperEqualityFlag; 
 	String Reason; 
-	
+	List<String> Callers;
+	List<String> CallerPredictions;
+	List<String> Callees;
+	List<String> CalleePredictions;
 	
 	public static BufferedWriter bwfile4 = null;
 	public static BufferedWriter bwfile3 = null;
@@ -53,6 +56,30 @@ public class LogInfo {
 	public static BufferedWriter bwfile1 = null;
 	public static BufferedWriter bwTraceClass = null;
 	
+	public List<String> getCallers() {
+		return Callers;
+	}
+	public void setCallers(List<String> callers) {
+		Callers = callers;
+	}
+	public List<String> getCallerPredictions() {
+		return CallerPredictions;
+	}
+	public void setCallerPredictions(List<String> callerPredictions) {
+		CallerPredictions = callerPredictions;
+	}
+	public List<String> getCallees() {
+		return Callees;
+	}
+	public void setCallees(List<String> callees) {
+		Callees = callees;
+	}
+	public List<String> getCalleePredictions() {
+		return CalleePredictions;
+	}
+	public void setCalleePredictions(List<String> calleePredictions) {
+		CalleePredictions = calleePredictions;
+	}
 	public boolean isSubjectDeveloperEqual() {
 		return SubjectDeveloperEqualityFlag;
 	}
@@ -146,13 +173,37 @@ public class LogInfo {
 	public String toString() {
 		System.out.println(MethodName);
 		MethodName=MethodName.replaceAll(",", "/"); 
+		String CallerList=toString3(Callers); 
+		String CalleeList=toString3(Callees); 
+		String CallerPredictionList=toString3(CallerPredictions); 
+		String CalleePredictionList=toString3(CalleePredictions); 
+
 		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
-		PrecisionRecall	+","+toString2(IterationValues); 
+		PrecisionRecall	+","+CallerList+","+CallerPredictionList+","+CalleeList+","+CalleePredictionList+","+toString2(IterationValues); 
 //		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
 //				PrecisionRecall	+","+toString2(IterationValues)+","+TraceValue+"-"+Reason+"-" +PrecisionRecall;
 		
 	}
 	
+	public String toString3(List<String> values) {
+		// TODO Auto-generated method stub
+		String s= ""; 
+		int counter=0; 
+		for(String value: values) {
+		
+			counter++; 
+			if(counter==values.size()) {
+				s=s+value; 
+			}
+			else {
+				s=s+value+"/"; 
+			}
+			
+		}
+		s=s.replaceAll(",", "_"); 
+
+		return s;
+	}
 	public String getRequirementID() {
 		return RequirementID;
 	}
@@ -433,22 +484,22 @@ public class LogInfo {
 		// TODO Auto-generated method stub
 		if (ProgramName.equals("chess")) {
 			LogInfo.bwfileChess.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
 			LogInfo.bwfileChess.newLine();
 		}
 		if (ProgramName.equals("gantt")) {
 			LogInfo.bwfile2.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue,TraceClassNewValue, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue,TraceClassNewValue, PrecisionRecall, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
 			LogInfo.bwfile2.newLine();
 		}
 		if (ProgramName.equals("itrust")) {
 			LogInfo.bwfile3.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, PrecisionRecall, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
 			LogInfo.bwfile3.newLine();
 		}
 		if (ProgramName.equals("jhotdraw")) {
 			LogInfo.bwfile4.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, PrecisionRecall, IterationValues");
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue,TraceClassOldValue, TraceClassNewValue, PrecisionRecall, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
 			LogInfo.bwfile4.newLine();
 		}
 

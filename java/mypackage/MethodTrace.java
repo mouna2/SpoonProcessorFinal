@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import ALGO.AlgoFinalRefactored;
 import ALGO.MethodList;
 import ALGO.Methods;
 import Chess.LogInfo;
@@ -140,11 +141,26 @@ public final class MethodTrace {
 			
 			{
 		// TODO Auto-generated method stub
-		
+		List<String> CallerList= new ArrayList<String>(); 
+		List<String> CalleeList= new ArrayList<String>(); 
+		List<String> PredictionCallerList= new ArrayList<String>(); 
+		List<String> PredictionCalleeList= new ArrayList<String>(); 
 		if(this.prediction.trim().equals("E")) {
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(reason);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Pred);
-			
+			for(Method caller: this.Method.Callers) {
+				CallerList.add(caller.toString()); 
+				PredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+			}
+			for(Method callee: this.Method.Callees) {
+				CalleeList.add(callee.toString()); 
+				PredictionCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+
+			}
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallers(CallerList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallees(CalleeList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleePredictions(PredictionCalleeList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallerPredictions(PredictionCallerList);
 			this.prediction=Pred; 
 			modified=true; 
 		}
