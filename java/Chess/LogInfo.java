@@ -40,7 +40,8 @@ public class LogInfo {
 	List<String> CallerPredictions;
 	List<String> Callees;
 	List<String> CalleePredictions;
-	
+	List<String> OuterCalleesPredictions;
+	List<String> OuterCallersPredictions;
 	public static BufferedWriter bwfile4 = null;
 	public static BufferedWriter bwfile3 = null;
 	public static BufferedWriter bwfile2 = null;
@@ -53,6 +54,18 @@ public class LogInfo {
 	public static BufferedWriter bwfile3jHotDraw =null; 
 
 	
+	public List<String> getOuterCalleesPredictions() {
+		return OuterCalleesPredictions;
+	}
+	public void setOuterCalleesPredictions(List<String> outerCalleesPredictions) {
+		OuterCalleesPredictions = outerCalleesPredictions;
+	}
+	public List<String> getOuterCallersPredictions() {
+		return OuterCallersPredictions;
+	}
+	public void setOuterCallersPredictions(List<String> outerCallersPredictions) {
+		OuterCallersPredictions = outerCallersPredictions;
+	}
 	public static BufferedWriter bwfile1 = null;
 	public static BufferedWriter bwTraceClass = null;
 	

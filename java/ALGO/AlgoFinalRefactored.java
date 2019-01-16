@@ -802,7 +802,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallers");
-
+						
 				}
 				// ALL N CALLERS
 				 else if (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
@@ -964,6 +964,9 @@ public class AlgoFinalRefactored extends JFrame {
 //			if( methodtrace.prediction.equals("E") && methodtrace.Method.Owner.DeveloperGold.equals("T") ) 
 			
 		if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+//				&& (LogInfoHashMap.get(reqMethod).getOuterCallersPredictions().contains("T")
+//				|| LogInfoHashMap.get(reqMethod).getOuterCalleesPredictions().contains("T"))
+				
 //				&& (!methodtrace.Method.Callers.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)) 
 //				||	 !methodtrace.Method.Callees.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
 				)
