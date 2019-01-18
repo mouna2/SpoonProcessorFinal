@@ -145,37 +145,113 @@ public final class MethodTrace {
 		List<String> CalleeList= new ArrayList<String>(); 
 		List<String> PredictionCallerList= new ArrayList<String>(); 
 		List<String> PredictionCalleeList= new ArrayList<String>(); 
+		
+		
+		List<String> OriginalCallerList= new ArrayList<String>(); 
+		List<String> OriginalCalleeList= new ArrayList<String>(); 
+		List<String> OriginalPredictionCallerList= new ArrayList<String>(); 
+		List<String> OriginalPredictionCalleeList= new ArrayList<String>(); 
+		
+		
 		List<String> PredictionOuterCallerList= new ArrayList<String>(); 
 		List<String> PredictionOuterCalleeList= new ArrayList<String>(); 
+		
+		
+		List<String> InterfaceCallerList= new ArrayList<String>(); 
+		List<String> ImplementationCalleeList= new ArrayList<String>(); 
+		List<String> InterfacePredictionCallerList= new ArrayList<String>(); 
+		List<String> ImplementationPredictionCalleeList= new ArrayList<String>(); 
+		
+		
+		List<String> SuperclassCallerList= new ArrayList<String>(); 
+		List<String> ChildrenCalleeList= new ArrayList<String>(); 
+		List<String> SuperclassPredictionCallerList= new ArrayList<String>(); 
+		List<String> ChildrenPredictionCalleeList= new ArrayList<String>(); 
+		
 		if(this.prediction.trim().equals("E")) {
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(reason);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Pred);
-			for(Method caller: this.Method.Callers) {
+			for(Method caller: this.Method.getCallers(Requirement)) {
 				CallerList.add(caller.toString()); 
 				PredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
 			}
-			for(Method callee: this.Method.Callees) {
+			for(Method callee: this.Method.getCallees(Requirement)) {
 				CalleeList.add(callee.toString()); 
 				PredictionCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
 
 			}
-			for(Method caller: this.Method.Callers) {
+			for(Method caller: this.Method.getCallers(Requirement)) {
 				if(!this.Method.Owner.ID.equals(caller.Owner.ID)) {
 					PredictionOuterCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
 
 				}
 			}
-			for(Method callee: this.Method.Callees) {
+			for(Method callee: this.Method.getCallees(Requirement)) {
 				if(!this.Method.Owner.ID.equals(callee.Owner.ID)) {
 					PredictionOuterCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
 
 				}
 
 			}
+			
+			
+			for(Method caller: this.Method.Callers) {
+				OriginalCallerList.add(caller.toString()); 
+				OriginalPredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+			}
+			for(Method callee: this.Method.Callees) {
+				OriginalCalleeList.add(callee.toString()); 
+				OriginalPredictionCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+
+			}
+			
+//			for(Method caller: this.Method.getSuperclassCallers(Requirement)) {
+//				SuperclassCallerList.add(caller.toString()); 
+//				SuperclassPredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+//
+//			}
+//			
+//			for(Method callee: this.Method.getChildrenCallees(Requirement)) {
+//				ChildrenCalleeList.add(callee.toString()); 
+//				ChildrenPredictionCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+//			}
+//		
+//			
+//			
+//			for(Method caller: this.Method.getInterfaceCallers(Requirement)) {
+//				InterfaceCallerList.add(caller.toString()); 
+//				InterfacePredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
+//
+//			}
+//			
+//			for(Method callee: this.Method.getImplementationCallees(Requirement)) {
+//				ImplementationCalleeList.add(callee.toString()); 
+//				ImplementationPredictionCalleeList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+callee.ID).getPrediction()); 
+//			}
+			
+			
+			
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallers(CallerList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallees(CalleeList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleePredictions(PredictionCalleeList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallerPredictions(PredictionCallerList);
+			
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCallers(OriginalCallerList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCallees(OriginalCalleeList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCallerPredictions(OriginalPredictionCallerList);
+			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCalleePredictions(OriginalPredictionCalleeList);
+			
+			
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallees(ChildrenCalleeList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallers(SuperclassCallerList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCalleePredictions(ChildrenPredictionCalleeList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setSuperclassCallerPredictions(SuperclassPredictionCallerList);
+//			
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaceCallers(InterfaceCallerList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCallees(ImplementationCalleeList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setInterfaceCallerPredictions(InterfacePredictionCallerList);
+//			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setImplementationCalleePredictions(ImplementationPredictionCalleeList);
+			
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCalleesPredictions(PredictionCalleeList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOuterCallersPredictions(PredictionCallerList);
 			this.prediction=Pred; 

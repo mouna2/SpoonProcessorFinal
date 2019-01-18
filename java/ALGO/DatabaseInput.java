@@ -422,7 +422,7 @@ public static void CreateRequirementsHashMap(Connection conn) throws SQLExceptio
 
 
 			
-			 System.out.println(reqMethod+"-");
+//			 System.out.println(reqMethod+"-");
 			
 			 methodtraceHashMap.put(reqMethod, MethodTrace);
 //			System.out.println("WE ARE IN THE LOOP "+methodtraceHashMap.get("1-1"));

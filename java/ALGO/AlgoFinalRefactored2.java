@@ -69,7 +69,7 @@ import mypackage.Requirement;
 import mypackage.RequirementGold;
 import mypackage.SuperClass2;
 
-public class AlgoFinalRefactored extends JFrame {
+public class AlgoFinalRefactored2 extends JFrame {
 
 	/**
 	 * Run a SQL command which does not return a recordset:
@@ -142,7 +142,7 @@ public class AlgoFinalRefactored extends JFrame {
 		CalleeMethodListFinal = calleeMethodListFinal;
 	}
 
-	public AlgoFinalRefactored(String ProgramName) throws Exception {
+	public AlgoFinalRefactored2(String ProgramName) throws Exception {
 
 	
 //		List<MethodTrace> methodtracesNew = InitializePredictionsHashMap2(methodtraces2);
@@ -217,100 +217,8 @@ public class AlgoFinalRefactored extends JFrame {
 		LogInfo.bwTraceClass.newLine();
 
 		 
-//		GenerateNewValuesInTracesClasses(methodtracesRequirementClass);
-			// TODO Auto-generated method stub
-			
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-		/////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-		// PATTERN 0
-		//////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////
-//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-//
-//
-//				
-//				
-//				MethodList children = methodtrace.Method.Children; 
-//				MethodList parents = methodtrace.Method.Superclasses; 
-//				MethodList implementations = methodtrace.Method.Implementations; 
-//				MethodList interfaces = methodtrace.Method.Interfaces; 
-//				ClassTraceList ChilrenGold= new ClassTraceList(); 
-//				ClassTraceList ParentsGold= new ClassTraceList(); 
-//				ClassTraceList ImplementationsGold= new ClassTraceList(); 
-//				ClassTraceList InterfacesGold= new ClassTraceList(); 
-//				String reqClass= methodtrace.Requirement.ID+"-"+methodtrace.Method.Owner.ID; 
-//				for(Method child:children) {
-//					String ChildGold = child.Owner.DeveloperGold; 
-//					ChilrenGold.add(ChildGold); 
-//				}
-//				
-//				
-//				for(Method parent:parents) {
-//					String ParentGold = parent.Owner.DeveloperGold; 
-//					ParentsGold.add(ParentGold); 
-//				}
-//				for(Method myinterface:interfaces) {
-//					String InterfaceGold = myinterface.Owner.DeveloperGold; 
-//					InterfacesGold.add(InterfaceGold); 
-//
-//				}
-//				for(Method implementation:implementations) {
-//					String ImplementationGold = implementation.Owner.DeveloperGold; 
-//					ImplementationsGold.add(ImplementationGold); 
-//				}
-//				
-//				
-//				
-//				if(methodtrace.Method.Owner.DeveloperGold.equals("E") ) {
-//					if(ImplementationsGold.AllTs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "T"); 
-////						methodtrace.Method.Owner.DeveloperGold="T";
-//					}else if(InterfacesGold.AllTs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "T"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="T";
-//
-//					}else if(ParentsGold.AllTs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "T"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="T";
-//
-//					}else if(ChilrenGold.AllTs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "T"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="T";
-//
-//					}
-//					
-//					
-//					 if(ImplementationsGold.AllNs()) {
-//							DatabaseInput.OwnerTraceHashMap.put(reqClass, "N"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="N";
-//					}else if(InterfacesGold.AllNs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "N"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="N";
-//
-//					}else if(ParentsGold.AllNs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "N"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="N";
-//
-//					}else if(ChilrenGold.AllNs()) {
-//						DatabaseInput.OwnerTraceHashMap.put(reqClass, "N"); 
-//
-////						methodtrace.Method.Owner.DeveloperGold="N";
-//
-//					}
-//				}
-//				
-//			}
+
+
 		
 		CountTracesClassesValues(PredictionClassTraceAfter, methodtraces2HashMap);
 
@@ -324,7 +232,7 @@ public class AlgoFinalRefactored extends JFrame {
 		LogInfoHashMap=InitializeHashMapWithPrecisionRecall(MethodTracesHashmapValues, LogInfoHashMap);
 	
 		
-
+		System.out.println(methodtraces2HashMap.get("1-30"));
 	
 		
 		
@@ -341,13 +249,12 @@ public class AlgoFinalRefactored extends JFrame {
 					
 					
 					String reqClass= methodtrace.Requirement.ID+"-"+methodtrace.Method.Owner.ID; 
-					
+					String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
+
 		
-//			if (methodtrace.Method.Owner.DeveloperGold != null) {
 				
 					if (DatabaseInput.OwnerTraceHashMap.get(reqClass) != null) {
 				
-//				if (methodtrace.Method.Owner.DeveloperGold.equals("T") )
 					if (DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") )
 				{
 					methodtrace.SetPrediction(LogInfoHashMap, "E","E,Owner");
@@ -357,7 +264,6 @@ public class AlgoFinalRefactored extends JFrame {
 				
 
 				} 
-//				else	if (methodtrace.Method.Owner.DeveloperGold.equals("N") )
 					
 					else if (DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("N") ) 
 					{
@@ -379,6 +285,7 @@ public class AlgoFinalRefactored extends JFrame {
 		}
 		}
 		System.out.println(counter);
+		System.out.println("------------------------DONE-----------------------------");
 		SetSubjectGoldDeveloperGoldEqualityFlag(methodtraces2HashMap, TotalPattern, LogInfoHashMap, ProgramName); 
 			
 
@@ -390,13 +297,9 @@ public class AlgoFinalRefactored extends JFrame {
 		
 
 		int ITERATION = 0;
-	//	MethodTracesHashmapValues=methodtraces2HashMap.values(); 
 
 		
-		
 
-//		 LogHashMapRemaining = new LinkedHashMap<String, LogInfo>();
-//		LogHashMapRemaining=InitializeHashMapWithPrecisionRecallRemaining(MethodTracesHashmapValues, LogHashMapRemaining, LogInfoHashMap); 
 		MethodTracesHashmapValues=methodtraces2HashMap.values(); 
 
 		while (MethodTrace.modified) {
@@ -423,8 +326,6 @@ public class AlgoFinalRefactored extends JFrame {
 			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 
 					
-					
-//				System.out.println("PATTERN 1");
 
 				// PURE T PATTERN
 
@@ -435,7 +336,6 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureT");
-
 				
 
 				}
@@ -446,7 +346,6 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureN");
-				
 
 				}
 
@@ -458,7 +357,6 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
-
 				}
 				 
 				 
@@ -471,45 +369,11 @@ public class AlgoFinalRefactored extends JFrame {
 				) {
 
 						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureNLeaf");
-
 				}
 
 			
-				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
-							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
-							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() || !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
-					 if(! methodtrace.Method.Children.isEmpty() ) {
-							bwfile1.write("CHILDREN PURE");
-							bwfile1.newLine();
-					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-						 bwfile1.write("IMPLEMENTATION PURE");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-						 bwfile1.write("INTERFACE PURE");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-						 bwfile1.write("SUPERCLASS PURE");
-							bwfile1.newLine();
-					 }
-						bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
-						bwfile1.newLine();
-
-						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLERS  trace "+"     "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLEES   trace"+ "    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-							
-						}
-						
-						bwfile1.write("Prediction "+methodtrace.prediction);
-						bwfile1.newLine();
-					}
-
+		
+				
 			}
 
 			//////////////////////////////////////////////////////////////////////////////////////////
@@ -519,7 +383,6 @@ public class AlgoFinalRefactored extends JFrame {
 			//////////////////////////////////////////////////////////////////////////////////////////
 			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
 				
-				
 				// MIXED T PATTERN
 				 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
 					&& methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
@@ -527,7 +390,6 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedT");
-
 				}
 				 
 				// MIXED N PATTERN
@@ -539,7 +401,6 @@ public class AlgoFinalRefactored extends JFrame {
 
 				) {
 					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
-
 
 				}
 				
@@ -553,52 +414,10 @@ public class AlgoFinalRefactored extends JFrame {
 				) {
 						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeaf");
 
-
 				}
-				 //COMMENTED OUT BECAUSE THIS CASE NEVER HAPPENS 
-				 // MIXED N LEAF PATTERN
-				
-//				 else if(methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
-//
-//				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedNLeaf");
-//
-//
-//				}
-				 
-				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
-							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
-							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
-					 if(! methodtrace.Method.Children.isEmpty() ) {
-							bwfile1.write("CHILDREN MIXED ");
-							bwfile1.newLine();
-					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-						 bwfile1.write("IMPLEMENTATION MIXED");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-						 bwfile1.write("INTERFACE MIXED");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-						 bwfile1.write("SUPERCLASS MIXED");
-							bwfile1.newLine();
-					 }		
-					 bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
-						bwfile1.newLine();
 
-						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLER trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLEE trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						bwfile1.write("Prediction "+methodtrace.prediction);
-						bwfile1.newLine();
-					}
+			
+				 
 			}
 			
 			// PRINT
@@ -669,65 +488,7 @@ public class AlgoFinalRefactored extends JFrame {
 						
 						
 						
-						String reqClass= methodtrace.Requirement.ID+"-"+methodtrace.Method.Owner.ID; 
-					//	 DEBUGGING PURPOSES 
-						 if(methodtrace.getGold().equals("T") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals(DatabaseInput.SubjectTraceHashMap.get(reqClass))&& methodtrace.getPrediction().trim().equals("E")) {
-								System.out.println("fullmethodname   "+methodtrace.Method.fullmethodname+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGold()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGold());
-								if(methodtrace.Method.Interfaces.AllNs(methodtrace.Requirement,methodtraces2HashMap)){
-									System.out.println("interfaces");
-									System.out.println(methodtrace.Method.Interfaces);
-									System.out.println();
-								}
-								if(methodtrace.Method.Implementations.AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("implementations");
-									System.out.println(methodtrace.Method.Implementations);
-									System.out.println();
 
-								}
-								if(methodtrace.Method.getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("superclasses");
-									System.out.println(methodtrace.Method.getSuperclasses());
-									System.out.println();
-
-
-								}
-								if(methodtrace.Method.getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("children");
-									System.out.println(methodtrace.Method.getChildren());
-									System.out.println();
-									
-									
-								}
-							}
-						 else 
-							 
-							 if(methodtrace.getGold().equals("T") && methodtrace.getPrediction().trim().equals("E")) {
-							 System.out.println("fullmethodname   "+methodtrace.Method.methodname+"classname   "+methodtrace.Method.Owner.ID+" Requirement  "+methodtrace.Requirement.ID+" DeveloperGold "+methodtrace.getGold()+" Prediction "+methodtrace.getPrediction()+"   gold final  "+methodtrace.getGold());
-								if(methodtrace.Method.Interfaces.AllNs(methodtrace.Requirement,methodtraces2HashMap)){
-									System.out.println("interfaces");
-									System.out.println(methodtrace.Method.Interfaces);
-									System.out.println();
-								}
-								if(methodtrace.Method.Implementations.AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("implementations");
-									System.out.println(methodtrace.Method.Implementations);
-									System.out.println();
-
-								}
-								if(methodtrace.Method.getSuperclasses().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("superclasses");
-									System.out.println(methodtrace.Method.getSuperclasses());
-									System.out.println();
-
-
-								}
-								if(methodtrace.Method.getChildren().AllNs(methodtrace.Requirement,methodtraces2HashMap)) {
-									System.out.println("CHILDRENN");
-									System.out.println(methodtrace.Method.getChildren());
-									System.out.println();
-
-								}
-						 }
 						 
 						 
 						 methodtrace.SetPrediction(LogInfoHashMap,"N", "N,AllNInheritance");
@@ -820,35 +581,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 				
 				 
-					if((!methodtrace.Method.Interfaces.isEmpty() || 
-							!methodtrace.Method.Superclasses.isEmpty()) && (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() )
-							&& ProgramName.equals("chess")) {
-						 if(! methodtrace.Method.Children.isEmpty() ) {
-								bwfile1.write("CHILDREN all callers");
-								bwfile1.newLine();
-						 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-							 bwfile1.write("IMPLEMENTATION all callers");
-								bwfile1.newLine();
-						 }
-						 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-							 bwfile1.write("INTERFACE all callers");
-								bwfile1.newLine();
-						 }
-						 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-							 bwfile1.write("SUPERCLASS all callers");
-								bwfile1.newLine();
-						 }
-						bwfile1.write("ITERATION "+ITERATION+"-------------"+methodtrace.gold+"-------------"+methodtrace+"--------------");
-						bwfile1.newLine();
-
-						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" ALL CALLERS PATTERN --- CALLER trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
 					
-						bwfile1.write("Prediction "+methodtrace.prediction);
-						bwfile1.newLine();
-					}
 				
 			}
 				
@@ -897,36 +630,8 @@ public class AlgoFinalRefactored extends JFrame {
 				
 				
 				}
-				if((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() )
-						
-						&& ( !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()) && ProgramName.equals("chess")) {
-					 if(! methodtrace.Method.Children.isEmpty() ) {
-							bwfile1.write("CHILDREN all callees");
-							bwfile1.newLine();
-					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-						 bwfile1.write("IMPLEMENTATION all callees");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-						 bwfile1.write("INTERFACE all callees");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-						 bwfile1.write("SUPERCLASS all callees");
-							bwfile1.newLine();
-					 }		
-					bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
-					bwfile1.newLine();
+			
 
-					for(Method callee: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-						bwfile1.write("PREDICTION "+methodtrace.prediction+" ALL CALLEES PATTERN --- CALLEE trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID)); 
-						bwfile1.newLine();
-					}
-					
-					bwfile1.write("Prediction "+methodtrace.prediction);
-					bwfile1.newLine();
-				}
-				
 				}	
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
@@ -937,48 +642,38 @@ public class AlgoFinalRefactored extends JFrame {
 			
 			
 			
-			
-			
-			
+			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+				String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
+				if(LogInfoHashMap.get(reqMethod).getIterationValues().size()==ITERATION) {
+					List<String> its = LogInfoHashMap.get(reqMethod).getIterationValues(); 
+					its.add(" , "); 
+					
+					LogInfo entry = LogInfoHashMap.get(reqMethod); 
+					entry.setIterationValues(its);
+					LogInfoHashMap.put(reqMethod, entry); 
+					System.out.println("====> "+ITERATION);
 
+				}
+			}
+			
+			System.out.println("finished ");
 			
 			
 			// PRINT
-			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
+//			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
 			
 
 			// END PRINT
 			ITERATION++;
 			
 		}
+		System.out.println(ITERATION);
 		
 		
 		
 		
 		//SET EVERYTHING ELSE TO T IF THE OWNER CLASS IS T 
 		for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-			List<String> OuterOwnerCallers= new ArrayList<String>(); 
-			List<String> OuterOwnerCallees= new ArrayList<String>(); 
-			
-			
-			MethodList callers = methodtrace.Method.getCallers(methodtrace.Requirement); 
-			MethodList callees = methodtrace.Method.getCallees(methodtrace.Requirement); 
-			
-			for(Method caller: callers) {
-				String reqClass= methodtrace.Requirement.ID+"-"+caller.Owner.ID; 
-				if(!methodtrace.Method.Owner.ID.equals(caller.Owner.ID)) {
-					OuterOwnerCallers.add(DatabaseInput.OwnerTraceHashMap.get(reqClass)); 
-
-				}
-			}
-			
-			for(Method callee: callees) {
-				String reqClass= methodtrace.Requirement.ID+"-"+callee.Owner.ID; 
-				if(!methodtrace.Method.Owner.ID.equals(callee.Owner.ID)) {
-					OuterOwnerCallees.add(DatabaseInput.OwnerTraceHashMap.get(reqClass)); 
-
-				}
-			}
 			String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
 			String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.Method.Owner.ID;
 
@@ -987,8 +682,7 @@ public class AlgoFinalRefactored extends JFrame {
 		if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //				&& (LogInfoHashMap.get(reqMethod).getOuterCallersPredictions().contains("T")
 //				|| LogInfoHashMap.get(reqMethod).getOuterCalleesPredictions().contains("T"))
-				&& (OuterOwnerCallers.contains("T")
-				&& OuterOwnerCallees.contains("T"))
+				
 //				&& (!methodtrace.Method.Callers.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)) 
 //				||	 !methodtrace.Method.Callees.AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
 				)
@@ -999,157 +693,12 @@ public class AlgoFinalRefactored extends JFrame {
 		LogInfoHashMap.put(reqMethod, loginfo); 
 			}
 			
-			
+		
 		}
 		
 
 		
-		// DEBUGGING INFO FOR FALSE POSITIVES
-		for(MethodTrace methodtrace: MethodTracesHashmapValues) {
-			if(methodtrace.getGold().trim().equals("N") && methodtrace.getPrediction().trim().equals("T")) {
-				
-				if( ProgramName.equals("chess")) {
-					bwfile2.write("-------------------------------"+methodtrace+"-------------------------------");
-					bwfile2.newLine();
-					bwfile2.write("************CALLERS************");
-					bwfile2.newLine();
-					for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-								
-								bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID));
-								bwfile2.newLine();		
-					}
-							bwfile2.write("**********END CALLERS**************");
-							bwfile2.newLine();
-							bwfile2.write("************CALLEES************");
-							bwfile2.newLine();
-							for(Method callee: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-								
-								bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID));
-								bwfile2.newLine();
-							}
-							
-							bwfile2.write("**********END CALLEES**************");
-							bwfile2.newLine();
-							bwfile2.write("************IMPLEMENTATIONS************");
-							bwfile2.newLine();
-								for(Method imp: methodtrace.Method.Implementations) {
-								
-								bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"    "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-								bwfile2.newLine();
-								}
-							
-							bwfile2.write("**********END IMPLEMENTATIONS**************");
-							bwfile2.newLine();
-							bwfile2.write("************INTERFACES************");
-							bwfile2.newLine();
-							for(Method inter: methodtrace.Method.Interfaces) {
-							
-							bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-							bwfile2.newLine();
-							}
-						
-						bwfile2.write("**********END INTERFACES**************");
-						bwfile2.newLine();
-						bwfile2.write("************SUPERCLASSES************");
-						bwfile2.newLine();
-						for(Method imp: methodtrace.Method.Superclasses) {
-						
-						bwfile2.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"      "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-						bwfile2.newLine();
-						}
-					
-					bwfile2.write("**********END SUPERCLASSES**************");
-					bwfile2.newLine();
-					bwfile2.write("************CHILDREN************");
-					bwfile2.newLine();
-					for(Method inter: methodtrace.Method.Children) {
-					
-					bwfile2.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-					bwfile2.newLine();
-					}
-				
-				bwfile2.write("**********END CHILDREN**************");
-				bwfile2.newLine();	
-				}
-			
-			}
-			
-			
-			
-			// DEBUGGING INFO FOR FALSE NEGATIVES 	
-	
-	if(methodtrace.getGold().trim().equals("T") && methodtrace.getPrediction().trim().equals("N")) {
-				
-				if( ProgramName.equals("chess")) {
-					bwfile3.write("-------------------------------"+methodtrace+"-------------------------------");
-					bwfile3.newLine();
-					bwfile3.write("************CALLERS************");
-					bwfile3.newLine();
-					for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-								
-								bwfile3.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID));
-								bwfile3.newLine();		
-					}
-							bwfile3.write("**********END CALLERS**************");
-							bwfile3.newLine();
-							bwfile3.write("************CALLEES************");
-							bwfile3.newLine();
-							for(Method callee: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-								
-								bwfile3.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+callee.ID));
-								bwfile3.newLine();
-							}
-							
-							bwfile3.write("**********END CALLEES**************");
-							bwfile3.newLine();
-							bwfile3.write("************IMPLEMENTATIONS************");
-							bwfile3.newLine();
-								for(Method imp: methodtrace.Method.Implementations) {
-								
-								bwfile3.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"    "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-								bwfile3.newLine();
-								}
-							
-							bwfile3.write("**********END IMPLEMENTATIONS**************");
-							bwfile3.newLine();
-							bwfile3.write("************INTERFACES************");
-							bwfile3.newLine();
-							for(Method inter: methodtrace.Method.Interfaces) {
-							
-							bwfile3.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-							bwfile3.newLine();
-							}
-						
-						bwfile3.write("**********END INTERFACES**************");
-						bwfile3.newLine();
-						bwfile3.write("************SUPERCLASSES************");
-						bwfile3.newLine();
-						for(Method imp: methodtrace.Method.Superclasses) {
-						
-						bwfile3.write(methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID).prediction+"      "+ methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+imp.ID));
-						bwfile3.newLine();
-						}
-					
-					bwfile3.write("**********END SUPERCLASSES**************");
-					bwfile3.newLine();
-					bwfile3.write("************CHILDREN************");
-					bwfile3.newLine();
-					for(Method inter: methodtrace.Method.Children) {
-					
-					bwfile3.write( methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID).prediction+"    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+inter.ID));
-					bwfile3.newLine();
-					}
-				
-				bwfile3.write("**********END CHILDREN**************");
-				bwfile3.newLine();	
-				}
-			
-			}
-		}
-		
-	
-		
-		
+
 		
 		
 		
@@ -1220,7 +769,7 @@ public class AlgoFinalRefactored extends JFrame {
 
 	/************************************************************************************************************************************************/
 	/************************************************************************************************************************************************/
-	public void SetLogFileIterations(Collection<MethodTrace> methodTracesHashmapValues, List<MethodTrace> methodtraces22, LinkedHashMap<String, LogInfo> LogInfoHashMap, int ITERATION ) {
+	public static void SetLogFileIterations(Collection<MethodTrace> methodTracesHashmapValues, List<MethodTrace> methodtraces22, LinkedHashMap<String, LogInfo> LogInfoHashMap, int ITERATION ) {
 		// TODO Auto-generated method stub
 		for (MethodTrace methodtrace : methodTracesHashmapValues) {
 			String ReqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
@@ -1468,23 +1017,22 @@ public class AlgoFinalRefactored extends JFrame {
 	 * @throws Exception **********************************************************************************************************************************************/
 	public static void main(String[] args) throws Exception {
 		String ProgramName = "chess";
-		AlgoFinalRefactored frame = new AlgoFinalRefactored(
+		AlgoFinalRefactored2 frame = new AlgoFinalRefactored2(
 				ProgramName);
 
 		String ProgramName2 = "gantt";
-			 frame = new AlgoFinalRefactored(ProgramName2);
+			 frame = new AlgoFinalRefactored2(ProgramName2);
 
 		String ProgramName3 = "itrust";
-			 frame = new AlgoFinalRefactored(ProgramName3);
+			 frame = new AlgoFinalRefactored2(ProgramName3);
 
 		
 		String ProgramName4 = "jhotdraw";
-			frame = new AlgoFinalRefactored(ProgramName4);
+			frame = new AlgoFinalRefactored2(ProgramName4);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setVisible(true);
 	}
-
 
 
 }

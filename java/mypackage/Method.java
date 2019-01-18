@@ -276,19 +276,20 @@ public class Method {
 					FinalCallees.add(Callee); 
 				}else {
 
-
-					for(Method CalleeOfCallee: Callee.Callees) {
+						FinalCallees.addAll(Callee.Callees); 
+//					for(Method CalleeOfCallee: Callee.Callees) {
 //						for(Method CalleeOfCallee: Callee.getCallees(requirement)) {
 //							FinalCallees.add(CalleeOfCallee);
-						if(AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("T") 
-								||AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("N")) {
-							FinalCallees.add(CalleeOfCallee); 
-						}
-						else if(!CalleeOfCallee.Owner.ID.equals(Callee.Owner.ID)
-								&& AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("E")){
-							FinalCallees.add(CalleeOfCallee); 
-						}
-					}
+//						if(AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("T") 
+//								||AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("N")) {
+//							FinalCallees.add(CalleeOfCallee); 
+//						}
+//						else if(!CalleeOfCallee.Owner.ID.equals(Callee.Owner.ID)
+//								&& AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CalleeOfCallee.ID).prediction.equals("E")){
+//							FinalCallees.add(CalleeOfCallee); 
+//						}
+//						
+//					}
 				}
 			}
 		}
@@ -413,19 +414,20 @@ public class Method {
 					FinalCallers.add(Caller); 
 				}else {
 
+					FinalCallers.addAll(Caller.Callers); 
 
 //					for(Method CallerOfCaller: Caller.getCallers(requirement)) {
 //						FinalCallers.add(CallerOfCaller);
-					for(Method CallerOfCaller: Caller.Callers) {
-						if(AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("T") 
-								||AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("N")) {
-							FinalCallers.add(CallerOfCaller); 
-						}
-						else if(!CallerOfCaller.Owner.ID.equals(Caller.Owner.ID)
-								&& AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("E")){
-							FinalCallers.add(CallerOfCaller); 
-						}
-					}
+//					for(Method CallerOfCaller: Caller.Callers) {
+//						if(AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("T") 
+//								||AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("N")) {
+//							FinalCallers.add(CallerOfCaller); 
+//						}
+//						else if(!CallerOfCaller.Owner.ID.equals(Caller.Owner.ID)
+//								&& AlgoFinalRefactored.methodtraces2HashMap.get(requirement.ID+"-"+CallerOfCaller.ID).prediction.equals("E")){
+//							FinalCallers.add(CallerOfCaller); 
+//						}
+//					}
 				}
 			}
 		}
@@ -438,6 +440,91 @@ public class Method {
 	
 	
 	
+	public MethodList getChildrenCallees(Requirement requirement) {
+		MethodList NewCallees= new MethodList();
+		NewCallees.addAll(Callees);
+
+		if(!this.Children.isEmpty()) {
+
+
+			for(Method child: this.Children) {
+				if(!child.Callees.isEmpty()) {
+					child.CalleeChildFlag=true; 
+					NewCallees=	NewCallees.AddAll(child.Callees); 
+
+				}
+
+
+			}
+		}
+
+
+
+		return NewCallees; 
+	}
+	
+	
+	
+	
+	
+	public MethodList getImplementationCallees(Requirement requirement) {
+		MethodList NewCallees= new MethodList();
+		NewCallees.addAll(Callees);
+
+		if(!this.Implementations.isEmpty()) {
+			for(Method imp: this.Implementations) {
+
+				if(!imp.Callees.isEmpty()) {
+					NewCallees=NewCallees.AddAll(imp.Callees); 
+					imp.CalleeImplementationFlag=true; 
+				}
+
+
+			}
+
+
+		}
+
+	
+
+		return NewCallees; 
+	}
+	
+	
+	
+	public MethodList getInterfaceCallers(Requirement requirement) {
+		MethodList NewCallers= new MethodList();
+		NewCallers.addAll(Callers);
+		if(!this.Interfaces.isEmpty()) {
+			for(Method inter: this.Interfaces) {
+				if(!inter.Callers.isEmpty()) {
+					inter.CallerInterfaceFlag=true; 
+
+
+					NewCallers=NewCallers.AddAll(inter.Callers); 
+
+				}
+			}
+		}
+
+		
+		return NewCallers; 
+	}
+	public MethodList getSuperclassCallers(Requirement requirement) {
+		MethodList NewCallers= new MethodList();
+		NewCallers.addAll(Callers);
+	if(!this.Superclasses.isEmpty()) {
+		for(Method superclass: this.Superclasses) {
+			if(!superclass.Callers.isEmpty()) {
+				superclass.CallerSuperclassFlag=true; 
+
+				NewCallers=NewCallers.AddAll(superclass.Callers); 
+
+			}
+		}
+	}
+	return NewCallers; 
+	}
 	
 	
 	
