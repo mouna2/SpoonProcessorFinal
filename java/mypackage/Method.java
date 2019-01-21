@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Set;
 
 import ALGO.AlgoFinalRefactored;
+import ALGO.DatabaseInput;
 import ALGO.MethodList;
+import ALGO.OwnerClassList;
 import mypackage.*;
 
 public class Method {
@@ -434,6 +436,60 @@ public class Method {
 		return FinalCallers; 
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+//////////////////////////////VERSION 3 SMART FILTERING///////////////////////	
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+public MethodList getOuterCallers(Requirement requirement) {
+
+	
+MethodList FinalCallers=	getCallers(requirement); 
+MethodList OuterCallers= new MethodList(); 
+for(Method FinalCaller: FinalCallers) {
+	if(!this.Owner.ID.equals(FinalCaller.Owner.ID)) {
+		OuterCallers.add(FinalCaller); 
+	}
+}
+
+return OuterCallers; 
+
+}
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
+
+public MethodList getOuterCallees(Requirement requirement) {
+
+	
+MethodList FinalCallees=	getCallees(requirement); 
+MethodList OuterCallees= new MethodList(); 
+for(Method FinalCallee: FinalCallees) {
+	if(!this.Owner.ID.equals(FinalCallee.Owner.ID)) {
+		OuterCallees.add(FinalCallee); 
+	}
+}
+
+return OuterCallees; 
+
+
+
+}
+	
 	
 	
 	

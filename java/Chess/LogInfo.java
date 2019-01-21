@@ -278,6 +278,7 @@ public class LogInfo {
 	public String toString() {
 		System.out.println(MethodName);
 		MethodName=MethodName.replaceAll(",", "/"); 
+		RequirementName=RequirementName.replaceAll(",", "/"); 
 		String CallerList=toString3(Callers); 
 		String CalleeList=toString3(Callees); 
 		String CallerPredictionList=toString3(CallerPredictions); 
@@ -305,7 +306,7 @@ public class LogInfo {
 //		+","+interfaceCallerList+","+interfaceCallerPredictionList+","+ImplementationCalleesList+","+ImplementationCalleesPredictionList
 //		+","+SuperclassCallerList+","+SuperclassCallerPredictionList+","+ChildrenCalleesList+","+ChildrenCalleesPredictionList
 		
-		
+
 		+","+OriginalCallerList+","+OriginalCallerPredictionList+","+OriginalCalleeList+","+OriginalCalleePredictionList+","+CallerList+","+CallerPredictionList+","+CalleeList+","+CalleePredictionList+","+toString2(IterationValues); 
 //		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue+","+TraceClassNewValue+","+
 //				PrecisionRecall	+","+toString2(IterationValues)+","+TraceValue+"-"+Reason+"-" +PrecisionRecall;
@@ -611,7 +612,7 @@ public class LogInfo {
 		// TODO Auto-generated method stub
 		if (ProgramName.equals("chess")) {
 			LogInfo.bwfileChess.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
 //					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
 //	+"	,SuperclassCallerList,SuperclassCallerPredictionList,ChildrenCalleesList,ChildrenCalleesPredictionList"
 					+ ",OriginalCallers, OriginalCallerPredictions, OriginalCallees, OriginalCalleePredictions, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
@@ -619,7 +620,7 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("gantt")) {
 			LogInfo.bwfile2.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
 //					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
 //	+"	,SuperclassCallerList,SuperclassCallerPredictionList,ChildrenCalleesList,ChildrenCalleesPredictionList"
 					+ ",OriginalCallers, OriginalCallerPredictions, OriginalCallees, OriginalCalleePredictions, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
@@ -627,7 +628,7 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("itrust")) {
 			LogInfo.bwfile3.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
 //					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
 //	+"	,SuperclassCallerList,SuperclassCallerPredictionList,ChildrenCalleesList,ChildrenCalleesPredictionList"
 					+ ",OriginalCallers, OriginalCallerPredictions, OriginalCallees, OriginalCalleePredictions, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");
@@ -635,7 +636,7 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("jhotdraw")) {
 			LogInfo.bwfile4.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, TraceValue, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue, TraceClassNewValue, PrecisionRecall"
 //					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
 //	+"	,SuperclassCallerList,SuperclassCallerPredictionList,ChildrenCalleesList,ChildrenCalleesPredictionList"
 					+ ",OriginalCallers, OriginalCallerPredictions, OriginalCallees, OriginalCalleePredictions, Callers, CallerPredictions, Callees, CalleePredictions, IterationValues");

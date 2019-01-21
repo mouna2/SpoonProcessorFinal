@@ -157,19 +157,20 @@ public final class MethodTrace {
 		List<String> PredictionOuterCalleeList= new ArrayList<String>(); 
 		
 		
-		List<String> InterfaceCallerList= new ArrayList<String>(); 
-		List<String> ImplementationCalleeList= new ArrayList<String>(); 
-		List<String> InterfacePredictionCallerList= new ArrayList<String>(); 
-		List<String> ImplementationPredictionCalleeList= new ArrayList<String>(); 
-		
-		
-		List<String> SuperclassCallerList= new ArrayList<String>(); 
-		List<String> ChildrenCalleeList= new ArrayList<String>(); 
-		List<String> SuperclassPredictionCallerList= new ArrayList<String>(); 
-		List<String> ChildrenPredictionCalleeList= new ArrayList<String>(); 
+//		List<String> InterfaceCallerList= new ArrayList<String>(); 
+//		List<String> ImplementationCalleeList= new ArrayList<String>(); 
+//		List<String> InterfacePredictionCallerList= new ArrayList<String>(); 
+//		List<String> ImplementationPredictionCalleeList= new ArrayList<String>(); 
+//		
+//		
+//		List<String> SuperclassCallerList= new ArrayList<String>(); 
+//		List<String> ChildrenCalleeList= new ArrayList<String>(); 
+//		List<String> SuperclassPredictionCallerList= new ArrayList<String>(); 
+//		List<String> ChildrenPredictionCalleeList= new ArrayList<String>(); 
 		
 		if(this.prediction.trim().equals("E")) {
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).getIterationValues().add(reason);
+
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setPrediction(Pred);
 			for(Method caller: this.Method.getCallers(Requirement)) {
 				CallerList.add(caller.toString()); 
@@ -205,6 +206,17 @@ public final class MethodTrace {
 
 			}
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 //			for(Method caller: this.Method.getSuperclassCallers(Requirement)) {
 //				SuperclassCallerList.add(caller.toString()); 
 //				SuperclassPredictionCallerList.add(AlgoFinalRefactored.methodtraces2HashMap.get(this.Requirement.ID+"-"+caller.ID).getPrediction()); 
@@ -231,6 +243,15 @@ public final class MethodTrace {
 			
 			
 			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallers(CallerList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCallees(CalleeList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setCalleePredictions(PredictionCalleeList);
@@ -240,6 +261,10 @@ public final class MethodTrace {
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCallees(OriginalCalleeList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCallerPredictions(OriginalPredictionCallerList);
 			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setOriginalCalleePredictions(OriginalPredictionCalleeList);
+			
+			
+			
+			
 			
 			
 //			LogInfoHashMap.get(this.Requirement.ID+"-"+this.Method.ID).setChildrenCallees(ChildrenCalleeList);

@@ -13,8 +13,8 @@ import mypackage.*;
 public class MethodList extends ArrayList<Method>{
 
 	
-	
-	
+	public OwnerClassList OwnerClasses= new OwnerClassList(); 
+
 	
 
 
@@ -24,6 +24,29 @@ public class MethodList extends ArrayList<Method>{
 	
 
 	
+	public OwnerClassList getOwnerClasses(Requirement requirement) {
+		OwnerClasses= new OwnerClassList(); 
+		for(Method method: this) {
+			Clazz clazz = DatabaseInput.classTraceHashMap.get(requirement.ID+"-"+method.Owner.ID).myclass; 
+			if(!OwnerClasses.contains(clazz)){
+				OwnerClasses.add(clazz); 
+			}
+			
+		}
+//		System.out.println("=========================> OwnerClasses "+OwnerClasses);
+		return OwnerClasses;
+	}
+
+
+
+
+	public void setOwnerClasses(OwnerClassList ownerClasses) {
+		OwnerClasses = ownerClasses;
+	}
+
+
+
+
 	public boolean AtLeast1T(Requirement requirement,  HashMap<java.lang.String, MethodTrace> methodtraces2HashMap) throws Exception {
 		// TODO Auto-generated method stub
 		if(!this.isEmpty()) {
