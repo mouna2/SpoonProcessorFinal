@@ -1051,8 +1051,8 @@ public class AlgoFinalRefactored extends JFrame {
 							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 							&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 							
-							&& !methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-							&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+							&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 							
 							
 
@@ -1066,12 +1066,12 @@ public class AlgoFinalRefactored extends JFrame {
 					
 					
 					//PURE T LEAF 
-					else if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+					 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 
 							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-							&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).isEmpty()
+							&& methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()
 							
-							&& !methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 							
 							
 
@@ -1090,8 +1090,8 @@ public class AlgoFinalRefactored extends JFrame {
 						&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 						&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 						
-						&& !methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-						&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+						&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+						&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 						
 						
 
@@ -1103,12 +1103,12 @@ public class AlgoFinalRefactored extends JFrame {
 				LogInfoHashMap.put(reqMethod, loginfo); 
 					}
 					 //MIXED T LEAF 
-					 else	 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+					 	 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 
 									&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
-									&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).isEmpty()
+									&& methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()
 									
-									&& !methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+									&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 									
 
 									)
@@ -1121,44 +1121,44 @@ public class AlgoFinalRefactored extends JFrame {
 
 					 //INHERITANCE
 					 
-//						if (
-//							(	methodtrace.Method.Interfaces.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Implementations.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
-//								
-////								&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-////								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
-//								
-//								) {
-//							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-//							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/Inheritance");
-//					
-//					LogInfoHashMap.put(reqMethod, loginfo); 
-//						}
+						if (
+							(	methodtrace.Method.Interfaces.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								||methodtrace.Method.Implementations.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
+								
+//								&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+//								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
+								
+								) {
+							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/InheritanceT");
+					
+					LogInfoHashMap.put(reqMethod, loginfo); 
+						}
 					
 						
 						
 						 //ALL CALLERS 
 						 
 						if (
-								methodtrace.Method.getCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								&& !methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+								methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 								
 								) {
 							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCallers");
+							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCallersT");
 					
 					LogInfoHashMap.put(reqMethod, loginfo); 
 						}
 						//ALL CALLEES 
 						if (
-								methodtrace.Method.getCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+								methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 								
 								) {
 							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCallees");
+							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCalleesT");
 					
 					LogInfoHashMap.put(reqMethod, loginfo); 
 						}

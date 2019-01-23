@@ -26,7 +26,7 @@ public class DatabaseInput {
 	static HashMap<String, Clazz> ClassHashMap = new HashMap<String, Clazz>();
 	static HashMap<String, Requirement> RequirementHashMap = new HashMap<String, Requirement>();
 
-	static HashMap<String, ClassTrace2> classTraceHashMap = new HashMap<String, ClassTrace2>();
+	public static HashMap<String, ClassTrace2> classTraceHashMap = new HashMap<String, ClassTrace2>();
 	static LinkedHashMap<String, MethodTrace> methodtraceHashMap = new LinkedHashMap<String, MethodTrace>();
 	public static LinkedHashMap<String, String> OwnerTraceHashMap = new LinkedHashMap<String, String>();
 	static LinkedHashMap<String, String> SubjectTraceHashMap = new LinkedHashMap<String, String>();

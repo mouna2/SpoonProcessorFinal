@@ -34,11 +34,24 @@ public class MethodList extends ArrayList<Method>{
 			
 		}
 //		System.out.println("=========================> OwnerClasses "+OwnerClasses);
+		OwnerClasses=RemoveDuplicates(OwnerClasses); 
+		
 		return OwnerClasses;
 	}
 
 
-
+	private OwnerClassList RemoveDuplicates(OwnerClassList OwnerClassList) {
+		// TODO Auto-generated method stub
+		OwnerClassList OwnerClassList2= new OwnerClassList(); 
+	
+	for(Clazz ownerclass: OwnerClassList) {
+		if(!OwnerClassList2.contains(ownerclass)) {
+			OwnerClassList2.add(ownerclass); 
+		}
+	}
+	return OwnerClassList2; 
+		
+	}
 
 	public void setOwnerClasses(OwnerClassList ownerClasses) {
 		OwnerClasses = ownerClasses;

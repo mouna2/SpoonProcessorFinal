@@ -5,13 +5,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import ALGO.AlgoFinalRefactored;
 import ALGO.DatabaseInput;
 import ALGO.MethodList;
 import ALGO.OwnerClassList;
 import mypackage.*;
-
+import static java.util.Comparator.comparingInt;
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toCollection;
 public class Method {
 	public String ID; 
 	public boolean NewPatternFlag= false; 
@@ -277,8 +280,12 @@ public class Method {
 				if(!Callee.Owner.ID.equals(this.Owner.ID)){
 					FinalCallees.add(Callee); 
 				}else {
+						if(!Callee.Callees.isEmpty()) {
+							FinalCallees.addAll(Callee.Callees); 
 
-						FinalCallees.addAll(Callee.Callees); 
+						}else {
+							FinalCallees.add(Callee); 
+						}
 //					for(Method CalleeOfCallee: Callee.Callees) {
 //						for(Method CalleeOfCallee: Callee.getCallees(requirement)) {
 //							FinalCallees.add(CalleeOfCallee);
@@ -295,6 +302,8 @@ public class Method {
 				}
 			}
 		}
+		
+		FinalCallees=RemoveDuplicates(FinalCallees); 
 		return FinalCallees; 
 	}
 	/////////////////////////////////////////////////////////
@@ -379,6 +388,7 @@ public class Method {
 	///////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////
 	public MethodList getCallers(Requirement requirement) {
+		
 		MethodList NewCallers= new MethodList();
 		NewCallers.addAll(Callers);
 		if(!this.Interfaces.isEmpty()) {
@@ -415,8 +425,13 @@ public class Method {
 				if(!Caller.Owner.ID.equals(this.Owner.ID)){
 					FinalCallers.add(Caller); 
 				}else {
+					if(!Caller.Callers.isEmpty()) {
+						FinalCallers.addAll(Caller.Callers); 
 
-					FinalCallers.addAll(Caller.Callers); 
+					}else {
+						FinalCallers.add(Caller); 
+
+					}
 
 //					for(Method CallerOfCaller: Caller.getCallers(requirement)) {
 //						FinalCallers.add(CallerOfCaller);
@@ -433,6 +448,11 @@ public class Method {
 				}
 			}
 		}
+		
+		
+		FinalCallers=RemoveDuplicates(FinalCallers); 
+		
+		
 		return FinalCallers; 
 
 	}
@@ -447,6 +467,18 @@ public class Method {
 	
 	
 	
+private MethodList RemoveDuplicates(MethodList finalCallers) {
+		// TODO Auto-generated method stub
+	MethodList FinalCallers2= new MethodList(); 
+	
+	for(Method finalcaller: finalCallers) {
+		if(!FinalCallers2.contains(finalcaller)) {
+			FinalCallers2.add(finalcaller); 
+		}
+	}
+	return FinalCallers2; 
+		
+	}
 ///////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////
 //////////////////////////////VERSION 3 SMART FILTERING///////////////////////	
@@ -498,7 +530,6 @@ return OuterCallees;
 	
 	public MethodList getChildrenCallees(Requirement requirement) {
 		MethodList NewCallees= new MethodList();
-		NewCallees.addAll(Callees);
 
 		if(!this.Children.isEmpty()) {
 
@@ -514,7 +545,7 @@ return OuterCallees;
 			}
 		}
 
-
+		NewCallees=RemoveDuplicates(NewCallees); 
 
 		return NewCallees; 
 	}
@@ -525,7 +556,6 @@ return OuterCallees;
 	
 	public MethodList getImplementationCallees(Requirement requirement) {
 		MethodList NewCallees= new MethodList();
-		NewCallees.addAll(Callees);
 
 		if(!this.Implementations.isEmpty()) {
 			for(Method imp: this.Implementations) {
@@ -541,7 +571,8 @@ return OuterCallees;
 
 		}
 
-	
+		NewCallees=RemoveDuplicates(NewCallees); 
+
 
 		return NewCallees; 
 	}
@@ -550,11 +581,9 @@ return OuterCallees;
 	
 	public MethodList getInterfaceCallers(Requirement requirement) {
 		MethodList NewCallers= new MethodList();
-		NewCallers.addAll(Callers);
 		if(!this.Interfaces.isEmpty()) {
 			for(Method inter: this.Interfaces) {
 				if(!inter.Callers.isEmpty()) {
-					inter.CallerInterfaceFlag=true; 
 
 
 					NewCallers=NewCallers.AddAll(inter.Callers); 
@@ -563,22 +592,23 @@ return OuterCallees;
 			}
 		}
 
-		
+		NewCallers=RemoveDuplicates(NewCallers); 
+
 		return NewCallers; 
 	}
 	public MethodList getSuperclassCallers(Requirement requirement) {
 		MethodList NewCallers= new MethodList();
-		NewCallers.addAll(Callers);
 	if(!this.Superclasses.isEmpty()) {
 		for(Method superclass: this.Superclasses) {
 			if(!superclass.Callers.isEmpty()) {
-				superclass.CallerSuperclassFlag=true; 
 
 				NewCallers=NewCallers.AddAll(superclass.Callers); 
 
 			}
 		}
-	}
+	}		
+	NewCallers=RemoveDuplicates(NewCallers); 
+
 	return NewCallers; 
 	}
 	
