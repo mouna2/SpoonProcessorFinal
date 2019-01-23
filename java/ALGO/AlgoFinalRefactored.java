@@ -1127,7 +1127,7 @@ public class AlgoFinalRefactored extends JFrame {
 //								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 //								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
 //								
-////								&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+////							`	&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 ////								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
 //								
 //								) {
