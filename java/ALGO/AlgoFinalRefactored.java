@@ -1121,22 +1121,22 @@ public class AlgoFinalRefactored extends JFrame {
 
 					 //INHERITANCE
 					 
-						if (
-							(	methodtrace.Method.Interfaces.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								||methodtrace.Method.Implementations.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
-								
-//								&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-//								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
-								
-								) {
-							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/InheritanceT");
-					
-					LogInfoHashMap.put(reqMethod, loginfo); 
-						}
-					
+//						if (
+//							(	methodtrace.Method.Interfaces.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//								||methodtrace.Method.Implementations.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
+//								
+////								&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+////								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
+//								
+//								) {
+//							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+//							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/InheritanceT");
+//					
+//					LogInfoHashMap.put(reqMethod, loginfo); 
+//						}
+//					
 						
 						
 						 //ALL CALLERS 
