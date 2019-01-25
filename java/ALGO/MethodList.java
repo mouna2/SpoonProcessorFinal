@@ -34,13 +34,13 @@ public class MethodList extends ArrayList<Method>{
 			
 		}
 //		System.out.println("=========================> OwnerClasses "+OwnerClasses);
-		OwnerClasses=RemoveDuplicates(OwnerClasses); 
+		OwnerClasses=RemoveDuplicateClasses(OwnerClasses); 
 		
 		return OwnerClasses;
 	}
 
 
-	private OwnerClassList RemoveDuplicates(OwnerClassList OwnerClassList) {
+	public static OwnerClassList RemoveDuplicateClasses(OwnerClassList OwnerClassList) {
 		// TODO Auto-generated method stub
 		OwnerClassList OwnerClassList2= new OwnerClassList(); 
 	
@@ -178,13 +178,13 @@ public class MethodList extends ArrayList<Method>{
 //		for(Method meth: MethodList) {
 //			this.add(meth); 
 //		}
-		MethodList NewMethodList = removeDuplicates(this); 
+		MethodList NewMethodList = removeDuplicatesMethods(this); 
 		return NewMethodList; 
 	}
 
 
 	 // Function to remove duplicates from an ArrayList 
-    public static MethodList removeDuplicates(MethodList list) 
+    public static MethodList removeDuplicatesMethods(MethodList list) 
     { 
   
         // Create a new ArrayList 

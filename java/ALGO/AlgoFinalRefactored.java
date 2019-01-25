@@ -1043,7 +1043,7 @@ public class AlgoFinalRefactored extends JFrame {
 							&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 							
 							
-
+//							&& !methodtrace.Method.Owner.ID.equals("24")
 							)
 						{
 							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
@@ -1062,6 +1062,7 @@ public class AlgoFinalRefactored extends JFrame {
 							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 							
 							
+//							&& !methodtrace.Method.Owner.ID.equals("24")
 
 							)
 						{
@@ -1082,6 +1083,7 @@ public class AlgoFinalRefactored extends JFrame {
 						&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 						
 						
+//						&& !methodtrace.Method.Owner.ID.equals("24")
 
 						)
 					{
@@ -1098,6 +1100,7 @@ public class AlgoFinalRefactored extends JFrame {
 									
 									&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 									
+//									&& !methodtrace.Method.Owner.ID.equals("24")
 
 									)
 								{
@@ -1115,7 +1118,8 @@ public class AlgoFinalRefactored extends JFrame {
 						if (
 								methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 								&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-								
+//								&& !methodtrace.Method.Owner.ID.equals("24")
+
 								) {
 							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
 							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCallersT");
@@ -1126,7 +1130,8 @@ public class AlgoFinalRefactored extends JFrame {
 						if (
 								methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 								&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-								
+//								&& !methodtrace.Method.Owner.ID.equals("24")
+
 								) {
 							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
 							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/AllCalleesT");

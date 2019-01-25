@@ -36,7 +36,14 @@ public class LogInfo {
 	List<String> IterationValues= new ArrayList<String>();
 	boolean SubjectDeveloperEqualityFlag; 
 	String Reason; 
+	
+	
 	List<String> ExtendedCallersText;
+	
+	List<String> ClassCalleesOwnerClasses;
+	List<String> ClassCallersOwnerClasses;
+	int ClassMethodsSize=0; 
+	
 	List<String> ExtendedCallerPredictions;
 	List<String> ExtendedCalleesText;
 	List<String> ExtendedCalleePredictions;
@@ -92,6 +99,24 @@ public class LogInfo {
 	
 	
 
+	public List<String> getClassCalleesOwnerClasses() {
+		return ClassCalleesOwnerClasses;
+	}
+	public void setClassCalleesOwnerClasses(List<String> classCalleesOwnerClasses) {
+		ClassCalleesOwnerClasses = classCalleesOwnerClasses;
+	}
+	public List<String> getClassCallersOwnerClasses() {
+		return ClassCallersOwnerClasses;
+	}
+	public void setClassCallersOwnerClasses(List<String> classCallersOwnerClasses) {
+		ClassCallersOwnerClasses = classCallersOwnerClasses;
+	}
+	public int getClassMethodsSize() {
+		return ClassMethodsSize;
+	}
+	public void setClassMethodsSize(int classMethodsSize) {
+		ClassMethodsSize = classMethodsSize;
+	}
 	public List<String> getImplementation() {
 		return Implementations;
 	}
@@ -484,7 +509,12 @@ public class LogInfo {
 		String ImplementationsPredictionList=toString3(ImplementationPredictions); 
 		
 		
-		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName+","+TraceValue+","+TraceClassOldValue
+		String ClassCallersOwnerClassesList=toString3(ClassCallersOwnerClasses); 
+		String ClassCalleesOwnerClassesList=toString3(ClassCalleesOwnerClasses); 
+		
+		return MethodID+","+MethodName+","+RequirementID+","+RequirementName+","+ClassID+","+ClassName
+				+","+ClassMethodsSize+","+ClassCallersOwnerClassesList+","+ClassCalleesOwnerClassesList
+				+","+TraceValue+","+TraceClassOldValue
 		
 				+","+interfaceList+","+interfacePredictionList+","+ImplementationsList+","+ImplementationsPredictionList
 				+","+SuperclassList+","+SuperclassPredictionList+","+ChildrenList+","+ChildrenPredictionList		
@@ -805,10 +835,13 @@ public class LogInfo {
 
 	}
 	public static void updateTableLog(String ProgramName, Collection<MethodTrace> MethodTracesHashmapValues, LinkedHashMap<String, LogInfo> LogInfoHashMap) throws IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub			
+
 		if (ProgramName.equals("chess")) {
 			LogInfo.bwfileChess.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
+					+"ClassMethodsSize, ClassCallersOwnerClassesList, ClassCalleesOwnerClassesList, "
+					+ "Gold, TraceClassOldValue"
 					+"	,interfaceList,interfacePredictionList,ImplementationsList,ImplementationsPredictionList"
 					+"	,SuperclassList,SuperclassPredictionList,ChildrenList,ChildrenPredictionList"
 					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
@@ -823,7 +856,9 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("gantt")) {
 			LogInfo.bwfile2.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
+					+"ClassMethodsSize, ClassCallersOwnerClassesList, ClassCalleesOwnerClassesList, "
+					+ "Gold, TraceClassOldValue"
 					+"	,interfaceList,interfacePredictionList,ImplementationsList,ImplementationsPredictionList"
 					+"	,SuperclassList,SuperclassPredictionList,ChildrenList,ChildrenPredictionList"
 					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
@@ -838,7 +873,9 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("itrust")) {
 			LogInfo.bwfile3.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
+					+"ClassMethodsSize, ClassCallersOwnerClassesList, ClassCalleesOwnerClassesList, "
+					+ "Gold, TraceClassOldValue"
 					+"	,interfaceList,interfacePredictionList,ImplementationsList,ImplementationsPredictionList"
 					+"	,SuperclassList,SuperclassPredictionList,ChildrenList,ChildrenPredictionList"
 					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"
@@ -853,7 +890,9 @@ public class LogInfo {
 		}
 		if (ProgramName.equals("jhotdraw")) {
 			LogInfo.bwfile4.write(
-					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, Gold, TraceClassOldValue"
+					"MethodID, MethodName, RequirementID, RequirementName, ClassID, ClassName, "
+					+"ClassMethodsSize, ClassCallersOwnerClassesList, ClassCalleesOwnerClassesList, "
+					+ "Gold, TraceClassOldValue"
 					+"	,interfaceList,interfacePredictionList,ImplementationsList,ImplementationsPredictionList"
 					+"	,SuperclassList,SuperclassPredictionList,ChildrenList,ChildrenPredictionList"
 					+"	,interfaceCallerList,interfaceCallerPredictionList,ImplementationCalleesList,ImplementationCalleesPredictionList"

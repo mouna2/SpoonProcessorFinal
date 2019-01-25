@@ -132,13 +132,13 @@ public OwnerClassList AddAll(OwnerClassList OwnerClassList) {
 //	for(Method meth: MethodList) {
 //		this.add(meth); 
 //	}
-	OwnerClassList NewOwnerList = removeDuplicates(this); 
+	OwnerClassList NewOwnerList = removeDuplicatesClasses(this); 
 	return NewOwnerList; 
 }
 
 
  // Function to remove duplicates from an ArrayList 
-public static OwnerClassList removeDuplicates(OwnerClassList list) 
+public static OwnerClassList removeDuplicatesClasses(OwnerClassList list) 
 { 
 
     // Create a new ArrayList 
@@ -157,6 +157,18 @@ public static OwnerClassList removeDuplicates(OwnerClassList list)
 
     // return the new list 
     return newList; 
+}
+
+
+
+
+@Override
+public String toString() {
+	String res=""; 
+	for(Clazz c: this) {
+		res=res+c.toString(); 
+	}
+return res; 
 } 
 
 }
