@@ -709,8 +709,8 @@ public class Backup extends JFrame {
 
 				// methodtrace.setPrediction("");
 
-				if (    !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						&& methodtrace.getCallees().AllTs() && methodtrace.getCallers().AllTs() 					
+				if (    !methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty()
+						&& methodtrace.getExtendedCallees().AllTs() && methodtrace.getExtendedCallers().AllTs() 					
 						
 
 				) {
@@ -723,8 +723,8 @@ public class Backup extends JFrame {
 					// //System.out.println("yes");
 				}
 				// PURE N PATTERN
-				else if ( !methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						&& methodtrace.getCallees().AllNs() && methodtrace.getCallers().AllNs()
+				else if ( !methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty()
+						&& methodtrace.getExtendedCallees().AllNs() && methodtrace.getExtendedCallers().AllNs()
 						
 
 				) {
@@ -738,8 +738,8 @@ public class Backup extends JFrame {
 
 				 
 				// PURE T LEAF PATTERN
-				 if (	methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						 && methodtrace.getCallees().AllTs() 
+				 if (	methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty()
+						 && methodtrace.getExtendedCallees().AllTs() 
 						 
 
 				) {
@@ -750,8 +750,8 @@ public class Backup extends JFrame {
 					// //System.out.println("yes");
 				}
 				// PURE N LEAF PATTERN
-				 else if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
-						 && methodtrace.getCallees().AllNs() 
+				 else if (methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty()
+						 && methodtrace.getExtendedCallees().AllNs() 
 						 
 
 				) {
@@ -813,8 +813,8 @@ public class Backup extends JFrame {
 				//System.out.println();
 				
 				// MIXED T PATTERN
-				 if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-					&& methodtrace.getCallees().SomeCalleeIsT() && methodtrace.getCallers().SomeCallerIsT() 
+				 if (!methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty() 
+					&& methodtrace.getExtendedCallees().SomeCalleeIsT() && methodtrace.getExtendedCallers().SomeCallerIsT() 
 					
 
 				) {
@@ -826,9 +826,9 @@ public class Backup extends JFrame {
 					// //System.out.println("yes");
 				}
 				// MIXED N PATTERN
-				 else if (!methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty()
+				 else if (!methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty()
 						
-						&& methodtrace.getCallees().AllNs() && methodtrace.getCallers().AllNs() 
+						&& methodtrace.getExtendedCallees().AllNs() && methodtrace.getExtendedCallers().AllNs() 
 						
 						
 
@@ -844,8 +844,8 @@ public class Backup extends JFrame {
 				
 				 
 				// MIXED T LEAF PATTERN
-				 if (methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-						 && methodtrace.getCallers().SomeCallerIsT() 
+				 if (methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty() 
+						 && methodtrace.getExtendedCallers().SomeCallerIsT() 
 						 
 
 				) {
@@ -854,8 +854,8 @@ public class Backup extends JFrame {
 								iterationValues, LogHashMapRemainingNewVals,LogHashMapRemaining, "T", "T,MixedTLeaf", methodtraces2HashMap); 
 
 				}// MIXED N LEAF PATTERN
-				 else if(methodtrace.getCallees().isEmpty() && !methodtrace.getCallers().isEmpty() 
-						 && methodtrace.getCallers().AllNs()
+				 else if(methodtrace.getExtendedCallees().isEmpty() && !methodtrace.getExtendedCallers().isEmpty() 
+						 && methodtrace.getExtendedCallers().AllNs()
 						 
 
 				) {
@@ -1061,8 +1061,8 @@ public class Backup extends JFrame {
 				
 					
 					// ALL T CALLERS 
-					 if (!methodtrace.getCallers().isEmpty() 
-						&& methodtrace.getCallers().AllTs() 
+					 if (!methodtrace.getExtendedCallers().isEmpty() 
+						&& methodtrace.getExtendedCallers().AllTs() 
 						
 	
 					) {
@@ -1073,8 +1073,8 @@ public class Backup extends JFrame {
 						// //System.out.println("yes");
 					}
 					// ALL N CALLERS
-					 else if (!methodtrace.getCallers().isEmpty() 
-								&& methodtrace.getCallers().AllNs() 
+					 else if (!methodtrace.getExtendedCallers().isEmpty() 
+								&& methodtrace.getExtendedCallers().AllNs() 
 								
 	
 							) {
@@ -1184,8 +1184,8 @@ public class Backup extends JFrame {
 				
 				
 				//ALL T CALLEES 
-				if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllTs() 
+				if (!methodtrace.getExtendedCallees().isEmpty() 
+				&& methodtrace.getExtendedCallees().AllTs() 
 				
 				
 				) {
@@ -1197,8 +1197,8 @@ public class Backup extends JFrame {
 				////System.out.println("yes");
 				}
 				//ALL N CALLEES
-				else if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllNs() 
+				else if (!methodtrace.getExtendedCallees().isEmpty() 
+				&& methodtrace.getExtendedCallees().AllNs() 
 				
 				
 				) {

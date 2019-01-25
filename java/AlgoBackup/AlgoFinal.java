@@ -590,7 +590,7 @@ public class AlgoFinal extends JFrame {
 		for(DatabaseInput elem: methodtraces2HashMapNew.values()) {
 			String key= elem.Requirement.ID+"-"+elem.MethodRepresentation.methodid; 
 			System.out.println(elem.MethodRepresentation.methodid+"-"+elem.Requirement.ID);
-			System.out.println(elem.getCallees());
+			System.out.println(elem.getExtendedCallees());
 		}
 		PredictionsNewHashMap = InitializePredictionsHashMap(PredictionsNewHashMap, MethodTracesHashmapValues);
 		
@@ -1137,8 +1137,8 @@ public class AlgoFinal extends JFrame {
 				
 				
 				// ALL T CALLEES 
-				if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllTs() 
+				if (!methodtrace.getExtendedCallees().isEmpty() 
+				&& methodtrace.getExtendedCallees().AllTs() 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {
@@ -1150,8 +1150,8 @@ public class AlgoFinal extends JFrame {
 				// System.out.println("yes");
 				}
 				// ALL N CALLEES
-				else if (!methodtrace.getCallees().isEmpty() 
-				&& methodtrace.getCallees().AllNs() 
+				else if (!methodtrace.getExtendedCallees().isEmpty() 
+				&& methodtrace.getExtendedCallees().AllNs() 
 				&& methodtrace.getPrediction().trim().equals("E")
 				
 				) {
@@ -1572,7 +1572,7 @@ public class AlgoFinal extends JFrame {
 			MethodList<String> ml = new MethodList<String>(); 
 			String key= methodtrace.Requirement.ID+"-"+methodtrace.MethodRepresentation.methodid; 
 			methodtrace.setPredictionCalleeList(ml.ConvertToMethodList(MethodPredictionCalleeList));
-			System.out.println(methodtrace.getCallees());
+			System.out.println(methodtrace.getExtendedCallees());
 			 System.out.println("========>"+key);
 			methodtrace.setPredictionCallerList(ml.ConvertToMethodList(MethodPredictionCallerList));
 			methodtraces2HashMap2.put(key, methodtrace); 
@@ -1581,7 +1581,7 @@ public class AlgoFinal extends JFrame {
 		for( String key: methodtraces2HashMap2.keySet()) {
 			
 			System.out.println(key);
-			System.out.println(methodtraces2HashMap2.get(key).getCallees());
+			System.out.println(methodtraces2HashMap2.get(key).getExtendedCallees());
 			
 		}
 		return methodtraces2HashMap2; 

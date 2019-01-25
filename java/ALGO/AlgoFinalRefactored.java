@@ -327,7 +327,11 @@ public class AlgoFinalRefactored extends JFrame {
 
 	
 		
-		
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//STEP 1
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
 			// OWNER CLASS PATTERN
@@ -394,7 +398,11 @@ public class AlgoFinalRefactored extends JFrame {
 
 		
 		
-
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//STEP 2
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
 //		 LogHashMapRemaining = new LinkedHashMap<String, LogInfo>();
 //		LogHashMapRemaining=InitializeHashMapWithPrecisionRecallRemaining(MethodTracesHashmapValues, LogHashMapRemaining, LogInfoHashMap); 
 		MethodTracesHashmapValues=methodtraces2HashMap.values(); 
@@ -1013,34 +1021,14 @@ public class AlgoFinalRefactored extends JFrame {
 		
 
 		
-		
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
+		// STEP 3
+		//////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////
 		//SET EVERYTHING ELSE TO T IF THE OWNER CLASS IS T 
 				for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-//					List<String> OuterOwnerCallers= new ArrayList<String>(); 
-//					List<String> OuterOwnerCallees= new ArrayList<String>(); 
-//					
-//					MethodList callers = methodtrace.Method.getCallers(methodtrace.Requirement); 
-//					MethodList callees = methodtrace.Method.getCallees(methodtrace.Requirement); 
-//					
-//					for(Method caller: callers) {
-//						String reqClass= methodtrace.Requirement.ID+"-"+caller.Owner.ID; 
-//						if(!methodtrace.Method.Owner.ID.equals(caller.Owner.ID)) {
-//							OuterOwnerCallers.add(DatabaseInput.OwnerTraceHashMap.get(reqClass)); 
-//
-//						}
-//					}
-//					
-//					for(Method callee: callees) {
-//						String reqClass= methodtrace.Requirement.ID+"-"+callee.Owner.ID; 
-//						if(!methodtrace.Method.Owner.ID.equals(callee.Owner.ID)) {
-//							OuterOwnerCallees.add(DatabaseInput.OwnerTraceHashMap.get(reqClass)); 
-//							
-//						}
-//					}
-//					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
-//					String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.Method.Owner.ID;
 
-//					if( methodtrace.prediction.equals("E") && methodtrace.Method.Owner.DeveloperGold.equals("T") ) 
 					
 					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
 					String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.Method.Owner.ID;
@@ -1119,24 +1107,7 @@ public class AlgoFinalRefactored extends JFrame {
 							LogInfoHashMap.put(reqMethod, loginfo); 
 								}
 
-					 //INHERITANCE
-					 
-//						if (
-//							(	methodtrace.Method.Interfaces.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Implementations.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Superclasses.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-//								||methodtrace.Method.Children.getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement))
-//								
-////							`	&& (!methodtrace.Method.getOuterCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-////								&& !methodtrace.Method.getOuterCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
-//								
-//								) {
-//							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-//							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/InheritanceT");
-//					
-//					LogInfoHashMap.put(reqMethod, loginfo); 
-//						}
-//					
+
 						
 						
 						 //ALL CALLERS 
@@ -1168,7 +1139,11 @@ public class AlgoFinalRefactored extends JFrame {
 				
 		
 		
-		
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
+			// STEP 4
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////////////////////
 //		ITERATION=0; 
 //		MethodTrace.modified=true; 
 //		while (MethodTrace.modified) {
@@ -1206,7 +1181,7 @@ public class AlgoFinalRefactored extends JFrame {
 //						
 //
 //				) {
-//					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureT");
+//					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureTStep4");
 //
 //				
 //
@@ -1220,7 +1195,7 @@ public class AlgoFinalRefactored extends JFrame {
 //						
 //
 //				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeafStep4");
 //
 //				}
 //				 
@@ -1247,7 +1222,7 @@ public class AlgoFinalRefactored extends JFrame {
 //					&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap))
 //
 //				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedT");
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTStep4");
 //
 //				}
 //				 
@@ -1262,7 +1237,7 @@ public class AlgoFinalRefactored extends JFrame {
 //						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
 //
 //				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeaf");
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeafStep4");
 //
 //
 //				}
@@ -1323,7 +1298,7 @@ public class AlgoFinalRefactored extends JFrame {
 //
 //						
 //						
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTInheritance");
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTInheritanceStep4");
 //
 //
 //					}
@@ -1396,7 +1371,7 @@ public class AlgoFinalRefactored extends JFrame {
 //					
 //
 //				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallers");
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallersStep4");
 //						
 //				}
 //
@@ -1436,7 +1411,7 @@ public class AlgoFinalRefactored extends JFrame {
 //				
 //				
 //				) {
-//					methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallees");
+//					methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCalleesStep4");
 //
 //				
 //				
