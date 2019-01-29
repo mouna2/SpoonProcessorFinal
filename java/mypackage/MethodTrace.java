@@ -229,17 +229,19 @@ public final class MethodTrace {
 			OwnerClassList callersownerclasses = new OwnerClassList(); 
 			OwnerClassList calleesownerclasses = new OwnerClassList(); 
 
-			 ClassMethodsSize=this.Method.Owner.methods.size(); 
-			for(Method method: this.Method.Owner.methods) {
-				MethodList callers = method.getCallers(Requirement); 
-				 callersownerclasses.addAll(callers.getOwnerClasses(Requirement)); 
-		
-				
-				MethodList callees = method.getCallees(Requirement); 
-				calleesownerclasses.addAll(callees.getOwnerClasses(Requirement)); 
-	
-			}
 			
+			//block that makes code super slow 
+//			 ClassMethodsSize=this.Method.Owner.methods.size(); 
+//			for(Method method: this.Method.Owner.methods) {
+//				MethodList callers = method.getCallers(Requirement); 
+//				 callersownerclasses.addAll(callers.getOwnerClasses(Requirement)); 
+//		
+//				
+//				MethodList callees = method.getCallees(Requirement); 
+//				calleesownerclasses.addAll(callees.getOwnerClasses(Requirement)); 
+//	
+//			}
+			//end of block 
 			
 			callersownerclasses=OwnerClassList.removeDuplicatesClasses(callersownerclasses); 
 			ClassCallersOwnerClasses.add(callersownerclasses.toString()); 
