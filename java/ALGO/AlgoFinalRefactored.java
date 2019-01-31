@@ -428,190 +428,190 @@ public class AlgoFinalRefactored extends JFrame {
 			// PURE PATTERNS
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////////////////////
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-
-					
-					
-//				System.out.println("PATTERN 1");
-
-				// PURE T PATTERN
-
-//				if (    !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-//						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)
-//						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)					
-//						
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//
+//					
+//					
+////				System.out.println("PATTERN 1");
+//
+//				// PURE T PATTERN
+//
+////				if (    !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+////						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)
+////						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)					
+////						
+////
+////				) {
+////					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureT");
+////
+////				
+////
+////				}
+////				// PURE N PATTERN
+////				else 
+//					if ( !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+//						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
+//						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
 //
 //				) {
-//					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureT");
-//
+//					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureN");
 //				
 //
 //				}
-//				// PURE N PATTERN
-//				else 
-					if ( !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
-						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
-
-				) {
-					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureN");
-				
-
-				}
-
-				 
-				// PURE T LEAF PATTERN
-//				 if (	methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement,methodtraces2HashMap)
+//
+//				 
+//				// PURE T LEAF PATTERN
+////				 if (	methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+////						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement,methodtraces2HashMap)
+////						
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
+////
+////				}
+////				 
+////				 
+////				// PURE N LEAF PATTERN
+////				 
+////				 else 
+//					 
+//					 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
+////						 && methodtrace.Method.getCallers(methodtrace.Requirement)ofCallers.AllNs(methodtrace.Requirement, methodtraces2HashMap)
+//
+//				) {
+//
+//						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureNLeaf");
+//
+//				}
+//
+//			
+//				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
+//							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
+//							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() || !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
+//					 if(! methodtrace.Method.Children.isEmpty() ) {
+//							bwfile1.write("CHILDREN PURE");
+//							bwfile1.newLine();
+//					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
+//						 bwfile1.write("IMPLEMENTATION PURE");
+//							bwfile1.newLine();
+//					 }
+//					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
+//						 bwfile1.write("INTERFACE PURE");
+//							bwfile1.newLine();
+//					 }
+//					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
+//						 bwfile1.write("SUPERCLASS PURE");
+//							bwfile1.newLine();
+//					 }
+//						bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
+//						bwfile1.newLine();
+//
+//						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
+//							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLERS  trace "+"     "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
+//							bwfile1.newLine();
+//						}
+//						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
+//							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLEES   trace"+ "    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
+//							bwfile1.newLine();
+//							
+//						}
+//						
+//						bwfile1.write("Prediction "+methodtrace.prediction);
+//						bwfile1.newLine();
+//					}
+//
+//			}
+//
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// MIXED PATTERNS
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//				
+//				
+//				// MIXED T PATTERN
+////				 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+////					&& methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
+////					&& methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedT");
+////
+////				}
+////				 
+////				// MIXED N PATTERN
+////				 else 
+//					 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+//						
+//						&&( (methodtrace.Method.getCallees(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap) && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
+//						|| (methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap) && methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)))
 //						
 //
 //				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeaf");
-//
-//				}
-//				 
-//				 
-//				// PURE N LEAF PATTERN
-//				 
-//				 else 
-					 
-					 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap)
-//						 && methodtrace.Method.getCallers(methodtrace.Requirement)ofCallers.AllNs(methodtrace.Requirement, methodtraces2HashMap)
-
-				) {
-
-						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,PureNLeaf");
-
-				}
-
-			
-				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
-							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
-							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() || !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
-					 if(! methodtrace.Method.Children.isEmpty() ) {
-							bwfile1.write("CHILDREN PURE");
-							bwfile1.newLine();
-					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-						 bwfile1.write("IMPLEMENTATION PURE");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-						 bwfile1.write("INTERFACE PURE");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-						 bwfile1.write("SUPERCLASS PURE");
-							bwfile1.newLine();
-					 }
-						bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
-						bwfile1.newLine();
-
-						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLERS  trace "+"     "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" PURE PATTERN ---CALLEES   trace"+ "    "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-							
-						}
-						
-						bwfile1.write("Prediction "+methodtrace.prediction);
-						bwfile1.newLine();
-					}
-
-			}
-
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// MIXED PATTERNS
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				
-				
-				// MIXED T PATTERN
-//				 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-//					&& methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
-//					&& methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
-//
-//				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedT");
-//
-//				}
-//				 
-//				// MIXED N PATTERN
-//				 else 
-					 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-						
-						&&( (methodtrace.Method.getCallees(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap) && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap))
-						|| (methodtrace.Method.getCallers(methodtrace.Requirement).AllNs(methodtrace.Requirement, methodtraces2HashMap) && methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)))
-						
-
-				) {
-					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
-
-
-				}
-				
-
-				
-				 
-				// MIXED T LEAF PATTERN
-//				 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
-//
-//				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeaf");
+//					methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedN");
 //
 //
 //				}
-				 //COMMENTED OUT BECAUSE THIS CASE NEVER HAPPENS 
-				 // MIXED N LEAF PATTERN
-				
-//				 else if(methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+//				
 //
-//				) {
-//						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedNLeaf");
+//				
+//				 
+//				// MIXED T LEAF PATTERN
+////				 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+////						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeaf");
+////
+////
+////				}
+//				 //COMMENTED OUT BECAUSE THIS CASE NEVER HAPPENS 
+//				 // MIXED N LEAF PATTERN
+//				
+////				 else if(methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+////						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"N", "N,MixedNLeaf");
+////
+////
+////				}
+//				 
+//				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
+//							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
+//							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
+//					 if(! methodtrace.Method.Children.isEmpty() ) {
+//							bwfile1.write("CHILDREN MIXED ");
+//							bwfile1.newLine();
+//					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
+//						 bwfile1.write("IMPLEMENTATION MIXED");
+//							bwfile1.newLine();
+//					 }
+//					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
+//						 bwfile1.write("INTERFACE MIXED");
+//							bwfile1.newLine();
+//					 }
+//					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
+//						 bwfile1.write("SUPERCLASS MIXED");
+//							bwfile1.newLine();
+//					 }		
+//					 bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
+//						bwfile1.newLine();
 //
-//
-//				}
-				 
-				 if(((! methodtrace.Method.Children.isEmpty() || !methodtrace.Method.Implementations.isEmpty() 
-							|| !methodtrace.Method.Interfaces.isEmpty() || !methodtrace.Method.Superclasses.isEmpty() )
-							&& (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty())) && ProgramName.equals("chess")) {
-					 if(! methodtrace.Method.Children.isEmpty() ) {
-							bwfile1.write("CHILDREN MIXED ");
-							bwfile1.newLine();
-					 }else if(!methodtrace.Method.Implementations.isEmpty()) {
-						 bwfile1.write("IMPLEMENTATION MIXED");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Interfaces.isEmpty()) {
-						 bwfile1.write("INTERFACE MIXED");
-							bwfile1.newLine();
-					 }
-					 else if(!methodtrace.Method.Superclasses.isEmpty()) {
-						 bwfile1.write("SUPERCLASS MIXED");
-							bwfile1.newLine();
-					 }		
-					 bwfile1.write("ITERATION "+ITERATION+"-------------methodtrace gold "+methodtrace.gold+"-------------"+methodtrace+"--------------");
-						bwfile1.newLine();
-
-						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLER trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
-							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLEE trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
-							bwfile1.newLine();
-						}
-						bwfile1.write("Prediction "+methodtrace.prediction);
-						bwfile1.newLine();
-					}
-			}
+//						for(Method caller: methodtrace.Method.getCallers(methodtrace.Requirement)) {
+//							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLER trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
+//							bwfile1.newLine();
+//						}
+//						for(Method caller: methodtrace.Method.getCallees(methodtrace.Requirement)) {
+//							bwfile1.write("PREDICTION "+methodtrace.prediction+" MIXED PATTERN --- CALLEE trace  "+"   "+methodtraces2HashMap.get(methodtrace.Requirement.ID+"-"+caller.ID)); 
+//							bwfile1.newLine();
+//						}
+//						bwfile1.write("Prediction "+methodtrace.prediction);
+//						bwfile1.newLine();
+//					}
+//			}
 			
 			// PRINT
 
@@ -1033,57 +1033,58 @@ public class AlgoFinalRefactored extends JFrame {
 					String reqMethod = methodtrace.Requirement.ID + "-" + methodtrace.Method.ID;
 					String reqClass = methodtrace.Requirement.ID + "-" + methodtrace.Method.Owner.ID;
 			
-					//PURE T 
-					if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
-
-							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-							&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-							
-							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-							&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-							
-//							&& methodtrace.Method.Owner.methods.size()<30
-							
-//							&& !methodtrace.Method.Owner.ID.equals("24")
-							)
-						{
-							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/PureT");
-					
-					LogInfoHashMap.put(reqMethod, loginfo); 
-						}
-					
-					
-					//PURE T LEAF 
-					 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
-
-							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-							&& methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()
-							
-							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-							
-//							&& methodtrace.Method.Owner.methods.size()<30
-
-//							&& !methodtrace.Method.Owner.ID.equals("24")
-
-							)
-						{
-							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
-							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/PureTLeaf");
-					
-					LogInfoHashMap.put(reqMethod, loginfo); 
-						}
+//					//PURE T 
+//					if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+//
+//							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//							&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//							
+//							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+//							&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+//							
+////							&& methodtrace.Method.Owner.methods.size()<30
+//							
+////							&& !methodtrace.Method.Owner.ID.equals("24")
+//							)
+//						{
+//							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+//							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/PureT");
+//					
+//					LogInfoHashMap.put(reqMethod, loginfo); 
+//						}
+//					
+//					
+//					//PURE T LEAF 
+//					 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+//
+//							&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+//							&& methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()
+//							
+//							&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+//							
+////							&& methodtrace.Method.Owner.methods.size()<30
+//
+////							&& !methodtrace.Method.Owner.ID.equals("24")
+//
+//							)
+//						{
+//							LogInfo loginfo = LogInfoHashMap.get(reqMethod); 
+//							methodtrace.SetPrediction(LogInfoHashMap,"T", "T,Remaining/PureTLeaf");
+//					
+//					LogInfoHashMap.put(reqMethod, loginfo); 
+//						}
 					
 					
 					//MIXED T 
-					 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+					 if( methodtrace.prediction.equals("E") 
+							
 
 						&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 						&& methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 						
 						&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
 						&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-						
+						 && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //						&& methodtrace.Method.Owner.methods.size()<30
 	
 //						&& !methodtrace.Method.Owner.ID.equals("24")
@@ -1096,12 +1097,14 @@ public class AlgoFinalRefactored extends JFrame {
 				LogInfoHashMap.put(reqMethod, loginfo); 
 					}
 					 //MIXED T LEAF 
-					 	 if( methodtrace.prediction.equals("E") && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+					 	 if( methodtrace.prediction.equals("E") 
+					 			
 
 									&& methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement)
 									&& methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty()
 									
 									&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+									 && DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //									&& methodtrace.Method.Owner.methods.size()<30
 		
 //									&& !methodtrace.Method.Owner.ID.equals("24")
@@ -1119,9 +1122,10 @@ public class AlgoFinalRefactored extends JFrame {
 						
 						 //ALL CALLERS 
 						 
-						if (
-								methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+						if (	
+								 methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 								&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+//								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //								&& methodtrace.Method.Owner.methods.size()<30
 
 //								&& !methodtrace.Method.Owner.ID.equals("24")
@@ -1133,9 +1137,10 @@ public class AlgoFinalRefactored extends JFrame {
 					LogInfoHashMap.put(reqMethod, loginfo); 
 						}
 						//ALL CALLEES 
-						if (
-								methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
-								&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
+						if (	
+								 methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
+								&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
+//								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //								&& methodtrace.Method.Owner.methods.size()<30
 
 //								&& !methodtrace.Method.Owner.ID.equals("24")
@@ -1152,310 +1157,310 @@ public class AlgoFinalRefactored extends JFrame {
 				
 		
 		
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// STEP 4
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-		ITERATION=0; 
-		MethodTrace.modified=true; 
-		while (MethodTrace.modified) {
-			MethodTrace.modified = false;
-			////////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// PURE AND MIXED PATTERNS	PATTERN 1-2
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-
-			//////////////////////////////////////////////////////////////////////////////////////////
-		
-
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			/////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// PURE PATTERNS
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-
-					
-					
-//				System.out.println("PATTERN 1");
-
-				// PURE T PATTERN
-
-				if (    !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)
-						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)					
-						
-
-				) {
-					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureTStep4");
-
-				
-
-				}
-
-
-				 
-				// PURE T LEAF PATTERN
-				 if (	methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
-						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement,methodtraces2HashMap)
-						
-
-				) {
-						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeafStep4");
-
-				}
-				 
-				 
-
-
-
-
-			}
-
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// MIXED PATTERNS
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				
-				
-				// MIXED T PATTERN
-				 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-					&& (methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
-					&& methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) )
-					||(methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
-					&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap))
-
-				) {
-						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTStep4");
-
-				}
-				 
-
-
-				
-
-				
-				 
-				// MIXED T LEAF PATTERN
-				 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
-
-				) {
-						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeafStep4");
-
-
-				}
-
-				
-
-			
-			}
-			
-			// PRINT
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
-
-			
-			// END PRINT
-			
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			/////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// SUPERCLASSES , CHILDREN , INTERFACES , IMPLEMENTATIONS  PATTERN 3
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
-				System.out.println(reqMethod); 
-				System.out.println("PATTERN 3");
-
-					if (
-							methodtrace.Method.Interfaces.AllTs(methodtrace.Requirement,methodtraces2HashMap)
-							||methodtrace.Method.Implementations.AllTs(methodtrace.Requirement,methodtraces2HashMap)
-							||methodtrace.Method.Superclasses.AllTs(methodtrace.Requirement,methodtraces2HashMap)
-							||methodtrace.Method.Children.AllTs(methodtrace.Requirement,methodtraces2HashMap)
-							
-							)
-							
-						
-
-					{
-
-						
-						
-						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTInheritanceStep4");
-
-
-					}
-
-
-			}
-	
-			
-			
-			
-			
-			
-			
-			
-			
-
-			
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			/////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-				
-
-					
-				
-			
-	
-
-				
-			
-			
-
-		
-		
-				
-
-		
-				
-				
-
-			
-		
-			
-			
-				
-				
-			
-				
-
-				
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// ALL CALLERS PATTERN 4
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-				
-
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				//System.out.println();
-				
-
-			
-			
-				
-				
-				// ALL T CALLERS 
-				 if (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
-					&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
-					
-
-				) {
-						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallersStep4");
-						
-				}
-
-				
-
-				
-				 
-				
-				
-			}
-				
-			
-			
-			
-			
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//ALL CALLEES PATTERN 5
-				//////////////////////////////////////////////////////////////////////////////////////////
-				//////////////////////////////////////////////////////////////////////////////////////////
-
-			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
-				
-//				System.out.println("PATTERN 5");
-
-				
-				
-
-			
-				
-				
-				
-				
-				//ALL T CALLEES 
-				if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() 
-				&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
-				
-				
-				) {
-					methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCalleesStep4");
-
-				
-				
-				}
-
-				
-				}	
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			// END PATTERNS 
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////////////////////////////////////////////
-			
-			
-			
-			
-			
-			
-			
-
-			
-			
-			// PRINT
-			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
-			
-
-			// END PRINT
-			ITERATION++;
-			
-		}
-		
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// STEP 4
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//		ITERATION=0; 
+//		MethodTrace.modified=true; 
+//		while (MethodTrace.modified) {
+//			MethodTrace.modified = false;
+//			////////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// PURE AND MIXED PATTERNS	PATTERN 1-2
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//		
+//
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			/////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// PURE PATTERNS
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+////			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+////
+////					
+////					
+//////				System.out.println("PATTERN 1");
+////
+////				// PURE T PATTERN
+////
+////				if (    !methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+////						&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)
+////						&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap)					
+////						
+////
+////				) {
+////					methodtrace.SetPrediction(LogInfoHashMap, "T", "T,PureTStep4");
+////
+////				
+////
+////				}
+////
+////
+////				 
+////				// PURE T LEAF PATTERN
+////				 if (	methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty()
+////						 && methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement,methodtraces2HashMap)
+////						
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,PureTLeafStep4");
+////
+////				}
+////				 
+////				 
+////
+////
+////
+////
+////			}
+//
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// MIXED PATTERNS
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//				
+//				
+////				// MIXED T PATTERN
+////				 if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+////					&& (methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
+////					&& methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) )
+////					||(methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
+////					&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap))
+////
+////				) {
+////						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTStep4");
+////
+////				}
+//				 
+//
+//
+//				
+//
+//				
+//				 
+//				// MIXED T LEAF PATTERN
+//				 if (methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() && !methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+//						 && methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1T(methodtrace.Requirement, methodtraces2HashMap) 
+//
+//				) {
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,MixedTLeafStep4");
+//
+//
+//				}
+//
+//				
+//
+//			
+//			}
+//			
+//			// PRINT
+//
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//		
+//
+//			
+//			// END PRINT
+//			
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			/////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// SUPERCLASSES , CHILDREN , INTERFACES , IMPLEMENTATIONS  PATTERN 3
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//				String reqMethod= methodtrace.Requirement.ID+"-"+methodtrace.Method.ID; 
+//				System.out.println(reqMethod); 
+//				System.out.println("PATTERN 3");
+//
+//					if (
+//							methodtrace.Method.Interfaces.AllTs(methodtrace.Requirement,methodtraces2HashMap)
+//							||methodtrace.Method.Implementations.AllTs(methodtrace.Requirement,methodtraces2HashMap)
+//							||methodtrace.Method.Superclasses.AllTs(methodtrace.Requirement,methodtraces2HashMap)
+//							||methodtrace.Method.Children.AllTs(methodtrace.Requirement,methodtraces2HashMap)
+//							
+//							)
+//							
+//						
+//
+//					{
+//
+//						
+//						
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTInheritanceStep4");
+//
+//
+//					}
+//
+//
+//			}
+//	
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//
+//			
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			/////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//				
+//
+//					
+//				
+//			
+//	
+//
+//				
+//			
+//			
+//
+//		
+//		
+//				
+//
+//		
+//				
+//				
+//
+//			
+//		
+//			
+//			
+//				
+//				
+//			
+//				
+//
+//				
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// ALL CALLERS PATTERN 4
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//				
+//
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//				//System.out.println();
+//				
+//
+//			
+//			
+//				
+//				
+//				// ALL T CALLERS 
+//				 if (!methodtrace.Method.getCallers(methodtrace.Requirement).isEmpty() 
+//					&& methodtrace.Method.getCallers(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
+//					
+//
+//				) {
+//						methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCallersStep4");
+//						
+//				}
+//
+//				
+//
+//				
+//				 
+//				
+//				
+//			}
+//				
+//			
+//			
+//			
+//			
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//ALL CALLEES PATTERN 5
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//				//////////////////////////////////////////////////////////////////////////////////////////
+//
+//			for (MethodTrace methodtrace : MethodTracesHashmapValues) {
+//				
+////				System.out.println("PATTERN 5");
+//
+//				
+//				
+//
+//			
+//				
+//				
+//				
+//				
+//				//ALL T CALLEES 
+//				if (!methodtrace.Method.getCallees(methodtrace.Requirement).isEmpty() 
+//				&& methodtrace.Method.getCallees(methodtrace.Requirement).AllTs(methodtrace.Requirement, methodtraces2HashMap) 
+//				
+//				
+//				) {
+//					methodtrace.SetPrediction(LogInfoHashMap,"T", "T,AllTCalleesStep4");
+//
+//				
+//				
+//				}
+//
+//				
+//				}	
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			// END PATTERNS 
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			
+//			
+//			
+//			
+//			
+//			
+//			
+//
+//			
+//			
+//			// PRINT
+//			SetLogFileIterations(MethodTracesHashmapValues, methodtraces, LogInfoHashMap, ITERATION); 
+//			
+//
+//			// END PRINT
+//			ITERATION++;
+//			
+//		}
+//		
 		
 	
 		System.out.println(ITERATION);
