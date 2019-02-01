@@ -54,6 +54,7 @@ import spoon.reflect.code.CtInvocation;
 import spoon.reflect.code.CtReturn;
 import spoon.reflect.code.CtStatement;
 import spoon.reflect.code.CtTargetedExpression;
+import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtConstructor;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.declaration.CtField;
@@ -75,6 +76,7 @@ import spoon.reflect.visitor.filter.TypeFilter;
 import spoon.support.reflect.code.CtConstructorCallImpl;
 import spoon.support.reflect.code.CtNewClassImpl;
 import spoon.support.reflect.declaration.CtInterfaceImpl;
+import spoon.support.reflect.declaration.CtTypeImpl;
 
 /**
  * This class demonstrates how to connect to MySQL and run some basic commands.
@@ -557,33 +559,103 @@ public class DBDemo3Chess {
 //        		
 //    		}
 //    	}
+//     
+//    	
+////////////////    	/*********************************************************************************************************************************************************************************/	
+////////////////        /*********************************************************************************************************************************************************************************/	
+////////////////        /*********************************************************************************************************************************************************************************/	
+//////////////    	  	
+////////////     	//BUILD INTERFACES TABLE 
+//    	
+//
+//
+//
+//
 //    	
 //    	
-//////////////    	/*********************************************************************************************************************************************************************************/	
-//////////////        /*********************************************************************************************************************************************************************************/	
-//////////////        /*********************************************************************************************************************************************************************************/	
-////////////    	  	
-//////////     	//BUILD INTERFACES TABLE 
-//    	List<String> mylist = new ArrayList<String>(); 
-//for(CtType<?> clazz : classFactory.getAll(true)) {
+//    	
+// 
+//
+//    	List<String> mylist2 = new ArrayList<String>(); 
+//    	for(CtType clazz : classFactory.getAll(true)) {
+//    		
+//    		if(clazz instanceof CtClass) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    					
+//    				
+//    		
+//    					
+//    				
+//    					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//    					while(interfacesnames.next()){
+//    						myinterfacename= interfacesnames.getString("classname"); 
+//    			   		   }
+//    					
+//    					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
+//    					while(interfacesclasses.next()){
+//    						myinterfaceclassid= interfacesclasses.getString("id"); 
+//    			   		   }
+//    					
+//    					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//    					while(classesnames.next()){
+//    						myclassname= classesnames.getString("classname"); 
+//    			   		   }
+//    					
+//    					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//    					while(interfacesname.next()){
+//    						myclassid= interfacesname.getString("id"); 
+//    			   		   }
+//    					String interface1= myinterfaceclassid+ myinterfacename;  
+//    					String implementation1= myclassid+ myclassname; 
+//    					
+//    						System.out.println("INTERRRR "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ "+clazz.getQualifiedName());
+//    					
 //    		
 //    		
-//    		String myinterfaceclassid = null;
-//    		String myinterfacename = null;
-//    		String myclassid = null;
-//    		String myclassname = null;
-//    		
-//			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-//			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
-//		
-//			for(CtTypeReference<?> inter: interfaces) {
+//					
+//					
+//					if(myinterfaceclassid!=null && !mylist2.contains(interface1+implementation1) ) {
+//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			mylist2.add(interface1+implementation1); 
+//					}
+//    			}
+//
+//					
+//				
+//					
+//					
+//					
 //			
-//					
 //				
-//		
-//					
 //				
-//					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//				
+//			}
+//			
+//    		
+//       	List<String> mylist = new ArrayList<String>(); 
+//
+//     		if(clazz instanceof CtInterface) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    				ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
 //					while(interfacesnames.next()){
 //						myinterfacename= interfacesnames.getString("classname"); 
 //			   		   }
@@ -602,20 +674,27 @@ public class DBDemo3Chess {
 //					while(interfacesname.next()){
 //						myclassid= interfacesname.getString("id"); 
 //			   		   }
-//					Interface2 myinterface1= new Interface2(); 
 //					String interface1= myinterfaceclassid+ myinterfacename;  
 //					String implementation1= myclassid+ myclassname; 
+//    				
+//    		
+//    					
+//    				
+//    					
+//    					
+//    						System.out.println("INTERRRR2 "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ2 "+clazz.getQualifiedName());
+//    					
+//    		
+//    		
+//					
 //					
 //					if(myinterfaceclassid!=null && !mylist.contains(interface1+implementation1) ) {
-//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
 //		    			mylist.add(interface1+implementation1); 
 //					}
-//				
-//				System.out.println(inter);
-//				
-//			
-//				CtTypeReference<?> mysuperclass = inter.getSuperclass(); 
-//				System.out.println("SUPERCLASS :"+ mysuperclass);
+//    			}
+//
 //					
 //				
 //					
@@ -626,25 +705,38 @@ public class DBDemo3Chess {
 //				
 //				
 //			}
-//			
+//    		
 //
 //    	}
 //
 //
 //
-//    	
-//    	
-//    	
-//    
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
-//    	
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//////
+//////
+/////////*********************************************************************************************************************************************************************************/	
+/////////*********************************************************************************************************************************************************************************/	
+/////////*********************************************************************************************************************************************************************************/	  	
 //    	
 //    	
 //    	
@@ -3487,105 +3579,105 @@ String line;
 //
 //////////////CREATE TRACES TABLE 
 //////////
-file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
- fileReader = new FileReader(file);
- bufferedReader = new BufferedReader(fileReader);
- stringBuffer = new StringBuffer();
-
- List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
-tracesmethodscallees tmc = null; 
-int COUNTER3=1; 
-try {
-	
-	line = bufferedReader.readLine(); 
-	while ((line = bufferedReader.readLine()) != null) {
-		String interfaces_info[][] = new String[8][8];
-		 String[] inter_item= new String[4]; 
-		 String requirement=null; 
-		 String method=null; 
-		 String gold=null; 
-		 String subject=null; 
-		 String methodid=null; 
-		 String classname=null; 
-		 String classid=null; 
-		 String requirementid=null; 
-		String calleeid=null; 
-		String goldprediction=null; 
-		String calleeidexecuted=null; 
-		String callerid=null; 
-		String callerexecutedid=null; 
-		System.out.println(line);
-		String[] linesplitted = line.split(","); 
-		method=linesplitted[1]; 
-		requirement=linesplitted[2]; 
-		gold=linesplitted[4]; 
-		subject=linesplitted[5]; 
-		method=method.replace("/", "."); 
-		method=method.replace(";", ","); 
-
-		method=RewriteFullMethodCallExecutedRemoveDollarsTraces(method);
-		method=method.substring(0, method.indexOf(")")+1);
-		method=method.replaceAll("Lde", "de");
-		method=method.replaceAll("Lantlr", "antlr");
-		method=method.replaceAll("Ljava", "java");
-		method=RewriteFullMethod(method);
-
-		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
-		method=method.replaceAll(",\\)", ")");
-		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
-method=method.trim(); 
-String shortmethodname=""; 
-String shortmethod=method.substring(0, method.indexOf("("));
-System.out.println(method);
-			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
-			while(methodids.next()){
-				methodid = methodids.getString("id"); 
-				shortmethodname = methodids.getString("methodname"); 
-				classname = methodids.getString("classname"); 
-				classid = methodids.getString("classid"); 
-				   }
-
-		
-			
-
-		requirementid=null; 
-		requirement=requirement.trim();
-		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
-		while(requirements.next()){
-			requirementid = requirements.getString("id"); 
-			   }
-		
-	
-			
-			
-		tracesmethods tr= new tracesmethods(requirementid, methodid,  classid); 
-		if(methodid!=null && requirementid!=null ) {
-			boolean mycond=tr.contains(TraceListMethods, tr);
-			if(mycond==false) {
-			//	method=RewriteFullMethod(method);  
-				String methodnameAndParams= GetMethodNameAndParams(method); 
-				method=method.replaceAll("Lde", "de"); 
-				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"')";		
-				st.executeUpdate(statement);
-				TraceListMethods.add(tr); 
-				
-				
-			}
-			
-			
-		}
-
-		
-		
-		
-		
-	
-		COUNTER3++; 
-		
-	}
-	
-	
+//file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\Traces.txt");
+// fileReader = new FileReader(file);
+// bufferedReader = new BufferedReader(fileReader);
+// stringBuffer = new StringBuffer();
+//
+// List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
+//tracesmethodscallees tmc = null; 
+//int COUNTER3=1; 
+//try {
+//	
+//	line = bufferedReader.readLine(); 
+//	while ((line = bufferedReader.readLine()) != null) {
+//		String interfaces_info[][] = new String[8][8];
+//		 String[] inter_item= new String[4]; 
+//		 String requirement=null; 
+//		 String method=null; 
+//		 String gold=null; 
+//		 String subject=null; 
+//		 String methodid=null; 
+//		 String classname=null; 
+//		 String classid=null; 
+//		 String requirementid=null; 
+//		String calleeid=null; 
+//		String goldprediction=null; 
+//		String calleeidexecuted=null; 
+//		String callerid=null; 
+//		String callerexecutedid=null; 
+//		System.out.println(line);
+//		String[] linesplitted = line.split(","); 
+//		method=linesplitted[1]; 
+//		requirement=linesplitted[2]; 
+//		gold=linesplitted[4]; 
+//		subject=linesplitted[5]; 
+//		method=method.replace("/", "."); 
+//		method=method.replace(";", ","); 
+//
+//		method=RewriteFullMethodCallExecutedRemoveDollarsTraces(method);
+//		method=method.substring(0, method.indexOf(")")+1);
+//		method=method.replaceAll("Lde", "de");
+//		method=method.replaceAll("Lantlr", "antlr");
+//		method=method.replaceAll("Ljava", "java");
+//		method=RewriteFullMethod(method);
+//
+//		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
+//		method=method.replaceAll(",\\)", ")");
+//		System.out.println("FULLLLLLLL MEEEEEEEETH========>"+ method); 
+//method=method.trim(); 
+//String shortmethodname=""; 
+//String shortmethod=method.substring(0, method.indexOf("("));
+//System.out.println(method);
+//			ResultSet methodids = st.executeQuery("SELECT methods.* from methods where methods.fullmethod ='"+method+"'"); 
+//			while(methodids.next()){
+//				methodid = methodids.getString("id"); 
+//				shortmethodname = methodids.getString("methodname"); 
+//				classname = methodids.getString("classname"); 
+//				classid = methodids.getString("classid"); 
+//				   }
+//
+//		
+//			
+//
+//		requirementid=null; 
+//		requirement=requirement.trim();
+//		ResultSet requirements = st.executeQuery("SELECT requirements.id from requirements where requirements.requirementname ='"+requirement+"'"); 
+//		while(requirements.next()){
+//			requirementid = requirements.getString("id"); 
+//			   }
+//		
+//	
+//			
+//			
+//		tracesmethods tr= new tracesmethods(requirementid, methodid,  classid); 
+//		if(methodid!=null && requirementid!=null ) {
+//			boolean mycond=tr.contains(TraceListMethods, tr);
+//			if(mycond==false) {
+//			//	method=RewriteFullMethod(method);  
+//				String methodnameAndParams= GetMethodNameAndParams(method); 
+//				method=method.replaceAll("Lde", "de"); 
+//				methodnameAndParams=methodnameAndParams.replaceAll("Lde", "de"); 
+//				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+requirement+"','" +requirementid+"','" +shortmethod+"','" +methodnameAndParams+"','" +method+"','" +methodid+"','"+classname +"','" +classid+"','"+gold +"','" +subject+"')";		
+//				st.executeUpdate(statement);
+//				TraceListMethods.add(tr); 
+//				
+//				
+//			}
+//			
+//			
+//		}
+//
+//		
+//		
+//		
+//		
+//	
+//		COUNTER3++; 
+//		
+//	}
+//	
+//	
 	HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
 	RequirementIDNameHashMap.put("1", "R0"); 
 	RequirementIDNameHashMap.put("2", "R1"); 
@@ -3595,34 +3687,34 @@ System.out.println(method);
 	RequirementIDNameHashMap.put("6", "R5"); 
 	RequirementIDNameHashMap.put("7", "R6"); 
 	RequirementIDNameHashMap.put("8", "R7"); 
-	ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
-	while(mymeths.next()){
-		String methodid = mymeths.getString("id"); 
-		String method = mymeths.getString("methodabbreviation"); 
-		String methodname = mymeths.getString("methodname"); 
-		String fullmethod = mymeths.getString("fullmethod"); 
-		
-		String classname = mymeths.getString("classname"); 
-		String classid = mymeths.getString("classid"); 
-		
-		
-		
-		for(String key: RequirementIDNameHashMap.keySet()) {
-			tracesmethods tr= new tracesmethods(key, methodid,  classid); 
-			
-			if(!tr.contains(TraceListMethods, tr)) {
-				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
-				st.executeUpdate(statement);
-			}
-		}
-		
-	
-	}
-
-	
-	
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+//	ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
+//	while(mymeths.next()){
+//		String methodid = mymeths.getString("id"); 
+//		String method = mymeths.getString("methodabbreviation"); 
+//		String methodname = mymeths.getString("methodname"); 
+//		String fullmethod = mymeths.getString("fullmethod"); 
+//		
+//		String classname = mymeths.getString("classname"); 
+//		String classid = mymeths.getString("classid"); 
+//		
+//		
+//		
+//		for(String key: RequirementIDNameHashMap.keySet()) {
+//			tracesmethods tr= new tracesmethods(key, methodid,  classid); 
+//			
+//			if(!tr.contains(TraceListMethods, tr)) {
+//				String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
+//				st.executeUpdate(statement);
+//			}
+//		}
+//		
+//	
+//	}
+//
+//	
+//	
+//	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
 
@@ -3632,18 +3724,19 @@ String classname="";
 String classid=""; 
 String requirementname=""; 
 String requirementid="";
-ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
+ResultSet Traces = st.executeQuery("SELECT classes.* from classes "); 
 while(Traces.next()){
 classname = Traces.getString("classname"); 
-classid = Traces.getString("classid"); 
-requirementname = Traces.getString("requirement"); 
-requirementid = Traces.getString("requirementid"); 
+classid = Traces.getString("id"); 
+			for(String keyreq: RequirementIDNameHashMap.keySet()) {
+				String key= keyreq+"-"+classid; 
+				String val= keyreq+"-"+RequirementIDNameHashMap.get(keyreq)+"-"+classid+"-"+classname; 
+
+				RequirementClassHashMap.put(key, val); 
+			}
 
 
-String key= requirementid+"-"+classid; 
-String val= requirementid+"-"+requirementname+"-"+classid+"-"+classname; 
 
-RequirementClassHashMap.put(key, val); 
 
 
 }
@@ -3659,19 +3752,19 @@ st2.executeUpdate(statement8);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
-}
-	
-catch (IOException e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
-
-
-
-
-
-
-
+//}
+//	
+//catch (IOException e) {
+//	// TODO Auto-generated catch block
+//	e.printStackTrace();
+//}
+//
+//
+//
+//
+//
+//
+//
 ///*********************************************************************************************************************************************************************************/	
 ///*********************************************************************************************************************************************************************************/	
 ///*********************************************************************************************************************************************************************************/   

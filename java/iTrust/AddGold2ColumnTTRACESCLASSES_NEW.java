@@ -166,7 +166,7 @@ public class AddGold2ColumnTTRACESCLASSES_NEW {
 		   String ReqID=keys[0]; 
 		   String ClassName=keys[1]; 
 		     List<String> List= new ArrayList<String>(); 
-		 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ entry.getValue().trim() +"'WHERE requirementid='"+ReqID+"' AND classname='"+ClassName+"'"); 
+		 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ entry.getValue().trim() +"'WHERE requirementid='"+ReqID+"' AND `shortclassname`='"+ClassName+"'"); 
 //			System.out.println(ReqClass);
 			System.out.println("counter "+counter2);
 			counter2++; 

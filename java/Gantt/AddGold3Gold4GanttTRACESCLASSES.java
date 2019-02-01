@@ -128,21 +128,13 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
 	
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlexAtLeast3");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAlex");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldAtLeast3");
-		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");
+
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN SubjectGold");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold");
-//		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN gold2");
+
 		
-//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold2 LONGTEXT"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD gold LONGTEXT"); 
+
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD SubjectGold LONGTEXT"); 
-		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldfinal LONGTEXT"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAtLeast3 LONGTEXT"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlex LONGTEXT"); 
-//		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldAlexAtLeast3 LONGTEXT"); 
+
 
 
 		int  TracesNumber=0; 
@@ -242,71 +234,71 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		
 		
 		
-		counter=0; 
-		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold.entrySet()) {
-
-			   System.out.println(entry.getKey() + " = " );
-			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-			     
-			     List<String> MyValues = entry.getValue(); 
-			     java.util.Collections.sort(MyValues); 
-			    
-//				for(String val: MyValues) {
-//			    	 System.out.println("VAL  "+val);
+//		counter=0; 
+//		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold.entrySet()) {
+//
+//			   System.out.println(entry.getKey() + " = " );
+//			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
+//			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
+//			     
+//			     List<String> MyValues = entry.getValue(); 
+//			     java.util.Collections.sort(MyValues); 
+//			    
+////				for(String val: MyValues) {
+////			    	 System.out.println("VAL  "+val);
+////			    	 
+////			     }
+//			     if(MyValues.size()>0) {
+//			    	 
+//			    	  int CountT=0, CountN=0, CountE=0; 
+//					     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
+//					
+//					    System.out.println("hhCountT "+count.CountT);
+//					    System.out.println("hhCountN "+count.CountN);
+//					    System.out.println("hhCountE "+count.CountE);
+//					     
+//					     if(MyValues.size()>0) {
+//						     System.out.println(MyValues.size());
+//							    int newsize = MyValues.size()/2; 
+//							    System.out.println(newsize);
+//							    	   String charac = MyValues.get(newsize); 
+//							    
+//							  
+//							    	   if(count.CountT>0) {		
+//											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//
+//								     } 
+////								    else  if(charac.trim().equals("N")) {
+//
+//								    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
+//								    		
+//								    		
+//								    		
+//								    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//
+//
+//
+//								    			     }
+//								     else {
+//											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//
+//								    	 
+//								     }
+//							     
+//					     }
+//					     else {
+//								st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
+//
+//					    	 
+//					     }
+//				     
+//			    	 
 //			    	 
 //			     }
-			     if(MyValues.size()>0) {
-			    	 
-			    	  int CountT=0, CountN=0, CountE=0; 
-					     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
-					
-					    System.out.println("hhCountT "+count.CountT);
-					    System.out.println("hhCountN "+count.CountN);
-					    System.out.println("hhCountE "+count.CountE);
-					     
-					     if(MyValues.size()>0) {
-						     System.out.println(MyValues.size());
-							    int newsize = MyValues.size()/2; 
-							    System.out.println(newsize);
-							    	   String charac = MyValues.get(newsize); 
-							    
-							  
-							    	   if(count.CountT>0) {		
-											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-								     } 
-//								    else  if(charac.trim().equals("N")) {
-
-								    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
-								    		
-								    		
-								    		
-								    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-
-
-								    			     }
-								     else {
-											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-								    	 
-								     }
-							     
-					     }
-					     else {
-								st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-
-					    	 
-					     }
-				     
-			    	 
-			    	 
-			     }
-
-					System.out.println("COUNTER 1  "+counter);
-					counter++; 
-		}
+//
+//					System.out.println("COUNTER 1  "+counter);
+//					counter++; 
+//		}
 		
 		
 	

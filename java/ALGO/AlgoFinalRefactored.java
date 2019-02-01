@@ -1075,6 +1075,15 @@ public class AlgoFinalRefactored extends JFrame {
 //						}
 					
 					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					//MIXED T 
 					 if( methodtrace.prediction.equals("E") 
 							
@@ -1125,7 +1134,7 @@ public class AlgoFinalRefactored extends JFrame {
 						if (	
 								 methodtrace.Method.getOuterCallers(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 								&& !methodtrace.Method.getCallers(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap)
-//								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //								&& methodtrace.Method.Owner.methods.size()<30
 
 //								&& !methodtrace.Method.Owner.ID.equals("24")
@@ -1140,7 +1149,7 @@ public class AlgoFinalRefactored extends JFrame {
 						if (	
 								 methodtrace.Method.getOuterCallees(methodtrace.Requirement).getOwnerClasses(methodtrace.Requirement).AllTs(methodtrace.Requirement)
 								&& !methodtrace.Method.getCallees(methodtrace.Requirement).AtLeast1N(methodtrace.Requirement, methodtraces2HashMap) 
-//								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
+								&& DatabaseInput.OwnerTraceHashMap.get(reqClass).equals("T") 
 //								&& methodtrace.Method.Owner.methods.size()<30
 
 //								&& !methodtrace.Method.Owner.ID.equals("24")

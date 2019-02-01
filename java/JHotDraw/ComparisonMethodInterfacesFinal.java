@@ -285,7 +285,7 @@ public class ComparisonMethodInterfacesFinal {
 				methodtrace.setRequirement(req);
 				
 				methodtrace.setClassRepresentation(classrep);
-				methodtrace.setGold2(gold2);
+				methodtrace.setGoldFinal("goldfinal");
 			
 				for(String mykey: InterfacesImplementationsHashMap.keySet()) {
 
@@ -433,12 +433,12 @@ public class ComparisonMethodInterfacesFinal {
 							
 							list=ImplementationsTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal.trim()); 
+							list.add(value.goldFinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal.trim()); 
+							list.add(value.goldFinal.trim()); 
 							ImplementationsTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					
@@ -476,12 +476,12 @@ public class ComparisonMethodInterfacesFinal {
 							
 							list=SuperclassesTracesHashMapFinal.get(req+"/"+myinterfaceID+"/"+myinterfacename); 
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal); 
+							list.add(value.goldFinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}else {
 							list = new ArrayList<String>();
 //							list.add(value.goldfinal+"("+classnameTrace+"/"+classIDTrace+") "); 
-							list.add(value.goldfinal); 
+							list.add(value.goldFinal); 
 							SuperclassesTracesHashMapFinal.put(req+"/"+myinterfaceID+"/"+myinterfacename, list); 
 						}
 					

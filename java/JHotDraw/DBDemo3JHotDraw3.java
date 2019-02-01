@@ -51,9 +51,11 @@ import spoon.reflect.code.CtInvocation;
 import spoon.reflect.code.CtReturn;
 import spoon.reflect.code.CtStatement;
 import spoon.reflect.code.CtTargetedExpression;
+import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtConstructor;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.declaration.CtField;
+import spoon.reflect.declaration.CtInterface;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtParameter;
 import spoon.reflect.declaration.CtType;
@@ -618,53 +620,139 @@ public class DBDemo3JHotDraw3 {
 ////////////////        /*********************************************************************************************************************************************************************************/	
 //////////////    	  	
 ////////////     	//BUILD INTERFACES TABLE 
-//for(CtType<?> clazz : classFactory.getAll(true)) {
+//    	List<String> mylist2 = new ArrayList<String>(); 
+//    	for(CtType clazz : classFactory.getAll(true)) {
+//    		
+//    		if(clazz instanceof CtClass) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    					
+//    				
+//    		
+//    					
+//    				
+//    					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//    					while(interfacesnames.next()){
+//    						myinterfacename= interfacesnames.getString("classname"); 
+//    			   		   }
+//    					
+//    					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
+//    					while(interfacesclasses.next()){
+//    						myinterfaceclassid= interfacesclasses.getString("id"); 
+//    			   		   }
+//    					
+//    					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
+//    					while(classesnames.next()){
+//    						myclassname= classesnames.getString("classname"); 
+//    			   		   }
+//    					
+//    					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
+//    					while(interfacesname.next()){
+//    						myclassid= interfacesname.getString("id"); 
+//    			   		   }
+//    					String interface1= myinterfaceclassid+ myinterfacename;  
+//    					String implementation1= myclassid+ myclassname; 
+//    					
+//    						System.out.println("INTERRRR "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ "+clazz.getQualifiedName());
+//    					
 //    		
 //    		
-//    		String myinterfaceclassid = null;
-//    		String myinterfacename = null;
-//    		String myclassid = null;
-//    		String myclassname = null;
-//    		
-//			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
-//			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//					
+//					
+//					if(myinterfaceclassid!=null && !mylist2.contains(interface1+implementation1) ) {
+//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			mylist2.add(interface1+implementation1); 
+//					}
+//    			}
+//
+//					
+//				
+//					
+//					
+//					
 //			
-//			for(CtTypeReference<?> inter: interfaces) {
-//				System.out.println("my interface   "+inter);
-//				//if(inter.toString().contains(clazz.getPackage().toString())) {
-//					ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
+//				
+//				
+//				
+//			}
+//			
+//    		
+//       	List<String> mylist = new ArrayList<String>(); 
+//
+//     		if(clazz instanceof CtInterface) {
+//    			String myinterfaceclassid = null;
+//        		String myinterfacename = null;
+//        		String myclassid = null;
+//        		String myclassname = null;
+//        		
+//    			String FullClassName= clazz.getPackage()+"."+clazz.getSimpleName(); 
+//    			Set<CtTypeReference<?>> interfaces = clazz.getSuperInterfaces(); 
+//
+//    			for(CtTypeReference<?> inter: interfaces) {
+//    			
+//    				ResultSet interfacesnames = st.executeQuery("SELECT classname from classes where classname='"+inter+"'"); 
 //					while(interfacesnames.next()){
 //						myinterfacename= interfacesnames.getString("classname"); 
-//						System.out.println("myinterfacename: "+myinterfacename);	
 //			   		   }
 //					
 //					ResultSet interfacesclasses = st.executeQuery("SELECT id from classes where classname='"+inter+"'"); 
 //					while(interfacesclasses.next()){
 //						myinterfaceclassid= interfacesclasses.getString("id"); 
-//						System.out.println("myinterfaceclassid: "+myinterfaceclassid);	
 //			   		   }
 //					
 //					ResultSet classesnames= st.executeQuery("SELECT classname from classes where classname='"+FullClassName+"'"); 
 //					while(classesnames.next()){
 //						myclassname= classesnames.getString("classname"); 
-//						System.out.println("class referenced: "+myclassname);	
 //			   		   }
 //					
 //					ResultSet interfacesname = st.executeQuery("SELECT id from classes where classname='"+FullClassName+"'"); 
 //					while(interfacesname.next()){
 //						myclassid= interfacesname.getString("id"); 
-//						System.out.println("class id: "+myclassid);	
 //			   		   }
-//					if(myinterfaceclassid!=null) {
-//		    			st.executeUpdate("INSERT INTO `interfaces`(`interfaceclassid`,`interfacename`,`ownerclassid`, `classname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
-//
+//					String interface1= myinterfaceclassid+ myinterfacename;  
+//					String implementation1= myclassid+ myclassname; 
+//    				
+//    		
+//    					
+//    				
+//    					
+//    					
+//    						System.out.println("INTERRRR2 "+inter.getQualifiedName());
+//    						System.out.println("CLAZZZZ2 "+clazz.getQualifiedName());
+//    					
+//    		
+//    		
+//					
+//					
+//					if(myinterfaceclassid!=null && !mylist.contains(interface1+implementation1) ) {
+//		    			st.executeUpdate("INSERT INTO `superclasses`(`superclassid`, `superclassname`, `ownerclassid`, `childclassname`) VALUES ('"+myinterfaceclassid +"','" +myinterfacename+"','" +myclassid+"','" +myclassname+"')");
+//		    			mylist.add(interface1+implementation1); 
 //					}
-//				//}
+//    			}
+//
+//					
+//				
+//					
+//					
+//					
+//			
+//				
+//				
 //				
 //			}
-//			
+//    		
 //
 //    	}
+//
 ////////////////    	
 ////////////////    
 ////////////////    	
@@ -3568,28 +3656,28 @@ public class DBDemo3JHotDraw3 {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 //
 //
-//HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
-//RequirementIDNameHashMap.put("1", "01: Paint figures and connections"); 
-//RequirementIDNameHashMap.put("2", "02: Create figures and connections"); 
-//RequirementIDNameHashMap.put("3", "03: Delete figures"); 
-//RequirementIDNameHashMap.put("4", "04: Delete connections"); 
-//RequirementIDNameHashMap.put("5", "05: Select and deselect figures"); 
-//RequirementIDNameHashMap.put("6", "06: Move- scale- or rotate figures"); 
-//RequirementIDNameHashMap.put("7", "07: Change properties of figures"); 
-//RequirementIDNameHashMap.put("8", "08: Edit  text in figures"); 
-//RequirementIDNameHashMap.put("9", "09: Align figures"); 
-//RequirementIDNameHashMap.put("10", "10: Change z-ordering"); 
-//RequirementIDNameHashMap.put("11", "11: Grouping and ungrouping figures"); 
-//RequirementIDNameHashMap.put("12", "12: Launch the application"); 
-//RequirementIDNameHashMap.put("13", "13: Open an existing drawing"); 
-//RequirementIDNameHashMap.put("14", "14: Save a drawing"); 
-//RequirementIDNameHashMap.put("15", "15: Scalability:  Drawings should be as large as possible"); 
-//RequirementIDNameHashMap.put("16", "16: Performance: Quickly redraw figures if changed"); 
-//RequirementIDNameHashMap.put("17", "17: Performance: Quickly locate figures based on x-y coordinates"); 
-//RequirementIDNameHashMap.put("18", "18: Interoperability: Support data exchange via the clipboard"); 
-//RequirementIDNameHashMap.put("19", "19: Usability: Support operating system specific user interfaces"); 
-//RequirementIDNameHashMap.put("20", "20: Performance: Strive for a short startup latency"); 
-//RequirementIDNameHashMap.put("21", "21: Recoverability: periodic auto-save"); 
+HashMap<String, String> RequirementIDNameHashMap=new HashMap<String, String> (); 
+RequirementIDNameHashMap.put("1", "01: Paint figures and connections"); 
+RequirementIDNameHashMap.put("2", "02: Create figures and connections"); 
+RequirementIDNameHashMap.put("3", "03: Delete figures"); 
+RequirementIDNameHashMap.put("4", "04: Delete connections"); 
+RequirementIDNameHashMap.put("5", "05: Select and deselect figures"); 
+RequirementIDNameHashMap.put("6", "06: Move- scale- or rotate figures"); 
+RequirementIDNameHashMap.put("7", "07: Change properties of figures"); 
+RequirementIDNameHashMap.put("8", "08: Edit  text in figures"); 
+RequirementIDNameHashMap.put("9", "09: Align figures"); 
+RequirementIDNameHashMap.put("10", "10: Change z-ordering"); 
+RequirementIDNameHashMap.put("11", "11: Grouping and ungrouping figures"); 
+RequirementIDNameHashMap.put("12", "12: Launch the application"); 
+RequirementIDNameHashMap.put("13", "13: Open an existing drawing"); 
+RequirementIDNameHashMap.put("14", "14: Save a drawing"); 
+RequirementIDNameHashMap.put("15", "15: Scalability:  Drawings should be as large as possible"); 
+RequirementIDNameHashMap.put("16", "16: Performance: Quickly redraw figures if changed"); 
+RequirementIDNameHashMap.put("17", "17: Performance: Quickly locate figures based on x-y coordinates"); 
+RequirementIDNameHashMap.put("18", "18: Interoperability: Support data exchange via the clipboard"); 
+RequirementIDNameHashMap.put("19", "19: Usability: Support operating system specific user interfaces"); 
+RequirementIDNameHashMap.put("20", "20: Performance: Strive for a short startup latency"); 
+RequirementIDNameHashMap.put("21", "21: Recoverability: periodic auto-save"); 
 //
 //
 //
@@ -3624,32 +3712,32 @@ public class DBDemo3JHotDraw3 {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 
 
-
 HashMap <String, String > RequirementClassHashMap= new HashMap <String, String > (); 
 
 String classname=""; 
 String classid=""; 
 String requirementname=""; 
 String requirementid="";
-ResultSet Traces = st.executeQuery("SELECT traces.* from traces "); 
+ResultSet Traces = st.executeQuery("SELECT classes.* from classes "); 
 while(Traces.next()){
 classname = Traces.getString("classname"); 
-classid = Traces.getString("classid"); 
-requirementname = Traces.getString("requirement"); 
-requirementid = Traces.getString("requirementid"); 
-
-
-String key= requirementid+"-"+classid; 
-String val= requirementid+"%"+requirementname+"%"+classid+"%"+classname; 
+classid = Traces.getString("id"); 
+for(String keyreq: RequirementIDNameHashMap.keySet()) {
+String key= keyreq+"/"+classid; 
+String val= keyreq+"/"+RequirementIDNameHashMap.get(keyreq)+"/"+classid+"/"+classname; 
 
 RequirementClassHashMap.put(key, val); 
+}
+
+
+
 
 
 }
 
 for(Entry<String, String> entry :RequirementClassHashMap.entrySet()) {
 String myvalue = entry.getValue(); 
-String[] myvalues = myvalue.split("%"); 
+String[] myvalues = myvalue.split("/"); 
 String statement8= "INSERT INTO `tracesclasses`(`requirement`, `requirementid`,  `classname`, `classid`) VALUES ('"+myvalues[1]+"','" +myvalues[0]+"','"  +myvalues[3]+"','" +myvalues[2]+"')";	
 st2.executeUpdate(statement8);
 }
