@@ -415,51 +415,51 @@ public class UnitedComparisonMethodInterfacesFinal2 {
 		
 		// Connect to MySQL
 				Connection conn = null;
-				try {
-					conn = getConnection("chess");
-					System.out.println("Connected to database");
-					
-				} catch (SQLException e) {
-					System.out.println("ERROR: Could not connect to the database");
-					e.printStackTrace();
-					return;
-				}
-		app.run(conn, "Chess", "databasechess");
-		Spoon(); 
-		
-		conn.close();
-		
-		
+//				try {
+//					conn = getConnection("chess");
+//					System.out.println("Connected to database");
+//					
+//				} catch (SQLException e) {
+//					System.out.println("ERROR: Could not connect to the database");
+//					e.printStackTrace();
+//					return;
+//				}
+//		app.run(conn, "Chess", "databasechess");
+//		Spoon(); 
+//		
+//		conn.close();
 		
 		
-		 conn = null;
-		try {
-			conn = getConnection("gantt");
-			System.out.println("Connected to database");
-			
-		} catch (SQLException e) {
-			System.out.println("ERROR: Could not connect to the database");
-			e.printStackTrace();
-			return;
-		}
-		app.run(conn, "Gantt", "databasegantt");
-		Spoon(); 
-		conn.close();
 		
 		
-		 conn = null;
-			try {
-				conn = getConnection("itrust");
-				System.out.println("Connected to database");
-				
-			} catch (SQLException e) {
-				System.out.println("ERROR: Could not connect to the database");
-				e.printStackTrace();
-				return;
-			}
-			app.run(conn, "iTrust", "databaseitrust");
-			Spoon(); 
-			conn.close();
+//		 conn = null;
+//		try {
+//			conn = getConnection("gantt");
+//			System.out.println("Connected to database");
+//			
+//		} catch (SQLException e) {
+//			System.out.println("ERROR: Could not connect to the database");
+//			e.printStackTrace();
+//			return;
+//		}
+//		app.run(conn, "Gantt", "databasegantt");
+//		Spoon(); 
+//		conn.close();
+//		
+//		
+//		 conn = null;
+//			try {
+//				conn = getConnection("itrust");
+//				System.out.println("Connected to database");
+//				
+//			} catch (SQLException e) {
+//				System.out.println("ERROR: Could not connect to the database");
+//				e.printStackTrace();
+//				return;
+//			}
+//			app.run(conn, "iTrust", "databaseitrust");
+//			Spoon(); 
+//			conn.close();
 			
 			conn = null;
 			try {
