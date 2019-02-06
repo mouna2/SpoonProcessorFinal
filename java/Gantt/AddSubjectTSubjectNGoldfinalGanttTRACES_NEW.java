@@ -1,4 +1,4 @@
-package iTrust;
+package Gantt;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddGold2Column {
+public class AddSubjectTSubjectNGoldfinalGanttTRACES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -32,7 +32,7 @@ public class AddGold2Column {
 
 	private final int portNumber = 3306;
 	
-	private final String dbName = "databaseitrust";
+	private final String dbName = "databasegantt";
 
 	/**
 	 * Get a new database connection
@@ -45,7 +45,7 @@ public class AddGold2Column {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
 
 		return conn;
 	}
@@ -115,46 +115,42 @@ public class AddGold2Column {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2itrustfinal DatabaseReading = new DatabaseReading2itrustfinal();
+		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
-		
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
+		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectN");
+		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
+		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
 		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\iTrustFiles\\itrust_vote_dev.txt");
+			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\GanttFiles\\gantt_meth_votes.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			
+			StringBuffer stringBuffer = new StringBuffer();
 			String line;
 			line = bufferedReader.readLine(); 
 			List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
 
 			while ((line = bufferedReader.readLine()) != null) {
-				String[] splittedline = line.split(",", -1); 
-				
+				String[] splittedline = line.split(","); 
+				stringBuffer.append(line);
+				stringBuffer.append("\n");
 				int counter =1; 
-				for(int i=1; i<splittedline.length; i++) {
+				for(int i=1; i<splittedline.length; i+=2) {
 					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
 					String methodname= splittedline[0]; 
 					methodname=methodname.replaceAll("::", "."); 
-					System.out.println(methodname);
-					//methodname=methodname.replaceAll("constructor", "-init-"); 
-					//methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
+					methodname=methodname.replaceAll("constructor", "-init-"); 
+					methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
 				
 					String RequirementID= ""+counter;
-					String val=splittedline[i];
-					if(splittedline[i].equals("")) {
-						SubjectTSubjectNObj.setGold2("N");
-					}
-					else {
-						SubjectTSubjectNObj.setGold2("T");
-					}
+					String SubjectT= splittedline[i];
+					String SubjectN= splittedline[i+1]; 
 					SubjectTSubjectNObj.setMethodName(methodname);
 					SubjectTSubjectNObj.setRequirementID(RequirementID);
-					
+					SubjectTSubjectNObj.setSubjectT(SubjectT);
+					SubjectTSubjectNObj.setSubjectN(SubjectN);
 					counter++; 
 					mylist.add(SubjectTSubjectNObj); 
 				}
@@ -165,14 +161,21 @@ public class AddGold2Column {
 			int count=1;
 			for (SubjectTSubjectNObject entry: mylist) {
 				System.out.println(entry.toString()+ " "+count);
-				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND shortmethodname ='"+name+"'"); 
+				//String name= "net.sourceforge.ganttproject."+entry.MethodName; 
+				String name= "net.sourceforge.ganttproject."+entry.MethodName; 
+				System.out.println(name);
+				
+				
+				String	goldfinal= PredictGoldUnionFinal(Integer.parseInt(entry.SubjectT), Integer.parseInt(entry.SubjectN)); 
+				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +
+						"',"+"`goldfinal` ='"+ goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method ='"+name+"'"); 
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
 			
-		 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 
+		 	st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 
 
+			System.out.println(stringBuffer.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -182,4 +185,25 @@ public class AddGold2Column {
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	}
+	
+	
+	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
+		String goldUnion=null; 
+		
+			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
+				goldUnion="T"; 
+			}
+			else if(SubjectT==0 && SubjectN>=2) {
+				goldUnion="N"; 
+			}
+			else {
+				goldUnion="E"; 
+			}
+			
+			
+			
+		
+		return goldUnion; 
+	}
+	
 }

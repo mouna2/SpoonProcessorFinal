@@ -1,4 +1,4 @@
-package iTrust;
+package Gantt;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,14 +11,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddGold2Column {
+public class AddgoldfinalColumnTTRACESCLASSES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -32,7 +36,7 @@ public class AddGold2Column {
 
 	private final int portNumber = 3306;
 	
-	private final String dbName = "databaseitrust";
+	private final String dbName = "databasegantt";
 
 	/**
 	 * Get a new database connection
@@ -45,7 +49,7 @@ public class AddGold2Column {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databaseitrust","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
 
 		return conn;
 	}
@@ -92,7 +96,7 @@ public class AddGold2Column {
 
 		   
 		  
-			   AddColumns();
+			  // AddColumns();
 		
 		  
 		   
@@ -108,78 +112,75 @@ public class AddGold2Column {
 	}
 	
 	public static void main(String[] args) throws SQLException, IOException {
-		AddColumns();
-
+		AddColumns2();
 	}
 
-	public static void AddColumns() throws SQLException {
+	
+	
+	public static void AddColumns2() throws SQLException, IOException {
+
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2itrustfinal DatabaseReading = new DatabaseReading2itrustfinal();
+		DBDemo3Gantt DatabaseReading = new DBDemo3Gantt();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-//		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN SubjectT"); 
-		st.executeUpdate("ALTER TABLE `traces` DROP COLUMN goldfinal");
-		st.executeUpdate("ALTER TABLE `traces` ADD goldfinal LONGTEXT"); 
+		 FileReader fileReader = new FileReader("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\GanttFiles\\TracesClassesNEW.txt");
+
+		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");
+		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldfinal LONGTEXT"); 
 		
-		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\iTrustFiles\\itrust_vote_dev.txt");
-			FileReader fileReader = new FileReader(file);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			
-			String line;
-			line = bufferedReader.readLine(); 
-			List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
+		
+		 BufferedReader bufferedReader = new BufferedReader(fileReader);
+	        HashMap<String,  String> ReqClassHashMap= new HashMap<String,  String> (); 
+	        String line = null;
+	        line = bufferedReader.readLine(); 
+	        String[] requirements = line.split(","); 
+	        while((line = bufferedReader.readLine()) != null) {
+//	            System.out.println(line);
+	        	 String[] splitted = line.split("\\,", -1);
+	            
+	            for(int i=1; i<splitted.length; i++) {
+	            	
+	            	if(i==15) {
+	            		i++; 
+	            	}
+	            	if(splitted[i].equals("x")) {
+	            		ReqClassHashMap.put(i+"-"+splitted[0], "T"); 
+	            	}else {
+	            		ReqClassHashMap.put(i+"-"+splitted[0], "N"); 
+	            	}
+	            	
+	            	
+	            }
+//	            System.out.println(line);
+	        }   
 
-			while ((line = bufferedReader.readLine()) != null) {
-				String[] splittedline = line.split(",", -1); 
-				
-				int counter =1; 
-				for(int i=1; i<splittedline.length; i++) {
-					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
-					String methodname= splittedline[0]; 
-					methodname=methodname.replaceAll("::", "."); 
-					System.out.println(methodname);
-					//methodname=methodname.replaceAll("constructor", "-init-"); 
-					//methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
-				
-					String RequirementID= ""+counter;
-					String val=splittedline[i];
-					if(splittedline[i].equals("")) {
-						SubjectTSubjectNObj.setGold2("N");
-					}
-					else {
-						SubjectTSubjectNObj.setGold2("T");
-					}
-					SubjectTSubjectNObj.setMethodName(methodname);
-					SubjectTSubjectNObj.setRequirementID(RequirementID);
-					
-					counter++; 
-					mylist.add(SubjectTSubjectNObj); 
-				}
-			
-			}
-			fileReader.close();
-			System.out.println(mylist.size());
-			int count=1;
-			for (SubjectTSubjectNObject entry: mylist) {
-				System.out.println(entry.toString()+ " "+count);
-				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND shortmethodname ='"+name+"'"); 
-				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
-				count++;
-			}
-			
-		 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 
+	        // Always close files.
+	        bufferedReader.close();         
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		
+		
+	
+		
+		int counter2=0; 
+		
+		
+		for (Entry <String,  String> entry : ReqClassHashMap.entrySet()) {
+		    String key = entry.getKey(); 
+		    String[] keys = key.split("-"); 
+		   String ReqID=keys[0]; 
+		   String ClassName=keys[1]; 
+		     List<String> List= new ArrayList<String>(); 
+		 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ entry.getValue().trim() +"'WHERE requirementid='"+ReqID+"' AND classname='"+ClassName+"'"); 
+//			System.out.println(ReqClass);
+			System.out.println("counter "+counter2);
+			counter2++; 
+
 		}
 		
+	 	st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 
+
 		
-		
-		
-		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	}
 }

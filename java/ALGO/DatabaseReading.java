@@ -59,7 +59,7 @@ public class DatabaseReading {
 
 		
 		//SWITCHED TO MethodTraceSubjectTSubjectN
-		
+		System.out.println(ProgramName);
 		LinkedHashMap<String, MethodTrace> methodtracehashmap = DatabaseInput.ReadMethodTraces(conn, ClassMethodsHashMap, FinalMethodHashMapReqGolds);
 		List<MethodTrace> methodtraces = new ArrayList<MethodTrace>(methodtracehashmap.values());
 		setMethodtracesList(methodtraces);

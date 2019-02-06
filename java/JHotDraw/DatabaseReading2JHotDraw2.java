@@ -18,6 +18,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import ALGO.DatabaseInput;
 import Chess.TracesTableChessFINALGeneticAlgorithm;
 import Tables.CallerIDName;
 import Tables.tracesmethods;

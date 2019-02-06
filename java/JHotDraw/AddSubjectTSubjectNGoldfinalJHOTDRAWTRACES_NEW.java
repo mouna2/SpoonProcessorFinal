@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddSubjectTSubjectNGantt {
+public class AddSubjectTSubjectNGoldfinalJHOTDRAWTRACES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -45,7 +45,7 @@ public class AddSubjectTSubjectNGantt {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw","root","123456");
 
 		return conn;
 	}
@@ -115,7 +115,7 @@ public class AddSubjectTSubjectNGantt {
 	public static void AddColumns() throws SQLException {
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
+		DatabaseReading2JHotDraw3 DatabaseReading = new DatabaseReading2JHotDraw3();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
@@ -124,7 +124,7 @@ public class AddSubjectTSubjectNGantt {
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectT LONGTEXT"); 
 		st.executeUpdate("ALTER TABLE `traces` ADD SubjectN LONGTEXT");
 		try {
-			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\GanttFiles\\gantt_meth_votes.txt");
+			File file = new File("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\JHotDrawFiles\\jhotdrawnew_meth_votes.txt");
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			StringBuffer stringBuffer = new StringBuffer();
@@ -162,11 +162,19 @@ public class AddSubjectTSubjectNGantt {
 			for (SubjectTSubjectNObject entry: mylist) {
 				System.out.println(entry.toString()+ " "+count);
 				//String name= "net.sourceforge.ganttproject."+entry.MethodName; 
-				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
+				String name= "org.jhotdraw."+entry.MethodName; 
+				System.out.println(name);
+				
+				
+				String	goldfinal= PredictGoldUnionFinal(Integer.parseInt(entry.SubjectT), Integer.parseInt(entry.SubjectN)); 
+				st.executeUpdate("UPDATE `traces` SET `SubjectT` ='"+ entry.SubjectT +"',"+"`SubjectN` ='"+ entry.SubjectN +
+						"',"+"`goldfinal` ='"+ goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method ='"+name+"'"); 
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
+			
+		 	st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ "E" +"'WHERE goldfinal is null"); 
+
 			System.out.println(stringBuffer.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -177,4 +185,25 @@ public class AddSubjectTSubjectNGantt {
 		
 		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
 	}
+	
+	
+	static String PredictGoldUnionFinal(int SubjectT, int SubjectN) {
+		String goldUnion=null; 
+		
+			if((SubjectT>=2 && SubjectN==0) || SubjectT>=3) {
+				goldUnion="T"; 
+			}
+			else if(SubjectT==0 && SubjectN>=2) {
+				goldUnion="N"; 
+			}
+			else {
+				goldUnion="E"; 
+			}
+			
+			
+			
+		
+		return goldUnion; 
+	}
+	
 }

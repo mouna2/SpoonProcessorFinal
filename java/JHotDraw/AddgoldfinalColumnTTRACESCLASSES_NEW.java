@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddGold3Gold4ColumnTTRACESCLASSES_NEW {
+public class AddgoldfinalColumnTTRACESCLASSES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -49,7 +49,7 @@ public class AddGold3Gold4ColumnTTRACESCLASSES_NEW {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw","root","123456");
 
 		return conn;
 	}
@@ -121,11 +121,11 @@ public class AddGold3Gold4ColumnTTRACESCLASSES_NEW {
 
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DBDemo3Gantt DatabaseReading = new DBDemo3Gantt();
+		DBDemo3JHotDraw2 DatabaseReading = new DBDemo3JHotDraw2();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
 		Statement st2 = conn.createStatement();
-		 FileReader fileReader = new FileReader("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\GanttFiles\\TracesClassesNEW.txt");
+		 FileReader fileReader = new FileReader("C:\\Users\\mouna\\new_workspace\\SpoonProcessorFinal\\java\\JHotDrawFiles\\TracesClassesNEW.txt");
 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN goldfinal");
 		st.executeUpdate("ALTER TABLE `tracesclasses` ADD goldfinal LONGTEXT"); 
@@ -141,11 +141,16 @@ public class AddGold3Gold4ColumnTTRACESCLASSES_NEW {
 	        	 String[] splitted = line.split("\\,", -1);
 	            
 	            for(int i=1; i<splitted.length; i++) {
+	            	if(i==15) {
+	            		i=16; 
+	            	}
 	            	if(splitted[i].equals("x")) {
 	            		ReqClassHashMap.put(i+"-"+splitted[0], "T"); 
 	            	}else {
 	            		ReqClassHashMap.put(i+"-"+splitted[0], "N"); 
 	            	}
+	            	
+	            	
 	            }
 //	            System.out.println(line);
 	        }   

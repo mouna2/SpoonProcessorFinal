@@ -1,4 +1,4 @@
-package Gantt;
+package JHotDraw;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +22,7 @@ import Chess.CountTNE;
 import spoon.Launcher;
 import spoon.SpoonAPI;
 
-public class AddGold3Gold4GanttTRACESCLASSES {
+public class AddSubjectGoldTRACESCLASSES_NEW {
 	/** The name of the MySQL account to use (or empty for anonymous) */
 	private final String userName = "root";
 	
@@ -49,8 +49,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		Properties connectionProps = new Properties();
 		connectionProps.put("root", this.userName);
 		connectionProps.put("123456", this.password);
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasegantt","root","123456");
-
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/databasejhotdraw", "root", "123456");
 		return conn;
 	}
 
@@ -123,10 +122,9 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 
 		// TODO Auto-generated method stub
 		Connection conn = null;
-		DatabaseReading2Gantt DatabaseReading = new DatabaseReading2Gantt();
+		DatabaseReading2JHotDraw2 DatabaseReading = new DatabaseReading2JHotDraw2();
 		conn = DatabaseReading.getConnection();
 		Statement st = conn.createStatement();
-		Statement st2 = conn.createStatement();
 	
 
 		st.executeUpdate("ALTER TABLE `tracesclasses` DROP COLUMN SubjectGold");
@@ -139,32 +137,17 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 
 		int  TracesNumber=0; 
 		int counter=0; 
-		String mytraceclass=""; 
 		String classid=""; 
 		String classname=""; 
 		String requirementid= ""; 
 		String requirementname= ""; 
-		String gold4=""; 
-		String gold3=""; 
-		String goldAtLeast3=""; 
-		String gold6=""; 
-		String gold=""; 
-		String goldfinalAlex=""; 
-		String goldAlexAtLeast3=""; 
-
-		String UnionGold=""; 
+		
 		Hashtable<String,String> RequirementClassHashMapNames=new Hashtable<String,String>(); 
 
 		Hashtable<String,List<String>> RequirementClassHashMap=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMapGold=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMapGoldAlex=new Hashtable<String,List<String>>(); 
-
-		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast3=new Hashtable<String,List<String>>(); 
-		Hashtable<String,List<String>> RequirementClassHashMapGoldAtLeast3Alex=new Hashtable<String,List<String>>(); 
-
+	
 		Hashtable<String,List<String>> RequirementClassHashMapUnionGold=new Hashtable<String,List<String>>(); 
 		List<String> ListUnionGold= new ArrayList<String>(); 
-		List<String> ListUnionGold2= new ArrayList<String>(); 
 		List<String> mylist= new ArrayList<String>(); 
 		ResultSet TracesCount=st.executeQuery("SELECT COUNT(*) FROM traces"); 
 		while(TracesCount.next()) {
@@ -201,19 +184,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 				
 				
 				
-				String goldNormal=traces.getString("gold").trim(); 
-				if(RequirementClassHashMapGold.get(ReqClass)==null) {
-					ListUnionGold2= new ArrayList<String>(); 
-					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
-					ListUnionGold2 = RequirementClassHashMapGold.get(ReqClass); 
-					ListUnionGold2.add(goldNormal); 
-					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
-				}else {
-					ListUnionGold2= RequirementClassHashMapGold.get(ReqClass); 
-					ListUnionGold2.add(goldNormal); 
-					RequirementClassHashMapGold.put(ReqClass, ListUnionGold2); 
-				}
-				
+			
 				
 				
 				
@@ -231,79 +202,7 @@ public class AddGold3Gold4GanttTRACESCLASSES {
 		
 
 		
-		
-		
-		
-//		counter=0; 
-//		for(Entry<String, List<String>>  entry: RequirementClassHashMapGold.entrySet()) {
-//
-//			   System.out.println(entry.getKey() + " = " );
-//			    requirementid= entry.getKey().substring(0, entry.getKey().indexOf("-")); 
-//			     classid= entry.getKey().substring(entry.getKey().indexOf("-")+1, entry.getKey().length()); 
-//			     
-//			     List<String> MyValues = entry.getValue(); 
-//			     java.util.Collections.sort(MyValues); 
-//			    
-////				for(String val: MyValues) {
-////			    	 System.out.println("VAL  "+val);
-////			    	 
-////			     }
-//			     if(MyValues.size()>0) {
-//			    	 
-//			    	  int CountT=0, CountN=0, CountE=0; 
-//					     CountTNE count=ComputeProportions(MyValues, CountT, CountN, CountE); 
-//					
-//					    System.out.println("hhCountT "+count.CountT);
-//					    System.out.println("hhCountN "+count.CountN);
-//					    System.out.println("hhCountE "+count.CountE);
-//					     
-//					     if(MyValues.size()>0) {
-//						     System.out.println(MyValues.size());
-//							    int newsize = MyValues.size()/2; 
-//							    System.out.println(newsize);
-//							    	   String charac = MyValues.get(newsize); 
-//							    
-//							  
-//							    	   if(count.CountT>0) {		
-//											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "T" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-//
-//								     } 
-////								    else  if(charac.trim().equals("N")) {
-//
-//								    else  if(count.CountN>0 && count.CountT==0 && count.CountE>=0) {
-//								    		
-//								    		
-//								    		
-//								    	 st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "N" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-//
-//
-//
-//								    			     }
-//								     else {
-//											st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-//
-//								    	 
-//								     }
-//							     
-//					     }
-//					     else {
-//								st.executeUpdate("UPDATE `tracesclasses` SET `goldfinal` ='"+ "E" +"'WHERE requirementid='"+requirementid+"' AND classid='"+classid+"'"); 
-//
-//					    	 
-//					     }
-//				     
-//			    	 
-//			    	 
-//			     }
-//
-//					System.out.println("COUNTER 1  "+counter);
-//					counter++; 
-//		}
-		
-		
-	
-		
-		//st.executeUpdate("SELECT * FROM `traces` where method LIKE `% %`"); 
+
 	counter=0; 
 		for(Entry<String, List<String>>  entry: RequirementClassHashMapUnionGold.entrySet()) {
 

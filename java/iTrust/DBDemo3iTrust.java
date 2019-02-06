@@ -387,18 +387,18 @@ public class DBDemo3iTrust {
 //		   		"  `requirementname` LONGTEXT NULL,\r\n" + 
 //		   		"  PRIMARY KEY (`id`),\r\n" + 
 //		   		"  UNIQUE INDEX `id_UNIQUE` (`id` ASC));"); 
-			 st.executeUpdate("CREATE TABLE `databaseitrust`.`tracesclasses` (\r\n" + 
-			 		"  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,\r\n" + 
-			 		"  `requirement` LONGTEXT NULL,\r\n" + 
-			 		"  `requirementid` INT NULL,\r\n" + 
-			 		"  `classname` LONGTEXT NULL,\r\n" + 
-			 		"  `shortclassname` LONGTEXT NULL,\r\n" + 
-			 		"  `classid` INT NULL,\r\n" + 
-			 		"  `gold` LONGTEXT NULL,\r\n" + 
-			 		"  `subject` LONGTEXT NULL,\r\n" + 
-			 		"  PRIMARY KEY (`id`),\r\n" + 
-			 		"  UNIQUE INDEX `idtracesclasses_UNIQUE` (`id` ASC));\r\n" + 
-			 		""); 
+//			 st.executeUpdate("CREATE TABLE `databaseitrust`.`tracesclasses` (\r\n" + 
+//			 		"  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,\r\n" + 
+//			 		"  `requirement` LONGTEXT NULL,\r\n" + 
+//			 		"  `requirementid` INT NULL,\r\n" + 
+//			 		"  `classname` LONGTEXT NULL,\r\n" + 
+//			 		"  `shortclassname` LONGTEXT NULL,\r\n" + 
+//			 		"  `classid` INT NULL,\r\n" + 
+//			 		"  `gold` LONGTEXT NULL,\r\n" + 
+//			 		"  `subject` LONGTEXT NULL,\r\n" + 
+//			 		"  PRIMARY KEY (`id`),\r\n" + 
+//			 		"  UNIQUE INDEX `idtracesclasses_UNIQUE` (`id` ASC));\r\n" + 
+//			 		""); 
 		   
 		   try {
 			Spoon();
@@ -3398,29 +3398,30 @@ RequirementIDNameHashMap.put("33", "UC37");
 RequirementIDNameHashMap.put("34", "UC38"); 
 
 
-//ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
-//while(mymeths.next()){
-//	String methodid = mymeths.getString("id"); 
-//	String method = mymeths.getString("methodabbreviation"); 
-//	String methodname = mymeths.getString("methodname"); 
-//	String fullmethod = mymeths.getString("fullmethod"); 
-//	
-//	String classname = mymeths.getString("classname"); 
-//	String classid = mymeths.getString("classid"); 
-//	
-//	
-//	
-//	for(String key: RequirementIDNameHashMap.keySet()) {
-//		tracesmethods tr= new tracesmethods(key, methodid,  classid); 
-//		
-//		if(!tr.contains(TraceListMethods, tr)) {
-//			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
-//			st.executeUpdate(statement);
-//		}
-//	}
-//	
-//
-//}
+ResultSet mymeths = st2.executeQuery("SELECT methods.* from methods"); 
+while(mymeths.next()){
+	String methodid = mymeths.getString("id"); 
+	String method = mymeths.getString("methodabbreviation"); 
+	String methodname = mymeths.getString("methodname"); 
+	String fullmethod = mymeths.getString("fullmethod"); 
+	
+	String classname = mymeths.getString("classname"); 
+	String classid = mymeths.getString("classid"); 
+	
+	 List<tracesmethods> TraceListMethods= new ArrayList<tracesmethods>();
+
+	
+	for(String key: RequirementIDNameHashMap.keySet()) {
+		tracesmethods tr= new tracesmethods(key, methodid,  classid); 
+		
+		if(!tr.contains(TraceListMethods, tr)) {
+			String statement = "INSERT INTO `traces`(`requirement`, `requirementid`, `method`, `methodname`, `fullmethod`,  `methodid`,`classname`, `classid`, `gold`,  `subject`) VALUES ('"+RequirementIDNameHashMap.get(tr.getRequirementid())+"','" +tr.getRequirementid()+"','" +method+"','" +methodname+"','" +fullmethod+"','" +methodid+"','"+classname +"','" +classid+"','"+ " "+"','" + " "+"')";		
+			st.executeUpdate(statement);
+		}
+	}
+	
+
+}
 
 
 

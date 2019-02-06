@@ -133,17 +133,17 @@ public class AddGold2Column {
 			List<SubjectTSubjectNObject> mylist= new ArrayList<SubjectTSubjectNObject>(); 
 			
 			while ((line = bufferedReader.readLine()) != null) {
-				String[] splittedline = line.split(",", -1); 
+				String[] splittedline = line.split(";", -1); 
 				
 				int counter =1; 
-				for(int i=4; i<splittedline.length; i++) {
+				for(int i=5; i<13; i++) {
 					SubjectTSubjectNObject SubjectTSubjectNObj = new SubjectTSubjectNObject(); 
+//					String methodname= splittedline[1]+"."+splittedline[2]+splittedline[3]; 
 					String methodname= splittedline[1]+"."+splittedline[2]; 
-					methodname=methodname.replaceAll("$", ""); 
 					methodname=methodname.replaceAll("clinit", "init"); 
 					//methodname=methodname.replaceAll("constructor", "-init-"); 
 					//methodname=Pattern.compile("[{}<>]").matcher(methodname).replaceAll(""); 
-				
+					
 					String RequirementID= ""+counter;
 					if(splittedline[i].equals("")) {
 						SubjectTSubjectNObj.setGold2("N");
@@ -163,9 +163,11 @@ public class AddGold2Column {
 			System.out.println(mylist.size());
 			int count=1;
 			for (SubjectTSubjectNObject entry: mylist) {
-				System.out.println(entry.toString()+ " "+count);
+//				System.out.println(entry.toString()+ " "+count);
 				String name= entry.MethodName; 
-				st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method LIKE'%"+name+"%'"); 
+				System.out.println("namee    "+name);
+				
+				st.executeUpdate("UPDATE `traces` SET `goldfinal` ='"+ entry.goldfinal +"'WHERE requirementid='"+entry.RequirementID+"' AND method ='"+name+"'"); 
 				//st.executeUpdate("UPDATE `traces` SET  +"'WHERE requirementid='"+entry.RequirementID+"' AND method='"+name+"'"); 
 				count++;
 			}
